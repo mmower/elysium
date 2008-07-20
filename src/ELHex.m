@@ -6,8 +6,9 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELHex.h"
+#import "Elysium.h"
 
+#import "ELHex.h"
 #import "ELNote.h"
 
 @implementation ELHex
@@ -21,6 +22,42 @@
   }
   
   return self;
+}
+
+- (ELHex *)neighbour:(Direction)direction {
+  switch( direction ) {
+    case N: return [self neighbourNorth];
+    case NE: return [self neighbourNorthEast];
+    case SE: return [self neighbourSouthEast];
+    case S: return [self neighbourSouth];
+    case SW: return [self neighbourSouthWest];
+    case NW: return [self neighbourNorthWest];
+    default: return nil;
+  }
+}
+
+- (ELHex *)neighbourNorth {
+  return nil;
+}
+
+- (ELHex *)neighbourNorthEast {
+  return nil;
+}
+
+- (ELHex *)neighbourSouthEast {
+  return nil;
+}
+
+- (ELHex *)neighbourSouth {
+  return nil;
+}
+
+- (ELHex *)neighbourSouthWest {
+  return nil;
+}
+
+- (ELHex *)neighbourNorthWest {
+  return nil;
 }
 
 @end

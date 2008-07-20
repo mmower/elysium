@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELLayer;
+@class ELHex;
+
 @interface ELPlayhead : NSObject {
   ELLayer   *layer;
   ELHex     *position;

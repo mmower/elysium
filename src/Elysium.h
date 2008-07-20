@@ -8,3 +8,13 @@
  */
 
 #define COL_ROW_OFFSET(col,row) ((col * ROWS) + row)
+
+typedef enum tagDirection {
+  N,
+  NE,
+  SE,
+  S,
+  SW,
+  NW
+  } Direction;
+  

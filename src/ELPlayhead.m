@@ -7,6 +7,8 @@
 //
 
 #import "Elysium.h"
+
+#import "ELHex.h"
 #import "ELPlayhead.h"
 
 @implementation ELPlayhead
@@ -27,7 +29,7 @@
 }
 
 - (BOOL)isDead {
-  position == nil || ttl < 1
+  return position == nil || ttl < 1;
 }
 
 @end

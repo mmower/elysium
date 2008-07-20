@@ -21,4 +21,12 @@
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note col:(int)col row:(int)row;
 
+- (ELHex *)neighbour:(Direction)direction;
+- (ELHex *)neighbourNorth;
+- (ELHex *)neighbourNorthEast;
+- (ELHex *)neighbourSouthEast;
+- (ELHex *)neighbourSouth;
+- (ELHex *)neighbourSouthWest;
+- (ELHex *)neighbourNorthWest;
+
 @end

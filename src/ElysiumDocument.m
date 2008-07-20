@@ -6,6 +6,8 @@
 //  Copyright LucidMac Software 2008 . All rights reserved.
 //
 
+#import "Elysium.h"
+
 #import "ElysiumDocument.h"
 
 @implementation ElysiumDocument
