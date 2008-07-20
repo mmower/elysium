@@ -6,9 +6,9 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELHarmonicTable.h"
-
+#import "Elysium.h"
 #import "ELNote.h"
+#import "ELHarmonicTable.h"
 
 @implementation ELHarmonicTable
 
@@ -39,8 +39,8 @@
     
     for( int col = 0; col < COLUMNS; col++ ) {
       for( int row = 0; row < ROWS; row++ ) {
-        ELNote *note = [[ELNote alloc] initWithName:[notes objectAtIndex:((col * ROWS)+row)]];
-        [entries insertObject:note atIndex:((col * ROWS)+row)];
+        ELNote *note = [[ELNote alloc] initWithName:[notes objectAtIndex:COL_ROW_OFFSET(col,row)]];
+        [entries insertObject:note atIndex:COL_ROW_OFFSET(col,row)];
       }
     }
   }
@@ -49,8 +49,12 @@
 }
 
 - (ELNote *)noteAtCol:(int)col row:(int)row {
-  return [entries objectAtIndex:(col * ROWS) + row];
+  return [entries objectAtIndex:COL_ROW_OFFSET(col,row)];
   
+}
+
+- (int)size {
+  return ROWS * COLUMNS;
 }
 
 - (int)cols {

@@ -9,7 +9,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "ELHarmonicTable.h"
+
 @interface ElysiumDocument : NSDocument
 {
+  ELHarmonicTable   *harmonicTable;
 }
 @end

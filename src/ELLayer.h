@@ -12,6 +12,7 @@
 
 @interface ELLayer : NSObject {
   ELHarmonicTable     *harmonicTable;
+  NSMutableArray      *hexes;
   int                 instrument;
   NSMutableDictionary *config;
 }

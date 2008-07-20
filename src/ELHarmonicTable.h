@@ -19,6 +19,7 @@
 
 - (ELNote *)noteAtCol:(int)col row:(int)row;
 
+- (int)size;
 - (int)cols;
 - (int)rows;
 
