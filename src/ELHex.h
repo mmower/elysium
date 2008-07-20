@@ -17,11 +17,13 @@
   ELNote          *note;
   int             col;
   int             row;
-  NSMutableArray  *neighbours;
+  ELHex           *neighbours[6];
   NSMutableArray  *tools;
 }
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note col:(int)col row:(int)row;
+
+- (ELNote *)note;
 
 - (ELHex *)neighbour:(Direction)direction;
 

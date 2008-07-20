@@ -21,7 +21,6 @@
     note       = _note;
     col        = _col;
     row        = _row;
-    neighbours = [[NSMutableArray alloc] initWithCapacity:6];
     tools      = [[NSMutableArray alloc] init];
   }
   
@@ -30,7 +29,7 @@
 
 // Private method for connecting hexes without setting the inverse
 - (void)connectToHex:(ELHex *)_hex direction:(Direction)_direction {
-  [neighbours insertObject:_hex atIndex:_direction];
+  neighbours[_direction] = _hex;
 }
 
 - (void)connectNeighbour:(ELHex *)_hex direction:(Direction)_direction {
@@ -38,8 +37,12 @@
   [_hex connectToHex:self direction:INVERSE_DIRECTION(_direction)];
 }
 
-- (ELHex *)neighbour:(Direction)direction {
-  return [neighbours objectAtIndex:direction];
+- (ELNote *)note {
+  return note;
+}
+
+- (ELHex *)neighbour:(Direction)_direction {
+  return neighbours[_direction];
 }
 
 - (void)addTool:(ELTool *)_tool {
