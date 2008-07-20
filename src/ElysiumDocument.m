@@ -14,10 +14,7 @@
 {
     self = [super init];
     if (self) {
-    
-        // Add your subclass-specific initialization here.
-        // If an error occurs here, send a [self release] message and return nil.
-    
+      player = [[ELPlayer alloc] init];
     }
     return self;
 }
