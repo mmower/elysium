@@ -11,6 +11,7 @@
 #import "ELLayer.h"
 
 #import "ELHex.h"
+#import "ELNote.h"
 #import "ELTool.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
@@ -23,6 +24,7 @@
     player        = _player;
     config        = _config;
     hexes         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    playheads     = [[NSMutableArray alloc] init];
     beatCount     = 0;
     
     [self configureHexes];
@@ -31,8 +33,16 @@
   return self;
 }
 
+- (ELPlayer *)player {
+  return player;
+}
+
 - (void)run {
+  NSLog( @"Layer %@ is running", self );
+  
   // On the first and every pulseCount beats, generate new playheads
+  NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
+  
   if( beatCount % [self pulseCount] == 0 ) {
     [self pulse];
   }
@@ -47,11 +57,21 @@
   }
   
   // Delete dead playheads
-  [playheads filterUsingPredicate:[NSPredicate predicateWithFormat:@"NOT isDead"]];
+  [playheads filterUsingPredicate:[NSPredicate predicateWithFormat:@"isDead == TRUE"]];
+  
+  // Beat is over
+  beatCount++;
 }
 
-- (int)instrument {
-  return [config integerForKey:@"instrument"];
+- (void)playNote:(ELNote *)_note velocity:(int)_velocity duration:(float)_duration {
+  [player playNote:_note
+           channel:[self channel]
+          velocity:_velocity
+          duration:_duration];
+}
+
+- (int)channel {
+  return [config integerForKey:@"channel"];
 }
 
 - (int)pulseCount {

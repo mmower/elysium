@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELHex;
+@class ELNote;
 @class ELConfig;
 @class ELPlayer;
 @class ELPlayhead;
@@ -23,14 +24,18 @@
 
 - (id)initWithPlayer:(ELPlayer *)player config:(ELConfig *)config;
 
+- (ELPlayer *)player;
+
 - (ELHex *)hexAtCol:(int)col row:(int)row;
 
 // Dynamic Configuration
-- (int)instrument;
+- (int)channel;
 - (int)pulseCount;
 
 - (void)run;
 - (void)stop;
+
+- (void)playNote:(ELNote *)note velocity:(int)velocity duration:(float)duration;
 
 - (void)removeAllPlayheads;
 - (void)addPlayhead:(ELPlayhead *)playhead;

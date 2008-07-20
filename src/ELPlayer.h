@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELNote;
+@class ELLayer;
 @class ELConfig;
 @class ELHarmonicTable;
 
@@ -15,8 +17,17 @@
   ELHarmonicTable   *harmonicTable;
   NSMutableArray    *layers;
   ELConfig          *config;
+  NSThread          *thread;
 }
 
 - (ELHarmonicTable *)harmonicTable;
+
+- (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
+
+- (void)addLayer;
+- (ELLayer *)createLayer:(int)channel;
+
+- (void)start;
+- (void)stop;
 
 @end
