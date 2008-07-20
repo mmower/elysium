@@ -8,8 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELMIDIController;
+
 @interface ElysiumController : NSObject {
-  IBOutlet NSTextView *debugOutput;
+  ELMIDIController        *midiController;
+  IBOutlet NSTextView     *debugOutput;
 }
 
 @end
