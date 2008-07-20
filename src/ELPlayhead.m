@@ -23,6 +23,10 @@
   return self;
 }
 
+- (ELHex *)position {
+  return position;
+}
+
 - (void)advance {
   position = [position neighbour:direction];
   ttl--;

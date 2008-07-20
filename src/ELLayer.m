@@ -12,16 +12,22 @@
 
 #import "ELHex.h"
 #import "ELTool.h"
+#import "ELPlayhead.h"
 #import "ELHarmonicTable.h"
 
 @implementation ELLayer
 
-- (id)initWithHarmonicTable:(ELHarmonicTable *)_harmonicTable instrument:(int)_instrument config:(NSMutableDictionary *)_config {
+- (id)initWithHarmonicTable:(ELHarmonicTable *)_harmonicTable config:(NSMutableDictionary *)_config {
   if( self = [super init] ) {
     harmonicTable = _harmonicTable;
-    instrument = _instrument;
-    config = _config;
-    hexes = [[NSMutableArray alloc] initWithCapacity:[harmonicTable size]];
+    config        = _config;
+    hexes         = [[NSMutableArray alloc] initWithCapacity:[harmonicTable size]];
+    beatCount     = 0;
+    
+    // Configuration items
+    pulseCount    = 16;
+    instrument    = 1;
+    
     [self configureHexes];
   }
   
@@ -29,16 +35,26 @@
 }
 
 - (void)run {
+  // On the first and every pulseCount beats, generate new playheads
+  if( beatCount % pulseCount == 0 ) {
+    [self pulse];
+  }
   
+  // Run all current playheads
+  for( ELPlayhead *playhead in playheads ) {
+    ELHex *hex = [playhead position];
+    for( ELTool *tool in [hex toolsExceptType:@"start"] ) {
+      [tool run:playhead];
+      [playhead advance];
+    }
+  }
+  
+  // Delete dead playheads
+  [playheads filterUsingPredicate:[NSPredicate predicateWithFormat:@"NOT isDead"]];
 }
 
 - (void)stop {
-  
-}
-
-- (void)reset {
   [self removeAllPlayheads];
-  [self pulse];
 }
 
 - (void)removeAllPlayheads {

@@ -14,12 +14,16 @@
 @interface ELLayer : NSObject {
   ELHarmonicTable     *harmonicTable;
   NSMutableArray      *hexes;
-  int                 instrument;
   NSMutableDictionary *config;
   NSMutableArray      *playheads;
+  int                 beatCount;
+  
+  // Configuration items
+  int                 instrument;
+  int                 pulseCount;
 }
 
-- (id)initWithHarmonicTable:(ELHarmonicTable *)harmonicTable instrument:(int)instrument config:(NSMutableDictionary *)config;
+- (id)initWithHarmonicTable:(ELHarmonicTable *)harmonicTable config:(NSMutableDictionary *)config;
 
 - (ELHex *)hexAtCol:(int)col row:(int)row;
 

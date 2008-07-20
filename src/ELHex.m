@@ -55,4 +55,9 @@
   return [tools filteredArrayUsingPredicate:typePredicate];
 }
 
+- (NSArray *)toolsExceptType:(NSString *)_type {
+  NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"type != %@",_type];
+  return [tools filteredArrayUsingPredicate:typePredicate];
+}
+
 @end
