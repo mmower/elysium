@@ -12,12 +12,15 @@
 @class ELLayer;
 @class ELConfig;
 @class ELHarmonicTable;
+@class ELMIDIController;
 
 @interface ELPlayer : NSObject {
   ELHarmonicTable   *harmonicTable;
   NSMutableArray    *layers;
   ELConfig          *config;
   NSThread          *thread;
+  BOOL              running;
+  ELMIDIController  *midiController;
 }
 
 - (ELHarmonicTable *)harmonicTable;
@@ -27,7 +30,8 @@
 - (void)addLayer;
 - (ELLayer *)createLayer:(int)channel;
 
-- (void)start;
+- (void)start:(ELMIDIController *)midiController;
 - (void)stop;
+- (BOOL)isRunning;
 
 @end

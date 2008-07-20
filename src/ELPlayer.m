@@ -15,6 +15,7 @@
 #import "ELLayer.h"
 #import "ELConfig.h"
 #import "ELHarmonicTable.h"
+#import "ELMIDIController.h"
 
 #import "ELTool.h"
 #import "ELStartTool.h"
@@ -27,6 +28,7 @@
     layers        = [[NSMutableArray alloc] init];
     config        = [[ELConfig alloc] init];
     thread        = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
+    running       = NO;
     
     // Setup some default values
     [config setInteger:300 forKey:@"bpm"];
@@ -39,8 +41,9 @@
   return self;
 }
 
-- (void)start {
+- (void)start:(ELMIDIController *)_midiController {
   NSLog( @"Starting player thread." );
+  midiController = _midiController;
   [thread start];
 }
 
@@ -48,7 +51,12 @@
   [thread cancel];
 }
 
+- (BOOL)isRunning {
+  return running;
+}
+
 - (void)run {
+  running = YES;
   while( ![thread isCancelled] ) {
     NSLog( @"Player thread is running" );
     
@@ -58,6 +66,9 @@
     
     sleep( 1.0 );
   }
+  
+  NSLog( @"Player has stopped." );
+  running = NO;
 }
 
 - (ELHarmonicTable *)harmonicTable
