@@ -14,10 +14,16 @@
 
 - (id)init {
   if( self = [super init] ) {
-    layers = [[NSMutableArray alloc] init];
+    harmonicTable = [[ELHarmonicTable alloc] init];
+    layers        = [[NSMutableArray alloc] init];
   }
   
   return self;
+}
+
+- (ELHarmonicTable *)harmonicTable
+{
+  return harmonicTable;
 }
 
 @end

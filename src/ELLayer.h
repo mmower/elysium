@@ -9,10 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELHex;
-@class ELHarmonicTable;
+@class ELPlayer;
+@class ELPlayhead;
 
 @interface ELLayer : NSObject {
-  ELHarmonicTable     *harmonicTable;
+  ELPlayer            *player;
   NSMutableArray      *hexes;
   NSMutableDictionary *config;
   NSMutableArray      *playheads;
@@ -23,7 +24,7 @@
   int                 pulseCount;
 }
 
-- (id)initWithHarmonicTable:(ELHarmonicTable *)harmonicTable config:(NSMutableDictionary *)config;
+- (id)initWithPlayer:(ELPlayer *)player config:(NSMutableDictionary *)config;
 
 - (ELHex *)hexAtCol:(int)col row:(int)row;
 
@@ -31,6 +32,7 @@
 - (void)stop;
 
 - (void)removeAllPlayheads;
+- (void)addPlayhead:(ELPlayhead *)playhead;
 - (void)pulse;
 
 - (void)configureHexes;

@@ -12,20 +12,20 @@
 
 #import "ELHex.h"
 #import "ELTool.h"
+#import "ELPlayer.h"
 #import "ELPlayhead.h"
-#import "ELHarmonicTable.h"
 
 @implementation ELLayer
 
-- (id)initWithHarmonicTable:(ELHarmonicTable *)_harmonicTable config:(NSMutableDictionary *)_config {
+- (id)initWithPlayer:(ELPlayer *)_player config:(NSMutableDictionary *)_config {
   if( self = [super init] ) {
-    harmonicTable = _harmonicTable;
+    player        = _player;
     config        = _config;
-    hexes         = [[NSMutableArray alloc] initWithCapacity:[harmonicTable size]];
+    hexes         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
     beatCount     = 0;
     
     // Configuration items
-    pulseCount    = 16;
+    pulseCount    = [_config];
     instrument    = 1;
     
     [self configureHexes];
@@ -57,6 +57,10 @@
   [self removeAllPlayheads];
 }
 
+- (void)addPlayhead:(ELPlayhead *)_playhead {
+  [playheads addObject:_playhead];
+}
+
 - (void)removeAllPlayheads {
   [playheads removeAllObjects];
 }
@@ -74,6 +78,8 @@
 }
 
 - (void)configureHexes {
+  ELHarmonicTable *harmonicTable = [player harmonicTable];
+  
   // First build the hex table mapping
   for( int col = 0; col < [harmonicTable cols]; col++ ) {
     for( int row = 0; row < [harmonicTable rows]; row++ ) {

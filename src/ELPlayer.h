@@ -8,8 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELHarmonicTable;
+
 @interface ELPlayer : NSObject {
+  ELHarmonicTable   *harmonicTable;
   NSMutableArray    *layers;
 }
+
+- (ELHarmonicTable *)harmonicTable;
 
 @end
