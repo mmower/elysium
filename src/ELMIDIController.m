@@ -80,7 +80,7 @@
 }
 
 - (void)sendMessage:(Byte *)_data {
-  Byte buffer[512];
+  Byte buffer[128];
   
   MIDIPacketList *packetList = (MIDIPacketList *)buffer;
   
@@ -92,7 +92,7 @@
   
   MIDITimeStamp timeStamp = 0;
   
-  packet = MIDIPacketListAdd( packetList, 512, packet, timeStamp, _data[0], &_data[1] );
+  packet = MIDIPacketListAdd( packetList, 128, packet, timeStamp, _data[0], &_data[1] );
   if( packet == NULL ) {
     NSLog( @"Failure to add MIDI message to packet list!" );
     return;
