@@ -20,6 +20,7 @@
 		C9E43C920E33518A00C4D343 /* ELHex.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43C910E33518A00C4D343 /* ELHex.m */; };
 		C9E43CA90E33721300C4D343 /* ELPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43CA80E33721300C4D343 /* ELPlayer.m */; };
 		C9E43CAC0E33736400C4D343 /* ELPlayhead.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43CAB0E33736400C4D343 /* ELPlayhead.m */; };
+		C9E43CDF0E3385CB00C4D343 /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43CDE0E3385CB00C4D343 /* ELTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		C9E43CA80E33721300C4D343 /* ELPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayer.m; sourceTree = "<group>"; };
 		C9E43CAA0E33736400C4D343 /* ELPlayhead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayhead.h; sourceTree = "<group>"; };
 		C9E43CAB0E33736400C4D343 /* ELPlayhead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayhead.m; sourceTree = "<group>"; };
+		C9E43CDD0E3385CB00C4D343 /* ELTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTool.h; sourceTree = "<group>"; };
+		C9E43CDE0E3385CB00C4D343 /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				C9E43CA80E33721300C4D343 /* ELPlayer.m */,
 				C9E43CAA0E33736400C4D343 /* ELPlayhead.h */,
 				C9E43CAB0E33736400C4D343 /* ELPlayhead.m */,
+				C9E43CDD0E3385CB00C4D343 /* ELTool.h */,
+				C9E43CDE0E3385CB00C4D343 /* ELTool.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				C9E43C920E33518A00C4D343 /* ELHex.m in Sources */,
 				C9E43CA90E33721300C4D343 /* ELPlayer.m in Sources */,
 				C9E43CAC0E33736400C4D343 /* ELPlayhead.m in Sources */,
+				C9E43CDF0E3385CB00C4D343 /* ELTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
