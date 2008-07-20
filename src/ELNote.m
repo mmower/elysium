@@ -65,5 +65,9 @@ static NSMutableDictionary *namesToNoteNums = nil;
   return name;
 }
 
+- (NSString *)description {
+  return [NSString stringWithFormat:@"[%d,%@]", number, name];
+}
+
 
 @end

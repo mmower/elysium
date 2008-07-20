@@ -78,10 +78,6 @@
     [player stop];
   } else {
     [controlButton setTitle:@"Stop"];
-    
-    ElysiumController *controller = [self appController];
-    NSLog( @"App Controller = %@", controller );
-    
     [player start:[[self appController] midiController]];
   }
 }
