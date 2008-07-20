@@ -10,14 +10,14 @@
 
 @implementation ELConfig
 
-- (id)initWithData:(NSMutableDictionary *)_data {
-  return [self initWithParent:nil data:_data];
+- (id)init {
+  return [self initWithParent:nil];
 }
 
-- (id)initWithParent:(ELConfig *)_parent data:(NSMutableDictionary *)_data {
+- (id)initWithParent:(ELConfig *)_parent {
   if( self = [super init] ) {
     parent = _parent;
-    data   = _data;
+    data   = [[NSMutableDictionary alloc] init];
   }
   
   return self;
@@ -50,7 +50,7 @@
 }
 
 - (void)setInteger:(int)_value forKey:(NSString *)_key {
-  [data setObject:[NSNumber numberWithInt:_value] forKey:_key];
+  [self setValue:[NSNumber numberWithInt:_value] forKey:_key];
 }
 
 - (float)floatForKey:(NSString *)_key {
@@ -58,7 +58,13 @@
 }
 
 - (void)setFloat:(float)_value forKey:(NSString *)_key {
-  [data setObject:[NSNumber numberWithFloat:_value] forKey:_key];
+  [self setValue:[NSNumber numberWithFloat:_value] forKey:_key];
+}
+
+- (void)dump {
+  for( NSString *key in [data allKeys] ) {
+    NSLog( @"config %@ => %@", key, [data objectForKey:key] );
+  }
 }
 
 @end

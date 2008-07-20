@@ -13,8 +13,8 @@
   NSMutableDictionary   *data;
 }
 
-- (id)initWithData:(NSMutableDictionary *)data;
-- (id)initWithParent:(ELConfig *)parent data:(NSMutableDictionary *)data;
+- (id)init;
+- (id)initWithParent:(ELConfig *)parent;
 
 - (BOOL)hasValueForKey:(NSString *)key;
 
