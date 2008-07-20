@@ -21,6 +21,7 @@
 		C9E43CA90E33721300C4D343 /* ELPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43CA80E33721300C4D343 /* ELPlayer.m */; };
 		C9E43CAC0E33736400C4D343 /* ELPlayhead.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43CAB0E33736400C4D343 /* ELPlayhead.m */; };
 		C9E43CDF0E3385CB00C4D343 /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43CDE0E3385CB00C4D343 /* ELTool.m */; };
+		C9E43D0A0E33922700C4D343 /* ELStartTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43D090E33922700C4D343 /* ELStartTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		C9E43CAB0E33736400C4D343 /* ELPlayhead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayhead.m; sourceTree = "<group>"; };
 		C9E43CDD0E3385CB00C4D343 /* ELTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTool.h; sourceTree = "<group>"; };
 		C9E43CDE0E3385CB00C4D343 /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
+		C9E43D080E33922700C4D343 /* ELStartTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELStartTool.h; sourceTree = "<group>"; };
+		C9E43D090E33922700C4D343 /* ELStartTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELStartTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,7 @@
 		2A37F4ABFDCFA73011CA2CEA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C9E43D070E33921D00C4D343 /* Tools */,
 				C9E43C710E334E3B00C4D343 /* ELHarmonicTable.h */,
 				C9E43C720E334E3B00C4D343 /* ELHarmonicTable.m */,
 				C9E43C520E334DB900C4D343 /* ELNote.h */,
@@ -157,6 +161,15 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9E43D070E33921D00C4D343 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				C9E43D080E33922700C4D343 /* ELStartTool.h */,
+				C9E43D090E33922700C4D343 /* ELStartTool.m */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +238,7 @@
 				C9E43CA90E33721300C4D343 /* ELPlayer.m in Sources */,
 				C9E43CAC0E33736400C4D343 /* ELPlayhead.m in Sources */,
 				C9E43CDF0E3385CB00C4D343 /* ELTool.m in Sources */,
+				C9E43D0A0E33922700C4D343 /* ELStartTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

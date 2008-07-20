@@ -13,12 +13,13 @@
 @class ELPlayhead;
 
 @interface ELTool : NSObject {
-  NSString  *type;
-  ELLayer   *layer;
-  ELHex     *hex;
+  NSString            *type;
+  ELLayer             *layer;
+  ELHex               *hex;
+  NSMutableDictionary *config;
 }
 
-- (id)initWithType:(NSString *)type layer:(ELLayer *)layer hex:(ELHex *)hex;
+- (id)initWithType:(NSString *)type layer:(ELLayer *)layer hex:(ELHex *)hex config:(NSMutableDictionary *)config;
 
 - (void)run:(ELPlayhead *)playhead;
 

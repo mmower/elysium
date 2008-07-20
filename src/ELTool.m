@@ -16,11 +16,12 @@
 
 @implementation ELTool
 
-- (id)initWithType:(NSString *)_type layer:(ELLayer *)_layer hex:(ELHex *)_hex {
+- (id)initWithType:(NSString *)_type layer:(ELLayer *)_layer hex:(ELHex *)_hex config:(NSMutableDictionary *)_config {
   if( self = [super init] ) {
-    type  = _type;
-    layer = _layer;
-    hex   = _hex;
+    type   = _type;
+    layer  = _layer;
+    hex    = _hex;
+    config = _config;
   }
   
   return self;
