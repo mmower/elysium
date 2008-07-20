@@ -1,0 +1,25 @@
+//
+//  ELHarmonicTable.h
+//  Elysium
+//
+//  Created by Matt Mower on 19/07/2008.
+//  Copyright 2008 LucidMac Software. All rights reserved.
+//
+
+#import <Cocoa/Cocoa.h>
+
+#import "ELNote.h"
+
+#define COLUMNS 17
+#define ROWS 12
+
+@interface ELHarmonicTable : NSObject {
+  NSMutableArray	*entries;
+}
+
+- (ELNote *)noteAtCol:(int)col row:(int)row;
+
+- (int)cols;
+- (int)rows;
+
+@end
