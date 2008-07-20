@@ -15,6 +15,7 @@
   NSMutableArray      *hexes;
   int                 instrument;
   NSMutableDictionary *config;
+  NSMutableArray      *playheads;
 }
 
 - (id)initWithHarmonicTable:(ELHarmonicTable *)harmonicTable instrument:(int)instrument config:(NSMutableDictionary *)config;

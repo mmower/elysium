@@ -32,4 +32,12 @@
   return self;
 }
 
+- (void)run {
+  
+}
+
+- (void)stop {
+  
+}
+
 @end
