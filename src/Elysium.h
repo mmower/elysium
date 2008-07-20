@@ -25,8 +25,8 @@ typedef enum tagDirection {
 
 // To make calculations a little easier
 #define HTABLE_SIZE (HTABLE_COLS * HTABLE_ROWS)
-#define MAX_HTABLE_COL (HTABLE_COLS - 1)
-#define MAX_HTABLE_ROW (HTABLE_ROWS - 1)
+#define HTABLE_MAX_COL (HTABLE_COLS - 1)
+#define HTABLE_MAX_ROW (HTABLE_ROWS - 1)
 
 // Calculate an offset into a linear array representing a hex-table
 #define COL_ROW_OFFSET(col,row) ((col * HTABLE_ROWS) + row)

@@ -10,6 +10,8 @@
 
 #import "ELHex.h"
 #import "ELNote.h"
+#import "ELLayer.h"
+#import "ELTool.h"
 
 @implementation ELHex
 
@@ -20,6 +22,7 @@
     col        = _col;
     row        = _row;
     neighbours = [[NSMutableArray alloc] initWithCapacity:6];
+    tools      = [[NSMutableArray alloc] init];
   }
   
   return self;
@@ -37,6 +40,19 @@
 
 - (ELHex *)neighbour:(Direction)direction {
   return [neighbours objectAtIndex:direction];
+}
+
+- (void)addTool:(ELTool *)_tool {
+  [tools addObject:_tool];
+}
+
+- (NSArray *)tools {
+  return [tools copy];
+}
+
+- (NSArray *)toolsOfType:(NSString *)_type {
+  NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"type == %@",_type];
+  return [tools filteredArrayUsingPredicate:typePredicate];
 }
 
 @end

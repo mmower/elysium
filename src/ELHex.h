@@ -10,6 +10,7 @@
 
 @class ELLayer;
 @class ELNote;
+@class ELTool;
 
 @interface ELHex : NSObject {
   ELLayer         *layer;
@@ -17,7 +18,7 @@
   int             col;
   int             row;
   NSMutableArray  *neighbours;
-  NSMutableArray  *markers;
+  NSMutableArray  *tools;
 }
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note col:(int)col row:(int)row;
@@ -25,5 +26,9 @@
 - (ELHex *)neighbour:(Direction)direction;
 
 - (void)connectNeighbour:(ELHex *)hex direction:(Direction)direction;
+
+- (void)addTool:(ELTool *)tool;
+- (NSArray *)tools;
+- (NSArray *)toolsOfType:(NSString *)type;
 
 @end

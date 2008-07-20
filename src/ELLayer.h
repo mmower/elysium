@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELHarmonicTable.h"
+@class ELHex;
+@class ELHarmonicTable;
 
 @interface ELLayer : NSObject {
   ELHarmonicTable     *harmonicTable;
@@ -21,5 +22,13 @@
 - (id)initWithHarmonicTable:(ELHarmonicTable *)harmonicTable instrument:(int)instrument config:(NSMutableDictionary *)config;
 
 - (ELHex *)hexAtCol:(int)col row:(int)row;
+
+- (void)run;
+- (void)stop;
+
+- (void)removeAllPlayheads;
+- (void)pulse;
+
+- (void)configureHexes;
 
 @end
