@@ -20,4 +20,6 @@
 
 - (id)initWithHarmonicTable:(ELHarmonicTable *)harmonicTable instrument:(int)instrument config:(NSMutableDictionary *)config;
 
+- (ELHex *)hexAtCol:(int)col row:(int)row;
+
 @end

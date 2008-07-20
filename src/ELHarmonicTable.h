@@ -10,9 +10,6 @@
 
 #import "ELNote.h"
 
-#define COLUMNS 17
-#define ROWS 12
-
 @interface ELHarmonicTable : NSObject {
   NSMutableArray	*entries;
 }

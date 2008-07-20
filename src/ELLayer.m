@@ -41,4 +41,8 @@
   
 }
 
+- (ELHex *)hexAtCol:(int)_col row:(int)_row {
+  return [hexes objectAtIndex:COL_ROW_OFFSET(_col,_row)];
+}
+
 @end
