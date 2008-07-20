@@ -9,24 +9,25 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELHex;
+@class ELConfig;
 @class ELPlayer;
 @class ELPlayhead;
 
 @interface ELLayer : NSObject {
   ELPlayer            *player;
   NSMutableArray      *hexes;
-  NSMutableDictionary *config;
+  ELConfig            *config;
   NSMutableArray      *playheads;
   int                 beatCount;
-  
-  // Configuration items
-  int                 instrument;
-  int                 pulseCount;
 }
 
-- (id)initWithPlayer:(ELPlayer *)player config:(NSMutableDictionary *)config;
+- (id)initWithPlayer:(ELPlayer *)player config:(ELConfig *)config;
 
 - (ELHex *)hexAtCol:(int)col row:(int)row;
+
+// Dynamic Configuration
+- (int)instrument;
+- (int)pulseCount;
 
 - (void)run;
 - (void)stop;

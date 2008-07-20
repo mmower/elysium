@@ -14,19 +14,16 @@
 #import "ELTool.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
+#import "ELHarmonicTable.h"
 
 @implementation ELLayer
 
-- (id)initWithPlayer:(ELPlayer *)_player config:(NSMutableDictionary *)_config {
+- (id)initWithPlayer:(ELPlayer *)_player config:(ELConfig *)_config {
   if( self = [super init] ) {
     player        = _player;
     config        = _config;
     hexes         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
     beatCount     = 0;
-    
-    // Configuration items
-    pulseCount    = [_config];
-    instrument    = 1;
     
     [self configureHexes];
   }
@@ -36,7 +33,7 @@
 
 - (void)run {
   // On the first and every pulseCount beats, generate new playheads
-  if( beatCount % pulseCount == 0 ) {
+  if( beatCount % [self pulseCount] == 0 ) {
     [self pulse];
   }
   
@@ -51,6 +48,14 @@
   
   // Delete dead playheads
   [playheads filterUsingPredicate:[NSPredicate predicateWithFormat:@"NOT isDead"]];
+}
+
+- (int)instrument {
+  return [config integerForKey:@"instrument"];
+}
+
+- (int)pulseCount {
+  return [config integerForKey:@"pulseCount"];
 }
 
 - (void)stop {
