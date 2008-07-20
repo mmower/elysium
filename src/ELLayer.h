@@ -34,6 +34,7 @@
 
 - (void)run;
 - (void)stop;
+- (void)reset;
 
 - (void)playNote:(ELNote *)note velocity:(int)velocity duration:(float)duration;
 

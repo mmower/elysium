@@ -82,6 +82,11 @@
   [self removeAllPlayheads];
 }
 
+- (void)reset {
+  beatCount = 0;
+  [self removeAllPlayheads];
+}
+
 - (void)addPlayhead:(ELPlayhead *)_playhead {
   [playheads addObject:_playhead];
 }
