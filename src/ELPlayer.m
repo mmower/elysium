@@ -10,10 +10,14 @@
 
 #import "ELPlayer.h"
 
+#import "ELHex.h"
 #import "ELNote.h"
 #import "ELLayer.h"
 #import "ELConfig.h"
 #import "ELHarmonicTable.h"
+
+#import "ELTool.h"
+#import "ELStartTool.h"
 
 @implementation ELPlayer
 
@@ -30,9 +34,6 @@
     [config setInteger:16 forKey:@"pulseCount"];
     [config setInteger:100 forKey:@"velocity"];
     [config setFloat:1.0 forKey:@"duration"];
-    NSLog( @"Dump config %@", config );
-    [config dump];
-    NSLog( @"-++-" );
   }
   
   return self;
@@ -74,7 +75,14 @@
   ELConfig *layerConfig = [[ELConfig alloc] initWithParent:config];
   [layerConfig setInteger:_channel forKey:@"channel"];
   
-  return [[ELLayer alloc] initWithPlayer:self config:layerConfig];
+  ELLayer *layer = [[ELLayer alloc] initWithPlayer:self config:layerConfig];
+  
+  ELConfig *toolConfig = [[ELConfig alloc] initWithParent:layerConfig];
+  [toolConfig setInteger:N forKey:@"direction"];
+  
+  [[layer hexAtCol:6 row:5] addTool:[[ELStartTool alloc] initWithType:@"start" config:toolConfig]];
+  
+  return layer;
 }
 
 - (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {

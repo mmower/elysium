@@ -17,20 +17,23 @@
 
 @implementation ELTool
 
-- (id)initWithType:(NSString *)_type layer:(ELLayer *)_layer hex:(ELHex *)_hex config:(ELConfig *)_config {
+- (id)initWithType:(NSString *)_type config:(ELConfig *)_config {
   if( self = [super init] ) {
     type   = _type;
-    layer  = _layer;
-    hex    = _hex;
     config = _config;
   }
   
   return self;
 }
 
+- (void)addedToLayer:(ELLayer *)_layer atPosition:(ELHex *)_hex {
+  layer = _layer;
+  hex   = _hex;
+}
+
 // Tool specific invocation goes here
 - (void)run:(ELPlayhead *)playhead {
-  NSLog( @"Base ELTool#run invoked!" );
+  NSLog( @"Tool of type %@ has been run at %@", type, hex );
 }
 
 @end

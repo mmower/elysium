@@ -10,15 +10,16 @@
 
 #import "ELStartTool.h"
 
+#import "ELLayer.h"
 #import "ELPlayhead.h"
 
 @implementation ELStartTool
 
 - (void)run:(ELPlayhead *)_playhead {
-  direction = [[config objectForKey:@"direction"] integerValue];
-  ttl = [[config objectForKey:@"ttl"] integerValue];
-  
-  [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex direction:direction ttl:ttl]];
+  [super run:_playhead];
+  [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
+                                                direction:[config integerForKey:@"direction"]
+                                                      ttl:[config integerForKey:@"ttl"]]];
 }
 
 @end

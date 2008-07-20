@@ -47,6 +47,7 @@
 
 - (void)addTool:(ELTool *)_tool {
   [tools addObject:_tool];
+  [_tool addedToLayer:layer atPosition:self];
 }
 
 - (NSArray *)tools {
@@ -61,6 +62,10 @@
 - (NSArray *)toolsExceptType:(NSString *)_type {
   NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"type != %@",_type];
   return [tools filteredArrayUsingPredicate:typePredicate];
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"(%d,%d)",col,row];
 }
 
 @end

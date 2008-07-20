@@ -20,7 +20,9 @@
   ELConfig  *config;
 }
 
-- (id)initWithType:(NSString *)type layer:(ELLayer *)layer hex:(ELHex *)hex config:(ELConfig *)config;
+- (id)initWithType:(NSString *)type config:(ELConfig *)config;
+
+- (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;
 
 - (void)run:(ELPlayhead *)playhead;
 
