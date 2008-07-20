@@ -41,6 +41,16 @@ static NSMutableDictionary *namesToNoteNums = nil;
   if(self = [super init])
   {
     number = aNumber;
+    name = [ELNote noteName:number];
+  }
+  return self;
+}
+
+- (id)initWithName:(NSString *)aName {
+  if(self = [super init])
+  {
+    name = aName;
+    number = [ELNote noteNumber:name];
   }
   return self;
 }
@@ -50,7 +60,7 @@ static NSMutableDictionary *namesToNoteNums = nil;
 }
 
 - (NSString *)name {
-  return [ELNote noteName:number];
+  return name;
 }
 
 

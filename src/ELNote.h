@@ -17,6 +17,9 @@
 + (int)noteNumber:(NSString *)noteName;
 + (NSString *)noteName:(int)noteNum;
 
+- (id)initWithNumber:(int)number;
+- (id)initWithName:(NSString *)name;
+
 - (int)number;
 - (NSString *)name;
 
