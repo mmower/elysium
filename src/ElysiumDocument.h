@@ -11,8 +11,17 @@
 
 #import "ELPlayer.h"
 
+@class ElysiumController;
+
 @interface ElysiumDocument : NSDocument
 {
-  ELPlayer  *player;
+  IBOutlet  NSWindow    *window;
+  IBOutlet  NSButton    *controlButton;
+  ELPlayer              *player;
 }
+
+- (ElysiumController *)appController;
+
+- (IBAction)startStop:(id)sender;
+
 @end

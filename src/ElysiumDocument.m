@@ -10,6 +10,8 @@
 
 #import "ElysiumDocument.h"
 
+#import "ElysiumController.h"
+
 @implementation ElysiumDocument
 
 - (id)init
@@ -31,7 +33,9 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
     [super windowControllerDidLoadNib:aController];
+    
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    [player addLayer];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -60,6 +64,22 @@
 		*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
 	}
     return YES;
+}
+
+- (ElysiumController *)appController {
+  return [[NSApp sharedApplication] delegate];
+}
+
+// Actions
+
+- (IBAction)startStop:(id)sender {
+  if( [player isRunning] ) {
+    [controlButton setTitle:@"Start"];
+    [player stop];
+  } else {
+    [controlButton setTitle:@"Stop"];
+    [player start:[[self appController] midiController]];
+  }
 }
 
 @end

@@ -15,4 +15,6 @@
   IBOutlet NSTextView     *debugOutput;
 }
 
+- (ELMIDIController *)midiController;
+
 @end

@@ -22,11 +22,11 @@
   return self;
 }
 
+- (ELMIDIController *)midiController {
+  return midiController;
+}
+
 - (void)awakeFromNib {
-  NSLog( @"I have arisen!" );
-  
-  [debugOutput insertText:@"We are awake!"];
-  
 }
 
 @end
