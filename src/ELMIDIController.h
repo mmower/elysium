@@ -18,4 +18,9 @@
   MIDIEndpointRef destination;
 }
 
+- (void)noteOn:(int)channel note:(int)note velocity:(int)velocity;
+- (void)noteOff:(int)channel note:(int)note velocity:(int)velocity;
+- (void)programChange:(int)channel preset:(int)preset;
+- (void)sendMessage:(Byte *)data;
+
 @end
