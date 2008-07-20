@@ -12,11 +12,12 @@
 
 #import "ELHex.h"
 #import "ELLayer.h"
+#import "ELConfig.h"
 #import "ELPlayhead.h"
 
 @implementation ELTool
 
-- (id)initWithType:(NSString *)_type layer:(ELLayer *)_layer hex:(ELHex *)_hex config:(NSMutableDictionary *)_config {
+- (id)initWithType:(NSString *)_type layer:(ELLayer *)_layer hex:(ELHex *)_hex config:(ELConfig *)_config {
   if( self = [super init] ) {
     type   = _type;
     layer  = _layer;
@@ -29,6 +30,7 @@
 
 // Tool specific invocation goes here
 - (void)run:(ELPlayhead *)playhead {
+  NSLog( @"Base ELTool#run invoked!" );
 }
 
 @end

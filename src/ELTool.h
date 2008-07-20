@@ -10,16 +10,17 @@
 
 @class ELHex;
 @class ELLayer;
+@class ELConfig;
 @class ELPlayhead;
 
 @interface ELTool : NSObject {
-  NSString            *type;
-  ELLayer             *layer;
-  ELHex               *hex;
-  NSMutableDictionary *config;
+  NSString  *type;
+  ELLayer   *layer;
+  ELHex     *hex;
+  ELConfig  *config;
 }
 
-- (id)initWithType:(NSString *)type layer:(ELLayer *)layer hex:(ELHex *)hex config:(NSMutableDictionary *)config;
+- (id)initWithType:(NSString *)type layer:(ELLayer *)layer hex:(ELHex *)hex config:(ELConfig *)config;
 
 - (void)run:(ELPlayhead *)playhead;
 
