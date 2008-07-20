@@ -67,7 +67,7 @@
 }
 
 - (ElysiumController *)appController {
-  return [[NSApp sharedApplication] delegate];
+  return [[NSApplication sharedApplication] delegate];
 }
 
 // Actions
@@ -78,6 +78,10 @@
     [player stop];
   } else {
     [controlButton setTitle:@"Stop"];
+    
+    ElysiumController *controller = [self appController];
+    NSLog( @"App Controller = %@", controller );
+    
     [player start:[[self appController] midiController]];
   }
 }
