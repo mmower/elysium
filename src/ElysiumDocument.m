@@ -18,7 +18,7 @@
 {
     self = [super init];
     if (self) {
-      player = [[ELPlayer alloc] init];
+      player   = [[ELPlayer alloc] init];
     }
     return self;
 }
@@ -70,16 +70,32 @@
   return [[NSApplication sharedApplication] delegate];
 }
 
+- (ELMIDIController *)midiController {
+  return [[self appController] midiController];
+}
+
 // Actions
 
 - (IBAction)startStop:(id)sender {
   if( [player isRunning] ) {
     [controlButton setTitle:@"Start"];
     [player stop];
+    [[self midiController] setDelegate:nil];
   } else {
     [controlButton setTitle:@"Stop"];
-    [player start:[[self appController] midiController]];
+    [[self midiController] setDelegate:self];
+    [player start:[self midiController]];
   }
+}
+
+// MIDI Controller delegate methods
+
+- (void)noteOn:(int)_channel note:(int)_note {
+  NSLog( @"delegate received noteOn:%d:%d message", _channel, _note );
+}
+
+- (void)noteOff:(int)_channel note:(int)_note {
+  NSLog( @"delegate received noteOff:%d:%d message", _channel, _note );
 }
 
 @end

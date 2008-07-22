@@ -15,12 +15,12 @@
 
 @interface ElysiumDocument : NSDocument
 {
-  IBOutlet  NSWindow    *window;
   IBOutlet  NSButton    *controlButton;
   ELPlayer              *player;
 }
 
 - (ElysiumController *)appController;
+- (ELMIDIController *)midiController;
 
 - (IBAction)startStop:(id)sender;
 
