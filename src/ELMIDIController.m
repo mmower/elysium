@@ -47,8 +47,22 @@
   return self;
 }
 
+- (id)delegate
+{
+  return delegate;
+}
+
+- (void)setDelegate:(id)_delegate
+{
+  delegate = _delegate;
+}
+
 - (void)noteOn:(int)_channel note:(int)_note velocity:(int)_velocity {
   Byte data[4];
+  
+  if( [delegate respondsToSelector:@selector(noteOn:note:)] ) {
+    [delegate noteOn:_channel note:_note];
+  }
   
   data[0] = 3;
   data[1] = MIDI_ON | _channel;
@@ -60,6 +74,10 @@
 
 - (void)noteOff:(int)_channel note:(int)_note velocity:(int)_velocity {
   Byte data[4];
+  
+  if( [delegate respondsToSelector:@selector(noteOff:note:)] ) {
+    [delegate noteOff:_channel note:_note];
+  }
   
   data[0] = 3;
   data[1] = MIDI_OFF | _channel;
