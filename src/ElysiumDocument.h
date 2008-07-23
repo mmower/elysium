@@ -11,12 +11,14 @@
 
 #import "ELPlayer.h"
 
+@class ELLayerView;
 @class ElysiumController;
 
 @interface ElysiumDocument : NSDocument
 {
-  IBOutlet  NSButton    *controlButton;
-  ELPlayer              *player;
+  IBOutlet  NSButton      *controlButton;
+  ELPlayer                *player;
+  IBOutlet  ELLayerView   *layerView;
 }
 
 - (ElysiumController *)appController;

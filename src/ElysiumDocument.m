@@ -36,6 +36,8 @@
     
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     [player addLayer];
+    
+    [layerView setDelegate:self];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -88,14 +90,24 @@
   }
 }
 
+// LayerView delegate methods
+
+- (void)hexSelected:(ELLayerView *)_layerView column:(int)_column row:(int)_row {
+  NSLog( @"Hex selected at (%d,%d)", _column, _row );
+}
+
 // MIDI Controller delegate methods
 
-- (void)noteOn:(int)_channel note:(int)_note {
+- (void)noteOn:(int)_note velocity:(int)_velocity channel:(int)_channel {
   NSLog( @"delegate received noteOn:%d:%d message", _channel, _note );
 }
 
-- (void)noteOff:(int)_channel note:(int)_note {
+- (void)noteOff:(int)_note velocity:(int)_velocity channel:(int)_channel {
   NSLog( @"delegate received noteOff:%d:%d message", _channel, _note );
+}
+
+- (void)programChange:(int)_preset channel:(int)_channel {
+  NSLog( @"delegate received programChange:%d on channel:%d", _preset, _channel );
 }
 
 @end
