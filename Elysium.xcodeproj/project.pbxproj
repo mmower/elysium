@@ -33,7 +33,6 @@
 		C9E43D740E33C5C600C4D343 /* ELMIDIController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43D730E33C5C600C4D343 /* ELMIDIController.m */; };
 		C9E5DC290E34E2AE00443B45 /* ELTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E5DC280E34E2AE00443B45 /* ELTimer.m */; };
 		C9E7A1810E35FAB200CC5E25 /* ELInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E7A1800E35FAB200CC5E25 /* ELInspectorController.m */; };
-		C9E7A1D70E3618E900CC5E25 /* ELInspectable.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E7A1D60E3618E900CC5E25 /* ELInspectable.m */; };
 		C9E7A1DF0E363D7200CC5E25 /* StartToolEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E7A1DE0E363D7200CC5E25 /* StartToolEditor.xib */; };
 		C9E7A1E70E37247E00CC5E25 /* ELRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E7A1E60E37247E00CC5E25 /* ELRegularPolygon.m */; };
 /* End PBXBuildFile section */
@@ -101,8 +100,6 @@
 		C9E5DC280E34E2AE00443B45 /* ELTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimer.m; sourceTree = "<group>"; };
 		C9E7A17F0E35FAB200CC5E25 /* ELInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELInspectorController.h; sourceTree = "<group>"; };
 		C9E7A1800E35FAB200CC5E25 /* ELInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELInspectorController.m; sourceTree = "<group>"; };
-		C9E7A1D50E3618E900CC5E25 /* ELInspectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELInspectable.h; sourceTree = "<group>"; };
-		C9E7A1D60E3618E900CC5E25 /* ELInspectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELInspectable.m; sourceTree = "<group>"; };
 		C9E7A1DE0E363D7200CC5E25 /* StartToolEditor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartToolEditor.xib; sourceTree = "<group>"; };
 		C9E7A1E50E37247E00CC5E25 /* ELRegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRegularPolygon.h; sourceTree = "<group>"; };
 		C9E7A1E60E37247E00CC5E25 /* ELRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRegularPolygon.m; sourceTree = "<group>"; };
@@ -179,8 +176,6 @@
 				C9E43D310E33BA0500C4D343 /* ELConfig.m */,
 				C9E7A17F0E35FAB200CC5E25 /* ELInspectorController.h */,
 				C9E7A1800E35FAB200CC5E25 /* ELInspectorController.m */,
-				C9E7A1D50E3618E900CC5E25 /* ELInspectable.h */,
-				C9E7A1D60E3618E900CC5E25 /* ELInspectable.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -348,7 +343,6 @@
 				C9E43D740E33C5C600C4D343 /* ELMIDIController.m in Sources */,
 				C9E5DC290E34E2AE00443B45 /* ELTimer.m in Sources */,
 				C9E7A1810E35FAB200CC5E25 /* ELInspectorController.m in Sources */,
-				C9E7A1D70E3618E900CC5E25 /* ELInspectable.m in Sources */,
 				C9E7A1E70E37247E00CC5E25 /* ELRegularPolygon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
