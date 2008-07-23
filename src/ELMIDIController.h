@@ -11,8 +11,9 @@
 #import <CoreMIDI/CoreMIDI.h>
 
 @interface NSObject (ELMIDIControllerDelegate)
-- (void)noteOn:(int)channel note:(int)note;
-- (void)noteOff:(int)channel note:(int)note;
+- (void)noteOn:(int)note velocity:(int)velocity channel:(int)channel;
+- (void)noteOff:(int)note velocity:(int)velocity channel:(int)channel;
+- (void)programChange:(int)preset channel:(int)channel;
 @end
 
 @interface ELMIDIController : NSObject {
@@ -28,10 +29,9 @@
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
 
-- (void)noteOn:(int)channel note:(int)note velocity:(int)velocity;
-- (void)noteOff:(int)channel note:(int)note velocity:(int)velocity;
-- (void)programChange:(int)channel preset:(int)preset;
+- (void)noteOn:(int)note velocity:(int)velocity channel:(int)channel;
+- (void)noteOff:(int)note velocity:(int)velocity channel:(int)channel;
+- (void)programChange:(int)preset channel:(int)channel;
 - (void)sendMessage:(Byte *)data;
-
 
 @end

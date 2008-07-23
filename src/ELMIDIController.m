@@ -6,11 +6,9 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELMIDIController.h"
+#import "Elysium.h"
 
-#define MIDI_ON   0x90
-#define MIDI_OFF  0x80
-#define MIDI_PC   0xC0
+#import "ELMIDIController.h"
 
 @implementation ELMIDIController
 
@@ -57,11 +55,11 @@
   delegate = _delegate;
 }
 
-- (void)noteOn:(int)_channel note:(int)_note velocity:(int)_velocity {
+- (void)noteOn:(int)_note velocity:(int)_velocity channel:(int)_channel {
   Byte data[4];
   
-  if( [delegate respondsToSelector:@selector(noteOn:note:)] ) {
-    [delegate noteOn:_channel note:_note];
+  if( [delegate respondsToSelector:@selector(noteOn:velocity:channel:)] ) {
+    [delegate noteOn:_note velocity:_velocity channel:_channel];
   }
   
   data[0] = 3;
@@ -72,11 +70,11 @@
   [self sendMessage:data];
 }
 
-- (void)noteOff:(int)_channel note:(int)_note velocity:(int)_velocity {
+- (void)noteOff:(int)_note velocity:(int)_velocity channel:(int)_channel {
   Byte data[4];
   
-  if( [delegate respondsToSelector:@selector(noteOff:note:)] ) {
-    [delegate noteOff:_channel note:_note];
+  if( [delegate respondsToSelector:@selector(noteOff:velocity:channel:)] ) {
+    [delegate noteOff:_note velocity:_velocity channel:_channel];
   }
   
   data[0] = 3;
@@ -87,8 +85,12 @@
   [self sendMessage:data];
 }
 
-- (void)programChange:(int)_channel preset:(int)_preset {
+- (void)programChange:(int)_preset channel:(int)_channel {
   Byte data[3];
+  
+  if( [delegate respondsToSelector:@selector(programChange:channel:)] ) {
+    [delegate programChange:_preset channel:_channel];
+  }
   
   data[0] = 2;
   data[1] = MIDI_PC | _channel;
