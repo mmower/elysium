@@ -12,6 +12,7 @@
 
 #import "ELHex.h"
 #import "ELNote.h"
+#import "ELTimer.h"
 #import "ELLayer.h"
 #import "ELConfig.h"
 #import "ELHarmonicTable.h"
@@ -28,6 +29,7 @@
     harmonicTable = [[ELHarmonicTable alloc] init];
     layers        = [[NSMutableArray alloc] init];
     config        = [[ELConfig alloc] init];
+    timer         = [[ELTimer alloc] init];
     
     // Setup some default values
     [config setInteger:300 forKey:@"bpm"];
@@ -40,6 +42,27 @@
   return self;
 }
 
+// Accessors
+
+- (int)beatCount {
+  return beatCount;
+}
+
+- (UInt64)startTime {
+  return startTime;
+}
+
+- (ELHarmonicTable *)harmonicTable
+{
+  return harmonicTable;
+}
+
+- (BOOL)isRunning {
+  return running;
+}
+
+// Player control
+
 - (void)start:(ELMIDIController *)_midiController {
   NSLog( @"Starting player thread." );
   
@@ -48,18 +71,17 @@
   }
   
   midiController = _midiController;
-  running        = NO;
-  thread         = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
+  [timer setDelegate:_midiController];
+  
+  running   = NO;
+  thread    = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
+  startTime = AudioGetCurrentHostTime();
   
   [thread start];
 }
 
 - (void)stop {
   [thread cancel];
-}
-
-- (BOOL)isRunning {
-  return running;
 }
 
 - (void)run {
@@ -78,10 +100,19 @@
   running = NO;
 }
 
-- (ELHarmonicTable *)harmonicTable
-{
-  return harmonicTable;
+- (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {
+  NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
+  
+  [midiController programChange:1 channel:_channel];
+  
+  NSLog( @"Sending note ON" );
+  [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
+  sleep( 2.5 );
+  NSLog( @"Sending note OFF" );
+  [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
 }
+
+// Layer Management
 
 - (void)addLayer {
   [layers addObject:[self createLayer:1]];
@@ -104,18 +135,6 @@
   [[layer hexAtCol:6 row:5] addTool:[[ELBeatTool alloc] initWithType:@"beat" config:toolConfig]];
   
   return layer;
-}
-
-- (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {
-  NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
-  
-  [midiController programChange:_channel preset:1];
-  
-  NSLog( @"Sending note ON" );
-  [midiController noteOn:_channel note:[_note number] velocity:_velocity];
-  sleep( 2.5 );
-  NSLog( @"Sending note OFF" );
-  [midiController noteOff:_channel note:[_note number] velocity:_velocity];
 }
 
 @end

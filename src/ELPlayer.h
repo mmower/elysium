@@ -10,6 +10,7 @@
 
 @class ELNote;
 @class ELLayer;
+@class ELTimer;
 @class ELConfig;
 @class ELHarmonicTable;
 @class ELMIDIController;
@@ -20,18 +21,23 @@
   ELConfig          *config;
   NSThread          *thread;
   BOOL              running;
+  ELTimer           *timer;
   ELMIDIController  *midiController;
+  int               beatCount;
+  UInt64            startTime;
 }
 
+- (int)beatCount;
+- (UInt64)startTime;
 - (ELHarmonicTable *)harmonicTable;
+- (BOOL)isRunning;
 
+- (void)start:(ELMIDIController *)midiController;
+- (void)stop;
 - (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
 
 - (void)addLayer;
 - (ELLayer *)createLayer:(int)channel;
 
-- (void)start:(ELMIDIController *)midiController;
-- (void)stop;
-- (BOOL)isRunning;
 
 @end
