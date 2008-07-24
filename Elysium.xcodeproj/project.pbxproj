@@ -15,6 +15,7 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C92ACD5D0E38868A009CF61B /* ELHexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92ACD5C0E38868A009CF61B /* ELHexCell.m */; };
+		C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92ACD690E3892F5009CF61B /* Inspector.xib */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
 		C9E43C540E334DB900C4D343 /* ELNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43C530E334DB900C4D343 /* ELNote.m */; };
 		C9E43C730E334E3B00C4D343 /* ELHarmonicTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43C720E334E3B00C4D343 /* ELHarmonicTable.m */; };
@@ -68,6 +69,7 @@
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C92ACD5B0E38868A009CF61B /* ELHexCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexCell.h; sourceTree = "<group>"; };
 		C92ACD5C0E38868A009CF61B /* ELHexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexCell.m; sourceTree = "<group>"; };
+		C92ACD690E3892F5009CF61B /* Inspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Inspector.xib; sourceTree = "<group>"; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		C9E43C520E334DB900C4D343 /* ELNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNote.h; sourceTree = "<group>"; };
 		C9E43C530E334DB900C4D343 /* ELNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNote.m; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		2A37F4ABFDCFA73011CA2CEA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C92ACD680E3892CA009CF61B /* Inspector */,
 				C9E7A1820E35FABB00CC5E25 /* MIDI */,
 				C9E43D3B0E33BE8300C4D343 /* Views */,
 				C9E43D1E0E33B4C800C4D343 /* Player */,
@@ -177,8 +180,6 @@
 				C9E43D2F0E33B98700C4D343 /* ELConfig.h */,
 				C9E43D300E33BA0500C4D343 /* ELConfig.h */,
 				C9E43D310E33BA0500C4D343 /* ELConfig.m */,
-				C9E7A17F0E35FAB200CC5E25 /* ELInspectorController.h */,
-				C9E7A1800E35FAB200CC5E25 /* ELInspectorController.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -201,6 +202,7 @@
 				1DDD58280DA1D0D100B32029 /* ElysiumDocument.xib */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
 				C9E7A1DE0E363D7200CC5E25 /* StartToolEditor.xib */,
+				C92ACD690E3892F5009CF61B /* Inspector.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -212,6 +214,15 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C92ACD680E3892CA009CF61B /* Inspector */ = {
+			isa = PBXGroup;
+			children = (
+				C9E7A17F0E35FAB200CC5E25 /* ELInspectorController.h */,
+				C9E7A1800E35FAB200CC5E25 /* ELInspectorController.m */,
+			);
+			name = Inspector;
 			sourceTree = "<group>";
 		};
 		C9E43D070E33921D00C4D343 /* Tools */ = {
@@ -321,6 +332,7 @@
 				1DDD582C0DA1D0D100B32029 /* ElysiumDocument.xib in Resources */,
 				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
 				C9E7A1DF0E363D7200CC5E25 /* StartToolEditor.xib in Resources */,
+				C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
