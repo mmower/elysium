@@ -8,17 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef struct tagELFoundHex {
-  BOOL            found;
-  NSBezierPath    *path;
-  int             col;
-  int             row;
-} ELFoundHex;
+@class ELHexCell;
 
 @interface ELLayerView : NSView {
   NSMutableArray    *hexes;
-  int               selectedCol;
-  int               selectedRow;
+  ELHexCell         *selection;
   
   id                delegate;
 }
@@ -26,11 +20,11 @@ typedef struct tagELFoundHex {
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
 
-- (ELFoundHex)findHexAtPoint:(NSPoint)point;
+- (ELHexCell *)findHexAtPoint:(NSPoint)point;
 
 @end
 
 // Define a category on NSObject for our delegate methods
 @interface NSObject (ELLayerViewDelegate)
-- (void)hexSelected:(ELLayerView *)layerView column:(int)col row:(int)row;
+- (void)layerView:(ELLayerView *)layerView hexSelected:(ELHexCell *)hex;
 @end

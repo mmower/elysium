@@ -10,6 +10,7 @@
 
 #import "ELLayerView.h"
 
+#import "ELHexCell.h"
 #import "ELRegularPolygon.h"
 
 @implementation ELLayerView
@@ -17,9 +18,8 @@
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-      hexes = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-      selectedCol = -1;
-      selectedRow = -1;
+      hexes     = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+      selection = nil;
     }
     return self;
 }
@@ -53,7 +53,7 @@
                     );
       [hex appendHexagonWithCentre:hexCentre radius:radius];
       
-      if( col == selectedCol && row == selectedRow ) {
+      if( selection != nil && col == [selection column] && row == [selection row] ) {
         [[NSColor blueColor] set];
       } else {
         [[NSColor grayColor] set];
@@ -64,51 +64,31 @@
       [hex setLineWidth:2.0];
       [hex stroke];
       
-      [hexes insertObject:hex atIndex:COL_ROW_OFFSET(col,row)];
+      [hexes insertObject:[[ELHexCell alloc] initWithLayerView:self path:hex column:col row:row] atIndex:COL_ROW_OFFSET(col,row)];
     }
   }
 }
 
-- (ELFoundHex)findHexAtPoint:(NSPoint)_point {
-  ELFoundHex found;
-  
-  found.found = NO;
-  
+- (ELHexCell *)findHexAtPoint:(NSPoint)_point {
   // Find the Bezier containing this click
-  for( int col = 0; col < HTABLE_COLS; col++ ) {
-    for( int row = 0; row < HTABLE_ROWS; row++ ) {
-      NSBezierPath *path = [hexes objectAtIndex:COL_ROW_OFFSET( col, row )];
-      if( [path containsPoint:_point] ) {
-        found.found = YES;
-        found.path  = path;
-        found.col   = col;
-        found.row   = row;
-        return found;
-      }
+  for( ELHexCell *cell in hexes ) {
+    if( [[cell path] containsPoint:_point] ) {
+      return cell;
     }
   }
   
-  return found;
+  return nil;
 }
 
 - (void)mouseDown:(NSEvent *)_event {
-  ELFoundHex found = [self findHexAtPoint:[self convertPoint:[_event locationInWindow] fromView:nil]];
   NSLog( @"mouse = %f,%f", [_event locationInWindow].x, [_event locationInWindow].y );
-  NSLog( @"offset = %d,%d", found.col, found.row );
-  // NSLog( @"path = %@", found.path );
-  
-  if( found.found ) {
-    selectedCol = found.col;
-    selectedRow = found.row;
-  } else {
-    selectedCol = -1;
-    selectedRow = -1;
-  }
+
+  selection = [self findHexAtPoint:[self convertPoint:[_event locationInWindow] fromView:nil]];
   
   [self setNeedsDisplay:YES];
   
-  if( [delegate respondsToSelector:@selector(hexSelected:column:row:)] ) {
-    [delegate hexSelected:self column:selectedCol row:selectedRow];
+  if( [delegate respondsToSelector:@selector(layerView:hexSelected:)] ) {
+    [delegate layerView:self hexSelected:selection];
   }
 }
 
