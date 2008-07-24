@@ -9,11 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELMIDIController;
+@class ELInspectorController;
 
 @interface ElysiumController : NSObject {
   ELMIDIController        *midiController;
-  IBOutlet NSTextView     *debugOutput;
+  ELInspectorController   *inspectorController;
 }
+
+- (IBAction)showInspectorPanel:(id)sender;
 
 - (ELMIDIController *)midiController;
 

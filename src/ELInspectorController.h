@@ -8,9 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface ELInspectorController : NSWindowController {
-
+  IBOutlet NSPanel *inspectorPanel;
 }
 
 @end

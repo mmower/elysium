@@ -11,6 +11,7 @@
 #import "ElysiumController.h"
 
 #import "ELMIDIController.h"
+#import "ELInspectorController.h"
 
 @implementation ElysiumController
 
@@ -22,11 +23,20 @@
   return self;
 }
 
+- (void)awakeFromNib {
+}
+
 - (ELMIDIController *)midiController {
   return midiController;
 }
 
-- (void)awakeFromNib {
+- (IBAction)showInspectorPanel:(id)_sender {
+  if( !inspectorController ) {
+    inspectorController = [[ELInspectorController alloc] init];
+  }
+  
+  NSLog( @"Showing %@", inspectorController );
+  [inspectorController showWindow:self];
 }
 
 @end

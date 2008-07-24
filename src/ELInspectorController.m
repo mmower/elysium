@@ -8,7 +8,21 @@
 
 #import "ELInspectorController.h"
 
-
 @implementation ELInspectorController
+
+- (id)init {
+  if( self = [super initWithWindowNibName:@"Inspector"] ) {
+  }
+  return self;
+}
+
+- (void)awakeFromNib {
+  [inspectorPanel setFloatingPanel:YES];
+  [inspectorPanel setBecomesKeyOnlyIfNeeded:YES];
+}
+
+- (void)windowDidLoad {
+  NSLog( @"Nib file is loaded" );
+}
 
 @end
