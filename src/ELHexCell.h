@@ -11,17 +11,19 @@
 @class ELLayerView;
 
 @interface ELHexCell : NSObject {
-  ELLayerView     *layerView;
-  NSBezierPath    *path;
-  int             col;
-  int             row;
-
+  ELLayerView         *layerView;
+  NSBezierPath        *path;
+  int                 col;
+  int                 row;
 }
 
-- (id)initWithLayerView:(ELLayerView *)layerView path:(NSBezierPath *)path column:(int)col row:(int)row;
+- (id)initWithLayerView:(ELLayerView *)layerView column:(int)col row:(int)row;
 
 - (ELLayerView *)layerView;
+
 - (NSBezierPath *)path;
+- (void)setPath:(NSBezierPath *)path;
+
 - (int)column;
 - (int)row;
 

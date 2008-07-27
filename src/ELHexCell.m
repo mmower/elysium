@@ -14,10 +14,10 @@
 
 @implementation ELHexCell
 
-- (id)initWithLayerView:(ELLayerView *)_layerView path:(NSBezierPath *)_path column:(int)_col row:(int)_row {
+- (id)initWithLayerView:(ELLayerView *)_layerView column:(int)_col row:(int)_row {
   if( self = [super init] ) {
     layerView = _layerView;
-    path      = _path;
+    path      = nil;
     col       = _col;
     row       = _row;
   }
@@ -31,6 +31,10 @@
 
 - (NSBezierPath *)path {
   return path;
+}
+
+- (void)setPath:(NSBezierPath *)_path {
+  path = _path;
 }
 
 - (int)column {
