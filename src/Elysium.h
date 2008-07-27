@@ -37,3 +37,6 @@ typedef enum tagDirection {
 #define MIDI_ON   0x90
 #define MIDI_OFF  0x80
 #define MIDI_PC   0xC0
+
+// Notification names
+extern NSString* notifyObjectSelectionDidChange;

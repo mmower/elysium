@@ -10,7 +10,10 @@
 
 #import "ElysiumDocument.h"
 
+#import "ELHexCell.h"
 #import "ElysiumController.h"
+
+NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
 
 @implementation ElysiumDocument
 
@@ -92,8 +95,9 @@
 
 // LayerView delegate methods
 
-- (void)hexSelected:(ELLayerView *)_layerView column:(int)_column row:(int)_row {
-  NSLog( @"Hex selected at (%d,%d)", _column, _row );
+- (void)layerView:(ELLayerView *)_layerView hexSelected:(ELHexCell *)_hex {
+  NSLog( @"layerView:%@ hexSelected:%@", _layerView, _hex );
+  [[NSNotificationCenter defaultCenter] postNotificationName:notifyObjectSelectionDidChange object:self];
 }
 
 // MIDI Controller delegate methods

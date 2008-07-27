@@ -12,4 +12,6 @@
   IBOutlet NSPanel *inspectorPanel;
 }
 
+- (void)selectionChanged:(NSNotification*)notification;
+
 @end
