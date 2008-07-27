@@ -12,7 +12,7 @@
 
 @interface ELLayerView : NSView {
   NSMutableArray    *hexes;
-  ELHexCell         *selection;
+  ELHexCell         *selected;
   
   id                delegate;
 }
@@ -20,7 +20,20 @@
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
 
+- (ELHexCell *)selected;
+- (void)setSelected:(ELHexCell *)selected;
+
+- (NSColor *)defaultColor;
+- (NSColor *)selectedColor;
+
+- (CGFloat)hexRadius;
+- (CGFloat)hexOffset;
+- (CGFloat)hexDiameter;
+
 - (ELHexCell *)findHexAtPoint:(NSPoint)point;
+
+- (void)generateCells;
+- (void)calculateCellPaths:(NSRect)bounds;
 
 @end
 

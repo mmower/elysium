@@ -18,10 +18,15 @@
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-      hexes     = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-      selection = nil;
+      hexes    = nil;
+      selected = nil;
     }
     return self;
+}
+
+- (void)finalize {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [super finalize];
 }
 
 - (id)delegate {
@@ -32,40 +37,88 @@
   delegate = _delegate;
 }
 
-- (void)drawRect:(NSRect)rect {
-  NSRect bounds = [self bounds];
-  // NSLog( @"Width = %f", bounds.size.width );
-  CGFloat radius = bounds.size.width / 27;
-  // NSLog( @"Hex Radius = %f", radius );
-  CGFloat offset = ( 3 * radius ) / 2;
-  // NSLog( @"Offset = %f", offset );
-    
-  CGFloat hexDiameter = 2 * sqrt( 0.75 * pow( radius, 2 ) );
-  // NSLog( @"Hex diameter = %f", hexDiameter );
+// View methods
+
+- (void)viewDidMoveToWindow {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(windowResized:)
+                                               name:NSWindowDidResizeNotification
+                                             object:[self window]];
+}
+
+- (NSColor *)defaultColor {
+  return [NSColor grayColor];
+}
+
+- (NSColor *)selectedColor {
+  return [NSColor blueColor];
+}
+
+- (CGFloat)hexRadius {
+  return [self bounds].size.width / 27;
+}
+
+- (CGFloat)hexOffset {
+  return ( 3 * [self hexRadius] ) / 2;
+}
+
+- (CGFloat)hexDiameter {
+  return 2 * sqrt( 0.75 * pow( [self hexRadius], 2 ) );
+}
+
+- (void)generateCells {
+  hexes = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+  
+  // Create the set of Hex cells that will represent the honeycomb
+  for( int col = 0; col < HTABLE_COLS; col++ ) {
+    for( int row = 0; row < HTABLE_ROWS; row++ ) {
+      ELHexCell *cell = [[ELHexCell alloc] initWithLayerView:self
+                                                      column:col
+                                                         row:row];
+      [hexes insertObject:cell atIndex:COL_ROW_OFFSET(col,row)];
+    }
+  }
+}
+
+- (void)calculateCellPaths:(NSRect)__bounds {
+  NSLog( @"Bounds = %f,%f", __bounds.size.width, __bounds.size.height );
   
   NSPoint hexCentre;
   for( int col = 0; col < HTABLE_COLS; col++ ) {
     for( int row = 0; row < HTABLE_ROWS; row ++ ) {
-      NSBezierPath *hex = [NSBezierPath bezierPath];
+      ELHexCell *cell = [hexes objectAtIndex:COL_ROW_OFFSET(col,row)];
+      
       hexCentre = NSMakePoint(
-                    offset + (col * ( (3 * radius ) / 2 ) ),
-                    offset + (row * hexDiameter) + ( col % 2 == 0 ? (hexDiameter / 2) : 0 )
+                    [self hexOffset] + (col * ( (3 * [self hexRadius] ) / 2 ) ),
+                    [self hexOffset] + (row * [self hexDiameter]) + ( col % 2 == 0 ? ([self hexDiameter] / 2) : 0 )
                     );
-      [hex appendHexagonWithCentre:hexCentre radius:radius];
       
-      if( selection != nil && col == [selection column] && row == [selection row] ) {
-        [[NSColor blueColor] set];
-      } else {
-        [[NSColor grayColor] set];
-      }
-      [hex fill];
-      
-      [[NSColor blackColor] set];
-      [hex setLineWidth:2.0];
-      [hex stroke];
-      
-      [hexes insertObject:[[ELHexCell alloc] initWithLayerView:self path:hex column:col row:row] atIndex:COL_ROW_OFFSET(col,row)];
+      NSBezierPath *hexPath = [NSBezierPath bezierPath];
+      [hexPath appendHexagonWithCentre:hexCentre radius:[self hexRadius]];
+      [cell setPath:hexPath];
     }
+  }
+}
+
+- (void)drawRect:(NSRect)rect {
+  if( !hexes ) {
+    [self generateCells];
+    [self calculateCellPaths:[self bounds]];
+  }
+  
+  for( ELHexCell *cell in hexes ) {
+    
+    if( cell == selected ) {
+      [[self selectedColor] set];
+    } else {
+      [[self defaultColor] set];
+    }
+    
+    [[cell path] fill];
+    
+    [[NSColor blackColor] set];
+    [[cell path] setLineWidth:2.0];
+    [[cell path] stroke];
   }
 }
 
@@ -80,16 +133,30 @@
   return nil;
 }
 
+- (ELHexCell *)selected {
+  return selected;
+}
+
+- (void)setSelected:(ELHexCell *)_selected {
+  NSLog( @"Selection = %@", _selected );
+  
+  selected = _selected;
+  if( [delegate respondsToSelector:@selector(layerView:hexSelected:)] ) {
+    [delegate layerView:self hexSelected:selected];
+  }
+  [self setNeedsDisplay:YES];
+}
+
 - (void)mouseDown:(NSEvent *)_event {
   NSLog( @"mouse = %f,%f", [_event locationInWindow].x, [_event locationInWindow].y );
+  [self setSelected:[self findHexAtPoint:[self convertPoint:[_event locationInWindow] fromView:nil]]];
+}
 
-  selection = [self findHexAtPoint:[self convertPoint:[_event locationInWindow] fromView:nil]];
-  
-  [self setNeedsDisplay:YES];
-  
-  if( [delegate respondsToSelector:@selector(layerView:hexSelected:)] ) {
-    [delegate layerView:self hexSelected:selection];
-  }
+// Notifications
+
+- (void)windowResized:(NSNotification *)notification;
+{
+  [self calculateCellPaths:[self bounds]];
 }
 
 @end
