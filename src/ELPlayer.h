@@ -32,12 +32,14 @@
 - (ELHarmonicTable *)harmonicTable;
 - (BOOL)isRunning;
 
+- (void)setMIDIController:(ELMIDIController *)midiController;
+
 - (void)start:(ELMIDIController *)midiController;
 - (void)stop;
 - (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
 
 - (void)addLayer;
 - (ELLayer *)createLayer:(int)channel;
-
+- (ELLayer *)firstLayer;
 
 @end

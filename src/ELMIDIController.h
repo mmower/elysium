@@ -22,6 +22,7 @@
   CFStringRef     clientName;
   CFStringRef     portName;
   MIDIClientRef   midiClient;
+  MIDIEndpointRef source;
   MIDIPortRef     outputPort;
   MIDIEndpointRef destination;
 }

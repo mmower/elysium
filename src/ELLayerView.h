@@ -9,16 +9,21 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELHexCell;
+@class ELLayer;
 
 @interface ELLayerView : NSView {
   NSMutableArray    *hexes;
   ELHexCell         *selected;
   
   id                delegate;
+  ELLayer           *dataLayer;
 }
 
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
+
+- (ELLayer *)dataLayer;
+- (void)setDataLayer:(ELLayer *)layer;
 
 - (ELHexCell *)selected;
 - (void)setSelected:(ELHexCell *)selected;
@@ -29,6 +34,7 @@
 - (CGFloat)hexRadius;
 - (CGFloat)hexOffset;
 - (CGFloat)hexDiameter;
+- (CGFloat)idealHeight;
 
 - (ELHexCell *)findHexAtPoint:(NSPoint)point;
 

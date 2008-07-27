@@ -10,6 +10,9 @@
 
 #import "ELLayerView.h"
 
+#import "ELHex.h"
+#import "ELNote.h"
+#import "ELLayer.h"
 #import "ELHexCell.h"
 #import "ELRegularPolygon.h"
 
@@ -35,6 +38,14 @@
 
 - (void)setDelegate:(id)_delegate {
   delegate = _delegate;
+}
+
+- (ELLayer *)dataLayer {
+  return dataLayer;
+}
+
+- (void)setDataLayer:(ELLayer *)_layer {
+  dataLayer = _layer;
 }
 
 // View methods
@@ -65,6 +76,14 @@
 - (CGFloat)hexDiameter {
   return 2 * sqrt( 0.75 * pow( [self hexRadius], 2 ) );
 }
+
+- (CGFloat)idealHeight {
+  return [self hexOffset] + ( 12 * [self hexDiameter] );
+}
+
+// - (CGFloat)idealWidth {
+//   [self hexOffset] + ( 17 * [self hexDiameter] )
+// }
 
 - (void)generateCells {
   hexes = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
@@ -145,6 +164,15 @@
     [delegate layerView:self hexSelected:selected];
   }
   [self setNeedsDisplay:YES];
+  
+  if( dataLayer ) {
+    ELHex *hex = [dataLayer hexAtCol:[_selected column] row:[_selected row]];
+    ELNote *note = [hex note];
+    
+    [dataLayer playNote:note
+               velocity:100
+               duration:0.8];
+  }
 }
 
 - (void)mouseDown:(NSEvent *)_event {
@@ -156,6 +184,7 @@
 
 - (void)windowResized:(NSNotification *)notification;
 {
+  NSLog( @"New bounds = %f,%f Ideal bounds = %f,%f", [self bounds].size.width, [self bounds].size.height, [self bounds].size.width, [self idealHeight] );
   [self calculateCellPaths:[self bounds]];
 }
 

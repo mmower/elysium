@@ -28,6 +28,8 @@
       return nil;
     }
     
+    MIDISourceCreate( midiClient, (CFStringRef)@"Elysium", &source );
+    
     MIDIOutputPortCreate( midiClient, portName, &outputPort );
     
     if( MIDIGetNumberOfDestinations() < 1 ) {
@@ -40,6 +42,8 @@
       NSLog( @"Failed to obtain MIDI output" );
       return nil;
     }
+    
+    NSLog( @"MIDIController initialization complete." );
   }
   
   return self;
@@ -66,6 +70,8 @@
   data[1] = MIDI_ON | _channel;
   data[2] = _note;
   data[3] = _velocity;
+  
+  NSLog( @"Calling sendMessage" );
   
   [self sendMessage:data];
 }
@@ -102,6 +108,8 @@
 - (void)sendMessage:(Byte *)_data {
   Byte buffer[128];
   
+  NSLog( @"MIDIController sendMessage" );
+  
   MIDIPacketList *packetList = (MIDIPacketList *)buffer;
   
   MIDIPacket *packet = MIDIPacketListInit( packetList );
@@ -117,6 +125,8 @@
     NSLog( @"Failure to add MIDI message to packet list!" );
     return;
   }
+  
+  NSLog( @"MIDI sendMessage" );
   
   OSStatus result = MIDISend( outputPort, destination, packetList );
   NSLog( @"Result of MIDI send = %d", result );

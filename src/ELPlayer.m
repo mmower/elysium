@@ -61,6 +61,10 @@
   return running;
 }
 
+- (void)setMIDIController:(ELMIDIController *)_midiController {
+  midiController = _midiController;
+}
+
 // Player control
 
 - (void)start:(ELMIDIController *)_midiController {
@@ -70,7 +74,7 @@
     [layer reset];
   }
   
-  midiController = _midiController;
+  [self setMIDIController:_midiController];
   [timer setDelegate:_midiController];
   
   running   = NO;
@@ -103,11 +107,11 @@
 - (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {
   NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
   
-  [midiController programChange:1 channel:_channel];
+  // [midiController programChange:1 channel:_channel];
   
   NSLog( @"Sending note ON" );
   [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
-  sleep( 2.5 );
+  sleep( _duration );
   NSLog( @"Sending note OFF" );
   [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
 }
@@ -116,6 +120,10 @@
 
 - (void)addLayer {
   [layers addObject:[self createLayer:1]];
+}
+
+- (ELLayer *)firstLayer {
+  return [layers objectAtIndex:0];
 }
 
 - (ELLayer *)createLayer:(int)_channel {

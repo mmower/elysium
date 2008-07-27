@@ -10,7 +10,9 @@
 
 #import "ElysiumDocument.h"
 
+#import "ELLayer.h"
 #import "ELHexCell.h"
+#import "ELLayerView.h"
 #import "ElysiumController.h"
 
 NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
@@ -39,8 +41,10 @@ NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
     
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     [player addLayer];
+    [player setMIDIController:[self midiController]];
     
     [layerView setDelegate:self];
+    [layerView setDataLayer:[player firstLayer]];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
