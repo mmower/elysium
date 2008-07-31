@@ -107,8 +107,6 @@
 - (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {
   NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
   
-  // [midiController programChange:1 channel:_channel];
-  
   NSLog( @"Sending note ON" );
   [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
   sleep( _duration );

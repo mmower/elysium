@@ -32,8 +32,9 @@
     
     MIDIOutputPortCreate( midiClient, portName, &outputPort );
     
-    if( MIDIGetNumberOfDestinations() < 1 ) {
-      NSLog( @"No MIDI destinations area available" );
+    int numDestinations = MIDIGetNumberOfDestinations();
+    if( numDestinations < 1 ) {
+      NSLog( @"No MIDI destinations are available" );
       return nil;
     }
     
