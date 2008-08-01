@@ -13,12 +13,13 @@
 
 @class ELLayerView;
 @class ElysiumController;
+@class LMHoneycombView;
 
 @interface ElysiumDocument : NSDocument
 {
-  IBOutlet  NSButton      *controlButton;
-  ELPlayer                *player;
-  IBOutlet  ELLayerView   *layerView;
+  IBOutlet  NSButton          *controlButton;
+  ELPlayer                    *player;
+  IBOutlet  LMHoneycombView   *layerView;
 }
 
 - (ElysiumController *)appController;

@@ -8,20 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <HoneycombView/LMHexCell.h>
+
 @class ELLayer;
 @class ELNote;
 @class ELTool;
 
-@interface ELHex : NSObject {
+@interface ELHex : LMHexCell {
   ELLayer         *layer;
   ELNote          *note;
-  int             col;
-  int             row;
   ELHex           *neighbours[6];
   NSMutableArray  *tools;
 }
 
-- (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note col:(int)col row:(int)row;
+- (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 
 - (ELNote *)note;
 

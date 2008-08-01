@@ -44,7 +44,7 @@ NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
     [player setMIDIController:[self midiController]];
     
     [layerView setDelegate:self];
-    [layerView setDataLayer:[player firstLayer]];
+    [layerView setDataSource:[player firstLayer]];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError

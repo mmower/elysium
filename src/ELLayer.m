@@ -113,10 +113,12 @@
   // First build the hex table mapping
   for( int col = 0; col < [harmonicTable cols]; col++ ) {
     for( int row = 0; row < [harmonicTable rows]; row++ ) {
-      [hexes insertObject:[[ELHex alloc] initWithLayer:self
-                                                  note:[harmonicTable noteAtCol:col row:row]
-                                                   col:col
-                                                   row:row] atIndex:COL_ROW_OFFSET(col,row)];
+      ELHex *hex = [[ELHex alloc] initWithLayer:self
+                                           note:[harmonicTable noteAtCol:col row:row]
+                                         column:col
+                                            row:row];
+                                            
+      [hexes addObject:hex];
     }
   }
 
@@ -167,5 +169,24 @@
     }
   }
 }
+
+// LMHoneycombMatrix protocol implementation
+
+- (int)hexColumns {
+  return HTABLE_COLS;
+}
+
+- (int)hexRows {
+  return HTABLE_ROWS;
+}
+
+- (void)hexCellSelected:(LMHexCell *)_cell {
+  NSLog( @"Layer selected cell at %d, %d", [_cell column], [_cell row] );
+}
+
+- (LMHexCell *)hexCellAtColumn:(int)_col row:(int)_row {
+  return [hexes objectAtIndex:COL_ROW_OFFSET(_col,_row)];
+}
+
 
 @end

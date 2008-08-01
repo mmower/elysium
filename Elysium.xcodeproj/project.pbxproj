@@ -14,9 +14,18 @@
 		8D15AC310486D014006FF6A4 /* ElysiumDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* ElysiumDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		C92ACD5D0E38868A009CF61B /* ELHexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92ACD5C0E38868A009CF61B /* ELHexCell.m */; };
 		C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92ACD690E3892F5009CF61B /* Inspector.xib */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
+		C9874C0A0E429F6B0068E7BF /* HoneycombView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
+		C9874C280E42A1A10068E7BF /* HoneycombView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C200E42A1A10068E7BF /* HoneycombView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9874C290E42A1A10068E7BF /* LMHexCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C210E42A1A10068E7BF /* LMHexCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9874C2A0E42A1A10068E7BF /* LMHexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C220E42A1A10068E7BF /* LMHexCell.m */; };
+		C9874C2B0E42A1A10068E7BF /* LMHoneycombMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C230E42A1A10068E7BF /* LMHoneycombMatrix.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9874C2C0E42A1A10068E7BF /* LMHoneycombView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C240E42A1A10068E7BF /* LMHoneycombView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9874C2D0E42A1A10068E7BF /* LMHoneycombView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C250E42A1A10068E7BF /* LMHoneycombView.m */; };
+		C9874C2E0E42A1A10068E7BF /* LMRegularPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */; settings = {ATTRIBUTES = (); }; };
+		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
+		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
 		C9E43C540E334DB900C4D343 /* ELNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43C530E334DB900C4D343 /* ELNote.m */; };
 		C9E43C730E334E3B00C4D343 /* ELHarmonicTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43C720E334E3B00C4D343 /* ELHarmonicTable.m */; };
 		C9E43C880E334F3400C4D343 /* ELLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43C870E334F3400C4D343 /* ELLayer.m */; };
@@ -28,15 +37,23 @@
 		C9E43D110E33AFB200C4D343 /* ELBeatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43D100E33AFB200C4D343 /* ELBeatTool.m */; };
 		C9E43D1D0E33B4BD00C4D343 /* ElysiumController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43D1C0E33B4BD00C4D343 /* ElysiumController.m */; };
 		C9E43D320E33BA0500C4D343 /* ELConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43D310E33BA0500C4D343 /* ELConfig.m */; };
-		C9E43D410E33BE9F00C4D343 /* ELLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43D400E33BE9F00C4D343 /* ELLayerView.m */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E43D740E33C5C600C4D343 /* ELMIDIController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43D730E33C5C600C4D343 /* ELMIDIController.m */; };
 		C9E5DC290E34E2AE00443B45 /* ELTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E5DC280E34E2AE00443B45 /* ELTimer.m */; };
 		C9E7A1810E35FAB200CC5E25 /* ELInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E7A1800E35FAB200CC5E25 /* ELInspectorController.m */; };
-		C9E7A1E70E37247E00CC5E25 /* ELRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E7A1E60E37247E00CC5E25 /* ELRegularPolygon.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C9874C3C0E42A2460068E7BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9874BF90E429EF90068E7BF /* HoneycombView */;
+			remoteInfo = HoneycombView;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C9E43D630E33C29F00C4D343 /* CopyFiles */ = {
@@ -45,6 +62,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */,
 				C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,6 +88,16 @@
 		C92ACD5C0E38868A009CF61B /* ELHexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexCell.m; sourceTree = "<group>"; };
 		C92ACD690E3892F5009CF61B /* Inspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Inspector.xib; sourceTree = "<group>"; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
+		C9874BFA0E429EF90068E7BF /* HoneycombView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HoneycombView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9874BFB0E429EF90068E7BF /* HoneycombView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HoneycombView-Info.plist"; sourceTree = "<group>"; };
+		C9874C200E42A1A10068E7BF /* HoneycombView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoneycombView.h; path = ../Honeycomb/view/HoneycombView.h; sourceTree = SOURCE_ROOT; };
+		C9874C210E42A1A10068E7BF /* LMHexCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMHexCell.h; path = ../Honeycomb/view/LMHexCell.h; sourceTree = SOURCE_ROOT; };
+		C9874C220E42A1A10068E7BF /* LMHexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMHexCell.m; path = ../Honeycomb/view/LMHexCell.m; sourceTree = SOURCE_ROOT; };
+		C9874C230E42A1A10068E7BF /* LMHoneycombMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMHoneycombMatrix.h; path = ../Honeycomb/view/LMHoneycombMatrix.h; sourceTree = SOURCE_ROOT; };
+		C9874C240E42A1A10068E7BF /* LMHoneycombView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMHoneycombView.h; path = ../Honeycomb/view/LMHoneycombView.h; sourceTree = SOURCE_ROOT; };
+		C9874C250E42A1A10068E7BF /* LMHoneycombView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMHoneycombView.m; path = ../Honeycomb/view/LMHoneycombView.m; sourceTree = SOURCE_ROOT; };
+		C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMRegularPolygon.h; path = ../Honeycomb/view/LMRegularPolygon.h; sourceTree = SOURCE_ROOT; };
+		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
 		C9E43C520E334DB900C4D343 /* ELNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNote.h; sourceTree = "<group>"; };
 		C9E43C530E334DB900C4D343 /* ELNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNote.m; sourceTree = "<group>"; };
 		C9E43C710E334E3B00C4D343 /* ELHarmonicTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHarmonicTable.h; sourceTree = "<group>"; };
@@ -104,8 +132,6 @@
 		C9E5DC280E34E2AE00443B45 /* ELTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimer.m; sourceTree = "<group>"; };
 		C9E7A17F0E35FAB200CC5E25 /* ELInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELInspectorController.h; sourceTree = "<group>"; };
 		C9E7A1800E35FAB200CC5E25 /* ELInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELInspectorController.m; sourceTree = "<group>"; };
-		C9E7A1E50E37247E00CC5E25 /* ELRegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRegularPolygon.h; sourceTree = "<group>"; };
-		C9E7A1E60E37247E00CC5E25 /* ELRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRegularPolygon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +139,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9874C0A0E429F6B0068E7BF /* HoneycombView.framework in Frameworks */,
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */,
 				C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */,
 				C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9874BF80E429EF90068E7BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				8D15AC370486D014006FF6A4 /* Elysium.app */,
+				C9874BFA0E429EF90068E7BF /* HoneycombView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,11 +190,13 @@
 		2A37F4AAFDCFA73011CA2CEA /* Elysium */ = {
 			isa = PBXGroup;
 			children = (
+				C9874C1F0E42A1860068E7BF /* view */,
 				2A37F4ABFDCFA73011CA2CEA /* src */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				C9874BFB0E429EF90068E7BF /* HoneycombView-Info.plist */,
 			);
 			name = Elysium;
 			sourceTree = "<group>";
@@ -222,6 +259,21 @@
 			name = Inspector;
 			sourceTree = "<group>";
 		};
+		C9874C1F0E42A1860068E7BF /* view */ = {
+			isa = PBXGroup;
+			children = (
+				C9874C200E42A1A10068E7BF /* HoneycombView.h */,
+				C9874C210E42A1A10068E7BF /* LMHexCell.h */,
+				C9874C220E42A1A10068E7BF /* LMHexCell.m */,
+				C9874C230E42A1A10068E7BF /* LMHoneycombMatrix.h */,
+				C9874C240E42A1A10068E7BF /* LMHoneycombView.h */,
+				C9874C250E42A1A10068E7BF /* LMHoneycombView.m */,
+				C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */,
+				C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		C9E43D070E33921D00C4D343 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,8 +313,6 @@
 			children = (
 				C9E43D3F0E33BE9F00C4D343 /* ELLayerView.h */,
 				C9E43D400E33BE9F00C4D343 /* ELLayerView.m */,
-				C9E7A1E50E37247E00CC5E25 /* ELRegularPolygon.h */,
-				C9E7A1E60E37247E00CC5E25 /* ELRegularPolygon.m */,
 				C92ACD5B0E38868A009CF61B /* ELHexCell.h */,
 				C92ACD5C0E38868A009CF61B /* ELHexCell.m */,
 			);
@@ -282,6 +332,21 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		C9874BF50E429EF90068E7BF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9874C280E42A1A10068E7BF /* HoneycombView.h in Headers */,
+				C9874C290E42A1A10068E7BF /* LMHexCell.h in Headers */,
+				C9874C2B0E42A1A10068E7BF /* LMHoneycombMatrix.h in Headers */,
+				C9874C2C0E42A1A10068E7BF /* LMHoneycombView.h in Headers */,
+				C9874C2E0E42A1A10068E7BF /* LMRegularPolygon.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		8D15AC270486D014006FF6A4 /* Elysium */ = {
 			isa = PBXNativeTarget;
@@ -295,12 +360,31 @@
 			buildRules = (
 			);
 			dependencies = (
+				C9874C3D0E42A2460068E7BF /* PBXTargetDependency */,
 			);
 			name = Elysium;
 			productInstallPath = "$(HOME)/Applications";
 			productName = Elysium;
 			productReference = 8D15AC370486D014006FF6A4 /* Elysium.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C9874BF90E429EF90068E7BF /* HoneycombView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9874BFE0E429EFA0068E7BF /* Build configuration list for PBXNativeTarget "HoneycombView" */;
+			buildPhases = (
+				C9874BF50E429EF90068E7BF /* Headers */,
+				C9874BF60E429EF90068E7BF /* Resources */,
+				C9874BF70E429EF90068E7BF /* Sources */,
+				C9874BF80E429EF90068E7BF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HoneycombView;
+			productName = HoneycombView;
+			productReference = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -315,6 +399,7 @@
 			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Elysium */,
+				C9874BF90E429EF90068E7BF /* HoneycombView */,
 			);
 		};
 /* End PBXProject section */
@@ -329,6 +414,13 @@
 				1DDD582C0DA1D0D100B32029 /* ElysiumDocument.xib in Resources */,
 				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
 				C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9874BF60E429EF90068E7BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,16 +444,31 @@
 				C9E43D110E33AFB200C4D343 /* ELBeatTool.m in Sources */,
 				C9E43D1D0E33B4BD00C4D343 /* ElysiumController.m in Sources */,
 				C9E43D320E33BA0500C4D343 /* ELConfig.m in Sources */,
-				C9E43D410E33BE9F00C4D343 /* ELLayerView.m in Sources */,
 				C9E43D740E33C5C600C4D343 /* ELMIDIController.m in Sources */,
 				C9E5DC290E34E2AE00443B45 /* ELTimer.m in Sources */,
 				C9E7A1810E35FAB200CC5E25 /* ELInspectorController.m in Sources */,
-				C9E7A1E70E37247E00CC5E25 /* ELRegularPolygon.m in Sources */,
-				C92ACD5D0E38868A009CF61B /* ELHexCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9874BF70E429EF90068E7BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9874C2A0E42A1A10068E7BF /* LMHexCell.m in Sources */,
+				C9874C2D0E42A1A10068E7BF /* LMHoneycombView.m in Sources */,
+				C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C9874C3D0E42A2460068E7BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9874BF90E429EF90068E7BF /* HoneycombView */;
+			targetProxy = C9874C3C0E42A2460068E7BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
@@ -407,6 +514,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../Honeycomb/build/Release\"",
+					"\"$(SRCROOT)/build/Debug\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -414,9 +523,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Elysium_Prefix.pch;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../XCode/Release/HoneycombView.framework/Versions/A/Headers\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Elysium;
+				SYMROOT = build;
 			};
 			name = Debug;
 		};
@@ -428,13 +539,17 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../Honeycomb/build/Release\"",
+					"\"$(SRCROOT)/build/Debug\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Elysium_Prefix.pch;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../XCode/Release/HoneycombView.framework/Versions/A/Headers\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Elysium;
+				SYMROOT = build;
 			};
 			name = Release;
 		};
@@ -470,6 +585,60 @@
 			};
 			name = Release;
 		};
+		C9874BFC0E429EFA0068E7BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "HoneycombView-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = HoneycombView;
+			};
+			name = Debug;
+		};
+		C9874BFD0E429EFA0068E7BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "HoneycombView-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = HoneycombView;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -487,6 +656,15 @@
 			buildConfigurations = (
 				C05733CC08A9546B00998B17 /* Debug */,
 				C05733CD08A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9874BFE0E429EFA0068E7BF /* Build configuration list for PBXNativeTarget "HoneycombView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9874BFC0E429EFA0068E7BF /* Debug */,
+				C9874BFD0E429EFA0068E7BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

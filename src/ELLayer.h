@@ -8,13 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <HoneycombView/LMHoneycombMatrix.h>
+
 @class ELHex;
 @class ELNote;
 @class ELConfig;
 @class ELPlayer;
 @class ELPlayhead;
 
-@interface ELLayer : NSObject {
+@interface ELLayer : NSObject <LMHoneycombMatrix> {
   ELPlayer            *player;
   NSMutableArray      *hexes;
   ELConfig            *config;
