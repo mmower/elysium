@@ -182,6 +182,7 @@
 
 - (void)hexCellSelected:(LMHexCell *)_cell {
   NSLog( @"Layer selected cell at %d, %d", [_cell column], [_cell row] );
+  [self playNote:[(ELHex*)_cell note] velocity:100 duration:0.8];
 }
 
 - (LMHexCell *)hexCellAtColumn:(int)_col row:(int)_row {

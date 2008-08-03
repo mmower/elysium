@@ -109,7 +109,7 @@
   
   NSLog( @"Sending note ON" );
   [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
-  sleep( _duration );
+  usleep( _duration * 1000000 );
   NSLog( @"Sending note OFF" );
   [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
 }
