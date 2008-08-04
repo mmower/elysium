@@ -13,12 +13,14 @@
 @class ELLayer;
 @class ELNote;
 @class ELTool;
+@class ELPlayhead;
 
 @interface ELHex : LMHexCell {
   ELLayer         *layer;
   ELNote          *note;
   ELHex           *neighbours[6];
   NSMutableArray  *tools;
+  NSMutableArray  *playheads;
 }
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
@@ -33,5 +35,10 @@
 - (NSArray *)tools;
 - (NSArray *)toolsOfType:(NSString *)type;
 - (NSArray *)toolsExceptType:(NSString *)type;
+
+- (void)playheadEntering:(ELPlayhead *)playhead;
+- (void)playheadLeaving:(ELPlayhead *)playhead;
+
+- (void)drawNoteName;
 
 @end

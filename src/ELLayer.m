@@ -38,7 +38,7 @@
 }
 
 - (void)run {
-  NSLog( @"Layer %@ is running", self );
+  // NSLog( @"Layer %@ is running", self );
   
   // On the first and every pulseCount beats, generate new playheads
   NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );

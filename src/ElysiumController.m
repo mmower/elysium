@@ -24,18 +24,20 @@
 }
 
 - (void)awakeFromNib {
+  
 }
 
 - (ELMIDIController *)midiController {
   return midiController;
 }
 
+// Actions
+
 - (IBAction)showInspectorPanel:(id)_sender {
   if( !inspectorController ) {
     inspectorController = [[ELInspectorController alloc] init];
   }
   
-  NSLog( @"Showing %@", inspectorController );
   [inspectorController showWindow:self];
 }
 

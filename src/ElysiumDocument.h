@@ -25,6 +25,8 @@
 - (ElysiumController *)appController;
 - (ELMIDIController *)midiController;
 
+- (void)updateView:(id)sender;
+
 - (IBAction)startStop:(id)sender;
 
 @end

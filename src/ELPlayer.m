@@ -65,17 +65,21 @@
   midiController = _midiController;
 }
 
+- (void)setDocument:(ElysiumDocument *)_document {
+  document = _document;
+}
+
 // Player control
 
-- (void)start:(ELMIDIController *)_midiController {
+- (void)start {
   NSLog( @"Starting player thread." );
   
   for( ELLayer *layer in layers ) {
     [layer reset];
   }
   
-  [self setMIDIController:_midiController];
-  [timer setDelegate:_midiController];
+  timerResolution = 60000000 / ( [config integerForKey:@"bpm"] * 5 );
+  NSLog( @"Timer resolution = %u", timerResolution );
   
   running   = NO;
   thread    = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
@@ -89,15 +93,19 @@
 }
 
 - (void)run {
+  NSLog( @"Player thread is running" );
   running = YES;
+  
   while( ![thread isCancelled] ) {
-    NSLog( @"Player thread is running" );
     
     for( ELLayer *layer in layers ) {
       [layer run];
     }
     
-    sleep( 1.0 );
+    // NSLog( @"Calling performSelectorOnMainThread:" );
+    [document performSelectorOnMainThread:@selector(updateView:) withObject:self waitUntilDone:NO];
+    
+    usleep( timerResolution );
   }
   
   NSLog( @"Player has stopped." );
@@ -105,13 +113,15 @@
 }
 
 - (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {
-  NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
+  // NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
   
-  NSLog( @"Sending note ON" );
-  [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
-  usleep( _duration * 1000000 );
-  NSLog( @"Sending note OFF" );
-  [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
+  // NSLog( @"Sending note ON" );
+  // [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
+  
+  // usleep( _duration * 1000000 );
+  
+  // NSLog( @"Sending note OFF" );
+  // [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
 }
 
 // Layer Management

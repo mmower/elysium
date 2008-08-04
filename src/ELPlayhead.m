@@ -15,7 +15,7 @@
 
 - (id)initWithPosition:(ELHex *)_position direction:(Direction)_direction ttl:(int)_ttl {
   if( self = [super init] ) {
-    position  = _position;
+    [self setPosition:_position];
     direction = _direction;
     ttl       = _ttl;
   }
@@ -27,8 +27,14 @@
   return position;
 }
 
+- (void)setPosition:(ELHex *)_position {
+  [position playheadLeaving:self];
+  position = _position;
+  [position playheadEntering:self];
+}
+
 - (void)advance {
-  position = [position neighbour:direction];
+  [self setPosition:[position neighbour:direction]];
   ttl--;
 }
 

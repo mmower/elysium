@@ -11,8 +11,7 @@
 #import "ElysiumDocument.h"
 
 #import "ELLayer.h"
-#import "ELHexCell.h"
-#import "ELLayerView.h"
+#import "ELPlayer.h"
 #import "ElysiumController.h"
 
 NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
@@ -42,6 +41,7 @@ NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     [player addLayer];
     [player setMIDIController:[self midiController]];
+    [player setDocument:self];
     
     [layerView setDelegate:self];
     [layerView setDataSource:[player firstLayer]];
@@ -93,16 +93,16 @@ NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
   } else {
     [controlButton setTitle:@"Stop"];
     [[self midiController] setDelegate:self];
-    [player start:[self midiController]];
+    [player start];
   }
 }
 
-// LayerView delegate methods
-
-- (void)layerView:(ELLayerView *)_layerView hexSelected:(ELHexCell *)_hex {
-  NSLog( @"layerView:%@ hexSelected:%@", _layerView, _hex );
-  [[NSNotificationCenter defaultCenter] postNotificationName:notifyObjectSelectionDidChange object:self];
+// Sent by background threads when the view needs to be updated
+- (void)updateView:(id)sender {
+  NSLog( @"Updating layerView" );
+  [layerView setNeedsDisplay:YES];
 }
+
 
 // MIDI Controller delegate methods
 

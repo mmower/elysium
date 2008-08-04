@@ -21,6 +21,8 @@
 - (id)initWithPosition:(ELHex *)position direction:(Direction)direction ttl:(int)ttl;
 
 - (ELHex *)position;
+- (void)setPosition:(ELHex *)position;
+
 - (void)advance;
 - (BOOL)isDead;
   

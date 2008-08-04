@@ -8,18 +8,22 @@
 
 #import "Elysium.h"
 
+#import <HoneycombView/LMHoneycombView.h>
+
 #import "ELHex.h"
 #import "ELNote.h"
 #import "ELLayer.h"
 #import "ELTool.h"
+#import "ELPlayhead.h"
 
 @implementation ELHex
 
 - (id)initWithLayer:(ELLayer *)_layer note:(ELNote *)_note column:(int)_col row:(int)_row {
   if( self = [super initWithColumn:_col row:_row] ) {
-    layer      = _layer;
-    note       = _note;
-    tools      = [[NSMutableArray alloc] init];
+    layer     = _layer;
+    note      = _note;
+    tools     = [[NSMutableArray alloc] init];
+    playheads = [[NSMutableArray alloc] init];
   }
   
   return self;
@@ -64,6 +68,46 @@
 
 - (NSString *)description {
   return [NSString stringWithFormat:@"(%d,%d)",col,row];
+}
+
+// Playheads
+
+- (void)playheadEntering:(ELPlayhead *)_playhead {
+  NSLog( @"Playhead %@ entering %@", _playhead, self );
+  [playheads addObject:_playhead];
+}
+
+- (void)playheadLeaving:(ELPlayhead *)_playhead {
+  NSLog( @"Playhead %@ leaving %@", _playhead, self );
+  [playheads removeObject:_playhead];
+}
+
+// Drawing
+
+- (void)drawNoteName {
+  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+  [attributes setObject:[NSFont fontWithName:@"Helvetica" size:9]
+                 forKey:NSFontAttributeName];
+  [attributes setObject:[NSColor whiteColor]
+                 forKey:NSForegroundColorAttributeName];
+  
+  NSSize strSize = [[note name] sizeWithAttributes:attributes];
+  
+  NSPoint strOrigin;
+  strOrigin.x = [path bounds].origin.x + ( [path bounds].size.width - strSize.width ) / 2;
+  strOrigin.y = [path bounds].origin.y + ( [path bounds].size.height - strSize.height ) / 2;
+  
+  [[note name] drawAtPoint:strOrigin withAttributes:attributes];
+}
+
+- (void)drawOnHoneycombView:(LMHoneycombView *)_view withAttributes:(NSMutableDictionary *)_attributes {
+  if( [playheads count] > 0 ) {
+    NSLog( @"Playheads at %@", self );
+    _attributes = [_attributes mutableCopy];
+    [_attributes setObject:[NSColor redColor] forKey:LMHoneycombViewDefaultColor];
+  }
+  
+  [super drawOnHoneycombView:_view withAttributes:_attributes];
 }
 
 @end
