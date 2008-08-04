@@ -39,6 +39,6 @@
 - (void)playheadEntering:(ELPlayhead *)playhead;
 - (void)playheadLeaving:(ELPlayhead *)playhead;
 
-- (void)drawNoteName;
+- (void)drawText:(NSString *)text;
 
 @end

@@ -24,6 +24,13 @@
     note      = _note;
     tools     = [[NSMutableArray alloc] init];
     playheads = [[NSMutableArray alloc] init];
+    
+    [self connectNeighbour:nil direction:N];
+    [self connectNeighbour:nil direction:NE];
+    [self connectNeighbour:nil direction:SE];
+    [self connectNeighbour:nil direction:S];
+    [self connectNeighbour:nil direction:SW];
+    [self connectNeighbour:nil direction:NW];
   }
   
   return self;
@@ -36,7 +43,7 @@
 
 - (void)connectNeighbour:(ELHex *)_hex direction:(Direction)_direction {
   [self connectToHex:_hex direction:_direction];
-  [_hex connectToHex:self direction:INVERSE_DIRECTION(_direction)];
+  // [_hex connectToHex:self direction:INVERSE_DIRECTION(_direction)];
 }
 
 - (ELNote *)note {
@@ -73,41 +80,42 @@
 // Playheads
 
 - (void)playheadEntering:(ELPlayhead *)_playhead {
-  NSLog( @"Playhead %@ entering %@", _playhead, self );
   [playheads addObject:_playhead];
 }
 
 - (void)playheadLeaving:(ELPlayhead *)_playhead {
-  NSLog( @"Playhead %@ leaving %@", _playhead, self );
   [playheads removeObject:_playhead];
 }
 
 // Drawing
 
-- (void)drawNoteName {
+- (void)drawText:(NSString *)_text {
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
   [attributes setObject:[NSFont fontWithName:@"Helvetica" size:9]
                  forKey:NSFontAttributeName];
   [attributes setObject:[NSColor whiteColor]
                  forKey:NSForegroundColorAttributeName];
   
-  NSSize strSize = [[note name] sizeWithAttributes:attributes];
+  NSSize strSize = [_text sizeWithAttributes:attributes];
   
   NSPoint strOrigin;
   strOrigin.x = [path bounds].origin.x + ( [path bounds].size.width - strSize.width ) / 2;
   strOrigin.y = [path bounds].origin.y + ( [path bounds].size.height - strSize.height ) / 2;
   
-  [[note name] drawAtPoint:strOrigin withAttributes:attributes];
+  [_text drawAtPoint:strOrigin withAttributes:attributes];
 }
 
 - (void)drawOnHoneycombView:(LMHoneycombView *)_view withAttributes:(NSMutableDictionary *)_attributes {
   if( [playheads count] > 0 ) {
-    NSLog( @"Playheads at %@", self );
     _attributes = [_attributes mutableCopy];
     [_attributes setObject:[NSColor redColor] forKey:LMHoneycombViewDefaultColor];
   }
   
   [super drawOnHoneycombView:_view withAttributes:_attributes];
+  
+  if( [[self toolsOfType:@"start"] count] > 0 || [[self toolsOfType:@"beat"] count] > 0 ) {
+    [self drawText:[note name]];
+  }
 }
 
 @end

@@ -27,8 +27,7 @@
 - (id)initWithPlayer:(ELPlayer *)player config:(ELConfig *)config;
 
 - (ELPlayer *)player;
-
-- (ELHex *)hexAtCol:(int)col row:(int)row;
+- (ELHex *)hexAtColumn:(int)col row:(int)row;
 
 // Dynamic Configuration
 - (int)channel;

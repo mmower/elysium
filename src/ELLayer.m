@@ -38,11 +38,10 @@
 }
 
 - (void)run {
-  // NSLog( @"Layer %@ is running", self );
+  NSPredicate *deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
   
   // On the first and every pulseCount beats, generate new playheads
   NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
-  
   if( beatCount % [self pulseCount] == 0 ) {
     [self pulse];
   }
@@ -52,12 +51,12 @@
     ELHex *hex = [playhead position];
     for( ELTool *tool in [hex toolsExceptType:@"start"] ) {
       [tool run:playhead];
-      [playhead advance];
     }
+    [playhead advance];
   }
   
   // Delete dead playheads
-  [playheads filterUsingPredicate:[NSPredicate predicateWithFormat:@"isDead == TRUE"]];
+  [playheads filterUsingPredicate:deadPlayheadFilter];
   
   // Beat is over
   beatCount++;
@@ -92,6 +91,9 @@
 }
 
 - (void)removeAllPlayheads {
+  for( ELPlayhead *playhead in playheads ) {
+    [playhead setPosition:nil];
+  }
   [playheads removeAllObjects];
 }
 
@@ -101,10 +103,6 @@
       [tool run:nil];
     }
   }
-}
-
-- (ELHex *)hexAtCol:(int)_col row:(int)_row {
-  return [hexes objectAtIndex:COL_ROW_OFFSET(_col,_row)];
 }
 
 - (void)configureHexes {
@@ -125,46 +123,48 @@
   // Now connect the hexes up graph style
   for( int col = 0; col < HTABLE_COLS; col++ ) {
     for( int row = 0; row < HTABLE_ROWS; row++ ) {
-      ELHex *hex = [self hexAtCol:col row:row];
-
+      ELHex *hex = [self hexAtColumn:col row:row];
+      
+      
+      
       // North Hex
       if( row < HTABLE_MAX_ROW ) {
-        [hex connectNeighbour:[self hexAtCol:col row:row+1] direction:N];
+        [hex connectNeighbour:[self hexAtColumn:col row:row+1] direction:N];
       }
-
-      // South Hex
+      
+      // // South Hex
       if( row > 0 ) {
-        [hex connectNeighbour:[self hexAtCol:col row:row-1] direction:S];
+        [hex connectNeighbour:[self hexAtColumn:col row:row-1] direction:S];
       }
 
       // Easterly Hexes
       if( col % 2 == 0 ) {
         if( col < HTABLE_MAX_COL ) {
-          [hex connectNeighbour:[self hexAtCol:col+1 row:row] direction:NE];
-          if( row > 0 ) {
-            [hex connectNeighbour:[self hexAtCol:col+1 row:row-1] direction:SE];
+          if( row < HTABLE_MAX_ROW ) {
+            [hex connectNeighbour:[self hexAtColumn:col+1 row:row+1] direction:NE];
           }
+          [hex connectNeighbour:[self hexAtColumn:col+1 row:row] direction:SE];
         }
       } else {
-        if( row < HTABLE_MAX_ROW ) {
-          [hex connectNeighbour:[self hexAtCol:col+1 row:row+1] direction:NE];
+        [hex connectNeighbour:[self hexAtColumn:col+1 row:row] direction:NE];
+        if( row > 0 ) {
+          [hex connectNeighbour:[self hexAtColumn:col+1 row:row-1] direction:SE];
         }
-        [hex connectNeighbour:[self hexAtCol:col+1 row:row] direction:SE];
       }
 
       // Westerly Hexes
       if( col % 2 == 0 ) {
         if( col > 0 ) {
-          [hex connectNeighbour:[self hexAtCol:col-1 row:row] direction:NW];
-          if( row > 0 ) {
-            [hex connectNeighbour:[self hexAtCol:col-1 row:row-1] direction:SW];
+          if( row < HTABLE_MAX_ROW ) {
+            [hex connectNeighbour:[self hexAtColumn:col-1 row:row+1] direction:NW];
           }
+          [hex connectNeighbour:[self hexAtColumn:col-1 row:row] direction:SW];
         }
       } else {
-        if( row < HTABLE_MAX_ROW ) {
-          [hex connectNeighbour:[self hexAtCol:col-1 row:row+1] direction:NW];
+        [hex connectNeighbour:[self hexAtColumn:col-1 row:row] direction:NW];
+        if( row > 0 ) {
+          [hex connectNeighbour:[self hexAtColumn:col-1 row:row-1] direction:SW];
         }
-        [hex connectNeighbour:[self hexAtCol:col-1 row:row] direction:SW];
       }
     }
   }
@@ -183,11 +183,21 @@
 - (void)hexCellSelected:(LMHexCell *)_cell {
   NSLog( @"Layer selected cell at %d, %d", [_cell column], [_cell row] );
   [self playNote:[(ELHex*)_cell note] velocity:100 duration:0.8];
+  
+  // NSLog( @"N  %@", [(ELHex *)_cell neighbour:N] );
+  // NSLog( @"NE %@", [(ELHex *)_cell neighbour:NE] );
+  // NSLog( @"SE %@", [(ELHex *)_cell neighbour:SE] );
+  // NSLog( @"S  %@", [(ELHex *)_cell neighbour:S] );
+  // NSLog( @"SW %@", [(ELHex *)_cell neighbour:SW] );
+  // NSLog( @"NW %@", [(ELHex *)_cell neighbour:NW] );
+}
+
+- (ELHex *)hexAtColumn:(int)_col row:(int)_row {
+  return (ELHex *)[self hexCellAtColumn:_col row:_row];
 }
 
 - (LMHexCell *)hexCellAtColumn:(int)_col row:(int)_row {
   return [hexes objectAtIndex:COL_ROW_OFFSET(_col,_row)];
 }
-
 
 @end

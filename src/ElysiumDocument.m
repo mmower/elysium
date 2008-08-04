@@ -99,7 +99,6 @@ NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
 
 // Sent by background threads when the view needs to be updated
 - (void)updateView:(id)sender {
-  NSLog( @"Updating layerView" );
   [layerView setNeedsDisplay:YES];
 }
 

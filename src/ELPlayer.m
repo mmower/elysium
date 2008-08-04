@@ -78,7 +78,7 @@
     [layer reset];
   }
   
-  timerResolution = 60000000 / ( [config integerForKey:@"bpm"] * 5 );
+  timerResolution = 60000000 / ( [config integerForKey:@"bpm"] );
   NSLog( @"Timer resolution = %u", timerResolution );
   
   running   = NO;
@@ -113,15 +113,15 @@
 }
 
 - (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {
-  // NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
+  NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
   
-  // NSLog( @"Sending note ON" );
-  // [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
+  NSLog( @"Sending note ON" );
+  [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
   
-  // usleep( _duration * 1000000 );
+  usleep( _duration * 1000000 );
   
-  // NSLog( @"Sending note OFF" );
-  // [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
+  NSLog( @"Sending note OFF" );
+  [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
 }
 
 // Layer Management
@@ -143,12 +143,13 @@
   ELLayer *layer = [[ELLayer alloc] initWithPlayer:self config:layerConfig];
   
   ELConfig *toolConfig = [[ELConfig alloc] initWithParent:layerConfig];
-  [toolConfig setInteger:N forKey:@"direction"];
+  [toolConfig setInteger:NE forKey:@"direction"];
   
-  [[layer hexAtCol:6 row:5] addTool:[[ELStartTool alloc] initWithType:@"start" config:toolConfig]];
+  [[layer hexAtColumn:5 row:5] addTool:[[ELStartTool alloc] initWithType:@"start" config:toolConfig]];
   
   toolConfig = [[ELConfig alloc] initWithParent:layerConfig];
-  [[layer hexAtCol:6 row:5] addTool:[[ELBeatTool alloc] initWithType:@"beat" config:toolConfig]];
+  [[layer hexAtColumn:6 row:5] addTool:[[ELBeatTool alloc] initWithType:@"beat" config:toolConfig]];
+  [[layer hexAtColumn:11 row:8] addTool:[[ELBeatTool alloc] initWithType:@"beat" config:toolConfig]];
   
   return layer;
 }
