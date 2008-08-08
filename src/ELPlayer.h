@@ -22,7 +22,7 @@
   NSMutableArray    *layers;
   ELConfig          *config;
   NSThread          *thread;
-  BOOL              running;
+  BOOL              isRunning;
   ELTimer           *timer;
   ELMIDIController  *midiController;
   int               beatCount;
@@ -36,6 +36,7 @@
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property (readonly) BOOL isRunning;
 
+- (void)setMIDIController:(ELMIDIController *)midiController;
 - (void)setDocument:(ElysiumDocument *)document;
 
 - (void)start;

@@ -74,7 +74,7 @@
   timerResolution = 60000000 / ( [config integerForKey:@"bpm"] );
   NSLog( @"Timer resolution = %u", timerResolution );
   
-  running   = NO;
+  isRunning = NO;
   thread    = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
   startTime = AudioGetCurrentHostTime();
   
@@ -87,7 +87,7 @@
 
 - (void)run {
   NSLog( @"Player thread is running" );
-  running = YES;
+  isRunning = YES;
   
   while( ![thread isCancelled] ) {
     
@@ -102,7 +102,7 @@
   }
   
   NSLog( @"Player has stopped." );
-  running = NO;
+  isRunning = NO;
 }
 
 - (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {
