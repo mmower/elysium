@@ -56,6 +56,10 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
   
   ELTool *tool;
   
+  [hexColumn setIntValue:[hex column]];
+  [hexRow setIntValue:[hex row]];
+  [hexNote setStringValue:[[hex note] name]];
+  
   // Start tool inspector
   tool = [hex toolOfType:@"start"];
   if( tool ) {

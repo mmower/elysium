@@ -16,6 +16,10 @@ extern NSString* const ELNotifyObjectSelectionDidChange;
   
   // Hex inspector outlets
   
+  IBOutlet NSTextField  *hexColumn;
+  IBOutlet NSTextField  *hexRow;
+  IBOutlet NSTextField  *hexNote;
+  
   IBOutlet NSButton     *hexStartEnabled;
   IBOutlet NSSlider     *hexStartDirection;
   IBOutlet NSTextField  *hexStartTTL;
