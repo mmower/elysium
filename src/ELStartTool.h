@@ -13,4 +13,9 @@
 @interface ELStartTool : ELTool {
 }
 
+- (id)initWithDirection:(Direction)direction TTL:(int)ttl;
+
+@property Direction direction;
+@property int TTL;
+
 @end

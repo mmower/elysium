@@ -24,7 +24,10 @@
   int                 beatCount;
 }
 
-- (id)initWithPlayer:(ELPlayer *)player config:(ELConfig *)config;
+- (id)initWithPlayer:(ELPlayer *)player channel:(int)channel;
+
+@property ELPlayer *player;
+@property (readonly) ELConfig *config;
 
 - (ELPlayer *)player;
 - (ELHex *)hexAtColumn:(int)col row:(int)row;

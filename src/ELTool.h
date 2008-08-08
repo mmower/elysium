@@ -14,15 +14,20 @@
 @class ELPlayhead;
 
 @interface ELTool : NSObject {
-  NSString  *type;
+  NSString  *toolType;
   ELLayer   *layer;
   ELHex     *hex;
   ELConfig  *config;
 }
 
+@property (readonly) NSString *toolType;
+@property (readonly) ELConfig *config;
+
+- (id)initWithType:(NSString *)type;
 - (id)initWithType:(NSString *)type config:(ELConfig *)config;
 
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;
+- (void)removedFromLayer:(ELLayer *)layer;
 
 - (void)run:(ELPlayhead *)playhead;
 

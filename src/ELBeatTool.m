@@ -16,11 +16,42 @@
 
 @implementation ELBeatTool
 
+- (id)initWithVelocity:(int)_velocity duration:(float)_duration {
+  if( self = [super initWithType:@"beat"] ) {
+    [self setVelocity:_velocity];
+    [self setDuration:_duration];
+  }
+  
+  return self;
+}
+
+@dynamic velocity;
+
+- (int)velocity {
+  return [config integerForKey:@"velocity"];
+}
+
+- (void)setVelocity:(int)_velocity {
+  [config setInteger:_velocity forKey:@"velocity"];
+}
+
+@dynamic duration;
+
+- (float)duration {
+  return [config floatForKey:@"duration"];
+}
+
+- (void)setDuration:(float)_duration {
+  [config setFloat:_duration forKey:@"duration"];
+}
+
+// Tool runner
+
 - (void)run:(ELPlayhead *)_playhead {
   [super run:_playhead];
   [layer playNote:[[_playhead position] note]
-         velocity:[config integerForKey:@"velocity"]
-         duration:[config floatForKey:@"duration"]];
+         velocity:[self velocity]
+         duration:[self duration]];
 }
 
 @end

@@ -8,10 +8,35 @@
 
 #import <Cocoa/Cocoa.h>
 
+extern NSString* const ELNotifyObjectSelectionDidChange;
+
 @interface ELInspectorController : NSWindowController {
-  IBOutlet NSPanel *inspectorPanel;
+  IBOutlet NSPanel      *inspectorPanel;
+  IBOutlet NSTabView    *tabView;
+  
+  // Hex inspector outlets
+  
+  IBOutlet NSButton     *hexStartEnabled;
+  IBOutlet NSSlider     *hexStartDirection;
+  IBOutlet NSTextField  *hexStartTTL;
+  
+  IBOutlet NSButton     *hexBeatEnabled;
+  IBOutlet NSTextField  *hexBeatVelocity;
+  IBOutlet NSTextField  *hexBeatDuration;
+  
+  IBOutlet NSButton     *hexRicochetEnabled;
+  IBOutlet NSSlider     *hexRicochetDirection;
+  
+  IBOutlet NSButton     *hexSplitterEnabled;
+  
+  id                    focusedObject;
 }
 
 - (void)selectionChanged:(NSNotification*)notification;
+
+- (void)inspectHex;
+- (void)inspectLayer;
+
+- (IBAction)changedHexStartEnabled:(id)sender;
 
 @end

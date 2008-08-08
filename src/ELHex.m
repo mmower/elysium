@@ -22,7 +22,7 @@
   if( self = [super initWithColumn:_col row:_row] ) {
     layer     = _layer;
     note      = _note;
-    tools     = [[NSMutableArray alloc] init];
+    tools     = [[NSMutableDictionary alloc] init];
     playheads = [[NSMutableArray alloc] init];
     
     [self connectNeighbour:nil direction:N];
@@ -55,26 +55,35 @@
 }
 
 - (void)addTool:(ELTool *)_tool {
-  [tools addObject:_tool];
+  [tools setObject:_tool forKey:[_tool toolType]];
   [_tool addedToLayer:layer atPosition:self];
 }
 
-- (NSArray *)tools {
-  return [tools copy];
+- (void)removeTool:(NSString *)_type {
+  ELTool *tool = [self toolOfType:_type];
+  [tool removedFromLayer:layer];
+  [tools removeObjectForKey:_type];
 }
 
-- (NSArray *)toolsOfType:(NSString *)_type {
-  NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"type == %@",_type];
-  return [tools filteredArrayUsingPredicate:typePredicate];
+- (NSArray *)tools {
+  return [tools allValues];
+}
+
+- (BOOL)hasStartTool {
+  return [self toolOfType:@"start"] != nil;
+}
+
+- (ELTool *)toolOfType:(NSString *)_type {
+  return [tools objectForKey:_type];
 }
 
 - (NSArray *)toolsExceptType:(NSString *)_type {
-  NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"type != %@",_type];
-  return [tools filteredArrayUsingPredicate:typePredicate];
+  NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"toolType != %@",_type];
+  return [[tools allValues] filteredArrayUsingPredicate:typePredicate];
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"(%d,%d)",col,row];
+  return [NSString stringWithFormat:@"Pos(%d,%d):%@",col,row,note];
 }
 
 // Playheads
@@ -113,7 +122,7 @@
   
   [super drawOnHoneycombView:_view withAttributes:_attributes];
   
-  if( [[self toolsOfType:@"start"] count] > 0 || [[self toolsOfType:@"beat"] count] > 0 ) {
+  if( [self toolOfType:@"start"] || [self toolOfType:@"beat"] ) {
     [self drawText:[note name]];
   }
 }

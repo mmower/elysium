@@ -16,28 +16,39 @@
 @class ELPlayhead;
 
 @interface ELHex : LMHexCell {
-  ELLayer         *layer;
-  ELNote          *note;
-  ELHex           *neighbours[6];
-  NSMutableArray  *tools;
-  NSMutableArray  *playheads;
+  ELLayer             *layer;
+  ELNote              *note;
+  ELHex               *neighbours[6];
+  NSMutableDictionary *tools;
+  NSMutableArray      *playheads;
 }
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 
+// The musicality of it all!
+
 - (ELNote *)note;
 
-- (ELHex *)neighbour:(Direction)direction;
+// Connections to other hexes
 
+- (ELHex *)neighbour:(Direction)direction;
 - (void)connectNeighbour:(ELHex *)hex direction:(Direction)direction;
 
+// Tool management
+
 - (void)addTool:(ELTool *)tool;
+- (void)removeTool:(NSString *)type;
+
+- (ELTool *)toolOfType:(NSString *)type;
 - (NSArray *)tools;
-- (NSArray *)toolsOfType:(NSString *)type;
 - (NSArray *)toolsExceptType:(NSString *)type;
+
+// Playhead management
 
 - (void)playheadEntering:(ELPlayhead *)playhead;
 - (void)playheadLeaving:(ELPlayhead *)playhead;
+
+// Custom drawing for hexes
 
 - (void)drawText:(NSString *)text;
 

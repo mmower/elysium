@@ -23,6 +23,8 @@
   return self;
 }
 
+@synthesize parent;
+
 - (BOOL)hasValueForKey:(NSString *)_key {
   return [data objectForKey:_key] != nil;
 }

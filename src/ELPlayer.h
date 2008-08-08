@@ -30,20 +30,19 @@
   UInt64            startTime;
 }
 
-- (int)beatCount;
-- (UInt64)startTime;
-- (ELHarmonicTable *)harmonicTable;
-- (BOOL)isRunning;
+@property (readonly) ELConfig *config;
+@property (readonly) int beatCount;
+@property (readonly) UInt64 startTime;
+@property (readonly) ELHarmonicTable *harmonicTable;
+@property (readonly) BOOL isRunning;
 
-- (void)setMIDIController:(ELMIDIController *)midiController;
 - (void)setDocument:(ElysiumDocument *)document;
 
 - (void)start;
 - (void)stop;
 - (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
 
-- (void)addLayer;
-- (ELLayer *)createLayer:(int)channel;
-- (ELLayer *)firstLayer;
+// Layer management
+- (ELLayer *)layerForChannel:(int)channel;
 
 @end

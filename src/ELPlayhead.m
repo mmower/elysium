@@ -42,4 +42,10 @@
   return position == nil || ttl < 1;
 }
 
+- (void)cleanup {
+  if( [self isDead] ) {
+    [self setPosition:nil];
+  }
+}
+
 @end

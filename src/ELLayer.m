@@ -13,29 +13,34 @@
 #import "ELHex.h"
 #import "ELNote.h"
 #import "ELTool.h"
+#import "ELConfig.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 #import "ELHarmonicTable.h"
 
+#import "ELInspectorController.h"
+
 @implementation ELLayer
 
-- (id)initWithPlayer:(ELPlayer *)_player config:(ELConfig *)_config {
+- (id)initWithPlayer:(ELPlayer *)_player channel:(int)_channel {
   if( self = [super init] ) {
-    player        = _player;
-    config        = _config;
-    hexes         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-    playheads     = [[NSMutableArray alloc] init];
-    beatCount     = 0;
+    player    = _player;
+    config    = [[ELConfig alloc] init];
+    hexes     = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    playheads = [[NSMutableArray alloc] init];
+    beatCount = 0;
     
     [self configureHexes];
+    
+    [config setParent:[player config]];
+    [config setInteger:_channel forKey:@"channel"];
   }
   
   return self;
 }
 
-- (ELPlayer *)player {
-  return player;
-}
+@synthesize player;
+@synthesize config;
 
 - (void)run {
   NSPredicate *deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
@@ -55,7 +60,10 @@
     [playhead advance];
   }
   
-  // Delete dead playheads
+  // Cleanup & delete dead playheads
+  for( ELPlayhead *playhead in playheads ) {
+    [playhead cleanup];
+  }
   [playheads filterUsingPredicate:deadPlayheadFilter];
   
   // Beat is over
@@ -99,23 +107,28 @@
 
 - (void)pulse {
   for( ELHex *hex in hexes ) {
-    for( ELTool *tool in [hex toolsOfType:@"start"] ) {
-      [tool run:nil];
-    }
+    [[hex toolOfType:@"start"] run:nil];
   }
 }
 
 - (void)configureHexes {
   ELHarmonicTable *harmonicTable = [player harmonicTable];
+  NSAssert( harmonicTable != nil, @"Harmonic table should never be nil" );
+  
+  NSAssert( hexes != nil, @"hexes have not been initialized!" );
   
   // First build the hex table mapping
-  for( int col = 0; col < [harmonicTable cols]; col++ ) {
-    for( int row = 0; row < [harmonicTable rows]; row++ ) {
+  for( int col = 0; col < HTABLE_COLS; col++ ) {
+    for( int row = 0; row < HTABLE_ROWS; row++ ) {
+      ELNote *note = [harmonicTable noteAtCol:col row:row];
+      NSAssert( note != nil, @"Note should never be nil" );
+      
       ELHex *hex = [[ELHex alloc] initWithLayer:self
-                                           note:[harmonicTable noteAtCol:col row:row]
+                                           note:note
                                          column:col
                                             row:row];
-                                            
+      NSAssert( hex != nil, @"Generated hexes should never be nil" );
+      
       [hexes addObject:hex];
     }
   }
@@ -124,8 +137,6 @@
   for( int col = 0; col < HTABLE_COLS; col++ ) {
     for( int row = 0; row < HTABLE_ROWS; row++ ) {
       ELHex *hex = [self hexAtColumn:col row:row];
-      
-      
       
       // North Hex
       if( row < HTABLE_MAX_ROW ) {
@@ -181,15 +192,13 @@
 }
 
 - (void)hexCellSelected:(LMHexCell *)_cell {
-  NSLog( @"Layer selected cell at %d, %d", [_cell column], [_cell row] );
-  [self playNote:[(ELHex*)_cell note] velocity:100 duration:0.8];
-  
-  // NSLog( @"N  %@", [(ELHex *)_cell neighbour:N] );
-  // NSLog( @"NE %@", [(ELHex *)_cell neighbour:NE] );
-  // NSLog( @"SE %@", [(ELHex *)_cell neighbour:SE] );
-  // NSLog( @"S  %@", [(ELHex *)_cell neighbour:S] );
-  // NSLog( @"SW %@", [(ELHex *)_cell neighbour:SW] );
-  // NSLog( @"NW %@", [(ELHex *)_cell neighbour:NW] );
+  NSLog( @"Selected hex: %@", _cell );
+  if( _cell ) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:_cell];
+    [self playNote:[(ELHex*)_cell note] velocity:100 duration:0.8];
+  } else {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
+  }
 }
 
 - (ELHex *)hexAtColumn:(int)_col row:(int)_row {
@@ -197,7 +206,9 @@
 }
 
 - (LMHexCell *)hexCellAtColumn:(int)_col row:(int)_row {
-  return [hexes objectAtIndex:COL_ROW_OFFSET(_col,_row)];
+  LMHexCell *cell = [hexes objectAtIndex:COL_ROW_OFFSET(_col,_row)];
+  NSAssert2( cell != nil, @"Requested nil hex at %d,%d", _col, _row );
+  return cell;
 }
 
 @end

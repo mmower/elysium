@@ -10,11 +10,13 @@
 
 #import "ElysiumDocument.h"
 
+#import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ElysiumController.h"
 
-NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
+#import "ELStartTool.h"
+#import "ELBeatTool.h"
 
 @implementation ElysiumDocument
 
@@ -39,12 +41,16 @@ NSString* notifyObjectSelectionDidChange = @"objectSelectionDidChange";
     [super windowControllerDidLoadNib:aController];
     
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    [player addLayer];
     [player setMIDIController:[self midiController]];
     [player setDocument:self];
     
+    ELLayer *layer = [player layerForChannel:1];
+    [[layer hexAtColumn:5 row:5] addTool:[[ELStartTool alloc] initWithDirection:NE TTL:25]];
+    [[layer hexAtColumn:6 row:5] addTool:[[ELBeatTool alloc] initWithVelocity:100 duration:0.5]];
+    [[layer hexAtColumn:11 row:8] addTool:[[ELBeatTool alloc] initWithVelocity:100 duration:0.5]];
+    
     [layerView setDelegate:self];
-    [layerView setDataSource:[player firstLayer]];
+    [layerView setDataSource:layer];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError

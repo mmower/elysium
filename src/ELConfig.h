@@ -16,6 +16,8 @@
 - (id)init;
 - (id)initWithParent:(ELConfig *)parent;
 
+@property ELConfig *parent;
+
 - (BOOL)hasValueForKey:(NSString *)key;
 
 - (id)valueForKey:(NSString *)key;

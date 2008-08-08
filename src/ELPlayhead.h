@@ -24,6 +24,7 @@
 - (void)setPosition:(ELHex *)position;
 
 - (void)advance;
+- (void)cleanup;
 - (BOOL)isDead;
   
 @end

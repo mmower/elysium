@@ -27,7 +27,7 @@
 - (id)init {
   if( self = [super init] ) {
     harmonicTable = [[ELHarmonicTable alloc] init];
-    layers        = [[NSMutableArray alloc] init];
+    layers        = [[NSMutableArray alloc] initWithCapacity:16];
     config        = [[ELConfig alloc] init];
     timer         = [[ELTimer alloc] init];
     
@@ -37,6 +37,10 @@
     [config setInteger:16 forKey:@"pulseCount"];
     [config setInteger:100 forKey:@"velocity"];
     [config setFloat:1.0 forKey:@"duration"];
+    
+    for( int channel = 1; channel <= 16; channel++ ) {
+      [layers addObject:[[ELLayer alloc] initWithPlayer:self channel:channel]];
+    }
   }
   
   return self;
@@ -44,22 +48,11 @@
 
 // Accessors
 
-- (int)beatCount {
-  return beatCount;
-}
-
-- (UInt64)startTime {
-  return startTime;
-}
-
-- (ELHarmonicTable *)harmonicTable
-{
-  return harmonicTable;
-}
-
-- (BOOL)isRunning {
-  return running;
-}
+@synthesize config;
+@synthesize beatCount;
+@synthesize startTime;
+@synthesize harmonicTable;
+@synthesize isRunning;
 
 - (void)setMIDIController:(ELMIDIController *)_midiController {
   midiController = _midiController;
@@ -114,44 +107,21 @@
 
 - (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {
   NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
-  
-  NSLog( @"Sending note ON" );
-  [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
-  
-  usleep( _duration * 1000000 );
-  
-  NSLog( @"Sending note OFF" );
-  [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
+  // 
+  // NSLog( @"Sending note ON" );
+  // [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
+  // 
+  // usleep( _duration * 1000000 );
+  // 
+  // NSLog( @"Sending note OFF" );
+  // [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
 }
 
 // Layer Management
 
-- (void)addLayer {
-  [layers addObject:[self createLayer:1]];
-}
-
-- (ELLayer *)firstLayer {
-  return [layers objectAtIndex:0];
-}
-
-- (ELLayer *)createLayer:(int)_channel {
-  NSLog( @"Creating layer for channel %d", _channel );
-    
-  ELConfig *layerConfig = [[ELConfig alloc] initWithParent:config];
-  [layerConfig setInteger:_channel forKey:@"channel"];
-  
-  ELLayer *layer = [[ELLayer alloc] initWithPlayer:self config:layerConfig];
-  
-  ELConfig *toolConfig = [[ELConfig alloc] initWithParent:layerConfig];
-  [toolConfig setInteger:NE forKey:@"direction"];
-  
-  [[layer hexAtColumn:5 row:5] addTool:[[ELStartTool alloc] initWithType:@"start" config:toolConfig]];
-  
-  toolConfig = [[ELConfig alloc] initWithParent:layerConfig];
-  [[layer hexAtColumn:6 row:5] addTool:[[ELBeatTool alloc] initWithType:@"beat" config:toolConfig]];
-  [[layer hexAtColumn:11 row:8] addTool:[[ELBeatTool alloc] initWithType:@"beat" config:toolConfig]];
-  
-  return layer;
+- (ELLayer *)layerForChannel:(int)_channel {
+  NSAssert1( _channel >= 1 && _channel <= 16, @"Requested invalid channel-%d", _channel );
+  return [layers objectAtIndex:_channel-1];
 }
 
 @end
