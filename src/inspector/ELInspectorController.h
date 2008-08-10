@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELHex;
+@class ELConfig;
+
 extern NSString* const ELNotifyObjectSelectionDidChange;
 
 @interface ELInspectorController : NSWindowController {
@@ -32,6 +35,8 @@ extern NSString* const ELNotifyObjectSelectionDidChange;
   IBOutlet NSSlider     *hexRicochetDirection;
   
   IBOutlet NSButton     *hexSplitterEnabled;
+  IBOutlet NSButton     *hexSinkEnabled;
+  IBOutlet NSButton     *hexRotorEnabled;
   
   id                    focusedObject;
 }
@@ -41,6 +46,27 @@ extern NSString* const ELNotifyObjectSelectionDidChange;
 - (void)inspectHex;
 - (void)inspectLayer;
 
+- (ELHex *)focusedHex;
+
+- (void)setIntField:(NSTextField *)input config:(ELConfig *)config key:(NSString *)key;
+- (void)setFloatField:(NSTextField *)input config:(ELConfig *)config key:(NSString *)key;
+
 - (IBAction)changedHexStartEnabled:(id)sender;
+- (IBAction)changedHexStartDirection:(id)sender;
+- (IBAction)changedHexStartTTL:(id)sender;
+- (IBAction)resetHexStartTTL:(id)sender;
+
+- (IBAction)changedHexBeatEnabled:(id)sender;
+- (IBAction)changedHexBeatVelocity:(id)sender;
+- (IBAction)resetHexBeatVelocity:(id)sender;
+- (IBAction)changedHexBeatDuration:(id)sender;
+- (IBAction)resetHexBeatDuration:(id)sender;
+
+- (IBAction)changedHexRicochetEnabled:(id)sender;
+- (IBAction)changedHexRicochetDirection:(id)sender;
+
+- (IBAction)changedHexSplitterEnabled:(id)sender;
+- (IBAction)changedHexSinkEnabled:(id)sender;
+- (IBAction)changedHexRotorEnabled:(id)sender;
 
 @end

@@ -8,6 +8,12 @@
 
 #import "ELConfig.h"
 
+@implementation NSString (StringValue)
+- (NSString *)stringValue {
+  return self;
+}
+@end
+
 @implementation ELConfig
 
 - (id)init {
@@ -25,8 +31,20 @@
 
 @synthesize parent;
 
-- (BOOL)hasValueForKey:(NSString *)_key {
+- (void)removeValueForKey:(NSString *)_key {
+  [data removeObjectForKey:_key];
+}
+
+- (BOOL)definesValueForKey:(NSString *)_key {
   return [data objectForKey:_key] != nil;
+}
+
+- (BOOL)inheritsValueForKey:(NSString *)_key {
+  return [self hasValueForKey:_key] && ![self definesValueForKey:_key];
+}
+
+- (BOOL)hasValueForKey:(NSString *)_key {
+  return [self valueForKey:_key] != nil;
 }
 
 - (id)valueForKey:(NSString *)_key {
@@ -61,6 +79,10 @@
 
 - (void)setFloat:(float)_value forKey:(NSString *)_key {
   [self setValue:[NSNumber numberWithFloat:_value] forKey:_key];
+}
+
+- (NSString *)stringForKey:(NSString *)_key {
+  return [[self valueForKey:_key] stringValue];
 }
 
 - (void)dump {

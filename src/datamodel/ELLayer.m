@@ -46,13 +46,13 @@
   NSPredicate *deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
   
   // On the first and every pulseCount beats, generate new playheads
-  NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
+  // NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
   if( beatCount % [self pulseCount] == 0 ) {
     [self pulse];
   }
   
   // Run all current playheads
-  for( ELPlayhead *playhead in playheads ) {
+  for( ELPlayhead *playhead in [playheads copy] ) {
     ELHex *hex = [playhead position];
     for( ELTool *tool in [hex toolsExceptType:@"start"] ) {
       [tool run:playhead];

@@ -73,6 +73,10 @@
   return [self toolOfType:@"start"] != nil;
 }
 
+- (BOOL)hasToolOfType:(NSString *)type {
+  return [self toolOfType:type] != nil;
+}
+
 - (ELTool *)toolOfType:(NSString *)_type {
   return [tools objectForKey:_type];
 }

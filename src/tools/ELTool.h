@@ -22,9 +22,12 @@
 
 @property (readonly) NSString *toolType;
 @property (readonly) ELConfig *config;
+@property (readonly) ELLayer *layer;
 
 - (id)initWithType:(NSString *)type;
 - (id)initWithType:(NSString *)type config:(ELConfig *)config;
+
+- (void)useInheritedConfig:(NSString *)key;
 
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;
 - (void)removedFromLayer:(ELLayer *)layer;

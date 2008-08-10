@@ -6,8 +6,6 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "Elysium.h"
-
 #import "ELStartTool.h"
 
 #import "ELConfig.h"
@@ -51,7 +49,7 @@
   [super run:_playhead];
   [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
                                                 direction:[self direction]
-                                                      ttl:[self TTL]]];
+                                                      TTL:[self TTL]]];
 }
 
 @end

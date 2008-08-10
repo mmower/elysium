@@ -32,6 +32,11 @@
 
 @synthesize toolType;
 @synthesize config;
+@synthesize layer;
+
+- (void)useInheritedConfig:(NSString *)_key {
+  [config removeValueForKey:_key];
+}
 
 - (void)addedToLayer:(ELLayer *)_layer atPosition:(ELHex *)_hex {
   [config setParent:[_layer config]];

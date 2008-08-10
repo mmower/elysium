@@ -39,6 +39,7 @@
 - (void)addTool:(ELTool *)tool;
 - (void)removeTool:(NSString *)type;
 
+- (BOOL)hasToolOfType:(NSString *)type;
 - (ELTool *)toolOfType:(NSString *)type;
 - (NSArray *)tools;
 - (NSArray *)toolsExceptType:(NSString *)type;

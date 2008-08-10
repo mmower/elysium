@@ -16,6 +16,15 @@
 
 @implementation ELBeatTool
 
++ (id)new {
+  return [[ELBeatTool alloc] init];
+}
+
+- (id)init {
+  self = [super initWithType:@"beat"];
+  return self;
+}
+
 - (id)initWithVelocity:(int)_velocity duration:(float)_duration {
   if( self = [super initWithType:@"beat"] ) {
     [self setVelocity:_velocity];

@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "Elysium.h"
+
 @class ELLayer;
 @class ELHex;
 
@@ -15,16 +17,17 @@
   ELLayer   *layer;
   ELHex     *position;
   Direction direction;
-  int       ttl;
+  int       TTL;
 }
 
-- (id)initWithPosition:(ELHex *)position direction:(Direction)direction ttl:(int)ttl;
+- (id)initWithPosition:(ELHex *)position direction:(Direction)direction TTL:(int)TTL;
 
-- (ELHex *)position;
-- (void)setPosition:(ELHex *)position;
+@property ELHex *position;
+@property Direction direction;
+@property (readonly) BOOL isDead;
+@property (readonly) int TTL;
 
 - (void)advance;
 - (void)cleanup;
-- (BOOL)isDead;
   
 @end

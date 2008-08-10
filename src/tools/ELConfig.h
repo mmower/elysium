@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@interface NSString ( StringValue )
+- (NSString *)stringValue;
+@end
+
 @interface ELConfig : NSObject {
   ELConfig              *parent;
   NSMutableDictionary   *data;
@@ -18,7 +22,10 @@
 
 @property ELConfig *parent;
 
+- (void)removeValueForKey:(NSString *)key;
 - (BOOL)hasValueForKey:(NSString *)key;
+- (BOOL)definesValueForKey:(NSString *)key;
+- (BOOL)inheritsValueForKey:(NSString *)key;
 
 - (id)valueForKey:(NSString *)key;
 - (void)setValue:(id)value forKey:(NSString *)key;
@@ -28,5 +35,7 @@
 
 - (float)floatForKey:(NSString *)key;
 - (void)setFloat:(float)value forKey:(NSString *)key;
+
+- (NSString *)stringForKey:(NSString *)key;
 
 @end

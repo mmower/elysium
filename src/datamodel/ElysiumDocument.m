@@ -46,8 +46,8 @@
     
     ELLayer *layer = [player layerForChannel:1];
     [[layer hexAtColumn:5 row:5] addTool:[[ELStartTool alloc] initWithDirection:NE TTL:25]];
-    [[layer hexAtColumn:6 row:5] addTool:[[ELBeatTool alloc] initWithVelocity:100 duration:0.5]];
-    [[layer hexAtColumn:11 row:8] addTool:[[ELBeatTool alloc] initWithVelocity:100 duration:0.5]];
+    [[layer hexAtColumn:6 row:5] addTool:[ELBeatTool new]];
+    [[layer hexAtColumn:11 row:8] addTool:[ELBeatTool new]];
     
     [layerView setDelegate:self];
     [layerView setDataSource:layer];

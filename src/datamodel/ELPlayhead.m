@@ -13,15 +13,18 @@
 
 @implementation ELPlayhead
 
-- (id)initWithPosition:(ELHex *)_position direction:(Direction)_direction ttl:(int)_ttl {
+- (id)initWithPosition:(ELHex *)_position direction:(Direction)_direction TTL:(int)_TTL {
   if( self = [super init] ) {
     [self setPosition:_position];
     direction = _direction;
-    ttl       = _ttl;
+    TTL       = _TTL;
   }
   
   return self;
 }
+
+@synthesize TTL;
+@dynamic position;
 
 - (ELHex *)position {
   return position;
@@ -33,13 +36,17 @@
   [position playheadEntering:self];
 }
 
+@synthesize direction;
+
 - (void)advance {
   [self setPosition:[position neighbour:direction]];
-  ttl--;
+  TTL--;
 }
 
+@dynamic isDead;
+
 - (BOOL)isDead {
-  return position == nil || ttl < 1;
+  return position == nil || TTL < 1;
 }
 
 - (void)cleanup {
