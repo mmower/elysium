@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "Elysium.h"
+
 #import <HoneycombView/LMHexCell.h>
 
 @class ELLayer;

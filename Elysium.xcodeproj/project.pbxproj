@@ -15,6 +15,9 @@
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92ACD690E3892F5009CF61B /* Inspector.xib */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
+		C95A630A0E50E7F900CBF555 /* HexStartInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95A63090E50E7F900CBF555 /* HexStartInspector.xib */; };
+		C95A63350E50F5A700CBF555 /* ELHexStartInspectorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */; };
+		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
 		C97FEB380E4E0D0B008F309B /* ELBeatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB040E4E0490008F309B /* ELBeatTool.m */; };
 		C97FEB390E4E0D0B008F309B /* ELRicochetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB060E4E0490008F309B /* ELRicochetTool.m */; };
 		C97FEB3A0E4E0D0B008F309B /* ELSplitterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB080E4E0490008F309B /* ELSplitterTool.m */; };
@@ -33,6 +36,19 @@
 		C97FEBF00E4F07A0008F309B /* ELPlayhead.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE80E4F07A0008F309B /* ELPlayhead.m */; };
 		C97FEBF10E4F07A0008F309B /* ElysiumDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBEA0E4F07A0008F309B /* ElysiumDocument.m */; };
 		C97FEBF40E4F07BF008F309B /* ELConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBF30E4F07BF008F309B /* ELConfig.m */; };
+		C97FEC010E4F0B51008F309B /* ELHexInfoInspectorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC000E4F0B51008F309B /* ELHexInfoInspectorPlugin.m */; };
+		C97FEC080E4F2870008F309B /* HexInfoInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC070E4F2870008F309B /* HexInfoInspector.xib */; };
+		C97FEC5D0E4F2DEE008F309B /* ELInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC5C0E4F2DEE008F309B /* ELInspectorPane.m */; };
+		C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC8C0E4F6042008F309B /* sectionheader.gif */; };
+		C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C97FEC970E4F6042008F309B /* PACollapsibleSectionBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC8E0E4F6042008F309B /* PACollapsibleSectionBox.m */; };
+		C97FEC980E4F6042008F309B /* PAFunkyBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8F0E4F6042008F309B /* PAFunkyBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C97FEC990E4F6042008F309B /* PAFunkyBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC900E4F6042008F309B /* PAFunkyBox.m */; };
+		C97FEC9A0E4F6042008F309B /* PASectionHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC910E4F6042008F309B /* PASectionHeaderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C97FEC9B0E4F6042008F309B /* PASectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC920E4F6042008F309B /* PASectionHeaderView.m */; };
+		C97FEC9C0E4F6042008F309B /* PAStackedListView.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC930E4F6042008F309B /* PAStackedListView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C97FEC9D0E4F6042008F309B /* PAStackedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC940E4F6042008F309B /* PAStackedListView.m */; };
+		C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
 		C9874C0A0E429F6B0068E7BF /* HoneycombView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
 		C9874C280E42A1A10068E7BF /* HoneycombView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C200E42A1A10068E7BF /* HoneycombView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9874C290E42A1A10068E7BF /* LMHexCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C210E42A1A10068E7BF /* LMHexCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -50,6 +66,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C963116F0E50587A008BF9AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C97FEC850E4F5FB2008F309B;
+			remoteInfo = StackedListView;
+		};
 		C9874C3C0E42A2460068E7BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -66,6 +89,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */,
 				C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */,
 				C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */,
 			);
@@ -86,8 +110,11 @@
 		32DBCF750370BD2300C91783 /* Elysium_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elysium_Prefix.pch; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C92ACD690E3892F5009CF61B /* Inspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Inspector.xib; sourceTree = "<group>"; };
+		C92ACD690E3892F5009CF61B /* Inspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Inspector.xib; path = ../../Inspector.xib; sourceTree = "<group>"; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
+		C95A63090E50E7F900CBF555 /* HexStartInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexStartInspector.xib; sourceTree = "<group>"; };
+		C95A63330E50F5A700CBF555 /* ELHexStartInspectorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexStartInspectorPlugin.h; sourceTree = "<group>"; };
+		C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexStartInspectorPlugin.m; sourceTree = "<group>"; };
 		C97FEB030E4E0490008F309B /* ELBeatTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELBeatTool.h; sourceTree = "<group>"; };
 		C97FEB040E4E0490008F309B /* ELBeatTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELBeatTool.m; sourceTree = "<group>"; };
 		C97FEB050E4E0490008F309B /* ELRicochetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRicochetTool.h; sourceTree = "<group>"; };
@@ -124,6 +151,22 @@
 		C97FEBEA0E4F07A0008F309B /* ElysiumDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumDocument.m; sourceTree = "<group>"; };
 		C97FEBF20E4F07BF008F309B /* ELConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELConfig.h; sourceTree = "<group>"; };
 		C97FEBF30E4F07BF008F309B /* ELConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELConfig.m; sourceTree = "<group>"; };
+		C97FEBFF0E4F0B51008F309B /* ELHexInfoInspectorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexInfoInspectorPlugin.h; sourceTree = "<group>"; };
+		C97FEC000E4F0B51008F309B /* ELHexInfoInspectorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexInfoInspectorPlugin.m; sourceTree = "<group>"; };
+		C97FEC070E4F2870008F309B /* HexInfoInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexInfoInspector.xib; sourceTree = "<group>"; };
+		C97FEC5B0E4F2DEE008F309B /* ELInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELInspectorPane.h; sourceTree = "<group>"; };
+		C97FEC5C0E4F2DEE008F309B /* ELInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELInspectorPane.m; sourceTree = "<group>"; };
+		C97FEC860E4F5FB2008F309B /* StackedListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackedListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StackedListView-Info.plist"; sourceTree = "<group>"; };
+		C97FEC8C0E4F6042008F309B /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
+		C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACollapsibleSectionBox.h; sourceTree = "<group>"; };
+		C97FEC8E0E4F6042008F309B /* PACollapsibleSectionBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACollapsibleSectionBox.m; sourceTree = "<group>"; };
+		C97FEC8F0E4F6042008F309B /* PAFunkyBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAFunkyBox.h; sourceTree = "<group>"; };
+		C97FEC900E4F6042008F309B /* PAFunkyBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAFunkyBox.m; sourceTree = "<group>"; };
+		C97FEC910E4F6042008F309B /* PASectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PASectionHeaderView.h; sourceTree = "<group>"; };
+		C97FEC920E4F6042008F309B /* PASectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PASectionHeaderView.m; sourceTree = "<group>"; };
+		C97FEC930E4F6042008F309B /* PAStackedListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAStackedListView.h; sourceTree = "<group>"; };
+		C97FEC940E4F6042008F309B /* PAStackedListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAStackedListView.m; sourceTree = "<group>"; };
 		C9874BFA0E429EF90068E7BF /* HoneycombView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HoneycombView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9874BFB0E429EF90068E7BF /* HoneycombView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HoneycombView-Info.plist"; sourceTree = "<group>"; };
 		C9874C200E42A1A10068E7BF /* HoneycombView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoneycombView.h; path = ../Honeycomb/view/HoneycombView.h; sourceTree = SOURCE_ROOT; };
@@ -151,6 +194,14 @@
 				C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */,
 				C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */,
 				C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */,
+				C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C97FEC840E4F5FB2008F309B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +241,7 @@
 			children = (
 				8D15AC370486D014006FF6A4 /* Elysium.app */,
 				C9874BFA0E429EF90068E7BF /* HoneycombView.framework */,
+				C97FEC860E4F5FB2008F309B /* StackedListView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,13 +249,15 @@
 		2A37F4AAFDCFA73011CA2CEA /* Elysium */ = {
 			isa = PBXGroup;
 			children = (
-				C9874C1F0E42A1860068E7BF /* view */,
+				C97FEC800E4F5F2F008F309B /* StackedListView */,
+				C9874C1F0E42A1860068E7BF /* honeycombview */,
 				2A37F4ABFDCFA73011CA2CEA /* src */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				C9874BFB0E429EF90068E7BF /* HoneycombView-Info.plist */,
+				C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */,
 			);
 			name = Elysium;
 			sourceTree = "<group>";
@@ -239,7 +293,6 @@
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				1DDD58280DA1D0D100B32029 /* ElysiumDocument.xib */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
-				C92ACD690E3892F5009CF61B /* Inspector.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -251,6 +304,26 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C95A63070E50E7D200CBF555 /* hexinfo */ = {
+			isa = PBXGroup;
+			children = (
+				C97FEC070E4F2870008F309B /* HexInfoInspector.xib */,
+				C97FEBFF0E4F0B51008F309B /* ELHexInfoInspectorPlugin.h */,
+				C97FEC000E4F0B51008F309B /* ELHexInfoInspectorPlugin.m */,
+			);
+			name = hexinfo;
+			sourceTree = "<group>";
+		};
+		C95A63080E50E7DD00CBF555 /* hexstart */ = {
+			isa = PBXGroup;
+			children = (
+				C95A63090E50E7F900CBF555 /* HexStartInspector.xib */,
+				C95A63330E50F5A700CBF555 /* ELHexStartInspectorPlugin.h */,
+				C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */,
+			);
+			name = hexstart;
 			sourceTree = "<group>";
 		};
 		C97FEB020E4E0490008F309B /* tools */ = {
@@ -290,8 +363,13 @@
 		C97FEBD80E4F0754008F309B /* inspector */ = {
 			isa = PBXGroup;
 			children = (
+				C95A63080E50E7DD00CBF555 /* hexstart */,
+				C95A63070E50E7D200CBF555 /* hexinfo */,
+				C92ACD690E3892F5009CF61B /* Inspector.xib */,
 				C97FEBD90E4F0754008F309B /* ELInspectorController.h */,
 				C97FEBDA0E4F0754008F309B /* ELInspectorController.m */,
+				C97FEC5B0E4F2DEE008F309B /* ELInspectorPane.h */,
+				C97FEC5C0E4F2DEE008F309B /* ELInspectorPane.m */,
 			);
 			path = inspector;
 			sourceTree = "<group>";
@@ -317,7 +395,24 @@
 			path = datamodel;
 			sourceTree = "<group>";
 		};
-		C9874C1F0E42A1860068E7BF /* view */ = {
+		C97FEC800E4F5F2F008F309B /* StackedListView */ = {
+			isa = PBXGroup;
+			children = (
+				C97FEC8C0E4F6042008F309B /* sectionheader.gif */,
+				C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */,
+				C97FEC8E0E4F6042008F309B /* PACollapsibleSectionBox.m */,
+				C97FEC8F0E4F6042008F309B /* PAFunkyBox.h */,
+				C97FEC900E4F6042008F309B /* PAFunkyBox.m */,
+				C97FEC910E4F6042008F309B /* PASectionHeaderView.h */,
+				C97FEC920E4F6042008F309B /* PASectionHeaderView.m */,
+				C97FEC930E4F6042008F309B /* PAStackedListView.h */,
+				C97FEC940E4F6042008F309B /* PAStackedListView.m */,
+			);
+			name = StackedListView;
+			path = /Users/matt/Projects/Cocoa/3rdParty/StackedListView;
+			sourceTree = "<absolute>";
+		};
+		C9874C1F0E42A1860068E7BF /* honeycombview */ = {
 			isa = PBXGroup;
 			children = (
 				C9874C200E42A1A10068E7BF /* HoneycombView.h */,
@@ -329,12 +424,23 @@
 				C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */,
 				C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */,
 			);
-			name = view;
+			name = honeycombview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		C97FEC810E4F5FB2008F309B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */,
+				C97FEC980E4F6042008F309B /* PAFunkyBox.h in Headers */,
+				C97FEC9A0E4F6042008F309B /* PASectionHeaderView.h in Headers */,
+				C97FEC9C0E4F6042008F309B /* PAStackedListView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9874BF50E429EF90068E7BF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,6 +468,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C96311700E50587A008BF9AB /* PBXTargetDependency */,
 				C9874C3D0E42A2460068E7BF /* PBXTargetDependency */,
 			);
 			name = Elysium;
@@ -369,6 +476,24 @@
 			productName = Elysium;
 			productReference = 8D15AC370486D014006FF6A4 /* Elysium.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C97FEC850E4F5FB2008F309B /* StackedListView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C97FEC8A0E4F5FB3008F309B /* Build configuration list for PBXNativeTarget "StackedListView" */;
+			buildPhases = (
+				C97FEC810E4F5FB2008F309B /* Headers */,
+				C97FEC820E4F5FB2008F309B /* Resources */,
+				C97FEC830E4F5FB2008F309B /* Sources */,
+				C97FEC840E4F5FB2008F309B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StackedListView;
+			productName = StackedListView;
+			productReference = C97FEC860E4F5FB2008F309B /* StackedListView.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		C9874BF90E429EF90068E7BF /* HoneycombView */ = {
 			isa = PBXNativeTarget;
@@ -402,6 +527,7 @@
 			targets = (
 				8D15AC270486D014006FF6A4 /* Elysium */,
 				C9874BF90E429EF90068E7BF /* HoneycombView */,
+				C97FEC850E4F5FB2008F309B /* StackedListView */,
 			);
 		};
 /* End PBXProject section */
@@ -416,6 +542,16 @@
 				1DDD582C0DA1D0D100B32029 /* ElysiumDocument.xib in Resources */,
 				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
 				C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */,
+				C97FEC080E4F2870008F309B /* HexInfoInspector.xib in Resources */,
+				C95A630A0E50E7F900CBF555 /* HexStartInspector.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C97FEC820E4F5FB2008F309B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +589,20 @@
 				C97FEBF00E4F07A0008F309B /* ELPlayhead.m in Sources */,
 				C97FEBF10E4F07A0008F309B /* ElysiumDocument.m in Sources */,
 				C97FEBF40E4F07BF008F309B /* ELConfig.m in Sources */,
+				C97FEC010E4F0B51008F309B /* ELHexInfoInspectorPlugin.m in Sources */,
+				C97FEC5D0E4F2DEE008F309B /* ELInspectorPane.m in Sources */,
+				C95A63350E50F5A700CBF555 /* ELHexStartInspectorPlugin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C97FEC830E4F5FB2008F309B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C97FEC970E4F6042008F309B /* PACollapsibleSectionBox.m in Sources */,
+				C97FEC990E4F6042008F309B /* PAFunkyBox.m in Sources */,
+				C97FEC9B0E4F6042008F309B /* PASectionHeaderView.m in Sources */,
+				C97FEC9D0E4F6042008F309B /* PAStackedListView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +619,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C96311700E50587A008BF9AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C97FEC850E4F5FB2008F309B /* StackedListView */;
+			targetProxy = C963116F0E50587A008BF9AB /* PBXContainerItemProxy */;
+		};
 		C9874C3D0E42A2460068E7BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C9874BF90E429EF90068E7BF /* HoneycombView */;
@@ -591,6 +746,60 @@
 			};
 			name = Release;
 		};
+		C97FEC880E4F5FB3008F309B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "StackedListView-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = StackedListView;
+			};
+			name = Debug;
+		};
+		C97FEC890E4F5FB3008F309B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "StackedListView-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = StackedListView;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C9874BFC0E429EFA0068E7BF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -662,6 +871,15 @@
 			buildConfigurations = (
 				C05733CC08A9546B00998B17 /* Debug */,
 				C05733CD08A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C97FEC8A0E4F5FB3008F309B /* Build configuration list for PBXNativeTarget "StackedListView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C97FEC880E4F5FB3008F309B /* Debug */,
+				C97FEC890E4F5FB3008F309B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
