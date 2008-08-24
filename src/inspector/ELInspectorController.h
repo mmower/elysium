@@ -36,6 +36,6 @@ extern NSString* const ELNotifyObjectSelectionDidChange;
 
 - (void)loadPlugins;
 - (void)addInspectorPane:(ELInspectorPane *)pane;
-
+- (void)focus:(id)focusedObject;
 
 @end

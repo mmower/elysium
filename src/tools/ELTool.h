@@ -14,12 +14,14 @@
 @class ELPlayhead;
 
 @interface ELTool : NSObject {
+  BOOL      enabled;
   NSString  *toolType;
   ELLayer   *layer;
   ELHex     *hex;
   ELConfig  *config;
 }
 
+@property BOOL enabled;
 @property (readonly) NSString *toolType;
 @property (readonly) ELConfig *config;
 @property (readonly) ELLayer *layer;

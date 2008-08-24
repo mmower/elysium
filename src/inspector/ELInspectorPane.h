@@ -27,7 +27,7 @@
 - (void)viewWillClose;
 
 - (BOOL)willInspect:(Class)class;
-- (id)focus:(id)inspectee;
 - (void)inspect:(id)focusedObject;
+- (void)updateBindings;
 
 @end

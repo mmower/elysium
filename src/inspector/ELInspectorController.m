@@ -297,26 +297,29 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
   [tabView selectTabViewItemWithIdentifier:@"layer"];
 }
 
-- (void)selectionChanged:(NSNotification*)_notification
-{
-  NSLog( @"-> selectionChanged:");
-  focusedObject = [_notification object];
-  
+- (void)focus:(id)_focusedObject_ {
   for( ELInspectorPane *pane in inspectorPanes ) {
-    if( [pane willInspect:[focusedObject class]] ) {
-      [pane inspect:focusedObject];
+    if( [pane willInspect:[_focusedObject_ class]] ) {
+      [pane inspect:_focusedObject_];
     }
   }
   
-  if( [focusedObject isKindOfClass:[ELHex class]] ) {
+  if( [_focusedObject_ isKindOfClass:[ELHex class]] ) {
     [tabView selectTabViewItemWithIdentifier:@"hex"];
-  } else if( [focusedObject isKindOfClass:[ELLayer class]] ) {
+  } else if( [_focusedObject_ isKindOfClass:[ELLayer class]] ) {
     [tabView selectTabViewItemWithIdentifier:@"layer"];
   } else {
     [tabView selectTabViewItemWithIdentifier:@"player"];
   }
   
   NSLog( @"<- selectionChanged:");
+  
+}
+
+- (void)selectionChanged:(NSNotification*)_notification
+{
+  NSLog( @"-> selectionChanged:");
+  [self focus:[_notification object]];
 }
 
 @end

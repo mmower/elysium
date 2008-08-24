@@ -10,11 +10,11 @@
 
 #import "ELInspectorPane.h"
 
+@class ELStartTool;
+
 @interface ELHexStartInspectorPlugin : ELInspectorPane {
   IBOutlet  NSButton    *enabledCheckbox;
   IBOutlet  NSTextField *ttlField;
 }
-
-- (IBAction)changedEnabled:(id)sender;
 
 @end

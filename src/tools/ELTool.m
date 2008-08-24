@@ -25,11 +25,13 @@
   if( self = [super init] ) {
     toolType = _type;
     config   = _config;
+    enabled  = YES;
   }
   
   return self;
 }
 
+@synthesize enabled;
 @synthesize toolType;
 @synthesize config;
 @synthesize layer;

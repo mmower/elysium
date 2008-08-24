@@ -25,12 +25,24 @@
   return class == [ELHex class];
 }
 
-- (IBAction)changedEnabled:(id)sender {
-  if( [sender state] ) {
+// Proxy methods for bindings
+- (BOOL)toolEnabled {
+  return [inspectee toolOfType:@"start"] != nil;
+}
+
+- (void)setToolEnabled:(BOOL)_enabled_ {
+  NSLog( @"setToolEnabled:%@", _enabled_ ? @"YES" : @"NO" );
+  if( _enabled_ ) {
     [inspectee addTool:[[ELStartTool alloc] initWithDirection:N TTL:25]];
   } else {
     [inspectee removeTool:@"start"];
   }
+}
+
+// Update our custom bindings
+- (void)updateBindings {
+  [self willChangeValueForKey:@"toolEnabled"];
+  [self didChangeValueForKey:@"toolEnabled"];
 }
 
 @end

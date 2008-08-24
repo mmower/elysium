@@ -62,16 +62,16 @@
   return NO;
 }
 
-// Override this method to focus on some part of the inspected object
-- (id)focus:(id)_inspectee_ {
-  return _inspectee_;
-}
-
 - (void)inspect:(id)_inspectee_ {
   NSLog( @"Inspector %@ inspecting %@", self, _inspectee_ );
   [self willChangeValueForKey:@"inspectee"];
-  inspectee = [self focus:_inspectee_];
+  inspectee = _inspectee_;
   [self didChangeValueForKey:@"inspectee"];
+  [self updateBindings];
+}
+
+// If you have custom bindings not linked to inspectee, here's where to change 'em
+- (void)updateBindings {
 }
 
 @end
