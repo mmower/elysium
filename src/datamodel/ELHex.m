@@ -119,7 +119,7 @@
 }
 
 - (void)drawPlayheadSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
-  
+  [self drawText:@"P"];
 }
 
 // Start symbol is a circle in the middle of the hex
@@ -141,6 +141,23 @@
 
 - (void)drawBeatSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
   
+  NSRect bounds = [path bounds];
+  
+  float l = bounds.size.width / 5;
+  
+  NSBezierPath *symbolPath = [NSBezierPath bezierPath];
+  
+  NSPoint p1 = NSMakePoint( bounds.origin.x + ( bounds.size.width - l ) / 2, bounds.origin.y + 2*l );
+  NSPoint p2 = NSMakePoint( bounds.origin.x + ( bounds.size.width + l ) / 2, bounds.origin.y + 2*l );
+  NSPoint p3 = NSMakePoint( bounds.origin.x + bounds.size.width / 2, bounds.origin.y + 3*l );
+  
+  [symbolPath moveToPoint:p1];
+  [symbolPath lineToPoint:p2];
+  [symbolPath lineToPoint:p3];
+  [symbolPath lineToPoint:p1];
+  [symbolPath closePath];
+  [symbolPath stroke];
+  [symbolPath fill];
 }
 
 - (void)drawRicochetSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
