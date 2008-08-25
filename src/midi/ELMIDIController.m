@@ -17,7 +17,7 @@
 - (id)init {
   if( self = [super init] ) {
     
-    source = [[PYMIDIVirtualSource alloc] initWithName:@"Elysium virtual output"];
+    source = [[PYMIDIVirtualSource alloc] initWithName:@"Elysium"];
     [source addSender:self];
     
     PYMIDIManager*  manager = [PYMIDIManager sharedInstance];
