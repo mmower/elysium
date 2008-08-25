@@ -68,8 +68,8 @@
   return markerElement;
 }
 
-- (id)fromXMLData:(NSXMLElement *)data {
-  return nil;
+- (BOOL)fromXMLData:(NSXMLElement *)data {
+  return NO;
 }
 
 - (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {

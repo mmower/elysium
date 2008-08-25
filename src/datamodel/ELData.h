@@ -10,6 +10,6 @@
 @protocol ELData
 
 - (NSXMLElement *)asXMLData;
-- (id)fromXMLData:(NSXMLElement *)data;
+- (BOOL)fromXMLData:(NSXMLElement *)data;
 
 @end

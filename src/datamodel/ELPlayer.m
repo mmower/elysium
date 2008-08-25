@@ -170,8 +170,39 @@
   return surfaceElement;
 }
 
-- (id)fromXMLData:(NSXMLElement *)data {
-  return nil;
+- (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
+  NSArray *nodes = [_xml_ nodesForXPath:@"surface" error:nil];
+  if( [nodes count] != 1 ) {
+    NSLog( @"Found %d surface elements, expected only 1" );
+    return NO;
+  }
+  
+  NSXMLElement *surfaceElement = [nodes objectAtIndex:0];
+  
+  NSXMLNode *node;
+  if( node = [surfaceElement attributeForName:@"pulseCount"] ) {
+    [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
+  }
+  if( node = [surfaceElement attributeForName:@"velocity"] ) {
+    [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
+  }
+  if( node = [surfaceElement attributeForName:@"duration"] ) {
+    [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
+  }
+  if( node = [surfaceElement attributeForName:@"bpm"] ) {
+    [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
+  }
+  if( node = [surfaceElement attributeForName:@"ttl"] ) {
+    [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
+  }
+  
+  nodes = [surfaceElement nodesForXPath:@"layer" error:nil];
+  if( [nodes count] < 1 ) {
+    NSLog( @"No layers defined!" );
+    return NO;
+  }
+  
+  return YES;
 }
 
 @end

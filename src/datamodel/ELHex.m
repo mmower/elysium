@@ -177,8 +177,8 @@
   return cellElement;
 }
 
-- (id)fromXMLData:(NSXMLElement *)data {
-  return nil;
+- (BOOL)fromXMLData:(NSXMLElement *)data {
+  return NO;
 }
 
 @end
