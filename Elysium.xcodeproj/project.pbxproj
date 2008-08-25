@@ -15,6 +15,33 @@
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92ACD690E3892F5009CF61B /* Inspector.xib */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
+		C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54970E61F1250077C448 /* PYMIDI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54AF0E61F1250077C448 /* PYMIDIEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54B00E61F1250077C448 /* PYMIDIEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54990E61F1250077C448 /* PYMIDIEndpoint.m */; };
+		C93D54B10E61F1250077C448 /* PYMIDIEndpointDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D549A0E61F1250077C448 /* PYMIDIEndpointDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54B20E61F1250077C448 /* PYMIDIEndpointDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D549B0E61F1250077C448 /* PYMIDIEndpointDescriptor.m */; };
+		C93D54B30E61F1250077C448 /* PYMIDIEndpointSet.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D549C0E61F1250077C448 /* PYMIDIEndpointSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54B40E61F1250077C448 /* PYMIDIEndpointSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D549D0E61F1250077C448 /* PYMIDIEndpointSet.m */; };
+		C93D54B50E61F1250077C448 /* PYMIDIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D549E0E61F1250077C448 /* PYMIDIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54B60E61F1250077C448 /* PYMIDIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D549F0E61F1250077C448 /* PYMIDIManager.m */; };
+		C93D54B70E61F1250077C448 /* PYMIDIRealDestination.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A00E61F1250077C448 /* PYMIDIRealDestination.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54B80E61F1250077C448 /* PYMIDIRealDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A10E61F1250077C448 /* PYMIDIRealDestination.m */; };
+		C93D54B90E61F1250077C448 /* PYMIDIRealEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A20E61F1250077C448 /* PYMIDIRealEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54BA0E61F1250077C448 /* PYMIDIRealEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A30E61F1250077C448 /* PYMIDIRealEndpoint.m */; };
+		C93D54BB0E61F1250077C448 /* PYMIDIRealSource.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A40E61F1250077C448 /* PYMIDIRealSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54BC0E61F1250077C448 /* PYMIDIRealSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A50E61F1250077C448 /* PYMIDIRealSource.m */; };
+		C93D54BD0E61F1250077C448 /* PYMIDIUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A60E61F1250077C448 /* PYMIDIUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54BE0E61F1250077C448 /* PYMIDIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A70E61F1250077C448 /* PYMIDIUtils.m */; };
+		C93D54BF0E61F1250077C448 /* PYMIDIVirtualDestination.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A80E61F1250077C448 /* PYMIDIVirtualDestination.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54C00E61F1250077C448 /* PYMIDIVirtualDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A90E61F1250077C448 /* PYMIDIVirtualDestination.m */; };
+		C93D54C10E61F1250077C448 /* PYMIDIVirtualEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54AA0E61F1250077C448 /* PYMIDIVirtualEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54C20E61F1250077C448 /* PYMIDIVirtualEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54AB0E61F1250077C448 /* PYMIDIVirtualEndpoint.m */; };
+		C93D54C30E61F1250077C448 /* PYMIDIVirtualSource.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D54C40E61F1250077C448 /* PYMIDIVirtualSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */; };
+		C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
+		C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
+		C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
+		C93D553F0E62CC170077C448 /* ELData.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D553E0E62CC170077C448 /* ELData.h */; };
 		C95A630A0E50E7F900CBF555 /* HexStartInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95A63090E50E7F900CBF555 /* HexStartInspector.xib */; };
 		C95A63350E50F5A700CBF555 /* ELHexStartInspectorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
@@ -66,6 +93,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C93D54D60E61F1970077C448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C93D54900E61F0E80077C448 /* PYMIDI */;
+			remoteInfo = PYMIDI;
+		};
 		C963116F0E50587A008BF9AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -89,6 +123,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */,
 				C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */,
 				C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */,
 				C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */,
@@ -112,6 +147,32 @@
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C92ACD690E3892F5009CF61B /* Inspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Inspector.xib; path = ../../Inspector.xib; sourceTree = "<group>"; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
+		C93D54910E61F0E80077C448 /* PYMIDI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PYMIDI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PYMIDI-Info.plist"; sourceTree = "<group>"; };
+		C93D54970E61F1250077C448 /* PYMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDI.h; sourceTree = "<group>"; };
+		C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpoint.h; sourceTree = "<group>"; };
+		C93D54990E61F1250077C448 /* PYMIDIEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIEndpoint.m; sourceTree = "<group>"; };
+		C93D549A0E61F1250077C448 /* PYMIDIEndpointDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpointDescriptor.h; sourceTree = "<group>"; };
+		C93D549B0E61F1250077C448 /* PYMIDIEndpointDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIEndpointDescriptor.m; sourceTree = "<group>"; };
+		C93D549C0E61F1250077C448 /* PYMIDIEndpointSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpointSet.h; sourceTree = "<group>"; };
+		C93D549D0E61F1250077C448 /* PYMIDIEndpointSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIEndpointSet.m; sourceTree = "<group>"; };
+		C93D549E0E61F1250077C448 /* PYMIDIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIManager.h; sourceTree = "<group>"; };
+		C93D549F0E61F1250077C448 /* PYMIDIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIManager.m; sourceTree = "<group>"; };
+		C93D54A00E61F1250077C448 /* PYMIDIRealDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIRealDestination.h; sourceTree = "<group>"; };
+		C93D54A10E61F1250077C448 /* PYMIDIRealDestination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIRealDestination.m; sourceTree = "<group>"; };
+		C93D54A20E61F1250077C448 /* PYMIDIRealEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIRealEndpoint.h; sourceTree = "<group>"; };
+		C93D54A30E61F1250077C448 /* PYMIDIRealEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIRealEndpoint.m; sourceTree = "<group>"; };
+		C93D54A40E61F1250077C448 /* PYMIDIRealSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIRealSource.h; sourceTree = "<group>"; };
+		C93D54A50E61F1250077C448 /* PYMIDIRealSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIRealSource.m; sourceTree = "<group>"; };
+		C93D54A60E61F1250077C448 /* PYMIDIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIUtils.h; sourceTree = "<group>"; };
+		C93D54A70E61F1250077C448 /* PYMIDIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIUtils.m; sourceTree = "<group>"; };
+		C93D54A80E61F1250077C448 /* PYMIDIVirtualDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualDestination.h; sourceTree = "<group>"; };
+		C93D54A90E61F1250077C448 /* PYMIDIVirtualDestination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualDestination.m; sourceTree = "<group>"; };
+		C93D54AA0E61F1250077C448 /* PYMIDIVirtualEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualEndpoint.h; sourceTree = "<group>"; };
+		C93D54AB0E61F1250077C448 /* PYMIDIVirtualEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualEndpoint.m; sourceTree = "<group>"; };
+		C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualSource.h; sourceTree = "<group>"; };
+		C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
+		C93D553E0E62CC170077C448 /* ELData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELData.h; sourceTree = "<group>"; };
 		C95A63090E50E7F900CBF555 /* HexStartInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexStartInspector.xib; sourceTree = "<group>"; };
 		C95A63330E50F5A700CBF555 /* ELHexStartInspectorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexStartInspectorPlugin.h; sourceTree = "<group>"; };
 		C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexStartInspectorPlugin.m; sourceTree = "<group>"; };
@@ -189,12 +250,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */,
 				C9874C0A0E429F6B0068E7BF /* HoneycombView.framework in Frameworks */,
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */,
 				C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */,
 				C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */,
 				C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C93D548F0E61F0E80077C448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +288,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C93D54910E61F0E80077C448 /* PYMIDI.framework */,
 				C92EDDB50E353EDD00017DFE /* CoreAudio.framework */,
 				C9E43D5E0E33C27100C4D343 /* Sparkle.framework */,
 				C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */,
@@ -249,6 +320,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* Elysium */ = {
 			isa = PBXGroup;
 			children = (
+				C93D54960E61F1250077C448 /* PYMIDI */,
 				C97FEC800E4F5F2F008F309B /* StackedListView */,
 				C9874C1F0E42A1860068E7BF /* honeycombview */,
 				2A37F4ABFDCFA73011CA2CEA /* src */,
@@ -258,6 +330,7 @@
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				C9874BFB0E429EF90068E7BF /* HoneycombView-Info.plist */,
 				C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */,
+				C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */,
 			);
 			name = Elysium;
 			sourceTree = "<group>";
@@ -305,6 +378,37 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		C93D54960E61F1250077C448 /* PYMIDI */ = {
+			isa = PBXGroup;
+			children = (
+				C93D54970E61F1250077C448 /* PYMIDI.h */,
+				C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */,
+				C93D54990E61F1250077C448 /* PYMIDIEndpoint.m */,
+				C93D549A0E61F1250077C448 /* PYMIDIEndpointDescriptor.h */,
+				C93D549B0E61F1250077C448 /* PYMIDIEndpointDescriptor.m */,
+				C93D549C0E61F1250077C448 /* PYMIDIEndpointSet.h */,
+				C93D549D0E61F1250077C448 /* PYMIDIEndpointSet.m */,
+				C93D549E0E61F1250077C448 /* PYMIDIManager.h */,
+				C93D549F0E61F1250077C448 /* PYMIDIManager.m */,
+				C93D54A00E61F1250077C448 /* PYMIDIRealDestination.h */,
+				C93D54A10E61F1250077C448 /* PYMIDIRealDestination.m */,
+				C93D54A20E61F1250077C448 /* PYMIDIRealEndpoint.h */,
+				C93D54A30E61F1250077C448 /* PYMIDIRealEndpoint.m */,
+				C93D54A40E61F1250077C448 /* PYMIDIRealSource.h */,
+				C93D54A50E61F1250077C448 /* PYMIDIRealSource.m */,
+				C93D54A60E61F1250077C448 /* PYMIDIUtils.h */,
+				C93D54A70E61F1250077C448 /* PYMIDIUtils.m */,
+				C93D54A80E61F1250077C448 /* PYMIDIVirtualDestination.h */,
+				C93D54A90E61F1250077C448 /* PYMIDIVirtualDestination.m */,
+				C93D54AA0E61F1250077C448 /* PYMIDIVirtualEndpoint.h */,
+				C93D54AB0E61F1250077C448 /* PYMIDIVirtualEndpoint.m */,
+				C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */,
+				C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */,
+			);
+			name = PYMIDI;
+			path = ../../Cocoa/3rdParty/Yandell/pymidi/trunk/Source;
+			sourceTree = SOURCE_ROOT;
 		};
 		C95A63070E50E7D200CBF555 /* hexinfo */ = {
 			isa = PBXGroup;
@@ -391,6 +495,7 @@
 				C97FEBE80E4F07A0008F309B /* ELPlayhead.m */,
 				C97FEBE90E4F07A0008F309B /* ElysiumDocument.h */,
 				C97FEBEA0E4F07A0008F309B /* ElysiumDocument.m */,
+				C93D553E0E62CC170077C448 /* ELData.h */,
 			);
 			path = datamodel;
 			sourceTree = "<group>";
@@ -430,6 +535,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		C93D548C0E61F0E80077C448 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */,
+				C93D54AF0E61F1250077C448 /* PYMIDIEndpoint.h in Headers */,
+				C93D54B10E61F1250077C448 /* PYMIDIEndpointDescriptor.h in Headers */,
+				C93D54B30E61F1250077C448 /* PYMIDIEndpointSet.h in Headers */,
+				C93D54B50E61F1250077C448 /* PYMIDIManager.h in Headers */,
+				C93D54B70E61F1250077C448 /* PYMIDIRealDestination.h in Headers */,
+				C93D54B90E61F1250077C448 /* PYMIDIRealEndpoint.h in Headers */,
+				C93D54BB0E61F1250077C448 /* PYMIDIRealSource.h in Headers */,
+				C93D54BD0E61F1250077C448 /* PYMIDIUtils.h in Headers */,
+				C93D54BF0E61F1250077C448 /* PYMIDIVirtualDestination.h in Headers */,
+				C93D54C10E61F1250077C448 /* PYMIDIVirtualEndpoint.h in Headers */,
+				C93D54C30E61F1250077C448 /* PYMIDIVirtualSource.h in Headers */,
+				C93D553F0E62CC170077C448 /* ELData.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C97FEC810E4F5FB2008F309B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -470,12 +595,31 @@
 			dependencies = (
 				C96311700E50587A008BF9AB /* PBXTargetDependency */,
 				C9874C3D0E42A2460068E7BF /* PBXTargetDependency */,
+				C93D54D70E61F1970077C448 /* PBXTargetDependency */,
 			);
 			name = Elysium;
 			productInstallPath = "$(HOME)/Applications";
 			productName = Elysium;
 			productReference = 8D15AC370486D014006FF6A4 /* Elysium.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C93D54900E61F0E80077C448 /* PYMIDI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C93D54950E61F0E90077C448 /* Build configuration list for PBXNativeTarget "PYMIDI" */;
+			buildPhases = (
+				C93D548C0E61F0E80077C448 /* Headers */,
+				C93D548D0E61F0E80077C448 /* Resources */,
+				C93D548E0E61F0E80077C448 /* Sources */,
+				C93D548F0E61F0E80077C448 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PYMIDI;
+			productName = PYMIDI;
+			productReference = C93D54910E61F0E80077C448 /* PYMIDI.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		C97FEC850E4F5FB2008F309B /* StackedListView */ = {
 			isa = PBXNativeTarget;
@@ -528,6 +672,7 @@
 				8D15AC270486D014006FF6A4 /* Elysium */,
 				C9874BF90E429EF90068E7BF /* HoneycombView */,
 				C97FEC850E4F5FB2008F309B /* StackedListView */,
+				C93D54900E61F0E80077C448 /* PYMIDI */,
 			);
 		};
 /* End PBXProject section */
@@ -544,6 +689,13 @@
 				C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */,
 				C97FEC080E4F2870008F309B /* HexInfoInspector.xib in Resources */,
 				C95A630A0E50E7F900CBF555 /* HexStartInspector.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C93D548D0E61F0E80077C448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +747,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C93D548E0E61F0E80077C448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C93D54B00E61F1250077C448 /* PYMIDIEndpoint.m in Sources */,
+				C93D54B20E61F1250077C448 /* PYMIDIEndpointDescriptor.m in Sources */,
+				C93D54B40E61F1250077C448 /* PYMIDIEndpointSet.m in Sources */,
+				C93D54B60E61F1250077C448 /* PYMIDIManager.m in Sources */,
+				C93D54B80E61F1250077C448 /* PYMIDIRealDestination.m in Sources */,
+				C93D54BA0E61F1250077C448 /* PYMIDIRealEndpoint.m in Sources */,
+				C93D54BC0E61F1250077C448 /* PYMIDIRealSource.m in Sources */,
+				C93D54BE0E61F1250077C448 /* PYMIDIUtils.m in Sources */,
+				C93D54C00E61F1250077C448 /* PYMIDIVirtualDestination.m in Sources */,
+				C93D54C20E61F1250077C448 /* PYMIDIVirtualEndpoint.m in Sources */,
+				C93D54C40E61F1250077C448 /* PYMIDIVirtualSource.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C97FEC830E4F5FB2008F309B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -619,6 +789,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C93D54D70E61F1970077C448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C93D54900E61F0E80077C448 /* PYMIDI */;
+			targetProxy = C93D54D60E61F1970077C448 /* PBXContainerItemProxy */;
+		};
 		C96311700E50587A008BF9AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C97FEC850E4F5FB2008F309B /* StackedListView */;
@@ -743,6 +918,60 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+		C93D54930E61F0E90077C448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "PYMIDI-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = PYMIDI;
+			};
+			name = Debug;
+		};
+		C93D54940E61F0E90077C448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "PYMIDI-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = PYMIDI;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -871,6 +1100,15 @@
 			buildConfigurations = (
 				C05733CC08A9546B00998B17 /* Debug */,
 				C05733CD08A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C93D54950E61F0E90077C448 /* Build configuration list for PBXNativeTarget "PYMIDI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C93D54930E61F0E90077C448 /* Debug */,
+				C93D54940E61F0E90077C448 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

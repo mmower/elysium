@@ -10,39 +10,54 @@
 
 #import "ELMIDIController.h"
 
+#import <PYMIDI/PYMIDI.h>
+
 @implementation ELMIDIController
 
 - (id)init {
   if( self = [super init] ) {
-    clientName = CFStringCreateWithCString( NULL, "Elysium", 0 );
-    if( clientName == NULL ) {
-      NSLog( @"Cannot create client name" );
-      return nil;
+    
+    source = [[PYMIDIVirtualSource alloc] initWithName:@"Elysium virtual output"];
+    [source addSender:self];
+    
+    PYMIDIManager*  manager = [PYMIDIManager sharedInstance];
+    NSArray* endpointArray = [manager realDestinations];
+    
+    NSEnumerator* enumerator = [endpointArray objectEnumerator];
+    PYMIDIEndpoint* endpoint;
+    while( endpoint = [enumerator nextObject] ) {
+      NSLog( @"Detected endpoint = %@", [endpoint displayName] );
     }
     
-    MIDIClientCreate( clientName, NULL, NULL, &midiClient );
-    
-    portName = CFStringCreateWithCString( NULL, "Output", 0 );
-    if( portName == NULL ) {
-      NSLog( @"Cannot create port name" );
-      return nil;
-    }
-    
-    MIDISourceCreate( midiClient, (CFStringRef)@"Elysium", &source );
-    
-    MIDIOutputPortCreate( midiClient, portName, &outputPort );
-    
-    int numDestinations = MIDIGetNumberOfDestinations();
-    if( numDestinations < 1 ) {
-      NSLog( @"No MIDI destinations are available" );
-      return nil;
-    }
-    
-    destination = MIDIGetDestination( 0 );
-    if( destination == NULL ) {
-      NSLog( @"Failed to obtain MIDI output" );
-      return nil;
-    }
+    // clientName = CFStringCreateWithCString( NULL, "Elysium", 0 );
+    // if( clientName == NULL ) {
+    //   NSLog( @"Cannot create client name" );
+    //   return nil;
+    // }
+    // 
+    // MIDIClientCreate( clientName, NULL, NULL, &midiClient );
+    // 
+    // portName = CFStringCreateWithCString( NULL, "Output", 0 );
+    // if( portName == NULL ) {
+    //   NSLog( @"Cannot create port name" );
+    //   return nil;
+    // }
+    // 
+    // MIDISourceCreate( midiClient, (CFStringRef)@"Elysium", &source );
+    // 
+    // MIDIOutputPortCreate( midiClient, portName, &outputPort );
+    // 
+    // int numDestinations = MIDIGetNumberOfDestinations();
+    // if( numDestinations < 1 ) {
+    //   NSLog( @"No MIDI destinations are available" );
+    //   return nil;
+    // }
+    // 
+    // destination = MIDIGetDestination( 0 );
+    // if( destination == NULL ) {
+    //   NSLog( @"Failed to obtain MIDI output" );
+    //   return nil;
+    // }
     
     NSLog( @"MIDIController initialization complete." );
   }
@@ -128,9 +143,11 @@
   }
   
   NSLog( @"MIDI sendMessage" );
+  [source processMIDIPacketList:packetList sender:self];
   
-  OSStatus result = MIDISend( outputPort, destination, packetList );
-  NSLog( @"Result of MIDI send = %d", result );
+  
+  // OSStatus result = MIDISend( outputPort, destination, packetList );
+  // NSLog( @"Result of MIDI send = %d", result );
 }
 
 - (void)playNote:(int)_noteNumber channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {

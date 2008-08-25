@@ -211,4 +211,45 @@
   return cell;
 }
 
+// Implementing the ELData Protocol
+
+- (NSXMLElement *)asXMLData {
+  NSXMLElement *layerElement = [NSXMLNode elementWithName:@"layer"];
+  
+  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+  [attributes setObject:[config stringForKey:@"channel"] forKey:@"channel"];
+  if( [config definesValueForKey:@"pulseCount"] ) {
+    [attributes setObject:[config stringForKey:@"pulseCount"] forKey:@"pulseCount"];
+  }
+  if( [config definesValueForKey:@"velocity"] ) {
+    [attributes setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
+  }
+  if( [config definesValueForKey:@"duration"] ) {
+    [attributes setObject:[config stringForKey:@"duration"] forKey:@"duration"];
+  }
+  if( [config definesValueForKey:@"bpm"] ) {
+    [attributes setObject:[config stringForKey:@"bpm"] forKey:@"bpm"];
+  }
+  if( [config definesValueForKey:@"ttl"] ) {
+    [attributes setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
+  }
+  [layerElement setAttributesAsDictionary:attributes];
+  
+  for( int col = 0; col < HTABLE_COLS; col++ ) {
+    for( int row = 0; row < HTABLE_ROWS; row++ ) {
+      ELHex *hex = [self hexAtColumn:col row:row];
+      
+      if( [[hex tools] count] > 0 ) {
+        [layerElement addChild:[hex asXMLData]];
+      }
+    }
+  }
+  
+  return layerElement;
+}
+
+- (id)fromXMLData:(NSXMLElement *)data {
+  return nil;
+}
+
 @end

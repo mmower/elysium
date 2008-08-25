@@ -12,6 +12,7 @@
 
 #import "ELHex.h"
 #import "ELLayer.h"
+#import "ELConfig.h"
 #import "ELPlayhead.h"
 
 @implementation ELBeatTool
@@ -61,6 +62,15 @@
   [layer playNote:[[_playhead position] note]
          velocity:[self velocity]
          duration:[self duration]];
+}
+
+- (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
+  if( [config definesValueForKey:@"velocity"] ) {
+    [_attributes_ setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
+  }
+  if( [config definesValueForKey:@"duration"] ) {
+    [_attributes_ setObject:[config stringForKey:@"duration"] forKey:@"duration"];
+  }
 }
 
 @end

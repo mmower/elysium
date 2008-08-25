@@ -55,4 +55,27 @@
   NSLog( @"Tool of type %@ has been run at %@", toolType, hex );
 }
 
+// Implementing the ELData protocol
+
+- (NSXMLElement *)asXMLData {
+  NSXMLElement *markerElement = [NSXMLNode elementWithName:@"marker"];
+  
+  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+  [attributes setObject:[self toolType] forKey:@"type"];
+  [self saveToolConfig:attributes];
+  [markerElement setAttributesAsDictionary:attributes];
+  
+  return markerElement;
+}
+
+- (id)fromXMLData:(NSXMLElement *)data {
+  return nil;
+}
+
+- (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
+}
+
+- (void)loadToolConfig:(NSXMLElement *)_xml_ {
+}
+
 @end

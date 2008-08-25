@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "ELData.h"
+
 @class ELNote;
 @class ELLayer;
 @class ELTimer;
@@ -16,7 +18,7 @@
 @class ELMIDIController;
 @class ElysiumDocument;
 
-@interface ELPlayer : NSObject {
+@interface ELPlayer : NSObject <ELData> {
   ElysiumDocument   *document;
   ELHarmonicTable   *harmonicTable;
   NSMutableArray    *layers;
@@ -41,6 +43,7 @@
 
 - (void)start;
 - (void)stop;
+- (void)playNoteInBackground:(NSDictionary *)noteInfo;
 - (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
 
 // Layer management

@@ -91,4 +91,24 @@
   }
 }
 
+// Implement ELData protocol
+
+- (NSXMLElement *)asXMLData {
+  NSXMLElement *configElement = [NSXMLNode elementWithName:@"config"];
+  
+  for( NSString *key in [data allKeys] ) {
+    NSXMLElement *dataElement = [NSXMLNode elementWithName:@"data"];
+    NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+    [attributes setObject:[self valueForKey:key] forKey:key];
+    [dataElement setAttributesAsDictionary:attributes];
+    [configElement addChild:dataElement];
+  }
+  
+  return configElement;
+}
+
+- (id)fromXMLData:(NSXMLElement *)data {
+  return nil;
+}
+
 @end

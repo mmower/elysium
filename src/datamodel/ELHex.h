@@ -10,6 +10,7 @@
 
 #import "Elysium.h"
 
+#import "ELData.h"
 #import <HoneycombView/LMHexCell.h>
 
 @class ELLayer;
@@ -17,7 +18,7 @@
 @class ELTool;
 @class ELPlayhead;
 
-@interface ELHex : LMHexCell {
+@interface ELHex : LMHexCell <ELData> {
   ELLayer             *layer;
   ELNote              *note;
   ELHex               *neighbours[6];
@@ -54,5 +55,13 @@
 // Custom drawing for hexes
 
 - (void)drawText:(NSString *)text;
+
+- (void)drawPlayheadSymbolWithAttributes:(NSMutableDictionary *)attributes;
+- (void)drawStartSymbolWithAttributes:(NSMutableDictionary *)attributes;
+- (void)drawBeatSymbolWithAttributes:(NSMutableDictionary *)attributes;
+- (void)drawRicochetSymbolWithAttributes:(NSMutableDictionary *)attributes;
+- (void)drawSinkSymbolWithAttributes:(NSMutableDictionary *)attributes;
+- (void)drawSplitterSymbolWithAttributes:(NSMutableDictionary *)attributes;
+- (void)drawRotorSymbolWithAttributes:(NSMutableDictionary *)attributes;
 
 @end

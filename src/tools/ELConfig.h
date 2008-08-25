@@ -8,11 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "ELData.h"
+
 @interface NSString ( StringValue )
 - (NSString *)stringValue;
 @end
 
-@interface ELConfig : NSObject {
+@interface ELConfig : NSObject <ELData> {
   ELConfig              *parent;
   NSMutableDictionary   *data;
 }

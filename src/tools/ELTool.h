@@ -8,12 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "ELData.h"
+
 @class ELHex;
 @class ELLayer;
 @class ELConfig;
 @class ELPlayhead;
 
-@interface ELTool : NSObject {
+@interface ELTool : NSObject <ELData> {
   BOOL      enabled;
   NSString  *toolType;
   ELLayer   *layer;
@@ -35,5 +37,10 @@
 - (void)removedFromLayer:(ELLayer *)layer;
 
 - (void)run:(ELPlayhead *)playhead;
+
+// Cooperate with ELData protocol
+
+- (void)saveToolConfig:(NSMutableDictionary *)attributes;
+- (void)loadToolConfig:(NSXMLElement *)xml;
 
 @end

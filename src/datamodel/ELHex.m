@@ -118,17 +118,67 @@
   [_text drawAtPoint:strOrigin withAttributes:attributes];
 }
 
-- (void)drawOnHoneycombView:(LMHoneycombView *)_view withAttributes:(NSMutableDictionary *)_attributes {
+- (void)drawPlayheadSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  
+}
+
+- (void)drawStartSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  
+}
+
+- (void)drawBeatSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  
+}
+
+- (void)drawRicochetSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  
+}
+
+- (void)drawSinkSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  
+}
+
+- (void)drawSplitterSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  
+}
+
+- (void)drawRotorSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  
+}
+
+- (void)drawOnHoneycombView:(LMHoneycombView *)_view_ withAttributes:(NSMutableDictionary *)_attributes_ {
+  [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
+  
   if( [playheads count] > 0 ) {
-    _attributes = [_attributes mutableCopy];
-    [_attributes setObject:[NSColor redColor] forKey:LMHoneycombViewDefaultColor];
+    [self drawPlayheadSymbolWithAttributes:_attributes_];
   }
   
-  [super drawOnHoneycombView:_view withAttributes:_attributes];
-  
-  if( [self toolOfType:@"start"] || [self toolOfType:@"beat"] ) {
-    [self drawText:[note name]];
+  if( [self toolOfType:@"start"] ) {
+    [self drawStartSymbolWithAttributes:_attributes_];
   }
+  if( [self toolOfType:@"beat"] ) {
+    [self drawBeatSymbolWithAttributes:_attributes_];
+  }
+}
+
+// Implementing the ELData protocol
+
+- (NSXMLElement *)asXMLData {
+  NSXMLElement *cellElement = [NSXMLNode elementWithName:@"cell"];
+  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+  [attributes setObject:[NSNumber numberWithInt:col] forKey:@"col"];
+  [attributes setObject:[NSNumber numberWithInt:row] forKey:@"row"];
+  [cellElement setAttributesAsDictionary:attributes];
+  
+  for( ELTool *tool in [self tools] ) {
+    [cellElement addChild:[tool asXMLData]];
+  }
+  
+  return cellElement;
+}
+
+- (id)fromXMLData:(NSXMLElement *)data {
+  return nil;
 }
 
 @end

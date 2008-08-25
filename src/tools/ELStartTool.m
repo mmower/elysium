@@ -52,4 +52,13 @@
                                                       TTL:[self TTL]]];
 }
 
+// ELData protocol assistance
+
+- (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
+  [_attributes_ setObject:[config stringForKey:@"direction"] forKey:@"direction"];
+  if( [config definesValueForKey:@"ttl"] ) {
+    [_attributes_ setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
+  }
+}
+
 @end

@@ -36,7 +36,7 @@
     [config setInteger:16 forKey:@"ttl"];
     [config setInteger:16 forKey:@"pulseCount"];
     [config setInteger:100 forKey:@"velocity"];
-    [config setFloat:1.0 forKey:@"duration"];
+    [config setFloat:0.5 forKey:@"duration"];
     
     for( int channel = 1; channel <= 16; channel++ ) {
       [layers addObject:[[ELLayer alloc] initWithPlayer:self channel:channel]];
@@ -105,23 +105,73 @@
   isRunning = NO;
 }
 
-- (void)playNote:(ELNote *)_note channel:(int)_channel velocity:(int)_velocity duration:(float)_duration {
-  NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note, _channel, _velocity, _duration );
-  // 
-  // NSLog( @"Sending note ON" );
-  // [midiController noteOn:[_note number] velocity:_velocity channel:_channel];
-  // 
-  // usleep( _duration * 1000000 );
-  // 
-  // NSLog( @"Sending note OFF" );
-  // [midiController noteOff:[_note number] velocity:_velocity channel:_channel];
+- (void)playNoteInBackground:(NSDictionary *)_noteInfo_ {
+  int noteNumber = [[_noteInfo_ objectForKey:@"note"] integerValue];
+  int velocity = [[_noteInfo_ objectForKey:@"velocity"] integerValue];
+  int channel = [[_noteInfo_ objectForKey:@"channel"] integerValue];
+  float duration = [[_noteInfo_ objectForKey:@"duration"] floatValue];
+  
+  NSLog( @"Play %d on channel %d with velocity %d, duration %0.1f", noteNumber, channel, velocity, duration );
+  
+  [midiController noteOn:noteNumber velocity:velocity channel:channel];
+  usleep( duration * 1000000 );
+  [midiController noteOff:noteNumber velocity:velocity channel:channel];
+}
+
+- (void)playNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ duration:(float)_duration_ {
+  NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note_, _channel_, _velocity_, _duration_ );
+  
+  NSNumber *noteNumber = [NSNumber numberWithInt:[_note_ number]];
+  NSNumber *channel = [NSNumber numberWithInt:_channel_];
+  NSNumber *velocity = [NSNumber numberWithInt:_velocity_];
+  NSNumber *duration = [NSNumber numberWithFloat:_duration_];
+  NSArray *objects = [NSArray arrayWithObjects:noteNumber,channel,velocity,duration,nil];
+  NSArray *keys = [NSArray arrayWithObjects:@"note",@"velocity",@"channel",@"duration"];
+  NSDictionary *noteInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+  
+  [NSThread detachNewThreadSelector:@selector(playNoteInBackground:) toTarget:self withObject:noteInfo];
 }
 
 // Layer Management
 
-- (ELLayer *)layerForChannel:(int)_channel {
-  NSAssert1( _channel >= 1 && _channel <= 16, @"Requested invalid channel-%d", _channel );
-  return [layers objectAtIndex:_channel-1];
+- (ELLayer *)layerForChannel:(int)_channel_ {
+  NSAssert1( _channel_ >= 1 && _channel_ <= 16, @"Requested invalid channel-%d", _channel_ );
+  return [layers objectAtIndex:_channel_-1];
+}
+
+// Implementing the ELData protocol
+
+- (NSXMLElement *)asXMLData {
+  NSXMLElement *surfaceElement = [NSXMLNode elementWithName:@"surface"];
+  
+  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+  if( [config definesValueForKey:@"pulseCount"] ) {
+    [attributes setObject:[config stringForKey:@"pulseCount"] forKey:@"pulseCount"];
+  }
+  if( [config definesValueForKey:@"velocity"] ) {
+    [attributes setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
+  }
+  if( [config definesValueForKey:@"duration"] ) {
+    [attributes setObject:[config stringForKey:@"duration"] forKey:@"duration"];
+  }
+  if( [config definesValueForKey:@"bpm"] ) {
+    [attributes setObject:[config stringForKey:@"bpm"] forKey:@"bpm"];
+  }
+  if( [config definesValueForKey:@"ttl"] ) {
+    [attributes setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
+  }
+  [surfaceElement setAttributesAsDictionary:attributes];
+  
+  for( int channel = 1; channel <= 1; channel++ ) {
+    ELLayer *layer = [self layerForChannel:channel];
+    [surfaceElement addChild:[layer asXMLData]];
+  }
+  
+  return surfaceElement;
+}
+
+- (id)fromXMLData:(NSXMLElement *)data {
+  return nil;
 }
 
 @end

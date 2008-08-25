@@ -13,6 +13,7 @@
 #import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
+#import "ELHarmonicTable.h"
 #import "ElysiumController.h"
 
 #import "ELStartTool.h"
@@ -40,6 +41,8 @@
 {
     [super windowControllerDidLoadNib:aController];
     
+    NSLog( @"windowControllerDidLoadNib" );
+    
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     [player setMIDIController:[self midiController]];
     [player setDocument:self];
@@ -55,16 +58,41 @@
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-    // Insert code here to write your document to data of the specified type. If the given outError != NULL, ensure that you set *outError when returning nil.
+  NSLog( @"dataOfType:%@", typeName );
+  
+  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
 
-    // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
+  NSXMLElement *rootElement = [NSXMLNode elementWithName:@"elysium"];
+  [attributes setObject:[NSNumber numberWithInt:1] forKey:@"version"];
+  [rootElement setAttributesAsDictionary:attributes];
 
-    // For applications targeted for Panther or earlier systems, you should use the deprecated API -dataRepresentationOfType:. In this case you can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
-
-    if ( outError != NULL ) {
-		*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
-	}
-	return nil;
+  NSXMLDocument *document = [[NSXMLDocument alloc] initWithRootElement:rootElement];
+  [document setVersion:@"1.0"];
+  [document setCharacterEncoding:@"UTF-8"];
+  
+  [rootElement addChild:[player asXMLData]];
+  
+  NSData *xml = [document XMLDataWithOptions:NSXMLNodePrettyPrint|NSXMLNodeCompactEmptyElement];
+  
+  return xml;
+  //   
+  //   
+  //   
+  //     // Insert code here to write your document to data of the specified type. If the given outError != NULL, ensure that you set *outError when returning nil.
+  // 
+  //     // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
+  // 
+  //     // For applications targeted for Panther or earlier systems, you should use the deprecated API -dataRepresentationOfType:. In this case you can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
+  // 
+  //     
+  // 
+  // 
+  // 
+  // 
+  //     if ( outError != NULL ) {
+  //  *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
+  // }
+  // return nil;
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
