@@ -122,8 +122,21 @@
   
 }
 
+// Start symbol is a circle in the middle of the hex
 - (void)drawStartSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
   
+  float l = [path bounds].size.width / 5;
+  
+  NSRect symbolBounds = NSMakeRect(
+    [path bounds].origin.x + ( [path bounds].size.width - l ) / 2,
+    [path bounds].origin.y + ( [path bounds].size.height - l ) / 2,
+    l,
+    l
+    );
+  
+  NSBezierPath *symbolPath = [NSBezierPath bezierPathWithOvalInRect:symbolBounds];
+  [symbolPath stroke];
+  [symbolPath fill];
 }
 
 - (void)drawBeatSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
