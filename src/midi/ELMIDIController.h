@@ -37,6 +37,6 @@
 - (void)noteOn:(int)note velocity:(int)velocity channel:(int)channel;
 - (void)noteOff:(int)note velocity:(int)velocity channel:(int)channel;
 - (void)programChange:(int)preset channel:(int)channel;
-- (void)sendMessage:(Byte *)data;
+- (void)sendMessage:(Byte *)data length:(int)length;
 
 @end

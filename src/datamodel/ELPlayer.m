@@ -128,7 +128,7 @@
   NSNumber *velocity = [NSNumber numberWithInt:_velocity_];
   NSNumber *duration = [NSNumber numberWithFloat:_duration_];
   NSArray *objects = [NSArray arrayWithObjects:noteNumber,channel,velocity,duration,nil];
-  NSArray *keys = [NSArray arrayWithObjects:@"note",@"velocity",@"channel",@"duration"];
+  NSArray *keys = [NSArray arrayWithObjects:@"note",@"channel",@"velocity",@"duration"];
   NSDictionary *noteInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
   
   [NSThread detachNewThreadSelector:@selector(playNoteInBackground:) toTarget:self withObject:noteInfo];

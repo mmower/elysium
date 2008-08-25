@@ -76,75 +76,63 @@
 }
 
 - (void)noteOn:(int)_note velocity:(int)_velocity channel:(int)_channel {
-  Byte data[4];
+  Byte data[3];
   
   if( [delegate respondsToSelector:@selector(noteOn:velocity:channel:)] ) {
     [delegate noteOn:_note velocity:_velocity channel:_channel];
   }
   
-  data[0] = 3;
-  data[1] = MIDI_ON | _channel;
-  data[2] = _note;
-  data[3] = _velocity;
+  data[0] = MIDI_ON | _channel;
+  data[1] = (Byte)_note;
+  data[2] = (Byte)_velocity;
   
   NSLog( @"Calling sendMessage" );
   
-  [self sendMessage:data];
+  [self sendMessage:data length:3];
 }
 
 - (void)noteOff:(int)_note velocity:(int)_velocity channel:(int)_channel {
-  Byte data[4];
+  Byte data[3];
   
   if( [delegate respondsToSelector:@selector(noteOff:velocity:channel:)] ) {
     [delegate noteOff:_note velocity:_velocity channel:_channel];
   }
   
-  data[0] = 3;
-  data[1] = MIDI_OFF | _channel;
-  data[2] = _note;
-  data[3] = _velocity;
+  data[0] = MIDI_OFF | _channel;
+  data[1] = (Byte)_note;
+  data[2] = (Byte)_velocity;
   
-  [self sendMessage:data];
+  [self sendMessage:data length:3];
 }
 
 - (void)programChange:(int)_preset channel:(int)_channel {
-  Byte data[3];
+  Byte data[2];
   
   if( [delegate respondsToSelector:@selector(programChange:channel:)] ) {
     [delegate programChange:_preset channel:_channel];
   }
   
-  data[0] = 2;
-  data[1] = MIDI_PC | _channel;
-  data[2] = _preset;
+  data[0] = MIDI_PC | _channel;
+  data[1] = _preset;
   
-  [self sendMessage:data];
+  [self sendMessage:data length:2];
 }
 
-- (void)sendMessage:(Byte *)_data {
-  Byte buffer[128];
-  
+- (void)sendMessage:(Byte *)_data_ length:(int)_length_ {
   NSLog( @"MIDIController sendMessage" );
   
-  MIDIPacketList *packetList = (MIDIPacketList *)buffer;
+  MIDIPacketList *packetList = malloc( sizeof( MIDIPacketList ) * sizeof( Byte ) );
+  NSAssert( packetList != NULL, @"Failed to allocate MIDIPacketList" );
   
   MIDIPacket *packet = MIDIPacketListInit( packetList );
-  if( packet == NULL ) {
-    NSLog( @"Failure to initialize the MIDI packet list!" );
-    return;
-  }
+  NSAssert( packet != NULL, @"Failed to initialize MIDIPacketList" );
   
   MIDITimeStamp timeStamp = 0;
+  packet = MIDIPacketListAdd( packetList, sizeof( MIDIPacketList ), packet, timeStamp, _length_, _data_ );
+  NSAssert( packet != NULL, @"Failed to add MIDIPacket to MIDIPacketList" );
   
-  packet = MIDIPacketListAdd( packetList, 128, packet, timeStamp, _data[0], &_data[1] );
-  if( packet == NULL ) {
-    NSLog( @"Failure to add MIDI message to packet list!" );
-    return;
-  }
-  
-  NSLog( @"MIDI sendMessage" );
+  NSLog( @"MIDIController sending MIDI message(s)" );
   [source processMIDIPacketList:packetList sender:self];
-  
   
   // OSStatus result = MIDISend( outputPort, destination, packetList );
   // NSLog( @"Result of MIDI send = %d", result );
