@@ -248,8 +248,53 @@
   return layerElement;
 }
 
-- (BOOL)fromXMLData:(NSXMLElement *)data {
-  return NO;
+- (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
+  
+  NSXMLNode *node;
+  if( node = [_xml_ attributeForName:@"pulseCount"] ) {
+    [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
+  }
+  if( node = [_xml_ attributeForName:@"velocity"] ) {
+    [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
+  }
+  if( node = [_xml_ attributeForName:@"duration"] ) {
+    [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
+  }
+  if( node = [_xml_ attributeForName:@"bpm"] ) {
+    [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
+  }
+  if( node = [_xml_ attributeForName:@"ttl"] ) {
+    [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
+  }
+  
+  for( NSXMLNode *cellNode in [_xml_ nodesForXPath:@"cell" error:nil] ) {
+    NSXMLElement *cellElement = (NSXMLElement *)cellNode;
+    
+    if( !( node = [cellElement attributeForName:@"col"] ) ) {
+      NSLog( @"Found cell with no column!" );
+      return NO;
+    }
+    int col = [[node stringValue] intValue];
+    
+    if( !( node = [cellElement attributeForName:@"row"] ) ) {
+      NSLog( @"Found cell with no row!" );
+      return NO;
+    }
+    int row = [[node stringValue] intValue];
+    
+    ELHex *hex = [self hexAtColumn:col row:row];
+    if( !hex ) {
+      NSLog( @"Cell reference %d,%d is invalid", col, row );
+      return NO;
+    }
+    
+    if( ![hex fromXMLData:cellElement] ) {
+      NSLog( @"Problem loading cell %d,%d", col, row );
+      return NO;
+    }
+  }
+  
+  return YES;
 }
 
 @end

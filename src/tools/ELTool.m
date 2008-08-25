@@ -15,7 +15,36 @@
 #import "ELConfig.h"
 #import "ELPlayhead.h"
 
+#import "ELStartTool.h"
+#import "ELBeatTool.h"
+
 @implementation ELTool
+
++ (ELTool *)fromXMLData:(NSXMLElement *)_xml_ {
+  NSXMLNode *attribute = [_xml_ attributeForName:@"type"];
+  if( !attribute ) {
+    NSLog( @"Marker without type!" );
+    return nil;
+  }
+  
+  NSString *type = [attribute stringValue];
+  ELTool *tool = nil;
+  
+  if( [type isEqualToString:@"start"] ) {
+    tool = [[ELStartTool alloc] init];
+  } else if( [type isEqualToString:@"beat"] ) {
+    tool = [[ELBeatTool alloc] init];
+  } else {
+    NSLog( @"Unknown tool type:%@", type );
+  }
+  
+  if( ![tool loadToolConfig:_xml_] ) {
+    NSLog( @"Failed to load tool configuration!" );
+    return nil;
+  }
+  
+  return tool;
+}
 
 - (id)initWithType:(NSString *)_type {
   return [self initWithType:_type config:[[ELConfig alloc] init]];
@@ -75,7 +104,8 @@
 - (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
 }
 
-- (void)loadToolConfig:(NSXMLElement *)_xml_ {
+- (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
+  return NO;
 }
 
 @end

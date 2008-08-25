@@ -28,6 +28,8 @@
 @property (readonly) ELConfig *config;
 @property (readonly) ELLayer *layer;
 
++ (ELTool *)fromXMLData:(NSXMLElement *)xml;
+
 - (id)initWithType:(NSString *)type;
 - (id)initWithType:(NSString *)type config:(ELConfig *)config;
 
@@ -41,6 +43,6 @@
 // Cooperate with ELData protocol
 
 - (void)saveToolConfig:(NSMutableDictionary *)attributes;
-- (void)loadToolConfig:(NSXMLElement *)xml;
+- (BOOL)loadToolConfig:(NSXMLElement *)xml;
 
 @end

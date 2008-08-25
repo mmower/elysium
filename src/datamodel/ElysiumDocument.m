@@ -98,10 +98,13 @@
     return NO;
   }
   
-  [player fromXMLData:rootElement];
-  
-  NSLog( @"Loaded XML document" );
-  return YES;
+  if( [player fromXMLData:rootElement] ) {
+    NSLog( @"Loaded XML document" );
+    return YES;
+  } else {
+    NSLog( @"Problem loading document" );
+    return NO;
+  }
   
   //     if ( outError != NULL ) {
   //  *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];

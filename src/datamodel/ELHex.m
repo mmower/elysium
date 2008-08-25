@@ -177,8 +177,18 @@
   return cellElement;
 }
 
-- (BOOL)fromXMLData:(NSXMLElement *)data {
-  return NO;
+- (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
+  for( NSXMLNode *markerNode in [_xml_ nodesForXPath:@"marker" error:nil] ) {
+    ELTool *tool = [ELTool fromXMLData:(NSXMLElement *)markerNode];
+    if( !tool ) {
+      NSLog( @"Unable to load tool configuration!" );
+      return NO;
+    }
+    
+    [self addTool:tool];
+  }
+  
+  return YES;
 }
 
 @end

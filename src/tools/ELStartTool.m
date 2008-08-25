@@ -14,6 +14,11 @@
 
 @implementation ELStartTool
 
+- (id)init {
+  self = [super initWithType:@"start"];
+  return self;
+}
+
 - (id)initWithDirection:(Direction)_direction TTL:(int)_ttl {
   if( self = [super initWithType:@"start"] ) {
     [self setDirection:_direction];
@@ -59,6 +64,24 @@
   if( [config definesValueForKey:@"ttl"] ) {
     [_attributes_ setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
   }
+}
+
+- (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
+  NSXMLNode *node;
+  
+  node = [_xml_ attributeForName:@"direction"];
+  if( !node ) {
+    return NO;
+  }
+  
+  [self setDirection:[[node stringValue] intValue]];
+  
+  node = [_xml_ attributeForName:@"ttl"];
+  if( node ) {
+    [self setTTL:[[node stringValue] intValue]];
+  }
+  
+  return YES;
 }
 
 @end

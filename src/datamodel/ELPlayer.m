@@ -22,12 +22,14 @@
 #import "ELBeatTool.h"
 #import "ELStartTool.h"
 
+#define USE_CHANNELS 1
+
 @implementation ELPlayer
 
 - (id)init {
   if( self = [super init] ) {
     harmonicTable = [[ELHarmonicTable alloc] init];
-    layers        = [[NSMutableArray alloc] initWithCapacity:16];
+    layers        = [[NSMutableArray alloc] initWithCapacity:USE_CHANNELS];
     config        = [[ELConfig alloc] init];
     timer         = [[ELTimer alloc] init];
     
@@ -38,7 +40,7 @@
     [config setInteger:100 forKey:@"velocity"];
     [config setFloat:0.5 forKey:@"duration"];
     
-    for( int channel = 1; channel <= 16; channel++ ) {
+    for( int channel = 1; channel <= USE_CHANNELS; channel++ ) {
       [layers addObject:[[ELLayer alloc] initWithPlayer:self channel:channel]];
     }
   }
@@ -135,7 +137,7 @@
 // Layer Management
 
 - (ELLayer *)layerForChannel:(int)_channel_ {
-  NSAssert1( _channel_ >= 1 && _channel_ <= 16, @"Requested invalid channel-%d", _channel_ );
+  NSAssert1( _channel_ >= 1 && _channel_ <= USE_CHANNELS, @"Requested invalid channel-%d", _channel_ );
   return [layers objectAtIndex:_channel_-1];
 }
 
@@ -162,7 +164,7 @@
   }
   [surfaceElement setAttributesAsDictionary:attributes];
   
-  for( int channel = 1; channel <= 1; channel++ ) {
+  for( int channel = 1; channel <= USE_CHANNELS; channel++ ) {
     ELLayer *layer = [self layerForChannel:channel];
     [surfaceElement addChild:[layer asXMLData]];
   }
@@ -200,6 +202,30 @@
   if( [nodes count] < 1 ) {
     NSLog( @"No layers defined!" );
     return NO;
+  }
+  
+  for( NSXMLNode *node in nodes ) {
+    NSXMLElement *layerElement = (NSXMLElement *)node;
+    
+    NSXMLNode *attribute = [layerElement attributeForName:@"channel"];
+    if( !attribute ) {
+      NSLog( @"Layer found with no channel number" );
+      return NO;
+    }
+    
+    int channel = [[attribute stringValue] intValue];
+    if( channel < 1 || channel > USE_CHANNELS ) {
+      NSLog( @"Channel defined outside range %d-%d", 1, USE_CHANNELS );
+      return NO;
+    }
+    
+    ELLayer *layer = [self layerForChannel:channel];
+    if( ![layer fromXMLData:layerElement] ) {
+      NSLog( @"Problem loading layer data for layer:%d", channel );
+      return NO;
+    }
+    
+    [layers addObject:layer];
   }
   
   return YES;

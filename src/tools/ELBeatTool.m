@@ -73,4 +73,20 @@
   }
 }
 
+- (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
+  NSXMLNode *node;
+  
+  node = [_xml_ attributeForName:@"velocity"];
+  if( node ) {
+    [self setVelocity:[[node stringValue] intValue]];
+  }
+  
+  node = [_xml_ attributeForName:@"duration"];
+  if( node ) {
+    [self setDuration:[[node stringValue] floatValue]];
+  }
+  
+  return YES;
+}
+
 @end
