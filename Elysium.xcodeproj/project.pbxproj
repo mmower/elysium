@@ -42,6 +42,8 @@
 		C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
 		C93D553F0E62CC170077C448 /* ELData.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D553E0E62CC170077C448 /* ELData.h */; };
+		C93D55FA0E6411590077C448 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93D55F80E6411520077C448 /* Palette.xib */; };
+		C93D56000E64118E0077C448 /* ELPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D55FD0E64117C0077C448 /* ELPaletteController.m */; };
 		C95A630A0E50E7F900CBF555 /* HexStartInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95A63090E50E7F900CBF555 /* HexStartInspector.xib */; };
 		C95A63350E50F5A700CBF555 /* ELHexStartInspectorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
@@ -173,6 +175,9 @@
 		C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualSource.h; sourceTree = "<group>"; };
 		C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
 		C93D553E0E62CC170077C448 /* ELData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELData.h; sourceTree = "<group>"; };
+		C93D55F80E6411520077C448 /* Palette.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Palette.xib; sourceTree = "<group>"; };
+		C93D55FC0E64117C0077C448 /* ELPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPaletteController.h; sourceTree = "<group>"; };
+		C93D55FD0E64117C0077C448 /* ELPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPaletteController.m; sourceTree = "<group>"; };
 		C95A63090E50E7F900CBF555 /* HexStartInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexStartInspector.xib; sourceTree = "<group>"; };
 		C95A63330E50F5A700CBF555 /* ELHexStartInspectorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexStartInspectorPlugin.h; sourceTree = "<group>"; };
 		C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexStartInspectorPlugin.m; sourceTree = "<group>"; };
@@ -338,6 +343,7 @@
 		2A37F4ABFDCFA73011CA2CEA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C93D55F70E64113F0077C448 /* palette */,
 				C97FEBDC0E4F07A0008F309B /* datamodel */,
 				C97FEBD80E4F0754008F309B /* inspector */,
 				C97FEBD10E4F071E008F309B /* midi */,
@@ -409,6 +415,16 @@
 			name = PYMIDI;
 			path = ../../Cocoa/3rdParty/Yandell/pymidi/trunk/Source;
 			sourceTree = SOURCE_ROOT;
+		};
+		C93D55F70E64113F0077C448 /* palette */ = {
+			isa = PBXGroup;
+			children = (
+				C93D55F80E6411520077C448 /* Palette.xib */,
+				C93D55FC0E64117C0077C448 /* ELPaletteController.h */,
+				C93D55FD0E64117C0077C448 /* ELPaletteController.m */,
+			);
+			name = palette;
+			sourceTree = "<group>";
 		};
 		C95A63070E50E7D200CBF555 /* hexinfo */ = {
 			isa = PBXGroup;
@@ -689,6 +705,7 @@
 				C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */,
 				C97FEC080E4F2870008F309B /* HexInfoInspector.xib in Resources */,
 				C95A630A0E50E7F900CBF555 /* HexStartInspector.xib in Resources */,
+				C93D55FA0E6411590077C448 /* Palette.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +761,7 @@
 				C97FEC010E4F0B51008F309B /* ELHexInfoInspectorPlugin.m in Sources */,
 				C97FEC5D0E4F2DEE008F309B /* ELInspectorPane.m in Sources */,
 				C95A63350E50F5A700CBF555 /* ELHexStartInspectorPlugin.m in Sources */,
+				C93D56000E64118E0077C448 /* ELPaletteController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
