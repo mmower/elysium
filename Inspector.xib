@@ -9,7 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="230"/>
-			<integer value="223"/>
+			<integer value="1" id="5"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -31,7 +31,7 @@
 				<int key="NSWindowStyleMask">151</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{74, 468}, {248, 620}}</string>
-				<int key="NSWTFlags">-1543503872</int>
+				<int key="NSWTFlags">-469762048</int>
 				<string key="NSWindowTitle">Inspector</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
@@ -195,6 +195,14 @@
 						<reference key="destination" ref="637450293"/>
 					</object>
 					<int key="connectionID">252</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">window</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="836013957"/>
+					</object>
+					<int key="connectionID">253</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -378,7 +386,7 @@
 					<integer value="0" id="8"/>
 					<reference ref="8"/>
 					<string>{{349, 262}, {248, 620}}</string>
-					<integer value="1" id="5"/>
+					<reference ref="5"/>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<string>{248, 620}</string>
@@ -417,7 +425,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">252</int>
+			<int key="maxID">253</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

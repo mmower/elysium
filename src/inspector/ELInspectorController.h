@@ -29,8 +29,9 @@ extern NSString* const ELNotifyObjectSelectionDidChange;
 
 - (void)selectionChanged:(NSNotification*)notification;
 
-// - (void)inspectHex;
-// - (void)inspectLayer;
+- (void)inspectHex;
+- (void)inspectLayer;
+- (void)inspectPlayer;
 
 - (ELHex *)focusedHex;
 

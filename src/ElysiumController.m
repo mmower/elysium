@@ -11,6 +11,7 @@
 #import "ElysiumController.h"
 
 #import "ELMIDIController.h"
+#import "ELPaletteController.h"
 #import "ELInspectorController.h"
 
 @implementation ElysiumController
@@ -24,7 +25,6 @@
 }
 
 - (void)awakeFromNib {
-  
 }
 
 - (ELMIDIController *)midiController {
@@ -33,12 +33,25 @@
 
 // Actions
 
-- (IBAction)showInspectorPanel:(id)_sender {
+- (IBAction)showInspectorPanel:(id)_sender_ {
   if( !inspectorController ) {
     inspectorController = [[ELInspectorController alloc] init];
   }
   
   [inspectorController showWindow:self];
+  [inspectorController inspectPlayer];
+}
+
+- (IBAction)showPalette:(id)_sender_ {
+  NSLog( @"Request made to show palette" );
+  if( !paletteController ) {
+    paletteController = [[ELPaletteController alloc] init];
+  }
+  
+  NSLog( @"Telling palette controller %@ to show window", paletteController );
+  
+  // Asking inspector to show itself
+  [paletteController showWindow:self];
 }
 
 @end

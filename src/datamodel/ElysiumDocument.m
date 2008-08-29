@@ -8,6 +8,8 @@
 
 #import "Elysium.h"
 
+#import <HoneycombView/LMHoneycombView.h>
+
 #import "ElysiumDocument.h"
 
 #import "ELHex.h"
@@ -54,6 +56,8 @@
     
     [layerView setDelegate:self];
     [layerView setDataSource:layer];
+    
+    [[NSApp delegate] showPalette:self];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError

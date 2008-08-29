@@ -9,13 +9,16 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELMIDIController;
+@class ELPaletteController;
 @class ELInspectorController;
 
 @interface ElysiumController : NSObject {
   ELMIDIController        *midiController;
   ELInspectorController   *inspectorController;
+  ELPaletteController     *paletteController;
 }
 
+- (IBAction)showPalette:(id)sender;
 - (IBAction)showInspectorPanel:(id)sender;
 
 - (ELMIDIController *)midiController;

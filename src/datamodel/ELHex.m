@@ -16,6 +16,8 @@
 #import "ELTool.h"
 #import "ELPlayhead.h"
 
+#import "ELStartTool.h"
+
 @implementation ELHex
 
 - (id)initWithLayer:(ELLayer *)_layer note:(ELNote *)_note column:(int)_col row:(int)_row {
@@ -118,77 +120,115 @@
   [_text drawAtPoint:strOrigin withAttributes:attributes];
 }
 
-- (void)drawPlayheadSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
-  [self drawText:@"P"];
+  // [[NSColor whiteColor] set];
+  // 
+  // NSRect bounds = [path bounds];
+  // float l = bounds.size.width / 5;
+  // 
+  // NSBezierPath *symbolPath = [NSBezierPath bezierPath];
+  // 
+  // NSAffineTransform *transform = [NSAffineTransform transform];
+  // [transform translateXBy:centre.x yBy:centre.y];
+  // [transform rotateByDegrees:d * 60];
+  // [transform translateXBy:-centre.x yBy:-centre.y];
+  // 
+  // NSPoint p1 = NSMakePoint( bounds.origin.x + ( bounds.size.width - l ) / 2, bounds.origin.y + 2*l );
+  // NSPoint p2 = NSMakePoint( bounds.origin.x + ( bounds.size.width + l ) / 2, bounds.origin.y + 2*l );
+  // NSPoint p3 = NSMakePoint( bounds.origin.x + bounds.size.width / 2, bounds.origin.y + 3*l );
+  // 
+  // [symbolPath moveToPoint:p1];
+  // [symbolPath lineToPoint:p2];
+  // [symbolPath lineToPoint:p3];
+  // [symbolPath lineToPoint:p1];
+  // [symbolPath closePath];
+  // [symbolPath stroke];
+  // [symbolPath fill];
+  // 
+  // 
+  // [self drawText:@"P"];
+  
+int mapPathSection( Direction d ) {
+  switch( d % 6 ) {
+    case N:
+    return 2;
+    case NE:
+    return 1;
+    case SE:
+    return 0;
+    case S:
+    return 5;
+    case SW:
+    return 4;
+    case NW:
+    return 3;
+    default:
+    NSLog( @"Well this shouldn't happen! (Direction = %d)", d );
+    assert( NO );
+  }
 }
 
-// Start symbol is a circle in the middle of the hex
-- (void)drawStartSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
-  
-  float l = [path bounds].size.width / 5;
-  
-  NSRect symbolBounds = NSMakeRect(
-    [path bounds].origin.x + ( [path bounds].size.width - l ) / 2,
-    [path bounds].origin.y + ( [path bounds].size.height - l ) / 2,
-    l,
-    l
-    );
-  
-  NSBezierPath *symbolPath = [NSBezierPath bezierPathWithOvalInRect:symbolBounds];
-  [symbolPath stroke];
-  [symbolPath fill];
+NSString* elementDescription( NSBezierPathElement elt ) {
+  switch( elt ) {
+    case NSMoveToBezierPathElement:
+      return @"MOVE";
+    case NSLineToBezierPathElement:
+      return @"LINE";
+    case NSCurveToBezierPathElement:
+      return @"CURVE";
+    case NSClosePathBezierPathElement:
+      return @"CLOSE";
+    default:
+    NSLog( @"Well this shouldn't happen either" );
+    assert( NO );
+  }
 }
-
-- (void)drawBeatSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
   
-  NSRect bounds = [path bounds];
+- (void)drawTriangleInDirection:(Direction)_direction_ withAttributes:(NSDictionary *)_attributes_ {
   
-  float l = bounds.size.width / 5;
+  // Get the face of the hex path corresponding to the given direction
+  NSPoint points[3];
   
-  NSBezierPath *symbolPath = [NSBezierPath bezierPath];
+  [[self path] elementAtIndex:mapPathSection(_direction_) associatedPoints:points];
+  NSPoint anchor1 = NSMakePoint( points[0].x, points[0].y );
   
-  NSPoint p1 = NSMakePoint( bounds.origin.x + ( bounds.size.width - l ) / 2, bounds.origin.y + 2*l );
-  NSPoint p2 = NSMakePoint( bounds.origin.x + ( bounds.size.width + l ) / 2, bounds.origin.y + 2*l );
-  NSPoint p3 = NSMakePoint( bounds.origin.x + bounds.size.width / 2, bounds.origin.y + 3*l );
+  [[self path] elementAtIndex:mapPathSection(_direction_+1) associatedPoints:points];
+  NSPoint anchor2 = NSMakePoint( points[0].x, points[0].y );
   
-  [symbolPath moveToPoint:p1];
-  [symbolPath lineToPoint:p2];
-  [symbolPath lineToPoint:p3];
-  [symbolPath lineToPoint:p1];
-  [symbolPath closePath];
-  [symbolPath stroke];
-  [symbolPath fill];
-}
-
-- (void)drawRicochetSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  // NSPoint apex = NSMakePoint( ( anchor1.x + anchor2.x ) / 2, ( anchor1.y + anchor2.y ) / 2 );
   
-}
-
-- (void)drawSinkSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
   
-}
-
-- (void)drawSplitterSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  // NSPoint anchor3;
+  // anchor3.x = anchor1.x + anchor2.x / 2;
+  // anchor3.y = 
   
-}
-
-- (void)drawRotorSymbolWithAttributes:(NSMutableDictionary *)_attributes_ {
+  NSBezierPath *trianglePath = [NSBezierPath bezierPath];
+  [trianglePath moveToPoint:centre];
+  [trianglePath lineToPoint:anchor1];
+  [trianglePath lineToPoint:anchor2];
+  [trianglePath lineToPoint:centre];
+  [trianglePath closePath];
   
+  [[NSColor yellowColor] set];
+  [trianglePath fill];
+  [trianglePath setLineWidth:3.0];
+  
+  // NSAffineTransform *transform = [NSAffineTransform transform];
+  // [transform translateXBy:centre.x yBy:centre.y];
+  // [transform rotateByDegrees:_direction_ * 60];
+  // [transform translateXBy:-centre.x yBy:-centre.y];
 }
 
 - (void)drawOnHoneycombView:(LMHoneycombView *)_view_ withAttributes:(NSMutableDictionary *)_attributes_ {
+  if( [playheads count] > 0 ) {
+    // Modify attributes
+    [_attributes_ setObject:[NSColor redColor] forKey:LMHoneycombViewDefaultColor];
+  } else if( [[self tools] count] > 0 ) {
+    [_attributes_ setObject:[NSColor colorWithDeviceRed:(40.0/255) green:(121.0/255) blue:(241.0/255) alpha:0.8] forKey:LMHoneycombViewDefaultColor];
+  }
+  
   [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
   
-  if( [playheads count] > 0 ) {
-    [self drawPlayheadSymbolWithAttributes:_attributes_];
-  }
-  
-  if( [self toolOfType:@"start"] ) {
-    [self drawStartSymbolWithAttributes:_attributes_];
-  }
-  if( [self toolOfType:@"beat"] ) {
-    [self drawBeatSymbolWithAttributes:_attributes_];
-  }
+  [[self tools] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];
 }
 
 // Implementing the ELData protocol

@@ -8,6 +8,7 @@
 
 #import "ELStartTool.h"
 
+#import "ELHex.h"
 #import "ELConfig.h"
 #import "ELLayer.h"
 #import "ELPlayhead.h"
@@ -55,6 +56,30 @@
   [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
                                                 direction:[self direction]
                                                       TTL:[self TTL]]];
+}
+
+// Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)_attributes_ {
+  NSRect bounds = [[[self hex] path] bounds];
+  CGFloat width = NSWidth( bounds );
+  CGFloat height = NSHeight( bounds );
+  
+  Direction d = ( 6 - [self direction] ) % 6;
+  d = ( 6 - d ) % 6;
+  // NSLog( @"Direction = %d", d );
+  
+  NSAffineTransform *transform = [NSAffineTransform transform];
+  [transform translateXBy:[[self hex] centre].x yBy:[[self hex] centre].y];
+  [transform rotateByDegrees:d * 60];
+  [transform translateXBy:-[[self hex] centre].x yBy:-[[self hex]centre].y];
+  
+  NSRect drawingBox = NSMakeRect( [[self hex] centre].x - width/16, [[self hex] centre].y - height / 4, width/8, width/8 );
+  NSBezierPath *symbolPath = [NSBezierPath bezierPathWithOvalInRect:drawingBox];
+  [symbolPath transformUsingAffineTransform:transform];
+  [symbolPath stroke];
+  
+  [[self hex] drawTriangleInDirection:[self direction] withAttributes:_attributes_];
 }
 
 // ELData protocol assistance

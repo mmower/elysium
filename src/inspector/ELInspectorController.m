@@ -293,8 +293,16 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
 //   [self inspectHex];
 // }
 
+- (void)inspectPlayer {
+  [tabView selectTabViewItemWithIdentifier:@"player"];
+}
+
 - (void)inspectLayer {
   [tabView selectTabViewItemWithIdentifier:@"layer"];
+}
+
+- (void)inspectHex {
+  [tabView selectTabViewItemWithIdentifier:@"hex"];
 }
 
 - (void)focus:(id)_focusedObject_ {
@@ -305,11 +313,11 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
   }
   
   if( [_focusedObject_ isKindOfClass:[ELHex class]] ) {
-    [tabView selectTabViewItemWithIdentifier:@"hex"];
+    [self inspectHex];
   } else if( [_focusedObject_ isKindOfClass:[ELLayer class]] ) {
-    [tabView selectTabViewItemWithIdentifier:@"layer"];
+    [self inspectLayer];
   } else {
-    [tabView selectTabViewItemWithIdentifier:@"player"];
+    [self inspectPlayer];
   }
   
   NSLog( @"<- selectionChanged:");

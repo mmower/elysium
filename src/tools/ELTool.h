@@ -27,6 +27,7 @@
 @property (readonly) NSString *toolType;
 @property (readonly) ELConfig *config;
 @property (readonly) ELLayer *layer;
+@property (readonly) ELHex *hex;
 
 + (ELTool *)fromXMLData:(NSXMLElement *)xml;
 
@@ -44,5 +45,9 @@
 
 - (void)saveToolConfig:(NSMutableDictionary *)attributes;
 - (BOOL)loadToolConfig:(NSXMLElement *)xml;
+
+// Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)attributes;
 
 @end

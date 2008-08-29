@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface ELPaletteController : NSWindowController {
-
+  IBOutlet  NSPanel     *palettePanel;
+  IBOutlet  NSMatrix    *buttonMatrix;
 }
+
+- (void)buttonSelected:(id)sender;
 
 @end

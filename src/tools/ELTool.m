@@ -64,6 +64,7 @@
 @synthesize toolType;
 @synthesize config;
 @synthesize layer;
+@synthesize hex;
 
 - (void)useInheritedConfig:(NSString *)_key {
   [config removeValueForKey:_key];
@@ -82,6 +83,12 @@
 // Tool specific invocation goes here
 - (void)run:(ELPlayhead *)playhead {
   NSLog( @"Tool of type %@ has been run at %@", toolType, hex );
+}
+
+// Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)_attributes_ {
+  NSLog( @"Drawing has not been defined for tool class %@", [self className] );
 }
 
 // Implementing the ELData protocol

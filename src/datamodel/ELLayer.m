@@ -193,6 +193,7 @@
 
 - (void)hexCellSelected:(LMHexCell *)_cell {
   NSLog( @"Selected hex: %@", _cell );
+  
   if( _cell ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:_cell];
     [self playNote:[(ELHex*)_cell note] velocity:100 duration:0.8];

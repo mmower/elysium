@@ -64,6 +64,12 @@
          duration:[self duration]];
 }
 
+// Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)_attributes_ {
+  [[self hex] drawText:[[[self hex] note] name]];
+}
+
 - (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
   if( [config definesValueForKey:@"velocity"] ) {
     [_attributes_ setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];

@@ -86,7 +86,7 @@
   data[1] = (Byte)_note;
   data[2] = (Byte)_velocity;
   
-  NSLog( @"Calling sendMessage" );
+  // NSLog( @"Calling sendMessage" );
   
   [self sendMessage:data length:3];
 }
@@ -119,7 +119,7 @@
 }
 
 - (void)sendMessage:(Byte *)_data_ length:(int)_length_ {
-  NSLog( @"MIDIController sendMessage" );
+  // NSLog( @"MIDIController sendMessage" );
   
   MIDIPacketList *packetList = malloc( sizeof( MIDIPacketList ) * sizeof( Byte ) );
   NSAssert( packetList != NULL, @"Failed to allocate MIDIPacketList" );
@@ -131,7 +131,7 @@
   packet = MIDIPacketListAdd( packetList, sizeof( MIDIPacketList ), packet, timeStamp, _length_, _data_ );
   NSAssert( packet != NULL, @"Failed to add MIDIPacket to MIDIPacketList" );
   
-  NSLog( @"MIDIController sending MIDI message(s)" );
+  // NSLog( @"MIDIController sending MIDI message(s)" );
   [source processMIDIPacketList:packetList sender:self];
   
   // OSStatus result = MIDISend( outputPort, destination, packetList );

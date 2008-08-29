@@ -54,14 +54,7 @@
 
 // Custom drawing for hexes
 
+- (void)drawTriangleInDirection:(Direction)direction withAttributes:(NSDictionary *)attributes;
 - (void)drawText:(NSString *)text;
-
-- (void)drawPlayheadSymbolWithAttributes:(NSMutableDictionary *)attributes;
-- (void)drawStartSymbolWithAttributes:(NSMutableDictionary *)attributes;
-- (void)drawBeatSymbolWithAttributes:(NSMutableDictionary *)attributes;
-- (void)drawRicochetSymbolWithAttributes:(NSMutableDictionary *)attributes;
-- (void)drawSinkSymbolWithAttributes:(NSMutableDictionary *)attributes;
-- (void)drawSplitterSymbolWithAttributes:(NSMutableDictionary *)attributes;
-- (void)drawRotorSymbolWithAttributes:(NSMutableDictionary *)attributes;
 
 @end
