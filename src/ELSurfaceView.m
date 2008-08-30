@@ -12,7 +12,11 @@
 #import "ELToolView.h"
 
 #import "ELBeatTool.h"
+#import "ELSinkTool.h"
+#import "ELRotorTool.h"
 #import "ELStartTool.h"
+#import "ELRicochetTool.h"
+#import "ELSplitterTool.h"
 
 NSString* const ELToolColor = @"tool.color";
 
@@ -68,9 +72,21 @@ NSString* const ELToolColor = @"tool.color";
       break;
       
     case EL_TOOL_RICOCHET:
+      [self addRicochetToolToCell:_cell_];
+      break;
+      
     case EL_TOOL_SINK:
+      [self addSinkToolToCell:_cell_];
+      break;
+      
     case EL_TOOL_SPLITTER:
+      [self addSplitterToolToCell:_cell_];
+      break;
+      
     case EL_TOOL_ROTOR:
+      [self addRotorToolToCell:_cell_];
+      break;
+      
     default:
       NSAssert1( NO, @"Unknown tool tag %d experienced!", _toolTag_ );
   }
@@ -86,6 +102,26 @@ NSString* const ELToolColor = @"tool.color";
 
 - (void)addBeatToolToCell:(ELHexCell *)_cell_ {
   ELBeatTool *tool = [[ELBeatTool alloc] init];
+  [_cell_ addTool:tool];
+}
+
+- (void)addRicochetToolToCell:(ELHexCell *)_cell_ {
+  ELRicochetTool *tool = [[ELRicochetTool alloc] initWithDirection:N];
+  [_cell_ addTool:tool];
+}
+
+- (void)addSinkToolToCell:(ELHexCell *)_cell_ {
+  ELSinkTool *tool = [[ELSinkTool alloc] init];
+  [_cell_ addTool:tool];
+}
+
+- (void)addSplitterToolToCell:(ELHexCell *)_cell_ {
+  ELSplitterTool *tool = [[ELSplitterTool alloc] init];
+  [_cell_ addTool:tool];
+}
+
+- (void)addRotorToolToCell:(ELHexCell *)_cell_ {
+  ELRotorTool *tool = [[ELRotorTool alloc] init];
   [_cell_ addTool:tool];
 }
 

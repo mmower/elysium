@@ -25,6 +25,10 @@
 - (void)addTool:(int)toolTag toCell:(ELHexCell *)cell;
 - (void)addStartToolToCell:(ELHexCell *)cell;
 - (void)addBeatToolToCell:(ELHexCell *)cell;
+- (void)addRicochetToolToCell:(ELHexCell *)cell;
+- (void)addSinkToolToCell:(ELHexCell *)cell;
+- (void)addSplitterToolToCell:(ELHexCell *)cell;
+- (void)addRotorToolToCell:(ELHexCell *)cell;
 
 - (void)cellWasUpdated:(NSNotification*)notification;
     
