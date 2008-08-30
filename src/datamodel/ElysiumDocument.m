@@ -49,13 +49,8 @@
     [player setMIDIController:[self midiController]];
     [player setDocument:self];
     
-    ELLayer *layer = [player layerForChannel:1];
-    [[layer hexAtColumn:5 row:5] addTool:[[ELStartTool alloc] initWithDirection:NE TTL:25]];
-    [[layer hexAtColumn:6 row:5] addTool:[ELBeatTool new]];
-    [[layer hexAtColumn:11 row:8] addTool:[ELBeatTool new]];
-    
     [layerView setDelegate:self];
-    [layerView setDataSource:layer];
+    [layerView setDataSource:[player layerForChannel:1]];
     
     [[NSApp delegate] showPalette:self];
 }

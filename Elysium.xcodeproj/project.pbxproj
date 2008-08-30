@@ -104,6 +104,8 @@
 		C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */; };
 		C9E8D9CC0E699834005AD9B7 /* HexBeatInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9CB0E699834005AD9B7 /* HexBeatInspector.xib */; };
 		C9E8D9D10E699A0F005AD9B7 /* ELHexBeatInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E8D9D00E699A0F005AD9B7 /* ELHexBeatInspectorPane.m */; };
+		C9E8DA010E69A0BD005AD9B7 /* HexRicochetInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E8DA000E69A0BD005AD9B7 /* HexRicochetInspector.xib */; };
+		C9E8DA040E69A0C9005AD9B7 /* ELHexRicochetInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E8DA030E69A0C9005AD9B7 /* ELHexRicochetInspectorPane.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,6 +277,9 @@
 		C9E8D9CB0E699834005AD9B7 /* HexBeatInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexBeatInspector.xib; sourceTree = "<group>"; };
 		C9E8D9CF0E699A0F005AD9B7 /* ELHexBeatInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexBeatInspectorPane.h; sourceTree = "<group>"; };
 		C9E8D9D00E699A0F005AD9B7 /* ELHexBeatInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexBeatInspectorPane.m; sourceTree = "<group>"; };
+		C9E8DA000E69A0BD005AD9B7 /* HexRicochetInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexRicochetInspector.xib; sourceTree = "<group>"; };
+		C9E8DA020E69A0C9005AD9B7 /* ELHexRicochetInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexRicochetInspectorPane.h; sourceTree = "<group>"; };
+		C9E8DA030E69A0C9005AD9B7 /* ELHexRicochetInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexRicochetInspectorPane.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,6 +521,7 @@
 		C97FEBD80E4F0754008F309B /* inspector */ = {
 			isa = PBXGroup;
 			children = (
+				C9E8D9FF0E69A0B1005AD9B7 /* hexricochet */,
 				C9E8D9C60E6997C8005AD9B7 /* hexbeat */,
 				C95A63080E50E7DD00CBF555 /* hexstart */,
 				C95A63070E50E7D200CBF555 /* hexinfo */,
@@ -612,6 +618,16 @@
 				C9E8D9D00E699A0F005AD9B7 /* ELHexBeatInspectorPane.m */,
 			);
 			name = hexbeat;
+			sourceTree = "<group>";
+		};
+		C9E8D9FF0E69A0B1005AD9B7 /* hexricochet */ = {
+			isa = PBXGroup;
+			children = (
+				C9E8DA000E69A0BD005AD9B7 /* HexRicochetInspector.xib */,
+				C9E8DA020E69A0C9005AD9B7 /* ELHexRicochetInspectorPane.h */,
+				C9E8DA030E69A0C9005AD9B7 /* ELHexRicochetInspectorPane.m */,
+			);
+			name = hexricochet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -781,6 +797,7 @@
 				C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */,
 				C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */,
 				C9E8D9CC0E699834005AD9B7 /* HexBeatInspector.xib in Resources */,
+				C9E8DA010E69A0BD005AD9B7 /* HexRicochetInspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +857,7 @@
 				C9E8D8F70E687F2A005AD9B7 /* ELToolView.m in Sources */,
 				C9E8D90E0E68A947005AD9B7 /* ELSurfaceView.m in Sources */,
 				C9E8D9D10E699A0F005AD9B7 /* ELHexBeatInspectorPane.m in Sources */,
+				C9E8DA040E69A0C9005AD9B7 /* ELHexRicochetInspectorPane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

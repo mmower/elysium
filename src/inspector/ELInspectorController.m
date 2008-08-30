@@ -15,6 +15,7 @@
 #import "ELHexBeatInspectorPane.h"
 #import "ELHexInfoInspectorPlugin.h"
 #import "ELHexStartInspectorPlugin.h"
+#import "ELHexRicochetInspectorPane.h"
 
 #import "ELConfig.h"
 #import "ELTool.h"
@@ -59,6 +60,7 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
   [self addInspectorPane:[[ELHexInfoInspectorPlugin alloc] init]];
   [self addInspectorPane:[[ELHexStartInspectorPlugin alloc] init]];
   [self addInspectorPane:[[ELHexBeatInspectorPane alloc] init]];
+  [self addInspectorPane:[[ELHexRicochetInspectorPane alloc] init]];
 }
 
 - (void)addInspectorPane:(ELInspectorPane *)pane {
