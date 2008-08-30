@@ -10,11 +10,15 @@
 
 #import <HoneycombView/LMHoneycombView.h>
 
+
+
 @class ELHexCell;
 
 @interface ELSurfaceView : LMHoneycombView {
-
+  NSColor *toolColor;
 }
+
+@property (assign) NSColor *toolColor;
 
 - (ELHexCell *)cellUnderMouseLocation:(NSPoint)point;
 

@@ -14,6 +14,8 @@
 #import "ELBeatTool.h"
 #import "ELStartTool.h"
 
+NSString* const ELToolColor = @"tool.color";
+
 @implementation ELSurfaceView
 
 - (id)initWithFrame:(NSRect)_frame_ {
@@ -21,6 +23,7 @@
     [self setDefaultColor:[NSColor colorWithDeviceRed:(12.0/255) green:(153.0/255) blue:(206.0/255) alpha:0.8]];
     [self setBorderColor:[NSColor colorWithDeviceRed:(11.0/255) green:(75.0/255) blue:(169.0/255) alpha:0.8]];
     [self setSelectedColor:[NSColor blueColor]];
+    [self setToolColor:[NSColor yellowColor]];
     [self registerForDraggedTypes:[NSArray arrayWithObject:ToolPBoardType]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -30,6 +33,16 @@
   }
   
   return self;
+}
+
+@dynamic toolColor;
+
+- (void)setToolColor:(NSColor *)_color_ {
+  [[self drawingAttributes] setObject:_color_ forKey:ELToolColor];
+}
+
+- (NSColor *)toolColor {
+  return [[self drawingAttributes] objectForKey:ELToolColor];
 }
 
 - (BOOL)acceptsFirstMouse {

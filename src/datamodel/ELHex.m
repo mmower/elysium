@@ -162,10 +162,9 @@ NSString* elementDescription( NSBezierPathElement elt ) {
 // appropriately.
 //
 - (void)drawTriangleInDirection:(Direction)_direction_ withAttributes:(NSDictionary *)_attributes_ {
-  NSLog( @"Draw triangle in direction: %d", _direction_ );
-  NSPoint base1 = NSMakePoint( [self centre].x - [self radius] / 3, [self centre].y + [self radius] / 3 );
-  NSPoint base2 = NSMakePoint( [self centre].x + [self radius] / 3, [self centre].y + [self radius] / 3 );
-  NSPoint apex = NSMakePoint( [self centre].x, [self centre].y + 2 * [self radius] / 3 );
+  NSPoint base1 = NSMakePoint( [self centre].x - [self radius] / 4, [self centre].y + [self radius] / 2 );
+  NSPoint base2 = NSMakePoint( [self centre].x + [self radius] / 4, [self centre].y + [self radius] / 2 );
+  NSPoint apex = NSMakePoint( [self centre].x, [self centre].y + 3 * [self radius] / 4 );
   
   NSBezierPath *trianglePath = [NSBezierPath bezierPath];
   [trianglePath moveToPoint:base1];
@@ -174,16 +173,16 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [trianglePath lineToPoint:base1];
   [trianglePath closePath];
   
-  [[NSColor yellowColor] set];
+  if( _direction_ != 0 ) {
+    NSAffineTransform *transform = [NSAffineTransform transform];
+    [transform translateXBy:centre.x yBy:centre.y];
+    [transform rotateByDegrees:(360.0 - ( _direction_ * 60 ))];
+    [transform translateXBy:-centre.x yBy:-centre.y];
+    [trianglePath transformUsingAffineTransform:transform];
+  }
   
-  NSAffineTransform *transform = [NSAffineTransform transform];
-  [transform translateXBy:centre.x yBy:centre.y];
-  [transform rotateByDegrees:( _direction_ - 1 ) * 60];
-  [transform translateXBy:-centre.x yBy:-centre.y];
-  
-  [trianglePath transformUsingAffineTransform:transform];
+  [[_attributes_ objectForKey:ELToolColor] set];
   [trianglePath fill];
-  [trianglePath setLineWidth:3.0];
 }
 
 - (void)drawOnHoneycombView:(LMHoneycombView *)_view_ withAttributes:(NSMutableDictionary *)_attributes_ {

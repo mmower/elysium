@@ -68,8 +68,20 @@
   NSPoint centre = [[self hex] centre];
   float radius = [[self hex] radius];
   
-  NSBezierPath *symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/8, centre.y - radius/8, radius/4, radius/4 )];
-  [[NSColor yellowColor] set];
+  // A filled circle at the centre, surrounded by two concentric circles
+  NSBezierPath *symbolPath;
+  
+  [[_attributes_ objectForKey:ELToolColor] set];
+  
+  symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/12, centre.y - radius/12, radius/6, radius/6 )];
+  [symbolPath fill];
+  
+  symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/4, centre.y - radius/4, radius/2, radius/2 )];
+  [symbolPath setLineWidth:2.0];
+  [symbolPath stroke];
+
+  symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - 3*radius/8, centre.y - 3*radius/8, 3*radius/4, 3*radius/4 )];
+  [symbolPath setLineWidth:2.0];
   [symbolPath stroke];
   
   [[self hex] drawTriangleInDirection:[self direction] withAttributes:_attributes_];
