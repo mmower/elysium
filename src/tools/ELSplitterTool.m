@@ -25,17 +25,19 @@
   return self;
 }
 
-- (void)run:(ELPlayhead *)_playhead {
-  NSLog( @"Splitter running" );
-  [super run:_playhead];
-  
-  [_playhead setPosition:nil];
-  for( int direction = N; direction <= NW; direction++ ) {
-    if( direction != [_playhead direction] ) {
-      [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
-                                                    direction:direction
-                                                          TTL:[_playhead TTL]]];
+- (BOOL)run:(ELPlayhead *)_playhead {
+  if( [super run:_playhead] ) {
+    [_playhead setPosition:nil];
+    for( int direction = N; direction <= NW; direction++ ) {
+      if( direction != [_playhead direction] ) {
+        [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
+                                                      direction:direction
+                                                            TTL:[_playhead TTL]]];
+      }
     }
+    return YES;
+  } else {
+    return NO;
   }
 }
 

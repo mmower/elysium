@@ -57,11 +57,15 @@
 
 // Tool runner
 
-- (void)run:(ELPlayhead *)_playhead {
-  [super run:_playhead];
-  [layer playNote:[[_playhead position] note]
-         velocity:[self velocity]
-         duration:[self duration]];
+- (BOOL)run:(ELPlayhead *)_playhead {
+  if( [super run:_playhead] ) {
+    [layer playNote:[[_playhead position] note]
+           velocity:[self velocity]
+           duration:[self duration]];
+    return YES;
+  } else {
+    return NO;
+  }
 }
 
 // Drawing

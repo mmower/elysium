@@ -35,12 +35,9 @@
 }
 
 - (void)setToolEnabled:(BOOL)_enabled_ {
-  NSLog( @"setToolEnabled:%@", _enabled_ ? @"YES" : @"NO" );
-  if( _enabled_ ) {
-    [inspectee addTool:[[ELStartTool alloc] initWithDirection:N TTL:25]];
-  } else {
-    [inspectee removeTool:@"start"];
-  }
+  [[self tool] setEnabled:_enabled_];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyCellWasUpdated object:[[self tool] hex]];
 }
 
 - (float)toolDirection {
@@ -49,6 +46,8 @@
 
 - (void)setToolDirection:(float)_direction_ {
   [[self tool] setDirection:(_direction_ / 60.0)];
+
+  [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyCellWasUpdated object:[[self tool] hex]];
 }
 
 - (int)toolTTL {
@@ -57,6 +56,8 @@
 
 - (void)setToolTTL:(int)_ttl_ {
   [[self tool] setTTL:_ttl_];
+
+  [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyCellWasUpdated object:[[self tool] hex]];
 }
 
 // Update our custom bindings

@@ -27,15 +27,18 @@
   return self;
 }
 
-- (void)run:(ELPlayhead *)_playhead {
-  [super run:_playhead];
-  
-  if( [[_playhead position] toolOfType:@"ricochet"] ) {
-    ELRicochetTool *tool = (ELRicochetTool *)[[_playhead position] toolOfType:@"ricochet"];
-    [tool setDirection:([tool direction]+1 % 6)];
-  } else if( [[_playhead position] toolOfType:@"start"] ) {
-    ELStartTool *tool = (ELStartTool *)[[_playhead position] toolOfType:@"start"];
-    [tool setDirection:([tool direction]+1 % 6)];
+- (BOOL)run:(ELPlayhead *)_playhead {
+  if( [super run:_playhead] ) {
+    if( [[_playhead position] toolOfType:@"ricochet"] ) {
+      ELRicochetTool *tool = (ELRicochetTool *)[[_playhead position] toolOfType:@"ricochet"];
+      [tool setDirection:([tool direction]+1 % 6)];
+    } else if( [[_playhead position] toolOfType:@"start"] ) {
+      ELStartTool *tool = (ELStartTool *)[[_playhead position] toolOfType:@"start"];
+      [tool setDirection:([tool direction]+1 % 6)];
+    }
+    return YES;
+  } else {
+    return NO;
   }
 }
 

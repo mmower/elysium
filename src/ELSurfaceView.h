@@ -21,5 +21,7 @@
 - (void)addTool:(int)toolTag toCell:(ELHexCell *)cell;
 - (void)addStartToolToCell:(ELHexCell *)cell;
 - (void)addBeatToolToCell:(ELHexCell *)cell;
+
+- (void)cellWasUpdated:(NSNotification*)notification;
     
 @end

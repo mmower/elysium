@@ -81,8 +81,8 @@
 }
 
 // Tool specific invocation goes here
-- (void)run:(ELPlayhead *)playhead {
-  NSLog( @"Tool of type %@ has been run at %@", toolType, hex );
+- (BOOL)run:(ELPlayhead *)playhead {
+  return enabled;
 }
 
 // Drawing

@@ -22,6 +22,11 @@
     [self setBorderColor:[NSColor colorWithDeviceRed:(11.0/255) green:(75.0/255) blue:(169.0/255) alpha:0.8]];
     [self setSelectedColor:[NSColor blueColor]];
     [self registerForDraggedTypes:[NSArray arrayWithObject:ToolPBoardType]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cellWasUpdated:)
+                                                 name:ELNotifyCellWasUpdated
+                                               object:nil];
   }
   
   return self;
@@ -107,6 +112,11 @@
 
 - (void)concludeDragOperation:(id <NSDraggingInfo>)_sender_ {
   NSLog( @"concludeDragOperation:" );
+}
+
+- (void)cellWasUpdated:(NSNotification*)_notification_
+{
+  [self setNeedsDisplay:YES];
 }
 
 @end

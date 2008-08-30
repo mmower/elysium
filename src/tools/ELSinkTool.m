@@ -24,9 +24,13 @@
   return self;
 }
 
-- (void)run:(ELPlayhead *)_playhead {
-  [super run:_playhead];
-  [_playhead setPosition:nil];
+- (BOOL)run:(ELPlayhead *)_playhead {
+  if( [super run:_playhead] ) {
+    [_playhead setPosition:nil];
+    return YES;
+  } else {
+    return NO;
+  }
 }
 
 @end

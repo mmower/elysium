@@ -38,9 +38,13 @@
 
 // Tool runner
 
-- (void)run:(ELPlayhead *)_playhead {
-  [super run:_playhead];
-  [_playhead setDirection:[self direction]];
+- (BOOL)run:(ELPlayhead *)_playhead {
+  if( [super run:_playhead] ) {
+    [_playhead setDirection:[self direction]];
+    return YES;
+  } else {
+    return NO;
+  }
 }
 
 @end

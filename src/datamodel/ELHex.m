@@ -120,33 +120,6 @@
   [_text drawAtPoint:strOrigin withAttributes:attributes];
 }
 
-  // [[NSColor whiteColor] set];
-  // 
-  // NSRect bounds = [path bounds];
-  // float l = bounds.size.width / 5;
-  // 
-  // NSBezierPath *symbolPath = [NSBezierPath bezierPath];
-  // 
-  // NSAffineTransform *transform = [NSAffineTransform transform];
-  // [transform translateXBy:centre.x yBy:centre.y];
-  // [transform rotateByDegrees:d * 60];
-  // [transform translateXBy:-centre.x yBy:-centre.y];
-  // 
-  // NSPoint p1 = NSMakePoint( bounds.origin.x + ( bounds.size.width - l ) / 2, bounds.origin.y + 2*l );
-  // NSPoint p2 = NSMakePoint( bounds.origin.x + ( bounds.size.width + l ) / 2, bounds.origin.y + 2*l );
-  // NSPoint p3 = NSMakePoint( bounds.origin.x + bounds.size.width / 2, bounds.origin.y + 3*l );
-  // 
-  // [symbolPath moveToPoint:p1];
-  // [symbolPath lineToPoint:p2];
-  // [symbolPath lineToPoint:p3];
-  // [symbolPath lineToPoint:p1];
-  // [symbolPath closePath];
-  // [symbolPath stroke];
-  // [symbolPath fill];
-  // 
-  // 
-  // [self drawText:@"P"];
-  
 int mapPathSection( Direction d ) {
   switch( d % 6 ) {
     case N:
@@ -182,40 +155,35 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     assert( NO );
   }
 }
-  
+
+// Draw a triangle to represent the direction a playhead might leave a hex
+//
+// The strategy is to draw a triangle heading north, then rotate it
+// appropriately.
+//
 - (void)drawTriangleInDirection:(Direction)_direction_ withAttributes:(NSDictionary *)_attributes_ {
-  
-  // Get the face of the hex path corresponding to the given direction
-  NSPoint points[3];
-  
-  [[self path] elementAtIndex:mapPathSection(_direction_) associatedPoints:points];
-  NSPoint anchor1 = NSMakePoint( points[0].x, points[0].y );
-  
-  [[self path] elementAtIndex:mapPathSection(_direction_+1) associatedPoints:points];
-  NSPoint anchor2 = NSMakePoint( points[0].x, points[0].y );
-  
-  // NSPoint apex = NSMakePoint( ( anchor1.x + anchor2.x ) / 2, ( anchor1.y + anchor2.y ) / 2 );
-  
-  
-  // NSPoint anchor3;
-  // anchor3.x = anchor1.x + anchor2.x / 2;
-  // anchor3.y = 
+  NSLog( @"Draw triangle in direction: %d", _direction_ );
+  NSPoint base1 = NSMakePoint( [self centre].x - [self radius] / 3, [self centre].y + [self radius] / 3 );
+  NSPoint base2 = NSMakePoint( [self centre].x + [self radius] / 3, [self centre].y + [self radius] / 3 );
+  NSPoint apex = NSMakePoint( [self centre].x, [self centre].y + 2 * [self radius] / 3 );
   
   NSBezierPath *trianglePath = [NSBezierPath bezierPath];
-  [trianglePath moveToPoint:centre];
-  [trianglePath lineToPoint:anchor1];
-  [trianglePath lineToPoint:anchor2];
-  [trianglePath lineToPoint:centre];
+  [trianglePath moveToPoint:base1];
+  [trianglePath lineToPoint:apex];
+  [trianglePath lineToPoint:base2];
+  [trianglePath lineToPoint:base1];
   [trianglePath closePath];
   
   [[NSColor yellowColor] set];
+  
+  NSAffineTransform *transform = [NSAffineTransform transform];
+  [transform translateXBy:centre.x yBy:centre.y];
+  [transform rotateByDegrees:( _direction_ - 1 ) * 60];
+  [transform translateXBy:-centre.x yBy:-centre.y];
+  
+  [trianglePath transformUsingAffineTransform:transform];
   [trianglePath fill];
   [trianglePath setLineWidth:3.0];
-  
-  // NSAffineTransform *transform = [NSAffineTransform transform];
-  // [transform translateXBy:centre.x yBy:centre.y];
-  // [transform rotateByDegrees:_direction_ * 60];
-  // [transform translateXBy:-centre.x yBy:-centre.y];
 }
 
 - (void)drawOnHoneycombView:(LMHoneycombView *)_view_ withAttributes:(NSMutableDictionary *)_attributes_ {

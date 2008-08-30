@@ -51,32 +51,25 @@
 
 // Tool runner
 
-- (void)run:(ELPlayhead *)_playhead {
-  [super run:_playhead];
-  [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
-                                                direction:[self direction]
-                                                      TTL:[self TTL]]];
+- (BOOL)run:(ELPlayhead *)_playhead {
+  if( [super run:_playhead] ) {
+    [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
+                                                  direction:[self direction]
+                                                        TTL:[self TTL]]];
+    return YES;
+  } else {
+    return NO;
+  }
 }
 
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  NSRect bounds = [[[self hex] path] bounds];
-  CGFloat width = NSWidth( bounds );
-  CGFloat height = NSHeight( bounds );
+  NSPoint centre = [[self hex] centre];
+  float radius = [[self hex] radius];
   
-  Direction d = ( 6 - [self direction] ) % 6;
-  d = ( 6 - d ) % 6;
-  // NSLog( @"Direction = %d", d );
-  
-  NSAffineTransform *transform = [NSAffineTransform transform];
-  [transform translateXBy:[[self hex] centre].x yBy:[[self hex] centre].y];
-  [transform rotateByDegrees:d * 60];
-  [transform translateXBy:-[[self hex] centre].x yBy:-[[self hex]centre].y];
-  
-  NSRect drawingBox = NSMakeRect( [[self hex] centre].x - width/16, [[self hex] centre].y - height / 4, width/8, width/8 );
-  NSBezierPath *symbolPath = [NSBezierPath bezierPathWithOvalInRect:drawingBox];
-  [symbolPath transformUsingAffineTransform:transform];
+  NSBezierPath *symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/8, centre.y - radius/8, radius/4, radius/4 )];
+  [[NSColor yellowColor] set];
   [symbolPath stroke];
   
   [[self hex] drawTriangleInDirection:[self direction] withAttributes:_attributes_];

@@ -10,6 +10,8 @@
 
 #import "ELInspectorPane.h"
 
+NSString* const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
+
 @implementation ELInspectorPane
 
 @dynamic paneView;

@@ -39,7 +39,7 @@
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;
 - (void)removedFromLayer:(ELLayer *)layer;
 
-- (void)run:(ELPlayhead *)playhead;
+- (BOOL)run:(ELPlayhead *)playhead;
 
 // Cooperate with ELData protocol
 
