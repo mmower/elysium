@@ -8,6 +8,7 @@
 
 #import "ELSinkTool.h"
 
+#import "ELHex.h"
 #import "ELPlayhead.h"
 
 @implementation ELSinkTool
@@ -31,6 +32,19 @@
   } else {
     return NO;
   }
+}
+
+// Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)_attributes_ {
+  NSPoint centre = [[self hex] centre];
+  float radius = [[self hex] radius];
+  
+  NSBezierPath *symbolPath;
+  [[_attributes_ objectForKey:ELToolColor] set];
+  symbolPath = [NSBezierPath bezierPathWithRect:NSMakeRect( centre.x - radius / 4, centre.y - radius / 4, radius / 2, radius / 2 )];
+  [symbolPath setLineWidth:2.0];
+  [symbolPath stroke];
 }
 
 @end
