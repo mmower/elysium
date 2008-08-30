@@ -100,6 +100,10 @@
 		C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */; };
 		C9E8D93D0E68B8AF005AD9B7 /* sink.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9390E68B8AF005AD9B7 /* sink.pdf */; };
 		C9E8D93F0E68B95D005AD9B7 /* splitter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */; };
+		C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D95F0E693A88005AD9B7 /* README.markdown */; };
+		C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */; };
+		C9E8D9CC0E699834005AD9B7 /* HexBeatInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9CB0E699834005AD9B7 /* HexBeatInspector.xib */; };
+		C9E8D9D10E699A0F005AD9B7 /* ELHexBeatInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E8D9D00E699A0F005AD9B7 /* ELHexBeatInspectorPane.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +270,11 @@
 		C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = rotor.pdf; sourceTree = "<group>"; };
 		C9E8D9390E68B8AF005AD9B7 /* sink.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sink.pdf; sourceTree = "<group>"; };
 		C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = splitter.pdf; sourceTree = "<group>"; };
+		C9E8D95F0E693A88005AD9B7 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = INSTALL.markdown; sourceTree = "<group>"; };
+		C9E8D9CB0E699834005AD9B7 /* HexBeatInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexBeatInspector.xib; sourceTree = "<group>"; };
+		C9E8D9CF0E699A0F005AD9B7 /* ELHexBeatInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexBeatInspectorPane.h; sourceTree = "<group>"; };
+		C9E8D9D00E699A0F005AD9B7 /* ELHexBeatInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexBeatInspectorPane.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +363,8 @@
 				C9874BFB0E429EF90068E7BF /* HoneycombView-Info.plist */,
 				C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */,
 				C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */,
+				C9E8D95F0E693A88005AD9B7 /* README.markdown */,
+				C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */,
 			);
 			name = Elysium;
 			sourceTree = "<group>";
@@ -361,10 +372,10 @@
 		2A37F4ABFDCFA73011CA2CEA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C97FEBD80E4F0754008F309B /* inspector */,
 				C9E8D90B0E68A934005AD9B7 /* view */,
 				C93D55F70E64113F0077C448 /* palette */,
 				C97FEBDC0E4F07A0008F309B /* datamodel */,
-				C97FEBD80E4F0754008F309B /* inspector */,
 				C97FEBD10E4F071E008F309B /* midi */,
 				C97FEB020E4E0490008F309B /* tools */,
 				C9E43D1B0E33B4BD00C4D343 /* ElysiumController.h */,
@@ -505,6 +516,7 @@
 		C97FEBD80E4F0754008F309B /* inspector */ = {
 			isa = PBXGroup;
 			children = (
+				C9E8D9C60E6997C8005AD9B7 /* hexbeat */,
 				C95A63080E50E7DD00CBF555 /* hexstart */,
 				C95A63070E50E7D200CBF555 /* hexinfo */,
 				C92ACD690E3892F5009CF61B /* Inspector.xib */,
@@ -590,6 +602,16 @@
 				C9E8D90D0E68A947005AD9B7 /* ELSurfaceView.m */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		C9E8D9C60E6997C8005AD9B7 /* hexbeat */ = {
+			isa = PBXGroup;
+			children = (
+				C9E8D9CB0E699834005AD9B7 /* HexBeatInspector.xib */,
+				C9E8D9CF0E699A0F005AD9B7 /* ELHexBeatInspectorPane.h */,
+				C9E8D9D00E699A0F005AD9B7 /* ELHexBeatInspectorPane.m */,
+			);
+			name = hexbeat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -756,6 +778,9 @@
 				C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */,
 				C9E8D93D0E68B8AF005AD9B7 /* sink.pdf in Resources */,
 				C9E8D93F0E68B95D005AD9B7 /* splitter.pdf in Resources */,
+				C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */,
+				C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */,
+				C9E8D9CC0E699834005AD9B7 /* HexBeatInspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +839,7 @@
 				C93D56000E64118E0077C448 /* ELPaletteController.m in Sources */,
 				C9E8D8F70E687F2A005AD9B7 /* ELToolView.m in Sources */,
 				C9E8D90E0E68A947005AD9B7 /* ELSurfaceView.m in Sources */,
+				C9E8D9D10E699A0F005AD9B7 /* ELHexBeatInspectorPane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
