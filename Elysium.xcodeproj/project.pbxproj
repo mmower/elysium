@@ -47,6 +47,8 @@
 		C95A630A0E50E7F900CBF555 /* HexStartInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95A63090E50E7F900CBF555 /* HexStartInspector.xib */; };
 		C95A63350E50F5A700CBF555 /* ELHexStartInspectorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
+		C96A679D0E6B32F800A7C237 /* ELSurfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C96A679A0E6B32F800A7C237 /* ELSurfaceView.m */; };
+		C96A679E0E6B32F800A7C237 /* ElysiumController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96A679C0E6B32F800A7C237 /* ElysiumController.m */; };
 		C97FEB380E4E0D0B008F309B /* ELBeatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB040E4E0490008F309B /* ELBeatTool.m */; };
 		C97FEB390E4E0D0B008F309B /* ELRicochetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB060E4E0490008F309B /* ELRicochetTool.m */; };
 		C97FEB3A0E4E0D0B008F309B /* ELSplitterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB080E4E0490008F309B /* ELSplitterTool.m */; };
@@ -89,12 +91,10 @@
 		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
 		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
-		C9E43D1D0E33B4BD00C4D343 /* ElysiumController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E43D1C0E33B4BD00C4D343 /* ElysiumController.m */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E8D8F70E687F2A005AD9B7 /* ELToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E8D8F60E687F2A005AD9B7 /* ELToolView.m */; };
-		C9E8D90E0E68A947005AD9B7 /* ELSurfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E8D90D0E68A947005AD9B7 /* ELSurfaceView.m */; };
 		C9E8D93A0E68B8AF005AD9B7 /* play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9360E68B8AF005AD9B7 /* play.pdf */; };
 		C9E8D93B0E68B8AF005AD9B7 /* ricochet.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */; };
 		C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */; };
@@ -195,6 +195,10 @@
 		C95A63090E50E7F900CBF555 /* HexStartInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexStartInspector.xib; sourceTree = "<group>"; };
 		C95A63330E50F5A700CBF555 /* ELHexStartInspectorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexStartInspectorPlugin.h; sourceTree = "<group>"; };
 		C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexStartInspectorPlugin.m; sourceTree = "<group>"; };
+		C96A67990E6B32F800A7C237 /* ELSurfaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSurfaceView.h; sourceTree = "<group>"; };
+		C96A679A0E6B32F800A7C237 /* ELSurfaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSurfaceView.m; sourceTree = "<group>"; };
+		C96A679B0E6B32F800A7C237 /* ElysiumController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElysiumController.h; sourceTree = "<group>"; };
+		C96A679C0E6B32F800A7C237 /* ElysiumController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumController.m; sourceTree = "<group>"; };
 		C97FEB030E4E0490008F309B /* ELBeatTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELBeatTool.h; sourceTree = "<group>"; };
 		C97FEB040E4E0490008F309B /* ELBeatTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELBeatTool.m; sourceTree = "<group>"; };
 		C97FEB050E4E0490008F309B /* ELRicochetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRicochetTool.h; sourceTree = "<group>"; };
@@ -259,14 +263,10 @@
 		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9E43C930E335E1B00C4D343 /* Elysium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elysium.h; sourceTree = "<group>"; };
-		C9E43D1B0E33B4BD00C4D343 /* ElysiumController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElysiumController.h; sourceTree = "<group>"; };
-		C9E43D1C0E33B4BD00C4D343 /* ElysiumController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumController.m; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		C9E43D5E0E33C27100C4D343 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		C9E8D8F50E687F2A005AD9B7 /* ELToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELToolView.h; sourceTree = "<group>"; };
 		C9E8D8F60E687F2A005AD9B7 /* ELToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELToolView.m; sourceTree = "<group>"; };
-		C9E8D90C0E68A947005AD9B7 /* ELSurfaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSurfaceView.h; sourceTree = "<group>"; };
-		C9E8D90D0E68A947005AD9B7 /* ELSurfaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSurfaceView.m; sourceTree = "<group>"; };
 		C9E8D9360E68B8AF005AD9B7 /* play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = play.pdf; sourceTree = "<group>"; };
 		C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ricochet.pdf; sourceTree = "<group>"; };
 		C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = rotor.pdf; sourceTree = "<group>"; };
@@ -378,14 +378,11 @@
 			isa = PBXGroup;
 			children = (
 				C97FEBD80E4F0754008F309B /* inspector */,
-				C9E8D90B0E68A934005AD9B7 /* view */,
 				C93D55F70E64113F0077C448 /* palette */,
 				C97FEBDC0E4F07A0008F309B /* datamodel */,
 				C97FEBD10E4F071E008F309B /* midi */,
 				C97FEB020E4E0490008F309B /* tools */,
-				C9E43D1B0E33B4BD00C4D343 /* ElysiumController.h */,
 				C9E43C930E335E1B00C4D343 /* Elysium.h */,
-				C9E43D1C0E33B4BD00C4D343 /* ElysiumController.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -484,6 +481,18 @@
 			name = hexstart;
 			sourceTree = "<group>";
 		};
+		C96A67980E6B32F800A7C237 /* mainview */ = {
+			isa = PBXGroup;
+			children = (
+				C96A67990E6B32F800A7C237 /* ELSurfaceView.h */,
+				C96A679A0E6B32F800A7C237 /* ELSurfaceView.m */,
+				C96A679B0E6B32F800A7C237 /* ElysiumController.h */,
+				C96A679C0E6B32F800A7C237 /* ElysiumController.m */,
+			);
+			name = mainview;
+			path = src/mainview;
+			sourceTree = SOURCE_ROOT;
+		};
 		C97FEB020E4E0490008F309B /* tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +530,7 @@
 		C97FEBD80E4F0754008F309B /* inspector */ = {
 			isa = PBXGroup;
 			children = (
+				C96A67980E6B32F800A7C237 /* mainview */,
 				C9E8D9FF0E69A0B1005AD9B7 /* hexricochet */,
 				C9E8D9C60E6997C8005AD9B7 /* hexbeat */,
 				C95A63080E50E7DD00CBF555 /* hexstart */,
@@ -599,15 +609,6 @@
 				C9B88E410E64A60C00FA411E /* start.pdf */,
 			);
 			path = images;
-			sourceTree = "<group>";
-		};
-		C9E8D90B0E68A934005AD9B7 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				C9E8D90C0E68A947005AD9B7 /* ELSurfaceView.h */,
-				C9E8D90D0E68A947005AD9B7 /* ELSurfaceView.m */,
-			);
-			name = view;
 			sourceTree = "<group>";
 		};
 		C9E8D9C60E6997C8005AD9B7 /* hexbeat */ = {
@@ -831,7 +832,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				C9E43D1D0E33B4BD00C4D343 /* ElysiumController.m in Sources */,
 				C97FEB380E4E0D0B008F309B /* ELBeatTool.m in Sources */,
 				C97FEB390E4E0D0B008F309B /* ELRicochetTool.m in Sources */,
 				C97FEB3A0E4E0D0B008F309B /* ELSplitterTool.m in Sources */,
@@ -855,9 +855,10 @@
 				C95A63350E50F5A700CBF555 /* ELHexStartInspectorPlugin.m in Sources */,
 				C93D56000E64118E0077C448 /* ELPaletteController.m in Sources */,
 				C9E8D8F70E687F2A005AD9B7 /* ELToolView.m in Sources */,
-				C9E8D90E0E68A947005AD9B7 /* ELSurfaceView.m in Sources */,
 				C9E8D9D10E699A0F005AD9B7 /* ELHexBeatInspectorPane.m in Sources */,
 				C9E8DA040E69A0C9005AD9B7 /* ELHexRicochetInspectorPane.m in Sources */,
+				C96A679D0E6B32F800A7C237 /* ELSurfaceView.m in Sources */,
+				C96A679E0E6B32F800A7C237 /* ElysiumController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
