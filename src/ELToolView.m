@@ -20,6 +20,10 @@ NSString *ToolPBoardType = @"ToolPBoardType";
   }
 }
 
+- (BOOL)acceptsFirstMouse:(NSEvent *)_event_ {
+  return YES;
+}
+
 - (void)mouseDown:(NSEvent *)_event_ {
   savedEvent = _event_;
 }
