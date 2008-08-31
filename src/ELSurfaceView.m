@@ -49,7 +49,7 @@ NSString* const ELToolColor = @"tool.color";
   return [[self drawingAttributes] objectForKey:ELToolColor];
 }
 
-- (BOOL)acceptsFirstMouse {
+- (BOOL)acceptsFirstMouse:(NSEvent *)_event_ {
   return YES;
 }
 
