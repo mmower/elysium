@@ -26,7 +26,7 @@
   if( [super run:_playhead] ) {
     [_playhead setPosition:nil];
     for( int direction = N; direction <= NW; direction++ ) {
-      if( direction != [_playhead direction] ) {
+      if( direction != INVERSE_DIRECTION( [_playhead direction] ) ) {
         [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:[hex neighbour:direction]
                                                       direction:direction
                                                             TTL:[_playhead TTL]]];
