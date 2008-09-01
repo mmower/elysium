@@ -52,9 +52,9 @@
     }
     
     if( [self clockwise] ) {
-      [tool setDirection:([tool direction]+1 % 6)];
+      [tool setDirection:(([tool direction]+1) % 6)];
     } else {
-      [tool setDirection:([tool direction]-1 % 6)];
+      [tool setDirection:(([tool direction]-1) % 6)];
     }
 
     return YES;

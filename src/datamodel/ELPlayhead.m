@@ -30,10 +30,16 @@
   return position;
 }
 
-- (void)setPosition:(ELHex *)_position {
+- (void)setPosition:(ELHex *)_position_ {
   [position playheadLeaving:self];
-  position = _position;
-  [position playheadEntering:self];
+
+  if( _position_ ) {
+    NSAssert( [_position_ isKindOfClass:[ELHex class]], @"Class error <argument>" );
+    position = _position_;
+    [position playheadEntering:self];
+  } else {
+    position = nil;
+  }
 }
 
 @synthesize direction;

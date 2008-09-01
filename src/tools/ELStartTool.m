@@ -29,8 +29,8 @@
   return [config integerForKey:@"direction"];
 }
 
-- (void)setDirection:(Direction)_direction {
-  [config setInteger:_direction forKey:@"direction"];
+- (void)setDirection:(Direction)_direction_ {
+  [config setInteger:_direction_ forKey:@"direction"];
 }
 
 @dynamic TTL;

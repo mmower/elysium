@@ -21,6 +21,8 @@ typedef enum tagDirection {
 
 #define INVERSE_DIRECTION( direction ) ((direction + 3) % 6)
 
+#define ASSERT_VALID_DIRECTION( d ) NSAssert1( d>=0 && d<=5, @"Invalid direction %d specified", d )
+
 // Define the size of the Harmonic Table
 #define HTABLE_COLS 17
 #define HTABLE_ROWS 12

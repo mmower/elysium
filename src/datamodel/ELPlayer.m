@@ -92,14 +92,8 @@
   isRunning = YES;
   
   while( ![thread isCancelled] ) {
-    
-    for( ELLayer *layer in layers ) {
-      [layer run];
-    }
-    
-    // NSLog( @"Calling performSelectorOnMainThread:" );
+    [layers makeObjectsPerformSelector:@selector(run)];
     [document performSelectorOnMainThread:@selector(updateView:) withObject:self waitUntilDone:NO];
-    
     usleep( timerResolution );
   }
   

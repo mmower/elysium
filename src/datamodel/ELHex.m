@@ -52,8 +52,9 @@
   return note;
 }
 
-- (ELHex *)neighbour:(Direction)_direction {
-  return neighbours[_direction];
+- (ELHex *)neighbour:(Direction)_direction_ {
+  ASSERT_VALID_DIRECTION( _direction_ );
+  return neighbours[_direction_];
 }
 
 - (void)addTool:(ELTool *)_tool {
