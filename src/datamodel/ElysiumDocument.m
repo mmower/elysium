@@ -43,8 +43,6 @@
 {
     [super windowControllerDidLoadNib:aController];
     
-    NSLog( @"windowControllerDidLoadNib" );
-    
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     [player setMIDIController:[self midiController]];
     [player setDocument:self];

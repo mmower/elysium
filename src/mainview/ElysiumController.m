@@ -43,12 +43,9 @@
 }
 
 - (IBAction)showPalette:(id)_sender_ {
-  NSLog( @"Request made to show palette" );
   if( !paletteController ) {
     paletteController = [[ELPaletteController alloc] init];
   }
-  
-  NSLog( @"Telling palette controller %@ to show window", paletteController );
   
   // Asking inspector to show itself
   [paletteController showWindow:self];
