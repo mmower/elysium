@@ -17,10 +17,13 @@
 @interface ELConfig : NSObject <ELData> {
   ELConfig              *parent;
   NSMutableDictionary   *data;
+  NSDictionary          *snapshot;
+  NSMutableArray        *children;
 }
 
 - (id)init;
 - (id)initWithParent:(ELConfig *)parent;
+- (void)addChild:(ELConfig *)child;
 
 @property ELConfig *parent;
 
@@ -42,5 +45,8 @@
 - (BOOL)booleanForKey:(NSString *)key;
 
 - (NSString *)stringForKey:(NSString *)key;
+
+- (void)snapshot;
+- (void)restore;
 
 @end

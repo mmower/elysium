@@ -79,7 +79,7 @@
 }
 
 - (void)removedFromLayer:(ELLayer *)layer {
-  // NOP
+  [config setParent:nil];
 }
 
 // Tool specific invocation goes here

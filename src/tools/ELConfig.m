@@ -20,16 +20,40 @@
   return [self initWithParent:nil];
 }
 
-- (id)initWithParent:(ELConfig *)_parent {
+- (id)initWithParent:(ELConfig *)_parent_ {
   if( self = [super init] ) {
-    parent = _parent;
-    data   = [[NSMutableDictionary alloc] init];
+    data     = [[NSMutableDictionary alloc] init];
+    snapshot = nil;
+    children = [[NSMutableArray alloc] init];
+    
+    [self setParent:_parent_];
   }
   
   return self;
 }
 
-@synthesize parent;
+- (void)addChild:(ELConfig *)_child_ {
+  [children addObject:_child_];
+}
+
+- (void)removeChild:(ELConfig *)_child_ {
+  [children removeObject:_child_];
+}
+
+@dynamic parent;
+
+- (ELConfig *)parent {
+  return parent;
+}
+
+- (void)setParent:(ELConfig *)_parent_ {
+  if( parent ) {
+    [parent removeChild:self];
+  }
+  
+  parent = _parent_;
+  [parent addChild:self];
+}
 
 - (void)removeValueForKey:(NSString *)_key {
   [data removeObjectForKey:_key];
@@ -92,6 +116,20 @@
 - (BOOL)booleanForKey:(NSString *)_key_ {
   return [[self valueForKey:_key_] boolValue];
 }
+
+// Make a snapshot of this configuration and all sub-configurations
+- (void)snapshot {
+  snapshot = [data copy];
+  [children makeObjectsPerformSelector:@selector(snapshot)];
+}
+
+// Restore the last snapshot of this configuration and all sub-configurations
+- (void)restore {
+  data = [snapshot mutableCopy];
+  [children makeObjectsPerformSelector:@selector(restore)];
+}
+
+// Debug support
 
 - (void)dump {
   for( NSString *key in [data allKeys] ) {
