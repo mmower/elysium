@@ -43,6 +43,7 @@
 
 - (void)start;
 - (void)stop;
+- (void)reset;
 - (void)playNoteInBackground:(NSDictionary *)noteInfo;
 - (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
 

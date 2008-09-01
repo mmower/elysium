@@ -15,6 +15,7 @@
 #import "ELTimer.h"
 #import "ELLayer.h"
 #import "ELConfig.h"
+#import "ElysiumDocument.h"
 #import "ELHarmonicTable.h"
 #import "ELMIDIController.h"
 
@@ -69,9 +70,7 @@
 - (void)start {
   NSLog( @"Starting player thread." );
   
-  for( ELLayer *layer in layers ) {
-    [layer reset];
-  }
+  [self reset];
   
   timerResolution = 60000000 / ( [config integerForKey:@"bpm"] );
   NSLog( @"Timer resolution = %u", timerResolution );
@@ -87,15 +86,25 @@
   [thread cancel];
 }
 
+- (void)reset {
+  [layers makeObjectsPerformSelector:@selector(reset)];
+}
+
 - (void)run {
   NSLog( @"Player thread is running" );
   isRunning = YES;
+  
+  [config snapshot];
   
   while( ![thread isCancelled] ) {
     [layers makeObjectsPerformSelector:@selector(run)];
     [document performSelectorOnMainThread:@selector(updateView:) withObject:self waitUntilDone:NO];
     usleep( timerResolution );
   }
+  
+  [config restore];
+  [self reset];
+  [document updateView:self];
   
   NSLog( @"Player has stopped." );
   isRunning = NO;
