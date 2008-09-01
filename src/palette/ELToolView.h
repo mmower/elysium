@@ -17,6 +17,8 @@ extern NSString *ToolPBoardType;
 #define EL_TOOL_SPLITTER    0x04
 #define EL_TOOL_ROTOR       0x05
 
+#define EL_TOOL_CLEAR       0x0B
+
 @interface ELToolView : NSImageView {
   NSEvent *savedEvent;
 }

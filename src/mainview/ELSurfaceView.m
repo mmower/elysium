@@ -87,6 +87,10 @@ NSString* const ELToolColor = @"tool.color";
       [_cell_ addTool:[[ELRotorTool alloc] init]];
       break;
       
+    case EL_TOOL_CLEAR:
+      [_cell_ removeAllTools];
+      break;
+      
     default:
       NSAssert1( NO, @"Unknown tool tag %d experienced!", _toolTag_ );
   }

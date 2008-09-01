@@ -10,8 +10,6 @@
 
 #import <HoneycombView/LMHoneycombView.h>
 
-
-
 @class ELHexCell;
 
 @interface ELSurfaceView : LMHoneycombView {

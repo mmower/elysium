@@ -67,6 +67,10 @@
   [tools removeObjectForKey:_type];
 }
 
+- (void)removeAllTools {
+  [tools removeAllObjects];
+}
+
 - (NSArray *)tools {
   return [tools allValues];
 }
