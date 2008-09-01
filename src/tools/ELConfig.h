@@ -17,7 +17,7 @@
 @interface ELConfig : NSObject <ELData> {
   ELConfig              *parent;
   NSMutableDictionary   *data;
-  NSDictionary          *snapshot;
+  NSMutableDictionary   *snapshot;
   NSMutableArray        *children;
 }
 

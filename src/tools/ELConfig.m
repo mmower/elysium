@@ -119,13 +119,16 @@
 
 // Make a snapshot of this configuration and all sub-configurations
 - (void)snapshot {
-  snapshot = [data copy];
+  snapshot = [data mutableCopy];
   [children makeObjectsPerformSelector:@selector(snapshot)];
 }
 
 // Restore the last snapshot of this configuration and all sub-configurations
 - (void)restore {
-  data = [snapshot mutableCopy];
+  if( snapshot ) {
+    data = snapshot;
+    snapshot = nil;
+  }
   [children makeObjectsPerformSelector:@selector(restore)];
 }
 
