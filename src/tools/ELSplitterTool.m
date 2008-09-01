@@ -27,7 +27,7 @@
     [_playhead setPosition:nil];
     for( int direction = N; direction <= NW; direction++ ) {
       if( direction != [_playhead direction] ) {
-        [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
+        [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:[hex neighbour:direction]
                                                       direction:direction
                                                             TTL:[_playhead TTL]]];
       }

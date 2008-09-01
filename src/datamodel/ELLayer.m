@@ -55,9 +55,14 @@
   for( ELPlayhead *playhead in [playheads copy] ) {
     ELHex *hex = [playhead position];
     for( ELTool *tool in [hex toolsExceptType:@"start"] ) {
-      [tool run:playhead];
+      if( ![playhead isDead] ) {
+        [tool run:playhead];
+      }
     }
-    [playhead advance];
+    
+    if( ![playhead isDead] ) {
+      [playhead advance];
+    }
   }
   
   // Cleanup & delete dead playheads
