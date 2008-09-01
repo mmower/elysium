@@ -64,27 +64,27 @@ NSString* const ELToolColor = @"tool.color";
 - (void)addTool:(int)_toolTag_ toCell:(ELHexCell *)_cell_ {
   switch( _toolTag_ ) {
     case EL_TOOL_GENERATOR:
-      [self addStartToolToCell:_cell_];
+      [_cell_ addTool:[[ELStartTool alloc] init]];
       break;
       
     case EL_TOOL_BEAT:
-      [self addBeatToolToCell:_cell_];
+      [_cell_ addTool:[[ELBeatTool alloc] init]];
       break;
       
     case EL_TOOL_RICOCHET:
-      [self addRicochetToolToCell:_cell_];
+      [_cell_ addTool:[[ELRicochetTool alloc] init]];
       break;
       
     case EL_TOOL_SINK:
-      [self addSinkToolToCell:_cell_];
+      [_cell_ addTool:[[ELSinkTool alloc] init]];
       break;
       
     case EL_TOOL_SPLITTER:
-      [self addSplitterToolToCell:_cell_];
+      [_cell_ addTool:[[ELSplitterTool alloc] init]];
       break;
       
     case EL_TOOL_ROTOR:
-      [self addRotorToolToCell:_cell_];
+      [_cell_ addTool:[[ELRotorTool alloc] init]];
       break;
       
     default:
@@ -92,37 +92,6 @@ NSString* const ELToolColor = @"tool.color";
   }
   
   [self setNeedsDisplay:YES];
-}
-
-- (void)addStartToolToCell:(ELHexCell *)_cell_ {
-  ELStartTool *tool = [[ELStartTool alloc] init];
-  [tool setDirection:N];
-  [_cell_ addTool:tool];
-}
-
-- (void)addBeatToolToCell:(ELHexCell *)_cell_ {
-  ELBeatTool *tool = [[ELBeatTool alloc] init];
-  [_cell_ addTool:tool];
-}
-
-- (void)addRicochetToolToCell:(ELHexCell *)_cell_ {
-  ELRicochetTool *tool = [[ELRicochetTool alloc] initWithDirection:N];
-  [_cell_ addTool:tool];
-}
-
-- (void)addSinkToolToCell:(ELHexCell *)_cell_ {
-  ELSinkTool *tool = [[ELSinkTool alloc] init];
-  [_cell_ addTool:tool];
-}
-
-- (void)addSplitterToolToCell:(ELHexCell *)_cell_ {
-  ELSplitterTool *tool = [[ELSplitterTool alloc] init];
-  [_cell_ addTool:tool];
-}
-
-- (void)addRotorToolToCell:(ELHexCell *)_cell_ {
-  ELRotorTool *tool = [[ELRotorTool alloc] init];
-  [_cell_ addTool:tool];
 }
 
 // Drag & Drop tool adding support

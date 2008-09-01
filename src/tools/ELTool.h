@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "Elysium.h"
+
 #import "ELData.h"
 
 @class ELHex;
@@ -15,15 +17,22 @@
 @class ELConfig;
 @class ELPlayhead;
 
+@protocol DirectedTool
+- (BOOL)direction;
+- (void)setDirection:(Direction)direction;
+@end
+
 @interface ELTool : NSObject <ELData> {
   BOOL      enabled;
   NSString  *toolType;
   ELLayer   *layer;
   ELHex     *hex;
   ELConfig  *config;
+  int       preferredOrder;
 }
 
 @property BOOL enabled;
+@property int preferredOrder;
 @property (readonly) NSString *toolType;
 @property (readonly) ELConfig *config;
 @property (readonly) ELLayer *layer;

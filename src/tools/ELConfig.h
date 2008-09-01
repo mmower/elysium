@@ -38,6 +38,9 @@
 - (float)floatForKey:(NSString *)key;
 - (void)setFloat:(float)value forKey:(NSString *)key;
 
+- (void)setBoolean:(BOOL)value forKey:(NSString *)key;
+- (BOOL)booleanForKey:(NSString *)key;
+
 - (NSString *)stringForKey:(NSString *)key;
 
 @end

@@ -16,6 +16,4 @@
 
 }
 
-+ (ELSplitterTool *)new;
-
 @end

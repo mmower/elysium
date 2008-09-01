@@ -16,16 +16,10 @@
 @implementation ELStartTool
 
 - (id)init {
-  self = [super initWithType:@"start"];
-  return self;
-}
-
-- (id)initWithDirection:(Direction)_direction TTL:(int)_ttl {
   if( self = [super initWithType:@"start"] ) {
-    [self setDirection:_direction];
-    [self setTTL:_ttl];
+    [self setDirection:N];
+    [self setPreferredOrder:1];
   }
-
   return self;
 }
 
@@ -68,21 +62,12 @@
   NSPoint centre = [[self hex] centre];
   float radius = [[self hex] radius];
   
-  // A filled circle at the centre, surrounded by two concentric circles
   NSBezierPath *symbolPath;
-  
-  [[_attributes_ objectForKey:ELToolColor] set];
-  
   symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/4, centre.y - radius/4, radius/2, radius/2 )];
-  [symbolPath fill];
-  
-  // symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/4, centre.y - radius/4, radius/2, radius/2 )];
-  // [symbolPath setLineWidth:2.0];
-  // [symbolPath stroke];
-  // 
-  // symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - 3*radius/8, centre.y - 3*radius/8, 3*radius/4, 3*radius/4 )];
-  // [symbolPath setLineWidth:2.0];
-  // [symbolPath stroke];
+  [symbolPath setLineWidth:2.0];
+
+  [[_attributes_ objectForKey:ELToolColor] set];
+  [symbolPath stroke];
   
   [[self hex] drawTriangleInDirection:[self direction] withAttributes:_attributes_];
 }

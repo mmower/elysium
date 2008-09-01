@@ -8,14 +8,11 @@
 
 #import "ELSplitterTool.h"
 
+#import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 
 @implementation ELSplitterTool
-
-+ (ELSplitterTool *)new {
-  return [[ELSplitterTool alloc] init];
-}
 
 - (id)init {
   if( self = [super initWithType:@"splitter"] ) {
@@ -39,6 +36,25 @@
   } else {
     return NO;
   }
+}
+
+// Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)_attributes_ {
+  NSPoint centre = [[self hex] centre];
+  float radius = [[self hex] radius];
+
+  NSBezierPath *symbolPath = [NSBezierPath bezierPath];
+  
+  [symbolPath moveToPoint:NSMakePoint( centre.x - radius/3, centre.y )];
+  [symbolPath lineToPoint:centre];
+  [symbolPath lineToPoint:NSMakePoint( centre.x + radius/3, centre.y + radius/4 )];
+  [symbolPath moveToPoint:centre];
+  [symbolPath lineToPoint:NSMakePoint( centre.x + radius/3, centre.y - radius/4 )];
+  
+  [[_attributes_ objectForKey:ELToolColor] set];
+  [symbolPath setLineWidth:2.0];
+  [symbolPath stroke];
 }
 
 @end

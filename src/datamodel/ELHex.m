@@ -182,7 +182,8 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   }
   
   [[_attributes_ objectForKey:ELToolColor] set];
-  [trianglePath fill];
+  [trianglePath setLineWidth:2.0];
+  [trianglePath stroke];
 }
 
 - (void)drawOnHoneycombView:(LMHoneycombView *)_view_ withAttributes:(NSMutableDictionary *)_attributes_ {

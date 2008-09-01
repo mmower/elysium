@@ -85,6 +85,14 @@
   return [[self valueForKey:_key] stringValue];
 }
 
+- (void)setBoolean:(BOOL)_value_ forKey:(NSString *)_key_ {
+  [self setValue:[NSNumber numberWithBool:_value_] forKey:_key_];
+}
+
+- (BOOL)booleanForKey:(NSString *)_key_ {
+  return [[self valueForKey:_key_] boolValue];
+}
+
 - (void)dump {
   for( NSString *key in [data allKeys] ) {
     NSLog( @"config %@ => %@", key, [data objectForKey:key] );

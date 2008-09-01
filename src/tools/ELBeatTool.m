@@ -17,21 +17,8 @@
 
 @implementation ELBeatTool
 
-+ (id)new {
-  return [[ELBeatTool alloc] init];
-}
-
 - (id)init {
   self = [super initWithType:@"beat"];
-  return self;
-}
-
-- (id)initWithVelocity:(int)_velocity duration:(float)_duration {
-  if( self = [super initWithType:@"beat"] ) {
-    [self setVelocity:_velocity];
-    [self setDuration:_duration];
-  }
-  
   return self;
 }
 
@@ -71,7 +58,19 @@
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  [[self hex] drawText:[[[self hex] note] name]];
+  NSPoint centre = [[self hex] centre];
+  float radius = [[self hex] radius];
+  
+  NSBezierPath *symbolPath = [NSBezierPath bezierPath];
+  [symbolPath moveToPoint:NSMakePoint( centre.x - radius / 6, centre.y + radius / 5 )];
+  [symbolPath lineToPoint:NSMakePoint( centre.x + radius / 4, centre.y )];
+  [symbolPath lineToPoint:NSMakePoint( centre.x - radius / 6, centre.y - radius / 5 )];
+  [symbolPath closePath];
+  [symbolPath setLineWidth:2.0];
+  
+  [[_attributes_ objectForKey:ELToolColor] set];
+  
+  [symbolPath stroke];
 }
 
 - (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {

@@ -11,9 +11,6 @@
 #import "ELTool.h"
 
 @interface ELSinkTool : ELTool {
-
 }
-
-+ (ELSinkTool *)new;
 
 @end

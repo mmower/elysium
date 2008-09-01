@@ -15,8 +15,6 @@
 @interface ELRicochetTool : ELTool {
 }
 
-- (id)initWithDirection:(Direction)direction;
-
 @property Direction direction;
 
 @end

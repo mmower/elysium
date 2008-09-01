@@ -52,15 +52,17 @@
 
 - (id)initWithType:(NSString *)_type config:(ELConfig *)_config {
   if( self = [super init] ) {
-    toolType = _type;
-    config   = _config;
-    enabled  = YES;
+    toolType       = _type;
+    config         = _config;
+    enabled        = YES;
+    preferredOrder = 5;
   }
   
   return self;
 }
 
 @synthesize enabled;
+@synthesize preferredOrder;
 @synthesize toolType;
 @synthesize config;
 @synthesize layer;

@@ -14,10 +14,6 @@
 
 }
 
-+ (id)new;
-
-- (id)initWithVelocity:(int)velocity duration:(float)duration;
-
 @property int velocity;
 @property float duration;
 

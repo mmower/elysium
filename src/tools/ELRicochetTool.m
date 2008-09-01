@@ -20,14 +20,6 @@
   return self;
 }
 
-- (id)initWithDirection:(Direction)_direction {
-  if( self = [super initWithType:@"ricochet"] ) {
-    [self setDirection:_direction];
-  }
-
-  return self;
-}
-
 @dynamic direction;
 
 - (Direction)direction {
@@ -52,22 +44,22 @@
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  NSPoint centre = [[self hex] centre];
-  float radius = [[self hex] radius];
-  
-  NSBezierPath *symbolPath = [NSBezierPath bezierPathWithRect:NSMakeRect( centre.x - 3 * radius / 8, centre.y - radius / 16, 3 * radius / 4, radius / 8 )];
-  if( [self direction] != 0 ) {
-    NSAffineTransform *transform = [NSAffineTransform transform];
-    [transform translateXBy:centre.x yBy:centre.y];
-    [transform rotateByDegrees:(360.0 - ( [self direction] * 60 ))];
-    [transform translateXBy:-centre.x yBy:-centre.y];
-    [symbolPath transformUsingAffineTransform:transform];
-  }
-  
-  [[_attributes_ objectForKey:ELToolColor] set];
-  [symbolPath setLineWidth:2.0];
-  [symbolPath stroke];
-  
+  // NSPoint centre = [[self hex] centre];
+  // float radius = [[self hex] radius];
+  // 
+  // NSBezierPath *symbolPath = [NSBezierPath bezierPathWithRect:NSMakeRect( centre.x - 3 * radius / 8, centre.y - radius / 16, 3 * radius / 4, radius / 8 )];
+  // if( [self direction] != 0 ) {
+  //   NSAffineTransform *transform = [NSAffineTransform transform];
+  //   [transform translateXBy:centre.x yBy:centre.y];
+  //   [transform rotateByDegrees:(360.0 - ( [self direction] * 60 ))];
+  //   [transform translateXBy:-centre.x yBy:-centre.y];
+  //   [symbolPath transformUsingAffineTransform:transform];
+  // }
+  // 
+  // [[_attributes_ objectForKey:ELToolColor] set];
+  // [symbolPath setLineWidth:2.0];
+  // [symbolPath stroke];
+  // 
   [[self hex] drawTriangleInDirection:[self direction] withAttributes:_attributes_];
 }
 

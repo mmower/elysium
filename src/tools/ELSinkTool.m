@@ -13,10 +13,6 @@
 
 @implementation ELSinkTool
 
-+ (ELSinkTool *)new {
-  return [[ELSinkTool alloc] init];
-}
-
 - (id)init {
   if( self = [super initWithType:@"sink"] ) {
     // NOP

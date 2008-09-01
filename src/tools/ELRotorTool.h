@@ -18,4 +18,7 @@
 
 + (ELRotorTool *)new;
 
+- (BOOL)clockwise;
+- (void)setClockwise:(BOOL)clockwise;
+
 @end
