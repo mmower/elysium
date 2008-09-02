@@ -27,7 +27,7 @@
 {
     self = [super init];
     if (self) {
-      player   = [[ELPlayer alloc] init];
+      player = [[ELPlayer alloc] init];
     }
     return self;
 }
@@ -48,7 +48,7 @@
     [player setDocument:self];
     
     [layerView setDelegate:self];
-    [layerView setDataSource:[player layerForChannel:1]];
+    [layerView setDataSource:[player layer:0]];
     
     [[NSApp delegate] showPalette:self];
 }
@@ -80,6 +80,9 @@
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
+  // Get a new, empty, player for this document
+  player = [[ELPlayer alloc] initWithDefaultLayer:NO];
+  
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithData:data options:0 error:outError];
   if( document == nil ) {
     return NO;
@@ -132,7 +135,16 @@
 }
 
 - (IBAction)runOnce:(id)sender {
-  [player runOnce];
+  
+  ELLayer *layer = [player layer:0];
+  int channel = [layer channel];
+  int newChannel = (channel + 1) % 3;
+  
+  NSLog( @"Layer is on channel %d switching to %d", channel, newChannel );
+  
+  [layer setChannel:newChannel];
+  
+  // [player runOnce];
 }
 
 - (IBAction)clearAll:(id)sender {

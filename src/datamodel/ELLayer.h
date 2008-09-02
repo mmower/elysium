@@ -35,6 +35,8 @@
 
 // Dynamic Configuration
 - (int)channel;
+- (void)setChannel:(int)channel;
+
 - (int)pulseCount;
 
 - (void)run;

@@ -28,9 +28,13 @@
 @implementation ELPlayer
 
 - (id)init {
+  return [self initWithDefaultLayer:YES];
+}
+
+- (id)initWithDefaultLayer:(BOOL)_defaultLayer_ {
   if( self = [super init] ) {
     harmonicTable = [[ELHarmonicTable alloc] init];
-    layers        = [[NSMutableArray alloc] initWithCapacity:USE_CHANNELS];
+    layers        = [[NSMutableArray alloc] init];
     config        = [[ELConfig alloc] init];
     timer         = [[ELTimer alloc] init];
     
@@ -41,8 +45,8 @@
     [config setInteger:100 forKey:@"velocity"];
     [config setFloat:0.5 forKey:@"duration"];
     
-    for( int channel = 1; channel <= USE_CHANNELS; channel++ ) {
-      [layers addObject:[[ELLayer alloc] initWithPlayer:self channel:channel]];
+    if( _defaultLayer_ ) {
+      [layers addObject:[[ELLayer alloc] initWithPlayer:self channel:1]];
     }
   }
   
@@ -134,22 +138,30 @@
 - (void)playNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ duration:(float)_duration_ {
   NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note_, _channel_, _velocity_, _duration_ );
   
-  NSNumber *noteNumber = [NSNumber numberWithInt:[_note_ number]];
-  NSNumber *channel = [NSNumber numberWithInt:_channel_];
-  NSNumber *velocity = [NSNumber numberWithInt:_velocity_];
-  NSNumber *duration = [NSNumber numberWithFloat:_duration_];
-  NSArray *objects = [NSArray arrayWithObjects:noteNumber,channel,velocity,duration,nil];
-  NSArray *keys = [NSArray arrayWithObjects:@"note",@"channel",@"velocity",@"duration"];
-  NSDictionary *noteInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-  
+  NSMutableDictionary *noteInfo = [[NSMutableDictionary alloc] init];
+  [noteInfo setObject:[NSNumber numberWithInt:_channel_] forKey:@"channel"];
+  [noteInfo setObject:[NSNumber numberWithInt:[_note_ number]] forKey:@"note"];
+  [noteInfo setObject:[NSNumber numberWithInt:_velocity_] forKey:@"velocity"];
+  [noteInfo setObject:[NSNumber numberWithFloat:_duration_] forKey:@"duration"];
   [NSThread detachNewThreadSelector:@selector(playNoteInBackground:) toTarget:self withObject:noteInfo];
 }
 
 // Layer Management
 
-- (ELLayer *)layerForChannel:(int)_channel_ {
-  NSAssert1( _channel_ >= 1 && _channel_ <= USE_CHANNELS, @"Requested invalid channel-%d", _channel_ );
-  return [layers objectAtIndex:_channel_-1];
+- (int)layerCount {
+  return [layers count];
+}
+
+- (ELLayer *)layer:(int)_index_ {
+  return [layers objectAtIndex:_index_];
+}
+
+- (NSArray *)layers {
+  return [layers copy];
+}
+
+- (void)removeLayers {
+  [layers removeAllObjects];
 }
 
 // Implementing the ELData protocol
@@ -175,8 +187,7 @@
   }
   [surfaceElement setAttributesAsDictionary:attributes];
   
-  for( int channel = 1; channel <= USE_CHANNELS; channel++ ) {
-    ELLayer *layer = [self layerForChannel:channel];
+  for( ELLayer *layer in layers ) {
     [surfaceElement addChild:[layer asXMLData]];
   }
   
@@ -230,7 +241,7 @@
       return NO;
     }
     
-    ELLayer *layer = [self layerForChannel:channel];
+    ELLayer *layer = [[ELLayer alloc] initWithPlayer:self channel:channel];
     if( ![layer fromXMLData:layerElement] ) {
       NSLog( @"Problem loading layer data for layer:%d", channel );
       return NO;

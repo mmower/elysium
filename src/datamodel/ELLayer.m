@@ -86,6 +86,10 @@
   return [config integerForKey:@"channel"];
 }
 
+- (void)setChannel:(int)_channel_ {
+  [config setInteger:_channel_ forKey:@"channel"];
+}
+
 - (int)pulseCount {
   return [config integerForKey:@"pulseCount"];
 }

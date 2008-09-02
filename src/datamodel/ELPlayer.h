@@ -38,6 +38,8 @@
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property (readonly) BOOL isRunning;
 
+- (id)initWithDefaultLayer:(BOOL)defaultLayer;
+
 - (void)setMIDIController:(ELMIDIController *)midiController;
 - (void)setDocument:(ElysiumDocument *)document;
 
@@ -53,6 +55,9 @@
 - (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
 
 // Layer management
-- (ELLayer *)layerForChannel:(int)channel;
+- (int)layerCount;
+- (void)removeLayers;
+- (NSArray *)layers;
+- (ELLayer *)layer:(int)index;
 
 @end
