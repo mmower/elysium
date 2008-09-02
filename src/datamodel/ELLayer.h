@@ -41,6 +41,8 @@
 - (void)stop;
 - (void)reset;
 
+- (void)clear;
+
 - (void)playNote:(ELNote *)note velocity:(int)velocity duration:(float)duration;
 
 - (void)removeAllPlayheads;

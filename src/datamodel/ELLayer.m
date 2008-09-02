@@ -99,6 +99,10 @@
   [self removeAllPlayheads];
 }
 
+- (void)clear {
+  [hexes makeObjectsPerformSelector:@selector(removeAllTools)];
+}
+
 - (void)addPlayhead:(ELPlayhead *)_playhead {
   [playheads addObject:_playhead];
 }

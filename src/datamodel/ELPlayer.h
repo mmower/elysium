@@ -41,9 +41,14 @@
 - (void)setMIDIController:(ELMIDIController *)midiController;
 - (void)setDocument:(ElysiumDocument *)document;
 
+- (void)run;
+- (void)runOnce;
 - (void)start;
 - (void)stop;
 - (void)reset;
+
+- (void)clearAll;
+
 - (void)playNoteInBackground:(NSDictionary *)noteInfo;
 - (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
 

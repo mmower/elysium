@@ -26,6 +26,10 @@
 
 - (void)updateView:(id)sender;
 
+// Actions
+
 - (IBAction)startStop:(id)sender;
+- (IBAction)runOnce:(id)sender;
+- (IBAction)clearAll:(id)sender;
 
 @end

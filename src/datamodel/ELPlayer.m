@@ -35,7 +35,7 @@
     timer         = [[ELTimer alloc] init];
     
     // Setup some default values
-    [config setInteger:300 forKey:@"bpm"];
+    [config setInteger:600 forKey:@"bpm"];
     [config setInteger:16 forKey:@"ttl"];
     [config setInteger:16 forKey:@"pulseCount"];
     [config setInteger:100 forKey:@"velocity"];
@@ -97,8 +97,7 @@
   [config snapshot];
   
   while( ![thread isCancelled] ) {
-    [layers makeObjectsPerformSelector:@selector(run)];
-    [document performSelectorOnMainThread:@selector(updateView:) withObject:self waitUntilDone:NO];
+    [self runOnce];
     usleep( timerResolution );
   }
   
@@ -108,6 +107,15 @@
   
   NSLog( @"Player has stopped." );
   isRunning = NO;
+}
+
+- (void)runOnce {
+  [layers makeObjectsPerformSelector:@selector(run)];
+  [document performSelectorOnMainThread:@selector(updateView:) withObject:self waitUntilDone:NO];
+}
+
+- (void)clearAll {
+  [layers makeObjectsPerformSelector:@selector(clear)];
 }
 
 - (void)playNoteInBackground:(NSDictionary *)_noteInfo_ {

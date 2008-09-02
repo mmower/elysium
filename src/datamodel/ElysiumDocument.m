@@ -131,6 +131,15 @@
   }
 }
 
+- (IBAction)runOnce:(id)sender {
+  [player runOnce];
+}
+
+- (IBAction)clearAll:(id)sender {
+  [player clearAll];
+  [self updateView:self];
+}
+
 // Sent by background threads when the view needs to be updated
 - (void)updateView:(id)sender {
   [layerView setNeedsDisplay:YES];
