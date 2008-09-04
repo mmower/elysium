@@ -93,6 +93,12 @@
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9D036090E7082B8005AC915 /* LayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D036080E7082B8005AC915 /* LayerInspector.xib */; };
 		C9D0360C0E7082C5005AC915 /* ELLayerInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D0360B0E7082C5005AC915 /* ELLayerInspectorPane.m */; };
+		C9D036340E708EDD005AC915 /* HexSinkInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D036330E708EDD005AC915 /* HexSinkInspector.xib */; };
+		C9D036360E708EE8005AC915 /* HexSplitterInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D036350E708EE8005AC915 /* HexSplitterInspector.xib */; };
+		C9D036380E708EF2005AC915 /* HexRotorInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D036370E708EF2005AC915 /* HexRotorInspector.xib */; };
+		C9D0363B0E708F04005AC915 /* ELHexRotorInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D0363A0E708F04005AC915 /* ELHexRotorInspectorPane.m */; };
+		C9D0363E0E708F11005AC915 /* ELHexSplitterInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D0363D0E708F11005AC915 /* ELHexSplitterInspectorPane.m */; };
+		C9D036410E708F1E005AC915 /* ELHexSinkInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D036400E708F1E005AC915 /* ELHexSinkInspectorPane.m */; };
 		C9D075560E6F350C00B91F7D /* ELPlayerInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D075550E6F350C00B91F7D /* ELPlayerInspectorPane.m */; };
 		C9D075590E6F355F00B91F7D /* PlayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D075580E6F355F00B91F7D /* PlayerInspector.xib */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
@@ -270,6 +276,15 @@
 		C9D036080E7082B8005AC915 /* LayerInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayerInspector.xib; sourceTree = "<group>"; };
 		C9D0360A0E7082C5005AC915 /* ELLayerInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerInspectorPane.h; sourceTree = "<group>"; };
 		C9D0360B0E7082C5005AC915 /* ELLayerInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerInspectorPane.m; sourceTree = "<group>"; };
+		C9D036330E708EDD005AC915 /* HexSinkInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexSinkInspector.xib; sourceTree = "<group>"; };
+		C9D036350E708EE8005AC915 /* HexSplitterInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexSplitterInspector.xib; sourceTree = "<group>"; };
+		C9D036370E708EF2005AC915 /* HexRotorInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexRotorInspector.xib; sourceTree = "<group>"; };
+		C9D036390E708F04005AC915 /* ELHexRotorInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexRotorInspectorPane.h; sourceTree = "<group>"; };
+		C9D0363A0E708F04005AC915 /* ELHexRotorInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexRotorInspectorPane.m; sourceTree = "<group>"; };
+		C9D0363C0E708F11005AC915 /* ELHexSplitterInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexSplitterInspectorPane.h; sourceTree = "<group>"; };
+		C9D0363D0E708F11005AC915 /* ELHexSplitterInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexSplitterInspectorPane.m; sourceTree = "<group>"; };
+		C9D0363F0E708F1E005AC915 /* ELHexSinkInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexSinkInspectorPane.h; sourceTree = "<group>"; };
+		C9D036400E708F1E005AC915 /* ELHexSinkInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexSinkInspectorPane.m; sourceTree = "<group>"; };
 		C9D075540E6F350C00B91F7D /* ELPlayerInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayerInspectorPane.h; sourceTree = "<group>"; };
 		C9D075550E6F350C00B91F7D /* ELPlayerInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayerInspectorPane.m; sourceTree = "<group>"; };
 		C9D075580E6F355F00B91F7D /* PlayerInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInspector.xib; sourceTree = "<group>"; };
@@ -542,6 +557,9 @@
 		C97FEBD80E4F0754008F309B /* inspector */ = {
 			isa = PBXGroup;
 			children = (
+				C9D036320E708ECA005AC915 /* hexrotor */,
+				C9D036310E708EBE005AC915 /* hexsplitter */,
+				C9D036300E708EB1005AC915 /* hexsink */,
 				C9D036070E7082AB005AC915 /* layer */,
 				C997F1640E6DC32F00554725 /* player */,
 				C9E8D9FF0E69A0B1005AD9B7 /* hexricochet */,
@@ -642,6 +660,36 @@
 				C9D0360B0E7082C5005AC915 /* ELLayerInspectorPane.m */,
 			);
 			name = layer;
+			sourceTree = "<group>";
+		};
+		C9D036300E708EB1005AC915 /* hexsink */ = {
+			isa = PBXGroup;
+			children = (
+				C9D036330E708EDD005AC915 /* HexSinkInspector.xib */,
+				C9D0363F0E708F1E005AC915 /* ELHexSinkInspectorPane.h */,
+				C9D036400E708F1E005AC915 /* ELHexSinkInspectorPane.m */,
+			);
+			name = hexsink;
+			sourceTree = "<group>";
+		};
+		C9D036310E708EBE005AC915 /* hexsplitter */ = {
+			isa = PBXGroup;
+			children = (
+				C9D036350E708EE8005AC915 /* HexSplitterInspector.xib */,
+				C9D0363C0E708F11005AC915 /* ELHexSplitterInspectorPane.h */,
+				C9D0363D0E708F11005AC915 /* ELHexSplitterInspectorPane.m */,
+			);
+			name = hexsplitter;
+			sourceTree = "<group>";
+		};
+		C9D036320E708ECA005AC915 /* hexrotor */ = {
+			isa = PBXGroup;
+			children = (
+				C9D036370E708EF2005AC915 /* HexRotorInspector.xib */,
+				C9D036390E708F04005AC915 /* ELHexRotorInspectorPane.h */,
+				C9D0363A0E708F04005AC915 /* ELHexRotorInspectorPane.m */,
+			);
+			name = hexrotor;
 			sourceTree = "<group>";
 		};
 		C9E8D9C60E6997C8005AD9B7 /* hexbeat */ = {
@@ -834,6 +882,9 @@
 				C9E8DA010E69A0BD005AD9B7 /* HexRicochetInspector.xib in Resources */,
 				C9D075590E6F355F00B91F7D /* PlayerInspector.xib in Resources */,
 				C9D036090E7082B8005AC915 /* LayerInspector.xib in Resources */,
+				C9D036340E708EDD005AC915 /* HexSinkInspector.xib in Resources */,
+				C9D036360E708EE8005AC915 /* HexSplitterInspector.xib in Resources */,
+				C9D036380E708EF2005AC915 /* HexRotorInspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +947,9 @@
 				C96A679E0E6B32F800A7C237 /* ElysiumController.m in Sources */,
 				C9D075560E6F350C00B91F7D /* ELPlayerInspectorPane.m in Sources */,
 				C9D0360C0E7082C5005AC915 /* ELLayerInspectorPane.m in Sources */,
+				C9D0363B0E708F04005AC915 /* ELHexRotorInspectorPane.m in Sources */,
+				C9D0363E0E708F11005AC915 /* ELHexSplitterInspectorPane.m in Sources */,
+				C9D036410E708F1E005AC915 /* ELHexSinkInspectorPane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

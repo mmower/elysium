@@ -8,8 +8,6 @@
 
 #import "ELPlayerInspectorPane.h"
 
-#import "ELInspectorPane.h"
-
 #import "ELPlayer.h"
 
 @implementation ELPlayerInspectorPane

@@ -9,7 +9,6 @@
 #import "ELHexBeatInspectorPane.h"
 
 #import "ELHex.h"
-#import "ELBeatTool.h"
 
 @implementation ELHexBeatInspectorPane
 

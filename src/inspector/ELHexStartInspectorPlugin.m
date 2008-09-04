@@ -10,8 +10,6 @@
 
 #import "ELHex.h"
 
-#import "ELStartTool.h"
-
 @implementation ELHexStartInspectorPlugin
 
 - (id)init {

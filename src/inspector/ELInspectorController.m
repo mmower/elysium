@@ -15,10 +15,13 @@
 #import "ELInspectorPane.h"
 #import "ELPlayerInspectorPane.h"
 #import "ELLayerInspectorPane.h"
-#import "ELHexBeatInspectorPane.h"
 #import "ELHexInfoInspectorPlugin.h"
 #import "ELHexStartInspectorPlugin.h"
+#import "ELHexBeatInspectorPane.h"
 #import "ELHexRicochetInspectorPane.h"
+#import "ELHexSinkInspectorPane.h"
+#import "ELHexSplitterInspectorPane.h"
+#import "ELHexRotorInspectorPane.h"
 
 #import "ELConfig.h"
 #import "ELTool.h"
@@ -70,6 +73,9 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
   [self addInspectorPane:[[ELHexStartInspectorPlugin alloc] init]];
   [self addInspectorPane:[[ELHexBeatInspectorPane alloc] init]];
   [self addInspectorPane:[[ELHexRicochetInspectorPane alloc] init]];
+  [self addInspectorPane:[[ELHexSinkInspectorPane alloc] init]];
+  [self addInspectorPane:[[ELHexSplitterInspectorPane alloc] init]];
+  [self addInspectorPane:[[ELHexRotorInspectorPane alloc] init]];
 }
 
 // Properties

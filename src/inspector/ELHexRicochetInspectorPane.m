@@ -9,7 +9,6 @@
 #import "ELHexRicochetInspectorPane.h"
 
 #import "ELHex.h"
-#import "ELRicochetTool.h"
 
 @implementation ELHexRicochetInspectorPane
 
