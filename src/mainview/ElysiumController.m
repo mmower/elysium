@@ -13,6 +13,7 @@
 #import "ELMIDIController.h"
 #import "ELPaletteController.h"
 #import "ELInspectorController.h"
+#import "ElysiumDocument.h"
 
 @implementation ElysiumController
 
@@ -39,7 +40,7 @@
   }
   
   [inspectorController showWindow:self];
-  [inspectorController inspectPlayer];
+  [inspectorController focus:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
 }
 
 - (IBAction)showPalette:(id)_sender_ {

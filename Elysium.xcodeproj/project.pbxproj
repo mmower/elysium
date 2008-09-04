@@ -91,6 +91,8 @@
 		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
 		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
+		C9D075560E6F350C00B91F7D /* ELPlayerInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D075550E6F350C00B91F7D /* ELPlayerInspectorPane.m */; };
+		C9D075590E6F355F00B91F7D /* PlayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D075580E6F355F00B91F7D /* PlayerInspector.xib */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
@@ -263,6 +265,9 @@
 		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
+		C9D075540E6F350C00B91F7D /* ELPlayerInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayerInspectorPane.h; sourceTree = "<group>"; };
+		C9D075550E6F350C00B91F7D /* ELPlayerInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayerInspectorPane.m; sourceTree = "<group>"; };
+		C9D075580E6F355F00B91F7D /* PlayerInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInspector.xib; sourceTree = "<group>"; };
 		C9E43C930E335E1B00C4D343 /* Elysium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elysium.h; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		C9E43D5E0E33C27100C4D343 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -379,6 +384,7 @@
 		2A37F4ABFDCFA73011CA2CEA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C96A67980E6B32F800A7C237 /* mainview */,
 				C97FEBD80E4F0754008F309B /* inspector */,
 				C93D55F70E64113F0077C448 /* palette */,
 				C97FEBDC0E4F07A0008F309B /* datamodel */,
@@ -491,9 +497,8 @@
 				C96A679B0E6B32F800A7C237 /* ElysiumController.h */,
 				C96A679C0E6B32F800A7C237 /* ElysiumController.m */,
 			);
-			name = mainview;
-			path = src/mainview;
-			sourceTree = SOURCE_ROOT;
+			path = mainview;
+			sourceTree = "<group>";
 		};
 		C97FEB020E4E0490008F309B /* tools */ = {
 			isa = PBXGroup;
@@ -532,7 +537,7 @@
 		C97FEBD80E4F0754008F309B /* inspector */ = {
 			isa = PBXGroup;
 			children = (
-				C96A67980E6B32F800A7C237 /* mainview */,
+				C997F1640E6DC32F00554725 /* player */,
 				C9E8D9FF0E69A0B1005AD9B7 /* hexricochet */,
 				C9E8D9C60E6997C8005AD9B7 /* hexbeat */,
 				C95A63080E50E7DD00CBF555 /* hexstart */,
@@ -598,6 +603,16 @@
 				C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */,
 			);
 			name = honeycombview;
+			sourceTree = "<group>";
+		};
+		C997F1640E6DC32F00554725 /* player */ = {
+			isa = PBXGroup;
+			children = (
+				C9D075540E6F350C00B91F7D /* ELPlayerInspectorPane.h */,
+				C9D075550E6F350C00B91F7D /* ELPlayerInspectorPane.m */,
+				C9D075580E6F355F00B91F7D /* PlayerInspector.xib */,
+			);
+			name = player;
 			sourceTree = "<group>";
 		};
 		C9B88E400E64A5E400FA411E /* images */ = {
@@ -801,6 +816,7 @@
 				C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */,
 				C9E8D9CC0E699834005AD9B7 /* HexBeatInspector.xib in Resources */,
 				C9E8DA010E69A0BD005AD9B7 /* HexRicochetInspector.xib in Resources */,
+				C9D075590E6F355F00B91F7D /* PlayerInspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,6 +877,7 @@
 				C9E8DA040E69A0C9005AD9B7 /* ELHexRicochetInspectorPane.m in Sources */,
 				C96A679D0E6B32F800A7C237 /* ELSurfaceView.m in Sources */,
 				C96A679E0E6B32F800A7C237 /* ElysiumController.m in Sources */,
+				C9D075560E6F350C00B91F7D /* ELPlayerInspectorPane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
