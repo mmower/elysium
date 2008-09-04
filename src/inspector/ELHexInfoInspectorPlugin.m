@@ -20,8 +20,8 @@
   return self;
 }
 
-- (BOOL)willInspect:(Class)class {
-  return class == [ELHex class];
+- (Class)willInspect {
+  return [ELHex class];
 }
 
 @end

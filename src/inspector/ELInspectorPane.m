@@ -35,6 +35,7 @@ NSString* const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 }
 
 - (NSView *)paneView {
+  NSLog( @"[%@ paneView]", [self className] );
   if( !paneView ) {
     NSLog( @"Loading nib: %@", [self nibName] );
     [NSBundle loadNibNamed:[self nibName] owner:self];
@@ -60,20 +61,36 @@ NSString* const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 - (void)viewWillClose {
 }
 
-- (BOOL)willInspect:(Class)class {
-  return NO;
+- (Class)willInspect {
+  return nil;
 }
 
 - (void)inspect:(id)_inspectee_ {
   NSLog( @"Inspector %@ inspecting %@", self, _inspectee_ );
-  [self willChangeValueForKey:@"inspectee"];
-  inspectee = _inspectee_;
-  [self didChangeValueForKey:@"inspectee"];
-  [self updateBindings];
+  
+  if( _inspectee_ != inspectee ) {
+    [self willChangeValueForKey:@"inspectee"];
+    if( _inspectee_ ) {
+      inspectee = [self narrowInspectionFocus:_inspectee_];
+      [self showIfNecessary];
+    } else {
+      inspectee = nil;
+      [self hideIfNecessary];
+    }
+    [self didChangeValueForKey:@"inspectee"];
+  }
 }
 
-// If you have custom bindings not linked to inspectee, here's where to change 'em
-- (void)updateBindings {
+- (id)narrowInspectionFocus:(id)_object_ {
+  return _object_;
+}
+
+- (void)hideIfNecessary {
+  
+}
+
+- (void)showIfNecessary {
+  
 }
 
 @end

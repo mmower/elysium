@@ -26,8 +26,13 @@
 - (void)viewDidLoad;
 - (void)viewWillClose;
 
-- (BOOL)willInspect:(Class)class;
+- (Class)willInspect;
+
+- (id)narrowInspectionFocus:(id)object;
 - (void)inspect:(id)focusedObject;
-- (void)updateBindings;
+// - (void)updateBindings;
+
+- (void)hideIfNecessary;
+- (void)showIfNecessary;
 
 @end

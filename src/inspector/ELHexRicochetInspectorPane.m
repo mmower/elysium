@@ -20,8 +20,12 @@
   return self;
 }
 
-- (BOOL)willInspect:(Class)class {
-  return class == [ELHex class];
+- (Class)willInspect {
+  return [ELHex class];
+}
+
+- (id)narrowInspectionFocus:(id)_object_ {
+  return [_object_ toolOfType:@"beat"];
 }
 
 - (ELRicochetTool *)tool {

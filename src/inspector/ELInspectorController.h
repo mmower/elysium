@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELHex;
+@class ELLayer;
+@class ELPlayer;
+
 @class ELConfig;
 @class ELInspectorPane;
 @class PAStackedListView;
@@ -23,20 +26,23 @@ extern NSString* const ELNotifyObjectSelectionDidChange;
   IBOutlet PAStackedListView  *layerInspectorView;
   IBOutlet PAStackedListView  *playerInspectorView;
   
-  NSMutableArray              *inspectorPanes;
-  id                          focusedObject;
+  NSMutableArray              *playerPanes;
+  NSMutableArray              *layerPanes;
+  NSMutableArray              *hexPanes;
+  
+  ELHex                       *focusedHex;
+  ELLayer                     *focusedLayer;
+  ELPlayer                    *focusedPlayer;
 }
 
-- (void)selectionChanged:(NSNotification*)notification;
-
-- (void)inspectHex;
-- (void)inspectLayer;
-- (void)inspectPlayer;
-
-- (ELHex *)focusedHex;
+@property (readonly) ELHex *focusedHex;
+@property (readonly) ELLayer *focusedLayer;
+@property (readonly) ELPlayer *focusedPlayer;
 
 - (void)loadPlugins;
 - (void)addInspectorPane:(ELInspectorPane *)pane;
+
+- (void)selectionChanged:(NSNotification*)notification;
 - (void)focus:(id)focusedObject;
 
 @end

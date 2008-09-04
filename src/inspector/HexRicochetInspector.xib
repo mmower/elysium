@@ -230,35 +230,35 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: toolEnabled</string>
+						<string key="label">value: inspectee.enabled</string>
 						<reference key="source" ref="176932626"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="176932626"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: toolEnabled</string>
+							<string key="NSLabel">value: inspectee.enabled</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">toolEnabled</string>
+							<string key="NSKeyPath">inspectee.enabled</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">28</int>
+					<int key="connectionID">31</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: toolDirection</string>
+						<string key="label">value: inspectee.direction</string>
 						<reference key="source" ref="1063157018"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1063157018"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: toolDirection</string>
+							<string key="NSLabel">value: inspectee.direction</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">toolDirection</string>
+							<string key="NSKeyPath">inspectee.direction</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">30</int>
+					<int key="connectionID">32</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -410,7 +410,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilderKit</string>
-					<string>{{35, 985}, {233, 126}}</string>
+					<string>{{1955, 897}, {233, 126}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -445,7 +445,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
