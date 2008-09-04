@@ -61,6 +61,52 @@
 @synthesize harmonicTable;
 @synthesize isRunning;
 
+// Configuration properties
+
+- (int)tempo {
+  int tempo = [config integerForKey:@"bpm"];
+  NSLog( @"Returning player tempo = %d", tempo );
+  return tempo;
+}
+
+- (void)setTempo:(int)_tempo_ {
+  [config setInteger:_tempo_ forKey:@"bpm"];
+}
+
+- (int)timeToLive {
+  return [config integerForKey:@"ttl"];
+}
+
+- (void)setTimeToLive:(int)_ttl_ {
+  [config setInteger:_ttl_ forKey:@"ttl"];
+}
+
+- (int)pulseCount {
+  return [config integerForKey:@"pulseCount"];
+}
+
+- (void)setPulseCount:(int)_pulseCount_ {
+  [config setInteger:_pulseCount_ forKey:@"pulseCount"];
+}
+
+- (int)velocity {
+  return [config integerForKey:@"velocity"];
+}
+
+- (void)setVelocity:(int)_velocity_ {
+  [config setInteger:_velocity_ forKey:@"velocity"];
+}
+
+- (float)duration {
+  return [config floatForKey:@"duration"];
+}
+
+- (void)setDuration:(float)_duration_ {
+  [config setFloat:_duration_ forKey:@"duration"];
+}
+
+// Associations
+
 - (void)setMIDIController:(ELMIDIController *)_midiController {
   midiController = _midiController;
 }

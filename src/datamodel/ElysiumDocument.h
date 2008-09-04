@@ -21,6 +21,8 @@
   IBOutlet  ELSurfaceView     *layerView;
 }
 
+@property (readonly) ELPlayer *player;
+
 - (ElysiumController *)appController;
 - (ELMIDIController *)midiController;
 

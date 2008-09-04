@@ -32,6 +32,8 @@
     return self;
 }
 
+@synthesize player;
+
 - (NSString *)windowNibName
 {
     // Override returning the nib file name of the document

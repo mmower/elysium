@@ -38,7 +38,13 @@
   return self;
 }
 
-// Private method for connecting hexes without setting the inverse
+// Properties
+
+@synthesize layer;
+@synthesize note;
+
+// Hexes form a grid
+
 - (void)connectToHex:(ELHex *)_hex direction:(Direction)_direction {
   neighbours[_direction] = _hex;
 }
@@ -48,14 +54,12 @@
   // [_hex connectToHex:self direction:INVERSE_DIRECTION(_direction)];
 }
 
-- (ELNote *)note {
-  return note;
-}
-
 - (ELHex *)neighbour:(Direction)_direction_ {
   ASSERT_VALID_DIRECTION( _direction_ );
   return neighbours[_direction_];
 }
+
+// Tool support
 
 - (void)addTool:(ELTool *)_tool {
   [tools setObject:_tool forKey:[_tool toolType]];

@@ -40,6 +40,17 @@
 
 - (id)initWithDefaultLayer:(BOOL)defaultLayer;
 
+- (int)tempo;
+- (void)setTempo:(int)tempo;
+- (int)timeToLive;
+- (void)setTimeToLive:(int)ttl;
+- (int)pulseCount;
+- (void)setPulseCount:(int)pulseCount;
+- (int)velocity;
+- (void)setVelocity:(int)velocity;
+- (float)duration;
+- (void)setDuration:(float)duration;
+  
 - (void)setMIDIController:(ELMIDIController *)midiController;
 - (void)setDocument:(ElysiumDocument *)document;
 

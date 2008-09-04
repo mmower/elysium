@@ -26,11 +26,10 @@
   NSMutableArray      *playheads;
 }
 
+@property (readonly) ELLayer *layer;
+@property (readonly) ELNote *note;
+
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
-
-// The musicality of it all!
-
-- (ELNote *)note;
 
 // Connections to other hexes
 
