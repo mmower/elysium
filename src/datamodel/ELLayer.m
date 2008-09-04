@@ -90,8 +90,44 @@
   [config setInteger:_channel_ forKey:@"channel"];
 }
 
+- (int)tempo {
+  return [config integerForKey:@"bpm"];
+}
+
+- (void)setTempo:(int)_tempo_ {
+  [config setInteger:_tempo_ forKey:@"bpm"];
+}
+
+- (int)velocity {
+  return [config integerForKey:@"velocity"];
+}
+
+- (void)setVelocity:(int)_velocity_ {
+  [config setInteger:_velocity_ forKey:@"velocity"];
+}
+
+- (float)duration {
+  return [config floatForKey:@"duration"];
+}
+
+- (void)setDuration:(float)_duration {
+  [config setFloat:_duration forKey:@"duration"];
+}
+
 - (int)pulseCount {
   return [config integerForKey:@"pulseCount"];
+}
+
+- (void)setPulseCount:(int)_pulseCount_ {
+  [config setInteger:_pulseCount_ forKey:@"pulseCount"];
+}
+
+- (int)timeToLive {
+  return [config integerForKey:@"ttl"];
+}
+
+- (void)setTimeToLive:(int)_ttl_ {
+  [config setInteger:_ttl_ forKey:@"ttl"];
 }
 
 - (void)stop {
@@ -209,7 +245,7 @@
   
   if( _cell ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:_cell];
-    [self playNote:[(ELHex*)_cell note] velocity:100 duration:0.8];
+    [self playNote:[(ELHex*)_cell note] velocity:[self velocity] duration:[self duration]];
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
   }

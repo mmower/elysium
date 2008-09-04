@@ -91,6 +91,8 @@
 		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
 		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
+		C9D036090E7082B8005AC915 /* LayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D036080E7082B8005AC915 /* LayerInspector.xib */; };
+		C9D0360C0E7082C5005AC915 /* ELLayerInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D0360B0E7082C5005AC915 /* ELLayerInspectorPane.m */; };
 		C9D075560E6F350C00B91F7D /* ELPlayerInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D075550E6F350C00B91F7D /* ELPlayerInspectorPane.m */; };
 		C9D075590E6F355F00B91F7D /* PlayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D075580E6F355F00B91F7D /* PlayerInspector.xib */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
@@ -265,6 +267,9 @@
 		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
+		C9D036080E7082B8005AC915 /* LayerInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayerInspector.xib; sourceTree = "<group>"; };
+		C9D0360A0E7082C5005AC915 /* ELLayerInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerInspectorPane.h; sourceTree = "<group>"; };
+		C9D0360B0E7082C5005AC915 /* ELLayerInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerInspectorPane.m; sourceTree = "<group>"; };
 		C9D075540E6F350C00B91F7D /* ELPlayerInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayerInspectorPane.h; sourceTree = "<group>"; };
 		C9D075550E6F350C00B91F7D /* ELPlayerInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayerInspectorPane.m; sourceTree = "<group>"; };
 		C9D075580E6F355F00B91F7D /* PlayerInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInspector.xib; sourceTree = "<group>"; };
@@ -537,6 +542,7 @@
 		C97FEBD80E4F0754008F309B /* inspector */ = {
 			isa = PBXGroup;
 			children = (
+				C9D036070E7082AB005AC915 /* layer */,
 				C997F1640E6DC32F00554725 /* player */,
 				C9E8D9FF0E69A0B1005AD9B7 /* hexricochet */,
 				C9E8D9C60E6997C8005AD9B7 /* hexbeat */,
@@ -626,6 +632,16 @@
 				C9B88E410E64A60C00FA411E /* start.pdf */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		C9D036070E7082AB005AC915 /* layer */ = {
+			isa = PBXGroup;
+			children = (
+				C9D036080E7082B8005AC915 /* LayerInspector.xib */,
+				C9D0360A0E7082C5005AC915 /* ELLayerInspectorPane.h */,
+				C9D0360B0E7082C5005AC915 /* ELLayerInspectorPane.m */,
+			);
+			name = layer;
 			sourceTree = "<group>";
 		};
 		C9E8D9C60E6997C8005AD9B7 /* hexbeat */ = {
@@ -817,6 +833,7 @@
 				C9E8D9CC0E699834005AD9B7 /* HexBeatInspector.xib in Resources */,
 				C9E8DA010E69A0BD005AD9B7 /* HexRicochetInspector.xib in Resources */,
 				C9D075590E6F355F00B91F7D /* PlayerInspector.xib in Resources */,
+				C9D036090E7082B8005AC915 /* LayerInspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,6 +895,7 @@
 				C96A679D0E6B32F800A7C237 /* ELSurfaceView.m in Sources */,
 				C96A679E0E6B32F800A7C237 /* ElysiumController.m in Sources */,
 				C9D075560E6F350C00B91F7D /* ELPlayerInspectorPane.m in Sources */,
+				C9D0360C0E7082C5005AC915 /* ELLayerInspectorPane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

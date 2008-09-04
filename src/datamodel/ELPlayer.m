@@ -46,7 +46,7 @@
     [config setFloat:0.5 forKey:@"duration"];
     
     if( _defaultLayer_ ) {
-      [layers addObject:[[ELLayer alloc] initWithPlayer:self channel:1]];
+      [self addLayer:[[ELLayer alloc] initWithPlayer:self channel:1]];
     }
   }
   
@@ -200,6 +200,16 @@
 
 // Layer Management
 
+- (void)addLayer:(ELLayer *)_layer_ {
+  [[_layer_ config] setParent:config];
+  [layers addObject:_layer_];
+}
+
+- (void)removeLayer:(ELLayer *)_layer_ {
+  [[_layer_ config] setParent:nil];
+  [layers removeObject:_layer_];
+}
+
 - (int)layerCount {
   return [layers count];
 }
@@ -213,7 +223,10 @@
 }
 
 - (void)removeLayers {
-  [layers removeAllObjects];
+  for( ELLayer *layer in [layers copy] ) {
+    [self removeLayer:layer];
+  }
+  // [layers removeAllObjects];
 }
 
 // Implementing the ELData protocol
@@ -288,8 +301,8 @@
     }
     
     int channel = [[attribute stringValue] intValue];
-    if( channel < 1 || channel > USE_CHANNELS ) {
-      NSLog( @"Channel defined outside range %d-%d", 1, USE_CHANNELS );
+    if( channel < 1 || channel > 16 ) {
+      NSLog( @"Channel defined outside range %d-%d", 1, 16 );
       return NO;
     }
     
@@ -298,8 +311,8 @@
       NSLog( @"Problem loading layer data for layer:%d", channel );
       return NO;
     }
-    
-    [layers addObject:layer];
+
+    [self addLayer:layer];
   }
   
   return YES;

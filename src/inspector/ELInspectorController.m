@@ -11,12 +11,14 @@
 #import <StackedListView/PAStackedListView.h>
 
 #import "ELInspectorController.h"
+
 #import "ELInspectorPane.h"
+#import "ELPlayerInspectorPane.h"
+#import "ELLayerInspectorPane.h"
 #import "ELHexBeatInspectorPane.h"
 #import "ELHexInfoInspectorPlugin.h"
 #import "ELHexStartInspectorPlugin.h"
 #import "ELHexRicochetInspectorPane.h"
-#import "ELPlayerInspectorPane.h"
 
 #import "ELConfig.h"
 #import "ELTool.h"
@@ -61,6 +63,8 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
 
 - (void)loadPlugins {
   [self addInspectorPane:[[ELPlayerInspectorPane alloc] init]];
+  
+  [self addInspectorPane:[[ELLayerInspectorPane alloc] init]];
   
   [self addInspectorPane:[[ELHexInfoInspectorPlugin alloc] init]];
   [self addInspectorPane:[[ELHexStartInspectorPlugin alloc] init]];

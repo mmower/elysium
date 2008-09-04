@@ -70,6 +70,7 @@
 - (void)needsDisplay;
 
 // Layer management
+- (void)addLayer:(ELLayer *)layer;
 - (int)layerCount;
 - (void)removeLayers;
 - (NSArray *)layers;
