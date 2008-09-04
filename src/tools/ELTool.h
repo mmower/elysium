@@ -43,6 +43,8 @@
 - (id)initWithType:(NSString *)type;
 - (id)initWithType:(NSString *)type config:(ELConfig *)config;
 
+- (NSArray *)observableValues;
+
 - (void)useInheritedConfig:(NSString *)key;
 
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;

@@ -69,9 +69,11 @@ NSString* const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
   NSLog( @"Inspector %@ inspecting %@", self, _inspectee_ );
   
   if( _inspectee_ != inspectee ) {
+    NSLog( @"Triggering willChange" );
     [self willChangeValueForKey:@"inspectee"];
     if( _inspectee_ ) {
       inspectee = [self narrowInspectionFocus:_inspectee_];
+      NSLog( @"New inspectee = %@", inspectee );
       [self showIfNecessary];
     } else {
       inspectee = nil;

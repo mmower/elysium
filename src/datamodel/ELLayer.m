@@ -311,4 +311,10 @@
   return YES;
 }
 
+// Drawing notification from the hex
+
+- (void)needsDisplay {
+  [player needsDisplay];
+}
+
 @end

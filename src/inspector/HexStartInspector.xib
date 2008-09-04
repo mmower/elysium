@@ -136,7 +136,7 @@
 							<string key="NSContents"/>
 							<reference key="NSSupport" ref="736454083"/>
 							<reference key="NSControlView" ref="59340621"/>
-							<double key="NSMaxValue">3.600000e+02</double>
+							<double key="NSMaxValue">6.000000e+00</double>
 							<double key="NSMinValue">0.000000e+00</double>
 							<double key="NSValue">0.000000e+00</double>
 							<double key="NSAltIncValue">0.000000e+00</double>
@@ -214,9 +214,6 @@
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">PACollapsibleSectionBox</string>
 			</object>
-			<object class="NSUserDefaultsController" id="371665472">
-				<bool key="NSSharedInstance">YES</bool>
-			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -271,51 +268,51 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: toolEnabled</string>
+						<string key="label">value: inspectee.enabled</string>
 						<reference key="source" ref="716782613"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="716782613"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: toolEnabled</string>
+							<string key="NSLabel">value: inspectee.enabled</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">toolEnabled</string>
+							<string key="NSKeyPath">inspectee.enabled</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">31</int>
+					<int key="connectionID">34</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: toolDirection</string>
+						<string key="label">value: inspectee.direction</string>
 						<reference key="source" ref="59340621"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="59340621"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: toolDirection</string>
+							<string key="NSLabel">value: inspectee.direction</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">toolDirection</string>
+							<string key="NSKeyPath">inspectee.direction</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">32</int>
+					<int key="connectionID">35</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: toolTTL</string>
+						<string key="label">value: inspectee.timeToLive</string>
 						<reference key="source" ref="213776000"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="213776000"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: toolTTL</string>
+							<string key="NSLabel">value: inspectee.timeToLive</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">toolTTL</string>
+							<string key="NSKeyPath">inspectee.timeToLive</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">33</int>
+					<int key="connectionID">36</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -470,11 +467,6 @@
 						<reference key="object" ref="288975505"/>
 						<reference key="parent" ref="213776000"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">26</int>
-						<reference key="object" ref="371665472"/>
-						<reference key="parent" ref="1002"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -546,7 +538,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">33</int>
+			<int key="maxID">36</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

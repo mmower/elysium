@@ -22,6 +22,13 @@
   return self;
 }
 
+- (NSArray *)observableValues {
+  NSMutableArray *keys = [[NSMutableArray alloc] init];
+  [keys addObjectsFromArray:[super observableValues]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocity",@"duration",nil]];
+  return keys;
+}
+
 @dynamic velocity;
 
 - (int)velocity {

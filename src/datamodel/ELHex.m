@@ -61,15 +61,30 @@
 
 // Tool support
 
-- (void)addTool:(ELTool *)_tool {
-  [tools setObject:_tool forKey:[_tool toolType]];
-  [_tool addedToLayer:layer atPosition:self];
+- (void)addTool:(ELTool *)_tool_ {
+  [tools setObject:_tool_ forKey:[_tool_ toolType]];
+  [_tool_ addedToLayer:layer atPosition:self];
+  
+  for( NSString *keyPath in [_tool_ observableValues] ) {
+    NSLog( @"%@ becoming observer of %@:%@", self, _tool_, keyPath );
+    [_tool_ addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil]; //)
+  }
 }
 
-- (void)removeTool:(NSString *)_type {
-  ELTool *tool = [self toolOfType:_type];
+- (void)removeTool:(NSString *)_type_ {
+  ELTool *tool = [self toolOfType:_type_];
+  
+  for( NSString *keyPath in [tool observableValues] ) {
+    [tool removeObserver:self forKeyPath:keyPath];
+  }
   [tool removedFromLayer:layer];
-  [tools removeObjectForKey:_type];
+  [tools removeObjectForKey:_type_];
+}
+
+- (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_changes_ context:(id)_context_ {
+  NSLog( @"Observed change of %@.%@", _object_, _keyPath_ );
+  NSLog( @"Changes = %@", _changes_ );
+  [layer needsDisplay];
 }
 
 - (void)removeAllTools {

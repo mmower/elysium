@@ -16,6 +16,6 @@
 }
 
 @property Direction direction;
-@property int TTL;
+@property int timeToLive;
 
 @end

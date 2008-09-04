@@ -192,6 +192,12 @@
   [NSThread detachNewThreadSelector:@selector(playNoteInBackground:) toTarget:self withObject:noteInfo];
 }
 
+// Drawing Support
+
+- (void)needsDisplay {
+  [document updateView:self];
+}
+
 // Layer Management
 
 - (int)layerCount {

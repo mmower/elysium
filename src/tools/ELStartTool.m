@@ -23,6 +23,13 @@
   return self;
 }
 
+- (NSArray *)observableValues {
+  NSMutableArray *keys = [[NSMutableArray alloc] init];
+  [keys addObjectsFromArray:[super observableValues]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"direction",@"timeToLive",nil]];
+  return keys;
+}
+
 @dynamic direction;
 
 - (Direction)direction {
@@ -33,14 +40,14 @@
   [config setInteger:_direction_ forKey:@"direction"];
 }
 
-@dynamic TTL;
+@dynamic timeToLive;
 
-- (int)TTL {
+- (int)timeToLive {
   return [config integerForKey:@"ttl"];
 }
 
-- (void)setTTL:(int)_ttl {
-  [config setInteger:_ttl forKey:@"ttl"];
+- (void)setTimeToLive:(int)_ttl_ {
+  [config setInteger:_ttl_ forKey:@"ttl"];
 }
 
 // Tool runner
@@ -49,7 +56,7 @@
   if( [super run:_playhead] ) {
     [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
                                                   direction:[self direction]
-                                                        TTL:[self TTL]]];
+                                                        TTL:[self timeToLive]]];
     return YES;
   } else {
     return NO;
@@ -93,7 +100,7 @@
   
   node = [_xml_ attributeForName:@"ttl"];
   if( node ) {
-    [self setTTL:[[node stringValue] intValue]];
+    [self setTimeToLive:[[node stringValue] intValue]];
   }
   
   return YES;

@@ -65,6 +65,10 @@
 - (void)playNoteInBackground:(NSDictionary *)noteInfo;
 - (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
 
+// Drawing support
+
+- (void)needsDisplay;
+
 // Layer management
 - (int)layerCount;
 - (void)removeLayers;

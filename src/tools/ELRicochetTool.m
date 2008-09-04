@@ -20,6 +20,14 @@
   return self;
 }
 
+- (NSArray *)observableValues {
+  NSMutableArray *keys = [[NSMutableArray alloc] init];
+  [keys addObjectsFromArray:[super observableValues]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"direction",nil]];
+  return keys;
+}
+
+
 @dynamic direction;
 
 - (Direction)direction {

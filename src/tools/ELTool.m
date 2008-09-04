@@ -68,6 +68,10 @@
 @synthesize layer;
 @synthesize hex;
 
+- (NSArray *)observableValues {
+  return [NSArray arrayWithObject:@"enabled"];
+}
+
 - (void)useInheritedConfig:(NSString *)_key {
   [config removeValueForKey:_key];
 }

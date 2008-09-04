@@ -53,4 +53,6 @@
 
 - (void)configureHexes;
 
+- (void)needsDisplay;
+
 @end

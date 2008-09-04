@@ -29,6 +29,13 @@
   return self;
 }
 
+- (NSArray *)observableValues {
+  NSMutableArray *keys = [[NSMutableArray alloc] init];
+  [keys addObjectsFromArray:[super observableValues]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwise",nil]];
+  return keys;
+}
+
 // Properties
 
 - (BOOL)clockwise {
