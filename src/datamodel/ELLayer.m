@@ -368,7 +368,7 @@
 // Drawing notification from the hex
 
 - (void)needsDisplay {
-  NSLog( @"layer%@#needsDisplay", self );
+  // NSLog( @"layer%@#needsDisplay", self );
   if( [delegate respondsToSelector:@selector(setNeedsDisplay:)] ) {
     [delegate setNeedsDisplay:YES];
   }

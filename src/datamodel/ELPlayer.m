@@ -162,10 +162,7 @@
 }
 
 - (void)runOnce {
-  NSLog( @"Run layers" );
   [layers makeObjectsPerformSelector:@selector(run)];
-  
-  NSLog( @"Update view" );
   [self performSelectorOnMainThread:@selector(needsDisplay) withObject:nil waitUntilDone:NO];
 }
 
@@ -179,7 +176,7 @@
   int channel = [[_noteInfo_ objectForKey:@"channel"] integerValue]-1;
   float duration = [[_noteInfo_ objectForKey:@"duration"] floatValue];
   
-  NSLog( @"Play %d on channel %d with velocity %d, duration %0.1f", noteNumber, channel, velocity, duration );
+  // NSLog( @"Play %d on channel %d with velocity %d, duration %0.1f", noteNumber, channel, velocity, duration );
   
   [midiController noteOn:noteNumber velocity:velocity channel:channel];
   usleep( duration * 1000000 );
@@ -200,7 +197,7 @@
 // Drawing Support
 
 - (void)needsDisplay {
-  NSLog( @"layers display" );
+  // NSLog( @"layers display" );
   [layers makeObjectsPerformSelector:@selector(needsDisplay)];
 }
 
