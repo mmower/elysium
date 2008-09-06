@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="2"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -39,7 +39,7 @@
 							<object class="NSButton" id="454061632">
 								<reference key="NSNextResponder" ref="17074552"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{9, 7}, {13, 13}}</string>
+								<string key="NSFrame">{{5, 3}, {13, 13}}</string>
 								<reference key="NSSuperview" ref="17074552"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="826576335">
@@ -63,7 +63,7 @@
 							<object class="NSTextField" id="723721215">
 								<reference key="NSNextResponder" ref="17074552"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{27, 7}, {58, 17}}</string>
+								<string key="NSFrame">{{23, 2}, {58, 17}}</string>
 								<reference key="NSSuperview" ref="17074552"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSTextFieldCell" key="NSCell" id="136178134">
@@ -93,14 +93,14 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrame">{{0, 98}, {252, 28}}</string>
+						<string key="NSFrame">{{0, 80}, {248, 20}}</string>
 						<reference key="NSSuperview" ref="127364364"/>
 						<string key="NSClassName">PASectionHeaderView</string>
 					</object>
 					<object class="NSButton" id="176932626">
 						<reference key="NSNextResponder" ref="127364364"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{18, 68}, {72, 18}}</string>
+						<string key="NSFrame">{{18, 56}, {72, 18}}</string>
 						<reference key="NSSuperview" ref="127364364"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="9047533">
@@ -127,7 +127,7 @@
 					<object class="NSSlider" id="1063157018">
 						<reference key="NSNextResponder" ref="127364364"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{185, 16}, {32, 34}}</string>
+						<string key="NSFrame">{{186, 24}, {32, 34}}</string>
 						<reference key="NSSuperview" ref="127364364"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="666016144">
@@ -150,7 +150,7 @@
 					<object class="NSTextField" id="944606640">
 						<reference key="NSNextResponder" ref="127364364"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{23, 26}, {66, 17}}</string>
+						<string key="NSFrame">{{21, 33}, {66, 17}}</string>
 						<reference key="NSSuperview" ref="127364364"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="965116952">
@@ -164,7 +164,7 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{233, 126}</string>
+				<string key="NSFrameSize">{248, 100}</string>
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">PACollapsibleSectionBox</string>
 			</object>
@@ -296,9 +296,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="17074552"/>
-							<reference ref="1063157018"/>
-							<reference ref="944606640"/>
 							<reference ref="176932626"/>
+							<reference ref="944606640"/>
+							<reference ref="1063157018"/>
 						</object>
 						<reference key="parent" ref="1002"/>
 					</object>
@@ -410,7 +410,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilderKit</string>
-					<string>{{277, 699}, {233, 126}}</string>
+					<string>{{333, 578}, {248, 100}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -526,11 +526,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>disclosureTriangle</string>
 							<string>sectionHeaderView</string>
+							<string>sectionLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSButton</string>
-							<string>NSView</string>
+							<string>PASectionHeaderView</string>
+							<string>NSTextField</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
