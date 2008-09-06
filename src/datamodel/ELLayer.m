@@ -34,6 +34,7 @@
     
     [config setParent:[player config]];
     [config setInteger:_channel forKey:@"channel"];
+    [config setBoolean:YES forKey:@"enabled"];
   }
   
   return self;
