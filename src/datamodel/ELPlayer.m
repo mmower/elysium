@@ -155,7 +155,7 @@
   
   [config restore];
   [self reset];
-  [document updateView:self];
+  [self needsDisplay];
   
   NSLog( @"Player has stopped." );
   isRunning = NO;
