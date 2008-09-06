@@ -71,6 +71,7 @@
 - (void)needsDisplay;
 
 // Layer management
+- (ELLayer *)createLayer;
 - (void)addLayer:(ELLayer *)layer;
 - (int)layerCount;
 - (void)removeLayers;

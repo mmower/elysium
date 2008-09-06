@@ -82,6 +82,22 @@
           duration:_duration];
 }
 
+- (NSString *)layerId {
+  return [config stringForKey:@"layerId"];
+}
+
+- (void)setLayerId:(NSString *)_layerId_ {
+  [config setValue:_layerId_ forKey:@"layerId"];
+}
+
+- (BOOL)enabled {
+  return [config booleanForKey:@"enabled"];
+}
+
+- (void)setEnabled:(BOOL)_enabled_ {
+  [config setBoolean:_enabled_ forKey:@"enabled"];
+}
+
 - (int)channel {
   return [config integerForKey:@"channel"];
 }

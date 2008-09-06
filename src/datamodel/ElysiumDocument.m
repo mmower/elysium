@@ -18,6 +18,7 @@
 #import "ELHarmonicTable.h"
 #import "ElysiumController.h"
 #import "ELLayerWindowController.h"
+#import "ELLayerManagerWindowController.h"
 
 #import "ELStartTool.h"
 #import "ELBeatTool.h"
@@ -37,7 +38,12 @@
 
 - (void)makeWindowControllers {
   [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument"]];
-  [self addWindowController:[[ELLayerWindowController alloc] initWithLayer:[player layer:0]]];
+  [self addWindowController:[[ELLayerManagerWindowController alloc] init]];
+  
+  for( ELLayer *layer in [player layers] ) {
+    [self addWindowController:[[ELLayerWindowController alloc] initWithLayer:layer]];
+  }
+  
   [[NSApp delegate] showPalette:self];
 }
 
@@ -132,10 +138,7 @@
 }
 
 - (IBAction)newLayer:(id)_sender_ {
-  ELLayer *layer = [[ELLayer alloc] initWithPlayer:player channel:([player layerCount]+1)];
-  [player addLayer:layer];
-  NSLog( @"Added new layer %@ on channel %d", layer, [layer channel] );
-  ELLayerWindowController *windowController = [[ELLayerWindowController alloc] initWithLayer:layer];
+  ELLayerWindowController *windowController = [[ELLayerWindowController alloc] initWithLayer:[player createLayer]];
   [self addWindowController:windowController];
   [windowController showWindow:self];
 }

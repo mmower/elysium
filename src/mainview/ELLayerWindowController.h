@@ -19,6 +19,6 @@
 
 - (id)initWithLayer:(ELLayer *)layer;
 
-- (void)titleWindow;
+- (void)updateWindowTitle;
 
 @end

@@ -13,6 +13,8 @@
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		C92128BB0E7296E100D4D096 /* LayerManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92128BA0E7296E100D4D096 /* LayerManager.xib */; };
+		C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */; };
 		C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92ACD690E3892F5009CF61B /* Inspector.xib */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
 		C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54970E61F1250077C448 /* PYMIDI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -173,6 +175,9 @@
 		32DBCF750370BD2300C91783 /* Elysium_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elysium_Prefix.pch; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C92128BA0E7296E100D4D096 /* LayerManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayerManager.xib; sourceTree = "<group>"; };
+		C92128BD0E7298C800D4D096 /* ELLayerManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerManagerWindowController.h; sourceTree = "<group>"; };
+		C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerManagerWindowController.m; sourceTree = "<group>"; };
 		C92ACD690E3892F5009CF61B /* Inspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Inspector.xib; path = ../../Inspector.xib; sourceTree = "<group>"; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		C93D54910E61F0E80077C448 /* PYMIDI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PYMIDI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -409,6 +414,7 @@
 		2A37F4ABFDCFA73011CA2CEA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C92128B90E7296C600D4D096 /* layer_manager */,
 				C96A67980E6B32F800A7C237 /* mainview */,
 				C97FEBD80E4F0754008F309B /* inspector */,
 				C93D55F70E64113F0077C448 /* palette */,
@@ -448,6 +454,16 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C92128B90E7296C600D4D096 /* layer_manager */ = {
+			isa = PBXGroup;
+			children = (
+				C92128BA0E7296E100D4D096 /* LayerManager.xib */,
+				C92128BD0E7298C800D4D096 /* ELLayerManagerWindowController.h */,
+				C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */,
+			);
+			name = layer_manager;
 			sourceTree = "<group>";
 		};
 		C93D54960E61F1250077C448 /* PYMIDI */ = {
@@ -894,6 +910,7 @@
 				C9D036360E708EE8005AC915 /* HexSplitterInspector.xib in Resources */,
 				C9D036380E708EF2005AC915 /* HexRotorInspector.xib in Resources */,
 				C9BB9DEA0E71EC3D0088561D /* LayerWindow.xib in Resources */,
+				C92128BB0E7296E100D4D096 /* LayerManager.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,6 +977,7 @@
 				C9D0363E0E708F11005AC915 /* ELHexSplitterInspectorPane.m in Sources */,
 				C9D036410E708F1E005AC915 /* ELHexSinkInspectorPane.m in Sources */,
 				C9BB9DDA0E71E4D60088561D /* ELLayerWindowController.m in Sources */,
+				C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

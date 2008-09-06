@@ -34,6 +34,13 @@
 - (ELHex *)hexAtColumn:(int)col row:(int)row;
 
 // Dynamic Configuration
+
+- (NSString *)layerId;
+- (void)setLayerId:(NSString *)layerId;
+
+- (BOOL)enabled;
+- (void)setEnabled:(BOOL)enabled;
+
 - (int)channel;
 - (void)setChannel:(int)channel;
 

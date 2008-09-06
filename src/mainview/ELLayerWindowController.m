@@ -17,32 +17,31 @@
     layer = _layer_;
   }
   
-  NSLog( @"Controller#initWithLayer:%@", layer );
+  // NSLog( @"Controller#initWithLayer:%@", layer );
   
   return self;
 }
 
 - (void)windowDidLoad {
-  NSLog( @"Controller %@#windowDidLoad", self );
+  // NSLog( @"Controller %@#windowDidLoad", self );
   [layerView setDelegate:self];
   [layerView setDataSource:layer];
-  [self titleWindow];
   [layer addObserver:self forKeyPath:@"channel" options:0 context:nil];
+  [layer addObserver:self forKeyPath:@"layerId" options:0 context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(id)_context_ {
-  if( _object_ == layer && [_keyPath_ isEqualToString:@"channel"] ) {
-    [self titleWindow];
+  if( _object_ == layer && ( [_keyPath_ isEqualToString:@"channel"] || [_keyPath_ isEqualToString:@"layerId"] ) ) {
+    [self updateWindowTitle];
   }
 }
 
 - (NSString *)windowTitleForDocumentDisplayName:(NSString *)_displayName_ {
-  return [NSString stringWithFormat:@"%@ - Channel:%d", _displayName_, [layer channel]];
+  return [NSString stringWithFormat:@"%@ - %@ (Channel %d)", _displayName_, [layer layerId], [layer channel]];
 }
 
-- (void)titleWindow {
-  NSLog( @"title window %@ as %@", [self window], [NSString stringWithFormat:@"Channel %d",[layer channel]] );
-  [[self window] setTitle:[NSString stringWithFormat:@"%@ - Channel:%d",[[self document] displayName],[layer channel]]];
+- (void)updateWindowTitle {
+  [[self window] setTitle:[self windowTitleForDocumentDisplayName:[[self document] displayName]]];
 }
 
 @end

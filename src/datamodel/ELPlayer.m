@@ -45,9 +45,10 @@
     [config setInteger:16 forKey:@"pulseCount"];
     [config setInteger:100 forKey:@"velocity"];
     [config setFloat:0.5 forKey:@"duration"];
+    [config setInteger:1 forKey:@"nextLayerId"];
     
     if( _createDefaultLayer_ ) {
-      [self addLayer:[[ELLayer alloc] initWithPlayer:self channel:1]];
+      [self createLayer];
     }
   }
   
@@ -200,6 +201,18 @@
 }
 
 // Layer Management
+
+- (ELLayer *)createLayer {
+  ELLayer *layer = [[ELLayer alloc] initWithPlayer:self channel:([self layerCount]+1)];
+  
+  int nextLayerNumber = [config integerForKey:@"nextLayerId"];
+  NSString *layerId = [NSString stringWithFormat:@"Layer-%d", nextLayerNumber];
+  [config setInteger:nextLayerNumber+1 forKey:@"nextLayerId"];
+  [layer setLayerId:layerId];
+  
+  [self addLayer:layer];
+  return layer;
+}
 
 - (void)addLayer:(ELLayer *)_layer_ {
   [[_layer_ config] setParent:config];
