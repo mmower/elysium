@@ -78,9 +78,9 @@
 - (void)noteOn:(int)_note velocity:(int)_velocity channel:(int)_channel {
   Byte data[3];
   
-  if( [delegate respondsToSelector:@selector(noteOn:velocity:channel:)] ) {
-    [delegate noteOn:_note velocity:_velocity channel:_channel];
-  }
+  // if( [delegate respondsToSelector:@selector(noteOn:velocity:channel:)] ) {
+  //   [delegate noteOn:_note velocity:_velocity channel:_channel];
+  // }
   
   data[0] = MIDI_ON | _channel;
   data[1] = (Byte)_note;
@@ -94,9 +94,9 @@
 - (void)noteOff:(int)_note velocity:(int)_velocity channel:(int)_channel {
   Byte data[3];
   
-  if( [delegate respondsToSelector:@selector(noteOff:velocity:channel:)] ) {
-    [delegate noteOff:_note velocity:_velocity channel:_channel];
-  }
+  // if( [delegate respondsToSelector:@selector(noteOff:velocity:channel:)] ) {
+  //   [delegate noteOff:_note velocity:_velocity channel:_channel];
+  // }
   
   data[0] = MIDI_OFF | _channel;
   data[1] = (Byte)_note;
@@ -108,9 +108,9 @@
 - (void)programChange:(int)_preset channel:(int)_channel {
   Byte data[2];
   
-  if( [delegate respondsToSelector:@selector(programChange:channel:)] ) {
-    [delegate programChange:_preset channel:_channel];
-  }
+  // if( [delegate respondsToSelector:@selector(programChange:channel:)] ) {
+  //   [delegate programChange:_preset channel:_channel];
+  // }
   
   data[0] = MIDI_PC | _channel;
   data[1] = _preset;

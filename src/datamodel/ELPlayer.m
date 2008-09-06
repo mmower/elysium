@@ -162,8 +162,11 @@
 }
 
 - (void)runOnce {
+  NSLog( @"Run layers" );
   [layers makeObjectsPerformSelector:@selector(run)];
-  [document performSelectorOnMainThread:@selector(updateView:) withObject:self waitUntilDone:NO];
+  
+  NSLog( @"Update view" );
+  [self performSelectorOnMainThread:@selector(needsDisplay) withObject:nil waitUntilDone:NO];
 }
 
 - (void)clearAll {
@@ -173,7 +176,7 @@
 - (void)playNoteInBackground:(NSDictionary *)_noteInfo_ {
   int noteNumber = [[_noteInfo_ objectForKey:@"note"] integerValue];
   int velocity = [[_noteInfo_ objectForKey:@"velocity"] integerValue];
-  int channel = [[_noteInfo_ objectForKey:@"channel"] integerValue];
+  int channel = [[_noteInfo_ objectForKey:@"channel"] integerValue]-1;
   float duration = [[_noteInfo_ objectForKey:@"duration"] floatValue];
   
   NSLog( @"Play %d on channel %d with velocity %d, duration %0.1f", noteNumber, channel, velocity, duration );
@@ -197,7 +200,8 @@
 // Drawing Support
 
 - (void)needsDisplay {
-  [document updateView:self];
+  NSLog( @"layers display" );
+  [layers makeObjectsPerformSelector:@selector(needsDisplay)];
 }
 
 // Layer Management

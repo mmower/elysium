@@ -367,11 +367,8 @@
 
 // Drawing notification from the hex
 
-- (void)setNeedsDisplay:(BOOL)_needsDisplay_ {
-  // This method only exists in order for KVO
-}
-
 - (void)needsDisplay {
+  NSLog( @"layer%@#needsDisplay", self );
   if( [delegate respondsToSelector:@selector(setNeedsDisplay:)] ) {
     [delegate setNeedsDisplay:YES];
   }

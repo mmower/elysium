@@ -37,7 +37,7 @@
 @synthesize player;
 
 - (void)makeWindowControllers {
-  [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument"]];
+  [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument" owner:self]];
   [self addWindowController:[[ELLayerManagerWindowController alloc] init]];
   
   for( ELLayer *layer in [player layers] ) {
@@ -144,14 +144,9 @@
 }
 
 // Sent by background threads when the view needs to be updated
-- (void)updateView:(id)sender {
-  NSLog( @"Update window controllers" );
-  
-  for( NSWindowController *windowController in [self windowControllers] ) {
-    if( [windowController isKindOfClass:[ELLayerWindowController class]] ) {
-      [((ELLayerWindowController *)windowController) updateView];
-    }
-  }
+- (void)updateView:(id)_sender_ {
+  NSLog( @"document#needsDisplay" );
+  [player needsDisplay];
 }
 
 // MIDI Controller delegate methods
