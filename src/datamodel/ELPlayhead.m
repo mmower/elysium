@@ -51,6 +51,10 @@
 
 @dynamic isDead;
 
+- (void)kill {
+  TTL = 0;
+}
+
 - (BOOL)isDead {
   return position == nil || TTL < 1;
 }

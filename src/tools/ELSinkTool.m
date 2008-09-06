@@ -23,7 +23,7 @@
 
 - (BOOL)run:(ELPlayhead *)_playhead {
   if( [super run:_playhead] ) {
-    [_playhead setPosition:nil];
+    [_playhead kill];
     return YES;
   } else {
     return NO;

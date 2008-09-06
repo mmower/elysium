@@ -56,6 +56,8 @@
       tool = [[_playhead position] toolOfType:@"ricochet"];
     } else if( [[_playhead position] toolOfType:@"start"] ) {
       tool = [[_playhead position] toolOfType:@"start"];
+    } else {
+      tool = nil;
     }
     
     if( [self clockwise] ) {
