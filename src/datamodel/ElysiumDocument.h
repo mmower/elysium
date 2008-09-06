@@ -33,5 +33,6 @@
 - (IBAction)startStop:(id)sender;
 - (IBAction)runOnce:(id)sender;
 - (IBAction)clearAll:(id)sender;
+- (IBAction)newLayer:(id)sender;
 
 @end

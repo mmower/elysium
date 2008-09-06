@@ -38,7 +38,8 @@
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property (readonly) BOOL isRunning;
 
-- (id)initWithDefaultLayer:(BOOL)defaultLayer;
+- (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_;
+- (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)createDefaultLayer;
 
 - (int)tempo;
 - (void)setTempo:(int)tempo;

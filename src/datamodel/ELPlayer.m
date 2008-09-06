@@ -27,16 +27,17 @@
 
 @implementation ELPlayer
 
-- (id)init {
-  return [self initWithDefaultLayer:YES];
+- (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ {
+  return [self initWithDocument:_document_ midiController:_midiController_ createDefaultLayer:YES];
 }
 
-- (id)initWithDefaultLayer:(BOOL)_defaultLayer_ {
+- (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)_createDefaultLayer_ {
   if( self = [super init] ) {
-    harmonicTable = [[ELHarmonicTable alloc] init];
-    layers        = [[NSMutableArray alloc] init];
-    config        = [[ELConfig alloc] init];
-    timer         = [[ELTimer alloc] init];
+    harmonicTable  = [[ELHarmonicTable alloc] init];
+    layers         = [[NSMutableArray alloc] init];
+    config         = [[ELConfig alloc] init];
+    timer          = [[ELTimer alloc] init];
+    midiController = _midiController_;
     
     // Setup some default values
     [config setInteger:600 forKey:@"bpm"];
@@ -45,7 +46,7 @@
     [config setInteger:100 forKey:@"velocity"];
     [config setFloat:0.5 forKey:@"duration"];
     
-    if( _defaultLayer_ ) {
+    if( _createDefaultLayer_ ) {
       [self addLayer:[[ELLayer alloc] initWithPlayer:self channel:1]];
     }
   }

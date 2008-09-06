@@ -17,6 +17,7 @@
 #import "ELPlayer.h"
 #import "ELHarmonicTable.h"
 #import "ElysiumController.h"
+#import "ELLayerWindowController.h"
 
 #import "ELStartTool.h"
 #import "ELBeatTool.h"
@@ -27,32 +28,17 @@
 {
     self = [super init];
     if (self) {
-      player = [[ELPlayer alloc] init];
+      player = [[ELPlayer alloc] initWithDocument:self midiController:[self midiController]];
     }
     return self;
 }
 
 @synthesize player;
 
-- (NSString *)windowNibName
-{
-    // Override returning the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-    return @"ElysiumDocument";
-}
-
-- (void)windowControllerDidLoadNib:(NSWindowController *) aController
-{
-    [super windowControllerDidLoadNib:aController];
-    
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    [player setMIDIController:[self midiController]];
-    [player setDocument:self];
-    
-    [layerView setDelegate:self];
-    [layerView setDataSource:[player layer:0]];
-    
-    [[NSApp delegate] showPalette:self];
+- (void)makeWindowControllers {
+  [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument"]];
+  [self addWindowController:[[ELLayerWindowController alloc] initWithLayer:[player layer:0]]];
+  [[NSApp delegate] showPalette:self];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -83,7 +69,7 @@
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
   // Get a new, empty, player for this document
-  player = [[ELPlayer alloc] initWithDefaultLayer:NO];
+  player = [[ELPlayer alloc] initWithDocument:self midiController:[self midiController] createDefaultLayer:NO];
   
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithData:data options:0 error:outError];
   if( document == nil ) {
@@ -124,7 +110,7 @@
 
 // Actions
 
-- (IBAction)startStop:(id)sender {
+- (IBAction)startStop:(id)_sender_ {
   if( [player isRunning] ) {
     [controlButton setTitle:@"Start"];
     [player stop];
@@ -136,22 +122,22 @@
   }
 }
 
-- (IBAction)runOnce:(id)sender {
-  
-  ELLayer *layer = [player layer:0];
-  int channel = [layer channel];
-  int newChannel = (channel + 1) % 3;
-  
-  NSLog( @"Layer is on channel %d switching to %d", channel, newChannel );
-  
-  [layer setChannel:newChannel];
-  
-  // [player runOnce];
+- (IBAction)runOnce:(id)_sender_ {
+  [player runOnce];
 }
 
-- (IBAction)clearAll:(id)sender {
+- (IBAction)clearAll:(id)_sender_ {
   [player clearAll];
   [self updateView:self];
+}
+
+- (IBAction)newLayer:(id)_sender_ {
+  ELLayer *layer = [[ELLayer alloc] initWithPlayer:player channel:([player layerCount]+1)];
+  [player addLayer:layer];
+  NSLog( @"Added new layer %@ on channel %d", layer, [layer channel] );
+  ELLayerWindowController *windowController = [[ELLayerWindowController alloc] initWithLayer:layer];
+  [self addWindowController:windowController];
+  [windowController showWindow:self];
 }
 
 // Sent by background threads when the view needs to be updated
