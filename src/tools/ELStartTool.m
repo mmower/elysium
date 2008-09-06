@@ -94,7 +94,7 @@
   float radius = [[self hex] radius];
   
   NSBezierPath *symbolPath;
-  symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/4, centre.y - radius/4, radius/2, radius/2 )];
+  symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/3, centre.y - radius/3, 2*radius/3, 2*radius/3 )];
   [symbolPath setLineWidth:2.0];
 
   [[_attributes_ objectForKey:ELToolColor] set];
