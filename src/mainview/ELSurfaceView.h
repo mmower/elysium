@@ -10,17 +10,20 @@
 
 #import <HoneycombView/LMHoneycombView.h>
 
-@class ELHexCell;
+@class ELHex;
 
 @interface ELSurfaceView : LMHoneycombView {
   NSColor *toolColor;
+  NSEvent *savedEvent;
 }
 
 @property (assign) NSColor *toolColor;
 
-- (ELHexCell *)cellUnderMouseLocation:(NSPoint)point;
+- (ELHex *)cellUnderMouseLocation:(NSPoint)point;
+- (ELHex *)selectedHex;
 
-- (void)addTool:(int)toolTag toCell:(ELHexCell *)cell;
+- (void)addTool:(int)toolTag toCell:(ELHex *)cell;
+- (void)dragFromHex:(ELHex *)sourceHex to:(ELHex *)targetHex with:(NSDragOperation)modifiers;
 
 - (void)cellWasUpdated:(NSNotification*)notification;
     

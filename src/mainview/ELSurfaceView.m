@@ -19,6 +19,7 @@
 #import "ELSplitterTool.h"
 
 NSString* const ELToolColor = @"tool.color";
+NSString *HexPBoardType = @"HexPBoardType";
 
 @implementation ELSurfaceView
 
@@ -28,7 +29,7 @@ NSString* const ELToolColor = @"tool.color";
     [self setBorderColor:[NSColor colorWithDeviceRed:(11.0/255) green:(75.0/255) blue:(169.0/255) alpha:0.8]];
     [self setSelectedColor:[NSColor blueColor]];
     [self setToolColor:[NSColor yellowColor]];
-    [self registerForDraggedTypes:[NSArray arrayWithObject:ToolPBoardType]];
+    [self registerForDraggedTypes:[NSArray arrayWithObjects:ToolPBoardType,HexPBoardType,nil]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cellWasUpdated:)
@@ -55,13 +56,17 @@ NSString* const ELToolColor = @"tool.color";
 
 // General view support
 
-- (ELHexCell *)cellUnderMouseLocation:(NSPoint)_point_ {
-  return (ELHexCell *)[self findCellAtPoint:[self convertPoint:_point_ fromView:nil]];
+- (ELHex *)cellUnderMouseLocation:(NSPoint)_point_ {
+  return (ELHex *)[self findCellAtPoint:[self convertPoint:_point_ fromView:nil]];
+}
+
+- (ELHex *)selectedHex {
+  return (ELHex *)[self selected];
 }
 
 // Tool management
 
-- (void)addTool:(int)_toolTag_ toCell:(ELHexCell *)_cell_ {
+- (void)addTool:(int)_toolTag_ toCell:(ELHex *)_cell_ {
   switch( _toolTag_ ) {
     case EL_TOOL_GENERATOR:
       [_cell_ addTool:[[ELStartTool alloc] init]];
@@ -98,10 +103,69 @@ NSString* const ELToolColor = @"tool.color";
   [self setNeedsDisplay:YES];
 }
 
+- (void)dragFromHex:(ELHex *)_sourceHex_ to:(ELHex *)_targetHex_ with:(NSDragOperation)_modifiers_ {
+  [_targetHex_ removeAllTools];
+  
+  for( ELTool *tool in [_sourceHex_ tools] ) {
+    [_targetHex_ addTool:[tool mutableCopy]];
+  }
+  
+  if( !_modifiers_ & NSDragOperationCopy ) {
+    [_sourceHex_ removeAllTools];
+  }
+  
+  [self setNeedsDisplay:YES];
+}
+
+// Hex-to-Hex drag support
+
+- (NSDragOperation)draggingSourceOperationMaskForLocal:(BOOL)_isLocal_ {
+  if( _isLocal_ ) {
+    return NSDragOperationCopy;
+  } else {
+    return NSDragOperationNone;
+  }
+}
+
+- (void)mouseDown:(NSEvent *)_event_ {
+  [super mouseDown:_event_];
+  savedEvent = _event_;
+}
+
+- (void)mouseDragged:(NSEvent *)_event_ {
+  NSPoint down = [savedEvent locationInWindow];
+  NSPoint drag = [_event_ locationInWindow];
+  
+  float distance = hypot( down.x - drag.x, down.y - drag.y );
+  if( distance < 3 ) {
+    return;
+  }
+  
+  NSPoint p = [self convertPoint:down fromView:nil];
+  
+  NSImage *image = [NSImage imageNamed:@"hexdrag"];
+  
+  p.x = p.x - [image size].width / 2;
+  p.y = p.y - [image size].height / 2;
+  
+  NSPasteboard *pasteboard = [NSPasteboard pasteboardWithName:NSDragPboard];
+  [pasteboard declareTypes:[NSArray arrayWithObject:HexPBoardType] owner:self];
+  
+  [pasteboard setString:@"foo" forType:HexPBoardType]; // Dummy, we'll just work of [self selected] anyway
+  
+  [self dragImage:image
+               at:p
+           offset:NSMakeSize(0,0)
+            event:savedEvent
+       pasteboard:pasteboard
+           source:self
+        slideBack:YES];
+}
+
 // Drag & Drop tool adding support
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)_sender_ {
-  ELHexCell *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
+  ELHex *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
   if( cell ) {
     return NSDragOperationCopy;
   } else {
@@ -110,7 +174,7 @@ NSString* const ELToolColor = @"tool.color";
 }
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)_sender_ {
-  ELHexCell *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
+  ELHex *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
   if( cell ) {
     return NSDragOperationCopy;
   } else {
@@ -127,6 +191,8 @@ NSString* const ELToolColor = @"tool.color";
   if( [types containsObject:ToolPBoardType] ) {
     int tag = [[pasteboard stringForType:ToolPBoardType] intValue];
     [self addTool:tag toCell:[self cellUnderMouseLocation:[_sender_ draggingLocation]]];
+  } else if( [types containsObject:HexPBoardType] ) {
+    [self dragFromHex:[self selectedHex] to:[self cellUnderMouseLocation:[_sender_ draggingLocation]] with:[_sender_ draggingSourceOperationMask]];
   }
   
   return YES;
