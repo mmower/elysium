@@ -42,6 +42,7 @@
 
 @synthesize player;
 @synthesize config;
+@synthesize delegate;
 
 - (void)run {
   NSPredicate *deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
@@ -366,8 +367,14 @@
 
 // Drawing notification from the hex
 
+- (void)setNeedsDisplay:(BOOL)_needsDisplay_ {
+  // This method only exists in order for KVO
+}
+
 - (void)needsDisplay {
-  [player needsDisplay];
+  if( [delegate respondsToSelector:@selector(setNeedsDisplay:)] ) {
+    [delegate setNeedsDisplay:YES];
+  }
 }
 
 @end

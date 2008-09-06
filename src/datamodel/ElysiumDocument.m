@@ -145,9 +145,14 @@
 
 // Sent by background threads when the view needs to be updated
 - (void)updateView:(id)sender {
-  [layerView setNeedsDisplay:YES];
+  NSLog( @"Update window controllers" );
+  
+  for( NSWindowController *windowController in [self windowControllers] ) {
+    if( [windowController isKindOfClass:[ELLayerWindowController class]] ) {
+      [((ELLayerWindowController *)windowController) updateView];
+    }
+  }
 }
-
 
 // MIDI Controller delegate methods
 

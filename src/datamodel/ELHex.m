@@ -82,8 +82,6 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_changes_ context:(id)_context_ {
-  NSLog( @"Observed change of %@.%@", _object_, _keyPath_ );
-  NSLog( @"Changes = %@", _changes_ );
   [layer needsDisplay];
 }
 

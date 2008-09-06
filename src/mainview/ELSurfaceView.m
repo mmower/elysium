@@ -133,7 +133,6 @@ NSString* const ELToolColor = @"tool.color";
 }
 
 - (void)concludeDragOperation:(id <NSDraggingInfo>)_sender_ {
-  NSLog( @"concludeDragOperation:" );
 }
 
 - (void)cellWasUpdated:(NSNotification*)_notification_

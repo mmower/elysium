@@ -26,6 +26,7 @@
   // NSLog( @"Controller %@#windowDidLoad", self );
   [layerView setDelegate:self];
   [layerView setDataSource:layer];
+  [layer setDelegate:layerView];
   [layer addObserver:self forKeyPath:@"channel" options:0 context:nil];
   [layer addObserver:self forKeyPath:@"layerId" options:0 context:nil];
 }
@@ -42,6 +43,10 @@
 
 - (void)updateWindowTitle {
   [[self window] setTitle:[self windowTitleForDocumentDisplayName:[[self document] displayName]]];
+}
+
+- (void)updateView {
+  [layerView setNeedsDisplay:YES];
 }
 
 @end

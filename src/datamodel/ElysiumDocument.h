@@ -18,7 +18,6 @@
 {
   IBOutlet  NSButton          *controlButton;
   ELPlayer                    *player;
-  IBOutlet  ELSurfaceView     *layerView;
 }
 
 @property (readonly) ELPlayer *player;
