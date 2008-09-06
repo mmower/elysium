@@ -13,6 +13,7 @@
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
 		C92128BB0E7296E100D4D096 /* LayerManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92128BA0E7296E100D4D096 /* LayerManager.xib */; };
 		C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */; };
 		C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92ACD690E3892F5009CF61B /* Inspector.xib */; };
@@ -175,6 +176,7 @@
 		32DBCF750370BD2300C91783 /* Elysium_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elysium_Prefix.pch; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
 		C92128BA0E7296E100D4D096 /* LayerManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayerManager.xib; sourceTree = "<group>"; };
 		C92128BD0E7298C800D4D096 /* ELLayerManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerManagerWindowController.h; sourceTree = "<group>"; };
 		C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerManagerWindowController.m; sourceTree = "<group>"; };
@@ -666,6 +668,7 @@
 		C9B88E400E64A5E400FA411E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C905E00D0E733C2A00C39302 /* hexdrag.pdf */,
 				C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */,
 				C9E8D9360E68B8AF005AD9B7 /* play.pdf */,
 				C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */,
@@ -912,6 +915,7 @@
 				C9D036380E708EF2005AC915 /* HexRotorInspector.xib in Resources */,
 				C9BB9DEA0E71EC3D0088561D /* LayerWindow.xib in Resources */,
 				C92128BB0E7296E100D4D096 /* LayerManager.xib in Resources */,
+				C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
