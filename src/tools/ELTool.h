@@ -22,7 +22,7 @@
 - (void)setDirection:(Direction)direction;
 @end
 
-@interface ELTool : NSObject <ELData> {
+@interface ELTool : NSObject <ELData, NSMutableCopying> {
   BOOL      enabled;
   NSString  *toolType;
   ELLayer   *layer;

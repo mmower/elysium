@@ -21,16 +21,29 @@
 }
 
 - (id)initWithParent:(ELConfig *)_parent_ {
+  return [self initWithParent:_parent_ data:[[NSMutableDictionary alloc] init] children:[[NSMutableArray alloc] init]];
+  
+}
+
+- (id)initWithParent:(ELConfig *)_parent_ data:(NSMutableDictionary *)_data_ children:(NSMutableArray *)_children_ {
   if( self = [super init] ) {
-    data     = [[NSMutableDictionary alloc] init];
+    data     = _data_;
     snapshot = nil;
-    children = [[NSMutableArray alloc] init];
+    children = _children_;
     
     [self setParent:_parent_];
   }
   
   return self;
 }
+
+// NSMutableCopying protocol
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initWithParent:parent data:[data mutableCopy] children:children];
+}
+
+// Child management
 
 - (void)addChild:(ELConfig *)_child_ {
   [children addObject:_child_];

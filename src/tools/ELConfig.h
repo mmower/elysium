@@ -14,7 +14,7 @@
 - (NSString *)stringValue;
 @end
 
-@interface ELConfig : NSObject <ELData> {
+@interface ELConfig : NSObject <ELData,NSMutableCopying> {
   ELConfig              *parent;
   NSMutableDictionary   *data;
   NSMutableDictionary   *snapshot;
@@ -23,7 +23,10 @@
 
 - (id)init;
 - (id)initWithParent:(ELConfig *)parent;
+- (id)initWithParent:(ELConfig *)parent data:(NSMutableDictionary *)data children:(NSMutableArray *)children;
+
 - (void)addChild:(ELConfig *)child;
+- (void)removeChild:(ELConfig *)child;
 
 @property ELConfig *parent;
 

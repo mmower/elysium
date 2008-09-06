@@ -61,6 +61,15 @@
   return self;
 }
 
+// NSMutableCopying protocol
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initWithType:toolType config:[config mutableCopy]];
+}
+
+
+// Properties
+
 @synthesize enabled;
 @synthesize preferredOrder;
 @synthesize toolType;
