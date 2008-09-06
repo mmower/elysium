@@ -8,8 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="249"/>
 			<integer value="230"/>
+			<integer value="248"/>
+			<integer value="249"/>
 			<integer value="229"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -145,20 +146,21 @@
 			<object class="NSCustomView" id="535253276">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
-				<string key="NSFrameSize">{310, 475}</string>
+				<string key="NSFrameSize">{248, 620}</string>
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">PAStackedListView</string>
 			</object>
 			<object class="NSCustomView" id="3055948">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
-				<string key="NSFrame">{{41, 154}, {163, 96}}</string>
+				<string key="NSFrameSize">{248, 620}</string>
+				<reference key="NSSuperview"/>
 				<string key="NSClassName">PAStackedListView</string>
 			</object>
 			<object class="NSCustomView" id="637450293">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
-				<string key="NSFrameSize">{310, 475}</string>
+				<string key="NSFrameSize">{248, 620}</string>
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">PAStackedListView</string>
 			</object>
@@ -375,6 +377,7 @@
 					<string>230.IBPluginDependency</string>
 					<string>236.IBPluginDependency</string>
 					<string>237.IBPluginDependency</string>
+					<string>248.IBEditorWindowLastContentRect</string>
 					<string>248.IBPluginDependency</string>
 					<string>249.IBEditorWindowLastContentRect</string>
 					<string>249.IBPluginDependency</string>
@@ -400,12 +403,13 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{911, 415}, {310, 475}}</string>
+					<string>{{861, 416}, {248, 620}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{1133, 415}, {248, 620}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{585, 416}, {310, 475}}</string>
+					<string>{{585, 416}, {248, 620}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
@@ -441,7 +445,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>focusedObject</string>
 							<string>hexInspectorView</string>
 							<string>inspectorPanel</string>
 							<string>layerInspectorView</string>
@@ -450,7 +453,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>PAStackedListView</string>
 							<string>NSPanel</string>
 							<string>PAStackedListView</string>
@@ -468,13 +470,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">../Honeycomb/view/LMHoneycombView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">src/inspector/ELPlayerInspectorPane.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
