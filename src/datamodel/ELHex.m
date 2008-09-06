@@ -86,7 +86,9 @@
 }
 
 - (void)removeAllTools {
-  [tools removeAllObjects];
+  for( NSString *toolType in [tools allKeys] ) {
+    [self removeTool:toolType];
+  }
 }
 
 - (NSArray *)tools {
