@@ -67,7 +67,6 @@
 
 - (int)tempo {
   int tempo = [config integerForKey:@"bpm"];
-  NSLog( @"Returning player tempo = %d", tempo );
   return tempo;
 }
 

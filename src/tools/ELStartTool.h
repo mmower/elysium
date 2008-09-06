@@ -17,5 +17,8 @@
 
 @property Direction direction;
 @property int timeToLive;
+@property int pulseCount;
+
+- (BOOL)shouldPulseOnBeat:(int)beat;
 
 @end

@@ -16,6 +16,7 @@
 #import "ELConfig.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
+#import "ELStartTool.h"
 #import "ELHarmonicTable.h"
 
 #import "ELInspectorController.h"
@@ -24,11 +25,12 @@
 
 - (id)initWithPlayer:(ELPlayer *)_player channel:(int)_channel {
   if( self = [super init] ) {
-    player    = _player;
-    config    = [[ELConfig alloc] init];
-    hexes     = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-    playheads = [[NSMutableArray alloc] init];
-    beatCount = 0;
+    player     = _player;
+    config     = [[ELConfig alloc] init];
+    hexes      = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    playheads  = [[NSMutableArray alloc] init];
+    generators = [[NSMutableArray alloc] init];
+    beatCount  = 0;
     
     [self configureHexes];
     
@@ -49,9 +51,7 @@
   
   // On the first and every pulseCount beats, generate new playheads
   // NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
-  if( beatCount % [self pulseCount] == 0 ) {
-    [self pulse];
-  }
+  [self pulse];
   
   // Run all current playheads
   for( ELPlayhead *playhead in [playheads copy] ) {
@@ -172,9 +172,19 @@
   [playheads removeAllObjects];
 }
 
+- (void)addGenerator:(ELStartTool *)_generator_ {
+  [generators addObject:_generator_];
+}
+
+- (void)removeGenerator:(ELStartTool *)_generator_ {
+  [generators removeObject:_generator_];
+}
+
 - (void)pulse {
-  for( ELHex *hex in hexes ) {
-    [[hex toolOfType:@"start"] run:nil];
+  for( ELStartTool *generator in generators ) {
+    if( [generator shouldPulseOnBeat:beatCount] ) {
+      [generator run:nil];
+    }
   }
 }
 

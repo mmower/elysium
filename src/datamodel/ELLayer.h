@@ -16,12 +16,14 @@
 @class ELConfig;
 @class ELPlayer;
 @class ELPlayhead;
+@class ELStartTool;
 
 @interface ELLayer : NSObject <LMHoneycombMatrix,ELData> {
   ELPlayer            *player;
   NSMutableArray      *hexes;
   ELConfig            *config;
   NSMutableArray      *playheads;
+  NSMutableArray      *generators;
   int                 beatCount;
   id                  delegate;
 }
@@ -47,6 +49,9 @@
 - (void)setChannel:(int)channel;
 
 - (int)pulseCount;
+
+- (void)addGenerator:(ELStartTool *)generator;
+- (void)removeGenerator:(ELStartTool *)generator;
 
 - (void)run;
 - (void)stop;

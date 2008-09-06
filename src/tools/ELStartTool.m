@@ -23,6 +23,16 @@
   return self;
 }
 
+- (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
+  [super addedToLayer:_layer_ atPosition:_hex_];
+  [_layer_ addGenerator:self];
+}
+
+- (void)removedFromLayer:(ELLayer *)_layer_ {
+  [_layer_ removeGenerator:self];
+  [super removedFromLayer:_layer_];
+}
+
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
@@ -50,7 +60,21 @@
   [config setInteger:_ttl_ forKey:@"ttl"];
 }
 
+@dynamic pulseCount;
+
+- (int)pulseCount {
+  return [config integerForKey:@"pulseCount"];
+}
+
+- (void)setPulseCount:(int)_pulseCount_ {
+  [config setInteger:_pulseCount_ forKey:@"pulseCount"];
+}
+
 // Tool runner
+
+- (BOOL)shouldPulseOnBeat:(int)_beat_ {
+  return ( _beat_ % [self pulseCount] ) == 0;
+}
 
 - (BOOL)run:(ELPlayhead *)_playhead {
   if( [super run:_playhead] ) {
