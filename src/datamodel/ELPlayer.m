@@ -216,7 +216,10 @@
 
 - (void)addLayer:(ELLayer *)_layer_ {
   [[_layer_ config] setParent:config];
+  
+  [self willChangeValueForKey:@"layers"];
   [layers addObject:_layer_];
+  [self didChangeValueForKey:@"layers"];
 }
 
 - (void)removeLayer:(ELLayer *)_layer_ {
