@@ -14,7 +14,7 @@
 @implementation ELPlayhead
 
 - (id)initWithPosition:(ELHex *)_position direction:(Direction)_direction TTL:(int)_TTL {
-  if( self = [super init] ) {
+  if( ( self = [super init] ) ) {
     [self setPosition:_position];
     direction = _direction;
     TTL       = _TTL;

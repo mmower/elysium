@@ -34,13 +34,15 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (id)initWithPlayer:(ELPlayer *)_player channel:(int)_channel {
-  if( self = [super init] ) {
+  if( ( self = [super init] ) ) {
     player        = _player;
     config        = [[ELConfig alloc] init];
     hexes         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
     playheads     = [[NSMutableArray alloc] init];
     generators    = [[NSMutableArray alloc] init];
     beatCount     = 0;
+    timeBase      = 0;
+    isRunning     = 0;
     
     [self configureHexes];
     
@@ -56,41 +58,11 @@ NSPredicate *deadPlayheadFilter;
 @synthesize config;
 @synthesize delegate;
 
-- (void)run {
-  // On the first and every pulseCount beats, generate new playheads
-  // NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
-  [self pulse];
-  
-  // Run all current playheads
-  for( ELPlayhead *playhead in [playheads copy] ) {
-    ELHex *hex = [playhead position];
-    for( ELTool *tool in [hex toolsExceptType:@"start"] ) {
-      if( ![playhead isDead] ) {
-        [tool run:playhead];
-      }
-    }
-    
-    if( ![playhead isDead] ) {
-      [playhead advance];
-    }
-  }
-  
-  // Cleanup & delete dead playheads
-  for( ELPlayhead *playhead in playheads ) {
-    [playhead cleanup];
-  }
-  
-  [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
-  
-  // Beat is over
-  beatCount++;
-}
-
-- (void)playNote:(ELNote *)_note velocity:(int)_velocity duration:(float)_duration {
-  [player playNote:_note
-           channel:[self channel]
-          velocity:_velocity
-          duration:_duration];
+- (void)playNote:(ELNote *)_note_ velocity:(int)_velocity_ duration:(float)_duration_ {
+  // UInt64 noteOnTime = timeBase + (beatCount * [self timerResolution]);
+  // UInt64 noteOffTime = noteOnTime + ( _duration_ * 1000000 );
+  // [player scheduleNote:_note_ channel:[self channel] velocity:[self velocity] on:noteOnTime off:noteOffTime];
+  [player playNote:_note_ channel:[self channel] velocity:_velocity_ duration:_duration_];
 }
 
 - (NSString *)layerId {
@@ -157,6 +129,10 @@ NSPredicate *deadPlayheadFilter;
   [config setInteger:_ttl_ forKey:@"ttl"];
 }
 
+- (int)timerResolution {
+  return 60000000 / [self tempo];
+}
+
 @dynamic visible;
 
 - (BOOL)visible {
@@ -173,8 +149,60 @@ NSPredicate *deadPlayheadFilter;
 
 // Manipulate layer
 
+- (void)run {
+  // On the first and every pulseCount beats, generate new playheads
+  // NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
+  [self pulse];
+  
+  // Run all current playheads
+  for( ELPlayhead *playhead in [playheads copy] ) {
+    ELHex *hex = [playhead position];
+    for( ELTool *tool in [hex toolsExceptType:@"start"] ) {
+      if( ![playhead isDead] ) {
+        [tool run:playhead];
+      }
+    }
+    
+    if( ![playhead isDead] ) {
+      [playhead advance];
+    }
+  }
+  
+  // Cleanup & delete dead playheads
+  for( ELPlayhead *playhead in playheads ) {
+    [playhead cleanup];
+  }
+  
+  [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
+  
+  [delegate setNeedsDisplay:YES];
+  
+  // Beat is over
+  beatCount++;
+}
+
+- (void)runLayer {
+  NSLog( @"Layer-%@ thread running", [self layerId] );
+  timeBase  = AudioGetCurrentHostTime();
+  isRunning = YES;
+  while( ![runner isCancelled] ) {
+    [self run];
+    usleep( [self timerResolution] );
+  }
+  
+  isRunning = NO;
+  [self reset];
+}
+
+- (void)start {
+  NSLog( @"Starting thread for Layer-%@", [self layerId] );
+  runner = [[NSThread alloc] initWithTarget:self selector:@selector(runLayer) object:nil];
+  [runner start];
+}
+
 - (void)stop {
-  [self removeAllPlayheads];
+  NSLog( @"Stopping thread for Layer-%@", [self layerId] );
+  [runner cancel];
 }
 
 - (void)reset {
@@ -298,7 +326,7 @@ NSPredicate *deadPlayheadFilter;
   
   if( _cell ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:_cell];
-    [self playNote:[(ELHex*)_cell note] velocity:[self velocity] duration:[self duration]];
+    [player playNote:[(ELHex*)_cell note] channel:[self channel] velocity:[self velocity] duration:[self duration]];
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
   }
@@ -354,19 +382,19 @@ NSPredicate *deadPlayheadFilter;
 - (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
   
   NSXMLNode *node;
-  if( node = [_xml_ attributeForName:@"pulseCount"] ) {
+  if( ( node = [_xml_ attributeForName:@"pulseCount"] ) ) {
     [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
   }
-  if( node = [_xml_ attributeForName:@"velocity"] ) {
+  if( ( node = [_xml_ attributeForName:@"velocity"] ) ) {
     [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
   }
-  if( node = [_xml_ attributeForName:@"duration"] ) {
+  if( ( node = [_xml_ attributeForName:@"duration"] ) ) {
     [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
   }
-  if( node = [_xml_ attributeForName:@"bpm"] ) {
+  if( ( node = [_xml_ attributeForName:@"bpm"] ) ) {
     [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
   }
-  if( node = [_xml_ attributeForName:@"ttl"] ) {
+  if( ( node = [_xml_ attributeForName:@"ttl"] ) ) {
     [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
   }
   

@@ -6,17 +6,21 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
+#import <CoreAudio/HostTime.h>
+
 #import "Elysium.h"
 
 #import "ELPlayer.h"
 
 #import "ELHex.h"
 #import "ELNote.h"
-#import "ELTimer.h"
+// #import "ELTimer.h"
 #import "ELLayer.h"
 #import "ELConfig.h"
 #import "ElysiumDocument.h"
 #import "ELHarmonicTable.h"
+
+#import "ELMIDIMessage.h"
 #import "ELMIDIController.h"
 
 #import "ELTool.h"
@@ -32,11 +36,11 @@
 }
 
 - (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)_createDefaultLayer_ {
-  if( self = [super init] ) {
+  if( ( self = [super init] ) ) {
     harmonicTable  = [[ELHarmonicTable alloc] init];
     layers         = [[NSMutableArray alloc] init];
     config         = [[ELConfig alloc] init];
-    timer          = [[ELTimer alloc] init];
+    // timer          = [[ELTimer alloc] init];
     midiController = _midiController_;
     
     // Setup some default values
@@ -119,22 +123,26 @@
 // Player control
 
 - (void)start {
-  NSLog( @"Starting player thread." );
-  
-  [self reset];
-  
-  timerResolution = 60000000 / ( [config integerForKey:@"bpm"] );
-  NSLog( @"Timer resolution = %u", timerResolution );
-  
-  isRunning = NO;
-  thread    = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
-  startTime = AudioGetCurrentHostTime();
-  
-  [thread start];
+  [layers makeObjectsPerformSelector:@selector(start)];
+  isRunning = YES;
+  // NSLog( @"Starting player thread." );
+  // 
+  // [self reset];
+  // 
+  // timerResolution = 60000000 / ( [config integerForKey:@"bpm"] );
+  // NSLog( @"Timer resolution = %u", timerResolution );
+  // 
+  // isRunning = NO;
+  // thread    = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
+  // startTime = AudioGetCurrentHostTime();
+  // 
+  // [thread start];
 }
 
 - (void)stop {
-  [thread cancel];
+  [layers makeObjectsPerformSelector:@selector(stop)];
+  isRunning = NO;
+  // [thread cancel];
 }
 
 - (void)reset {
@@ -169,28 +177,25 @@
   [layers makeObjectsPerformSelector:@selector(clear)];
 }
 
-- (void)playNoteInBackground:(NSDictionary *)_noteInfo_ {
-  int noteNumber = [[_noteInfo_ objectForKey:@"note"] integerValue];
-  int velocity = [[_noteInfo_ objectForKey:@"velocity"] integerValue];
-  int channel = [[_noteInfo_ objectForKey:@"channel"] integerValue]-1;
-  float duration = [[_noteInfo_ objectForKey:@"duration"] floatValue];
-  
-  // NSLog( @"Play %d on channel %d with velocity %d, duration %0.1f", noteNumber, channel, velocity, duration );
-  
-  [midiController noteOn:noteNumber velocity:velocity channel:channel];
-  usleep( duration * 1000000 );
-  [midiController noteOff:noteNumber velocity:velocity channel:channel];
+- (void)playNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ duration:(float)_duration_ {
+  UInt64 hostTime = AudioGetCurrentHostTime();
+  // NSLog( @"hostTime = %llu", hostTime );
+  UInt64 onTime = hostTime + AudioConvertNanosToHostTime(50000000);
+  // NSLog( @"onTime = %llu", onTime );
+  UInt64 offTime = onTime + AudioConvertNanosToHostTime(_duration_ * 1000000000);
+  // NSLog( @"offTime = %llu", offTime );
+  [self scheduleNote:_note_ channel:_channel_ velocity:_velocity_ on:onTime off:offTime];
 }
 
-- (void)playNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ duration:(float)_duration_ {
-  NSLog( @"Play note %@ on channel %d with velocity %d for duration %0.02f", _note_, _channel_, _velocity_, _duration_ );
+- (void)scheduleNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ on:(UInt64)_on_ off:(UInt64)_off_ {
+  NSLog( @"Play note Chan%d:%d from %llu to %llu", _channel_, [_note_ number], _on_, _off_ );
+  ELMIDIMessage *message = [midiController createMessage];
+  [message noteOn:[_note_ number] velocity:_velocity_ at:_on_ channel:_channel_];
+  [message noteOff:[_note_ number] velocity:_velocity_ at:_off_ channel:_channel_];
+  [message send];
   
-  NSMutableDictionary *noteInfo = [[NSMutableDictionary alloc] init];
-  [noteInfo setObject:[NSNumber numberWithInt:_channel_] forKey:@"channel"];
-  [noteInfo setObject:[NSNumber numberWithInt:[_note_ number]] forKey:@"note"];
-  [noteInfo setObject:[NSNumber numberWithInt:_velocity_] forKey:@"velocity"];
-  [noteInfo setObject:[NSNumber numberWithFloat:_duration_] forKey:@"duration"];
-  [NSThread detachNewThreadSelector:@selector(playNoteInBackground:) toTarget:self withObject:noteInfo];
+  UInt64 hostTime = AudioGetCurrentHostTime();
+  NSLog( @"%llu", hostTime );
 }
 
 // Drawing Support
@@ -286,19 +291,19 @@
   NSXMLElement *surfaceElement = [nodes objectAtIndex:0];
   
   NSXMLNode *node;
-  if( node = [surfaceElement attributeForName:@"pulseCount"] ) {
+  if( ( node = [surfaceElement attributeForName:@"pulseCount"] ) ) {
     [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
   }
-  if( node = [surfaceElement attributeForName:@"velocity"] ) {
+  if( ( node = [surfaceElement attributeForName:@"velocity"] ) ) {
     [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
   }
-  if( node = [surfaceElement attributeForName:@"duration"] ) {
+  if( ( node = [surfaceElement attributeForName:@"duration"] ) ) {
     [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
   }
-  if( node = [surfaceElement attributeForName:@"bpm"] ) {
+  if( ( node = [surfaceElement attributeForName:@"bpm"] ) ) {
     [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
   }
-  if( node = [surfaceElement attributeForName:@"ttl"] ) {
+  if( ( node = [surfaceElement attributeForName:@"ttl"] ) ) {
     [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
   }
   

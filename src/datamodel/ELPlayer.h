@@ -63,8 +63,8 @@
 
 - (void)clearAll;
 
-- (void)playNoteInBackground:(NSDictionary *)noteInfo;
 - (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
+- (void)scheduleNote:(ELNote *)note channel:(int)channel velocity:(int)velocity on:(UInt64)on off:(UInt64)off;
 
 // Drawing support
 

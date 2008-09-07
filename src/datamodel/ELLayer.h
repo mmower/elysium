@@ -19,14 +19,21 @@
 @class ELStartTool;
 
 @interface ELLayer : NSObject <LMHoneycombMatrix,ELData> {
-  ELPlayer            *player;
-  NSMutableArray      *hexes;
-  ELConfig            *config;
-  NSMutableArray      *playheads;
-  NSMutableArray      *generators;
-  int                 beatCount;
-  id                  delegate;
-  BOOL                visible;
+  id                  delegate;     // This will be the view representing us in the UI
+  ELPlayer            *player;      // The player we belong to
+  NSMutableArray      *hexes;       // The hexes representing the playing surface
+  ELConfig            *config;      // Our configuration, linked to our player config
+  NSMutableArray      *playheads;   // Array of playheads active on our surface
+  NSMutableArray      *generators;  // Array of playhead generators (start tools)
+  int                 beatCount;    // Current beat number
+  BOOL                visible;      // Whether or not we are visible (not config, so not persistent)
+  
+  UInt64              timeBase;     // Our MIDI timebase, time of next beat can be calculated
+                                    // from this, the tempo, and the beatcount. This should be
+                                    // reset if the tempo is ever reset.
+                                    
+  NSThread            *runner;      // The thread that runs this layer
+  BOOL                isRunning;    // Whether or not this layer is running
 }
 
 + (NSPredicate *)deadPlayheadFilter;
@@ -52,7 +59,11 @@
 - (int)channel;
 - (void)setChannel:(int)channel;
 
+- (int)velocity;
+- (void)setVelocity:(int)velocity;
+
 - (int)pulseCount;
+- (int)timerResolution;
 
 - (void)addGenerator:(ELStartTool *)generator;
 - (void)removeGenerator:(ELStartTool *)generator;
