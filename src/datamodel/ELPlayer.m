@@ -188,20 +188,17 @@
 }
 
 - (void)scheduleNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ on:(UInt64)_on_ off:(UInt64)_off_ {
-  NSLog( @"Play note Chan%d:%d from %llu to %llu", _channel_, [_note_ number], _on_, _off_ );
+  NSLog( @"Play note %@ on channel:%d", _note_, _channel_ );
   ELMIDIMessage *message = [midiController createMessage];
   [message noteOn:[_note_ number] velocity:_velocity_ at:_on_ channel:_channel_];
   [message noteOff:[_note_ number] velocity:_velocity_ at:_off_ channel:_channel_];
   [message send];
   
-  UInt64 hostTime = AudioGetCurrentHostTime();
-  NSLog( @"%llu", hostTime );
 }
 
 // Drawing Support
 
 - (void)needsDisplay {
-  // NSLog( @"layers display" );
   [layers makeObjectsPerformSelector:@selector(needsDisplay)];
 }
 

@@ -41,7 +41,7 @@
 }
 
 - (void)sendPackets:(MIDIPacketList *)_packetList_ {
-  NSLog( @"Send MIDI packets" );
+  // NSLog( @"Send MIDI packets" );
   [source processMIDIPacketList:_packetList_ sender:self];
 }
 

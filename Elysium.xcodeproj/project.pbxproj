@@ -14,6 +14,7 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
+		C9095EB50E743C7800D68496 /* ELMIDIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9095EB40E743C7800D68496 /* ELMIDIMessage.m */; };
 		C92128BB0E7296E100D4D096 /* LayerManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92128BA0E7296E100D4D096 /* LayerManager.xib */; };
 		C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */; };
 		C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92ACD690E3892F5009CF61B /* Inspector.xib */; };
@@ -60,7 +61,6 @@
 		C97FEB3D0E4E0D0B008F309B /* ELSinkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB180E4E04BB008F309B /* ELSinkTool.m */; };
 		C97FEB3E0E4E0D0B008F309B /* ELRotorTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB1C0E4E04C6008F309B /* ELRotorTool.m */; };
 		C97FEBD60E4F071E008F309B /* ELMIDIController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBD30E4F071E008F309B /* ELMIDIController.m */; };
-		C97FEBD70E4F071E008F309B /* ELTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBD50E4F071E008F309B /* ELTimer.m */; };
 		C97FEBDB0E4F0754008F309B /* ELInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBDA0E4F0754008F309B /* ELInspectorController.m */; };
 		C97FEBEB0E4F07A0008F309B /* ELHarmonicTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBDE0E4F07A0008F309B /* ELHarmonicTable.m */; };
 		C97FEBEC0E4F07A0008F309B /* ELHex.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE00E4F07A0008F309B /* ELHex.m */; };
@@ -177,6 +177,8 @@
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
+		C9095EB30E743C7800D68496 /* ELMIDIMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIMessage.h; sourceTree = "<group>"; };
+		C9095EB40E743C7800D68496 /* ELMIDIMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIMessage.m; sourceTree = "<group>"; };
 		C92128BA0E7296E100D4D096 /* LayerManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayerManager.xib; sourceTree = "<group>"; };
 		C92128BD0E7298C800D4D096 /* ELLayerManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerManagerWindowController.h; sourceTree = "<group>"; };
 		C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerManagerWindowController.m; sourceTree = "<group>"; };
@@ -234,8 +236,6 @@
 		C97FEB1C0E4E04C6008F309B /* ELRotorTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRotorTool.m; sourceTree = "<group>"; };
 		C97FEBD20E4F071E008F309B /* ELMIDIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIController.h; sourceTree = "<group>"; };
 		C97FEBD30E4F071E008F309B /* ELMIDIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIController.m; sourceTree = "<group>"; };
-		C97FEBD40E4F071E008F309B /* ELTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTimer.h; sourceTree = "<group>"; };
-		C97FEBD50E4F071E008F309B /* ELTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimer.m; sourceTree = "<group>"; };
 		C97FEBD90E4F0754008F309B /* ELInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELInspectorController.h; sourceTree = "<group>"; };
 		C97FEBDA0E4F0754008F309B /* ELInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELInspectorController.m; sourceTree = "<group>"; };
 		C97FEBDD0E4F07A0008F309B /* ELHarmonicTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHarmonicTable.h; sourceTree = "<group>"; };
@@ -574,8 +574,8 @@
 			children = (
 				C97FEBD20E4F071E008F309B /* ELMIDIController.h */,
 				C97FEBD30E4F071E008F309B /* ELMIDIController.m */,
-				C97FEBD40E4F071E008F309B /* ELTimer.h */,
-				C97FEBD50E4F071E008F309B /* ELTimer.m */,
+				C9095EB30E743C7800D68496 /* ELMIDIMessage.h */,
+				C9095EB40E743C7800D68496 /* ELMIDIMessage.m */,
 			);
 			path = midi;
 			sourceTree = "<group>";
@@ -973,7 +973,6 @@
 				C97FEB3D0E4E0D0B008F309B /* ELSinkTool.m in Sources */,
 				C97FEB3E0E4E0D0B008F309B /* ELRotorTool.m in Sources */,
 				C97FEBD60E4F071E008F309B /* ELMIDIController.m in Sources */,
-				C97FEBD70E4F071E008F309B /* ELTimer.m in Sources */,
 				C97FEBDB0E4F0754008F309B /* ELInspectorController.m in Sources */,
 				C97FEBEB0E4F07A0008F309B /* ELHarmonicTable.m in Sources */,
 				C97FEBEC0E4F07A0008F309B /* ELHex.m in Sources */,
@@ -999,6 +998,7 @@
 				C9D036410E708F1E005AC915 /* ELHexSinkInspectorPane.m in Sources */,
 				C9BB9DDA0E71E4D60088561D /* ELLayerWindowController.m in Sources */,
 				C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */,
+				C9095EB50E743C7800D68496 /* ELMIDIMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,6 +1120,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Elysium;
 				SYMROOT = build;
+				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
 		};
@@ -1142,6 +1143,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Elysium;
 				SYMROOT = build;
+				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
 		};
