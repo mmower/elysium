@@ -14,7 +14,7 @@
 @implementation ELHexInfoInspectorPlugin
 
 - (id)init {
-  if( self = [super initWithLabel:@"Info" nibName:@"HexInfoInspector.nib"] ) {
+  if( ( self = [super initWithLabel:@"Info" nibName:@"HexInfoInspector.nib"] ) ) {
   }
   
   return self;

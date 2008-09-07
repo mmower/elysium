@@ -11,7 +11,7 @@
 @implementation ELPaletteController
 
 - (id)init {
-  if( self = [super initWithWindowNibName:@"Palette"] ) {
+  if( ( self = [super initWithWindowNibName:@"Palette"] ) ) {
   }
   return self;
 }

@@ -13,7 +13,7 @@
 @implementation ELLayerWindowController
 
 - (id)initWithLayer:(ELLayer *)_layer_ {
-  if( self = [self initWithWindowNibName:@"LayerWindow"] ) {
+  if( ( self = [self initWithWindowNibName:@"LayerWindow"] ) ) {
     layer = _layer_;
   }
   

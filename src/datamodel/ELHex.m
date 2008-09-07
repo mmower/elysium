@@ -21,7 +21,7 @@
 @implementation ELHex
 
 - (id)initWithLayer:(ELLayer *)_layer note:(ELNote *)_note column:(int)_col row:(int)_row {
-  if( self = [super initWithColumn:_col row:_row] ) {
+  if( ( self = [super initWithColumn:_col row:_row] ) ) {
     layer     = _layer;
     note      = _note;
     tools     = [[NSMutableDictionary alloc] init];

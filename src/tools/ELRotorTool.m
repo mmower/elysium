@@ -21,7 +21,7 @@
 }
 
 - (id)init {
-  if( self = [super initWithType:@"rotor"] ) {
+  if( ( self = [super initWithType:@"rotor"] ) ) {
     [self setClockwise:YES];
     [self setPreferredOrder:9];
   }

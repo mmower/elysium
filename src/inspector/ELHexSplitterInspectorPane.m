@@ -13,7 +13,7 @@
 @implementation ELHexSplitterInspectorPane
 
 - (id)init {
-  if( self = [super initWithLabel:@"Beat" nibName:@"HexSplitterInspector.nib"] ) {
+  if( ( self = [super initWithLabel:@"Beat" nibName:@"HexSplitterInspector.nib"] ) ) {
   }
   
   return self;

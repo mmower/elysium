@@ -51,7 +51,7 @@
 }
 
 - (id)initWithType:(NSString *)_type config:(ELConfig *)_config {
-  if( self = [super init] ) {
+  if( ( self = [super init] ) ) {
     toolType       = _type;
     config         = _config;
     enabled        = YES;

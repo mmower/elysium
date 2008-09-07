@@ -40,7 +40,7 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
 // Initialization
 
 - (id)init {
-  if( self = [super initWithWindowNibName:@"Inspector"] ) {
+  if( ( self = [super initWithWindowNibName:@"Inspector"] ) ) {
     playerPanes = [[NSMutableArray alloc] init];
     layerPanes  = [[NSMutableArray alloc] init];
     hexPanes    = [[NSMutableArray alloc] init];

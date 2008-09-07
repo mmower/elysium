@@ -26,7 +26,7 @@
 }
 
 - (id)initWithParent:(ELConfig *)_parent_ data:(NSMutableDictionary *)_data_ children:(NSMutableArray *)_children_ {
-  if( self = [super init] ) {
+  if( ( self = [super init] ) ) {
     data     = _data_;
     snapshot = nil;
     children = _children_;

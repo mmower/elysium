@@ -13,7 +13,7 @@
 @implementation ELHexStartInspectorPlugin
 
 - (id)init {
-  if( self = [super initWithLabel:@"Info" nibName:@"HexStartInspector.nib"] ) {
+  if( ( self = [super initWithLabel:@"Info" nibName:@"HexStartInspector.nib"] ) ) {
   }
   
   return self;

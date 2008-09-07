@@ -13,7 +13,7 @@
 @implementation ELHexSinkInspectorPane
 
 - (id)init {
-  if( self = [super initWithLabel:@"Beat" nibName:@"HexSinkInspector.nib"] ) {
+  if( ( self = [super initWithLabel:@"Beat" nibName:@"HexSinkInspector.nib"] ) ) {
   }
   
   return self;

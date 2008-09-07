@@ -14,7 +14,7 @@
 @implementation ELSinkTool
 
 - (id)init {
-  if( self = [super initWithType:@"sink"] ) {
+  if( ( self = [super initWithType:@"sink"] ) ) {
     // NOP
   }
   

@@ -13,7 +13,7 @@
 @implementation ELPlayerInspectorPane
 
 - (id)init {
-  if( self = [super initWithLabel:@"Player" nibName:@"PlayerInspector.nib"] ) {
+  if( ( self = [super initWithLabel:@"Player" nibName:@"PlayerInspector.nib"] ) ) {
   }
   
   return self;

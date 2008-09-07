@@ -15,7 +15,7 @@
 @implementation ELSplitterTool
 
 - (id)init {
-  if( self = [super initWithType:@"splitter"] ) {
+  if( ( self = [super initWithType:@"splitter"] ) ) {
     // NOP
   }
   

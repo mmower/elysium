@@ -13,7 +13,7 @@
 @implementation ELRicochetTool
 
 - (id)init {
-  if( self = [super initWithType:@"ricochet"] ) {
+  if( ( self = [super initWithType:@"ricochet"] ) ) {
     [self setDirection:N];
   }
 

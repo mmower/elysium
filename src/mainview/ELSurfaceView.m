@@ -24,7 +24,7 @@ NSString *HexPBoardType = @"HexPBoardType";
 @implementation ELSurfaceView
 
 - (id)initWithFrame:(NSRect)_frame_ {
-  if( self = [super initWithFrame:_frame_] ) {
+  if( ( self = [super initWithFrame:_frame_] ) ) {
     [self setDefaultColor:[NSColor colorWithDeviceRed:(12.0/255) green:(153.0/255) blue:(206.0/255) alpha:0.8]];
     [self setBorderColor:[NSColor colorWithDeviceRed:(11.0/255) green:(75.0/255) blue:(169.0/255) alpha:0.8]];
     [self setSelectedColor:[NSColor blueColor]];

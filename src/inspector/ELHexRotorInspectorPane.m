@@ -13,7 +13,7 @@
 @implementation ELHexRotorInspectorPane
 
 - (id)init {
-  if( self = [super initWithLabel:@"Beat" nibName:@"HexRotorInspector.nib"] ) {
+  if( ( self = [super initWithLabel:@"Beat" nibName:@"HexRotorInspector.nib"] ) ) {
   }
   
   return self;

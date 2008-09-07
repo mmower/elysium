@@ -13,7 +13,7 @@
 @implementation ELLayerInspectorPane
 
 - (id)init {
-  if( self = [super initWithLabel:@"Layer" nibName:@"LayerInspector.nib"] ) {
+  if( ( self = [super initWithLabel:@"Layer" nibName:@"LayerInspector.nib"] ) ) {
   }
   
   return self;

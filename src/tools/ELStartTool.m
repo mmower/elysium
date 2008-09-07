@@ -16,7 +16,7 @@
 @implementation ELStartTool
 
 - (id)init {
-  if( self = [super initWithType:@"start"] ) {
+  if( ( self = [super initWithType:@"start"] ) ) {
     [self setDirection:N];
     [self setPreferredOrder:1];
   }

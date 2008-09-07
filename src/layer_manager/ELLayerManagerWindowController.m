@@ -11,7 +11,7 @@
 @implementation ELLayerManagerWindowController
 
 - (id)init {
-  if( self = [self initWithWindowNibName:@"LayerManager"] ) {
+  if( ( self = [self initWithWindowNibName:@"LayerManager"] ) ) {
     // Custom initialization here
   }
   

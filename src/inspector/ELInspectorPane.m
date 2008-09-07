@@ -25,7 +25,7 @@ NSString* const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 }
 
 - (id)initWithLabel:(NSString *)_label_ nibName:(NSString *)_nibName_ {
-  if( self = [super init] ) {
+  if( ( self = [super init] ) ) {
     label    = _label_;
     nibName  = _nibName_;
     paneView = nil;

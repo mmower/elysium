@@ -13,7 +13,7 @@
 @implementation ELHexRicochetInspectorPane
 
 - (id)init {
-  if( self = [super initWithLabel:@"Ricochet" nibName:@"HexRicochetInspector.nib"] ) {
+  if( ( self = [super initWithLabel:@"Ricochet" nibName:@"HexRicochetInspector.nib"] ) ) {
   }
   
   return self;
