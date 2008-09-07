@@ -26,6 +26,7 @@
   NSMutableArray      *generators;
   int                 beatCount;
   id                  delegate;
+  BOOL                visible;
 }
 
 - (id)initWithPlayer:(ELPlayer *)player channel:(int)channel;
@@ -33,6 +34,7 @@
 @property ELPlayer *player;
 @property (readonly) ELConfig *config;
 @property id delegate;
+@property BOOL visible;
 
 - (ELPlayer *)player;
 - (ELHex *)hexAtColumn:(int)col row:(int)row;

@@ -38,12 +38,12 @@
 
 - (void)makeWindowControllers {
   [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument" owner:self]];
-  [self addWindowController:[[ELLayerManagerWindowController alloc] init]];
   
   for( ELLayer *layer in [player layers] ) {
     [self addWindowController:[[ELLayerWindowController alloc] initWithLayer:layer]];
   }
   
+  [self addWindowController:[[ELLayerManagerWindowController alloc] init]];
   [[NSApp delegate] showPalette:self];
 }
 

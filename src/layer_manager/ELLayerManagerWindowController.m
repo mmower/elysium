@@ -18,4 +18,11 @@
   return self;
 }
 
+- (void)tableViewSelectionDidChange:(NSNotification *)_notification_ {
+  int row = [[_notification_ object] selectedRow];
+  if( row == -1 ) {
+    return;
+  }
+}
+
 @end

@@ -148,6 +148,22 @@
   [config setInteger:_ttl_ forKey:@"ttl"];
 }
 
+@dynamic visible;
+
+- (BOOL)visible {
+  return [[delegate window] isVisible];
+}
+
+- (void)setVisible:(BOOL)_visible_ {
+  if( _visible_ ) {
+    [[delegate window] makeKeyAndOrderFront:self];
+  } else {
+    [[delegate window] orderOut:self];
+  }
+}
+
+// Manipulate layer
+
 - (void)stop {
   [self removeAllPlayheads];
 }
