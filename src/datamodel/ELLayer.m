@@ -21,16 +21,26 @@
 
 #import "ELInspectorController.h"
 
+NSPredicate *deadPlayheadFilter;
+
 @implementation ELLayer
+
++ (NSPredicate *)deadPlayheadFilter {
+  if( !deadPlayheadFilter ) {
+    deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
+  }
+  
+  return deadPlayheadFilter;
+}
 
 - (id)initWithPlayer:(ELPlayer *)_player channel:(int)_channel {
   if( self = [super init] ) {
-    player     = _player;
-    config     = [[ELConfig alloc] init];
-    hexes      = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-    playheads  = [[NSMutableArray alloc] init];
-    generators = [[NSMutableArray alloc] init];
-    beatCount  = 0;
+    player        = _player;
+    config        = [[ELConfig alloc] init];
+    hexes         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    playheads     = [[NSMutableArray alloc] init];
+    generators    = [[NSMutableArray alloc] init];
+    beatCount     = 0;
     
     [self configureHexes];
     
@@ -47,8 +57,6 @@
 @synthesize delegate;
 
 - (void)run {
-  NSPredicate *deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
-  
   // On the first and every pulseCount beats, generate new playheads
   // NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
   [self pulse];
@@ -71,7 +79,8 @@
   for( ELPlayhead *playhead in playheads ) {
     [playhead cleanup];
   }
-  [playheads filterUsingPredicate:deadPlayheadFilter];
+  
+  [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
   
   // Beat is over
   beatCount++;
