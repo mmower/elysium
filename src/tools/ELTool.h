@@ -38,6 +38,7 @@
 @property (readonly) ELLayer *layer;
 @property (readonly) ELHex *hex;
 
++ (NSDictionary *)toolMapping;
 + (ELTool *)fromXMLData:(NSXMLElement *)xml;
 
 - (id)initWithType:(NSString *)type;

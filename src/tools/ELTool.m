@@ -15,10 +15,31 @@
 #import "ELConfig.h"
 #import "ELPlayhead.h"
 
-#import "ELStartTool.h"
 #import "ELBeatTool.h"
+#import "ELStartTool.h"
+#import "ELRicochetTool.h"
+#import "ELSinkTool.h"
+#import "ELSplitterTool.h"
+#import "ELRotorTool.h"
+
+NSMutableDictionary *toolMapping = nil;
 
 @implementation ELTool
+
++ (NSDictionary *)toolMapping {
+  if( toolMapping == nil ) {
+    toolMapping = [[NSMutableDictionary alloc] init];
+    
+    [toolMapping setObject:[ELStartTool class] forKey:@"start"];
+    [toolMapping setObject:[ELBeatTool class] forKey:@"beat"];
+    [toolMapping setObject:[ELRicochetTool class] forKey:@"ricochet"];
+    [toolMapping setObject:[ELSinkTool class] forKey:@"sink"];
+    [toolMapping setObject:[ELSplitterTool class] forKey:@"splitter"];
+    [toolMapping setObject:[ELRotorTool class] forKey:@"rotor"];
+  }
+  
+  return toolMapping;
+}
 
 + (ELTool *)fromXMLData:(NSXMLElement *)_xml_ {
   NSXMLNode *attribute = [_xml_ attributeForName:@"type"];
@@ -28,13 +49,9 @@
   }
   
   NSString *type = [attribute stringValue];
-  ELTool *tool = nil;
   
-  if( [type isEqualToString:@"start"] ) {
-    tool = [[ELStartTool alloc] init];
-  } else if( [type isEqualToString:@"beat"] ) {
-    tool = [[ELBeatTool alloc] init];
-  } else {
+  ELTool *tool = [[ELTool toolMapping] objectForKey:type];
+  if( !tool ) {
     NSLog( @"Unknown tool type:%@", type );
   }
   
@@ -127,7 +144,7 @@
 }
 
 - (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
-  return NO;
+  return YES;
 }
 
 @end

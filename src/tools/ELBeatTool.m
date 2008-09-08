@@ -80,6 +80,8 @@
   [symbolPath stroke];
 }
 
+// Save/Load support
+
 - (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
   if( [config definesValueForKey:@"velocity"] ) {
     [_attributes_ setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
