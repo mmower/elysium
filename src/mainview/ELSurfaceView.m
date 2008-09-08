@@ -100,7 +100,8 @@ NSString *HexPBoardType = @"HexPBoardType";
       NSAssert1( NO, @"Unknown tool tag %d experienced!", _toolTag_ );
   }
   
-  [self setNeedsDisplay:YES];
+  // Let's update the selected hex that was dropped on
+  [self setSelected:_cell_];
 }
 
 - (void)dragFromHex:(ELHex *)_sourceHex_ to:(ELHex *)_targetHex_ with:(NSDragOperation)_modifiers_ {
