@@ -55,8 +55,8 @@
 - (void)setMIDIController:(ELMIDIController *)midiController;
 - (void)setDocument:(ElysiumDocument *)document;
 
-- (void)run;
-- (void)runOnce;
+// - (void)run;
+// - (void)runOnce;
 - (void)start;
 - (void)stop;
 - (void)reset;

@@ -136,30 +136,6 @@
   [layers makeObjectsPerformSelector:@selector(reset)];
 }
 
-- (void)run {
-  NSLog( @"Player thread is running" );
-  isRunning = YES;
-  
-  [config snapshot];
-  
-  while( ![thread isCancelled] ) {
-    [self runOnce];
-    usleep( timerResolution );
-  }
-  
-  [config restore];
-  [self reset];
-  [self needsDisplay];
-  
-  NSLog( @"Player has stopped." );
-  isRunning = NO;
-}
-
-- (void)runOnce {
-  [layers makeObjectsPerformSelector:@selector(run)];
-  [self performSelectorOnMainThread:@selector(needsDisplay) withObject:nil waitUntilDone:NO];
-}
-
 - (void)clearAll {
   [layers makeObjectsPerformSelector:@selector(clear)];
 }
