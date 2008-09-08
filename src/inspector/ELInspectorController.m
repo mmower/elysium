@@ -87,8 +87,8 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
 // Pane support
 
 - (void)addInspectorPane:(ELInspectorPane *)pane {
-  NSMutableArray *inspectors;
-  PAStackedListView *view;
+  NSMutableArray *inspectors = nil;
+  PAStackedListView *view = nil;
   Class class = [pane willInspect];
   
   if( class == [ELPlayer class] ) {
@@ -124,7 +124,7 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
 // Focused and selection
 
 - (void)focus:(id)_focusedObject_ {
-  NSString *tab;
+  NSString *tab = nil;
   
   if( [_focusedObject_ isKindOfClass:[ELHex class] ] ) {
     focusedHex = _focusedObject_;
