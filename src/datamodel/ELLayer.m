@@ -150,32 +150,34 @@ NSPredicate *deadPlayheadFilter;
 // Manipulate layer
 
 - (void)run {
-  // On the first and every pulseCount beats, generate new playheads
-  // NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
-  [self pulse];
-  
-  // Run all current playheads
-  for( ELPlayhead *playhead in [playheads copy] ) {
-    ELHex *hex = [playhead position];
-    for( ELTool *tool in [hex toolsExceptType:@"start"] ) {
+  if( [self enabled] ) {
+    // On the first and every pulseCount beats, generate new playheads
+    // NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
+    [self pulse];
+    
+    // Run all current playheads
+    for( ELPlayhead *playhead in [playheads copy] ) {
+      ELHex *hex = [playhead position];
+      for( ELTool *tool in [hex toolsExceptType:@"start"] ) {
+        if( ![playhead isDead] ) {
+          [tool run:playhead];
+        }
+      }
+      
       if( ![playhead isDead] ) {
-        [tool run:playhead];
+        [playhead advance];
       }
     }
     
-    if( ![playhead isDead] ) {
-      [playhead advance];
+    // Cleanup & delete dead playheads
+    for( ELPlayhead *playhead in playheads ) {
+      [playhead cleanup];
     }
+    
+    [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
+    
+    [delegate setNeedsDisplay:YES];
   }
-  
-  // Cleanup & delete dead playheads
-  for( ELPlayhead *playhead in playheads ) {
-    [playhead cleanup];
-  }
-  
-  [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
-  
-  [delegate setNeedsDisplay:YES];
   
   // Beat is over
   beatCount++;
