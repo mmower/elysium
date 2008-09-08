@@ -128,13 +128,16 @@
   }
 }
 
-- (IBAction)runOnce:(id)_sender_ {
-  [player runOnce];
-}
-
 - (IBAction)clearAll:(id)_sender_ {
-  [player clearAll];
-  [self updateView:self];
+  NSAlert *alert = [[NSAlert alloc] init];
+  [alert setAlertStyle:NSWarningAlertStyle];
+  [alert addButtonWithTitle:@"Clear All"];
+  [alert addButtonWithTitle:@"Do Not Clear"];
+  [alert setInformativeText:@"Pressing 'Clear All' will clear all hexes on all layers."];
+  if( [alert runModal] == NSAlertFirstButtonReturn ) {
+    [player clearAll];
+    [self updateView:self];
+  }
 }
 
 - (IBAction)newLayer:(id)_sender_ {
