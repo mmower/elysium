@@ -195,13 +195,13 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)start {
-  NSLog( @"Starting thread for Layer-%@", [self layerId] );
+  // NSLog( @"Starting thread for Layer-%@", [self layerId] );
   runner = [[NSThread alloc] initWithTarget:self selector:@selector(runLayer) object:nil];
   [runner start];
 }
 
 - (void)stop {
-  NSLog( @"Stopping thread for Layer-%@", [self layerId] );
+  // NSLog( @"Stopping thread for Layer-%@", [self layerId] );
   [runner cancel];
 }
 

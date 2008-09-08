@@ -125,24 +125,11 @@
 - (void)start {
   [layers makeObjectsPerformSelector:@selector(start)];
   isRunning = YES;
-  // NSLog( @"Starting player thread." );
-  // 
-  // [self reset];
-  // 
-  // timerResolution = 60000000 / ( [config integerForKey:@"bpm"] );
-  // NSLog( @"Timer resolution = %u", timerResolution );
-  // 
-  // isRunning = NO;
-  // thread    = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
-  // startTime = AudioGetCurrentHostTime();
-  // 
-  // [thread start];
 }
 
 - (void)stop {
   [layers makeObjectsPerformSelector:@selector(stop)];
   isRunning = NO;
-  // [thread cancel];
 }
 
 - (void)reset {
