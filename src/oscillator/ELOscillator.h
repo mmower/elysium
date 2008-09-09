@@ -19,6 +19,6 @@
 @property float period;
 
 - (float)generate;
-- (float)generateForT:(float)t;
+- (float)generateWithT:(float)t;
 
 @end
