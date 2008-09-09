@@ -35,14 +35,14 @@ NSPredicate *deadPlayheadFilter;
 
 - (id)initWithPlayer:(ELPlayer *)_player channel:(int)_channel {
   if( ( self = [super init] ) ) {
-    player        = _player;
-    config        = [[ELConfig alloc] init];
-    hexes         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-    playheads     = [[NSMutableArray alloc] init];
-    generators    = [[NSMutableArray alloc] init];
-    beatCount     = 0;
-    timeBase      = 0;
-    isRunning     = 0;
+    player     = _player;
+    config     = [[ELConfig alloc] init];
+    hexes      = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    playheads  = [[NSMutableArray alloc] init];
+    generators = [[NSMutableArray alloc] init];
+    beatCount  = 0;
+    timeBase   = 0;
+    isRunning  = 0;
     
     [self configureHexes];
     
