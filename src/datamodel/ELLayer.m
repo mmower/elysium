@@ -351,6 +351,8 @@ NSPredicate *deadPlayheadFilter;
   
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
   [attributes setObject:[config stringForKey:@"channel"] forKey:@"channel"];
+  [attributes setObject:[config stringForKey:@"layerId"] forKey:@"id"];
+  
   if( [config definesValueForKey:@"pulseCount"] ) {
     [attributes setObject:[config stringForKey:@"pulseCount"] forKey:@"pulseCount"];
   }
@@ -384,6 +386,10 @@ NSPredicate *deadPlayheadFilter;
 - (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
   
   NSXMLNode *node;
+  
+  if( ( node = [_xml_ attributeForName:@"id"] ) ) {
+    [config setString:[node stringValue] forKey:@"layerId"];
+  }
   if( ( node = [_xml_ attributeForName:@"pulseCount"] ) ) {
     [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
   }
