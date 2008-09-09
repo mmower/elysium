@@ -1,18 +1,14 @@
 //
-//  ELSinusoidalProbabilityGenerator.m
+//  ELSinusoidalOscillator.m
 //  Elysium
 //
 //  Created by Matt Mower on 08/09/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import <CoreAudio/CoreAudio.h>
+#import "ELSinusoidalOscillator.h"
 
-#import "ELSinusoidalProbabilityGenerator.h"
-
-@implementation ELSinusoidalProbabilityGenerator
-
-
+@implementation ELSinusoidalOscillator
 
 - (float)generateWithT:(float)_t_ {
   // Convert to angular form
@@ -21,6 +17,5 @@
   // Get the sinewave value
   return (1+sin(angle))/2;
 }
-
 
 @end

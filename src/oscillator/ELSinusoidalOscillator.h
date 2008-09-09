@@ -1,5 +1,5 @@
 //
-//  ELSinusoidalProbabilityGenerator.h
+//  ELSinusoidalOscillator.h
 //  Elysium
 //
 //  Created by Matt Mower on 08/09/2008.
@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELEnvelopeProbabilityGenerator.h"
+#import "ELOscillator.h"
 
-@interface ELSinusoidalProbabilityGenerator : ELEnvelopeProbabilityGenerator {
+@interface ELSinusoidalOscillator : ELOscillator {
 }
 
 @end

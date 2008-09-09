@@ -6,6 +6,8 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
+#import <CoreAudio/CoreAudio.h>
+
 #import "ELOscillator.h"
 
 @implementation ELOscillator
