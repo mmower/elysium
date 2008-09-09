@@ -10,9 +10,13 @@
 
 @implementation ELSinusoidalOscillator
 
+- (NSString *)type {
+  return @"Sine";
+}
+
 - (float)generateWithT:(float)_t_ {
   // Convert to angular form
-  float angle = (_t_ / period) * 2 * M_PI * variance;
+  float angle = (_t_ / [self period]) * 2 * M_PI * [self variance];
   
   // Get the sinewave value
   return (1+sin(angle))/2;

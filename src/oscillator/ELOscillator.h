@@ -9,15 +9,21 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ELOscillator : NSObject {
-  float variance;
-  float period;
+  NSString  *name;
+  float     variance;
+  float     period;
 }
 
-- (id)initWithBase:(float)base period:(float)period;
+- (id)initWithName:(NSString *)name base:(float)base period:(float)period;
 
-@property float variance;
+@property (assign) NSString *name;
+@property float base;
+@property (readonly) float variance;
 @property float period;
 
+- (NSString *)type;
+
+- (float)variance;
 - (float)generate;
 - (float)generateWithT:(float)t;
 

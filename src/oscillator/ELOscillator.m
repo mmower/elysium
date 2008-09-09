@@ -12,8 +12,9 @@
 
 @implementation ELOscillator
 
-- (id)initWithBase:(float)_base_ period:(float)_period_ {
+- (id)initWithName:(NSString *)_name_ base:(float)_base_ period:(float)_period_ {
   if( ( self = [self init] ) ) {
+    name     = _name_;
     variance = 1 - _base_;
     period   = _period_;
   }
@@ -21,15 +22,31 @@
   return self;
 }
 
-@synthesize variance;
+@synthesize name;
 @synthesize period;
+@synthesize variance;
+
+@dynamic base;
+
+- (float)base {
+  return 1 - variance;
+}
+
+- (void)setBase:(float)_base_ {
+  variance = 1.0 - _base_;
+}
+
+- (NSString *)type {
+  [self doesNotRecognizeSelector:_cmd];
+  return @""; // This will not be reached because of the doesNotRecognizeSelector: message
+}
 
 - (float)generate {
   // Get time in tenths of a second
   UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 100000000;
   
   // Find out where we are in the cycle
-  time = time % (int)( [self period] * 10 );
+  time = time % (int)( period * 10 );
   
   float t = time / 10.0;
   
