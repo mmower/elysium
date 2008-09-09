@@ -68,24 +68,24 @@
   [parent addChild:self];
 }
 
-- (void)removeValueForKey:(NSString *)_key {
-  [data removeObjectForKey:_key];
+- (void)removeValueForKey:(NSString *)_key_ {
+  [data removeObjectForKey:_key_];
 }
 
-- (BOOL)definesValueForKey:(NSString *)_key {
-  return [data objectForKey:_key] != nil;
+- (BOOL)definesValueForKey:(NSString *)_key_ {
+  return [data objectForKey:_key_] != nil;
 }
 
-- (BOOL)inheritsValueForKey:(NSString *)_key {
-  return [self hasValueForKey:_key] && ![self definesValueForKey:_key];
+- (BOOL)inheritsValueForKey:(NSString *)_key_ {
+  return [self hasValueForKey:_key_] && ![self definesValueForKey:_key_];
 }
 
-- (BOOL)hasValueForKey:(NSString *)_key {
-  return [self valueForKey:_key] != nil;
+- (BOOL)hasValueForKey:(NSString *)_key_ {
+  return [self valueForKey:_key_] != nil;
 }
 
-- (id)valueForKey:(NSString *)_key {
-  id value = [data objectForKey:_key];
+- (id)valueForKey:(NSString *)_key_ {
+  id value = [data objectForKey:_key_];
 
   if( value != nil ) {
     return value;
@@ -95,31 +95,31 @@
     return nil;
   }
   
-  return [parent valueForKey:_key];
+  return [parent valueForKey:_key_];
 }
 
-- (void)setValue:(id)_value forKey:(NSString *)_key {
-  [data setObject:_value forKey:_key];
+- (void)setValue:(id)_value forKey:(NSString *)_key_ {
+  [data setObject:_value forKey:_key_];
 }
 
-- (int)integerForKey:(NSString *)_key {
-  return [[self valueForKey:_key] integerValue];
+- (int)integerForKey:(NSString *)_key_ {
+  return [[self valueForKey:_key_] integerValue];
 }
 
-- (void)setInteger:(int)_value forKey:(NSString *)_key {
-  [self setValue:[NSNumber numberWithInt:_value] forKey:_key];
+- (void)setInteger:(int)_value forKey:(NSString *)_key_ {
+  [self setValue:[NSNumber numberWithInt:_value] forKey:_key_];
 }
 
-- (float)floatForKey:(NSString *)_key {
-  return [[self valueForKey:_key] floatValue];
+- (float)floatForKey:(NSString *)_key_ {
+  return [[self valueForKey:_key_] floatValue];
 }
 
-- (void)setFloat:(float)_value forKey:(NSString *)_key {
-  [self setValue:[NSNumber numberWithFloat:_value] forKey:_key];
+- (void)setFloat:(float)_value forKey:(NSString *)_key_ {
+  [self setValue:[NSNumber numberWithFloat:_value] forKey:_key_];
 }
 
-- (NSString *)stringForKey:(NSString *)_key {
-  return [[self valueForKey:_key] stringValue];
+- (NSString *)stringForKey:(NSString *)_key_ {
+  return [[self valueForKey:_key_] stringValue];
 }
 
 - (void)setBoolean:(BOOL)_value_ forKey:(NSString *)_key_ {
@@ -128,6 +128,10 @@
 
 - (BOOL)booleanForKey:(NSString *)_key_ {
   return [[self valueForKey:_key_] boolValue];
+}
+
+- (void)setString:(NSString *)_value_ forKey:(NSString *)_key_ {
+  [data setObject:_value_ forKey:_key_];
 }
 
 // Make a snapshot of this configuration and all sub-configurations
