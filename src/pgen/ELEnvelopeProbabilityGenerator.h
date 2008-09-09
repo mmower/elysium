@@ -11,11 +11,16 @@
 #import "ELProbabilityGenerator.h"
 
 @interface ELEnvelopeProbabilityGenerator : ELProbabilityGenerator {
+  float variance;
   float period;
 }
 
+- (id)initWithBase:(float)base period:(float)period;
+
+@property float variance;
 @property float period;
 
 - (float)generate;
+- (float)generateWithT:(float)t;
 
 @end
