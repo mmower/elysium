@@ -1,5 +1,5 @@
 //
-//  ELProbabilityGenerator.h
+//  ELOscillator.h
 //  Elysium
 //
 //  Created by Matt Mower on 08/09/2008.
@@ -8,7 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ELProbabilityGenerator : NSObject {
+@interface ELOscillator : NSObject {
 }
+
+- (float)generate;
 
 @end
