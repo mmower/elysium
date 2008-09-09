@@ -9,8 +9,16 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ELOscillator : NSObject {
+  float variance;
+  float period;
 }
 
+- (id)initWithBase:(float)base period:(float)period;
+
+@property float variance;
+@property float period;
+
 - (float)generate;
+- (float)generateForT:(float)t;
 
 @end

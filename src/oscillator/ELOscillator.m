@@ -10,8 +10,26 @@
 
 @implementation ELOscillator
 
+- (id)initWithBase:(float)_base_ period:(float)_period_ {
+  if( ( self = [self init] ) ) {
+    variance = 1 - _base_;
+    period   = _period_;
+  }
+  
+  return self;
+}
+
+@synthesize variance;
+@synthesize period;
+
 - (float)generate {
-  return 1.0; // Please override me!
+  [self doesNotRecognizeSelector:_cmd];
+  return 0.0; // This will not be reached because of the doesNotRecognizeSelector: message
+}
+
+- (float)generateWithT:(float)_t_ {
+  [self doesNotRecognizeSelector:_cmd];
+  return 0.0; // This will not be reached because of the doesNotRecognizeSelector: message
 }
 
 @end
