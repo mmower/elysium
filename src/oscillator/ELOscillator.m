@@ -23,8 +23,15 @@
 @synthesize period;
 
 - (float)generate {
-  [self doesNotRecognizeSelector:_cmd];
-  return 0.0; // This will not be reached because of the doesNotRecognizeSelector: message
+  // Get time in tenths of a second
+  UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 100000000;
+  
+  // Find out where we are in the cycle
+  time = time % (int)( [self period] * 10 );
+  
+  float t = time / 10.0;
+  
+  return [self generateWithT:t];
 }
 
 - (float)generateWithT:(float)_t_ {

@@ -12,17 +12,7 @@
 
 @implementation ELSinusoidalProbabilityGenerator
 
-- (float)generate {
-  // Get time in tenths of a second
-  UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 100000000;
-  
-  // Find out where we are in the cycle
-  time = time % (int)( [self period] * 10 );
-  
-  float t = time / 10.0;
-  
-  return [self generateWithT:t];
-}
+
 
 - (float)generateWithT:(float)_t_ {
   // Convert to angular form
