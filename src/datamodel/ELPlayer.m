@@ -17,6 +17,7 @@
 // #import "ELTimer.h"
 #import "ELLayer.h"
 #import "ELConfig.h"
+#import "ELOscillator.h"
 #import "ElysiumDocument.h"
 #import "ELHarmonicTable.h"
 
@@ -39,8 +40,8 @@
   if( ( self = [super init] ) ) {
     harmonicTable  = [[ELHarmonicTable alloc] init];
     layers         = [[NSMutableArray alloc] init];
+    oscillators    = [[NSMutableDictionary alloc] init];
     config         = [[ELConfig alloc] init];
-    // timer          = [[ELTimer alloc] init];
     midiController = _midiController_;
     
     // Setup some default values
@@ -62,7 +63,7 @@
 // Accessors
 
 @synthesize config;
-@synthesize beatCount;
+// @synthesize beatCount;
 @synthesize startTime;
 @synthesize harmonicTable;
 @synthesize isRunning;
@@ -209,6 +210,12 @@
     [self removeLayer:layer];
   }
   // [layers removeAllObjects];
+}
+
+// Oscillator support
+
+- (void)addOscillator:(ELOscillator *)_oscillator_ {
+  [oscillators setObject:_oscillator_ forKey:[_oscillator_ name]];
 }
 
 // Implementing the ELData protocol
