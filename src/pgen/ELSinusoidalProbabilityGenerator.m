@@ -6,16 +6,30 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
+#import <CoreAudio/CoreAudio.h>
+
 #import "ELSinusoidalProbabilityGenerator.h"
 
 @implementation ELSinusoidalProbabilityGenerator
 
 - (float)generate {
+  // Get time in tenths of a second
+  UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 100000000;
   
-  UInt64 time = 0;
+  // Find out where we are in the cycle
+  time = time % (int)( [self period] * 10 );
   
-  [self doesNotRecognizeSelector:_cmd];
-  return 0.0; // This will not be reached because of the doesNotRecognizeSelector: message
+  float t = time / 10.0;
+  
+  return [self generateWithT:t];
+}
+
+- (float)generateWithT:(float)_t_ {
+  // Convert to angular form
+  float angle = (_t_ / period) * 2 * M_PI * variance;
+  
+  // Get the sinewave value
+  return (1+sin(angle))/2;
 }
 
 
