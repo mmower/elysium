@@ -146,6 +146,16 @@
   [windowController showWindow:self];
 }
 
+- (void)document:(NSDocument *)_document_ shouldClose:(BOOL)_shouldClose_ contextInfo:(void*)_contextInfo_ {
+  if( _shouldClose_ ) {
+    [self close];
+  }
+}
+
+- (IBAction)closeDocument:(id)_sender_ {
+  [self canCloseDocumentWithDelegate:self shouldCloseSelector:@selector(document:shouldClose:contextInfo:) contextInfo:nil];
+}
+
 // Sent by background threads when the view needs to be updated
 - (void)updateView:(id)_sender_ {
   NSLog( @"document#needsDisplay" );

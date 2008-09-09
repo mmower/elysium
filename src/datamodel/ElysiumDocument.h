@@ -32,5 +32,6 @@
 - (IBAction)startStop:(id)sender;
 - (IBAction)clearAll:(id)sender;
 - (IBAction)newLayer:(id)sender;
+- (IBAction)closeDocument:(id)sender;
 
 @end
