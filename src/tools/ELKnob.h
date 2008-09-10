@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "ELData.h"
+
 @class ELOscillator;
 
 typedef enum {
@@ -16,7 +18,7 @@ typedef enum {
   FLOAT_KNOB,
   } KnobType;
 
-@interface ELKnob : NSObject {
+@interface ELKnob : NSObject <ELData> {
   NSString        *name;            // name assigned to the knob
   KnobType        type;             // the type of the value controller by this knob
   

@@ -22,6 +22,14 @@
   if( ( self = [self init] ) ) {
     type = _type_;
     name = _name_;
+    
+    // By default we inherit everything from any linked knob
+    linkEnabled   = YES;
+    linkValue     = YES;
+    linkAlpha     = YES;
+    linkP         = YES;
+    linkFilter    = YES;
+    linkPredicate = YES;
   }
   
   return self;
@@ -33,6 +41,15 @@
 
 - (KnobType)type {
   return type;
+}
+
+- (NSString *)typeName {
+  switch( type ) {
+    case INTEGER_KNOB: return @"integer";
+    case FLOAT_KNOB: return @"float";
+    case BOOLEAN_KNOB: return @"boolean";
+    default: return @"unknown";
+  }
 }
 
 - (BOOL)enabled {
@@ -219,6 +236,86 @@
 
 - (void)setLinkPredicate:(BOOL)_linkPredicate_ {
   linkPredicate = _linkPredicate_;
+}
+
+// Implementing the ELData protocol for save/load from XML
+
+- (NSXMLElement *)asXMLData {
+  NSMutableDictionary *attributes;
+  
+  NSXMLElement *knobElement = [NSXMLNode elementWithName:@"knob"];
+  
+  attributes = [[NSMutableDictionary alloc] init];
+  [attributes setObject:[self typeName] forKey:@"type"];
+  [attributes setObject:name forKey:@"name"];
+  [knobElement setAttributesAsDictionary:attributes];
+  [attributes removeAllObjects];
+  
+  NSXMLElement *dataElement;
+  
+  dataElement = [NSXMLNode elementWithName:@"enabled"];
+  if( enabled ) {
+    [attributes setObject:[enabled stringValue] forKey:@"value"];
+  }
+  [attributes setObject:[[NSNumber numberWithBool:linkEnabled] stringValue] forKey:@"linked"];
+  [dataElement setAttributesAsDictionary:attributes];
+  [attributes removeAllObjects];
+  [knobElement addChild:dataElement];
+  
+  dataElement = [NSXMLNode elementWithName:@"value"];
+  if( hasValue ) {
+    switch( type ) {
+      case INTEGER_KNOB:
+        [attributes setObject:[[NSNumber numberWithInt:intValue] stringValue] forKey:@"integer"];
+        break;
+        
+      case FLOAT_KNOB:
+        [attributes setObject:[[NSNumber numberWithFloat:floatValue] stringValue] forKey:@"float"];
+        break;
+        
+      case BOOLEAN_KNOB:
+        [attributes setObject:[[NSNumber numberWithBool:floatValue] stringValue] forKey:@"bool"];
+        break;
+    }
+  }
+  [attributes setObject:[[NSNumber numberWithBool:linkValue] stringValue] forKey:@"linked"];
+  [dataElement setAttributesAsDictionary:attributes];
+  [attributes removeAllObjects];
+  
+  [knobElement addChild:dataElement];
+  
+  dataElement = [NSXMLNode elementWithName:@"alpha"];
+  if( alpha ) {
+    [attributes setObject:[alpha stringValue] forKey:@"value"];
+  }
+  [attributes setObject:[[NSNumber numberWithBool:linkAlpha] stringValue] forKey:@"linked"];
+  [dataElement setAttributesAsDictionary:attributes];
+  [attributes removeAllObjects];
+  [knobElement addChild:dataElement];
+  
+  dataElement = [NSXMLNode elementWithName:@"p"];
+  if( p ) {
+    [attributes setObject:[p stringValue] forKey:@"value"];
+  }
+  [attributes setObject:[[NSNumber numberWithBool:linkP] stringValue] forKey:@"linked"];
+  [dataElement setAttributesAsDictionary:attributes];
+  [attributes removeAllObjects];
+  [knobElement addChild:dataElement];
+  
+  dataElement = [NSXMLNode elementWithName:@"filter"];
+  if( filter ) {
+    [attributes setObject:[filter name] forKey:@"name"];
+  }
+  [attributes setObject:[[NSNumber numberWithBool:linkFilter] stringValue] forKey:@"linked"];
+  [dataElement setAttributesAsDictionary:attributes];
+  [attributes removeAllObjects];
+  [knobElement addChild:dataElement];
+  
+  return knobElement;
+}
+
+- (BOOL)fromXMLData:(NSXMLElement *)_data_ {
+  return YES;
 }
 
 @end
