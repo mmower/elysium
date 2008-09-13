@@ -26,6 +26,7 @@ NSString *HexPBoardType = @"HexPBoardType";
 - (id)initWithFrame:(NSRect)_frame_ {
   if( ( self = [super initWithFrame:_frame_] ) ) {
     octaveColors = [[NSMutableArray alloc] init];
+    [octaveColors addObject:[NSColor grayColor]]; // We don't see Octave#0 anyway
     [octaveColors addObject:[NSColor colorWithDeviceRed:(234.0/255) green:(174.0/255) blue:(145.0/255) alpha:0.9]];
     [octaveColors addObject:[NSColor colorWithDeviceRed:(231.0/255) green:(214.0/255) blue:(148.0/255) alpha:0.9]];
     [octaveColors addObject:[NSColor colorWithDeviceRed:(212.0/255) green:(228.0/255) blue:(150.0/255) alpha:0.9]];
