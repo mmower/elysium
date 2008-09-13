@@ -16,7 +16,6 @@
 
 @interface ElysiumDocument : NSDocument
 {
-  IBOutlet  NSButton          *controlButton;
   ELPlayer                    *player;
 }
 

@@ -118,12 +118,8 @@
 
 - (IBAction)startStop:(id)_sender_ {
   if( [player isRunning] ) {
-    [controlButton setTitle:@"Start"];
     [player stop];
-    // [[self midiController] setDelegate:nil];
   } else {
-    [controlButton setTitle:@"Stop"];
-    // [[self midiController] setDelegate:self];
     [player start];
   }
 }
