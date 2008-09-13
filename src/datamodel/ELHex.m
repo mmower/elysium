@@ -130,20 +130,20 @@
 
 // Drawing
 
-- (void)drawText:(NSString *)_text {
-  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-  [attributes setObject:[NSFont fontWithName:@"Helvetica" size:9]
+- (void)drawText:(NSString *)_text_ withAttributes:(NSMutableDictionary *)_attributes_ {
+  NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] init];
+  [textAttributes setObject:[NSFont fontWithName:@"Helvetica" size:9]
                  forKey:NSFontAttributeName];
-  [attributes setObject:[NSColor whiteColor]
+  [textAttributes setObject:[_attributes_ objectForKey:ELToolColor]
                  forKey:NSForegroundColorAttributeName];
   
-  NSSize strSize = [_text sizeWithAttributes:attributes];
+  NSSize strSize = [_text_ sizeWithAttributes:textAttributes];
   
   NSPoint strOrigin;
   strOrigin.x = [path bounds].origin.x + ( [path bounds].size.width - strSize.width ) / 2;
   strOrigin.y = [path bounds].origin.y + ( [path bounds].size.height - strSize.height ) / 2;
   
-  [_text drawAtPoint:strOrigin withAttributes:attributes];
+  [_text_ drawAtPoint:strOrigin withAttributes:textAttributes];
 }
 
 int mapPathSection( Direction d ) {
@@ -226,7 +226,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
   
   if( [[layer config] booleanForKey:@"showNotes"] ) {
-    [self drawText:[note name]];
+    [self drawText:[note name] withAttributes:_attributes_];
   }
   
   [[self tools] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];

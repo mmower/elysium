@@ -53,6 +53,8 @@
 - (void)setMIDIController:(ELMIDIController *)midiController;
 - (void)setDocument:(ElysiumDocument *)document;
 
+- (void)toggleNoteDisplay;
+
 // - (void)run;
 // - (void)runOnce;
 - (void)start;

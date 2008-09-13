@@ -32,5 +32,6 @@
 - (IBAction)clearAll:(id)sender;
 - (IBAction)newLayer:(id)sender;
 - (IBAction)closeDocument:(id)sender;
+- (IBAction)notesOnOff:(id)sender;
 
 @end

@@ -122,6 +122,11 @@
   document = _document;
 }
 
+- (void)toggleNoteDisplay {
+  [config setBoolean:![config booleanForKey:@"showNotes"] forKey:@"showNotes"];
+  [self needsDisplay];
+}
+
 // Player control
 
 - (void)start {

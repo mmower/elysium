@@ -124,6 +124,10 @@
   }
 }
 
+- (IBAction)notesOnOff:(id)_sender_ {
+  [player toggleNoteDisplay];
+}
+
 - (IBAction)clearAll:(id)_sender_ {
   NSAlert *alert = [[NSAlert alloc] init];
   [alert setAlertStyle:NSWarningAlertStyle];
