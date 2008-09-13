@@ -51,6 +51,7 @@
     [config setInteger:100 forKey:@"velocity"];
     [config setFloat:0.5 forKey:@"duration"];
     [config setInteger:1 forKey:@"nextLayerId"];
+    [config setBoolean:NO forKey:@"showNotes"];
     
     if( _createDefaultLayer_ ) {
       [self createLayer];

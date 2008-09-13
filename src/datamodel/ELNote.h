@@ -23,4 +23,6 @@
 - (int)number;
 - (NSString *)name;
 
+- (int)octave;
+
 @end

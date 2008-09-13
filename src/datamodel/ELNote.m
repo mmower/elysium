@@ -69,5 +69,8 @@ static NSMutableDictionary *namesToNoteNums = nil;
   return [NSString stringWithFormat:@"[%d,%@]", number, name];
 }
 
+- (int)octave {
+  return floor( number / 12 ) - 1;
+}
 
 @end

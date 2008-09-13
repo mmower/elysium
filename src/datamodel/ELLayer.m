@@ -184,7 +184,6 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)runLayer {
-  NSLog( @"Layer-%@ thread running", [self layerId] );
   timeBase  = AudioGetCurrentHostTime();
   isRunning = YES;
   while( ![runner isCancelled] ) {
@@ -197,7 +196,6 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)start {
-  // NSLog( @"Starting thread for Layer-%@", [self layerId] );
   runner = [[NSThread alloc] initWithTarget:self selector:@selector(runLayer) object:nil];
   [runner start];
 }
@@ -268,46 +266,54 @@ NSPredicate *deadPlayheadFilter;
   // Now connect the hexes up graph style
   for( int col = 0; col < HTABLE_COLS; col++ ) {
     for( int row = 0; row < HTABLE_ROWS; row++ ) {
+      
+      BOOL evenCol = ( col % 2 == 0 );
+      BOOL oddCol = !evenCol;
+      
+      BOOL firstRow = ( row == 0 );
+      BOOL lastRow = ( row == HTABLE_MAX_ROW );
+      
+      BOOL firstCol = ( col == 0 );
+      BOOL lastCol = ( col == HTABLE_MAX_COL );
+      
       ELHex *hex = [self hexAtColumn:col row:row];
       
-      // North Hex
-      if( row < HTABLE_MAX_ROW ) {
+      // North
+      if( !lastRow ) {
         [hex connectNeighbour:[self hexAtColumn:col row:row+1] direction:N];
       }
       
-      // // South Hex
-      if( row > 0 ) {
+      // North East
+      if( evenCol && !lastCol ) {
+        [hex connectNeighbour:[self hexAtColumn:col+1 row:row] direction:NE];
+      } else if( oddCol && !lastRow ) {
+        [hex connectNeighbour:[self hexAtColumn:col+1 row:row+1] direction:NE];
+      }
+      
+      // South East
+      if( evenCol && !lastCol && !firstRow ) {
+        [hex connectNeighbour:[self hexAtColumn:col+1 row:row-1] direction:SE];
+      } else if( oddCol ) {
+        [hex connectNeighbour:[self hexAtColumn:col+1 row:row] direction:SE];
+      }
+      
+      // South Hex
+      if( !firstRow ) {
         [hex connectNeighbour:[self hexAtColumn:col row:row-1] direction:S];
       }
-
-      // Easterly Hexes
-      if( col % 2 == 0 ) {
-        if( col < HTABLE_MAX_COL ) {
-          if( row < HTABLE_MAX_ROW ) {
-            [hex connectNeighbour:[self hexAtColumn:col+1 row:row+1] direction:NE];
-          }
-          [hex connectNeighbour:[self hexAtColumn:col+1 row:row] direction:SE];
-        }
-      } else {
-        [hex connectNeighbour:[self hexAtColumn:col+1 row:row] direction:NE];
-        if( row > 0 ) {
-          [hex connectNeighbour:[self hexAtColumn:col+1 row:row-1] direction:SE];
-        }
+      
+      // South West
+      if( evenCol && !firstCol && !firstRow ) {
+        [hex connectNeighbour:[self hexAtColumn:col-1 row:row-1] direction:SW];
+      } else if( oddCol ) {
+        [hex connectNeighbour:[self hexAtColumn:col-1 row:row] direction:SW];
       }
-
-      // Westerly Hexes
-      if( col % 2 == 0 ) {
-        if( col > 0 ) {
-          if( row < HTABLE_MAX_ROW ) {
-            [hex connectNeighbour:[self hexAtColumn:col-1 row:row+1] direction:NW];
-          }
-          [hex connectNeighbour:[self hexAtColumn:col-1 row:row] direction:SW];
-        }
-      } else {
+      
+      // North West
+      if( evenCol && !firstCol ) {
         [hex connectNeighbour:[self hexAtColumn:col-1 row:row] direction:NW];
-        if( row > 0 ) {
-          [hex connectNeighbour:[self hexAtColumn:col-1 row:row-1] direction:SW];
-        }
+      } else if( oddCol && !lastRow ) {
+        [hex connectNeighbour:[self hexAtColumn:col-1 row:row+1] direction:NW];
       }
     }
   }
@@ -326,6 +332,10 @@ NSPredicate *deadPlayheadFilter;
 - (void)hexCellSelected:(LMHexCell *)_cell {
   NSLog( @"Selected hex: %@", _cell );
   
+  // for( int direction = N; direction <= NW; direction++ ) {
+  //   NSLog( @" %d: %@", direction, [(ELHex*)_cell neighbour:direction] );
+  // }
+  
   if( _cell ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:_cell];
     [player playNote:[(ELHex*)_cell note] channel:[self channel] velocity:[self velocity] duration:[self duration]];
@@ -338,9 +348,11 @@ NSPredicate *deadPlayheadFilter;
   return (ELHex *)[self hexCellAtColumn:_col row:_row];
 }
 
-- (LMHexCell *)hexCellAtColumn:(int)_col row:(int)_row {
-  LMHexCell *cell = [hexes objectAtIndex:COL_ROW_OFFSET(_col,_row)];
-  NSAssert2( cell != nil, @"Requested nil hex at %d,%d", _col, _row );
+- (LMHexCell *)hexCellAtColumn:(int)_col_ row:(int)_row_ {
+  NSAssert4( COL_ROW_OFFSET( _col_, _row_ ) < HTABLE_SIZE, @"Offset %d (%d,%d) is of bounds (%d)!", COL_ROW_OFFSET(_col_,_row_), _col_, _row_, HTABLE_SIZE );
+  
+  LMHexCell *cell = [hexes objectAtIndex:COL_ROW_OFFSET(_col_,_row_)];
+  NSAssert2( cell != nil, @"Requested nil hex at %d,%d", _col_, _row_ );
   return cell;
 }
 

@@ -12,9 +12,11 @@
 
 #import "ELHex.h"
 #import "ELNote.h"
+#import "ELConfig.h"
 #import "ELLayer.h"
 #import "ELTool.h"
 #import "ELPlayhead.h"
+#import "ELSurfaceView.h"
 
 #import "ELStartTool.h"
 
@@ -214,11 +216,18 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   if( [playheads count] > 0 ) {
     // Modify attributes
     [_attributes_ setObject:[NSColor redColor] forKey:LMHoneycombViewDefaultColor];
-  } else if( [[self tools] count] > 0 ) {
-    [_attributes_ setObject:[NSColor colorWithDeviceRed:(40.0/255) green:(121.0/255) blue:(241.0/255) alpha:0.8] forKey:LMHoneycombViewDefaultColor];
+  } else {
+    [_attributes_ setObject:[(ELSurfaceView *)_view_ octaveColor:[note octave]] forKey:LMHoneycombViewDefaultColor];
   }
+  // } else if( [[self tools] count] > 0 ) {
+  //   [_attributes_ setObject:[NSColor colorWithDeviceRed:(40.0/255) green:(121.0/255) blue:(241.0/255) alpha:0.8] forKey:LMHoneycombViewDefaultColor];
+  // }
   
   [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
+  
+  if( [[layer config] booleanForKey:@"showNotes"] ) {
+    [self drawText:[note name]];
+  }
   
   [[self tools] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];
 }
