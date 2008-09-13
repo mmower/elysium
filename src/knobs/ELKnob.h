@@ -12,32 +12,24 @@
 
 @class ELOscillator;
 
-typedef enum {
-  BOOLEAN_KNOB,
-  INTEGER_KNOB,
-  FLOAT_KNOB,
-  } KnobType;
-
-@interface ELKnob : NSObject <ELData> {
+@interface ELKnob : NSObject {
   NSString        *name;            // name assigned to the knob
-  KnobType        type;             // the type of the value controller by this knob
   
   ELKnob          *linkedKnob;      // a "parent" knob that may
   
-  NSNumber        *enabled;         // whether this knob is enabled or not
+  BOOL            enabled;          // whether this knob is enabled or not
+  BOOL            hasEnabled;
   BOOL            linkEnabled;
   
   BOOL            hasValue;         // If a value is stored in this knob
   BOOL            linkValue;
   
-  BOOL            boolValue;        // If boolean
-  int             intValue;         // If integer
-  float           floatValue;       // If float
-  
-  NSNumber        *alpha;           // alpha is the current squashing factor
+  float           alpha;
+  BOOL            hasAlpha;
   BOOL            linkAlpha;
   
-  NSNumber        *p;               // p is the probability this knob is enabled
+  float           p;
+  BOOL            hasP;
   BOOL            linkP;
   
   ELOscillator    *filter;          // an oscillator that can be linked to alpha
@@ -47,10 +39,11 @@ typedef enum {
   BOOL            linkPredicate;    // this knob is enabled or not
 }
 
-- (id)initWithType:(KnobType)type name:(NSString *)name;
+- (id)initWithName:(NSString *)name;
 
 - (NSString *)name;
-- (KnobType)type;
+
+- (void)clearValue;
 
 - (ELKnob *)linkedKnob;
 - (void)setLinkedKnob:(ELKnob *)linkedKnob;
@@ -63,15 +56,6 @@ typedef enum {
 
 - (BOOL)linkValue;
 - (void)setLinkValue:(BOOL)linkValue;
-
-- (int)intValue;
-- (void)setIntValue:(int)value;
-
-- (float)floatValue;
-- (void)setFloatValue:(float)value;
-
-- (BOOL)boolValue;
-- (void)setBoolValue:(BOOL)value;
 
 - (float)alpha;
 - (void)setAlpha:(float)alpha;
