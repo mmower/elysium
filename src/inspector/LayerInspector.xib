@@ -553,22 +553,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: inspectee.tempo</string>
-						<reference key="source" ref="567673796"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="567673796"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: inspectee.tempo</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">inspectee.tempo</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">41</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: inspectee.velocity</string>
 						<reference key="source" ref="632442182"/>
 						<reference key="destination" ref="1001"/>
@@ -614,22 +598,6 @@
 						</object>
 					</object>
 					<int key="connectionID">58</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: inspectee.tempo</string>
-						<reference key="source" ref="333105392"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="333105392"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: inspectee.tempo</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">inspectee.tempo</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">59</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -694,6 +662,38 @@
 						</object>
 					</object>
 					<int key="connectionID">63</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: inspectee.tempoKnob.value</string>
+						<reference key="source" ref="567673796"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="567673796"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: inspectee.tempoKnob.value</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">inspectee.tempoKnob.value</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">64</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: inspectee.tempoKnob.value</string>
+						<reference key="source" ref="333105392"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="333105392"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: inspectee.tempoKnob.value</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">inspectee.tempoKnob.value</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">65</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1114,7 +1114,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilderKit</string>
-					<string>{{40, 53}, {248, 290}}</string>
+					<string>{{474, 358}, {248, 290}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1181,7 +1181,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">63</int>
+			<int key="maxID">65</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1220,20 +1220,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">../Honeycomb/view/LMHoneycombView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">src/midi/ELMIDIController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">src/midi/ELTimer.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

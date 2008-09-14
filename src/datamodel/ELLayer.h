@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELData.h"
 #import <HoneycombView/LMHoneycombMatrix.h>
+
+#import "Elysium.h"
 
 @class ELHex;
 @class ELNote;
@@ -34,6 +35,8 @@
                                     
   NSThread            *runner;      // The thread that runs this layer
   BOOL                isRunning;    // Whether or not this layer is running
+  
+  ELIntegerKnob       *tempoKnob;
 }
 
 + (NSPredicate *)deadPlayheadFilter;
@@ -44,6 +47,8 @@
 @property (readonly) ELConfig *config;
 @property id delegate;
 @property BOOL visible;
+
+@property (readonly) ELIntegerKnob *tempoKnob;
 
 - (ELPlayer *)player;
 - (ELHex *)hexAtColumn:(int)col row:(int)row;

@@ -8,7 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELData.h"
+#import "Elysium.h"
+
+
 
 @class ELNote;
 @class ELLayer;
@@ -29,12 +31,16 @@
   ELMIDIController    *midiController;  // Our interface to CoreMIDI
   int                 timerResolution;  
   UInt64              startTime;
+  
+  ELIntegerKnob       *tempoKnob;
 }
 
 @property (readonly) ELConfig *config;
 @property (readonly) UInt64 startTime;
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property (readonly) BOOL isRunning;
+
+@property (readonly) ELIntegerKnob *tempoKnob;
 
 - (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_;
 - (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)createDefaultLayer;

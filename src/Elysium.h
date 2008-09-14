@@ -48,3 +48,10 @@ extern NSString * const ELDefaultSelectedCellBackgroundColor;
 extern NSString * const ELDefaultSelectedCellBorderColor;
 extern NSString * const ELDefaultToolColor;
 extern NSString * const ELDefaultActivePlayheadColor;
+
+#import "ELData.h"
+
+#import "ELKnob.h"
+#import "ELIntegerKnob.h"
+#import "ELFloatKnob.h"
+#import "ELBooleanKnob.h"

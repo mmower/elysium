@@ -33,9 +33,9 @@ NSPredicate *deadPlayheadFilter;
   return deadPlayheadFilter;
 }
 
-- (id)initWithPlayer:(ELPlayer *)_player channel:(int)_channel {
+- (id)initWithPlayer:(ELPlayer *)_player_ channel:(int)_channel_ {
   if( ( self = [super init] ) ) {
-    player     = _player;
+    player     = _player_;
     config     = [[ELConfig alloc] init];
     hexes      = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
     playheads  = [[NSMutableArray alloc] init];
@@ -46,8 +46,11 @@ NSPredicate *deadPlayheadFilter;
     
     [self configureHexes];
     
-    [config setParent:[player config]];
-    [config setInteger:_channel forKey:@"channel"];
+    tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo"];
+    [tempoKnob setLinkedKnob:[player tempoKnob]];
+    
+    [config setParent:[_player_ config]];
+    [config setInteger:_channel_ forKey:@"channel"];
     [config setBoolean:YES forKey:@"enabled"];
   }
   
@@ -57,6 +60,8 @@ NSPredicate *deadPlayheadFilter;
 @synthesize player;
 @synthesize config;
 @synthesize delegate;
+
+@synthesize tempoKnob;
 
 - (void)playNote:(ELNote *)_note_ velocity:(int)_velocity_ duration:(float)_duration_ {
   // UInt64 noteOnTime = timeBase + (beatCount * [self timerResolution]);
@@ -130,7 +135,7 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (int)timerResolution {
-  return 60000000 / [self tempo];
+  return 60000000 / [[self tempoKnob] value];
 }
 
 @dynamic visible;

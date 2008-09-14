@@ -8,8 +8,6 @@
 
 #import <CoreAudio/HostTime.h>
 
-#import "Elysium.h"
-
 #import "ELPlayer.h"
 
 #import "ELHex.h"
@@ -45,6 +43,9 @@
     midiController = _midiController_;
     
     // Setup some default values
+    
+    tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
+    
     [config setInteger:600 forKey:@"bpm"];
     [config setInteger:16 forKey:@"ttl"];
     [config setInteger:16 forKey:@"pulseCount"];
@@ -68,6 +69,9 @@
 @synthesize startTime;
 @synthesize harmonicTable;
 @synthesize isRunning;
+
+
+@synthesize tempoKnob;
 
 // Configuration properties
 
