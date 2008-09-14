@@ -35,6 +35,47 @@
   return self;
 }
 
+- (id)initWithName:(NSString*)_name_
+        linkedKnob:(ELKnob*)_knob_
+           enabled:(BOOL)_enabled_
+        hasEnabled:(BOOL)_hasEnabled_
+       linkEnabled:(BOOL)_linkEnabled_
+          hasValue:(BOOL)_hasValue_
+         linkValue:(BOOL)_linkValue_
+             alpha:(float)_alpha_
+          hasAlpha:(BOOL)_hasAlpha_
+         linkAlpha:(BOOL)_linkAlpha_
+                 p:(float)_p_
+              hasP:(BOOL)_hasP_
+             linkP:(BOOL)_linkP_
+            filter:(ELOscillator*)_filter_
+        linkFilter:(BOOL)_linkFilter_
+         predicate:(NSPredicate*)_predicate_
+     linkPredicate:(BOOL)_linkPredicate_
+{
+  if( ( self = [self init] ) ) {
+    name          = _name_;
+    linkedKnob    = _knob_;
+    enabled       = _enabled_;
+    hasEnabled    = _hasEnabled_;
+    linkEnabled   = _linkEnabled_;
+    hasValue      = _hasValue_;
+    linkValue     = _linkValue_;
+    alpha         = _alpha_;
+    hasAlpha      = _hasAlpha_;
+    linkAlpha     = _linkAlpha_;
+    p             = _p_;
+    hasP          = _hasP_;
+    linkP         = _linkP_;
+    filter        = _filter_;
+    linkFilter    = _linkFilter_;
+    predicate     = _predicate_;
+    linkPredicate = _linkPredicate_;
+  }
+  
+  return self;
+}
+
 - (NSString *)name {
   return name;
 }

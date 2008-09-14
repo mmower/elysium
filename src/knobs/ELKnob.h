@@ -39,6 +39,24 @@
   BOOL            linkPredicate;    // this knob is enabled or not
 }
 
+- (id)initWithName:(NSString*)name
+        linkedKnob:(ELKnob*)knob
+           enabled:(BOOL)enabled
+        hasEnabled:(BOOL)hasEnabled
+       linkEnabled:(BOOL)linkEnabled
+          hasValue:(BOOL)hasValue
+         linkValue:(BOOL)linkValue
+             alpha:(float)alpha
+          hasAlpha:(BOOL)hasAlpha
+         linkAlpha:(BOOL)linkAlpha
+                 p:(float)p
+              hasP:(BOOL)hasP
+             linkP:(BOOL)linkP
+            filter:(ELOscillator*)filter
+        linkFilter:(BOOL)linkFilter
+         predicate:(NSPredicate*)predicate
+     linkPredicate:(BOOL)linkPredicate;
+       
 - (id)initWithName:(NSString *)name;
 
 - (NSString *)name;

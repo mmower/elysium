@@ -10,10 +10,29 @@
 
 #import "ELKnob.h"
 
-@interface ELBooleanKnob : ELKnob {
+@interface ELBooleanKnob : ELKnob <NSMutableCopying> {
   BOOL  value;
 }
 
+- (id)initWithName:(NSString *)name
+      booleanValue:(BOOL)value
+        linkedKnob:(ELKnob *)knob
+           enabled:(BOOL)_enabled
+        hasEnabled:(BOOL)_hasEnabled
+       linkEnabled:(BOOL)_linkEnabled
+          hasValue:(BOOL)_hasValue
+         linkValue:(BOOL)_linkValue
+             alpha:(float)_alpha
+          hasAlpha:(BOOL)_hasAlpha
+         linkAlpha:(BOOL)_linkAlpha
+                 p:(float)_p
+              hasP:(BOOL)_hasP
+             linkP:(BOOL)_linkP
+            filter:(ELOscillator *)filter
+        linkFilter:(BOOL)linkFilter
+         predicate:(NSPredicate *)predicate
+     linkPredicate:(BOOL)linkPredicate;
+         
 - (id)initWithName:(NSString *)name booleanValue:(BOOL)value;
 
 - (BOOL)value;
