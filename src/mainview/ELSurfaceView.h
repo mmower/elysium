@@ -13,11 +13,14 @@
 @class ELHex;
 
 @interface ELSurfaceView : LMHoneycombView {
-  NSColor *toolColor;
-  NSEvent *savedEvent;
+  NSMutableArray  *octaveColors;
+  NSColor         *toolColor;
+  NSEvent         *savedEvent;
 }
 
 @property (assign) NSColor *toolColor;
+
+- (NSColor *)octaveColor:(int)octave;
 
 - (ELHex *)cellUnderMouseLocation:(NSPoint)point;
 - (ELHex *)selectedHex;

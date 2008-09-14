@@ -25,10 +25,22 @@ NSString *HexPBoardType = @"HexPBoardType";
 
 - (id)initWithFrame:(NSRect)_frame_ {
   if( ( self = [super initWithFrame:_frame_] ) ) {
+    octaveColors = [[NSMutableArray alloc] init];
+    [octaveColors addObject:[NSColor grayColor]]; // We don't see Octave#0 anyway
+    [octaveColors addObject:[NSColor colorWithDeviceRed:(234.0/255) green:(174.0/255) blue:(145.0/255) alpha:0.9]];
+    [octaveColors addObject:[NSColor colorWithDeviceRed:(231.0/255) green:(214.0/255) blue:(148.0/255) alpha:0.9]];
+    [octaveColors addObject:[NSColor colorWithDeviceRed:(212.0/255) green:(228.0/255) blue:(150.0/255) alpha:0.9]];
+    [octaveColors addObject:[NSColor colorWithDeviceRed:(176.0/255) green:(225.0/255) blue:(152.0/255) alpha:0.9]];
+    [octaveColors addObject:[NSColor colorWithDeviceRed:(155.0/255) green:(222.0/255) blue:(165.0/255) alpha:0.9]];
+    [octaveColors addObject:[NSColor colorWithDeviceRed:(158.0/255) green:(218.0/255) blue:(203.0/255) alpha:0.9]];
+    [octaveColors addObject:[NSColor colorWithDeviceRed:(165.0/255) green:(172.0/255) blue:(210.0/255) alpha:0.9]];
+    [octaveColors addObject:[NSColor colorWithDeviceRed:(192.0/255) green:(169.0/255) blue:(205.0/255) alpha:0.9]];
+    
     [self setDefaultColor:[NSColor colorWithDeviceRed:(12.0/255) green:(153.0/255) blue:(206.0/255) alpha:0.8]];
-    [self setBorderColor:[NSColor colorWithDeviceRed:(11.0/255) green:(75.0/255) blue:(169.0/255) alpha:0.8]];
-    [self setSelectedColor:[NSColor blueColor]];
-    [self setToolColor:[NSColor yellowColor]];
+    [self setBorderColor:[NSColor colorWithDeviceRed:(58.0/255) green:(46.0/255) blue:(223.0/255) alpha:0.8]];
+    [self setSelectedBorderColor:[NSColor colorWithDeviceRed:(179.0/255) green:(158.0/255) blue:(241.0/255) alpha:0.8]];
+    [self setSelectedColor:[NSColor colorWithDeviceRed:(108.0/255) green:(69.0/255) blue:(229.0/255) alpha:0.8]];
+    [self setToolColor:[NSColor colorWithDeviceRed:(16.0/255) green:(17.0/255) blue:(156.0/255) alpha:0.8]];
     [self registerForDraggedTypes:[NSArray arrayWithObjects:ToolPBoardType,HexPBoardType,nil]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -48,6 +60,10 @@ NSString *HexPBoardType = @"HexPBoardType";
 
 - (NSColor *)toolColor {
   return [[self drawingAttributes] objectForKey:ELToolColor];
+}
+
+- (NSColor *)octaveColor:(int)_octave_ {
+  return [octaveColors objectAtIndex:_octave_];
 }
 
 - (BOOL)acceptsFirstMouse:(NSEvent *)_event_ {

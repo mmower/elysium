@@ -17,23 +17,21 @@
 @class ELHarmonicTable;
 @class ELMIDIController;
 @class ElysiumDocument;
+@class ELEnvelopeProbabilityGenerator;
 
 @interface ELPlayer : NSObject <ELData> {
-  ElysiumDocument   *document;
-  ELHarmonicTable   *harmonicTable;
-  NSMutableArray    *layers;
-  ELConfig          *config;
-  NSThread          *thread;
-  BOOL              isRunning;
-  ELTimer           *timer;
-  ELMIDIController  *midiController;
-  int               beatCount;
-  int               timerResolution;
-  UInt64            startTime;
+  ElysiumDocument     *document;        // Cocoa NSDocument subclass hosting this player
+  ELHarmonicTable     *harmonicTable;   // Represents the structure of notes to be played
+  NSMutableArray      *layers;          // Each layer is an "instrument"
+  NSMutableDictionary *oscillators;     // Generate random & semi-random "shaped" values
+  ELConfig            *config;          // Top-level configuration, inherited by layers
+  BOOL                isRunning;        // The player is active
+  ELMIDIController    *midiController;  // Our interface to CoreMIDI
+  int                 timerResolution;  
+  UInt64              startTime;
 }
 
 @property (readonly) ELConfig *config;
-@property (readonly) int beatCount;
 @property (readonly) UInt64 startTime;
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property (readonly) BOOL isRunning;
@@ -54,6 +52,8 @@
   
 - (void)setMIDIController:(ELMIDIController *)midiController;
 - (void)setDocument:(ElysiumDocument *)document;
+
+- (void)toggleNoteDisplay;
 
 // - (void)run;
 // - (void)runOnce;

@@ -11,6 +11,7 @@
 @interface ELNote : NSObject
 {
   int       number;
+  int       octave;
   NSString  *name;
 }
 
@@ -22,5 +23,7 @@
 
 - (int)number;
 - (NSString *)name;
+
+- (int)octave;
 
 @end

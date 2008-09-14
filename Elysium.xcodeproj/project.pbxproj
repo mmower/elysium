@@ -48,6 +48,10 @@
 		C93D553F0E62CC170077C448 /* ELData.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D553E0E62CC170077C448 /* ELData.h */; };
 		C93D55FA0E6411590077C448 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93D55F80E6411520077C448 /* Palette.xib */; };
 		C93D56000E64118E0077C448 /* ELPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D55FD0E64117C0077C448 /* ELPaletteController.m */; };
+		C94610AB0E7C156F001CA9B0 /* ELKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C94610AA0E7C156F001CA9B0 /* ELKnob.m */; };
+		C94610AE0E7C157A001CA9B0 /* ELFloatKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C94610AD0E7C157A001CA9B0 /* ELFloatKnob.m */; };
+		C94610B10E7C1584001CA9B0 /* ELIntegerKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C94610B00E7C1584001CA9B0 /* ELIntegerKnob.m */; };
+		C94610B40E7C158B001CA9B0 /* ELBooleanKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C94610B30E7C158B001CA9B0 /* ELBooleanKnob.m */; };
 		C95A630A0E50E7F900CBF555 /* HexStartInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95A63090E50E7F900CBF555 /* HexStartInspector.xib */; };
 		C95A63350E50F5A700CBF555 /* ELHexStartInspectorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
@@ -93,6 +97,8 @@
 		C9874C2E0E42A1A10068E7BF /* LMRegularPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */; settings = {ATTRIBUTES = (); }; };
 		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
 		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
+		C9A528490E7864BB0040E203 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A528460E7864BB0040E203 /* ELOscillator.m */; };
+		C9A5284A0E7864BB0040E203 /* ELSinusoidalOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A528480E7864BB0040E203 /* ELSinusoidalOscillator.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9BB9DDA0E71E4D60088561D /* ELLayerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB9DD90E71E4D60088561D /* ELLayerWindowController.m */; };
 		C9BB9DEA0E71EC3D0088561D /* LayerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9BB9DE90E71EC3D0088561D /* LayerWindow.xib */; };
@@ -213,6 +219,14 @@
 		C93D55F80E6411520077C448 /* Palette.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Palette.xib; sourceTree = "<group>"; };
 		C93D55FC0E64117C0077C448 /* ELPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPaletteController.h; sourceTree = "<group>"; };
 		C93D55FD0E64117C0077C448 /* ELPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPaletteController.m; sourceTree = "<group>"; };
+		C94610A90E7C156F001CA9B0 /* ELKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKnob.h; sourceTree = "<group>"; };
+		C94610AA0E7C156F001CA9B0 /* ELKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKnob.m; sourceTree = "<group>"; };
+		C94610AC0E7C157A001CA9B0 /* ELFloatKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFloatKnob.h; sourceTree = "<group>"; };
+		C94610AD0E7C157A001CA9B0 /* ELFloatKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFloatKnob.m; sourceTree = "<group>"; };
+		C94610AF0E7C1584001CA9B0 /* ELIntegerKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELIntegerKnob.h; sourceTree = "<group>"; };
+		C94610B00E7C1584001CA9B0 /* ELIntegerKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELIntegerKnob.m; sourceTree = "<group>"; };
+		C94610B20E7C158B001CA9B0 /* ELBooleanKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELBooleanKnob.h; sourceTree = "<group>"; };
+		C94610B30E7C158B001CA9B0 /* ELBooleanKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELBooleanKnob.m; sourceTree = "<group>"; };
 		C95A63090E50E7F900CBF555 /* HexStartInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexStartInspector.xib; sourceTree = "<group>"; };
 		C95A63330E50F5A700CBF555 /* ELHexStartInspectorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexStartInspectorPlugin.h; sourceTree = "<group>"; };
 		C95A63340E50F5A700CBF555 /* ELHexStartInspectorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexStartInspectorPlugin.m; sourceTree = "<group>"; };
@@ -281,6 +295,12 @@
 		C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMRegularPolygon.h; path = ../Honeycomb/view/LMRegularPolygon.h; sourceTree = SOURCE_ROOT; };
 		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
+		C9A528450E7864BB0040E203 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
+		C9A528460E7864BB0040E203 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
+		C9A528470E7864BB0040E203 /* ELSinusoidalOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSinusoidalOscillator.h; sourceTree = "<group>"; };
+		C9A528480E7864BB0040E203 /* ELSinusoidalOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSinusoidalOscillator.m; sourceTree = "<group>"; };
+		C9A5286D0E7866BC0040E203 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9A5286E0E7866BC0040E203 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9BB9DD80E71E4D60088561D /* ELLayerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerWindowController.h; sourceTree = "<group>"; };
 		C9BB9DD90E71E4D60088561D /* ELLayerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerWindowController.m; sourceTree = "<group>"; };
@@ -357,6 +377,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9A5286A0E7866BC0040E203 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -388,6 +415,7 @@
 				8D15AC370486D014006FF6A4 /* Elysium.app */,
 				C9874BFA0E429EF90068E7BF /* HoneycombView.framework */,
 				C97FEC860E4F5FB2008F309B /* StackedListView.framework */,
+				C9A5286D0E7866BC0040E203 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -409,6 +437,7 @@
 				C9E8D95F0E693A88005AD9B7 /* README.markdown */,
 				C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */,
 				C99B91830E6C7DB3004BE67A /* TODO.markdown */,
+				C9A5286E0E7866BC0040E203 /* UnitTests-Info.plist */,
 			);
 			name = Elysium;
 			sourceTree = "<group>";
@@ -416,6 +445,8 @@
 		2A37F4ABFDCFA73011CA2CEA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C94610A80E7C150B001CA9B0 /* knobs */,
+				C9A528440E7864BB0040E203 /* oscillator */,
 				C92128B90E7296C600D4D096 /* layer_manager */,
 				C96A67980E6B32F800A7C237 /* mainview */,
 				C97FEBD80E4F0754008F309B /* inspector */,
@@ -509,6 +540,21 @@
 				C9E8D8F60E687F2A005AD9B7 /* ELToolView.m */,
 			);
 			path = palette;
+			sourceTree = "<group>";
+		};
+		C94610A80E7C150B001CA9B0 /* knobs */ = {
+			isa = PBXGroup;
+			children = (
+				C94610A90E7C156F001CA9B0 /* ELKnob.h */,
+				C94610AA0E7C156F001CA9B0 /* ELKnob.m */,
+				C94610AC0E7C157A001CA9B0 /* ELFloatKnob.h */,
+				C94610AD0E7C157A001CA9B0 /* ELFloatKnob.m */,
+				C94610AF0E7C1584001CA9B0 /* ELIntegerKnob.h */,
+				C94610B00E7C1584001CA9B0 /* ELIntegerKnob.m */,
+				C94610B20E7C158B001CA9B0 /* ELBooleanKnob.h */,
+				C94610B30E7C158B001CA9B0 /* ELBooleanKnob.m */,
+			);
+			path = knobs;
 			sourceTree = "<group>";
 		};
 		C95A63070E50E7D200CBF555 /* hexinfo */ = {
@@ -663,6 +709,17 @@
 				C9D075580E6F355F00B91F7D /* PlayerInspector.xib */,
 			);
 			name = player;
+			sourceTree = "<group>";
+		};
+		C9A528440E7864BB0040E203 /* oscillator */ = {
+			isa = PBXGroup;
+			children = (
+				C9A528450E7864BB0040E203 /* ELOscillator.h */,
+				C9A528460E7864BB0040E203 /* ELOscillator.m */,
+				C9A528470E7864BB0040E203 /* ELSinusoidalOscillator.h */,
+				C9A528480E7864BB0040E203 /* ELSinusoidalOscillator.m */,
+			);
+			path = oscillator;
 			sourceTree = "<group>";
 		};
 		C9B88E400E64A5E400FA411E /* images */ = {
@@ -865,6 +922,24 @@
 			productReference = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		C9A5286C0E7866BC0040E203 /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9A528710E7866BC0040E203 /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				C9A528680E7866BC0040E203 /* Resources */,
+				C9A528690E7866BC0040E203 /* Sources */,
+				C9A5286A0E7866BC0040E203 /* Frameworks */,
+				C9A5286B0E7866BC0040E203 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = C9A5286D0E7866BC0040E203 /* UnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -881,6 +956,7 @@
 				C9874BF90E429EF90068E7BF /* HoneycombView */,
 				C97FEC850E4F5FB2008F309B /* StackedListView */,
 				C93D54900E61F0E80077C448 /* PYMIDI */,
+				C9A5286C0E7866BC0040E203 /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -941,6 +1017,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9A528680E7866BC0040E203 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -956,6 +1039,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/ruby;
 			shellScript = "APP_NAME = ENV['TARGET_NAME']\nBUILD_DIR = ENV['TARGET_BUILD_DIR']\n\nDir.chdir( BUILD_DIR  ) do\n\tapp_path = \"#{APP_NAME}.app\"\n\tplist_path = File.join( File.expand_path( app_path ), 'Contents', 'Info' )\n\tversion=`defaults read #{plist_path} CFBundleVersion`.chomp\n\ttar_name = \"#{APP_NAME}_#{version}.tgz\"\n\tcommand = \"tar czf #{tar_name} #{app_path}\"\n\tsystem( command )\nend";
+		};
+		C9A5286B0E7866BC0040E203 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -999,6 +1095,12 @@
 				C9BB9DDA0E71E4D60088561D /* ELLayerWindowController.m in Sources */,
 				C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */,
 				C9095EB50E743C7800D68496 /* ELMIDIMessage.m in Sources */,
+				C9A528490E7864BB0040E203 /* ELOscillator.m in Sources */,
+				C9A5284A0E7864BB0040E203 /* ELSinusoidalOscillator.m in Sources */,
+				C94610AB0E7C156F001CA9B0 /* ELKnob.m in Sources */,
+				C94610AE0E7C157A001CA9B0 /* ELFloatKnob.m in Sources */,
+				C94610B10E7C1584001CA9B0 /* ELIntegerKnob.m in Sources */,
+				C94610B40E7C158B001CA9B0 /* ELBooleanKnob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,6 +1140,13 @@
 				C9874C2A0E42A1A10068E7BF /* LMHexCell.m in Sources */,
 				C9874C2D0E42A1A10068E7BF /* LMHoneycombView.m in Sources */,
 				C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9A528690E7866BC0040E203 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,6 +1450,60 @@
 			};
 			name = Release;
 		};
+		C9A5286F0E7866BC0040E203 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C9A528700E7866BC0040E203 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1385,6 +1548,15 @@
 			buildConfigurations = (
 				C9874BFC0E429EFA0068E7BF /* Debug */,
 				C9874BFD0E429EFA0068E7BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9A528710E7866BC0040E203 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9A5286F0E7866BC0040E203 /* Debug */,
+				C9A528700E7866BC0040E203 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

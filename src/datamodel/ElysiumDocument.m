@@ -118,14 +118,14 @@
 
 - (IBAction)startStop:(id)_sender_ {
   if( [player isRunning] ) {
-    [controlButton setTitle:@"Start"];
     [player stop];
-    // [[self midiController] setDelegate:nil];
   } else {
-    [controlButton setTitle:@"Stop"];
-    // [[self midiController] setDelegate:self];
     [player start];
   }
+}
+
+- (IBAction)notesOnOff:(id)_sender_ {
+  [player toggleNoteDisplay];
 }
 
 - (IBAction)clearAll:(id)_sender_ {
@@ -144,6 +144,16 @@
   ELLayerWindowController *windowController = [[ELLayerWindowController alloc] initWithLayer:[player createLayer]];
   [self addWindowController:windowController];
   [windowController showWindow:self];
+}
+
+- (void)document:(NSDocument *)_document_ shouldClose:(BOOL)_shouldClose_ contextInfo:(void*)_contextInfo_ {
+  if( _shouldClose_ ) {
+    [self close];
+  }
+}
+
+- (IBAction)closeDocument:(id)_sender_ {
+  [self canCloseDocumentWithDelegate:self shouldCloseSelector:@selector(document:shouldClose:contextInfo:) contextInfo:nil];
 }
 
 // Sent by background threads when the view needs to be updated

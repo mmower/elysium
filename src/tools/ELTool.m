@@ -50,7 +50,7 @@ NSMutableDictionary *toolMapping = nil;
   
   NSString *type = [attribute stringValue];
   
-  ELTool *tool = [[ELTool toolMapping] objectForKey:type];
+  ELTool *tool = [[[[ELTool toolMapping] objectForKey:type] alloc] init];
   if( !tool ) {
     NSLog( @"Unknown tool type:%@", type );
   }

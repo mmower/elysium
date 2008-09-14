@@ -23,7 +23,7 @@ static NSMutableDictionary *namesToNoteNums = nil;
   
   for( int noteNum = 0; noteNum < 127; noteNum++ ) {
     NSString *noteName = [noteSequence objectAtIndex:(noteNum % 12)];
-    int octave = noteNum / 12;
+    int octave = floor( noteNum / 12 ) - 1;
     
     [noteToNoteNames setObject:[noteName stringByAppendingFormat:@"%d", octave]	forKey:[NSNumber numberWithInt:noteNum]];
     [namesToNoteNums setObject:[NSNumber numberWithInt:noteNum] forKey:[noteName stringByAppendingFormat:@"%d", octave]];
@@ -38,21 +38,23 @@ static NSMutableDictionary *namesToNoteNums = nil;
   return [noteToNoteNames objectForKey:[NSNumber numberWithInt:noteNum]];
 }
 
-- (id)initWithNumber:(int)aNumber
+- (id)initWithNumber:(int)_number_
 {
-  if( ( self = [super init] ) )
+  if( ( self = [self init] ) )
   {
-    number = aNumber;
-    name = [ELNote noteName:number];
+    number = _number_;
+    octave = floor( _number_ / 12 ) - 1;
+    name   = [ELNote noteName:number];
   }
   return self;
 }
 
-- (id)initWithName:(NSString *)aName {
+- (id)initWithName:(NSString *)_name_ {
   if( ( self = [super init] ) )
   {
-    name = aName;
-    number = [ELNote noteNumber:name];
+    name   = _name_;
+    number = [ELNote noteNumber:_name_];
+    octave = floor( number / 12 ) - 1;
   }
   return self;
 }
@@ -69,5 +71,8 @@ static NSMutableDictionary *namesToNoteNums = nil;
   return [NSString stringWithFormat:@"[%d,%@]", number, name];
 }
 
+- (int)octave {
+  return octave;
+}
 
 @end

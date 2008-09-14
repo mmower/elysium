@@ -47,6 +47,7 @@
 - (void)setBoolean:(BOOL)value forKey:(NSString *)key;
 - (BOOL)booleanForKey:(NSString *)key;
 
+- (void)setString:(NSString *)value forKey:(NSString *)key;
 - (NSString *)stringForKey:(NSString *)key;
 
 - (void)snapshot;

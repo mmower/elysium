@@ -55,6 +55,6 @@
 // Custom drawing for hexes
 
 - (void)drawTriangleInDirection:(Direction)direction withAttributes:(NSDictionary *)attributes;
-- (void)drawText:(NSString *)text;
+- (void)drawText:(NSString *)text  withAttributes:(NSMutableDictionary *)attributes;
 
 @end

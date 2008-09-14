@@ -12,9 +12,11 @@
 
 #import "ELHex.h"
 #import "ELNote.h"
+#import "ELConfig.h"
 #import "ELLayer.h"
 #import "ELTool.h"
 #import "ELPlayhead.h"
+#import "ELSurfaceView.h"
 
 #import "ELStartTool.h"
 
@@ -128,20 +130,20 @@
 
 // Drawing
 
-- (void)drawText:(NSString *)_text {
-  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-  [attributes setObject:[NSFont fontWithName:@"Helvetica" size:9]
+- (void)drawText:(NSString *)_text_ withAttributes:(NSMutableDictionary *)_attributes_ {
+  NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] init];
+  [textAttributes setObject:[NSFont fontWithName:@"Helvetica" size:9]
                  forKey:NSFontAttributeName];
-  [attributes setObject:[NSColor whiteColor]
+  [textAttributes setObject:[_attributes_ objectForKey:ELToolColor]
                  forKey:NSForegroundColorAttributeName];
   
-  NSSize strSize = [_text sizeWithAttributes:attributes];
+  NSSize strSize = [_text_ sizeWithAttributes:textAttributes];
   
   NSPoint strOrigin;
   strOrigin.x = [path bounds].origin.x + ( [path bounds].size.width - strSize.width ) / 2;
   strOrigin.y = [path bounds].origin.y + ( [path bounds].size.height - strSize.height ) / 2;
   
-  [_text drawAtPoint:strOrigin withAttributes:attributes];
+  [_text_ drawAtPoint:strOrigin withAttributes:textAttributes];
 }
 
 int mapPathSection( Direction d ) {
@@ -214,11 +216,18 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   if( [playheads count] > 0 ) {
     // Modify attributes
     [_attributes_ setObject:[NSColor redColor] forKey:LMHoneycombViewDefaultColor];
-  } else if( [[self tools] count] > 0 ) {
-    [_attributes_ setObject:[NSColor colorWithDeviceRed:(40.0/255) green:(121.0/255) blue:(241.0/255) alpha:0.8] forKey:LMHoneycombViewDefaultColor];
+  } else {
+    [_attributes_ setObject:[(ELSurfaceView *)_view_ octaveColor:[note octave]] forKey:LMHoneycombViewDefaultColor];
   }
+  // } else if( [[self tools] count] > 0 ) {
+  //   [_attributes_ setObject:[NSColor colorWithDeviceRed:(40.0/255) green:(121.0/255) blue:(241.0/255) alpha:0.8] forKey:LMHoneycombViewDefaultColor];
+  // }
   
   [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
+  
+  if( [[layer config] booleanForKey:@"showNotes"] ) {
+    [self drawText:[note name] withAttributes:_attributes_];
+  }
   
   [[self tools] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];
 }
