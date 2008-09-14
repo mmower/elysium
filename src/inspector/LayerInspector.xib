@@ -537,22 +537,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: inspectee.timeToLive</string>
-						<reference key="source" ref="215728418"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="215728418"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: inspectee.timeToLive</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">inspectee.timeToLive</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">26</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: inspectee.velocity</string>
 						<reference key="source" ref="632442182"/>
 						<reference key="destination" ref="1001"/>
@@ -649,22 +633,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: inspectee.timeToLive</string>
-						<reference key="source" ref="386725331"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="386725331"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: inspectee.timeToLive</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">inspectee.timeToLive</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">63</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: inspectee.tempoKnob.value</string>
 						<reference key="source" ref="567673796"/>
 						<reference key="destination" ref="1001"/>
@@ -694,6 +662,38 @@
 						</object>
 					</object>
 					<int key="connectionID">65</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: inspectee.timeToLiveKnob.value</string>
+						<reference key="source" ref="215728418"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="215728418"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: inspectee.timeToLiveKnob.value</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">inspectee.timeToLiveKnob.value</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">66</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: inspectee.timeToLiveKnob.value</string>
+						<reference key="source" ref="386725331"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="386725331"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: inspectee.timeToLiveKnob.value</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">inspectee.timeToLiveKnob.value</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">67</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1181,7 +1181,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">65</int>
+			<int key="maxID">67</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

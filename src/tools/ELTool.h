@@ -14,27 +14,23 @@
 
 @class ELHex;
 @class ELLayer;
-@class ELConfig;
 @class ELPlayhead;
 
 @protocol DirectedTool
-- (BOOL)direction;
-- (void)setDirection:(Direction)direction;
+@property (readonly) ELIntegerKnob *directionKnob;
 @end
 
-@interface ELTool : NSObject <ELData, NSMutableCopying> {
+@interface ELTool : NSObject <ELData> {
   BOOL      enabled;
   NSString  *toolType;
   ELLayer   *layer;
   ELHex     *hex;
-  ELConfig  *config;
   int       preferredOrder;
 }
 
 @property BOOL enabled;
 @property int preferredOrder;
 @property (readonly) NSString *toolType;
-@property (readonly) ELConfig *config;
 @property (readonly) ELLayer *layer;
 @property (readonly) ELHex *hex;
 
@@ -42,11 +38,8 @@
 + (ELTool *)fromXMLData:(NSXMLElement *)xml;
 
 - (id)initWithType:(NSString *)type;
-- (id)initWithType:(NSString *)type config:(ELConfig *)config;
 
 - (NSArray *)observableValues;
-
-- (void)useInheritedConfig:(NSString *)key;
 
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;
 - (void)removedFromLayer:(ELLayer *)layer;

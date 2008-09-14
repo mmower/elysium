@@ -12,7 +12,6 @@
 
 #import "ELHex.h"
 #import "ELLayer.h"
-#import "ELConfig.h"
 #import "ELPlayhead.h"
 
 #import "ELBeatTool.h"
@@ -63,14 +62,9 @@ NSMutableDictionary *toolMapping = nil;
   return tool;
 }
 
-- (id)initWithType:(NSString *)_type {
-  return [self initWithType:_type config:[[ELConfig alloc] init]];
-}
-
-- (id)initWithType:(NSString *)_type config:(ELConfig *)_config {
+- (id)initWithType:(NSString *)_type_ {
   if( ( self = [super init] ) ) {
-    toolType       = _type;
-    config         = _config;
+    toolType       = _type_;
     enabled        = YES;
     preferredOrder = 5;
   }
@@ -78,19 +72,11 @@ NSMutableDictionary *toolMapping = nil;
   return self;
 }
 
-// NSMutableCopying protocol
-
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithType:toolType config:[config mutableCopy]];
-}
-
-
 // Properties
 
 @synthesize enabled;
 @synthesize preferredOrder;
 @synthesize toolType;
-@synthesize config;
 @synthesize layer;
 @synthesize hex;
 
@@ -98,22 +84,18 @@ NSMutableDictionary *toolMapping = nil;
   return [NSArray arrayWithObject:@"enabled"];
 }
 
-- (void)useInheritedConfig:(NSString *)_key {
-  [config removeValueForKey:_key];
+- (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
+  layer = _layer_;
+  hex   = _hex_;
 }
 
-- (void)addedToLayer:(ELLayer *)_layer atPosition:(ELHex *)_hex {
-  [config setParent:[_layer config]];
-  layer = _layer;
-  hex   = _hex;
-}
-
-- (void)removedFromLayer:(ELLayer *)layer {
-  [config setParent:nil];
+- (void)removedFromLayer:(ELLayer *)_layer_ {
+  layer = nil;
+  hex = nil;
 }
 
 // Tool specific invocation goes here
-- (BOOL)run:(ELPlayhead *)playhead {
+- (BOOL)run:(ELPlayhead *)_playhead_ {
   return enabled;
 }
 

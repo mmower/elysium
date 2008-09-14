@@ -12,12 +12,15 @@
 
 #import "ELTool.h"
 
-@interface ELStartTool : ELTool {
+@interface ELStartTool : ELTool <NSMutableCopying> {
+  ELIntegerKnob *directionKnob;
+  ELIntegerKnob *timeToLiveKnob;
+  ELIntegerKnob *pulseCountKnob;
 }
 
-@property Direction direction;
-@property int timeToLive;
-@property int pulseCount;
+@property (readonly) ELIntegerKnob *directionKnob;
+@property (readonly) ELIntegerKnob *timeToLiveKnob;
+@property (readonly) ELIntegerKnob *pulseCountKnob;
 
 - (BOOL)shouldPulseOnBeat:(int)beat;
 

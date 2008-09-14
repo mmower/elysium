@@ -10,7 +10,7 @@
 
 #import "ELTool.h"
 
-@interface ELSinkTool : ELTool {
+@interface ELSinkTool : ELTool <NSMutableCopying> {
 }
 
 @end

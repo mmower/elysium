@@ -12,9 +12,7 @@
 
 #import "ELHex.h"
 #import "ELNote.h"
-// #import "ELTimer.h"
 #import "ELLayer.h"
-#import "ELConfig.h"
 #import "ELOscillator.h"
 #import "ElysiumDocument.h"
 #import "ELHarmonicTable.h"
@@ -39,20 +37,18 @@
     harmonicTable  = [[ELHarmonicTable alloc] init];
     layers         = [[NSMutableArray alloc] init];
     oscillators    = [[NSMutableDictionary alloc] init];
-    config         = [[ELConfig alloc] init];
     midiController = _midiController_;
     
     // Setup some default values
     
-    tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
+    tempoKnob       = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
+    timeToLiveKnob  = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
+    pulseCountKnob  = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
+    velocityKnob    = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
+    durationKnob    = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
     
-    [config setInteger:600 forKey:@"bpm"];
-    [config setInteger:16 forKey:@"ttl"];
-    [config setInteger:16 forKey:@"pulseCount"];
-    [config setInteger:100 forKey:@"velocity"];
-    [config setFloat:0.5 forKey:@"duration"];
-    [config setInteger:1 forKey:@"nextLayerId"];
-    [config setBoolean:NO forKey:@"showNotes"];
+    nextLayerNumber = 1;
+    showNotes       = NO;
     
     if( _createDefaultLayer_ ) {
       [self createLayer];
@@ -64,57 +60,16 @@
 
 // Accessors
 
-@synthesize config;
-// @synthesize beatCount;
 @synthesize startTime;
 @synthesize harmonicTable;
 @synthesize isRunning;
-
+@synthesize showNotes;
 
 @synthesize tempoKnob;
-
-// Configuration properties
-
-- (int)tempo {
-  int tempo = [config integerForKey:@"bpm"];
-  return tempo;
-}
-
-- (void)setTempo:(int)_tempo_ {
-  [config setInteger:_tempo_ forKey:@"bpm"];
-}
-
-- (int)timeToLive {
-  return [config integerForKey:@"ttl"];
-}
-
-- (void)setTimeToLive:(int)_ttl_ {
-  [config setInteger:_ttl_ forKey:@"ttl"];
-}
-
-- (int)pulseCount {
-  return [config integerForKey:@"pulseCount"];
-}
-
-- (void)setPulseCount:(int)_pulseCount_ {
-  [config setInteger:_pulseCount_ forKey:@"pulseCount"];
-}
-
-- (int)velocity {
-  return [config integerForKey:@"velocity"];
-}
-
-- (void)setVelocity:(int)_velocity_ {
-  [config setInteger:_velocity_ forKey:@"velocity"];
-}
-
-- (float)duration {
-  return [config floatForKey:@"duration"];
-}
-
-- (void)setDuration:(float)_duration_ {
-  [config setFloat:_duration_ forKey:@"duration"];
-}
+@synthesize timeToLiveKnob;
+@synthesize pulseCountKnob;
+@synthesize velocityKnob;
+@synthesize durationKnob;
 
 // Associations
 
@@ -127,7 +82,7 @@
 }
 
 - (void)toggleNoteDisplay {
-  [config setBoolean:![config booleanForKey:@"showNotes"] forKey:@"showNotes"];
+  showNotes = !showNotes;
   [self needsDisplay];
 }
 
@@ -181,9 +136,7 @@
 - (ELLayer *)createLayer {
   ELLayer *layer = [[ELLayer alloc] initWithPlayer:self channel:([self layerCount]+1)];
   
-  int nextLayerNumber = [config integerForKey:@"nextLayerId"];
-  NSString *layerId = [NSString stringWithFormat:@"Layer-%d", nextLayerNumber];
-  [config setInteger:nextLayerNumber+1 forKey:@"nextLayerId"];
+  NSString *layerId = [NSString stringWithFormat:@"Layer-%d", nextLayerNumber++];
   [layer setLayerId:layerId];
   
   [self addLayer:layer];
@@ -191,15 +144,12 @@
 }
 
 - (void)addLayer:(ELLayer *)_layer_ {
-  [[_layer_ config] setParent:config];
-  
   [self willChangeValueForKey:@"layers"];
   [layers addObject:_layer_];
   [self didChangeValueForKey:@"layers"];
 }
 
 - (void)removeLayer:(ELLayer *)_layer_ {
-  [[_layer_ config] setParent:nil];
   [layers removeObject:_layer_];
 }
 
@@ -219,7 +169,6 @@
   for( ELLayer *layer in [layers copy] ) {
     [self removeLayer:layer];
   }
-  // [layers removeAllObjects];
 }
 
 // Oscillator support
@@ -233,23 +182,23 @@
 - (NSXMLElement *)asXMLData {
   NSXMLElement *surfaceElement = [NSXMLNode elementWithName:@"surface"];
   
-  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-  if( [config definesValueForKey:@"pulseCount"] ) {
-    [attributes setObject:[config stringForKey:@"pulseCount"] forKey:@"pulseCount"];
-  }
-  if( [config definesValueForKey:@"velocity"] ) {
-    [attributes setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
-  }
-  if( [config definesValueForKey:@"duration"] ) {
-    [attributes setObject:[config stringForKey:@"duration"] forKey:@"duration"];
-  }
-  if( [config definesValueForKey:@"bpm"] ) {
-    [attributes setObject:[config stringForKey:@"bpm"] forKey:@"bpm"];
-  }
-  if( [config definesValueForKey:@"ttl"] ) {
-    [attributes setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
-  }
-  [surfaceElement setAttributesAsDictionary:attributes];
+  // NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+  // if( [config definesValueForKey:@"pulseCount"] ) {
+  //   [attributes setObject:[config stringForKey:@"pulseCount"] forKey:@"pulseCount"];
+  // }
+  // if( [config definesValueForKey:@"velocity"] ) {
+  //   [attributes setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
+  // }
+  // if( [config definesValueForKey:@"duration"] ) {
+  //   [attributes setObject:[config stringForKey:@"duration"] forKey:@"duration"];
+  // }
+  // if( [config definesValueForKey:@"bpm"] ) {
+  //   [attributes setObject:[config stringForKey:@"bpm"] forKey:@"bpm"];
+  // }
+  // if( [config definesValueForKey:@"ttl"] ) {
+  //   [attributes setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
+  // }
+  // [surfaceElement setAttributesAsDictionary:attributes];
   
   for( ELLayer *layer in layers ) {
     [surfaceElement addChild:[layer asXMLData]];
@@ -267,22 +216,22 @@
   
   NSXMLElement *surfaceElement = [nodes objectAtIndex:0];
   
-  NSXMLNode *node;
-  if( ( node = [surfaceElement attributeForName:@"pulseCount"] ) ) {
-    [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
-  }
-  if( ( node = [surfaceElement attributeForName:@"velocity"] ) ) {
-    [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
-  }
-  if( ( node = [surfaceElement attributeForName:@"duration"] ) ) {
-    [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
-  }
-  if( ( node = [surfaceElement attributeForName:@"bpm"] ) ) {
-    [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
-  }
-  if( ( node = [surfaceElement attributeForName:@"ttl"] ) ) {
-    [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
-  }
+  // NSXMLNode *node;
+  // if( ( node = [surfaceElement attributeForName:@"pulseCount"] ) ) {
+  //   [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
+  // }
+  // if( ( node = [surfaceElement attributeForName:@"velocity"] ) ) {
+  //   [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
+  // }
+  // if( ( node = [surfaceElement attributeForName:@"duration"] ) ) {
+  //   [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
+  // }
+  // if( ( node = [surfaceElement attributeForName:@"bpm"] ) ) {
+  //   [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
+  // }
+  // if( ( node = [surfaceElement attributeForName:@"ttl"] ) ) {
+  //   [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
+  // }
   
   nodes = [surfaceElement nodesForXPath:@"layer" error:nil];
   if( [nodes count] < 1 ) {

@@ -15,72 +15,67 @@
 
 @implementation ELStartTool
 
+- (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ timeToLiveKnob:(ELIntegerKnob *)_timeToLiveKnob_ pulseCountKnob:(ELIntegerKnob *)_pulseCountKnob_ {
+  if( ( self = [self initWithType:@"start"] ) ) {
+    directionKnob = _directionKnob_;
+    timeToLiveKnob = _timeToLiveKnob_;
+    pulseCountKnob = _pulseCountKnob_;
+  }
+  
+  return self;
+}
+
 - (id)init {
   if( ( self = [super initWithType:@"start"] ) ) {
-    [self setDirection:N];
+    directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive"];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount"];
+    
     [self setPreferredOrder:1];
   }
   return self;
 }
 
+@synthesize directionKnob;
+@synthesize timeToLiveKnob;
+@synthesize pulseCountKnob;
+
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
+  
+  [timeToLiveKnob setLinkedKnob:[_layer_ timeToLiveKnob]];
+  [pulseCountKnob setLinkedKnob:[_layer_ pulseCountKnob]];
+  
   [_layer_ addGenerator:self];
 }
 
 - (void)removedFromLayer:(ELLayer *)_layer_ {
   [_layer_ removeGenerator:self];
+  
+  [timeToLiveKnob setLinkedKnob:nil];
+  
   [super removedFromLayer:_layer_];
 }
 
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"direction",@"timeToLive",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionKnob.value",@"timeToLiveKnob.value",nil]];
   return keys;
-}
-
-@dynamic direction;
-
-- (Direction)direction {
-  return [config integerForKey:@"direction"];
-}
-
-- (void)setDirection:(Direction)_direction_ {
-  [config setInteger:_direction_ forKey:@"direction"];
-}
-
-@dynamic timeToLive;
-
-- (int)timeToLive {
-  return [config integerForKey:@"ttl"];
-}
-
-- (void)setTimeToLive:(int)_ttl_ {
-  [config setInteger:_ttl_ forKey:@"ttl"];
-}
-
-@dynamic pulseCount;
-
-- (int)pulseCount {
-  return [config integerForKey:@"pulseCount"];
-}
-
-- (void)setPulseCount:(int)_pulseCount_ {
-  [config setInteger:_pulseCount_ forKey:@"pulseCount"];
 }
 
 // Tool runner
 
 - (BOOL)shouldPulseOnBeat:(int)_beat_ {
-  return ( _beat_ % [self pulseCount] ) == 0;
+  return ( _beat_ % [pulseCountKnob value] ) == 0;
 }
 
 - (BOOL)run:(ELPlayhead *)_playhead {
   if( [super run:_playhead] ) {
+    NSLog( @"TTL %@ = %d", timeToLiveKnob, [timeToLiveKnob value] );
     [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
-                                                  direction:[self direction]
-                                                        TTL:[self timeToLive]]];
+                                                  direction:[directionKnob value]
+                                                        TTL:[timeToLiveKnob value]]];
     return YES;
   } else {
     return NO;
@@ -100,16 +95,16 @@
   [[_attributes_ objectForKey:ELDefaultToolColor] set];
   [symbolPath stroke];
   
-  [[self hex] drawTriangleInDirection:[self direction] withAttributes:_attributes_];
+  [[self hex] drawTriangleInDirection:[directionKnob value] withAttributes:_attributes_];
 }
 
 // ELData protocol assistance
 
 - (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
-  [_attributes_ setObject:[config stringForKey:@"direction"] forKey:@"direction"];
-  if( [config definesValueForKey:@"ttl"] ) {
-    [_attributes_ setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
-  }
+  // [_attributes_ setObject:[config stringForKey:@"direction"] forKey:@"direction"];
+  // if( [config definesValueForKey:@"ttl"] ) {
+  //   [_attributes_ setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
+  // }
 }
 
 - (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
@@ -120,14 +115,22 @@
     return NO;
   }
   
-  [self setDirection:[[node stringValue] intValue]];
+  // [self setDirection:[[node stringValue] intValue]];
   
   node = [_xml_ attributeForName:@"ttl"];
   if( node ) {
-    [self setTimeToLive:[[node stringValue] intValue]];
+    // [self setTimeToLive:[[node stringValue] intValue]];
   }
   
   return YES;
+}
+
+// NSMutableCopying protocol
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initWithDirectionKnob:[directionKnob mutableCopy]
+                                                     timeToLiveKnob:[timeToLiveKnob mutableCopy]
+                                                     pulseCountKnob:[pulseCountKnob mutableCopy]];
 }
 
 @end

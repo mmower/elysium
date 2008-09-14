@@ -23,7 +23,6 @@
   id                  delegate;     // This will be the view representing us in the UI
   ELPlayer            *player;      // The player we belong to
   NSMutableArray      *hexes;       // The hexes representing the playing surface
-  ELConfig            *config;      // Our configuration, linked to our player config
   NSMutableArray      *playheads;   // Array of playheads active on our surface
   NSMutableArray      *generators;  // Array of playhead generators (start tools)
   int                 beatCount;    // Current beat number
@@ -36,7 +35,15 @@
   NSThread            *runner;      // The thread that runs this layer
   BOOL                isRunning;    // Whether or not this layer is running
   
+  NSString            *layerId;
+  
+  ELBooleanKnob       *enabledKnob;
+  ELIntegerKnob       *channelKnob;
   ELIntegerKnob       *tempoKnob;
+  ELIntegerKnob       *timeToLiveKnob;
+  ELIntegerKnob       *pulseCountKnob;
+  ELIntegerKnob       *velocityKnob;
+  ELFloatKnob         *durationKnob;
 }
 
 + (NSPredicate *)deadPlayheadFilter;
@@ -44,30 +51,23 @@
 - (id)initWithPlayer:(ELPlayer *)player channel:(int)channel;
 
 @property ELPlayer *player;
-@property (readonly) ELConfig *config;
 @property id delegate;
 @property BOOL visible;
+@property (assign) NSString *layerId;
 
+@property (readonly) ELBooleanKnob *enabledKnob;
+@property (readonly) ELIntegerKnob *channelKnob;
 @property (readonly) ELIntegerKnob *tempoKnob;
+@property (readonly) ELIntegerKnob *timeToLiveKnob;
+@property (readonly) ELIntegerKnob *pulseCountKnob;
+@property (readonly) ELIntegerKnob *velocityKnob;
+@property (readonly) ELFloatKnob *durationKnob;
 
 - (ELPlayer *)player;
 - (ELHex *)hexAtColumn:(int)col row:(int)row;
 
 // Dynamic Configuration
 
-- (NSString *)layerId;
-- (void)setLayerId:(NSString *)layerId;
-
-- (BOOL)enabled;
-- (void)setEnabled:(BOOL)enabled;
-
-- (int)channel;
-- (void)setChannel:(int)channel;
-
-- (int)velocity;
-- (void)setVelocity:(int)velocity;
-
-- (int)pulseCount;
 - (int)timerResolution;
 
 - (void)addGenerator:(ELStartTool *)generator;

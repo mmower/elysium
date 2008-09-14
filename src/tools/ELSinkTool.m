@@ -43,4 +43,10 @@
   [symbolPath stroke];
 }
 
+// NSMutableCopying protocol
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] init];
+}
+
 @end

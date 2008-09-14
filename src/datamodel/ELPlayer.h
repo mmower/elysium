@@ -10,8 +10,6 @@
 
 #import "Elysium.h"
 
-
-
 @class ELNote;
 @class ELLayer;
 @class ELTimer;
@@ -26,43 +24,40 @@
   ELHarmonicTable     *harmonicTable;   // Represents the structure of notes to be played
   NSMutableArray      *layers;          // Each layer is an "instrument"
   NSMutableDictionary *oscillators;     // Generate random & semi-random "shaped" values
-  ELConfig            *config;          // Top-level configuration, inherited by layers
   BOOL                isRunning;        // The player is active
   ELMIDIController    *midiController;  // Our interface to CoreMIDI
   int                 timerResolution;  
   UInt64              startTime;
   
+  int                 nextLayerNumber;
+  BOOL                showNotes;
+  
   ELIntegerKnob       *tempoKnob;
+  ELIntegerKnob       *timeToLiveKnob;
+  ELIntegerKnob       *pulseCountKnob;
+  ELIntegerKnob       *velocityKnob;
+  ELFloatKnob         *durationKnob;
 }
 
-@property (readonly) ELConfig *config;
 @property (readonly) UInt64 startTime;
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property (readonly) BOOL isRunning;
+@property BOOL showNotes;
 
 @property (readonly) ELIntegerKnob *tempoKnob;
+@property (readonly) ELIntegerKnob *timeToLiveKnob;
+@property (readonly) ELIntegerKnob *pulseCountKnob;
+@property (readonly) ELIntegerKnob *velocityKnob;
+@property (readonly) ELFloatKnob   *durationKnob;
 
 - (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_;
 - (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)createDefaultLayer;
 
-- (int)tempo;
-- (void)setTempo:(int)tempo;
-- (int)timeToLive;
-- (void)setTimeToLive:(int)ttl;
-- (int)pulseCount;
-- (void)setPulseCount:(int)pulseCount;
-- (int)velocity;
-- (void)setVelocity:(int)velocity;
-- (float)duration;
-- (void)setDuration:(float)duration;
-  
 - (void)setMIDIController:(ELMIDIController *)midiController;
 - (void)setDocument:(ElysiumDocument *)document;
 
 - (void)toggleNoteDisplay;
 
-// - (void)run;
-// - (void)runOnce;
 - (void)start;
 - (void)stop;
 - (void)reset;

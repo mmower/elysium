@@ -12,8 +12,8 @@
 
 #import "ELHex.h"
 #import "ELNote.h"
-#import "ELConfig.h"
 #import "ELLayer.h"
+#import "ELPlayer.h"
 #import "ELTool.h"
 #import "ELPlayhead.h"
 #import "ELSurfaceView.h"
@@ -225,7 +225,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   
   [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
   
-  if( [[layer config] booleanForKey:@"showNotes"] ) {
+  if( [[layer player] showNotes] ) {
     [self drawText:[note name] withAttributes:_attributes_];
   }
   

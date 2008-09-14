@@ -12,13 +12,13 @@
 
 #import "ELTool.h"
 
-@interface ELRotorTool : ELTool {
+@interface ELRotorTool : ELTool <NSMutableCopying> {
+  ELBooleanKnob *clockwiseKnob;
 
 }
 
-+ (ELRotorTool *)new;
+- (id)initWithClockwiseKnob:(ELBooleanKnob *)clockwiseKnob;
 
-- (BOOL)clockwise;
-- (void)setClockwise:(BOOL)clockwise;
+@property (readonly) ELBooleanKnob *clockwiseKnob;
 
 @end

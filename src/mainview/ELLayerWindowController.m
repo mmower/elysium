@@ -38,7 +38,7 @@
 }
 
 - (NSString *)windowTitleForDocumentDisplayName:(NSString *)_displayName_ {
-  return [NSString stringWithFormat:@"%@ - %@ (Channel %d)", _displayName_, [layer layerId], [layer channel]];
+  return [NSString stringWithFormat:@"%@ - %@ (Channel %d)", _displayName_, [layer layerId], [[layer channelKnob] value]];
 }
 
 - (void)updateWindowTitle {

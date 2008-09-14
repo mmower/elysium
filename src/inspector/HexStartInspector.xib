@@ -347,83 +347,83 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: inspectee.direction</string>
-						<reference key="source" ref="59340621"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="59340621"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: inspectee.direction</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">inspectee.direction</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">35</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: inspectee.timeToLive</string>
+						<string key="label">value: inspectee.timeToLiveKnob.value</string>
 						<reference key="source" ref="213776000"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="213776000"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: inspectee.timeToLive</string>
+							<string key="NSLabel">value: inspectee.timeToLiveKnob.value</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">inspectee.timeToLive</string>
+							<string key="NSKeyPath">inspectee.timeToLiveKnob.value</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">36</int>
+					<int key="connectionID">48</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: inspectee.pulseCount</string>
-						<reference key="source" ref="994111269"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="994111269"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: inspectee.pulseCount</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">inspectee.pulseCount</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">41</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: inspectee.timeToLive</string>
+						<string key="label">value: inspectee.timeToLiveKnob.value</string>
 						<reference key="source" ref="709218503"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="709218503"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: inspectee.timeToLive</string>
+							<string key="NSLabel">value: inspectee.timeToLiveKnob.value</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">inspectee.timeToLive</string>
+							<string key="NSKeyPath">inspectee.timeToLiveKnob.value</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">46</int>
+					<int key="connectionID">49</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: inspectee.pulseCount</string>
+						<string key="label">value: inspectee.directionKnob.value</string>
+						<reference key="source" ref="59340621"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="59340621"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: inspectee.directionKnob.value</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">inspectee.directionKnob.value</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">50</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: inspectee.pulseCountKnob</string>
+						<reference key="source" ref="994111269"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="994111269"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: inspectee.pulseCountKnob</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">inspectee.pulseCountKnob</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">51</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: inspectee.pulseCountKnob</string>
 						<reference key="source" ref="393967176"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="393967176"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: inspectee.pulseCount</string>
+							<string key="NSLabel">value: inspectee.pulseCountKnob</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">inspectee.pulseCount</string>
+							<string key="NSKeyPath">inspectee.pulseCountKnob</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">47</int>
+					<int key="connectionID">52</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -678,7 +678,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilderKit</string>
-					<string>{{347, 129}, {248, 180}}</string>
+					<string>{{371, 392}, {248, 180}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -725,7 +725,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">47</int>
+			<int key="maxID">52</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -777,20 +777,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">../Honeycomb/view/LMHoneycombView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">src/midi/ELMIDIController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">src/midi/ELTimer.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

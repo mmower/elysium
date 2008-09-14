@@ -10,11 +10,14 @@
 
 #import "ELTool.h"
 
-@interface ELBeatTool : ELTool {
-
+@interface ELBeatTool : ELTool <NSMutableCopying> {
+  ELIntegerKnob *velocityKnob;
+  ELFloatKnob   *durationKnob;
 }
 
-@property int velocity;
-@property float duration;
+- (id)initWithVelocityKnob:(ELIntegerKnob *)velocityKnob durationKnob:(ELFloatKnob *)durationKnob;
+
+@property (readonly) ELIntegerKnob *velocityKnob;
+@property (readonly) ELFloatKnob *durationKnob;
 
 @end

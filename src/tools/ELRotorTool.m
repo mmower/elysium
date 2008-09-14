@@ -16,54 +16,50 @@
 
 @implementation ELRotorTool
 
-+ (ELRotorTool *)new {
-  return [[ELRotorTool alloc] init];
+- (id)initWithClockwiseKnob:(ELBooleanKnob *)_clockwiseKnob_ {
+  if( ( self = [self initWithType:@"rotor"] ) ) {
+    clockwiseKnob = _clockwiseKnob_;
+  }
+  
+  return self;
 }
 
 - (id)init {
-  if( ( self = [super initWithType:@"rotor"] ) ) {
-    [self setClockwise:YES];
+  if( ( self = [self initWithType:@"rotor"] ) ) {
+    clockwiseKnob = [[ELBooleanKnob alloc] initWithName:@"clockwise" booleanValue:YES];
     [self setPreferredOrder:9];
   }
   
   return self;
 }
 
+@synthesize clockwiseKnob;
+
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwise",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwiseKnob.value",nil]];
   return keys;
-}
-
-// Properties
-
-- (BOOL)clockwise {
-  return [config booleanForKey:@"clockwise"];
-}
-
-- (void)setClockwise:(BOOL)_clockwise_ {
-  [config setBoolean:_clockwise_ forKey:@"clockwise"];
 }
 
 // What happens when a playhead arrives
 
-- (BOOL)run:(ELPlayhead *)_playhead {
-  if( [super run:_playhead] ) {
+- (BOOL)run:(ELPlayhead *)_playhead_ {
+  if( [super run:_playhead_] ) {
     ELTool<DirectedTool> *tool;
     
-    if( [[_playhead position] toolOfType:@"ricochet"] ) {
-      tool = [[_playhead position] toolOfType:@"ricochet"];
-    } else if( [[_playhead position] toolOfType:@"start"] ) {
-      tool = [[_playhead position] toolOfType:@"start"];
+    if( [[_playhead_ position] toolOfType:@"ricochet"] ) {
+      tool = [[_playhead_ position] toolOfType:@"ricochet"];
+    } else if( [[_playhead_ position] toolOfType:@"start"] ) {
+      tool = [[_playhead_ position] toolOfType:@"start"];
     } else {
       tool = nil;
     }
     
-    if( [self clockwise] ) {
-      [tool setDirection:(([tool direction]+1) % 6)];
+    if( [clockwiseKnob value] ) {
+      [[tool directionKnob] setValue:(([[tool directionKnob] value]+1) % 6)];
     } else {
-      [tool setDirection:(([tool direction]-1) % 6)];
+      [[tool directionKnob] setValue:(([[tool directionKnob] value]-1) % 6)];
     }
 
     return YES;
@@ -82,7 +78,7 @@
   
   NSBezierPath *symbolPath = [NSBezierPath bezierPath];
   
-  if( [self clockwise] ) {
+  if( [clockwiseKnob value] ) {
     [symbolPath moveToPoint:NSMakePoint( centre.x - radius/3 - radius/10, centre.y - radius/8 )];
     [symbolPath lineToPoint:NSMakePoint( centre.x - radius/3, centre.y + radius/8 )];
     [symbolPath lineToPoint:NSMakePoint( centre.x - radius/3 + radius/10, centre.y - radius/8 )];
@@ -102,6 +98,12 @@
   
   [symbolPath setLineWidth:2.0];
   [symbolPath stroke];
+}
+
+// NSMutableCopying protocol
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initWithClockwiseKnob:[clockwiseKnob mutableCopy]];
 }
 
 @end

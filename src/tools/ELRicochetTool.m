@@ -9,40 +9,40 @@
 #import "ELRicochetTool.h"
 
 #import "ELHex.h"
+#import "ELPlayhead.h"
 
 @implementation ELRicochetTool
 
+- (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ {
+  if( ( self = [super initWithType:@"ricochet"] ) ) {
+    directionKnob = _directionKnob_;
+  }
+  
+  return self;
+}
+
 - (id)init {
   if( ( self = [super initWithType:@"ricochet"] ) ) {
-    [self setDirection:N];
+    directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N];
   }
 
   return self;
 }
 
+@synthesize directionKnob;
+
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"direction",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionKnob.value",nil]];
   return keys;
-}
-
-
-@dynamic direction;
-
-- (Direction)direction {
-  return [config integerForKey:@"direction"];
-}
-
-- (void)setDirection:(Direction)_direction {
-  [config setInteger:_direction forKey:@"direction"];
 }
 
 // Tool runner
 
-- (BOOL)run:(ELPlayhead *)_playhead {
-  if( [super run:_playhead] ) {
-    [_playhead setDirection:[self direction]];
+- (BOOL)run:(ELPlayhead *)_playhead_ {
+  if( [super run:_playhead_] ) {
+    [_playhead_ setDirection:[directionKnob value]];
     return YES;
   } else {
     return NO;
@@ -52,7 +52,13 @@
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  [[self hex] drawTriangleInDirection:[self direction] withAttributes:_attributes_];
+  [[self hex] drawTriangleInDirection:[directionKnob value] withAttributes:_attributes_];
+}
+
+// NSMutableCopying protocol
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initWithDirectionKnob:[directionKnob mutableCopy]];
 }
 
 @end

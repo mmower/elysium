@@ -13,7 +13,6 @@
 #import "ELHex.h"
 #import "ELNote.h"
 #import "ELTool.h"
-#import "ELConfig.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 #import "ELStartTool.h"
@@ -36,7 +35,6 @@ NSPredicate *deadPlayheadFilter;
 - (id)initWithPlayer:(ELPlayer *)_player_ channel:(int)_channel_ {
   if( ( self = [super init] ) ) {
     player     = _player_;
-    config     = [[ELConfig alloc] init];
     hexes      = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
     playheads  = [[NSMutableArray alloc] init];
     generators = [[NSMutableArray alloc] init];
@@ -46,92 +44,41 @@ NSPredicate *deadPlayheadFilter;
     
     [self configureHexes];
     
-    tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo"];
-    [tempoKnob setLinkedKnob:[player tempoKnob]];
+    enabledKnob    = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
+    channelKnob    = [[ELIntegerKnob alloc] initWithName:@"channel" integerValue:_channel_];
+    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo"];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive"];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount"];
+    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity"];
+    durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration"];
     
-    [config setParent:[_player_ config]];
-    [config setInteger:_channel_ forKey:@"channel"];
-    [config setBoolean:YES forKey:@"enabled"];
+    [tempoKnob setLinkedKnob:[player tempoKnob]];
+    [timeToLiveKnob setLinkedKnob:[player timeToLiveKnob]];
+    [pulseCountKnob setLinkedKnob:[player pulseCountKnob]];
+    [velocityKnob setLinkedKnob:[player velocityKnob]];
+    [durationKnob setLinkedKnob:[player durationKnob]];
   }
   
   return self;
 }
 
 @synthesize player;
-@synthesize config;
 @synthesize delegate;
+@synthesize layerId;
 
+@synthesize enabledKnob;
+@synthesize channelKnob;
 @synthesize tempoKnob;
+@synthesize timeToLiveKnob;
+@synthesize pulseCountKnob;
+@synthesize velocityKnob;
+@synthesize durationKnob;
 
 - (void)playNote:(ELNote *)_note_ velocity:(int)_velocity_ duration:(float)_duration_ {
   // UInt64 noteOnTime = timeBase + (beatCount * [self timerResolution]);
   // UInt64 noteOffTime = noteOnTime + ( _duration_ * 1000000 );
   // [player scheduleNote:_note_ channel:[self channel] velocity:[self velocity] on:noteOnTime off:noteOffTime];
-  [player playNote:_note_ channel:[self channel] velocity:_velocity_ duration:_duration_];
-}
-
-- (NSString *)layerId {
-  return [config stringForKey:@"layerId"];
-}
-
-- (void)setLayerId:(NSString *)_layerId_ {
-  [config setValue:_layerId_ forKey:@"layerId"];
-}
-
-- (BOOL)enabled {
-  return [config booleanForKey:@"enabled"];
-}
-
-- (void)setEnabled:(BOOL)_enabled_ {
-  [config setBoolean:_enabled_ forKey:@"enabled"];
-}
-
-- (int)channel {
-  return [config integerForKey:@"channel"];
-}
-
-- (void)setChannel:(int)_channel_ {
-  [config setInteger:_channel_ forKey:@"channel"];
-}
-
-- (int)tempo {
-  return [config integerForKey:@"bpm"];
-}
-
-- (void)setTempo:(int)_tempo_ {
-  [config setInteger:_tempo_ forKey:@"bpm"];
-}
-
-- (int)velocity {
-  return [config integerForKey:@"velocity"];
-}
-
-- (void)setVelocity:(int)_velocity_ {
-  [config setInteger:_velocity_ forKey:@"velocity"];
-}
-
-- (float)duration {
-  return [config floatForKey:@"duration"];
-}
-
-- (void)setDuration:(float)_duration {
-  [config setFloat:_duration forKey:@"duration"];
-}
-
-- (int)pulseCount {
-  return [config integerForKey:@"pulseCount"];
-}
-
-- (void)setPulseCount:(int)_pulseCount_ {
-  [config setInteger:_pulseCount_ forKey:@"pulseCount"];
-}
-
-- (int)timeToLive {
-  return [config integerForKey:@"ttl"];
-}
-
-- (void)setTimeToLive:(int)_ttl_ {
-  [config setInteger:_ttl_ forKey:@"ttl"];
+  [player playNote:_note_ channel:[channelKnob value] velocity:_velocity_ duration:_duration_];
 }
 
 - (int)timerResolution {
@@ -155,7 +102,7 @@ NSPredicate *deadPlayheadFilter;
 // Manipulate layer
 
 - (void)run {
-  if( [self enabled] ) {
+  if( [enabledKnob value] ) {
     // On the first and every pulseCount beats, generate new playheads
     // NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
     [self pulse];
@@ -206,7 +153,6 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)stop {
-  // NSLog( @"Stopping thread for Layer-%@", [self layerId] );
   [runner cancel];
 }
 
@@ -219,8 +165,8 @@ NSPredicate *deadPlayheadFilter;
   [hexes makeObjectsPerformSelector:@selector(removeAllTools)];
 }
 
-- (void)addPlayhead:(ELPlayhead *)_playhead {
-  [playheads addObject:_playhead];
+- (void)addPlayhead:(ELPlayhead *)_playhead_ {
+  [playheads addObject:_playhead_];
 }
 
 - (void)removeAllPlayheads {
@@ -334,16 +280,16 @@ NSPredicate *deadPlayheadFilter;
   return HTABLE_ROWS;
 }
 
-- (void)hexCellSelected:(LMHexCell *)_cell {
-  NSLog( @"Selected hex: %@", _cell );
+- (void)hexCellSelected:(LMHexCell *)_cell_ {
+  NSLog( @"Selected hex: %@", _cell_ );
   
   // for( int direction = N; direction <= NW; direction++ ) {
   //   NSLog( @" %d: %@", direction, [(ELHex*)_cell neighbour:direction] );
   // }
   
-  if( _cell ) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:_cell];
-    [player playNote:[(ELHex*)_cell note] channel:[self channel] velocity:[self velocity] duration:[self duration]];
+  if( _cell_ ) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:_cell_];
+    [player playNote:[(ELHex*)_cell_ note] channel:[channelKnob value] velocity:[velocityKnob value] duration:[durationKnob value]];
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
   }
@@ -367,24 +313,24 @@ NSPredicate *deadPlayheadFilter;
   NSXMLElement *layerElement = [NSXMLNode elementWithName:@"layer"];
   
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-  [attributes setObject:[config stringForKey:@"channel"] forKey:@"channel"];
-  [attributes setObject:[config stringForKey:@"layerId"] forKey:@"id"];
+  // [attributes setObject:[config stringForKey:@"channel"] forKey:@"channel"];
+  // [attributes setObject:[config stringForKey:@"layerId"] forKey:@"id"];
   
-  if( [config definesValueForKey:@"pulseCount"] ) {
-    [attributes setObject:[config stringForKey:@"pulseCount"] forKey:@"pulseCount"];
-  }
-  if( [config definesValueForKey:@"velocity"] ) {
-    [attributes setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
-  }
-  if( [config definesValueForKey:@"duration"] ) {
-    [attributes setObject:[config stringForKey:@"duration"] forKey:@"duration"];
-  }
-  if( [config definesValueForKey:@"bpm"] ) {
-    [attributes setObject:[config stringForKey:@"bpm"] forKey:@"bpm"];
-  }
-  if( [config definesValueForKey:@"ttl"] ) {
-    [attributes setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
-  }
+  // if( [config definesValueForKey:@"pulseCount"] ) {
+  //   [attributes setObject:[config stringForKey:@"pulseCount"] forKey:@"pulseCount"];
+  // }
+  // if( [config definesValueForKey:@"velocity"] ) {
+  //   [attributes setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
+  // }
+  // if( [config definesValueForKey:@"duration"] ) {
+  //   [attributes setObject:[config stringForKey:@"duration"] forKey:@"duration"];
+  // }
+  // if( [config definesValueForKey:@"bpm"] ) {
+  //   [attributes setObject:[config stringForKey:@"bpm"] forKey:@"bpm"];
+  // }
+  // if( [config definesValueForKey:@"ttl"] ) {
+  //   [attributes setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
+  // }
   [layerElement setAttributesAsDictionary:attributes];
   
   for( int col = 0; col < HTABLE_COLS; col++ ) {
@@ -404,24 +350,24 @@ NSPredicate *deadPlayheadFilter;
   
   NSXMLNode *node;
   
-  if( ( node = [_xml_ attributeForName:@"id"] ) ) {
-    [config setString:[node stringValue] forKey:@"layerId"];
-  }
-  if( ( node = [_xml_ attributeForName:@"pulseCount"] ) ) {
-    [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
-  }
-  if( ( node = [_xml_ attributeForName:@"velocity"] ) ) {
-    [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
-  }
-  if( ( node = [_xml_ attributeForName:@"duration"] ) ) {
-    [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
-  }
-  if( ( node = [_xml_ attributeForName:@"bpm"] ) ) {
-    [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
-  }
-  if( ( node = [_xml_ attributeForName:@"ttl"] ) ) {
-    [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
-  }
+  // if( ( node = [_xml_ attributeForName:@"id"] ) ) {
+  //   [config setString:[node stringValue] forKey:@"layerId"];
+  // }
+  // if( ( node = [_xml_ attributeForName:@"pulseCount"] ) ) {
+  //   [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
+  // }
+  // if( ( node = [_xml_ attributeForName:@"velocity"] ) ) {
+  //   [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
+  // }
+  // if( ( node = [_xml_ attributeForName:@"duration"] ) ) {
+  //   [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
+  // }
+  // if( ( node = [_xml_ attributeForName:@"bpm"] ) ) {
+  //   [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
+  // }
+  // if( ( node = [_xml_ attributeForName:@"ttl"] ) ) {
+  //   [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
+  // }
   
   for( NSXMLNode *cellNode in [_xml_ nodesForXPath:@"cell" error:nil] ) {
     NSXMLElement *cellElement = (NSXMLElement *)cellNode;

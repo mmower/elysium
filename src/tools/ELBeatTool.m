@@ -8,54 +8,63 @@
 
 #import "Elysium.h"
 
+#import "ELTool.h"
 #import "ELBeatTool.h"
 
 #import "ELHex.h"
 #import "ELLayer.h"
-#import "ELConfig.h"
 #import "ELPlayhead.h"
 
 @implementation ELBeatTool
 
-- (id)init {
-  self = [super initWithType:@"beat"];
+- (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ {
+  if( ( self = [super initWithType:@"beat"] ) ) {
+    velocityKnob = _velocityKnob_;
+    durationKnob = _durationKnob_;
+  }
+  
   return self;
+}
+
+- (id)init {
+  if( ( self = [super initWithType:@"beat"] ) ) {
+    velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
+    durationKnob = [[ELIntegerKnob alloc] initWithName:@"duration"];
+  }
+  return self;
+}
+
+@synthesize velocityKnob;
+@synthesize durationKnob;
+
+- (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
+  [super addedToLayer:_layer_ atPosition:_hex_];
+  
+  [velocityKnob setLinkedKnob:[_layer_ velocityKnob]];
+  [durationKnob setLinkedKnob:[_layer_ durationKnob]];
+}
+
+- (void)removedFromLayer:(ELLayer *)_layer_ {
+  [super removedFromLayer:_layer_];
+  
+  [velocityKnob setLinkedKnob:nil];
+  [durationKnob setLinkedKnob:nil];
 }
 
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocity",@"duration",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityKnob.value",@"durationKnob.value",nil]];
   return keys;
-}
-
-@dynamic velocity;
-
-- (int)velocity {
-  return [config integerForKey:@"velocity"];
-}
-
-- (void)setVelocity:(int)_velocity {
-  [config setInteger:_velocity forKey:@"velocity"];
-}
-
-@dynamic duration;
-
-- (float)duration {
-  return [config floatForKey:@"duration"];
-}
-
-- (void)setDuration:(float)_duration {
-  [config setFloat:_duration forKey:@"duration"];
 }
 
 // Tool runner
 
-- (BOOL)run:(ELPlayhead *)_playhead {
-  if( [super run:_playhead] ) {
-    [layer playNote:[[_playhead position] note]
-           velocity:[self velocity]
-           duration:[self duration]];
+- (BOOL)run:(ELPlayhead *)_playhead_ {
+  if( [super run:_playhead_] ) {
+    [layer playNote:[[_playhead_ position] note]
+           velocity:[velocityKnob value]
+           duration:[durationKnob value]];
     return YES;
   } else {
     return NO;
@@ -80,30 +89,36 @@
   [symbolPath stroke];
 }
 
+// NSMutableCopying protocol
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy] durationKnob:[durationKnob mutableCopy]];
+}
+
 // Save/Load support
 
 - (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
-  if( [config definesValueForKey:@"velocity"] ) {
-    [_attributes_ setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
-  }
-  if( [config definesValueForKey:@"duration"] ) {
-    [_attributes_ setObject:[config stringForKey:@"duration"] forKey:@"duration"];
-  }
+  // if( [config definesValueForKey:@"velocity"] ) {
+  //   [_attributes_ setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
+  // }
+  // if( [config definesValueForKey:@"duration"] ) {
+  //   [_attributes_ setObject:[config stringForKey:@"duration"] forKey:@"duration"];
+  // }
 }
 
 - (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
-  NSXMLNode *node;
-  
-  node = [_xml_ attributeForName:@"velocity"];
-  if( node ) {
-    [self setVelocity:[[node stringValue] intValue]];
-  }
-  
-  node = [_xml_ attributeForName:@"duration"];
-  if( node ) {
-    [self setDuration:[[node stringValue] floatValue]];
-  }
-  
+  // NSXMLNode *node;
+  // 
+  // node = [_xml_ attributeForName:@"velocity"];
+  // if( node ) {
+  //   [self setVelocity:[[node stringValue] intValue]];
+  // }
+  // 
+  // node = [_xml_ attributeForName:@"duration"];
+  // if( node ) {
+  //   [self setDuration:[[node stringValue] floatValue]];
+  // }
+  // 
   return YES;
 }
 
