@@ -14,7 +14,7 @@
   BOOL  value;
 }
 
-- (id)initWithName:(NSString *)name value:(BOOL)value;
+- (id)initWithName:(NSString *)name booleanValue:(BOOL)value;
 
 - (BOOL)value;
 - (void)setValue:(BOOL)value;

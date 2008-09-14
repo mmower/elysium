@@ -10,7 +10,7 @@
 
 @implementation ELIntegerKnob
 
-- (id)initWithName:(NSString *)_name_ value:(int)_value_ {
+- (id)initWithName:(NSString *)_name_ integerValue:(int)_value_ {
   if( ( self = [self initWithName:_name_] ) ) {
     [self setValue:_value_];
   }

@@ -10,7 +10,7 @@
 
 @implementation ELBooleanKnob
 
-- (id)initWithName:(NSString *)_name_ value:(BOOL)_value_ {
+- (id)initWithName:(NSString *)_name_ booleanValue:(BOOL)_value_ {
   if( ( self = [self initWithName:_name_] ) ) {
     [self setValue:_value_];
   }

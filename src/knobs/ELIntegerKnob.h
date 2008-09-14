@@ -14,7 +14,7 @@
   int value;
 }
 
-- (id)initWithName:(NSString *)name value:(int)value;
+- (id)initWithName:(NSString *)name integerValue:(int)value;
 
 - (int)value;
 - (void)setValue:(int)value;

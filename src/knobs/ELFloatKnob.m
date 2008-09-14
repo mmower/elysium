@@ -10,7 +10,7 @@
 
 @implementation ELFloatKnob
 
-- (id)initWithName:(NSString *)_name_ value:(float)_value_ {
+- (id)initWithName:(NSString *)_name_ floatValue:(float)_value_ {
   if( ( self = [self initWithName:_name_] ) ) {
     [self setValue:_value_];
   }
