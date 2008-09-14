@@ -75,7 +75,7 @@
   [symbolPath closePath];
   [symbolPath setLineWidth:2.0];
   
-  [[_attributes_ objectForKey:ELToolColor] set];
+  [[_attributes_ objectForKey:ELDefaultToolColor] set];
   
   [symbolPath stroke];
 }

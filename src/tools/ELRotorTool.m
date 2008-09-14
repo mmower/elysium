@@ -78,7 +78,7 @@
   NSPoint centre = [[self hex] centre];
   float radius = [[self hex] radius];
 
-  [[_attributes_ objectForKey:ELToolColor] set];
+  [[_attributes_ objectForKey:ELDefaultToolColor] set];
   
   NSBezierPath *symbolPath = [NSBezierPath bezierPath];
   

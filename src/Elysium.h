@@ -38,5 +38,13 @@ typedef enum tagDirection {
 // Notification names
 // extern NSString* notifyObjectSelectionDidChange;
 
-extern NSString* const ELNotifyCellWasUpdated;
-extern NSString* const ELToolColor;
+extern NSString * const ELNotifyCellWasUpdated;
+
+// Defaults keys
+
+extern NSString * const ELDefaultCellBackgroundColor;
+extern NSString * const ELDefaultCellBorderColor;
+extern NSString * const ELDefaultSelectedCellBackgroundColor;
+extern NSString * const ELDefaultSelectedCellBorderColor;
+extern NSString * const ELDefaultToolColor;
+extern NSString * const ELDefaultActivePlayheadColor;

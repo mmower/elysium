@@ -15,7 +15,57 @@
 #import "ELInspectorController.h"
 #import "ElysiumDocument.h"
 
+extern NSString * const ELDefaultCellBackgroundColor;
+extern NSString * const ELDefaultCellBorderColor;
+extern NSString * const ELDefaultSelectedCellBackgroundColor;
+extern NSString * const ELDefaultSelectedCellBorderColor;
+extern NSString * const ELDefaultToolColor;
+extern NSString * const ELDefaultActivePlayheadColor;
+
+
 @implementation ElysiumController
+
++ (void)initialize {
+  NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+  
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(12.0/255)
+                                                                                        green:(153.0/255)
+                                                                                         blue:(206.0/255)
+                                                                                        alpha:0.8]]
+                    forKey:ELDefaultCellBackgroundColor];
+  
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(58.0/255)
+                                                                                             green:(46.0/255)
+                                                                                              blue:(223.0/255)
+                                                                                             alpha:0.8]]
+                    forKey:ELDefaultCellBorderColor];
+  
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(179.0/255)
+                                                                                             green:(158.0/255)
+                                                                                              blue:(241.0/255)
+                                                                                             alpha:0.8]]
+                    forKey:ELDefaultSelectedCellBackgroundColor];
+  
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(108.0/255)
+                                                                                             green:(69.0/255)
+                                                                                              blue:(229.0/255)
+                                                                                             alpha:0.8]]
+                    forKey:ELDefaultSelectedCellBorderColor];
+  
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(16.0/255)
+                                                                                             green:(17.0/255)
+                                                                                              blue:(156.0/255)
+                                                                                             alpha:0.8]]
+                    forKey:ELDefaultToolColor];
+  
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(156.0/255)
+                                                                                             green:(16.0/255)
+                                                                                              blue:(45.0/255)
+                                                                                             alpha:0.8]]
+                    forKey:ELDefaultActivePlayheadColor];
+  
+  [[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+}
 
 - (id)init {
   if( ( self = [super init] ) ) {

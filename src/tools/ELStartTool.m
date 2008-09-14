@@ -97,7 +97,7 @@
   symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/3, centre.y - radius/3, 2*radius/3, 2*radius/3 )];
   [symbolPath setLineWidth:2.0];
 
-  [[_attributes_ objectForKey:ELToolColor] set];
+  [[_attributes_ objectForKey:ELDefaultToolColor] set];
   [symbolPath stroke];
   
   [[self hex] drawTriangleInDirection:[self direction] withAttributes:_attributes_];

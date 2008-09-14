@@ -134,7 +134,7 @@
   NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] init];
   [textAttributes setObject:[NSFont fontWithName:@"Helvetica" size:9]
                  forKey:NSFontAttributeName];
-  [textAttributes setObject:[_attributes_ objectForKey:ELToolColor]
+  [textAttributes setObject:[_attributes_ objectForKey:ELDefaultToolColor]
                  forKey:NSForegroundColorAttributeName];
   
   NSSize strSize = [_text_ sizeWithAttributes:textAttributes];
@@ -207,7 +207,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     [trianglePath transformUsingAffineTransform:transform];
   }
   
-  [[_attributes_ objectForKey:ELToolColor] set];
+  [[_attributes_ objectForKey:ELDefaultToolColor] set];
   [trianglePath setLineWidth:2.0];
   [trianglePath stroke];
 }
@@ -215,7 +215,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
 - (void)drawOnHoneycombView:(LMHoneycombView *)_view_ withAttributes:(NSMutableDictionary *)_attributes_ {
   if( [playheads count] > 0 ) {
     // Modify attributes
-    [_attributes_ setObject:[NSColor redColor] forKey:LMHoneycombViewDefaultColor];
+    [_attributes_ setObject:[_attributes_ objectForKey:ELDefaultActivePlayheadColor] forKey:LMHoneycombViewDefaultColor];
   } else {
     [_attributes_ setObject:[(ELSurfaceView *)_view_ octaveColor:[note octave]] forKey:LMHoneycombViewDefaultColor];
   }

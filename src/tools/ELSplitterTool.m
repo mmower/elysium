@@ -52,7 +52,7 @@
   [symbolPath moveToPoint:centre];
   [symbolPath lineToPoint:NSMakePoint( centre.x + radius/3, centre.y - radius/4 )];
   
-  [[_attributes_ objectForKey:ELToolColor] set];
+  [[_attributes_ objectForKey:ELDefaultToolColor] set];
   [symbolPath setLineWidth:2.0];
   [symbolPath stroke];
 }

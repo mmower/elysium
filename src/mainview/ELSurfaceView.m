@@ -18,8 +18,14 @@
 #import "ELRicochetTool.h"
 #import "ELSplitterTool.h"
 
-NSString* const ELToolColor = @"tool.color";
 NSString *HexPBoardType = @"HexPBoardType";
+
+NSString * const ELDefaultCellBackgroundColor = @"cell.background.color";
+NSString * const ELDefaultCellBorderColor = @"cell.border.color";
+NSString * const ELDefaultSelectedCellBackgroundColor = @"selected.cell.background.color";
+NSString * const ELDefaultSelectedCellBorderColor = @"selected.cell.border.color";
+NSString * const ELDefaultToolColor = @"tool.color";
+NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
 
 @implementation ELSurfaceView
 
@@ -36,11 +42,14 @@ NSString *HexPBoardType = @"HexPBoardType";
     [octaveColors addObject:[NSColor colorWithDeviceRed:(165.0/255) green:(172.0/255) blue:(210.0/255) alpha:0.9]];
     [octaveColors addObject:[NSColor colorWithDeviceRed:(192.0/255) green:(169.0/255) blue:(205.0/255) alpha:0.9]];
     
-    [self setDefaultColor:[NSColor colorWithDeviceRed:(12.0/255) green:(153.0/255) blue:(206.0/255) alpha:0.8]];
-    [self setBorderColor:[NSColor colorWithDeviceRed:(58.0/255) green:(46.0/255) blue:(223.0/255) alpha:0.8]];
-    [self setSelectedBorderColor:[NSColor colorWithDeviceRed:(179.0/255) green:(158.0/255) blue:(241.0/255) alpha:0.8]];
-    [self setSelectedColor:[NSColor colorWithDeviceRed:(108.0/255) green:(69.0/255) blue:(229.0/255) alpha:0.8]];
-    [self setToolColor:[NSColor colorWithDeviceRed:(16.0/255) green:(17.0/255) blue:(156.0/255) alpha:0.8]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self setDefaultColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultCellBackgroundColor]]];
+    [self setBorderColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultCellBorderColor]]];
+    [self setSelectedColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultSelectedCellBackgroundColor]]];
+    [self setSelectedBorderColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultSelectedCellBorderColor]]];
+    [self setToolColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultToolColor]]];
+    [self setActivePlayheadColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultActivePlayheadColor]]];
+    
     [self registerForDraggedTypes:[NSArray arrayWithObjects:ToolPBoardType,HexPBoardType,nil]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -55,11 +64,19 @@ NSString *HexPBoardType = @"HexPBoardType";
 @dynamic toolColor;
 
 - (void)setToolColor:(NSColor *)_color_ {
-  [[self drawingAttributes] setObject:_color_ forKey:ELToolColor];
+  [[self drawingAttributes] setObject:_color_ forKey:ELDefaultToolColor];
 }
 
 - (NSColor *)toolColor {
-  return [[self drawingAttributes] objectForKey:ELToolColor];
+  return [[self drawingAttributes] objectForKey:ELDefaultToolColor];
+}
+
+- (void)setActivePlayheadColor:(NSColor *)_color_ {
+  [[self drawingAttributes] setObject:_color_ forKey:ELDefaultActivePlayheadColor];
+}
+
+- (NSColor *)activePlayheadColor {
+  return [[self drawingAttributes] objectForKey:ELDefaultActivePlayheadColor];
 }
 
 - (NSColor *)octaveColor:(int)_octave_ {

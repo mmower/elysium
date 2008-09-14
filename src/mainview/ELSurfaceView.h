@@ -20,6 +20,9 @@
 
 @property (assign) NSColor *toolColor;
 
+- (void)setActivePlayheadColor:(NSColor *)color;
+- (NSColor *)activePlayheadColor;
+
 - (NSColor *)octaveColor:(int)octave;
 
 - (ELHex *)cellUnderMouseLocation:(NSPoint)point;
