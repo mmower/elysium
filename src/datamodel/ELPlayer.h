@@ -19,7 +19,7 @@
 @class ElysiumDocument;
 @class ELEnvelopeProbabilityGenerator;
 
-@interface ELPlayer : NSObject <ELData> {
+@interface ELPlayer : NSObject <ELXmlData> {
   ElysiumDocument     *document;        // Cocoa NSDocument subclass hosting this player
   ELHarmonicTable     *harmonicTable;   // Represents the structure of notes to be played
   NSMutableArray      *layers;          // Each layer is an "instrument"

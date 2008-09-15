@@ -49,7 +49,7 @@ extern NSString * const ELDefaultSelectedCellBorderColor;
 extern NSString * const ELDefaultToolColor;
 extern NSString * const ELDefaultActivePlayheadColor;
 
-#import "ELData.h"
+#import "ELXmlData.h"
 
 #import "ELKnob.h"
 #import "ELIntegerKnob.h"

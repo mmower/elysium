@@ -97,31 +97,22 @@
   [[self hex] drawTriangleInDirection:[directionKnob value] withAttributes:_attributes_];
 }
 
-// ELData protocol assistance
+// Implement the ELXmlData protocol
 
-- (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
-  // [_attributes_ setObject:[config stringForKey:@"direction"] forKey:@"direction"];
-  // if( [config definesValueForKey:@"ttl"] ) {
-  //   [_attributes_ setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
-  // }
+- (NSXMLElement *)xmlRepresentation {
+  NSXMLElement *generatorElement = [NSXMLNode elementWithName:@"generator"];
+  
+  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+  [controlsElement addChild:[directionKnob xmlRepresentation]];
+  [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
+  [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
+  [generatorElement addChild:controlsElement];
+  
+  return generatorElement;
 }
 
-- (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
-  NSXMLNode *node;
-  
-  node = [_xml_ attributeForName:@"direction"];
-  if( !node ) {
-    return NO;
-  }
-  
-  // [self setDirection:[[node stringValue] intValue]];
-  
-  node = [_xml_ attributeForName:@"ttl"];
-  if( node ) {
-    // [self setTimeToLive:[[node stringValue] intValue]];
-  }
-  
-  return YES;
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
 }
 
 // NSMutableCopying protocol

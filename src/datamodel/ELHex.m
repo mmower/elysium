@@ -63,6 +63,10 @@
 
 // Tool support
 
+- (BOOL)shouldBeSaved {
+  return [tools count] > 0;
+}
+
 - (void)addTool:(ELTool *)_tool_ {
   [tools setObject:_tool_ forKey:[_tool_ toolType]];
   [_tool_ addedToLayer:layer atPosition:self];
@@ -232,9 +236,9 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [[self tools] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];
 }
 
-// Implementing the ELData protocol
+// Implement the ELXmlData protocol
 
-- (NSXMLElement *)asXMLData {
+- (NSXMLElement *)xmlRepresentation {
   NSXMLElement *cellElement = [NSXMLNode elementWithName:@"cell"];
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
   [attributes setObject:[NSNumber numberWithInt:col] forKey:@"col"];
@@ -242,24 +246,46 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [cellElement setAttributesAsDictionary:attributes];
   
   for( ELTool *tool in [self tools] ) {
-    [cellElement addChild:[tool asXMLData]];
+    [cellElement addChild:[tool xmlRepresentation]];
   }
   
   return cellElement;
 }
 
-- (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
-  for( NSXMLNode *markerNode in [_xml_ nodesForXPath:@"marker" error:nil] ) {
-    ELTool *tool = [ELTool fromXMLData:(NSXMLElement *)markerNode];
-    if( !tool ) {
-      NSLog( @"Unable to load tool configuration!" );
-      return NO;
-    }
-    
-    [self addTool:tool];
-  }
-  
-  return YES;
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
 }
+
+// 
+// 
+// // Implementing the ELData protocol
+// 
+// - (NSXMLElement *)asXMLData {
+//   NSXMLElement *cellElement = [NSXMLNode elementWithName:@"cell"];
+//   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+//   [attributes setObject:[NSNumber numberWithInt:col] forKey:@"col"];
+//   [attributes setObject:[NSNumber numberWithInt:row] forKey:@"row"];
+//   [cellElement setAttributesAsDictionary:attributes];
+//   
+//   for( ELTool *tool in [self tools] ) {
+//     [cellElement addChild:[tool asXMLData]];
+//   }
+//   
+//   return cellElement;
+// }
+// 
+// - (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
+//   for( NSXMLNode *markerNode in [_xml_ nodesForXPath:@"marker" error:nil] ) {
+//     ELTool *tool = [ELTool fromXMLData:(NSXMLElement *)markerNode];
+//     if( !tool ) {
+//       NSLog( @"Unable to load tool configuration!" );
+//       return NO;
+//     }
+//     
+//     [self addTool:tool];
+//   }
+//   
+//   return YES;
+// }
 
 @end

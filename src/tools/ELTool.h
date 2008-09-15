@@ -10,8 +10,6 @@
 
 #import "Elysium.h"
 
-#import "ELData.h"
-
 @class ELHex;
 @class ELLayer;
 @class ELPlayhead;
@@ -20,7 +18,7 @@
 @property (readonly) ELIntegerKnob *directionKnob;
 @end
 
-@interface ELTool : NSObject <ELData> {
+@interface ELTool : NSObject <ELXmlData> {
   BOOL      enabled;
   NSString  *toolType;
   ELLayer   *layer;
@@ -35,7 +33,7 @@
 @property (readonly) ELHex *hex;
 
 + (NSDictionary *)toolMapping;
-+ (ELTool *)fromXMLData:(NSXMLElement *)xml;
+// + (ELTool *)fromXMLData:(NSXMLElement *)xml;
 
 - (id)initWithType:(NSString *)type;
 
@@ -45,11 +43,6 @@
 - (void)removedFromLayer:(ELLayer *)layer;
 
 - (BOOL)run:(ELPlayhead *)playhead;
-
-// Cooperate with ELData protocol
-
-- (void)saveToolConfig:(NSMutableDictionary *)attributes;
-- (BOOL)loadToolConfig:(NSXMLElement *)xml;
 
 // Drawing
 

@@ -49,4 +49,19 @@
   return [[[self class] allocWithZone:_zone_] init];
 }
 
+// Implement the ELXmlData protocol
+
+- (NSXMLElement *)xmlRepresentation {
+  NSXMLElement *sinkElement = [NSXMLNode elementWithName:@"sink"];
+  
+  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+  [sinkElement addChild:controlsElement];
+  
+  return sinkElement;
+}
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
+}
+
 @end

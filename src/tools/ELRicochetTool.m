@@ -61,4 +61,19 @@
   return [[[self class] allocWithZone:_zone_] initWithDirectionKnob:[directionKnob mutableCopy]];
 }
 
+// Implement the ELXmlData protocol
+
+- (NSXMLElement *)xmlRepresentation {
+  NSXMLElement *ricochetElement = [NSXMLNode elementWithName:@"ricochet"];
+  
+  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+  [ricochetElement addChild:controlsElement];
+  
+  return ricochetElement;
+}
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
+}
+
 @end

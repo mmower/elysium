@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 #import "ELKnob.h"
+#import "Elysium.h"
 
-@interface ELBooleanKnob : ELKnob <NSMutableCopying> {
+@interface ELBooleanKnob : ELKnob <NSMutableCopying,ELXmlData> {
   BOOL  value;
 }
 

@@ -177,93 +177,97 @@
   [oscillators setObject:_oscillator_ forKey:[_oscillator_ name]];
 }
 
-// Implementing the ELData protocol
+// Implement the ELXmlData protocol
 
-- (NSXMLElement *)asXMLData {
+- (NSXMLElement *)xmlRepresentation {
   NSXMLElement *surfaceElement = [NSXMLNode elementWithName:@"surface"];
   
-  // NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-  // if( [config definesValueForKey:@"pulseCount"] ) {
-  //   [attributes setObject:[config stringForKey:@"pulseCount"] forKey:@"pulseCount"];
-  // }
-  // if( [config definesValueForKey:@"velocity"] ) {
-  //   [attributes setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
-  // }
-  // if( [config definesValueForKey:@"duration"] ) {
-  //   [attributes setObject:[config stringForKey:@"duration"] forKey:@"duration"];
-  // }
-  // if( [config definesValueForKey:@"bpm"] ) {
-  //   [attributes setObject:[config stringForKey:@"bpm"] forKey:@"bpm"];
-  // }
-  // if( [config definesValueForKey:@"ttl"] ) {
-  //   [attributes setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
-  // }
-  // [surfaceElement setAttributesAsDictionary:attributes];
+  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+  [attributes setObject:[[NSNumber numberWithInt:[harmonicTable cols]] stringValue] forKey:@"columns"];
+  [attributes setObject:[[NSNumber numberWithInt:[harmonicTable rows]] stringValue] forKey:@"rows"];
+  [surfaceElement setAttributesAsDictionary:attributes];
+  
+  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+  [controlsElement addChild:[tempoKnob xmlRepresentation]];
+  [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
+  [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
+  [controlsElement addChild:[velocityKnob xmlRepresentation]];
+  [controlsElement addChild:[durationKnob xmlRepresentation]];
+  
+  [surfaceElement addChild:controlsElement];
+  
+  NSXMLElement *layersElement = [NSXMLNode elementWithName:@"layers"];
   
   for( ELLayer *layer in layers ) {
-    [surfaceElement addChild:[layer asXMLData]];
+    [layersElement addChild:[layer xmlRepresentation]];
   }
+  
+  [surfaceElement addChild:layersElement];
   
   return surfaceElement;
 }
 
-- (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
-  NSArray *nodes = [_xml_ nodesForXPath:@"surface" error:nil];
-  if( [nodes count] != 1 ) {
-    NSLog( @"Found %d surface elements, expected only 1" );
-    return NO;
-  }
-  
-  NSXMLElement *surfaceElement = [nodes objectAtIndex:0];
-  
-  // NSXMLNode *node;
-  // if( ( node = [surfaceElement attributeForName:@"pulseCount"] ) ) {
-  //   [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
-  // }
-  // if( ( node = [surfaceElement attributeForName:@"velocity"] ) ) {
-  //   [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
-  // }
-  // if( ( node = [surfaceElement attributeForName:@"duration"] ) ) {
-  //   [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
-  // }
-  // if( ( node = [surfaceElement attributeForName:@"bpm"] ) ) {
-  //   [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
-  // }
-  // if( ( node = [surfaceElement attributeForName:@"ttl"] ) ) {
-  //   [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
-  // }
-  
-  nodes = [surfaceElement nodesForXPath:@"layer" error:nil];
-  if( [nodes count] < 1 ) {
-    NSLog( @"No layers defined!" );
-    return NO;
-  }
-  
-  for( NSXMLNode *node in nodes ) {
-    NSXMLElement *layerElement = (NSXMLElement *)node;
-    
-    NSXMLNode *attribute = [layerElement attributeForName:@"channel"];
-    if( !attribute ) {
-      NSLog( @"Layer found with no channel number" );
-      return NO;
-    }
-    
-    int channel = [[attribute stringValue] intValue];
-    if( channel < 1 || channel > 16 ) {
-      NSLog( @"Channel defined outside range %d-%d", 1, 16 );
-      return NO;
-    }
-    
-    ELLayer *layer = [[ELLayer alloc] initWithPlayer:self channel:channel];
-    if( ![layer fromXMLData:layerElement] ) {
-      NSLog( @"Problem loading layer data for layer:%d", channel );
-      return NO;
-    }
-
-    [self addLayer:layer];
-  }
-  
-  return YES;
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
 }
+
+// - (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
+//   NSArray *nodes = [_xml_ nodesForXPath:@"surface" error:nil];
+//   if( [nodes count] != 1 ) {
+//     NSLog( @"Found %d surface elements, expected only 1" );
+//     return NO;
+//   }
+//   
+//   NSXMLElement *surfaceElement = [nodes objectAtIndex:0];
+//   
+//   NSXMLNode *node;
+//   if( ( node = [surfaceElement attributeForName:@"pulseCount"] ) ) {
+//     [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
+//   }
+//   if( ( node = [surfaceElement attributeForName:@"velocity"] ) ) {
+//     [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
+//   }
+//   if( ( node = [surfaceElement attributeForName:@"duration"] ) ) {
+//     [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
+//   }
+//   if( ( node = [surfaceElement attributeForName:@"bpm"] ) ) {
+//     [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
+//   }
+//   if( ( node = [surfaceElement attributeForName:@"ttl"] ) ) {
+//     [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
+//   }
+//   
+//   nodes = [surfaceElement nodesForXPath:@"layer" error:nil];
+//   if( [nodes count] < 1 ) {
+//     NSLog( @"No layers defined!" );
+//     return NO;
+//   }
+//   
+//   for( NSXMLNode *node in nodes ) {
+//     NSXMLElement *layerElement = (NSXMLElement *)node;
+//     
+//     NSXMLNode *attribute = [layerElement attributeForName:@"channel"];
+//     if( !attribute ) {
+//       NSLog( @"Layer found with no channel number" );
+//       return NO;
+//     }
+//     
+//     int channel = [[attribute stringValue] intValue];
+//     if( channel < 1 || channel > 16 ) {
+//       NSLog( @"Channel defined outside range %d-%d", 1, 16 );
+//       return NO;
+//     }
+//     
+//     ELLayer *layer = [[ELLayer alloc] initWithPlayer:self channel:channel];
+//     if( ![layer fromXMLData:layerElement] ) {
+//       NSLog( @"Problem loading layer data for layer:%d", channel );
+//       return NO;
+//     }
+// 
+//     [self addLayer:layer];
+//   }
+//   
+//   return YES;
+// }
 
 @end

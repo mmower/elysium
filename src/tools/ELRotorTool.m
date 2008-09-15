@@ -106,4 +106,20 @@
   return [[[self class] allocWithZone:_zone_] initWithClockwiseKnob:[clockwiseKnob mutableCopy]];
 }
 
+// Implement the ELXmlData protocol
+
+- (NSXMLElement *)xmlRepresentation {
+  NSXMLElement *rotorElement = [NSXMLNode elementWithName:@"rotor"];
+  
+  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+  [controlsElement addChild:[clockwiseKnob xmlRepresentation]];
+  [rotorElement addChild:controlsElement];
+  
+  return rotorElement;
+}
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
+}
+
 @end

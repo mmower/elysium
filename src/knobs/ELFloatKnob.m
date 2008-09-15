@@ -106,4 +106,22 @@
                                              linkPredicate:linkPredicate];
 }
 
+// ELXmlData protocol
+
+- (NSXMLElement *)xmlRepresentation {
+  NSXMLElement *knob = [NSXMLNode elementWithName:@"knob"];
+  
+  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+  [attributes setObject:@"float" forKey:@"type"];
+  [attributes setObject:@"name" forKey:@"name"];
+  [attributes setObject:[[NSNumber numberWithFloat:value] stringValue] forKey:@"value"];
+  [knob setAttributesAsDictionary:attributes];
+  
+  return knob;
+}
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
+}
+
 @end

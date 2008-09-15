@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELData.h"
-
 @class ELOscillator;
 
 @interface ELKnob : NSObject {

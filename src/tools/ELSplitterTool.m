@@ -63,4 +63,19 @@
   return [[[self class] allocWithZone:_zone_] init];
 }
 
+// Implement the ELXmlData protocol
+
+- (NSXMLElement *)xmlRepresentation {
+  NSXMLElement *splitterElement = [NSXMLNode elementWithName:@"splitter"];
+  
+  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+  [splitterElement addChild:controlsElement];
+  
+  return splitterElement;
+}
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
+}
+
 @end

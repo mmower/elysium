@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 #import "ELKnob.h"
+#import "Elysium.h"
 
-@interface ELFloatKnob : ELKnob <NSMutableCopying> {
+@interface ELFloatKnob : ELKnob <NSMutableCopying,ELXmlData> {
   float value;
 }
 

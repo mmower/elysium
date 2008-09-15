@@ -19,7 +19,7 @@
 @class ELPlayhead;
 @class ELStartTool;
 
-@interface ELLayer : NSObject <LMHoneycombMatrix,ELData> {
+@interface ELLayer : NSObject <LMHoneycombMatrix,ELXmlData> {
   id                  delegate;     // This will be the view representing us in the UI
   ELPlayer            *player;      // The player we belong to
   NSMutableArray      *hexes;       // The hexes representing the playing surface

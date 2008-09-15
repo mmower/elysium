@@ -40,27 +40,27 @@ NSMutableDictionary *toolMapping = nil;
   return toolMapping;
 }
 
-+ (ELTool *)fromXMLData:(NSXMLElement *)_xml_ {
-  NSXMLNode *attribute = [_xml_ attributeForName:@"type"];
-  if( !attribute ) {
-    NSLog( @"Marker without type!" );
-    return nil;
-  }
-  
-  NSString *type = [attribute stringValue];
-  
-  ELTool *tool = [[[[ELTool toolMapping] objectForKey:type] alloc] init];
-  if( !tool ) {
-    NSLog( @"Unknown tool type:%@", type );
-  }
-  
-  if( ![tool loadToolConfig:_xml_] ) {
-    NSLog( @"Failed to load tool configuration!" );
-    return nil;
-  }
-  
-  return tool;
-}
+// + (ELTool *)fromXMLData:(NSXMLElement *)_xml_ {
+//   NSXMLNode *attribute = [_xml_ attributeForName:@"type"];
+//   if( !attribute ) {
+//     NSLog( @"Marker without type!" );
+//     return nil;
+//   }
+//   
+//   NSString *type = [attribute stringValue];
+//   
+//   ELTool *tool = [[[[ELTool toolMapping] objectForKey:type] alloc] init];
+//   if( !tool ) {
+//     NSLog( @"Unknown tool type:%@", type );
+//   }
+//   
+//   if( ![tool loadToolConfig:_xml_] ) {
+//     NSLog( @"Failed to load tool configuration!" );
+//     return nil;
+//   }
+//   
+//   return tool;
+// }
 
 - (id)initWithType:(NSString *)_type_ {
   if( ( self = [super init] ) ) {
@@ -105,28 +105,16 @@ NSMutableDictionary *toolMapping = nil;
   NSLog( @"Drawing has not been defined for tool class %@", [self className] );
 }
 
-// Implementing the ELData protocol
+// Implement the ELXmlData protocol
 
-- (NSXMLElement *)asXMLData {
-  NSXMLElement *markerElement = [NSXMLNode elementWithName:@"marker"];
-  
-  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-  [attributes setObject:[self toolType] forKey:@"type"];
-  [self saveToolConfig:attributes];
-  [markerElement setAttributesAsDictionary:attributes];
-  
-  return markerElement;
+- (NSXMLElement *)xmlRepresentation {
+  [self doesNotRecognizeSelector:_cmd];
+  return nil;
 }
 
-- (BOOL)fromXMLData:(NSXMLElement *)data {
-  return NO;
-}
-
-- (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
-}
-
-- (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
-  return YES;
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  [self doesNotRecognizeSelector:_cmd];
+  return nil;
 }
 
 @end

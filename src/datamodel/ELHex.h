@@ -18,7 +18,7 @@
 @class ELTool;
 @class ELPlayhead;
 
-@interface ELHex : LMHexCell <ELData> {
+@interface ELHex : LMHexCell <ELXmlData> {
   ELLayer             *layer;
   ELNote              *note;
   ELHex               *neighbours[6];
@@ -37,6 +37,8 @@
 - (void)connectNeighbour:(ELHex *)hex direction:(Direction)direction;
 
 // Tool management
+
+- (BOOL)shouldBeSaved;
 
 - (void)addTool:(ELTool *)tool;
 - (void)removeTool:(NSString *)type;

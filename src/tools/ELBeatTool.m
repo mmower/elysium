@@ -95,31 +95,48 @@
   return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy] durationKnob:[durationKnob mutableCopy]];
 }
 
-// Save/Load support
+// Implement the ELXmlData protocol
 
-- (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
-  // if( [config definesValueForKey:@"velocity"] ) {
-  //   [_attributes_ setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
-  // }
-  // if( [config definesValueForKey:@"duration"] ) {
-  //   [_attributes_ setObject:[config stringForKey:@"duration"] forKey:@"duration"];
-  // }
+- (NSXMLElement *)xmlRepresentation {
+  NSXMLElement *noteElement = [NSXMLNode elementWithName:@"note"];
+  
+  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+  [controlsElement addChild:[velocityKnob xmlRepresentation]];
+  [controlsElement addChild:[durationKnob xmlRepresentation]];
+  [noteElement addChild:controlsElement];
+  
+  return noteElement;
 }
 
-- (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
-  // NSXMLNode *node;
-  // 
-  // node = [_xml_ attributeForName:@"velocity"];
-  // if( node ) {
-  //   [self setVelocity:[[node stringValue] intValue]];
-  // }
-  // 
-  // node = [_xml_ attributeForName:@"duration"];
-  // if( node ) {
-  //   [self setDuration:[[node stringValue] floatValue]];
-  // }
-  // 
-  return YES;
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
 }
+
+// // Save/Load support
+// 
+// - (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
+//   // if( [config definesValueForKey:@"velocity"] ) {
+//   //   [_attributes_ setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
+//   // }
+//   // if( [config definesValueForKey:@"duration"] ) {
+//   //   [_attributes_ setObject:[config stringForKey:@"duration"] forKey:@"duration"];
+//   // }
+// }
+// 
+// - (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
+//   // NSXMLNode *node;
+//   // 
+//   // node = [_xml_ attributeForName:@"velocity"];
+//   // if( node ) {
+//   //   [self setVelocity:[[node stringValue] intValue]];
+//   // }
+//   // 
+//   // node = [_xml_ attributeForName:@"duration"];
+//   // if( node ) {
+//   //   [self setDuration:[[node stringValue] floatValue]];
+//   // }
+//   // 
+//   return YES;
+// }
 
 @end

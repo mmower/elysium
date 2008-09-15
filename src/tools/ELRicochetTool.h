@@ -12,7 +12,7 @@
 
 #import "ELTool.h"
 
-@interface ELRicochetTool : ELTool <NSMutableCopying> {
+@interface ELRicochetTool : ELTool <NSMutableCopying,ELXmlData> {
   ELIntegerKnob *directionKnob;
 }
 

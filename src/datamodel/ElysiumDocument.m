@@ -61,7 +61,7 @@
   [document setVersion:@"1.0"];
   [document setCharacterEncoding:@"UTF-8"];
   
-  [rootElement addChild:[player asXMLData]];
+  [rootElement addChild:[player xmlRepresentation]];
   
   NSData *xml = [document XMLDataWithOptions:NSXMLNodePrettyPrint|NSXMLNodeCompactEmptyElement];
   
@@ -92,7 +92,7 @@
     return NO;
   }
   
-  if( [player fromXMLData:rootElement] ) {
+  if( [[ELPlayer alloc] initWithXmlRepresentation:rootElement] ) {
     NSLog( @"Loaded XML document" );
     return YES;
   } else {
