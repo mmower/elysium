@@ -81,6 +81,11 @@
 
 // NSMutableCopying protocol
 
+- (id)copyWithZone:(NSZone *)_zone_ {
+  NSLog( @"in copyWithZone:%@", _zone_ );
+  return [self mutableCopyWithZone:_zone_];
+}
+
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   return [[[self class] allocWithZone:_zone_] initWithName:name
                                               integerValue:value

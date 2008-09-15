@@ -27,12 +27,12 @@
   [layerView setDelegate:self];
   [layerView setDataSource:layer];
   [layer setDelegate:layerView];
-  [layer addObserver:self forKeyPath:@"channel" options:0 context:nil];
+  [layer addObserver:self forKeyPath:@"channelKnob.value" options:0 context:nil];
   [layer addObserver:self forKeyPath:@"layerId" options:0 context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(id)_context_ {
-  if( _object_ == layer && ( [_keyPath_ isEqualToString:@"channel"] || [_keyPath_ isEqualToString:@"layerId"] ) ) {
+  if( _object_ == layer && ( [_keyPath_ isEqualToString:@"channelKnob.value"] || [_keyPath_ isEqualToString:@"layerId"] ) ) {
     [self updateWindowTitle];
   }
 }

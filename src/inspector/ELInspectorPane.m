@@ -35,9 +35,9 @@ NSString* const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 }
 
 - (NSView *)paneView {
-  NSLog( @"[%@ paneView]", [self className] );
+  // NSLog( @"[%@ paneView]", [self className] );
   if( !paneView ) {
-    NSLog( @"Loading nib: %@", [self nibName] );
+    // NSLog( @"Loading nib: %@", [self nibName] );
     [NSBundle loadNibNamed:[self nibName] owner:self];
     [self viewDidLoad];
   }

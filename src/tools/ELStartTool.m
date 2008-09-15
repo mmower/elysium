@@ -72,7 +72,6 @@
 
 - (BOOL)run:(ELPlayhead *)_playhead {
   if( [super run:_playhead] ) {
-    NSLog( @"TTL %@ = %d", timeToLiveKnob, [timeToLiveKnob value] );
     [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
                                                   direction:[directionKnob value]
                                                         TTL:[timeToLiveKnob value]]];
