@@ -12,7 +12,6 @@
 @class ELLayer;
 @class ELPlayer;
 
-@class ELConfig;
 @class ELInspectorPane;
 @class PAStackedListView;
 

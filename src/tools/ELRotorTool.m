@@ -9,7 +9,6 @@
 #import "ELRotorTool.h"
 
 #import "ELHex.h"
-#import "ELConfig.h"
 #import "ELPlayhead.h"
 #import "ELStartTool.h"
 #import "ELRicochetTool.h"

@@ -9,7 +9,6 @@
 #import "ELStartTool.h"
 
 #import "ELHex.h"
-#import "ELConfig.h"
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 

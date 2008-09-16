@@ -13,7 +13,6 @@
 @class ELNote;
 @class ELLayer;
 @class ELTimer;
-@class ELConfig;
 @class ELHarmonicTable;
 @class ELMIDIController;
 @class ElysiumDocument;

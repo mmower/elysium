@@ -14,7 +14,6 @@
 
 @class ELHex;
 @class ELNote;
-@class ELConfig;
 @class ELPlayer;
 @class ELPlayhead;
 @class ELStartTool;

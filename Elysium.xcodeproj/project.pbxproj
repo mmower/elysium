@@ -73,7 +73,6 @@
 		C97FEBEF0E4F07A0008F309B /* ELPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE60E4F07A0008F309B /* ELPlayer.m */; };
 		C97FEBF00E4F07A0008F309B /* ELPlayhead.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE80E4F07A0008F309B /* ELPlayhead.m */; };
 		C97FEBF10E4F07A0008F309B /* ElysiumDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBEA0E4F07A0008F309B /* ElysiumDocument.m */; };
-		C97FEBF40E4F07BF008F309B /* ELConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBF30E4F07BF008F309B /* ELConfig.m */; };
 		C97FEC010E4F0B51008F309B /* ELHexInfoInspectorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC000E4F0B51008F309B /* ELHexInfoInspectorPlugin.m */; };
 		C97FEC080E4F2870008F309B /* HexInfoInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC070E4F2870008F309B /* HexInfoInspector.xib */; };
 		C97FEC5D0E4F2DEE008F309B /* ELInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC5C0E4F2DEE008F309B /* ELInspectorPane.m */; };
@@ -267,8 +266,6 @@
 		C97FEBE80E4F07A0008F309B /* ELPlayhead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayhead.m; sourceTree = "<group>"; };
 		C97FEBE90E4F07A0008F309B /* ElysiumDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElysiumDocument.h; sourceTree = "<group>"; };
 		C97FEBEA0E4F07A0008F309B /* ElysiumDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumDocument.m; sourceTree = "<group>"; };
-		C97FEBF20E4F07BF008F309B /* ELConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELConfig.h; sourceTree = "<group>"; };
-		C97FEBF30E4F07BF008F309B /* ELConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELConfig.m; sourceTree = "<group>"; };
 		C97FEBFF0E4F0B51008F309B /* ELHexInfoInspectorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexInfoInspectorPlugin.h; sourceTree = "<group>"; };
 		C97FEC000E4F0B51008F309B /* ELHexInfoInspectorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexInfoInspectorPlugin.m; sourceTree = "<group>"; };
 		C97FEC070E4F2870008F309B /* HexInfoInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HexInfoInspector.xib; sourceTree = "<group>"; };
@@ -597,8 +594,6 @@
 		C97FEB020E4E0490008F309B /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				C97FEBF20E4F07BF008F309B /* ELConfig.h */,
-				C97FEBF30E4F07BF008F309B /* ELConfig.m */,
 				C97FEB030E4E0490008F309B /* ELBeatTool.h */,
 				C97FEB040E4E0490008F309B /* ELBeatTool.m */,
 				C97FEB050E4E0490008F309B /* ELRicochetTool.h */,
@@ -1079,7 +1074,6 @@
 				C97FEBEF0E4F07A0008F309B /* ELPlayer.m in Sources */,
 				C97FEBF00E4F07A0008F309B /* ELPlayhead.m in Sources */,
 				C97FEBF10E4F07A0008F309B /* ElysiumDocument.m in Sources */,
-				C97FEBF40E4F07BF008F309B /* ELConfig.m in Sources */,
 				C97FEC010E4F0B51008F309B /* ELHexInfoInspectorPlugin.m in Sources */,
 				C97FEC5D0E4F2DEE008F309B /* ELInspectorPane.m in Sources */,
 				C95A63350E50F5A700CBF555 /* ELHexStartInspectorPlugin.m in Sources */,

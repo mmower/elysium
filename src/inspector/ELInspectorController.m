@@ -23,7 +23,6 @@
 #import "ELHexSplitterInspectorPane.h"
 #import "ELHexRotorInspectorPane.h"
 
-#import "ELConfig.h"
 #import "ELTool.h"
 #import "ELHex.h"
 #import "ELLayer.h"
