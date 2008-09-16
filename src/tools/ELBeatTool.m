@@ -29,7 +29,7 @@
 - (id)init {
   if( ( self = [super initWithType:@"beat"] ) ) {
     velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
-    durationKnob = [[ELIntegerKnob alloc] initWithName:@"duration"];
+    durationKnob = [[ELFloatKnob alloc] initWithName:@"note-duration"];
   }
   return self;
 }
@@ -41,7 +41,10 @@
   [super addedToLayer:_layer_ atPosition:_hex_];
   
   [velocityKnob setLinkedKnob:[_layer_ velocityKnob]];
+  [velocityKnob setLinkValue:YES];
+  
   [durationKnob setLinkedKnob:[_layer_ durationKnob]];
+  [durationKnob setLinkValue:YES];
 }
 
 - (void)removedFromLayer:(ELLayer *)_layer_ {

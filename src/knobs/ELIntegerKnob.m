@@ -61,12 +61,21 @@
   return self;
 }
 
+- (id)initWithName:(NSString *)_name_ linkedTo:(ELKnob *)_knob_ {
+  if( ( self = [self initWithName:_name_] ) ) {
+    [self setLinkedKnob:_knob_];
+    [self setLinkValue:YES];
+  }
+  
+  return self;
+}
+
 - (NSString *)xmlType {
   return @"integer";
 }
 
 - (int)value {
-  NSAssert( hasValue || linkValue, @"ELFloatKnob must have or be linked to a value" );
+  NSAssert( hasValue || linkValue, @"ELIntegerKnob must have or be linked to a value" );
   
   if( hasValue ) {
     return value;

@@ -45,7 +45,7 @@
     timeToLiveKnob  = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
     pulseCountKnob  = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
     velocityKnob    = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
-    durationKnob    = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
+    durationKnob    = [[ELFloatKnob alloc] initWithName:@"player-duration" floatValue:0.5];
     
     nextLayerNumber = 1;
     showNotes       = NO;

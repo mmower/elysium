@@ -46,26 +46,11 @@ NSPredicate *deadPlayheadFilter;
     
     enabledKnob    = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
     channelKnob    = [[ELIntegerKnob alloc] initWithName:@"channel" integerValue:_channel_];
-    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo"];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive"];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount"];
-    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity"];
-    durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration"];
-    
-    [tempoKnob setLinkedKnob:[player tempoKnob]];
-    [tempoKnob setLinkValue:YES];
-    
-    [timeToLiveKnob setLinkedKnob:[player timeToLiveKnob]];
-    [timeToLiveKnob setLinkValue:YES];
-    
-    [pulseCountKnob setLinkedKnob:[player pulseCountKnob]];
-    [pulseCountKnob setLinkValue:YES];
-    
-    [velocityKnob setLinkedKnob:[player velocityKnob]];
-    [velocityKnob setLinkValue:YES];
-    
-    [durationKnob setLinkedKnob:[player durationKnob]];
-    [durationKnob setLinkValue:YES];
+    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedTo:[player tempoKnob]];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedTo:[player timeToLiveKnob]];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedTo:[player pulseCountKnob]];
+    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedTo:[player velocityKnob]];
+    durationKnob   = [[ELFloatKnob alloc] initWithName:@"layer-duration" linkedTo:[player durationKnob]];
   }
   
   return self;

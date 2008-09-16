@@ -35,6 +35,7 @@
      linkPredicate:(BOOL)linkPredicate;
 
 - (id)initWithName:(NSString *)name integerValue:(int)value;
+- (id)initWithName:(NSString *)name linkedTo:(ELKnob *)knob;
 
 - (int)value;
 - (void)setValue:(int)value;

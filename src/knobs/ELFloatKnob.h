@@ -33,7 +33,9 @@
         linkFilter:(BOOL)linkFilter
          predicate:(NSPredicate *)predicate
      linkPredicate:(BOOL)linkPredicate;
+
 - (id)initWithName:(NSString *)name floatValue:(float)value;
+- (id)initWithName:(NSString *)name linkedTo:(ELKnob *)knob;
 
 - (float)value;
 - (void)setValue:(float)value;

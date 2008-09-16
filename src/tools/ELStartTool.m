@@ -44,7 +44,10 @@
   [super addedToLayer:_layer_ atPosition:_hex_];
   
   [timeToLiveKnob setLinkedKnob:[_layer_ timeToLiveKnob]];
+  [timeToLiveKnob setLinkValue:YES];
+  
   [pulseCountKnob setLinkedKnob:[_layer_ pulseCountKnob]];
+  [pulseCountKnob setLinkValue:YES];
   
   [_layer_ addGenerator:self];
 }
