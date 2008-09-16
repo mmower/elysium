@@ -22,14 +22,18 @@
   if( ( self = [self init] ) ) {
     name = _name_;
     
-    // By default we inherit everything from any linked knob
+    // By default we inherit nothing
     hasValue      = NO;
-    linkEnabled   = YES;
-    linkValue     = YES;
-    linkAlpha     = YES;
-    linkP         = YES;
-    linkFilter    = YES;
-    linkPredicate = YES;
+    linkEnabled   = NO;
+    linkValue     = NO;
+    hasAlpha      = NO;
+    linkAlpha     = NO;
+    hasP          = NO;
+    linkP         = NO;
+    filter        = nil;
+    linkFilter    = NO;
+    predicate     = nil;
+    linkPredicate = NO;
   }
   
   return self;
@@ -78,6 +82,16 @@
 
 - (NSString *)name {
   return name;
+}
+
+- (NSString *)xmlType {
+  [self doesNotRecognizeSelector:_cmd];
+  return nil;
+}
+
+- (NSString *)stringValue {
+  [self doesNotRecognizeSelector:_cmd];
+  return nil;
 }
 
 - (void)clearValue {
@@ -218,6 +232,62 @@
 - (void)setLinkPredicate:(BOOL)_linkPredicate_ {
   linkPredicate = _linkPredicate_;
 }
+
+// ELXmlData protocol
+
+- (NSXMLElement *)xmlRepresentation {
+  NSXMLElement *knobElement = [NSXMLNode elementWithName:@"knob"];
+  
+  NSMutableDictionary *attributes = nil;
+  
+  attributes = [NSMutableDictionary dictionary];
+  [attributes setObject:[self xmlType] forKey:@"type"];
+  [attributes setObject:name forKey:@"name"];
+  [knobElement setAttributesAsDictionary:attributes];
+  
+  NSXMLElement *valueElement = [NSXMLNode elementWithName:@"value"];
+  attributes = [NSMutableDictionary dictionary];
+  if( hasValue ) {
+    [attributes setObject:[self stringValue] forKey:@"current"];
+  }
+  [attributes setObject:(linkValue ? @"YES" : @"NO") forKey:@"link"];
+  [valueElement setAttributesAsDictionary:attributes];
+  [knobElement addChild:valueElement];
+  
+  NSXMLElement *enabledElement = [NSXMLNode elementWithName:@"enabled"];
+  attributes = [NSMutableDictionary dictionary];
+  if( hasEnabled ) {
+    [attributes setObject:(enabled ? @"YES" : @"NO") forKey:@"value"];
+  }
+  [attributes setObject:(linkEnabled ? @"YES" : @"NO") forKey:@"link"];
+  [enabledElement setAttributesAsDictionary:attributes];
+  [knobElement addChild:enabledElement];
+
+  NSXMLElement *alphaElement = [NSXMLNode elementWithName:@"alpha"];
+  attributes = [NSMutableDictionary dictionary];
+  if( hasAlpha ) {
+    [attributes setObject:[[NSNumber numberWithFloat:alpha] stringValue] forKey:@"value"];
+  }
+  [attributes setObject:(linkAlpha ? @"YES" : @"NO") forKey:@"link"];
+  [alphaElement setAttributesAsDictionary:attributes];
+  [knobElement addChild:alphaElement];
+  
+  NSXMLElement *pElement = [NSXMLNode elementWithName:@"p"];
+  attributes = [NSMutableDictionary dictionary];
+  if( hasP ) {
+    [attributes setObject:[[NSNumber numberWithFloat:p] stringValue] forKey:@"value"];
+  }
+  [attributes setObject:(linkP ? @"YES" : @"NO") forKey:@"link"];
+  [pElement setAttributesAsDictionary:attributes];
+  [knobElement addChild:pElement];
+  
+  return knobElement;
+}
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  return nil;
+}
+
 
 // Implementing the ELData protocol for save/load from XML
 

@@ -11,7 +11,7 @@
 #import "ELKnob.h"
 #import "Elysium.h"
 
-@interface ELIntegerKnob : ELKnob <NSMutableCopying,ELXmlData> {
+@interface ELIntegerKnob : ELKnob <NSMutableCopying> {
   int value;
 }
 

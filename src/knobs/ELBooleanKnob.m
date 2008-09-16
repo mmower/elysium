@@ -61,6 +61,10 @@
   return self;
 }
 
+- (NSString *)xmlType {
+  return @"boolean";
+}
+
 - (BOOL)value {
   NSAssert( hasValue || linkValue, @"Value must be either defined or linked!" );
   
@@ -72,6 +76,10 @@
     NSLog( @"value called on ELBooleanKnob with no value or linkage." );
     abort();
   }
+}
+
+- (NSString *)stringValue {
+  return [self value] ? @"YES" : @"NO";
 }
 
 - (void)setValue:(BOOL)_value_ {
@@ -104,24 +112,6 @@
                                                 linkFilter:linkFilter
                                                  predicate:predicate
                                              linkPredicate:linkPredicate];
-}
-
-// ELXmlData protocol
-
-- (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *knob = [NSXMLNode elementWithName:@"knob"];
-  
-  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:@"boolean" forKey:@"type"];
-  [attributes setObject:@"name" forKey:@"name"];
-  [attributes setObject:(value ? @"YES" : @"NO") forKey:@"value"];
-  [knob setAttributesAsDictionary:attributes];
-  
-  return knob;
-}
-
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
 }
 
 @end

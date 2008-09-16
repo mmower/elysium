@@ -11,7 +11,7 @@
 #import "ELKnob.h"
 #import "Elysium.h"
 
-@interface ELBooleanKnob : ELKnob <NSMutableCopying,ELXmlData> {
+@interface ELBooleanKnob : ELKnob <NSMutableCopying> {
   BOOL  value;
 }
 

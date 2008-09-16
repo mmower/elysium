@@ -61,6 +61,10 @@
   return self;
 }
 
+- (NSString *)xmlType {
+  return @"integer";
+}
+
 - (int)value {
   NSAssert( hasValue || linkValue, @"ELFloatKnob must have or be linked to a value" );
   
@@ -72,6 +76,10 @@
     NSLog( @"value called on ELIntegerKnob with no value or linkage." );
     abort();
   }
+}
+
+- (NSString *)stringValue {
+  return [[NSNumber numberWithInt:[self value]] stringValue];
 }
 
 - (void)setValue:(int)_value_ {
@@ -105,24 +113,6 @@
                                                 linkFilter:linkFilter
                                                  predicate:predicate
                                              linkPredicate:linkPredicate];
-}
-
-// ELXmlData protocol
-
-- (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *knob = [NSXMLNode elementWithName:@"knob"];
-  
-  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:@"integer" forKey:@"type"];
-  [attributes setObject:@"name" forKey:@"name"];
-  [attributes setObject:[[NSNumber numberWithInt:value] stringValue] forKey:@"value"];
-  [knob setAttributesAsDictionary:attributes];
-  
-  return knob;
-}
-
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
 }
 
 @end

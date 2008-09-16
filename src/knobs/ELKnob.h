@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "ELXmlData.h"
+
 @class ELOscillator;
 
-@interface ELKnob : NSObject {
+@interface ELKnob : NSObject <ELXmlData> {
   NSString        *name;            // name assigned to the knob
   
   ELKnob          *linkedKnob;      // a "parent" knob that may
@@ -58,6 +60,10 @@
 - (id)initWithName:(NSString *)name;
 
 - (NSString *)name;
+
+- (NSString *)xmlType;
+
+- (NSString *)stringValue;
 
 - (void)clearValue;
 
