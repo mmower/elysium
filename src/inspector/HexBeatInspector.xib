@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="16"/>
+			<integer value="1" id="9"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -197,20 +197,28 @@
 							<int key="NSCellFlags2">-1874852864</int>
 							<string key="NSContents"/>
 							<reference key="NSSupport" ref="587980586"/>
-							<object class="NSNumberFormatter" key="NSFormatter" id="975922720">
+							<object class="NSNumberFormatter" key="NSFormatter" id="11202386">
 								<object class="NSMutableDictionary" key="NS.attributes">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="NSMutableArray" key="dict.sortedKeys">
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<string>allowsFloats</string>
+										<string>alwaysShowsDecimalSeparator</string>
 										<string>formatterBehavior</string>
+										<string>generatesDecimalNumbers</string>
+										<string>minimum</string>
 										<string>numberStyle</string>
+										<string>roundingMode</string>
 									</object>
 									<object class="NSMutableArray" key="dict.values">
 										<bool key="EncodedWithXMLCoder">YES</bool>
-										<integer value="1" id="9"/>
-										<integer value="1040"/>
 										<reference ref="9"/>
+										<integer value="1" id="5"/>
+										<integer value="1040"/>
+										<reference ref="5"/>
+										<real value="1.000000e-01" id="954766918"/>
+										<reference ref="9"/>
+										<integer value="4"/>
 									</object>
 								</object>
 								<string key="NS.positiveformat">#,##0.###</string>
@@ -235,7 +243,8 @@
 										</object>
 									</object>
 								</object>
-								<object class="NSDecimalNumberPlaceholder" key="NS.min" id="708529168">
+								<reference key="NS.min" ref="954766918"/>
+								<object class="NSDecimalNumberPlaceholder" key="NS.max">
 									<int key="NS.exponent">0</int>
 									<int key="NS.length">0</int>
 									<bool key="NS.negative">YES</bool>
@@ -243,7 +252,6 @@
 									<int key="NS.mantissa.bo">1</int>
 									<bytes key="NS.mantissa">AAAAAAAAAAAAAAAAAAAAAA</bytes>
 								</object>
-								<reference key="NS.max" ref="708529168"/>
 								<object class="NSDecimalNumberHandler" key="NS.rounding">
 									<int key="NS.roundingmode">3</int>
 									<bool key="NS.raise.overflow">YES</bool>
@@ -601,7 +609,7 @@
 						<reference key="object" ref="349950882"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="975922720"/>
+							<reference ref="11202386"/>
 						</object>
 						<reference key="parent" ref="971580301"/>
 					</object>
@@ -635,7 +643,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
-						<reference key="object" ref="975922720"/>
+						<reference key="object" ref="11202386"/>
 						<reference key="parent" ref="349950882"/>
 					</object>
 				</object>
