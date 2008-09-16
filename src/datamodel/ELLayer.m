@@ -53,10 +53,19 @@ NSPredicate *deadPlayheadFilter;
     durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration"];
     
     [tempoKnob setLinkedKnob:[player tempoKnob]];
+    [tempoKnob setLinkValue:YES];
+    
     [timeToLiveKnob setLinkedKnob:[player timeToLiveKnob]];
+    [timeToLiveKnob setLinkValue:YES];
+    
     [pulseCountKnob setLinkedKnob:[player pulseCountKnob]];
+    [pulseCountKnob setLinkValue:YES];
+    
     [velocityKnob setLinkedKnob:[player velocityKnob]];
+    [velocityKnob setLinkValue:YES];
+    
     [durationKnob setLinkedKnob:[player durationKnob]];
+    [durationKnob setLinkValue:YES];
   }
   
   return self;
