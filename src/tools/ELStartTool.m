@@ -120,7 +120,24 @@ static NSString * const toolType = @"start";
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
+  if( ( self = [self initWithType:toolType] ) ) {
+    NSXMLElement *element;
+    NSArray *nodes;
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+  }
+  
+  return self;
 }
 
 // NSMutableCopying protocol

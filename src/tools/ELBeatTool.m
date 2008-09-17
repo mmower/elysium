@@ -24,7 +24,7 @@ static NSString * const toolType = @"beat";
 }
 
 - (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ {
-  if( ( self = [super initWithType:toolType] ) ) {
+  if( ( self = [self initWithType:toolType] ) ) {
     velocityKnob = _velocityKnob_;
     durationKnob = _durationKnob_;
   }
@@ -118,12 +118,20 @@ static NSString * const toolType = @"beat";
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  if( ( self = [self initWithType:toolType] ) ) {
+    NSXMLElement *element;
+    NSArray *nodes;
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element];
+  }
   
-  
-  // if( ![_representation_ elementName:@""])
-  
-  
-  return nil;
+  return self;
 }
 
 // // Save/Load support

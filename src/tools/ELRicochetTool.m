@@ -73,13 +73,23 @@ static NSString * const toolType = @"ricochet";
   NSXMLElement *ricochetElement = [NSXMLNode elementWithName:toolType];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+  [controlsElement addChild:[directionKnob xmlRepresentation]];
   [ricochetElement addChild:controlsElement];
   
   return ricochetElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
+  if( ( self = [self initWithType:toolType] ) ) {
+    NSXMLElement *element;
+    NSArray *nodes;
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+  }
+  
+  return self;
 }
 
 @end

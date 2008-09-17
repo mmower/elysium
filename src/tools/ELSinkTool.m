@@ -67,7 +67,10 @@ static NSString * const toolType = @"sink";
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
+  if( ( self = [self initWithType:toolType] ) ) {
+  }
+  
+  return self;
 }
 
 @end

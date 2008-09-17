@@ -81,7 +81,10 @@ static NSString * const toolType = @"splitter";
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
+  if( ( self = [self initWithType:toolType] ) ) {
+  }
+  
+  return self;
 }
 
 @end

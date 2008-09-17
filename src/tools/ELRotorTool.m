@@ -124,7 +124,17 @@ static NSString * const toolType = @"rotor";
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
+  if( ( self = [self initWithType:toolType] ) ) {
+    NSXMLElement *element;
+    NSArray *nodes;
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='clockwise']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element];
+  }
+  
+  return self;
 }
+
 
 @end
