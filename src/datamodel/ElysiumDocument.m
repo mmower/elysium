@@ -92,18 +92,16 @@
     return NO;
   }
   
-  if( [[ELPlayer alloc] initWithXmlRepresentation:rootElement] ) {
+  NSXMLNode *surfaceNode = [rootElement nodesForXPath:@"surface"];
+  if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:rootElement] ) ) {
+    [player setMIDIController:[self midiController]];
+    [player setDocument:self];
     NSLog( @"Loaded XML document" );
     return YES;
   } else {
     NSLog( @"Problem loading document" );
     return NO;
   }
-  
-  //     if ( outError != NULL ) {
-  //  *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
-  // }
-  //     return YES;
 }
 
 - (ElysiumController *)appController {

@@ -28,18 +28,11 @@
 
 @implementation ELPlayer
 
-- (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ {
-  return [self initWithDocument:_document_ midiController:_midiController_ createDefaultLayer:YES];
-}
-
-- (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)_createDefaultLayer_ {
+- (id)init {
   if( ( self = [super init] ) ) {
     harmonicTable  = [[ELHarmonicTable alloc] init];
     layers         = [[NSMutableArray alloc] init];
     oscillators    = [[NSMutableDictionary alloc] init];
-    midiController = _midiController_;
-    
-    // Setup some default values
     
     tempoKnob       = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
     timeToLiveKnob  = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
@@ -49,6 +42,19 @@
     
     nextLayerNumber = 1;
     showNotes       = NO;
+  }
+  
+  return self;
+}
+
+- (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ {
+  return [self initWithDocument:_document_ midiController:_midiController_ createDefaultLayer:YES];
+}
+
+- (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)_createDefaultLayer_ {
+  if( ( self = [self init] ) ) {
+    document       = _document_;
+    midiController = _midiController_;
     
     if( _createDefaultLayer_ ) {
       [self createLayer];
@@ -208,66 +214,38 @@
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
+  if( ( self = [self init] ) ) {
+    NSXMLElement *element;
+    NSArray *nodes;
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"layers/layer" error:nil];
+    for( NSXMLNode *node in nodes ) {
+      NSXMLElement *element = (NSXMLElement *)node;
+      [self addLayer:[[ELLayer alloc] initWithXmlRepresentation:element]];
+    }
+  }
+  
+  return self;
 }
-
-// - (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
-//   NSArray *nodes = [_xml_ nodesForXPath:@"surface" error:nil];
-//   if( [nodes count] != 1 ) {
-//     NSLog( @"Found %d surface elements, expected only 1" );
-//     return NO;
-//   }
-//   
-//   NSXMLElement *surfaceElement = [nodes objectAtIndex:0];
-//   
-//   NSXMLNode *node;
-//   if( ( node = [surfaceElement attributeForName:@"pulseCount"] ) ) {
-//     [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
-//   }
-//   if( ( node = [surfaceElement attributeForName:@"velocity"] ) ) {
-//     [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
-//   }
-//   if( ( node = [surfaceElement attributeForName:@"duration"] ) ) {
-//     [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
-//   }
-//   if( ( node = [surfaceElement attributeForName:@"bpm"] ) ) {
-//     [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
-//   }
-//   if( ( node = [surfaceElement attributeForName:@"ttl"] ) ) {
-//     [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
-//   }
-//   
-//   nodes = [surfaceElement nodesForXPath:@"layer" error:nil];
-//   if( [nodes count] < 1 ) {
-//     NSLog( @"No layers defined!" );
-//     return NO;
-//   }
-//   
-//   for( NSXMLNode *node in nodes ) {
-//     NSXMLElement *layerElement = (NSXMLElement *)node;
-//     
-//     NSXMLNode *attribute = [layerElement attributeForName:@"channel"];
-//     if( !attribute ) {
-//       NSLog( @"Layer found with no channel number" );
-//       return NO;
-//     }
-//     
-//     int channel = [[attribute stringValue] intValue];
-//     if( channel < 1 || channel > 16 ) {
-//       NSLog( @"Channel defined outside range %d-%d", 1, 16 );
-//       return NO;
-//     }
-//     
-//     ELLayer *layer = [[ELLayer alloc] initWithPlayer:self channel:channel];
-//     if( ![layer fromXMLData:layerElement] ) {
-//       NSLog( @"Problem loading layer data for layer:%d", channel );
-//       return NO;
-//     }
-// 
-//     [self addLayer:layer];
-//   }
-//   
-//   return YES;
-// }
 
 @end
