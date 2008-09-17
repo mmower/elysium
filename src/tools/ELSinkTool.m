@@ -11,10 +11,16 @@
 #import "ELHex.h"
 #import "ELPlayhead.h"
 
+static NSString * const toolType = @"sink";
+
 @implementation ELSinkTool
 
++ (void)initialize {
+  [ELTool addToolMapping:[ELSinkTool class] forKey:toolType];
+}
+
 - (id)init {
-  if( ( self = [super initWithType:@"sink"] ) ) {
+  if( ( self = [super initWithType:toolType] ) ) {
     // NOP
   }
   
@@ -52,7 +58,7 @@
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *sinkElement = [NSXMLNode elementWithName:@"sink"];
+  NSXMLElement *sinkElement = [NSXMLNode elementWithName:toolType];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [sinkElement addChild:controlsElement];

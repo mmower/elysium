@@ -33,6 +33,8 @@
 @property (readonly) ELHex *hex;
 
 + (NSDictionary *)toolMapping;
++ (void)addToolMapping:(Class)class forKey:(NSString *)key;
+
 // + (ELTool *)fromXMLData:(NSXMLElement *)xml;
 
 - (id)initWithType:(NSString *)type;

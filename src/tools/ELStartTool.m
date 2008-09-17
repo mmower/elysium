@@ -12,10 +12,16 @@
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 
+static NSString * const toolType = @"start";
+
 @implementation ELStartTool
 
++ (void)initialize {
+  [ELTool addToolMapping:[ELStartTool class] forKey:toolType];
+}
+
 - (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ timeToLiveKnob:(ELIntegerKnob *)_timeToLiveKnob_ pulseCountKnob:(ELIntegerKnob *)_pulseCountKnob_ {
-  if( ( self = [self initWithType:@"start"] ) ) {
+  if( ( self = [self initWithType:toolType] ) ) {
     directionKnob = _directionKnob_;
     timeToLiveKnob = _timeToLiveKnob_;
     pulseCountKnob = _pulseCountKnob_;
@@ -25,7 +31,7 @@
 }
 
 - (id)init {
-  if( ( self = [super initWithType:@"start"] ) ) {
+  if( ( self = [super initWithType:toolType] ) ) {
     directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N];
     timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive"];
     pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount"];
@@ -102,7 +108,7 @@
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *generatorElement = [NSXMLNode elementWithName:@"generator"];
+  NSXMLElement *generatorElement = [NSXMLNode elementWithName:toolType];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [controlsElement addChild:[directionKnob xmlRepresentation]];

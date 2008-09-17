@@ -11,10 +11,16 @@
 #import "ELHex.h"
 #import "ELPlayhead.h"
 
+static NSString * const toolType = @"ricochet";
+
 @implementation ELRicochetTool
 
++ (void)initialize {
+  [ELTool addToolMapping:[ELRicochetTool class] forKey:toolType];
+}
+
 - (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ {
-  if( ( self = [super initWithType:@"ricochet"] ) ) {
+  if( ( self = [super initWithType:toolType] ) ) {
     directionKnob = _directionKnob_;
   }
   
@@ -22,7 +28,7 @@
 }
 
 - (id)init {
-  if( ( self = [super initWithType:@"ricochet"] ) ) {
+  if( ( self = [super initWithType:toolType] ) ) {
     directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N];
   }
 
@@ -64,7 +70,7 @@
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *ricochetElement = [NSXMLNode elementWithName:@"ricochet"];
+  NSXMLElement *ricochetElement = [NSXMLNode elementWithName:toolType];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [ricochetElement addChild:controlsElement];

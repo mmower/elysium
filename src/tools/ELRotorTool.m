@@ -13,10 +13,16 @@
 #import "ELStartTool.h"
 #import "ELRicochetTool.h"
 
+static NSString * const toolType = @"rotor";
+
 @implementation ELRotorTool
 
++ (void)initialize {
+  [ELTool addToolMapping:[ELRotorTool class] forKey:toolType];
+}
+
 - (id)initWithClockwiseKnob:(ELBooleanKnob *)_clockwiseKnob_ {
-  if( ( self = [self initWithType:@"rotor"] ) ) {
+  if( ( self = [self initWithType:toolType] ) ) {
     clockwiseKnob = _clockwiseKnob_;
   }
   
@@ -24,7 +30,7 @@
 }
 
 - (id)init {
-  if( ( self = [self initWithType:@"rotor"] ) ) {
+  if( ( self = [self initWithType:toolType] ) ) {
     clockwiseKnob = [[ELBooleanKnob alloc] initWithName:@"clockwise" booleanValue:YES];
     [self setPreferredOrder:9];
   }
@@ -108,7 +114,7 @@
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *rotorElement = [NSXMLNode elementWithName:@"rotor"];
+  NSXMLElement *rotorElement = [NSXMLNode elementWithName:toolType];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [controlsElement addChild:[clockwiseKnob xmlRepresentation]];

@@ -15,10 +15,16 @@
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 
+static NSString * const toolType = @"beat";
+
 @implementation ELBeatTool
 
++ (void)initialize {
+  [ELTool addToolMapping:[ELBeatTool class] forKey:toolType];
+}
+
 - (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ {
-  if( ( self = [super initWithType:@"beat"] ) ) {
+  if( ( self = [super initWithType:toolType] ) ) {
     velocityKnob = _velocityKnob_;
     durationKnob = _durationKnob_;
   }
@@ -27,9 +33,9 @@
 }
 
 - (id)init {
-  if( ( self = [super initWithType:@"beat"] ) ) {
+  if( ( self = [super initWithType:toolType] ) ) {
     velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
-    durationKnob = [[ELFloatKnob alloc] initWithName:@"note-duration"];
+    durationKnob = [[ELFloatKnob alloc] initWithName:@"duration"];
   }
   return self;
 }
@@ -101,7 +107,7 @@
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *noteElement = [NSXMLNode elementWithName:@"note"];
+  NSXMLElement *noteElement = [NSXMLNode elementWithName:toolType];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
@@ -112,6 +118,11 @@
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+  
+  
+  // if( ![_representation_ elementName:@""])
+  
+  
   return nil;
 }
 

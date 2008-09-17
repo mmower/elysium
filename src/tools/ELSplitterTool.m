@@ -12,10 +12,16 @@
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 
+static NSString * const toolType = @"splitter";
+
 @implementation ELSplitterTool
 
++ (void)initialize {
+  [ELTool addToolMapping:[ELSplitterTool class] forKey:toolType];
+}
+
 - (id)init {
-  if( ( self = [super initWithType:@"splitter"] ) ) {
+  if( ( self = [super initWithType:toolType] ) ) {
     // NOP
   }
   
@@ -66,7 +72,7 @@
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *splitterElement = [NSXMLNode elementWithName:@"splitter"];
+  NSXMLElement *splitterElement = [NSXMLNode elementWithName:toolType];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [splitterElement addChild:controlsElement];

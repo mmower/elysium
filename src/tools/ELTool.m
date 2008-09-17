@@ -25,18 +25,20 @@ NSMutableDictionary *toolMapping = nil;
 
 @implementation ELTool
 
-+ (NSDictionary *)toolMapping {
-  if( toolMapping == nil ) {
-    toolMapping = [[NSMutableDictionary alloc] init];
-    
-    [toolMapping setObject:[ELStartTool class] forKey:@"start"];
-    [toolMapping setObject:[ELBeatTool class] forKey:@"beat"];
-    [toolMapping setObject:[ELRicochetTool class] forKey:@"ricochet"];
-    [toolMapping setObject:[ELSinkTool class] forKey:@"sink"];
-    [toolMapping setObject:[ELSplitterTool class] forKey:@"splitter"];
-    [toolMapping setObject:[ELRotorTool class] forKey:@"rotor"];
-  }
++ (void)initialize {
+  static BOOL initialized = NO;
   
+  if( !initialized ) {
+    toolMapping = [NSMutableDictionary dictionary];
+    initialized = YES;
+  }
+}
+
++ (void)addToolMapping:(Class)_class_ forKey:(NSString *)_key_ {
+  [toolMapping setObject:_class_ forKey:_key_];
+}
+
++ (NSDictionary *)toolMapping {
   return toolMapping;
 }
 
