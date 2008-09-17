@@ -92,8 +92,9 @@
     return NO;
   }
   
-  NSXMLNode *surfaceNode = [rootElement nodesForXPath:@"surface"];
-  if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:rootElement] ) ) {
+  NSArray *nodes = [rootElement nodesForXPath:@"surface" error:nil];
+  NSXMLElement *surfaceElement = (NSXMLElement *)[nodes objectAtIndex:0];
+  if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement] ) ) {
     [player setMIDIController:[self midiController]];
     [player setDocument:self];
     NSLog( @"Loaded XML document" );
