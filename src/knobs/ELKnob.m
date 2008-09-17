@@ -250,34 +250,34 @@
   if( hasValue ) {
     [attributes setObject:[self stringValue] forKey:@"current"];
   }
-  [attributes setObject:(linkValue ? @"YES" : @"NO") forKey:@"link"];
+  [attributes setObject:(linkValue ? @"YES" : @"NO") forKey:@"linked"];
   [valueElement setAttributesAsDictionary:attributes];
   [knobElement addChild:valueElement];
   
   NSXMLElement *enabledElement = [NSXMLNode elementWithName:@"enabled"];
   attributes = [NSMutableDictionary dictionary];
   if( hasEnabled ) {
-    [attributes setObject:(enabled ? @"YES" : @"NO") forKey:@"value"];
+    [attributes setObject:(enabled ? @"YES" : @"NO") forKey:@"current"];
   }
-  [attributes setObject:(linkEnabled ? @"YES" : @"NO") forKey:@"link"];
+  [attributes setObject:(linkEnabled ? @"YES" : @"NO") forKey:@"linked"];
   [enabledElement setAttributesAsDictionary:attributes];
   [knobElement addChild:enabledElement];
 
   NSXMLElement *alphaElement = [NSXMLNode elementWithName:@"alpha"];
   attributes = [NSMutableDictionary dictionary];
   if( hasAlpha ) {
-    [attributes setObject:[[NSNumber numberWithFloat:alpha] stringValue] forKey:@"value"];
+    [attributes setObject:[[NSNumber numberWithFloat:alpha] stringValue] forKey:@"current"];
   }
-  [attributes setObject:(linkAlpha ? @"YES" : @"NO") forKey:@"link"];
+  [attributes setObject:(linkAlpha ? @"YES" : @"NO") forKey:@"linked"];
   [alphaElement setAttributesAsDictionary:attributes];
   [knobElement addChild:alphaElement];
   
   NSXMLElement *pElement = [NSXMLNode elementWithName:@"p"];
   attributes = [NSMutableDictionary dictionary];
   if( hasP ) {
-    [attributes setObject:[[NSNumber numberWithFloat:p] stringValue] forKey:@"value"];
+    [attributes setObject:[[NSNumber numberWithFloat:p] stringValue] forKey:@"current"];
   }
-  [attributes setObject:(linkP ? @"YES" : @"NO") forKey:@"link"];
+  [attributes setObject:(linkP ? @"YES" : @"NO") forKey:@"linked"];
   [pElement setAttributesAsDictionary:attributes];
   [knobElement addChild:pElement];
   
