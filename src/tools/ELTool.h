@@ -34,8 +34,7 @@
 
 + (NSDictionary *)toolMapping;
 + (void)addToolMapping:(Class)class forKey:(NSString *)key;
-
-// + (ELTool *)fromXMLData:(NSXMLElement *)xml;
++ (id)toolAlloc:(NSString *)key;
 
 - (id)initWithType:(NSString *)type;
 
@@ -45,8 +44,6 @@
 - (void)removedFromLayer:(ELLayer *)layer;
 
 - (BOOL)run:(ELPlayhead *)playhead;
-
-// Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)attributes;
 

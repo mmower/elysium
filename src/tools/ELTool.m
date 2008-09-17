@@ -42,6 +42,10 @@ NSMutableDictionary *toolMapping = nil;
   return toolMapping;
 }
 
++ (id)toolAlloc:(NSString *)_key_ {
+  return [[toolMapping objectForKey:_key_] alloc];
+}
+
 // + (ELTool *)fromXMLData:(NSXMLElement *)_xml_ {
 //   NSXMLNode *attribute = [_xml_ attributeForName:@"type"];
 //   if( !attribute ) {
