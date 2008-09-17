@@ -91,6 +91,10 @@
   return [self value] ? @"YES" : @"NO";
 }
 
+- (void)setValueWithString:(NSString *)_stringValue_ {
+  [self setValue:[_stringValue_ boolValue]];
+}
+
 - (void)setValue:(BOOL)_value_ {
   hasValue = YES;
   value    = _value_;

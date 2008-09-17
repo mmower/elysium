@@ -64,6 +64,7 @@
 - (NSString *)xmlType;
 
 - (NSString *)stringValue;
+- (void)setValueWithString:(NSString *)stringValue;
 
 - (void)clearValue;
 

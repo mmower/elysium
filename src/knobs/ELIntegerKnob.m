@@ -91,6 +91,10 @@
   return [[NSNumber numberWithInt:[self value]] stringValue];
 }
 
+- (void)setValueWithString:(NSString *)_stringValue_ {
+  [self setValue:[_stringValue_ intValue]];
+}
+
 - (void)setValue:(int)_value_ {
   hasValue = YES;
   value    = _value_;
