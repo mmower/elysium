@@ -252,40 +252,17 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   return cellElement;
 }
 
+// This method is slightly different in that we know the object already
+// exists within the layer, we're sort of over-initing it
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
+  NSArray *nodes;
+  
+  nodes = [_representation_ nodesForXPath:@"." error:nil];
+  for( NSXMLNode *node in nodes ) {
+    [self addTool:[[ELTool toolAlloc:[node name]] initWithXmlRepresentation:(NSXMLElement *)node]];
+  }
+  
+  return self;
 }
-
-// 
-// 
-// // Implementing the ELData protocol
-// 
-// - (NSXMLElement *)asXMLData {
-//   NSXMLElement *cellElement = [NSXMLNode elementWithName:@"cell"];
-//   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-//   [attributes setObject:[NSNumber numberWithInt:col] forKey:@"col"];
-//   [attributes setObject:[NSNumber numberWithInt:row] forKey:@"row"];
-//   [cellElement setAttributesAsDictionary:attributes];
-//   
-//   for( ELTool *tool in [self tools] ) {
-//     [cellElement addChild:[tool asXMLData]];
-//   }
-//   
-//   return cellElement;
-// }
-// 
-// - (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
-//   for( NSXMLNode *markerNode in [_xml_ nodesForXPath:@"marker" error:nil] ) {
-//     ELTool *tool = [ELTool fromXMLData:(NSXMLElement *)markerNode];
-//     if( !tool ) {
-//       NSLog( @"Unable to load tool configuration!" );
-//       return NO;
-//     }
-//     
-//     [self addTool:tool];
-//   }
-//   
-//   return YES;
-// }
 
 @end

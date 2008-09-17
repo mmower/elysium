@@ -315,6 +315,7 @@ NSPredicate *deadPlayheadFilter;
   [controlsElement addChild:[channelKnob xmlRepresentation]];
   [controlsElement addChild:[tempoKnob xmlRepresentation]];
   [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
+  [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
   [layerElement addChild:controlsElement];
@@ -337,7 +338,56 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  return nil;
+  if( ( self = [self init] ) ) {
+    NSXMLElement *element;
+    NSArray *nodes;
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    enabledKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='channel']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element];
+    
+    nodes = [_representation_ nodesForXPath:@"cells/cell" error:nil];
+    for( NSXMLNode *node in nodes ) {
+      NSXMLElement *element = (NSXMLElement *)node;
+      NSXMLNode *attributeNode;
+      
+      attributeNode = [element attributeForName:@"col"];
+      int col = [[attributeNode stringValue] intValue];
+      
+      attributeNode = [element attributeForName:@"row"];
+      int row = [[attributeNode stringValue] intValue];
+      
+      ELHex *hex = [self hexAtColumn:col row:row];
+      [hex initWithXmlRepresentation:element];
+    }
+    
+  }
+  
+  return self;
 }
 
 // Implementing the ELData Protocol
