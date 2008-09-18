@@ -19,12 +19,8 @@ static NSString * const toolType = @"beat";
 
 @implementation ELBeatTool
 
-+ (void)initialize {
-  [ELTool addToolMapping:[ELBeatTool class] forKey:toolType];
-}
-
 - (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ {
-  if( ( self = [self initWithType:toolType] ) ) {
+  if( ( self = [super init] ) ) {
     velocityKnob = _velocityKnob_;
     durationKnob = _durationKnob_;
   }
@@ -33,11 +29,12 @@ static NSString * const toolType = @"beat";
 }
 
 - (id)init {
-  if( ( self = [super initWithType:toolType] ) ) {
-    velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
-    durationKnob = [[ELFloatKnob alloc] initWithName:@"duration"];
-  }
-  return self;
+  return [self initWithVelocityKnob:[[ELIntegerKnob alloc] initWithName:@"velocity"]
+                       durationKnob:[[ELFloatKnob alloc] initWithName:@"duration"]];
+}
+
+- (NSString *)toolType {
+  return toolType;
 }
 
 @synthesize velocityKnob;
@@ -117,18 +114,18 @@ static NSString * const toolType = @"beat";
   return noteElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  if( ( self = [self initWithType:toolType] ) ) {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+  if( ( self = [self initWithVelocityKnob:nil durationKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob]];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element];
+    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob]];
   }
   
   return self;

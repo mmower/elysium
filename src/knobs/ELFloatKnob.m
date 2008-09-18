@@ -77,10 +77,10 @@
 - (float)value {
   NSAssert( hasValue || linkValue, @"ELFloatKnob must have or be linked to a value" );
   
-  if( hasValue ) {
-    return value;
-  } else if( linkValue ) {
+  if( linkValue ) {
     return [(ELFloatKnob *)linkedKnob value];
+  } else if( hasValue ) {
+    return value;
   } else {
     NSLog( @"value called on ELFloatKnob with no value or linkage." );
     abort();
@@ -88,7 +88,7 @@
 }
 
 - (NSString *)stringValue {
-  return [[NSNumber numberWithInt:[self value]] stringValue];
+  return [[NSNumber numberWithFloat:[self value]] stringValue];
 }
 
 - (void)setValueWithString:(NSString *)_stringValue_ {

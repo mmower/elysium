@@ -47,6 +47,7 @@
 
 + (NSPredicate *)deadPlayheadFilter;
 
+- (id)initWithPlayer:(ELPlayer *)player;
 - (id)initWithPlayer:(ELPlayer *)player channel:(int)channel;
 
 @property ELPlayer *player;

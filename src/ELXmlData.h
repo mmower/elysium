@@ -10,6 +10,6 @@
 @protocol ELXmlData
 
 - (NSXMLElement *)xmlRepresentation;
-- (id)initWithXmlRepresentation:(NSXMLElement *)representation;
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent;
 
 @end

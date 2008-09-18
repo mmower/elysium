@@ -288,11 +288,13 @@
   return knobElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
   if( ( self = [self initWithName:[[_representation_ attributeForName:@"name"] stringValue]] ) ) {
     NSArray *nodes;
     NSXMLElement *element;
     NSXMLNode *attrNode;
+    
+    [self setLinkedKnob:_parent_];  
     
     // Decode value
     
@@ -300,7 +302,9 @@
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     
     attrNode = [element attributeForName:@"current"];
-    [self setValueWithString:[attrNode stringValue]];
+    if( attrNode ) {
+      [self setValueWithString:[attrNode stringValue]];
+    }
     
     attrNode = [element attributeForName:@"linked"];
     [self setLinkValue:[[attrNode stringValue] boolValue]];

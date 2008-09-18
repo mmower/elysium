@@ -16,16 +16,8 @@ static NSString * const toolType = @"splitter";
 
 @implementation ELSplitterTool
 
-+ (void)initialize {
-  [ELTool addToolMapping:[ELSplitterTool class] forKey:toolType];
-}
-
-- (id)init {
-  if( ( self = [super initWithType:toolType] ) ) {
-    // NOP
-  }
-  
-  return self;
+- (NSString *)toolType {
+  return toolType;
 }
 
 - (BOOL)run:(ELPlayhead *)_playhead_ {
@@ -80,11 +72,8 @@ static NSString * const toolType = @"splitter";
   return splitterElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  if( ( self = [self initWithType:toolType] ) ) {
-  }
-  
-  return self;
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+  return [self init];
 }
 
 @end

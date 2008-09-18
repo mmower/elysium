@@ -15,12 +15,8 @@ static NSString * const toolType = @"ricochet";
 
 @implementation ELRicochetTool
 
-+ (void)initialize {
-  [ELTool addToolMapping:[ELRicochetTool class] forKey:toolType];
-}
-
 - (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ {
-  if( ( self = [super initWithType:toolType] ) ) {
+  if( ( self = [super init] ) ) {
     directionKnob = _directionKnob_;
   }
   
@@ -28,11 +24,12 @@ static NSString * const toolType = @"ricochet";
 }
 
 - (id)init {
-  if( ( self = [super initWithType:toolType] ) ) {
-    directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N];
-  }
+  return [self initWithDirectionKnob:[[ELIntegerKnob alloc] initWithName:@"direction"
+                                                            integerValue:N]];
+}
 
-  return self;
+- (NSString *)toolType {
+  return toolType;
 }
 
 @synthesize directionKnob;
@@ -79,14 +76,14 @@ static NSString * const toolType = @"ricochet";
   return ricochetElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  if( ( self = [self initWithType:toolType] ) ) {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+  if( ( self = [self initWithDirectionKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
   }
   
   return self;

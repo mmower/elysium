@@ -17,25 +17,22 @@ static NSString * const toolType = @"rotor";
 
 @implementation ELRotorTool
 
-+ (void)initialize {
-  [ELTool addToolMapping:[ELRotorTool class] forKey:toolType];
-}
-
 - (id)initWithClockwiseKnob:(ELBooleanKnob *)_clockwiseKnob_ {
-  if( ( self = [self initWithType:toolType] ) ) {
+  if( ( self = [super init] ) ) {
     clockwiseKnob = _clockwiseKnob_;
+    [self setPreferredOrder:9];
   }
   
   return self;
 }
 
 - (id)init {
-  if( ( self = [self initWithType:toolType] ) ) {
-    clockwiseKnob = [[ELBooleanKnob alloc] initWithName:@"clockwise" booleanValue:YES];
-    [self setPreferredOrder:9];
-  }
-  
-  return self;
+  return [self initWithClockwiseKnob:[[ELBooleanKnob alloc] initWithName:@"clockwise"
+                                                            booleanValue:YES]];
+}
+
+- (NSString *)toolType {
+  return toolType;
 }
 
 @synthesize clockwiseKnob;
@@ -123,14 +120,14 @@ static NSString * const toolType = @"rotor";
   return rotorElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  if( ( self = [self initWithType:toolType] ) ) {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+  if( ( self = [self initWithClockwiseKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='clockwise']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element];
+    clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil];
   }
   
   return self;

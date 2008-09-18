@@ -77,10 +77,10 @@
 - (int)value {
   NSAssert( hasValue || linkValue, @"ELIntegerKnob must have or be linked to a value" );
   
-  if( hasValue ) {
-    return value;
-  } else if( linkValue ) {
+  if( linkValue ) {
     return [(ELIntegerKnob *)linkedKnob value];
+  } else if( hasValue ) {
+    return value;
   } else {
     NSLog( @"value called on ELIntegerKnob with no value or linkage." );
     abort();

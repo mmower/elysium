@@ -20,7 +20,6 @@
 
 @interface ELTool : NSObject <ELXmlData> {
   BOOL      enabled;
-  NSString  *toolType;
   ELLayer   *layer;
   ELHex     *hex;
   int       preferredOrder;
@@ -28,15 +27,12 @@
 
 @property BOOL enabled;
 @property int preferredOrder;
-@property (readonly) NSString *toolType;
 @property (readonly) ELLayer *layer;
 @property (readonly) ELHex *hex;
 
-+ (NSDictionary *)toolMapping;
-+ (void)addToolMapping:(Class)class forKey:(NSString *)key;
-+ (id)toolAlloc:(NSString *)key;
++ (ELTool *)toolAlloc:(NSString *)key;
 
-- (id)initWithType:(NSString *)type;
+- (NSString *)toolType;
 
 - (NSArray *)observableValues;
 

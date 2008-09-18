@@ -77,10 +77,10 @@
 - (BOOL)value {
   NSAssert( hasValue || linkValue, @"Value must be either defined or linked!" );
   
-  if( hasValue ) {
-    return value;
-  } else if( linkValue ) {
+  if( linkValue ) {
     return [(ELBooleanKnob *)linkedKnob value];
+  } else if( hasValue ) {
+    return value;
   } else {
     NSLog( @"value called on ELBooleanKnob with no value or linkage." );
     abort();

@@ -15,16 +15,8 @@ static NSString * const toolType = @"sink";
 
 @implementation ELSinkTool
 
-+ (void)initialize {
-  [ELTool addToolMapping:[ELSinkTool class] forKey:toolType];
-}
-
-- (id)init {
-  if( ( self = [super initWithType:toolType] ) ) {
-    // NOP
-  }
-  
-  return self;
+- (NSString *)toolType {
+  return toolType;
 }
 
 - (BOOL)run:(ELPlayhead *)_playhead {
@@ -66,11 +58,8 @@ static NSString * const toolType = @"sink";
   return sinkElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  if( ( self = [self initWithType:toolType] ) ) {
-  }
-  
-  return self;
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+  return [self init];
 }
 
 @end

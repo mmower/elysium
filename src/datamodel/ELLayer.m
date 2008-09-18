@@ -32,9 +32,8 @@ NSPredicate *deadPlayheadFilter;
   return deadPlayheadFilter;
 }
 
-- (id)initWithPlayer:(ELPlayer *)_player_ channel:(int)_channel_ {
+- (id)init {
   if( ( self = [super init] ) ) {
-    player     = _player_;
     hexes      = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
     playheads  = [[NSMutableArray alloc] init];
     generators = [[NSMutableArray alloc] init];
@@ -42,15 +41,32 @@ NSPredicate *deadPlayheadFilter;
     timeBase   = 0;
     isRunning  = 0;
     
-    [self configureHexes];
-    
     enabledKnob    = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
-    channelKnob    = [[ELIntegerKnob alloc] initWithName:@"channel" integerValue:_channel_];
+    channelKnob    = [[ELIntegerKnob alloc] initWithName:@"channel"];
+  }
+  
+  return self;
+}
+
+- (id)initWithPlayer:(ELPlayer *)_player_ {
+  if( ( self = [self init] ) ) {
+    player = _player_;
+    
     tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedTo:[player tempoKnob]];
     timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedTo:[player timeToLiveKnob]];
     pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedTo:[player pulseCountKnob]];
     velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedTo:[player velocityKnob]];
     durationKnob   = [[ELFloatKnob alloc] initWithName:@"layer-duration" linkedTo:[player durationKnob]];
+    
+    [self configureHexes];
+  }
+  
+  return self;
+}
+
+- (id)initWithPlayer:(ELPlayer *)_player_ channel:(int)_channel_ {
+  if( ( self = [self initWithPlayer:_player_] ) ) {
+    [channelKnob setValue:_channel_];
   }
   
   return self;
@@ -337,38 +353,47 @@ NSPredicate *deadPlayheadFilter;
   return layerElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  if( ( self = [self init] ) ) {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+  if( ( self = [self initWithPlayer:_parent_] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
+    NSXMLNode *attributeNode;
+    
+    attributeNode = [_representation_ attributeForName:@"id"];
+    if( attributeNode ) {
+      [self setLayerId:[attributeNode stringValue]];
+    } else {
+      NSLog( @"Found layer without id, cannot load it!" );
+      return nil;
+    }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    enabledKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element];
+    enabledKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='channel']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob]];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ timeToLiveKnob]];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ pulseCountKnob]];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ velocityKnob]];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element];
+    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[_parent_ durationKnob]];
     
     nodes = [_representation_ nodesForXPath:@"cells/cell" error:nil];
     for( NSXMLNode *node in nodes ) {
@@ -382,105 +407,13 @@ NSPredicate *deadPlayheadFilter;
       int row = [[attributeNode stringValue] intValue];
       
       ELHex *hex = [self hexAtColumn:col row:row];
-      [hex initWithXmlRepresentation:element];
+      [hex initWithXmlRepresentation:element parent:self];
     }
     
   }
   
   return self;
 }
-
-// Implementing the ELData Protocol
-// 
-// - (NSXMLElement *)asXMLData {
-//   NSXMLElement *layerElement = [NSXMLNode elementWithName:@"layer"];
-//   
-//   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-//   // [attributes setObject:[config stringForKey:@"channel"] forKey:@"channel"];
-//   // [attributes setObject:[config stringForKey:@"layerId"] forKey:@"id"];
-//   
-//   // if( [config definesValueForKey:@"pulseCount"] ) {
-//   //   [attributes setObject:[config stringForKey:@"pulseCount"] forKey:@"pulseCount"];
-//   // }
-//   // if( [config definesValueForKey:@"velocity"] ) {
-//   //   [attributes setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
-//   // }
-//   // if( [config definesValueForKey:@"duration"] ) {
-//   //   [attributes setObject:[config stringForKey:@"duration"] forKey:@"duration"];
-//   // }
-//   // if( [config definesValueForKey:@"bpm"] ) {
-//   //   [attributes setObject:[config stringForKey:@"bpm"] forKey:@"bpm"];
-//   // }
-//   // if( [config definesValueForKey:@"ttl"] ) {
-//   //   [attributes setObject:[config stringForKey:@"ttl"] forKey:@"ttl"];
-//   // }
-//   [layerElement setAttributesAsDictionary:attributes];
-//   
-//   for( int col = 0; col < HTABLE_COLS; col++ ) {
-//     for( int row = 0; row < HTABLE_ROWS; row++ ) {
-//       ELHex *hex = [self hexAtColumn:col row:row];
-//       
-//       if( [[hex tools] count] > 0 ) {
-//         [layerElement addChild:[hex asXMLData]];
-//       }
-//     }
-//   }
-//   
-//   return layerElement;
-// }
-// 
-// - (BOOL)fromXMLData:(NSXMLElement *)_xml_ {
-//   
-//   NSXMLNode *node;
-//   
-//   // if( ( node = [_xml_ attributeForName:@"id"] ) ) {
-//   //   [config setString:[node stringValue] forKey:@"layerId"];
-//   // }
-//   // if( ( node = [_xml_ attributeForName:@"pulseCount"] ) ) {
-//   //   [config setInteger:[[node stringValue] intValue] forKey:@"pulseCount"];
-//   // }
-//   // if( ( node = [_xml_ attributeForName:@"velocity"] ) ) {
-//   //   [config setInteger:[[node stringValue] intValue] forKey:@"velocity"];
-//   // }
-//   // if( ( node = [_xml_ attributeForName:@"duration"] ) ) {
-//   //   [config setInteger:[[node stringValue] floatValue] forKey:@"duration"];
-//   // }
-//   // if( ( node = [_xml_ attributeForName:@"bpm"] ) ) {
-//   //   [config setInteger:[[node stringValue] intValue] forKey:@"bpm"];
-//   // }
-//   // if( ( node = [_xml_ attributeForName:@"ttl"] ) ) {
-//   //   [config setInteger:[[node stringValue] intValue] forKey:@"ttl"];
-//   // }
-//   
-//   for( NSXMLNode *cellNode in [_xml_ nodesForXPath:@"cell" error:nil] ) {
-//     NSXMLElement *cellElement = (NSXMLElement *)cellNode;
-//     
-//     if( !( node = [cellElement attributeForName:@"col"] ) ) {
-//       NSLog( @"Found cell with no column!" );
-//       return NO;
-//     }
-//     int col = [[node stringValue] intValue];
-//     
-//     if( !( node = [cellElement attributeForName:@"row"] ) ) {
-//       NSLog( @"Found cell with no row!" );
-//       return NO;
-//     }
-//     int row = [[node stringValue] intValue];
-//     
-//     ELHex *hex = [self hexAtColumn:col row:row];
-//     if( !hex ) {
-//       NSLog( @"Cell reference %d,%d is invalid", col, row );
-//       return NO;
-//     }
-//     
-//     if( ![hex fromXMLData:cellElement] ) {
-//       NSLog( @"Problem loading cell %d,%d", col, row );
-//       return NO;
-//     }
-//   }
-//   
-//   return YES;
-// }
 
 // Drawing notification from the hex
 

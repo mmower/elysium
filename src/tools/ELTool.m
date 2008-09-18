@@ -25,54 +25,17 @@ NSMutableDictionary *toolMapping = nil;
 
 @implementation ELTool
 
-+ (void)initialize {
-  static BOOL initialized = NO;
-  
-  if( !initialized ) {
-    toolMapping = [NSMutableDictionary dictionary];
-    initialized = YES;
-  }
++ (ELTool *)toolAlloc:(NSString *)_key_ {
+  Class toolClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Tool", [_key_ capitalizedString]] );
+  ELTool *tool = [toolClass alloc];
+  NSLog( @"toolAlloc:%@ -> %@ -> %@", _key_, toolClass, tool );
+  return tool;
 }
 
-+ (void)addToolMapping:(Class)_class_ forKey:(NSString *)_key_ {
-  [toolMapping setObject:_class_ forKey:_key_];
-}
-
-+ (NSDictionary *)toolMapping {
-  return toolMapping;
-}
-
-+ (id)toolAlloc:(NSString *)_key_ {
-  return [[toolMapping objectForKey:_key_] alloc];
-}
-
-// + (ELTool *)fromXMLData:(NSXMLElement *)_xml_ {
-//   NSXMLNode *attribute = [_xml_ attributeForName:@"type"];
-//   if( !attribute ) {
-//     NSLog( @"Marker without type!" );
-//     return nil;
-//   }
-//   
-//   NSString *type = [attribute stringValue];
-//   
-//   ELTool *tool = [[[[ELTool toolMapping] objectForKey:type] alloc] init];
-//   if( !tool ) {
-//     NSLog( @"Unknown tool type:%@", type );
-//   }
-//   
-//   if( ![tool loadToolConfig:_xml_] ) {
-//     NSLog( @"Failed to load tool configuration!" );
-//     return nil;
-//   }
-//   
-//   return tool;
-// }
-
-- (id)initWithType:(NSString *)_type_ {
+- (id)init {
   if( ( self = [super init] ) ) {
-    toolType       = _type_;
-    enabled        = YES;
     preferredOrder = 5;
+    enabled        = YES;
   }
   
   return self;
@@ -82,9 +45,14 @@ NSMutableDictionary *toolMapping = nil;
 
 @synthesize enabled;
 @synthesize preferredOrder;
-@synthesize toolType;
 @synthesize layer;
 @synthesize hex;
+
+
+- (NSString *)toolType {
+  [self doesNotRecognizeSelector:_cmd];
+  return @"unknown";
+}
 
 - (NSArray *)observableValues {
   return [NSArray arrayWithObject:@"enabled"];
@@ -118,7 +86,7 @@ NSMutableDictionary *toolMapping = nil;
   return nil;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
   [self doesNotRecognizeSelector:_cmd];
   return nil;
 }

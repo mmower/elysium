@@ -38,7 +38,7 @@
     timeToLiveKnob  = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
     pulseCountKnob  = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
     velocityKnob    = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
-    durationKnob    = [[ELFloatKnob alloc] initWithName:@"player-duration" floatValue:0.5];
+    durationKnob    = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
     
     nextLayerNumber = 1;
     showNotes       = NO;
@@ -47,15 +47,19 @@
   return self;
 }
 
+
+// There is an issue here!
 - (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ {
-  return [self initWithDocument:_document_ midiController:_midiController_ createDefaultLayer:YES];
+  if( ( self = [self init] ) ) {
+    [self setDocument:_document_];
+    [self setMIDIController:_midiController_];
+  }
+  
+  return self;
 }
 
 - (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)_createDefaultLayer_ {
-  if( ( self = [self init] ) ) {
-    document       = _document_;
-    midiController = _midiController_;
-    
+  if( ( self = [self initWithDocument:_document_ midiController:_midiController_] ) ) {
     if( _createDefaultLayer_ ) {
       [self createLayer];
     }
@@ -151,6 +155,7 @@
 
 - (void)addLayer:(ELLayer *)_layer_ {
   [self willChangeValueForKey:@"layers"];
+  [_layer_ setPlayer:self];
   [layers addObject:_layer_];
   [self didChangeValueForKey:@"layers"];
 }
@@ -213,35 +218,63 @@
   return surfaceElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
   if( ( self = [self init] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self];
+    } else {
+      tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
+    }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+    } else {
+      timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
+    }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+    } else {
+      pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
+    }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+    } else {
+      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
+    }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:nil];
+    } else {
+      durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
+    }
     
     nodes = [_representation_ nodesForXPath:@"layers/layer" error:nil];
     for( NSXMLNode *node in nodes ) {
       NSXMLElement *element = (NSXMLElement *)node;
-      [self addLayer:[[ELLayer alloc] initWithXmlRepresentation:element]];
+      
+      ELLayer *layer = [[ELLayer alloc] initWithXmlRepresentation:element parent:self];
+      if( layer ) {
+        [self addLayer:layer];
+        nextLayerNumber++; // Ensure that future defined layers don't get a duplicate id.
+      } else {
+        NSLog( @"Player detected faulty layer, cannot load." );
+        return nil;
+      }
     }
   }
   

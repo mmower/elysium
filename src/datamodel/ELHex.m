@@ -254,12 +254,12 @@ NSString* elementDescription( NSBezierPathElement elt ) {
 
 // This method is slightly different in that we know the object already
 // exists within the layer, we're sort of over-initing it
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
   NSArray *nodes;
   
-  nodes = [_representation_ nodesForXPath:@"." error:nil];
+  nodes = [_representation_ nodesForXPath:@"*" error:nil];
   for( NSXMLNode *node in nodes ) {
-    [self addTool:[[ELTool toolAlloc:[node name]] initWithXmlRepresentation:(NSXMLElement *)node]];
+    [self addTool:[[ELTool toolAlloc:[node name]] initWithXmlRepresentation:(NSXMLElement *)node parent:self]];
   }
   
   return self;

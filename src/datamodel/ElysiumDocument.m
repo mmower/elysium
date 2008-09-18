@@ -25,18 +25,13 @@
 
 @implementation ElysiumDocument
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-      player = [[ELPlayer alloc] initWithDocument:self midiController:[self midiController]];
-    }
-    return self;
-}
-
 @synthesize player;
 
 - (void)makeWindowControllers {
+  if( !player ) {
+    player = [[ELPlayer alloc] initWithDocument:self midiController:[self midiController] createDefaultLayer:YES];
+  }
+  
   [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument" owner:self]];
   
   for( ELLayer *layer in [player layers] ) {
@@ -74,9 +69,6 @@
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-  // Get a new, empty, player for this document
-  player = [[ELPlayer alloc] initWithDocument:self midiController:[self midiController] createDefaultLayer:NO];
-  
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithData:data options:0 error:outError];
   if( document == nil ) {
     return NO;
@@ -94,7 +86,7 @@
   
   NSArray *nodes = [rootElement nodesForXPath:@"surface" error:nil];
   NSXMLElement *surfaceElement = (NSXMLElement *)[nodes objectAtIndex:0];
-  if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement] ) ) {
+  if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self] ) ) {
     [player setMIDIController:[self midiController]];
     [player setDocument:self];
     NSLog( @"Loaded XML document" );

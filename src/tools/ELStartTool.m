@@ -16,29 +16,25 @@ static NSString * const toolType = @"start";
 
 @implementation ELStartTool
 
-+ (void)initialize {
-  [ELTool addToolMapping:[ELStartTool class] forKey:toolType];
-}
-
 - (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ timeToLiveKnob:(ELIntegerKnob *)_timeToLiveKnob_ pulseCountKnob:(ELIntegerKnob *)_pulseCountKnob_ {
-  if( ( self = [self initWithType:toolType] ) ) {
+  if( ( self = [super init] ) ) {
     directionKnob = _directionKnob_;
     timeToLiveKnob = _timeToLiveKnob_;
     pulseCountKnob = _pulseCountKnob_;
+    [self setPreferredOrder:1];
   }
   
   return self;
 }
 
 - (id)init {
-  if( ( self = [super initWithType:toolType] ) ) {
-    directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive"];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount"];
-    
-    [self setPreferredOrder:1];
-  }
-  return self;
+  return [self initWithDirectionKnob:[[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N]
+                      timeToLiveKnob:[[ELIntegerKnob alloc] initWithName:@"timeToLive"]
+                      pulseCountKnob:[[ELIntegerKnob alloc] initWithName:@"pulseCount"]];
+}
+
+- (NSString *)toolType {
+  return toolType;
 }
 
 @synthesize directionKnob;
@@ -75,6 +71,7 @@ static NSString * const toolType = @"start";
 // Tool runner
 
 - (BOOL)shouldPulseOnBeat:(int)_beat_ {
+  NSAssert( [pulseCountKnob value] > 0, @"PulseCount must be greater than zero!" );
   return ( _beat_ % [pulseCountKnob value] ) == 0;
 }
 
@@ -119,22 +116,22 @@ static NSString * const toolType = @"start";
   return generatorElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ {
-  if( ( self = [self initWithType:toolType] ) ) {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+  if( ( self = [self initWithDirectionKnob:nil timeToLiveKnob:nil pulseCountKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] timeToLiveKnob]];
 
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] pulseCountKnob]];
   }
   
   return self;
