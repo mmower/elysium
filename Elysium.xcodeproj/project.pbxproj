@@ -101,6 +101,8 @@
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9BB9DDA0E71E4D60088561D /* ELLayerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB9DD90E71E4D60088561D /* ELLayerWindowController.m */; };
 		C9BB9DEA0E71EC3D0088561D /* LayerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9BB9DE90E71EC3D0088561D /* LayerWindow.xib */; };
+		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
+		C9C9AFA80E82F11800277071 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */; };
 		C9D036090E7082B8005AC915 /* LayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D036080E7082B8005AC915 /* LayerInspector.xib */; };
 		C9D0360C0E7082C5005AC915 /* ELLayerInspectorPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D0360B0E7082C5005AC915 /* ELLayerInspectorPane.m */; };
 		C9D036340E708EDD005AC915 /* HexSinkInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D036330E708EDD005AC915 /* HexSinkInspector.xib */; };
@@ -303,6 +305,8 @@
 		C9BB9DD80E71E4D60088561D /* ELLayerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerWindowController.h; sourceTree = "<group>"; };
 		C9BB9DD90E71E4D60088561D /* ELLayerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerWindowController.m; sourceTree = "<group>"; };
 		C9BB9DE90E71EC3D0088561D /* LayerWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayerWindow.xib; sourceTree = "<group>"; };
+		C9C9AF2B0E82D0F500277071 /* deploy.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.rake; sourceTree = "<group>"; };
+		C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
 		C9D036080E7082B8005AC915 /* LayerInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayerInspector.xib; sourceTree = "<group>"; };
 		C9D0360A0E7082C5005AC915 /* ELLayerInspectorPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerInspectorPane.h; sourceTree = "<group>"; };
 		C9D0360B0E7082C5005AC915 /* ELLayerInspectorPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerInspectorPane.m; sourceTree = "<group>"; };
@@ -350,6 +354,7 @@
 				C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */,
 				C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */,
 				C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */,
+				C9C9AFA80E82F11800277071 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +393,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */,
 				C93D54910E61F0E80077C448 /* PYMIDI.framework */,
 				C92EDDB50E353EDD00017DFE /* CoreAudio.framework */,
 				C9E43D5E0E33C27100C4D343 /* Sparkle.framework */,
@@ -475,6 +481,7 @@
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
+				C9C9AF2B0E82D0F500277071 /* deploy.rake */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -989,6 +996,7 @@
 				C9BB9DEA0E71EC3D0088561D /* LayerWindow.xib in Resources */,
 				C92128BB0E7296E100D4D096 /* LayerManager.xib in Resources */,
 				C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */,
+				C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1221,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../Honeycomb/build/Release\"",
 					"\"$(SRCROOT)/build/Debug\"",
+					"\"$(SRCROOT)/../../Cocoa/3rdParty/WebKit/JavaScriptCore/build/Release\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1239,6 +1248,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../Honeycomb/build/Release\"",
 					"\"$(SRCROOT)/build/Debug\"",
+					"\"$(SRCROOT)/../../Cocoa/3rdParty/WebKit/JavaScriptCore/build/Release\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
