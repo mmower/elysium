@@ -18,11 +18,20 @@
   return self;
 }
 
+- (void)windowDidLoad {
+  NSLog( @"Layer manager window loaded." );
+  [[self window] setTitle:[NSString stringWithFormat:@"%@ - Layer Manager", [[self document] displayName]]];
+}
+
 - (void)tableViewSelectionDidChange:(NSNotification *)_notification_ {
   int row = [[_notification_ object] selectedRow];
   if( row == -1 ) {
     return;
   }
+}
+
+- (NSString *)windowTitleForDocumentDisplayName:(NSString *)_displayName_ {
+  return [NSString stringWithFormat:@"%@ - Layer Manager", _displayName_];
 }
 
 @end
