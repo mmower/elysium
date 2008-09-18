@@ -27,6 +27,7 @@
   ELMIDIController    *midiController;  // Our interface to CoreMIDI
   int                 timerResolution;  
   UInt64              startTime;
+  int                 pitchBend;
   
   int                 nextLayerNumber;
   BOOL                showNotes;
@@ -42,6 +43,7 @@
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property (readonly) BOOL isRunning;
 @property BOOL showNotes;
+@property int pitchBend;
 
 @property (readonly) ELIntegerKnob *tempoKnob;
 @property (readonly) ELIntegerKnob *timeToLiveKnob;

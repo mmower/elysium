@@ -17,14 +17,11 @@
     layer = _layer_;
   }
   
-  // NSLog( @"Controller#initWithLayer:%@", layer );
-  
   return self;
 }
 
 - (void)windowDidLoad {
-  // NSLog( @"Controller %@#windowDidLoad", self );
-  
+  // This is required because the HoneycombView doesn't resize very nicely right now
   [[self window] setAspectRatio:NSMakeSize(1.12,1.0)];
   
   [layerView setDelegate:self];

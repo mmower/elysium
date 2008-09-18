@@ -74,6 +74,7 @@
 @synthesize harmonicTable;
 @synthesize isRunning;
 @synthesize showNotes;
+@synthesize pitchBend;
 
 @synthesize tempoKnob;
 @synthesize timeToLiveKnob;
@@ -129,10 +130,11 @@
 - (void)scheduleNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ on:(UInt64)_on_ off:(UInt64)_off_ {
   NSLog( @"Play note %@ on channel:%d", _note_, _channel_ );
   ELMIDIMessage *message = [midiController createMessage];
-  [message noteOn:[_note_ number] velocity:_velocity_ at:_on_ channel:_channel_];
-  [message noteOff:[_note_ number] velocity:_velocity_ at:_off_ channel:_channel_];
-  [message send];
   
+  int noteNumber = [_note_ number] + ( pitchBend * 12 );
+  [message noteOn:noteNumber velocity:_velocity_ at:_on_ channel:_channel_];
+  [message noteOff:noteNumber velocity:_velocity_ at:_off_ channel:_channel_];
+  [message send];
 }
 
 // Drawing Support
