@@ -24,6 +24,9 @@
 
 - (void)windowDidLoad {
   // NSLog( @"Controller %@#windowDidLoad", self );
+  
+  [[self window] setAspectRatio:NSMakeSize(1.12,1.0)];
+  
   [layerView setDelegate:self];
   [layerView setDataSource:layer];
   [layer setDelegate:layerView];
