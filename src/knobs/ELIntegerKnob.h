@@ -38,6 +38,7 @@
 - (id)initWithName:(NSString *)name linkedTo:(ELKnob *)knob;
 
 - (int)value;
+- (int)filteredValue:(int)value;
 - (void)setValue:(int)value;
 
 @end

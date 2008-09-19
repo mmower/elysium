@@ -8,6 +8,8 @@
 
 #import "ELIntegerKnob.h"
 
+#import "ELOscillator.h"
+
 @implementation ELIntegerKnob
 
 - (id)initWithName:(NSString*)_name_
@@ -78,12 +80,20 @@
   NSAssert( hasValue || linkValue, @"ELIntegerKnob must have or be linked to a value" );
   
   if( linkValue ) {
-    return [(ELIntegerKnob *)linkedKnob value];
+    return [self filteredValue:[(ELIntegerKnob *)linkedKnob value]];
   } else if( hasValue ) {
-    return value;
+    return [self filteredValue:value];
   } else {
     NSLog( @"value called on ELIntegerKnob with no value or linkage." );
     abort();
+  }
+}
+
+- (int)filteredValue:(int)_value_ {
+  if( filter ) {
+    return _value_ * [filter generate];
+  } else {
+    return _value_;
   }
 }
 

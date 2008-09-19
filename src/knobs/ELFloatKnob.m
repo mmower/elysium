@@ -8,6 +8,8 @@
 
 #import "ELFloatKnob.h"
 
+#import "ELOscillator.h"
+
 @implementation ELFloatKnob
 
 - (id)initWithName:(NSString*)_name_
@@ -78,12 +80,20 @@
   NSAssert( hasValue || linkValue, @"ELFloatKnob must have or be linked to a value" );
   
   if( linkValue ) {
-    return [(ELFloatKnob *)linkedKnob value];
+    return [self filteredValue:[(ELFloatKnob *)linkedKnob value]];
   } else if( hasValue ) {
-    return value;
+    return [self filteredValue:value];
   } else {
     NSLog( @"value called on ELFloatKnob with no value or linkage." );
     abort();
+  }
+}
+
+- (float)filteredValue:(float)_value_ {
+  if( filter ) {
+    return _value_ * [filter generate];
+  } else {
+    return _value_;
   }
 }
 
