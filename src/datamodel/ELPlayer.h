@@ -22,7 +22,7 @@
   ElysiumDocument     *document;        // Cocoa NSDocument subclass hosting this player
   ELHarmonicTable     *harmonicTable;   // Represents the structure of notes to be played
   NSMutableArray      *layers;          // Each layer is an "instrument"
-  NSMutableDictionary *oscillators;     // Generate random & semi-random "shaped" values
+  NSMutableArray      *oscillators;     // Generate random & semi-random "shaped" values
   BOOL                isRunning;        // The player is active
   ELMIDIController    *midiController;  // Our interface to CoreMIDI
   int                 timerResolution;  
@@ -71,6 +71,9 @@
 // Drawing support
 
 - (void)needsDisplay;
+
+// Oscillator management
+
 
 // Layer management
 - (ELLayer *)createLayer;
