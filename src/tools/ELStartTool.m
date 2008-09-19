@@ -71,8 +71,12 @@ static NSString * const toolType = @"start";
 // Tool runner
 
 - (BOOL)shouldPulseOnBeat:(int)_beat_ {
-  NSAssert( [pulseCountKnob value] > 0, @"PulseCount must be greater than zero!" );
-  return ( _beat_ % [pulseCountKnob value] ) == 0;
+  int pulseCount = [pulseCountKnob value];
+  if( pulseCount < 1 ) {
+    return NO;
+  } else {
+    return ( _beat_ % pulseCount ) == 0;
+  }
 }
 
 - (BOOL)run:(ELPlayhead *)_playhead {
