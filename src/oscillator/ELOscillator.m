@@ -12,33 +12,33 @@
 
 @implementation ELOscillator
 
-- (id)initWithName:(NSString *)_name_ base:(float)_base_ period:(float)_period_ {
+- (id)initWithName:(NSString *)_name_ variance:(float)_variance_ period:(float)_period_ {
+  return [self initWithName:_name_
+                varianceKnob:[[ELFloatKnob alloc] initWithName:@"variance" floatValue:_variance_]
+                  periodKnob:[[ELFloatKnob alloc] initWithName:@"period" floatValue:_period_]];
+}
+
+- (id)initWithName:(NSString *)_name_ varianceKnob:(ELFloatKnob *)_varianceKnob_ periodKnob:(ELFloatKnob *)_periodKnob_ {
   if( ( self = [self init] ) ) {
-    name     = _name_;
-    variance = 1 - _base_;
-    period   = _period_;
+    name         = _name_;
+    varianceKnob = _varianceKnob_;
+    periodKnob   = _periodKnob_;
   }
   
   return self;
 }
 
 @synthesize name;
-@synthesize period;
-@synthesize variance;
-
-@dynamic base;
-
-- (float)base {
-  return 1 - variance;
-}
-
-- (void)setBase:(float)_base_ {
-  variance = 1.0 - _base_;
-}
+@synthesize varianceKnob;
+@synthesize periodKnob;
 
 - (NSString *)type {
   [self doesNotRecognizeSelector:_cmd];
   return @""; // This will not be reached because of the doesNotRecognizeSelector: message
+}
+
+- (NSString *)description {
+  return name;
 }
 
 - (float)generate {
@@ -46,7 +46,7 @@
   UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 100000000;
   
   // Find out where we are in the cycle
-  time = time % (int)( period * 10 );
+  time = time % (int)( [periodKnob value] * 10 );
   
   float t = time / 10.0;
   
@@ -55,7 +55,7 @@
 
 - (float)generateWithT:(float)_t_ {
   [self doesNotRecognizeSelector:_cmd];
-  return 0.0; // This will not be reached because of the doesNotRecognizeSelector: message
+  return 0.0; // This will not be reached because of the doesNotRecognizeSelector: message but the compiler doesn't know that.
 }
 
 @end
