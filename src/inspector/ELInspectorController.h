@@ -22,20 +22,16 @@ extern NSString* const ELNotifyObjectSelectionDidChange;
   IBOutlet NSTabView          *tabView;
   
   IBOutlet PAStackedListView  *hexInspectorView;
-  IBOutlet PAStackedListView  *layerInspectorView;
   IBOutlet PAStackedListView  *playerInspectorView;
   
   NSMutableArray              *playerPanes;
-  NSMutableArray              *layerPanes;
   NSMutableArray              *hexPanes;
   
   ELHex                       *focusedHex;
-  ELLayer                     *focusedLayer;
   ELPlayer                    *focusedPlayer;
 }
 
 @property (readonly) ELHex *focusedHex;
-@property (readonly) ELLayer *focusedLayer;
 @property (readonly) ELPlayer *focusedPlayer;
 
 - (void)loadPlugins;

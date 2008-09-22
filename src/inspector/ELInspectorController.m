@@ -14,7 +14,6 @@
 
 #import "ELInspectorPane.h"
 #import "ELPlayerInspectorPane.h"
-#import "ELLayerInspectorPane.h"
 #import "ELHexInfoInspectorPlugin.h"
 #import "ELHexStartInspectorPlugin.h"
 #import "ELHexBeatInspectorPane.h"
@@ -32,8 +31,6 @@
 #define LAYER_TAB_ITEM_INDEX 1
 #define HEX_TAB_ITEM_INDEX 2
 
-NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidChange";
-
 @implementation ELInspectorController
 
 // Initialization
@@ -41,7 +38,6 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
 - (id)init {
   if( ( self = [super initWithWindowNibName:@"Inspector"] ) ) {
     playerPanes = [[NSMutableArray alloc] init];
-    layerPanes  = [[NSMutableArray alloc] init];
     hexPanes    = [[NSMutableArray alloc] init];
   }
   return self;
@@ -54,7 +50,6 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
   [self loadPlugins];
   
   [[tabView tabViewItemAtIndex:PLAYER_TAB_ITEM_INDEX] setView:playerInspectorView];
-  [[tabView tabViewItemAtIndex:LAYER_TAB_ITEM_INDEX] setView:layerInspectorView];
   [[tabView tabViewItemAtIndex:HEX_TAB_ITEM_INDEX] setView:hexInspectorView];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -66,7 +61,6 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
 - (void)loadPlugins {
   [self addInspectorPane:[[ELPlayerInspectorPane alloc] init]];
   
-  [self addInspectorPane:[[ELLayerInspectorPane alloc] init]];
   
   [self addInspectorPane:[[ELHexInfoInspectorPlugin alloc] init]];
   [self addInspectorPane:[[ELHexStartInspectorPlugin alloc] init]];
@@ -80,7 +74,6 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
 // Properties
 
 @synthesize focusedHex;
-@synthesize focusedLayer;
 @synthesize focusedPlayer;
 
 // Pane support
@@ -93,9 +86,6 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
   if( class == [ELPlayer class] ) {
     inspectors = playerPanes;
     view = playerInspectorView;
-  } else if( class == [ELLayer class] ) {
-    inspectors = layerPanes;
-    view = layerInspectorView;
   } else if( class == [ELHex class] ) {
     inspectors = hexPanes;
     view = hexInspectorView;
@@ -127,27 +117,16 @@ NSString* const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidC
   
   if( [_focusedObject_ isKindOfClass:[ELHex class] ] ) {
     focusedHex = _focusedObject_;
-    focusedLayer = [focusedHex layer];
-    focusedPlayer = [focusedLayer player];
     tab = @"hex";
-  } else if( [_focusedObject_ isKindOfClass:[ELLayer class]] ) {
-    focusedHex = nil;
-    focusedLayer = _focusedObject_;
-    focusedPlayer = [focusedLayer player];
-    tab = @"layer";
   } else if( [_focusedObject_ isKindOfClass:[ELPlayer class]] ) {
     focusedHex = nil;
-    focusedLayer = nil;
     focusedPlayer = _focusedObject_;
     tab = @"player";
   } else {
     NSAssert2( NO, @"Focused on unknown object %@ <%@>", _focusedObject_, [_focusedObject_ className] );
   }
   
-  NSLog( @"Focus on hex=%@, layer=%@, player=%@, tab=%@", focusedHex, focusedLayer, focusedPlayer, tab );
-  
   [hexPanes makeObjectsPerformSelector:@selector(inspect:) withObject:focusedHex];
-  [layerPanes makeObjectsPerformSelector:@selector(inspect:) withObject:focusedLayer];
   [playerPanes makeObjectsPerformSelector:@selector(inspect:) withObject:focusedPlayer];
   [tabView selectTabViewItemWithIdentifier:tab];
 }
