@@ -96,6 +96,9 @@
 		C9874C2E0E42A1A10068E7BF /* LMRegularPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */; settings = {ATTRIBUTES = (); }; };
 		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
 		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
+		C98DB6D40E87D019009C699E /* ELPlayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB6D30E87D019009C699E /* ELPlayerInspectorController.m */; };
+		C98DB6D70E87D032009C699E /* ELLayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB6D60E87D032009C699E /* ELLayerInspectorController.m */; };
+		C98DB6DB0E87D03D009C699E /* ELHexInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB6DA0E87D03D009C699E /* ELHexInspectorController.m */; };
 		C9A528490E7864BB0040E203 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A528460E7864BB0040E203 /* ELOscillator.m */; };
 		C9A5284A0E7864BB0040E203 /* ELSinusoidalOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A528480E7864BB0040E203 /* ELSinusoidalOscillator.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
@@ -294,6 +297,12 @@
 		C9874C250E42A1A10068E7BF /* LMHoneycombView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMHoneycombView.m; path = ../Honeycomb/view/LMHoneycombView.m; sourceTree = SOURCE_ROOT; };
 		C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMRegularPolygon.h; path = ../Honeycomb/view/LMRegularPolygon.h; sourceTree = SOURCE_ROOT; };
 		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
+		C98DB6D20E87D019009C699E /* ELPlayerInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayerInspectorController.h; sourceTree = "<group>"; };
+		C98DB6D30E87D019009C699E /* ELPlayerInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayerInspectorController.m; sourceTree = "<group>"; };
+		C98DB6D50E87D032009C699E /* ELLayerInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELLayerInspectorController.h; path = layer/ELLayerInspectorController.h; sourceTree = "<group>"; };
+		C98DB6D60E87D032009C699E /* ELLayerInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELLayerInspectorController.m; path = layer/ELLayerInspectorController.m; sourceTree = "<group>"; };
+		C98DB6D90E87D03D009C699E /* ELHexInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexInspectorController.h; sourceTree = "<group>"; };
+		C98DB6DA0E87D03D009C699E /* ELHexInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexInspectorController.m; sourceTree = "<group>"; };
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
 		C9A528450E7864BB0040E203 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
 		C9A528460E7864BB0040E203 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
@@ -633,6 +642,8 @@
 		C97FEBD80E4F0754008F309B /* inspector */ = {
 			isa = PBXGroup;
 			children = (
+				C98DB6D80E87D03D009C699E /* hex */,
+				C98DB6D10E87D019009C699E /* player */,
 				C9D036320E708ECA005AC915 /* hexrotor */,
 				C9D036310E708EBE005AC915 /* hexsplitter */,
 				C9D036300E708EB1005AC915 /* hexsink */,
@@ -705,6 +716,24 @@
 			name = honeycombview;
 			sourceTree = "<group>";
 		};
+		C98DB6D10E87D019009C699E /* player */ = {
+			isa = PBXGroup;
+			children = (
+				C98DB6D20E87D019009C699E /* ELPlayerInspectorController.h */,
+				C98DB6D30E87D019009C699E /* ELPlayerInspectorController.m */,
+			);
+			path = player;
+			sourceTree = "<group>";
+		};
+		C98DB6D80E87D03D009C699E /* hex */ = {
+			isa = PBXGroup;
+			children = (
+				C98DB6D90E87D03D009C699E /* ELHexInspectorController.h */,
+				C98DB6DA0E87D03D009C699E /* ELHexInspectorController.m */,
+			);
+			path = hex;
+			sourceTree = "<group>";
+		};
 		C997F1640E6DC32F00554725 /* player */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,6 +772,8 @@
 		C9D036070E7082AB005AC915 /* layer */ = {
 			isa = PBXGroup;
 			children = (
+				C98DB6D50E87D032009C699E /* ELLayerInspectorController.h */,
+				C98DB6D60E87D032009C699E /* ELLayerInspectorController.m */,
 				C9D036080E7082B8005AC915 /* LayerInspector.xib */,
 				C9D0360A0E7082C5005AC915 /* ELLayerInspectorPane.h */,
 				C9D0360B0E7082C5005AC915 /* ELLayerInspectorPane.m */,
@@ -1105,6 +1136,9 @@
 				C94610AE0E7C157A001CA9B0 /* ELFloatKnob.m in Sources */,
 				C94610B10E7C1584001CA9B0 /* ELIntegerKnob.m in Sources */,
 				C94610B40E7C158B001CA9B0 /* ELBooleanKnob.m in Sources */,
+				C98DB6D40E87D019009C699E /* ELPlayerInspectorController.m in Sources */,
+				C98DB6D70E87D032009C699E /* ELLayerInspectorController.m in Sources */,
+				C98DB6DB0E87D03D009C699E /* ELHexInspectorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
