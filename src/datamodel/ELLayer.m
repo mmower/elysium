@@ -18,8 +18,6 @@
 #import "ELStartTool.h"
 #import "ELHarmonicTable.h"
 
-#import "ELInspectorController.h"
-
 NSPredicate *deadPlayheadFilter;
 
 @implementation ELLayer
