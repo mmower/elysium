@@ -8,8 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "Elysium.h"
-#import "ELLayer.h"
+@class ELLayer;
 
 @interface ELLayerInspectorController : NSWindowController {
   ELLayer *layer;

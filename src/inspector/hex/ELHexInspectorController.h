@@ -8,9 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELHex;
 
 @interface ELHexInspectorController : NSWindowController {
-
+  ELHex *hex;
 }
+
+@property ELHex *hex;
+
+- (void)focus:(ELHex *)hex;
+- (void)selectionChanged:(NSNotification*)notification;
 
 @end

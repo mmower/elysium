@@ -8,6 +8,8 @@
 
 #import "ELLayerInspectorController.h"
 
+#import "ELLayer.h"
+
 @implementation ELLayerInspectorController
 
 @synthesize layer;
