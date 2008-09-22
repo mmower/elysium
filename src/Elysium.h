@@ -37,6 +37,7 @@ typedef enum tagDirection {
 
 // Notification names
 // extern NSString* notifyObjectSelectionDidChange;
+extern NSString * const ELNotifyObjectSelectionDidChange;
 
 extern NSString * const ELNotifyCellWasUpdated;
 
