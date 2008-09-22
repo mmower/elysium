@@ -163,8 +163,13 @@
 - (ELLayer *)createLayer {
   ELLayer *layer = [[ELLayer alloc] initWithPlayer:self channel:([self layerCount]+1)];
   
-  NSString *layerId = [NSString stringWithFormat:@"Layer-%d", nextLayerNumber++];
-  [layer setLayerId:layerId];
+  [layer setLayerId:[NSString stringWithFormat:@"Layer-%d", nextLayerNumber++]];
+  
+  [[layer tempoKnob] setValue:[tempoKnob value]];
+  [[layer velocityKnob] setValue:[velocityKnob value]];
+  [[layer durationKnob] setValue:[durationKnob value]];
+  [[layer pulseCountKnob] setValue:[pulseCountKnob value]];
+  [[layer timeToLiveKnob] setValue:[timeToLiveKnob value]];
   
   [self addLayer:layer];
   return layer;
