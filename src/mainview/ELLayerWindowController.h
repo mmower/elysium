@@ -13,6 +13,7 @@
 
 @interface ELLayerWindowController : NSWindowController {
   IBOutlet  ELSurfaceView     *layerView;
+  IBOutlet  NSSlider          *transposeSlider;
   
   ELLayer                     *layer;
 }

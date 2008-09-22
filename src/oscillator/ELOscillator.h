@@ -8,22 +8,25 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "Elysium.h"
+
 @interface ELOscillator : NSObject {
-  NSString  *name;
-  float     variance;
-  float     period;
+  NSString    *name;
+  
+  ELFloatKnob *varianceKnob;
+  ELFloatKnob *periodKnob;
 }
 
-- (id)initWithName:(NSString *)name base:(float)base period:(float)period;
+- (id)initWithName:(NSString *)name variance:(float)variance period:(float)period;
+- (id)initWithName:(NSString *)name varianceKnob:(ELFloatKnob *)varianceKnob periodKnob:(ELFloatKnob *)periodKnob;
 
 @property (assign) NSString *name;
-@property float base;
-@property (readonly) float variance;
-@property float period;
+
+@property (readonly) ELFloatKnob *varianceKnob;
+@property (readonly) ELFloatKnob *periodKnob;
 
 - (NSString *)type;
 
-- (float)variance;
 - (float)generate;
 - (float)generateWithT:(float)t;
 

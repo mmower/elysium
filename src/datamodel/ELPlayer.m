@@ -13,7 +13,6 @@
 #import "ELHex.h"
 #import "ELNote.h"
 #import "ELLayer.h"
-#import "ELOscillator.h"
 #import "ElysiumDocument.h"
 #import "ELHarmonicTable.h"
 
@@ -24,7 +23,8 @@
 #import "ELBeatTool.h"
 #import "ELStartTool.h"
 
-#define USE_CHANNELS 1
+#import "ELOscillator.h"
+#import "ELSinusoidalOscillator.h"
 
 @implementation ELPlayer
 
@@ -32,13 +32,28 @@
   if( ( self = [super init] ) ) {
     harmonicTable  = [[ELHarmonicTable alloc] init];
     layers         = [[NSMutableArray alloc] init];
-    oscillators    = [[NSMutableDictionary alloc] init];
+    oscillators    = [[NSMutableArray alloc] init];
     
     tempoKnob       = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
     timeToLiveKnob  = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
     pulseCountKnob  = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
     velocityKnob    = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
     durationKnob    = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
+    
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/1" variance:1.0 period:1.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/1" variance:0.5 period:1.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/2" variance:1.0 period:2.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/2" variance:0.5 period:2.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/5" variance:1.0 period:5.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/5" variance:0.5 period:5.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/10" variance:1.0 period:10.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/10" variance:0.5 period:10.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/15" variance:1.0 period:15.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/15" variance:0.5 period:15.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/30" variance:1.0 period:30.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/30" variance:0.5 period:30.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/60" variance:1.0 period:60.0]];
+    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/60" variance:0.5 period:60.0]];
     
     nextLayerNumber = 1;
     showNotes       = NO;
@@ -74,6 +89,7 @@
 @synthesize harmonicTable;
 @synthesize isRunning;
 @synthesize showNotes;
+@synthesize pitchBend;
 
 @synthesize tempoKnob;
 @synthesize timeToLiveKnob;
@@ -127,12 +143,13 @@
 }
 
 - (void)scheduleNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ on:(UInt64)_on_ off:(UInt64)_off_ {
-  NSLog( @"Play note %@ on channel:%d", _note_, _channel_ );
+  NSLog( @"Play note %@ on channel:%d (current tempo %d)", _note_, _channel_, tempoKnob.value );
   ELMIDIMessage *message = [midiController createMessage];
-  [message noteOn:[_note_ number] velocity:_velocity_ at:_on_ channel:_channel_];
-  [message noteOff:[_note_ number] velocity:_velocity_ at:_off_ channel:_channel_];
-  [message send];
   
+  int noteNumber = [_note_ number] + ( pitchBend * 12 );
+  [message noteOn:noteNumber velocity:_velocity_ at:_on_ channel:_channel_];
+  [message noteOff:noteNumber velocity:_velocity_ at:_off_ channel:_channel_];
+  [message send];
 }
 
 // Drawing Support
@@ -185,7 +202,7 @@
 // Oscillator support
 
 - (void)addOscillator:(ELOscillator *)_oscillator_ {
-  [oscillators setObject:_oscillator_ forKey:[_oscillator_ name]];
+  // [oscillators setObject:_oscillator_ forKey:[_oscillator_ name]];
 }
 
 // Implement the ELXmlData protocol

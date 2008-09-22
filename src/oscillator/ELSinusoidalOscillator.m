@@ -16,7 +16,7 @@
 
 - (float)generateWithT:(float)_t_ {
   // Convert to angular form
-  float angle = (_t_ / [self period]) * 2 * M_PI * [self variance];
+  float angle = (_t_ / [periodKnob value]) * 2 * M_PI * [varianceKnob value];
   
   // Get the sinewave value
   return (1+sin(angle))/2;
