@@ -36,6 +36,8 @@
   
   NSString            *layerId;
   
+  ELHex               *selectedHex;
+  
   ELBooleanKnob       *enabledKnob;
   ELIntegerKnob       *channelKnob;
   ELIntegerKnob       *tempoKnob;
@@ -54,6 +56,7 @@
 @property id delegate;
 @property BOOL visible;
 @property (assign) NSString *layerId;
+@property ELHex *selectedHex;
 
 @property (readonly) ELBooleanKnob *enabledKnob;
 @property (readonly) ELIntegerKnob *channelKnob;

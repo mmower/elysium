@@ -34,12 +34,13 @@ NSPredicate *deadPlayheadFilter;
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    hexes      = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-    playheads  = [[NSMutableArray alloc] init];
-    generators = [[NSMutableArray alloc] init];
-    beatCount  = 0;
-    timeBase   = 0;
-    isRunning  = 0;
+    hexes       = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    playheads   = [[NSMutableArray alloc] init];
+    generators  = [[NSMutableArray alloc] init];
+    beatCount   = 0;
+    timeBase    = 0;
+    isRunning   = 0;
+    selectedHex = nil;
     
     enabledKnob    = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
     channelKnob    = [[ELIntegerKnob alloc] initWithName:@"channel"];
@@ -75,6 +76,7 @@ NSPredicate *deadPlayheadFilter;
 @synthesize player;
 @synthesize delegate;
 @synthesize layerId;
+@synthesize selectedHex;
 
 @synthesize enabledKnob;
 @synthesize channelKnob;
@@ -291,15 +293,15 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)hexCellSelected:(LMHexCell *)_cell_ {
-  NSLog( @"Selected hex: %@", _cell_ );
+  ELHex *hex = (ELHex *)_cell_;
   
-  // for( int direction = N; direction <= NW; direction++ ) {
-  //   NSLog( @" %d: %@", direction, [(ELHex*)_cell neighbour:direction] );
-  // }
+  [self setSelectedHex:hex];
   
-  if( _cell_ ) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:_cell_];
-    [player playNote:[(ELHex*)_cell_ note] channel:[channelKnob value] velocity:[velocityKnob value] duration:[durationKnob value]];
+  // NSLog( @"Selected hex: %@", _cell_ );
+  
+  if( hex ) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:hex];
+    [player playNote:[hex note] channel:[channelKnob value] velocity:[velocityKnob value] duration:[durationKnob value]];
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
   }
