@@ -14,6 +14,7 @@
 #import "ELPaletteController.h"
 #import "ELInspectorController.h"
 #import "ELLayerInspectorController.h"
+#import "ELPlayerInspectorController.h"
 #import "ElysiumDocument.h"
 
 extern NSString * const ELDefaultCellBackgroundColor;
@@ -98,6 +99,13 @@ NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDid
   NSLog( @"firstLayer = %@", firstLayer );
   
   [layerInspectorController focus:firstLayer];
+  
+  if( !playerInspectorController ) {
+    playerInspectorController = [[ELPlayerInspectorController alloc] init];
+  }
+  
+  [playerInspectorController showWindow:self];
+  [playerInspectorController focus:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
   
   // 
   // if( !inspectorController ) {

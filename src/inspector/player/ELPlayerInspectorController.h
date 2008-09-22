@@ -8,9 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELPlayer;
 
 @interface ELPlayerInspectorController : NSWindowController {
-
+  ELPlayer *player;
 }
+
+@property ELPlayer *player;
+
+- (void)focus:(ELPlayer *)player;
+- (void)selectionChanged:(NSNotification*)notification;
 
 @end
