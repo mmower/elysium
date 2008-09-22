@@ -28,6 +28,7 @@ extern NSString * const ELDefaultToolColor;
 extern NSString * const ELDefaultActivePlayheadColor;
 
 NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidChange";
+NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
 @implementation ElysiumController
 
