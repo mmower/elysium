@@ -11,8 +11,11 @@
 @class ELMIDIController;
 @class ELPaletteController;
 @class ELInspectorController;
+@class ELLayerInspectorController;
 
 @interface ElysiumController : NSObject {
+  ELLayerInspectorController  *layerInspectorController;
+  
   ELMIDIController        *midiController;
   ELInspectorController   *inspectorController;
   ELPaletteController     *paletteController;

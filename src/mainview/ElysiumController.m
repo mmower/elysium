@@ -13,6 +13,7 @@
 #import "ELMIDIController.h"
 #import "ELPaletteController.h"
 #import "ELInspectorController.h"
+#import "ELLayerInspectorController.h"
 #import "ElysiumDocument.h"
 
 extern NSString * const ELDefaultCellBackgroundColor;
@@ -22,6 +23,7 @@ extern NSString * const ELDefaultSelectedCellBorderColor;
 extern NSString * const ELDefaultToolColor;
 extern NSString * const ELDefaultActivePlayheadColor;
 
+NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidChange";
 
 @implementation ElysiumController
 
@@ -85,12 +87,25 @@ extern NSString * const ELDefaultActivePlayheadColor;
 // Actions
 
 - (IBAction)showInspectorPanel:(id)_sender_ {
-  if( !inspectorController ) {
-    inspectorController = [[ELInspectorController alloc] init];
+  if( !layerInspectorController ) {
+    layerInspectorController = [[ELLayerInspectorController alloc] init];
+    NSLog( @"layerInspectorController = %@", layerInspectorController );
   }
   
-  [inspectorController showWindow:self];
-  [inspectorController focus:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+  [layerInspectorController showWindow:self];
+  
+  ELLayer *firstLayer = [[[[NSDocumentController sharedDocumentController] currentDocument] player] layer:0];
+  NSLog( @"firstLayer = %@", firstLayer );
+  
+  [layerInspectorController focus:firstLayer];
+  
+  // 
+  // if( !inspectorController ) {
+  //   inspectorController = [[ELInspectorController alloc] init];
+  // }
+  // 
+  // [inspectorController showWindow:self];
+  // [inspectorController focus:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
 }
 
 - (IBAction)showPalette:(id)_sender_ {

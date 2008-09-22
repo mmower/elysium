@@ -30,9 +30,9 @@
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    harmonicTable  = [[ELHarmonicTable alloc] init];
-    layers         = [[NSMutableArray alloc] init];
-    oscillators    = [[NSMutableArray alloc] init];
+    harmonicTable = [[ELHarmonicTable alloc] init];
+    layers        = [[NSMutableArray alloc] init];
+    filters       = [[NSMutableArray alloc] init];
     
     tempoKnob       = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
     timeToLiveKnob  = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
@@ -40,20 +40,20 @@
     velocityKnob    = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
     durationKnob    = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
     
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/1" variance:1.0 period:1.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/1" variance:0.5 period:1.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/2" variance:1.0 period:2.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/2" variance:0.5 period:2.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/5" variance:1.0 period:5.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/5" variance:0.5 period:5.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/10" variance:1.0 period:10.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/10" variance:0.5 period:10.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/15" variance:1.0 period:15.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/15" variance:0.5 period:15.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/30" variance:1.0 period:30.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/30" variance:0.5 period:30.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/60" variance:1.0 period:60.0]];
-    [oscillators addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/60" variance:0.5 period:60.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/1" variance:1.0 period:1.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/1" variance:0.5 period:1.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/2" variance:1.0 period:2.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/2" variance:0.5 period:2.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/5" variance:1.0 period:5.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/5" variance:0.5 period:5.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/10" variance:1.0 period:10.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/10" variance:0.5 period:10.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/15" variance:1.0 period:15.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/15" variance:0.5 period:15.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/30" variance:1.0 period:30.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/30" variance:0.5 period:30.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/60" variance:1.0 period:60.0]];
+    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/60" variance:0.5 period:60.0]];
     
     nextLayerNumber = 1;
     showNotes       = NO;

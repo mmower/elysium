@@ -8,9 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "Elysium.h"
+#import "ELLayer.h"
 
 @interface ELLayerInspectorController : NSWindowController {
-
+  ELLayer *layer;
 }
+
+@property ELLayer *layer;
+
+- (void)focus:(ELLayer *)layer;
+- (void)selectionChanged:(NSNotification*)notification;
 
 @end
