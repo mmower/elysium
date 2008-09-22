@@ -12,10 +12,13 @@
 
 #import "ELMIDIController.h"
 #import "ELPaletteController.h"
-#import "ELInspectorController.h"
+
+#import "ELHexInspectorController.h"
 #import "ELLayerInspectorController.h"
 #import "ELPlayerInspectorController.h"
+
 #import "ElysiumDocument.h"
+#import "ELLayer.h"
 
 extern NSString * const ELDefaultCellBackgroundColor;
 extern NSString * const ELDefaultCellBorderColor;
@@ -87,33 +90,37 @@ NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDid
 
 // Actions
 
-- (IBAction)showInspectorPanel:(id)_sender_ {
+- (IBAction)showHexInspector:(id)_sender_ {
+  if( !hexInspectorController ) {
+    hexInspectorController = [[ELHexInspectorController alloc] init];
+  }
+  
+  [hexInspectorController showWindow:self];
+  [hexInspectorController focus:[[[[[NSDocumentController sharedDocumentController] currentDocument] player] layer:0] selectedHex]];
+}
+
+- (IBAction)showLayerInspector:(id)_sender_ {
   if( !layerInspectorController ) {
     layerInspectorController = [[ELLayerInspectorController alloc] init];
-    NSLog( @"layerInspectorController = %@", layerInspectorController );
   }
   
   [layerInspectorController showWindow:self];
-  
-  ELLayer *firstLayer = [[[[NSDocumentController sharedDocumentController] currentDocument] player] layer:0];
-  NSLog( @"firstLayer = %@", firstLayer );
-  
-  [layerInspectorController focus:firstLayer];
-  
+  [layerInspectorController focus:[[[[NSDocumentController sharedDocumentController] currentDocument] player] layer:0]];
+}
+
+- (IBAction)showPlayerInspector:(id)_sender_ {
   if( !playerInspectorController ) {
     playerInspectorController = [[ELPlayerInspectorController alloc] init];
   }
   
   [playerInspectorController showWindow:self];
   [playerInspectorController focus:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
-  
-  // 
-  // if( !inspectorController ) {
-  //   inspectorController = [[ELInspectorController alloc] init];
-  // }
-  // 
-  // [inspectorController showWindow:self];
-  // [inspectorController focus:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+}
+
+- (IBAction)showInspectorPanel:(id)_sender_ {
+  [self showPlayerInspector:self];
+  [self showLayerInspector:self];
+  [self showHexInspector:self];
 }
 
 - (IBAction)showPalette:(id)_sender_ {

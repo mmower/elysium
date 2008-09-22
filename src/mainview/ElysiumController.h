@@ -10,20 +10,25 @@
 
 @class ELMIDIController;
 @class ELPaletteController;
-@class ELInspectorController;
+
+@class ELHexInspectorController;
 @class ELLayerInspectorController;
 @class ELPlayerInspectorController;
 
 @interface ElysiumController : NSObject {
+  ELHexInspectorController    *hexInspectorController;
   ELLayerInspectorController  *layerInspectorController;
   ELPlayerInspectorController *playerInspectorController;
   
-  ELMIDIController        *midiController;
-  ELInspectorController   *inspectorController;
-  ELPaletteController     *paletteController;
+  ELMIDIController            *midiController;
+  ELPaletteController         *paletteController;
 }
 
 - (IBAction)showPalette:(id)sender;
+
+- (IBAction)showHexInspector:(id)sender;
+- (IBAction)showLayerInspector:(id)sender;
+- (IBAction)showPlayerInspector:(id)sender;
 - (IBAction)showInspectorPanel:(id)sender;
 
 - (ELMIDIController *)midiController;
