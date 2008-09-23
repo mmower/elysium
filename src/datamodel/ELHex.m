@@ -120,9 +120,12 @@
 }
 
 - (void)removeAllTools {
-  for( NSString *toolType in [tools allKeys] ) {
-    [self removeTool:toolType];
-  }
+  [self setGenerateTool:nil];
+  [self setNoteTool:nil];
+  [self setReboundTool:nil];
+  [self setAbsorbTool:nil];
+  [self setSplitTool:nil];
+  [self setSpinTool:nil];
 }
 
 - (NSArray *)tools {
@@ -130,7 +133,7 @@
 }
 
 - (BOOL)hasStartTool {
-  return [self toolOfType:@"start"] != nil;
+  return generateTool != nil;
 }
 
 - (BOOL)hasToolOfType:(NSString *)type {
