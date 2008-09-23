@@ -16,22 +16,18 @@ extern NSArray const *ELFilterFunctions;
   NSString      *function;
   NSString      *name;
   
-  ELFloatKnob   *varianceKnob;
-  ELFloatKnob   *periodKnob;
+  float         variance;
+  float         period;
   
   NSInvocation  *evalFunction;
 }
 
 - (id)initWithName:(NSString *)name function:(NSString *)function variance:(float)variance period:(float)period;
-- (id)initWithName:(NSString *)name function:(NSString *)function varianceKnob:(ELFloatKnob *)varianceKnob periodKnob:(ELFloatKnob *)periodKnob;
 
 @property (assign) NSString *name;
 @property (assign) NSString *function;
-
-@property (readonly) ELFloatKnob *varianceKnob;
-@property (readonly) ELFloatKnob *periodKnob;
-
-- (NSString *)function;
+@property float variance;
+@property float period;
 
 - (float)generate;
 - (float)generateWithT:(float)t;

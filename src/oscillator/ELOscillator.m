@@ -21,18 +21,11 @@ NSArray const *ELFilterFunctions;
 }
 
 - (id)initWithName:(NSString *)_name_ function:(NSString *)_function_ variance:(float)_variance_ period:(float)_period_ {
-  return [self initWithName:_name_
-                   function:_function_
-               varianceKnob:[[ELFloatKnob alloc] initWithName:@"variance" floatValue:_variance_]
-                 periodKnob:[[ELFloatKnob alloc] initWithName:@"period" floatValue:_period_]];
-}
-
-- (id)initWithName:(NSString *)_name_ function:(NSString *)_function_ varianceKnob:(ELFloatKnob *)_varianceKnob_ periodKnob:(ELFloatKnob *)_periodKnob_ {
   if( ( self = [self init] ) ) {
     name         = _name_;
     function     = _function_;
-    varianceKnob = _varianceKnob_;
-    periodKnob   = _periodKnob_;
+    variance = _variance_;
+    period   = _period_;
   }
   
   return self;
@@ -40,8 +33,8 @@ NSArray const *ELFilterFunctions;
 
 @synthesize name;
 @synthesize function;
-@synthesize varianceKnob;
-@synthesize periodKnob;
+@synthesize variance;
+@synthesize period;
 
 - (NSString *)description {
   return name;
@@ -52,7 +45,7 @@ NSArray const *ELFilterFunctions;
   UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 100000000;
   
   // Find out where we are in the cycle
-  time = time % (int)( [periodKnob filteredValue] * 10 );
+  time = time % (int)( period * 10 );
   
   float t = time / 10.0;
   
@@ -82,7 +75,7 @@ NSArray const *ELFilterFunctions;
 
 - (float)generateSineWithT:(float)_t_ {
   // Convert to angular form
-  float angle = (_t_ / [periodKnob filteredValue]) * 2 * M_PI * [varianceKnob filteredValue];
+  float angle = (_t_ / period) * 2 * M_PI * variance;
   
   // Get the sinewave value
   return (1+sin(angle))/2;
