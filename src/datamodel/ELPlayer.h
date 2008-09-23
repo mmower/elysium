@@ -36,6 +36,7 @@
   ELIntegerKnob       *pulseCountKnob;
   ELIntegerKnob       *velocityKnob;
   ELFloatKnob         *durationKnob;
+  ELIntegerKnob       *transposeKnob;
 }
 
 @property (readonly) UInt64 startTime;
@@ -48,6 +49,7 @@
 @property (readonly) ELIntegerKnob *pulseCountKnob;
 @property (readonly) ELIntegerKnob *velocityKnob;
 @property (readonly) ELFloatKnob   *durationKnob;
+@property (readonly) ELIntegerKnob *transposeKnob;
 
 - (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_;
 - (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)createDefaultLayer;

@@ -34,11 +34,12 @@
     layers        = [[NSMutableArray alloc] init];
     filters       = [[NSMutableArray alloc] init];
     
-    tempoKnob       = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
-    timeToLiveKnob  = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
-    pulseCountKnob  = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
-    velocityKnob    = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
-    durationKnob    = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
+    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
+    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
+    durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
+    transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
     
     [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/1" variance:1.0 period:1.0]];
     [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/1" variance:0.5 period:1.0]];
@@ -95,6 +96,7 @@
 @synthesize pulseCountKnob;
 @synthesize velocityKnob;
 @synthesize durationKnob;
+@synthesize transposeKnob;
 
 // Associations
 
@@ -165,6 +167,7 @@
   [[layer durationKnob] setValue:[durationKnob value]];
   [[layer pulseCountKnob] setValue:[pulseCountKnob value]];
   [[layer timeToLiveKnob] setValue:[timeToLiveKnob value]];
+  [[layer transposeKnob] setValue:[transposeKnob value]];
   
   [self addLayer:layer];
   return layer;
@@ -221,6 +224,7 @@
   [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
+  [controlsElement addChild:[transposeKnob xmlRepresentation]];
   
   [surfaceElement addChild:controlsElement];
   
@@ -278,6 +282,14 @@
       durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:nil];
     } else {
       durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+    } else {
+      transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
     }
     
     nodes = [_representation_ nodesForXPath:@"layers/layer" error:nil];

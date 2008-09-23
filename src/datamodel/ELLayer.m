@@ -42,7 +42,6 @@ NSPredicate *deadPlayheadFilter;
     
     enabledKnob   = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
     channelKnob   = [[ELIntegerKnob alloc] initWithName:@"channel"];
-    transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
   }
   
   return self;
@@ -57,6 +56,7 @@ NSPredicate *deadPlayheadFilter;
     pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedTo:[player pulseCountKnob]];
     velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedTo:[player velocityKnob]];
     durationKnob   = [[ELFloatKnob alloc] initWithName:@"layer-duration" linkedTo:[player durationKnob]];
+    transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedTo:[player transposeKnob]];
     
     [self configureHexes];
   }
@@ -378,10 +378,6 @@ NSPredicate *deadPlayheadFilter;
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
-    
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob]];
@@ -401,7 +397,10 @@ NSPredicate *deadPlayheadFilter;
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[_parent_ durationKnob]];
-
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ transposeKnob]];
     
     nodes = [_representation_ nodesForXPath:@"cells/cell" error:nil];
     for( NSXMLNode *node in nodes ) {
