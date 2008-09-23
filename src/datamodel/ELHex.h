@@ -68,6 +68,8 @@
 - (NSArray *)tools;
 - (NSArray *)toolsExceptType:(NSString *)type;
 
+- (void)copyToolsFrom:(ELHex *)hex;
+
 // Playhead management
 
 - (void)playheadEntering:(ELPlayhead *)playhead;

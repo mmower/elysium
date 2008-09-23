@@ -187,6 +187,15 @@
   return [tools filteredArrayUsingPredicate:typePredicate];
 }
 
+- (void)copyToolsFrom:(ELHex *)_hex_ {
+  [self setGenerateTool:[[_hex_ generateTool] mutableCopy]];
+  [self setNoteTool:[[_hex_ noteTool] mutableCopy]];
+  [self setReboundTool:[[_hex_ reboundTool] mutableCopy]];
+  [self setAbsorbTool:[[_hex_ absorbTool] mutableCopy]];
+  [self setSplitTool:[[_hex_ splitTool] mutableCopy]];
+  [self setSpinTool:[[_hex_ spinTool] mutableCopy]];
+}
+
 - (NSString *)description {
   return [NSString stringWithFormat:@"Hex %d,%d - %@", col, row, note];
 }

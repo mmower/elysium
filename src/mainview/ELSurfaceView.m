@@ -139,15 +139,10 @@ NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
 
 - (void)dragFromHex:(ELHex *)_sourceHex_ to:(ELHex *)_targetHex_ with:(NSDragOperation)_modifiers_ {
   [_targetHex_ removeAllTools];
-  
-  for( ELTool *tool in [_sourceHex_ tools] ) {
-    [_targetHex_ addTool:[tool mutableCopy]];
-  }
-  
+  [_targetHex_ copyToolsFrom:_sourceHex_];
   if( !_modifiers_ & NSDragOperationCopy ) {
     [_sourceHex_ removeAllTools];
   }
-  
   [self setNeedsDisplay:YES];
 }
 
