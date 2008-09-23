@@ -17,7 +17,6 @@
 		C9095EB50E743C7800D68496 /* ELMIDIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9095EB40E743C7800D68496 /* ELMIDIMessage.m */; };
 		C92128BB0E7296E100D4D096 /* LayerManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92128BA0E7296E100D4D096 /* LayerManager.xib */; };
 		C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */; };
-		C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92ACD690E3892F5009CF61B /* Inspector.xib */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
 		C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54970E61F1250077C448 /* PYMIDI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C93D54AF0E61F1250077C448 /* PYMIDIEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -183,7 +182,6 @@
 		C92128BA0E7296E100D4D096 /* LayerManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayerManager.xib; sourceTree = "<group>"; };
 		C92128BD0E7298C800D4D096 /* ELLayerManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerManagerWindowController.h; sourceTree = "<group>"; };
 		C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerManagerWindowController.m; sourceTree = "<group>"; };
-		C92ACD690E3892F5009CF61B /* Inspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Inspector.xib; path = ../../Inspector.xib; sourceTree = "<group>"; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		C93D54910E61F0E80077C448 /* PYMIDI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PYMIDI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PYMIDI-Info.plist"; sourceTree = "<group>"; };
@@ -618,7 +616,6 @@
 				C9E8D9C60E6997C8005AD9B7 /* hexbeat */,
 				C95A63080E50E7DD00CBF555 /* hexstart */,
 				C95A63070E50E7D200CBF555 /* hexinfo */,
-				C92ACD690E3892F5009CF61B /* Inspector.xib */,
 			);
 			path = inspector;
 			sourceTree = "<group>";
@@ -954,7 +951,6 @@
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				1DDD582C0DA1D0D100B32029 /* ElysiumDocument.xib in Resources */,
 				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
-				C92ACD6A0E3892F5009CF61B /* Inspector.xib in Resources */,
 				C97FEC080E4F2870008F309B /* HexInfoInspector.xib in Resources */,
 				C95A630A0E50E7F900CBF555 /* HexStartInspector.xib in Resources */,
 				C93D55FA0E6411590077C448 /* Palette.xib in Resources */,

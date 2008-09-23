@@ -26,6 +26,7 @@
 }
 
 - (void)focus:(ELHex *)_hex_ {
+  
   [self setHex:_hex_];
 }
 

@@ -8,10 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <StackedListView/PAStackedListView.h>
+#import <StackedListView/PACollapsibleSectionBox.h>
+#import <StackedListView/PASectionHeaderView.h>
+
 @class ELHex;
 
 @interface ELHexInspectorController : NSWindowController {
-  ELHex *hex;
+  IBOutlet  id  generateBox;
+  IBOutlet  id  noteBox;
+  IBOutlet  id  reboundBox;
+  IBOutlet  id  absorbBox;
+  IBOutlet  id  splitBox;
+  IBOutlet  id  spinBox;
+  ELHex         *hex;
 }
 
 @property ELHex *hex;
