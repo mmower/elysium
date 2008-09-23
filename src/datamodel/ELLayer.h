@@ -45,6 +45,7 @@
   ELIntegerKnob       *pulseCountKnob;
   ELIntegerKnob       *velocityKnob;
   ELFloatKnob         *durationKnob;
+  ELIntegerKnob       *transposeKnob;
 }
 
 + (NSPredicate *)deadPlayheadFilter;
@@ -65,6 +66,7 @@
 @property (readonly) ELIntegerKnob *pulseCountKnob;
 @property (readonly) ELIntegerKnob *velocityKnob;
 @property (readonly) ELFloatKnob *durationKnob;
+@property (readonly) ELIntegerKnob *transposeKnob;
 
 - (ELPlayer *)player;
 - (ELHex *)hexAtColumn:(int)col row:(int)row;

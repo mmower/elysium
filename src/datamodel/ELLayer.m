@@ -40,8 +40,9 @@ NSPredicate *deadPlayheadFilter;
     isRunning   = 0;
     selectedHex = nil;
     
-    enabledKnob    = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
-    channelKnob    = [[ELIntegerKnob alloc] initWithName:@"channel"];
+    enabledKnob   = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
+    channelKnob   = [[ELIntegerKnob alloc] initWithName:@"channel"];
+    transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
   }
   
   return self;
@@ -83,6 +84,7 @@ NSPredicate *deadPlayheadFilter;
 @synthesize pulseCountKnob;
 @synthesize velocityKnob;
 @synthesize durationKnob;
+@synthesize transposeKnob;
 
 - (void)playNote:(ELNote *)_note_ velocity:(int)_velocity_ duration:(float)_duration_ {
   // UInt64 noteOnTime = timeBase + (beatCount * [self timerResolution]);
@@ -334,6 +336,7 @@ NSPredicate *deadPlayheadFilter;
   [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
+  [controlsElement addChild:[transposeKnob xmlRepresentation]];
   [layerElement addChild:controlsElement];
   
   NSXMLElement *cellsElement = [NSXMLNode elementWithName:@"cells"];
@@ -375,6 +378,10 @@ NSPredicate *deadPlayheadFilter;
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
     
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+    
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob]];
@@ -394,6 +401,7 @@ NSPredicate *deadPlayheadFilter;
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[_parent_ durationKnob]];
+
     
     nodes = [_representation_ nodesForXPath:@"cells/cell" error:nil];
     for( NSXMLNode *node in nodes ) {
