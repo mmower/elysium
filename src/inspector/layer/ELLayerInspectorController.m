@@ -8,6 +8,7 @@
 
 #import "ELLayerInspectorController.h"
 
+#import "ELHex.h"
 #import "ELLayer.h"
 
 @implementation ELLayerInspectorController
@@ -33,6 +34,8 @@
 {
   if( [[_notification_ object] isKindOfClass:[ELLayer class]] ) {
     [self focus:[_notification_ object]];
+  } else if( [[_notification_ object] isKindOfClass:[ELHex class]] ) {
+    [self focus:(ELLayer *)[[_notification_ object] layer]];
   }
 }
 

@@ -8,6 +8,8 @@
 
 #import "ELPlayerInspectorController.h"
 
+#import "ELHex.h"
+#import "ELLayer.h"
 #import "ELPlayer.h"
 
 @implementation ELPlayerInspectorController
@@ -33,6 +35,10 @@
 {
   if( [[_notification_ object] isKindOfClass:[ELPlayer class]] ) {
     [self focus:[_notification_ object]];
+  } else if( [[_notification_ object] isKindOfClass:[ELLayer class]] ) {
+    [self focus:(ELPlayer *)[[_notification_ object] player]];
+  } else if( [[_notification_ object] isKindOfClass:[ELHex class]] ) {
+    [self focus:(ELPlayer *)[[[_notification_ object] layer] player]];
   }
 }
 
