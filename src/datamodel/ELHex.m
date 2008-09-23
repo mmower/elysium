@@ -304,8 +304,16 @@ NSString* elementDescription( NSBezierPathElement elt ) {
 
 - (void)drawOnHoneycombView:(LMHoneycombView *)_view_ withAttributes:(NSMutableDictionary *)_attributes_ {
   if( [playheads count] > 0 ) {
-    // Modify attributes
-    [_attributes_ setObject:[_attributes_ objectForKey:ELDefaultActivePlayheadColor] forKey:LMHoneycombViewDefaultColor];
+    int minTTL = 5;
+    for( ELPlayhead *playhead in playheads ) {
+      if( [playhead TTL] < minTTL ) {
+        minTTL = [playhead TTL];
+      }
+    }
+    
+    CGFloat fader = 0.5 + ( 0.5 * ((float)minTTL/5) );
+    
+    [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
   } else {
     [_attributes_ setObject:[(ELSurfaceView *)_view_ octaveColor:[note octave]] forKey:LMHoneycombViewDefaultColor];
   }
