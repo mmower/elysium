@@ -144,7 +144,9 @@
 }
 
 - (void)setLinkValue:(BOOL)_linkValue_ {
+  [self willChangeValueForKey:@"value"];
   linkValue = _linkValue_;
+  [self didChangeValueForKey:@"value"];
 }
 
 - (float)alpha {
