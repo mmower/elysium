@@ -188,7 +188,7 @@
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"Pos(%d,%d):%@",col,row,note];
+  return [NSString stringWithFormat:@"Hex %d,%d - %@", col, row, note];
 }
 
 // Playheads
