@@ -16,6 +16,7 @@
 #import "ELHexInspectorController.h"
 #import "ELLayerInspectorController.h"
 #import "ELPlayerInspectorController.h"
+#import "ELFilterDesignerController.h"
 
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
@@ -90,6 +91,14 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 }
 
 // Actions
+
+- (IBAction)showFilterDesigner:(id)_sender_ {
+  if( !filterDesignerController ) {
+    filterDesignerController = [[ELFilterDesignerController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+  }
+  
+  [filterDesignerController showWindow:self];
+}
 
 - (IBAction)showHexInspector:(id)_sender_ {
   if( !hexInspectorController ) {

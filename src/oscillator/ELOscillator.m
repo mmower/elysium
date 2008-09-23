@@ -10,7 +10,15 @@
 
 #import "ELOscillator.h"
 
+NSArray const *ELFilterFunctions;
+
 @implementation ELOscillator
+
++ (void)initialize {
+  if( !ELFilterFunctions ) {
+    ELFilterFunctions = [[NSArray alloc] initWithObjects:@"sine",nil];
+  }
+}
 
 - (id)initWithName:(NSString *)_name_ variance:(float)_variance_ period:(float)_period_ {
   return [self initWithName:_name_
@@ -32,7 +40,7 @@
 @synthesize varianceKnob;
 @synthesize periodKnob;
 
-- (NSString *)type {
+- (NSString *)function {
   [self doesNotRecognizeSelector:_cmd];
   return @""; // This will not be reached because of the doesNotRecognizeSelector: message
 }

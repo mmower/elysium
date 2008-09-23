@@ -10,8 +10,8 @@
 
 @implementation ELSinusoidalOscillator
 
-- (NSString *)type {
-  return @"Sine";
+- (NSString *)function {
+  return @"sine";
 }
 
 - (float)generateWithT:(float)_t_ {

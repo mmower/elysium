@@ -10,6 +10,8 @@
 
 #import "Elysium.h"
 
+extern NSArray const *ELFilterFunctions;
+
 @interface ELOscillator : NSObject {
   NSString    *name;
   
@@ -25,7 +27,7 @@
 @property (readonly) ELFloatKnob *varianceKnob;
 @property (readonly) ELFloatKnob *periodKnob;
 
-- (NSString *)type;
+- (NSString *)function;
 
 - (float)generate;
 - (float)generateWithT:(float)t;

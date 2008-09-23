@@ -73,7 +73,7 @@
 - (void)needsDisplay;
 
 // Oscillator management
-
+- (NSArray *)filterFunctions;
 
 // Layer management
 - (ELLayer *)createLayer;

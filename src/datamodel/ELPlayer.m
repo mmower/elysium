@@ -155,6 +155,10 @@
   [layers makeObjectsPerformSelector:@selector(needsDisplay)];
 }
 
+- (NSArray *)filterFunctions {
+  return (NSArray *)ELFilterFunctions;
+}
+
 // Layer Management
 
 - (ELLayer *)createLayer {
