@@ -102,27 +102,27 @@ NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
 - (void)addTool:(int)_toolTag_ toCell:(ELHex *)_cell_ {
   switch( _toolTag_ ) {
     case EL_TOOL_GENERATOR:
-      [_cell_ addTool:[[ELStartTool alloc] init]];
+      [_cell_ setGenerateTool:[[ELStartTool alloc] init]];
       break;
       
     case EL_TOOL_BEAT:
-      [_cell_ addTool:[[ELBeatTool alloc] init]];
+      [_cell_ setNoteTool:[[ELBeatTool alloc] init]];
       break;
       
     case EL_TOOL_RICOCHET:
-      [_cell_ addTool:[[ELRicochetTool alloc] init]];
+      [_cell_ setReboundTool:[[ELRicochetTool alloc] init]];
       break;
       
     case EL_TOOL_SINK:
-      [_cell_ addTool:[[ELSinkTool alloc] init]];
+      [_cell_ setAbsorbTool:[[ELSinkTool alloc] init]];
       break;
       
     case EL_TOOL_SPLITTER:
-      [_cell_ addTool:[[ELSplitterTool alloc] init]];
+      [_cell_ setSplitTool:[[ELSplitterTool alloc] init]];
       break;
       
     case EL_TOOL_ROTOR:
-      [_cell_ addTool:[[ELRotorTool alloc] init]];
+      [_cell_ setSpinTool:[[ELRotorTool alloc] init]];
       break;
       
     case EL_TOOL_CLEAR:
