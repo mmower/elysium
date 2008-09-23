@@ -55,7 +55,7 @@ NSPredicate *deadPlayheadFilter;
     timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedTo:[player timeToLiveKnob]];
     pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedTo:[player pulseCountKnob]];
     velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedTo:[player velocityKnob]];
-    durationKnob   = [[ELFloatKnob alloc] initWithName:@"layer-duration" linkedTo:[player durationKnob]];
+    durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" linkedTo:[player durationKnob]];
     transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedTo:[player transposeKnob]];
     
     [self configureHexes];
