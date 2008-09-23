@@ -1,5 +1,5 @@
 //
-//  ELStartTool.h
+//  ELGenerateTool.h
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -12,7 +12,7 @@
 
 #import "ELTool.h"
 
-@interface ELStartTool : ELTool <NSMutableCopying,ELXmlData,DirectedTool> {
+@interface ELGenerateTool : ELTool <NSMutableCopying,ELXmlData,DirectedTool> {
   ELIntegerKnob *directionKnob;
   ELIntegerKnob *timeToLiveKnob;
   ELIntegerKnob *pulseCountKnob;

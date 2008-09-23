@@ -1,20 +1,20 @@
 //
-//  ELSplitterTool.m
+//  ELSplitTool.m
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELSplitterTool.h"
+#import "ELSplitTool.h"
 
 #import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"splitter";
+static NSString * const toolType = @"split";
 
-@implementation ELSplitterTool
+@implementation ELSplitTool
 
 - (NSString *)toolType {
   return toolType;

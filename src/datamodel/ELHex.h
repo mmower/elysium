@@ -18,12 +18,12 @@
 @class ELTool;
 @class ELPlayhead;
 
-@class ELStartTool;
-@class ELBeatTool;
-@class ELRicochetTool;
-@class ELSinkTool;
-@class ELSplitterTool;
-@class ELRotorTool;
+@class ELGenerateTool;
+@class ELNoteTool;
+@class ELReboundTool;
+@class ELAbsorbTool;
+@class ELSplitTool;
+@class ELSpinTool;
 
 @interface ELHex : LMHexCell <ELXmlData> {
   ELLayer             *layer;
@@ -32,23 +32,23 @@
   NSMutableArray      *tools;
   NSMutableArray      *playheads;
   
-  ELStartTool         *generateTool;
-  ELBeatTool          *noteTool;
-  ELRicochetTool      *reboundTool;
-  ELSinkTool          *absorbTool;
-  ELSplitterTool      *splitTool;
-  ELRotorTool         *spinTool;
+  ELGenerateTool      *generateTool;
+  ELNoteTool          *noteTool;
+  ELReboundTool       *reboundTool;
+  ELAbsorbTool        *absorbTool;
+  ELSplitTool         *splitTool;
+  ELSpinTool          *spinTool;
 }
 
 @property (readonly) ELLayer *layer;
 @property (readonly) ELNote *note;
 
-@property ELStartTool *generateTool;
-@property ELBeatTool *noteTool;
-@property ELRicochetTool *reboundTool;
-@property ELSinkTool *absorbTool;
-@property ELSplitterTool *splitTool;
-@property ELRotorTool *spinTool;
+@property ELGenerateTool  *generateTool;
+@property ELNoteTool      *noteTool;
+@property ELReboundTool   *reboundTool;
+@property ELAbsorbTool    *absorbTool;
+@property ELSplitTool     *splitTool;
+@property ELSpinTool      *spinTool;
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 

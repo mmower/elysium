@@ -11,12 +11,12 @@
 #import "ELHex.h"
 #import "ELToolView.h"
 
-#import "ELBeatTool.h"
-#import "ELSinkTool.h"
-#import "ELRotorTool.h"
-#import "ELStartTool.h"
-#import "ELRicochetTool.h"
-#import "ELSplitterTool.h"
+#import "ELNoteTool.h"
+#import "ELAbsorbTool.h"
+#import "ELSpinTool.h"
+#import "ELGenerateTool.h"
+#import "ELReboundTool.h"
+#import "ELSplitTool.h"
 
 NSString *HexPBoardType = @"HexPBoardType";
 
@@ -101,28 +101,28 @@ NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
 
 - (void)addTool:(int)_toolTag_ toCell:(ELHex *)_cell_ {
   switch( _toolTag_ ) {
-    case EL_TOOL_GENERATOR:
-      [_cell_ setGenerateTool:[[ELStartTool alloc] init]];
+    case EL_TOOL_GENERATE:
+      [_cell_ setGenerateTool:[[ELGenerateTool alloc] init]];
       break;
       
-    case EL_TOOL_BEAT:
-      [_cell_ setNoteTool:[[ELBeatTool alloc] init]];
+    case EL_TOOL_NOTE:
+      [_cell_ setNoteTool:[[ELNoteTool alloc] init]];
       break;
       
-    case EL_TOOL_RICOCHET:
-      [_cell_ setReboundTool:[[ELRicochetTool alloc] init]];
+    case EL_TOOL_REBOUND:
+      [_cell_ setReboundTool:[[ELReboundTool alloc] init]];
       break;
       
-    case EL_TOOL_SINK:
-      [_cell_ setAbsorbTool:[[ELSinkTool alloc] init]];
+    case EL_TOOL_ABSORB:
+      [_cell_ setAbsorbTool:[[ELAbsorbTool alloc] init]];
       break;
       
-    case EL_TOOL_SPLITTER:
-      [_cell_ setSplitTool:[[ELSplitterTool alloc] init]];
+    case EL_TOOL_SPLIT:
+      [_cell_ setSplitTool:[[ELSplitTool alloc] init]];
       break;
       
-    case EL_TOOL_ROTOR:
-      [_cell_ setSpinTool:[[ELRotorTool alloc] init]];
+    case EL_TOOL_SPIN:
+      [_cell_ setSpinTool:[[ELSpinTool alloc] init]];
       break;
       
     case EL_TOOL_CLEAR:

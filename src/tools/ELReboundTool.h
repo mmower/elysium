@@ -1,5 +1,5 @@
 //
-//  ELRicochetTool.h
+//  ELReboundTool.h
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
@@ -12,7 +12,7 @@
 
 #import "ELTool.h"
 
-@interface ELRicochetTool : ELTool <NSMutableCopying,ELXmlData,DirectedTool> {
+@interface ELReboundTool : ELTool <NSMutableCopying,ELXmlData,DirectedTool> {
   ELIntegerKnob *directionKnob;
 }
 

@@ -20,8 +20,8 @@
 #import "ELMIDIController.h"
 
 #import "ELTool.h"
-#import "ELBeatTool.h"
-#import "ELStartTool.h"
+#import "ELNoteTool.h"
+#import "ELGenerateTool.h"
 
 #import "ELOscillator.h"
 #import "ELSinusoidalOscillator.h"

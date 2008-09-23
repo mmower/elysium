@@ -1,5 +1,5 @@
 //
-//  ELRotorTool.h
+//  ELSpinTool.h
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
@@ -12,7 +12,7 @@
 
 #import "ELTool.h"
 
-@interface ELRotorTool : ELTool <NSMutableCopying,ELXmlData> {
+@interface ELSpinTool : ELTool <NSMutableCopying,ELXmlData> {
   ELBooleanKnob *clockwiseKnob;
 
 }

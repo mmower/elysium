@@ -1,5 +1,5 @@
 //
-//  ELBeatTool.m
+//  ELNoteTool.m
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -9,15 +9,15 @@
 #import "Elysium.h"
 
 #import "ELTool.h"
-#import "ELBeatTool.h"
+#import "ELNoteTool.h"
 
 #import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"beat";
+static NSString * const toolType = @"note";
 
-@implementation ELBeatTool
+@implementation ELNoteTool
 
 - (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ {
   if( ( self = [super init] ) ) {

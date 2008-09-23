@@ -6,14 +6,14 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELSinkTool.h"
+#import "ELAbsorbTool.h"
 
 #import "ELHex.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"sink";
+static NSString * const toolType = @"absorb";
 
-@implementation ELSinkTool
+@implementation ELAbsorbTool
 
 - (NSString *)toolType {
   return toolType;

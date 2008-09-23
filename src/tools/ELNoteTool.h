@@ -1,5 +1,5 @@
 //
-//  ELBeatTool.h
+//  ELNoteTool.h
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -10,7 +10,7 @@
 
 #import "ELTool.h"
 
-@interface ELBeatTool : ELTool <NSMutableCopying,ELXmlData> {
+@interface ELNoteTool : ELTool <NSMutableCopying,ELXmlData> {
   ELIntegerKnob *velocityKnob;
   ELFloatKnob   *durationKnob;
 }

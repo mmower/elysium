@@ -1,19 +1,19 @@
 //
-//  ELRicochetTool.m
+//  ELReboundTool.m
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELRicochetTool.h"
+#import "ELReboundTool.h"
 
 #import "ELHex.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"ricochet";
+static NSString * const toolType = @"rebound";
 
-@implementation ELRicochetTool
+@implementation ELReboundTool
 
 - (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ {
   if( ( self = [super init] ) ) {

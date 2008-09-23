@@ -1,21 +1,21 @@
 //
-//  ELRotorTool.m
+//  ELSpinTool.m
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELRotorTool.h"
+#import "ELSpinTool.h"
 
 #import "ELHex.h"
 #import "ELPlayhead.h"
-#import "ELStartTool.h"
-#import "ELRicochetTool.h"
+#import "ELGenerateTool.h"
+#import "ELReboundTool.h"
 
-static NSString * const toolType = @"rotor";
+static NSString * const toolType = @"spin";
 
-@implementation ELRotorTool
+@implementation ELSpinTool
 
 - (id)initWithClockwiseKnob:(ELBooleanKnob *)_clockwiseKnob_ {
   if( ( self = [super init] ) ) {

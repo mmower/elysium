@@ -54,13 +54,7 @@
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
 		C96A679D0E6B32F800A7C237 /* ELSurfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C96A679A0E6B32F800A7C237 /* ELSurfaceView.m */; };
 		C96A679E0E6B32F800A7C237 /* ElysiumController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96A679C0E6B32F800A7C237 /* ElysiumController.m */; };
-		C97FEB380E4E0D0B008F309B /* ELBeatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB040E4E0490008F309B /* ELBeatTool.m */; };
-		C97FEB390E4E0D0B008F309B /* ELRicochetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB060E4E0490008F309B /* ELRicochetTool.m */; };
-		C97FEB3A0E4E0D0B008F309B /* ELSplitterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB080E4E0490008F309B /* ELSplitterTool.m */; };
-		C97FEB3B0E4E0D0B008F309B /* ELStartTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB0A0E4E0490008F309B /* ELStartTool.m */; };
 		C97FEB3C0E4E0D0B008F309B /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB0C0E4E0490008F309B /* ELTool.m */; };
-		C97FEB3D0E4E0D0B008F309B /* ELSinkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB180E4E04BB008F309B /* ELSinkTool.m */; };
-		C97FEB3E0E4E0D0B008F309B /* ELRotorTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB1C0E4E04C6008F309B /* ELRotorTool.m */; };
 		C97FEBD60E4F071E008F309B /* ELMIDIController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBD30E4F071E008F309B /* ELMIDIController.m */; };
 		C97FEBEB0E4F07A0008F309B /* ELHarmonicTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBDE0E4F07A0008F309B /* ELHarmonicTable.m */; };
 		C97FEBEC0E4F07A0008F309B /* ELHex.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE00E4F07A0008F309B /* ELHex.m */; };
@@ -96,6 +90,12 @@
 		C98DB86D0E8924D0009C699E /* PlayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98DB86C0E8924D0009C699E /* PlayerInspector.xib */; };
 		C98DB8710E8924FD009C699E /* ELLayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB86F0E8924FD009C699E /* ELLayerInspectorController.m */; };
 		C98DB8720E8924FD009C699E /* LayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8700E8924FD009C699E /* LayerInspector.xib */; };
+		C98DB8C20E8931CB009C699E /* ELAbsorbTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8B70E8931CB009C699E /* ELAbsorbTool.m */; };
+		C98DB8C30E8931CB009C699E /* ELGenerateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8B90E8931CB009C699E /* ELGenerateTool.m */; };
+		C98DB8C40E8931CB009C699E /* ELNoteTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8BB0E8931CB009C699E /* ELNoteTool.m */; };
+		C98DB8C50E8931CB009C699E /* ELReboundTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8BD0E8931CB009C699E /* ELReboundTool.m */; };
+		C98DB8C60E8931CB009C699E /* ELSpinTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8BF0E8931CB009C699E /* ELSpinTool.m */; };
+		C98DB8C70E8931CB009C699E /* ELSplitTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8C10E8931CB009C699E /* ELSplitTool.m */; };
 		C9A528490E7864BB0040E203 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A528460E7864BB0040E203 /* ELOscillator.m */; };
 		C9A5284A0E7864BB0040E203 /* ELSinusoidalOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A528480E7864BB0040E203 /* ELSinusoidalOscillator.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
@@ -218,20 +218,8 @@
 		C96A679A0E6B32F800A7C237 /* ELSurfaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSurfaceView.m; sourceTree = "<group>"; };
 		C96A679B0E6B32F800A7C237 /* ElysiumController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElysiumController.h; sourceTree = "<group>"; };
 		C96A679C0E6B32F800A7C237 /* ElysiumController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumController.m; sourceTree = "<group>"; };
-		C97FEB030E4E0490008F309B /* ELBeatTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELBeatTool.h; sourceTree = "<group>"; };
-		C97FEB040E4E0490008F309B /* ELBeatTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELBeatTool.m; sourceTree = "<group>"; };
-		C97FEB050E4E0490008F309B /* ELRicochetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRicochetTool.h; sourceTree = "<group>"; };
-		C97FEB060E4E0490008F309B /* ELRicochetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRicochetTool.m; sourceTree = "<group>"; };
-		C97FEB070E4E0490008F309B /* ELSplitterTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSplitterTool.h; sourceTree = "<group>"; };
-		C97FEB080E4E0490008F309B /* ELSplitterTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSplitterTool.m; sourceTree = "<group>"; };
-		C97FEB090E4E0490008F309B /* ELStartTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELStartTool.h; sourceTree = "<group>"; };
-		C97FEB0A0E4E0490008F309B /* ELStartTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELStartTool.m; sourceTree = "<group>"; };
 		C97FEB0B0E4E0490008F309B /* ELTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTool.h; sourceTree = "<group>"; };
 		C97FEB0C0E4E0490008F309B /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
-		C97FEB170E4E04BB008F309B /* ELSinkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSinkTool.h; sourceTree = "<group>"; };
-		C97FEB180E4E04BB008F309B /* ELSinkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSinkTool.m; sourceTree = "<group>"; };
-		C97FEB1B0E4E04C6008F309B /* ELRotorTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRotorTool.h; sourceTree = "<group>"; };
-		C97FEB1C0E4E04C6008F309B /* ELRotorTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRotorTool.m; sourceTree = "<group>"; };
 		C97FEBD20E4F071E008F309B /* ELMIDIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIController.h; sourceTree = "<group>"; };
 		C97FEBD30E4F071E008F309B /* ELMIDIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIController.m; sourceTree = "<group>"; };
 		C97FEBDD0E4F07A0008F309B /* ELHarmonicTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHarmonicTable.h; sourceTree = "<group>"; };
@@ -279,6 +267,18 @@
 		C98DB86E0E8924FD009C699E /* ELLayerInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerInspectorController.h; sourceTree = "<group>"; };
 		C98DB86F0E8924FD009C699E /* ELLayerInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerInspectorController.m; sourceTree = "<group>"; };
 		C98DB8700E8924FD009C699E /* LayerInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayerInspector.xib; sourceTree = "<group>"; };
+		C98DB8B60E8931CB009C699E /* ELAbsorbTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAbsorbTool.h; sourceTree = "<group>"; };
+		C98DB8B70E8931CB009C699E /* ELAbsorbTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAbsorbTool.m; sourceTree = "<group>"; };
+		C98DB8B80E8931CB009C699E /* ELGenerateTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELGenerateTool.h; sourceTree = "<group>"; };
+		C98DB8B90E8931CB009C699E /* ELGenerateTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELGenerateTool.m; sourceTree = "<group>"; };
+		C98DB8BA0E8931CB009C699E /* ELNoteTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNoteTool.h; sourceTree = "<group>"; };
+		C98DB8BB0E8931CB009C699E /* ELNoteTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNoteTool.m; sourceTree = "<group>"; };
+		C98DB8BC0E8931CB009C699E /* ELReboundTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELReboundTool.h; sourceTree = "<group>"; };
+		C98DB8BD0E8931CB009C699E /* ELReboundTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELReboundTool.m; sourceTree = "<group>"; };
+		C98DB8BE0E8931CB009C699E /* ELSpinTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSpinTool.h; sourceTree = "<group>"; };
+		C98DB8BF0E8931CB009C699E /* ELSpinTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSpinTool.m; sourceTree = "<group>"; };
+		C98DB8C00E8931CB009C699E /* ELSplitTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSplitTool.h; sourceTree = "<group>"; };
+		C98DB8C10E8931CB009C699E /* ELSplitTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSplitTool.m; sourceTree = "<group>"; };
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
 		C9A528450E7864BB0040E203 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
 		C9A528460E7864BB0040E203 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
@@ -545,20 +545,20 @@
 		C97FEB020E4E0490008F309B /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				C97FEB030E4E0490008F309B /* ELBeatTool.h */,
-				C97FEB040E4E0490008F309B /* ELBeatTool.m */,
-				C97FEB050E4E0490008F309B /* ELRicochetTool.h */,
-				C97FEB060E4E0490008F309B /* ELRicochetTool.m */,
-				C97FEB070E4E0490008F309B /* ELSplitterTool.h */,
-				C97FEB080E4E0490008F309B /* ELSplitterTool.m */,
-				C97FEB090E4E0490008F309B /* ELStartTool.h */,
-				C97FEB0A0E4E0490008F309B /* ELStartTool.m */,
+				C98DB8B60E8931CB009C699E /* ELAbsorbTool.h */,
+				C98DB8B70E8931CB009C699E /* ELAbsorbTool.m */,
+				C98DB8B80E8931CB009C699E /* ELGenerateTool.h */,
+				C98DB8B90E8931CB009C699E /* ELGenerateTool.m */,
+				C98DB8BA0E8931CB009C699E /* ELNoteTool.h */,
+				C98DB8BB0E8931CB009C699E /* ELNoteTool.m */,
+				C98DB8BC0E8931CB009C699E /* ELReboundTool.h */,
+				C98DB8BD0E8931CB009C699E /* ELReboundTool.m */,
+				C98DB8BE0E8931CB009C699E /* ELSpinTool.h */,
+				C98DB8BF0E8931CB009C699E /* ELSpinTool.m */,
+				C98DB8C00E8931CB009C699E /* ELSplitTool.h */,
+				C98DB8C10E8931CB009C699E /* ELSplitTool.m */,
 				C97FEB0B0E4E0490008F309B /* ELTool.h */,
 				C97FEB0C0E4E0490008F309B /* ELTool.m */,
-				C97FEB170E4E04BB008F309B /* ELSinkTool.h */,
-				C97FEB180E4E04BB008F309B /* ELSinkTool.m */,
-				C97FEB1B0E4E04C6008F309B /* ELRotorTool.h */,
-				C97FEB1C0E4E04C6008F309B /* ELRotorTool.m */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -955,13 +955,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				C97FEB380E4E0D0B008F309B /* ELBeatTool.m in Sources */,
-				C97FEB390E4E0D0B008F309B /* ELRicochetTool.m in Sources */,
-				C97FEB3A0E4E0D0B008F309B /* ELSplitterTool.m in Sources */,
-				C97FEB3B0E4E0D0B008F309B /* ELStartTool.m in Sources */,
 				C97FEB3C0E4E0D0B008F309B /* ELTool.m in Sources */,
-				C97FEB3D0E4E0D0B008F309B /* ELSinkTool.m in Sources */,
-				C97FEB3E0E4E0D0B008F309B /* ELRotorTool.m in Sources */,
 				C97FEBD60E4F071E008F309B /* ELMIDIController.m in Sources */,
 				C97FEBEB0E4F07A0008F309B /* ELHarmonicTable.m in Sources */,
 				C97FEBEC0E4F07A0008F309B /* ELHex.m in Sources */,
@@ -986,6 +980,12 @@
 				C98DB6D40E87D019009C699E /* ELPlayerInspectorController.m in Sources */,
 				C98DB6DB0E87D03D009C699E /* ELHexInspectorController.m in Sources */,
 				C98DB8710E8924FD009C699E /* ELLayerInspectorController.m in Sources */,
+				C98DB8C20E8931CB009C699E /* ELAbsorbTool.m in Sources */,
+				C98DB8C30E8931CB009C699E /* ELGenerateTool.m in Sources */,
+				C98DB8C40E8931CB009C699E /* ELNoteTool.m in Sources */,
+				C98DB8C50E8931CB009C699E /* ELReboundTool.m in Sources */,
+				C98DB8C60E8931CB009C699E /* ELSpinTool.m in Sources */,
+				C98DB8C70E8931CB009C699E /* ELSplitTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

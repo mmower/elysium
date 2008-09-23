@@ -14,12 +14,12 @@
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 
-#import "ELBeatTool.h"
-#import "ELStartTool.h"
-#import "ELRicochetTool.h"
-#import "ELSinkTool.h"
-#import "ELSplitterTool.h"
-#import "ELRotorTool.h"
+#import "ELNoteTool.h"
+#import "ELGenerateTool.h"
+#import "ELReboundTool.h"
+#import "ELAbsorbTool.h"
+#import "ELSplitTool.h"
+#import "ELSpinTool.h"
 
 NSMutableDictionary *toolMapping = nil;
 

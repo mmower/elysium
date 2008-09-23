@@ -16,7 +16,7 @@
 @class ELNote;
 @class ELPlayer;
 @class ELPlayhead;
-@class ELStartTool;
+@class ELGenerateTool;
 
 @interface ELLayer : NSObject <LMHoneycombMatrix,ELXmlData> {
   id                  delegate;     // This will be the view representing us in the UI
@@ -75,8 +75,8 @@
 
 - (int)timerResolution;
 
-- (void)addGenerator:(ELStartTool *)generator;
-- (void)removeGenerator:(ELStartTool *)generator;
+- (void)addGenerator:(ELGenerateTool *)generator;
+- (void)removeGenerator:(ELGenerateTool *)generator;
 
 - (void)run;
 - (void)stop;

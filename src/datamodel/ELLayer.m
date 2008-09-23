@@ -15,7 +15,7 @@
 #import "ELTool.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
-#import "ELStartTool.h"
+#import "ELGenerateTool.h"
 #import "ELHarmonicTable.h"
 
 NSPredicate *deadPlayheadFilter;
@@ -122,7 +122,7 @@ NSPredicate *deadPlayheadFilter;
     // Run all current playheads
     for( ELPlayhead *playhead in [playheads copy] ) {
       ELHex *hex = [playhead position];
-      for( ELTool *tool in [hex toolsExceptType:@"start"] ) {
+      for( ELTool *tool in [hex toolsExceptType:@"generate"] ) {
         if( ![playhead isDead] ) {
           [tool run:playhead];
         }
@@ -188,16 +188,16 @@ NSPredicate *deadPlayheadFilter;
   [playheads removeAllObjects];
 }
 
-- (void)addGenerator:(ELStartTool *)_generator_ {
+- (void)addGenerator:(ELGenerateTool *)_generator_ {
   [generators addObject:_generator_];
 }
 
-- (void)removeGenerator:(ELStartTool *)_generator_ {
+- (void)removeGenerator:(ELGenerateTool *)_generator_ {
   [generators removeObject:_generator_];
 }
 
 - (void)pulse {
-  for( ELStartTool *generator in generators ) {
+  for( ELGenerateTool *generator in generators ) {
     if( [generator shouldPulseOnBeat:beatCount] ) {
       [generator run:nil];
     }

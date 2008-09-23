@@ -18,12 +18,12 @@
 #import "ELPlayhead.h"
 #import "ELSurfaceView.h"
 
-#import "ELStartTool.h"
-#import "ELBeatTool.h"
-#import "ELRicochetTool.h"
-#import "ELSinkTool.h"
-#import "ELSplitterTool.h"
-#import "ELRotorTool.h"
+#import "ELGenerateTool.h"
+#import "ELNoteTool.h"
+#import "ELReboundTool.h"
+#import "ELAbsorbTool.h"
+#import "ELSplitTool.h"
+#import "ELSpinTool.h"
 
 @implementation ELHex
 
@@ -52,11 +52,11 @@
 
 @dynamic generateTool;
 
-- (ELStartTool *)generateTool {
+- (ELGenerateTool *)generateTool {
   return generateTool;
 }
 
-- (void)setGenerateTool:(ELStartTool *)_generateTool_ {
+- (void)setGenerateTool:(ELGenerateTool *)_generateTool_ {
   [self removeTool:generateTool];
   generateTool = _generateTool_;
   [self addTool:generateTool];
@@ -64,11 +64,11 @@
 
 @dynamic noteTool;
 
-- (ELBeatTool *)noteTool {
+- (ELNoteTool *)noteTool {
   return noteTool;
 }
 
-- (void)setNoteTool:(ELBeatTool *)_noteTool_ {
+- (void)setNoteTool:(ELNoteTool *)_noteTool_ {
   [self removeTool:noteTool];
   noteTool = _noteTool_;
   [self addTool:noteTool];
@@ -76,11 +76,11 @@
 
 @dynamic reboundTool;
 
-- (ELRicochetTool *)reboundTool {
+- (ELReboundTool *)reboundTool {
   return reboundTool;
 }
 
-- (void)setReboundTool:(ELRicochetTool *)_reboundTool_ {
+- (void)setReboundTool:(ELReboundTool *)_reboundTool_ {
   [self removeTool:reboundTool];
   reboundTool = _reboundTool_;
   [self addTool:reboundTool];
@@ -88,11 +88,11 @@
 
 @dynamic absorbTool;
 
-- (ELSinkTool *)absorbTool {
+- (ELAbsorbTool *)absorbTool {
   return absorbTool;
 }
 
-- (void)setAbsorbTool:(ELSinkTool *)_absorbTool_ {
+- (void)setAbsorbTool:(ELAbsorbTool *)_absorbTool_ {
   [self removeTool:absorbTool];
   absorbTool = _absorbTool_;
   [self addTool:absorbTool];
@@ -100,11 +100,11 @@
 
 @dynamic splitTool;
 
-- (ELSplitterTool *)splitTool {
+- (ELSplitTool *)splitTool {
   return splitTool;
 }
 
-- (void)setSplitTool:(ELSplitterTool *)_splitTool_ {
+- (void)setSplitTool:(ELSplitTool *)_splitTool_ {
   [self removeTool:splitTool];
   splitTool = _splitTool_;
   [self addTool:splitTool];
@@ -112,11 +112,11 @@
 
 @dynamic spinTool;
 
-- (ELRotorTool *)spinTool {
+- (ELSpinTool *)spinTool {
   return spinTool;
 }
 
-- (void)setSpinTool:(ELRotorTool *)_spinTool_ {
+- (void)setSpinTool:(ELSpinTool *)_spinTool_ {
   [self removeTool:spinTool];
   spinTool = _spinTool_;
   [self addTool:spinTool];

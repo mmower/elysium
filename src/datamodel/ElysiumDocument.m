@@ -20,8 +20,8 @@
 #import "ELLayerWindowController.h"
 #import "ELLayerManagerWindowController.h"
 
-#import "ELStartTool.h"
-#import "ELBeatTool.h"
+#import "ELGenerateTool.h"
+#import "ELNoteTool.h"
 
 @implementation ElysiumDocument
 
@@ -49,7 +49,7 @@
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
 
   NSXMLElement *rootElement = [NSXMLNode elementWithName:@"elysium"];
-  [attributes setObject:[NSNumber numberWithInt:1] forKey:@"version"];
+  [attributes setObject:[NSNumber numberWithInt:2] forKey:@"version"];
   [rootElement setAttributesAsDictionary:attributes];
 
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithRootElement:rootElement];
@@ -79,7 +79,7 @@
     NSLog( @"Invalid root element type!" );
     return NO;
   }
-  if( ![[[rootElement attributeForName:@"version"] stringValue] isEqualToString:@"1"] ) {
+  if( ![[[rootElement attributeForName:@"version"] stringValue] isEqualToString:@"2"] ) {
     NSLog( @"Invalid document version!" );
     return NO;
   }

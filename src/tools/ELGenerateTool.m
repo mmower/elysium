@@ -1,20 +1,20 @@
 //
-//  ELStartTool.m
+//  ELGenerateTool.m
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELStartTool.h"
+#import "ELGenerateTool.h"
 
 #import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"start";
+static NSString * const toolType = @"generate";
 
-@implementation ELStartTool
+@implementation ELGenerateTool
 
 - (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ timeToLiveKnob:(ELIntegerKnob *)_timeToLiveKnob_ pulseCountKnob:(ELIntegerKnob *)_pulseCountKnob_ {
   if( ( self = [super init] ) ) {

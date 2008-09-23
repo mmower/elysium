@@ -1,5 +1,5 @@
 //
-//  ELSinkTool.h
+//  ELAbsorbTool.h
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
@@ -10,7 +10,7 @@
 
 #import "ELTool.h"
 
-@interface ELSinkTool : ELTool <NSMutableCopying,ELXmlData> {
+@interface ELAbsorbTool : ELTool <NSMutableCopying,ELXmlData> {
 }
 
 @end
