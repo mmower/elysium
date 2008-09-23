@@ -24,7 +24,6 @@
 #import "ELGenerateTool.h"
 
 #import "ELOscillator.h"
-#import "ELSinusoidalOscillator.h"
 
 @implementation ELPlayer
 
@@ -53,7 +52,7 @@
     // [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/15" variance:0.5 period:15.0]];
     // [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/30" variance:1.0 period:30.0]];
     // [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/30" variance:0.5 period:30.0]];
-    [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"1/60" function:@"Sine" variance:1.0 period:60.0]];
+    [filters addObject:[[ELOscillator alloc] initWithName:@"1/60" function:@"Sine" variance:1.0 period:60.0]];
     // [filters addObject:[[ELSinusoidalOscillator alloc] initWithName:@"0.5/60" variance:0.5 period:60.0]];
     
     nextLayerNumber = 1;

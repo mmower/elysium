@@ -99,7 +99,6 @@
 		C98DB9100E89755E009C699E /* ELFilterDesignerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB90F0E89755E009C699E /* ELFilterDesignerController.m */; };
 		C98DB9120E897569009C699E /* FilterDesigner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98DB9110E897569009C699E /* FilterDesigner.xib */; };
 		C9A528490E7864BB0040E203 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A528460E7864BB0040E203 /* ELOscillator.m */; };
-		C9A5284A0E7864BB0040E203 /* ELSinusoidalOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A528480E7864BB0040E203 /* ELSinusoidalOscillator.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9BB9DDA0E71E4D60088561D /* ELLayerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB9DD90E71E4D60088561D /* ELLayerWindowController.m */; };
 		C9BB9DEA0E71EC3D0088561D /* LayerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9BB9DE90E71EC3D0088561D /* LayerWindow.xib */; };
@@ -287,8 +286,6 @@
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
 		C9A528450E7864BB0040E203 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
 		C9A528460E7864BB0040E203 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
-		C9A528470E7864BB0040E203 /* ELSinusoidalOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSinusoidalOscillator.h; sourceTree = "<group>"; };
-		C9A528480E7864BB0040E203 /* ELSinusoidalOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSinusoidalOscillator.m; sourceTree = "<group>"; };
 		C9A5286D0E7866BC0040E203 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A5286E0E7866BC0040E203 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
@@ -669,8 +666,6 @@
 			children = (
 				C9A528450E7864BB0040E203 /* ELOscillator.h */,
 				C9A528460E7864BB0040E203 /* ELOscillator.m */,
-				C9A528470E7864BB0040E203 /* ELSinusoidalOscillator.h */,
-				C9A528480E7864BB0040E203 /* ELSinusoidalOscillator.m */,
 				C98DB90E0E89755E009C699E /* ELFilterDesignerController.h */,
 				C98DB90F0E89755E009C699E /* ELFilterDesignerController.m */,
 				C98DB9110E897569009C699E /* FilterDesigner.xib */,
@@ -981,7 +976,6 @@
 				C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */,
 				C9095EB50E743C7800D68496 /* ELMIDIMessage.m in Sources */,
 				C9A528490E7864BB0040E203 /* ELOscillator.m in Sources */,
-				C9A5284A0E7864BB0040E203 /* ELSinusoidalOscillator.m in Sources */,
 				C94610AB0E7C156F001CA9B0 /* ELKnob.m in Sources */,
 				C94610AE0E7C157A001CA9B0 /* ELFloatKnob.m in Sources */,
 				C94610B10E7C1584001CA9B0 /* ELIntegerKnob.m in Sources */,
