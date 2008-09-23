@@ -29,7 +29,7 @@
   ELLayer             *layer;
   ELNote              *note;
   ELHex               *neighbours[6];
-  NSMutableDictionary *tools;
+  NSMutableArray      *tools;
   NSMutableArray      *playheads;
   
   ELStartTool         *generateTool;
@@ -62,11 +62,9 @@
 - (BOOL)shouldBeSaved;
 
 - (void)addTool:(ELTool *)tool;
-- (void)removeTool:(NSString *)type;
+- (void)removeTool:(ELTool *)tool;
 - (void)removeAllTools;
 
-- (BOOL)hasToolOfType:(NSString *)type;
-- (ELTool *)toolOfType:(NSString *)type;
 - (NSArray *)tools;
 - (NSArray *)toolsExceptType:(NSString *)type;
 

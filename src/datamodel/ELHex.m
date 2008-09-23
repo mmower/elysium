@@ -19,6 +19,11 @@
 #import "ELSurfaceView.h"
 
 #import "ELStartTool.h"
+#import "ELBeatTool.h"
+#import "ELRicochetTool.h"
+#import "ELSinkTool.h"
+#import "ELSplitterTool.h"
+#import "ELRotorTool.h"
 
 @implementation ELHex
 
@@ -26,7 +31,7 @@
   if( ( self = [super initWithColumn:_col row:_row] ) ) {
     layer     = _layer;
     note      = _note;
-    tools     = [[NSMutableDictionary alloc] init];
+    tools     = [[NSMutableArray alloc] init];
     playheads = [[NSMutableArray alloc] init];
     
     [self connectNeighbour:nil direction:N];
@@ -35,13 +40,6 @@
     [self connectNeighbour:nil direction:S];
     [self connectNeighbour:nil direction:SW];
     [self connectNeighbour:nil direction:NW];
-    
-    [self addObserver:self forKeyPath:@"generateTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    [self addObserver:self forKeyPath:@"noteTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    [self addObserver:self forKeyPath:@"reboundTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    [self addObserver:self forKeyPath:@"absorbTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    [self addObserver:self forKeyPath:@"splitTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    [self addObserver:self forKeyPath:@"spinTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
   }
   
   return self;
@@ -52,12 +50,77 @@
 @synthesize layer;
 @synthesize note;
 
-@synthesize generateTool;
-@synthesize noteTool;
-@synthesize reboundTool;
-@synthesize absorbTool;
-@synthesize splitTool;
-@synthesize spinTool;
+@dynamic generateTool;
+
+- (ELStartTool *)generateTool {
+  return generateTool;
+}
+
+- (void)setGenerateTool:(ELStartTool *)_generateTool_ {
+  [self removeTool:generateTool];
+  generateTool = _generateTool_;
+  [self addTool:generateTool];
+}
+
+@dynamic noteTool;
+
+- (ELBeatTool *)noteTool {
+  return noteTool;
+}
+
+- (void)setNoteTool:(ELBeatTool *)_noteTool_ {
+  [self removeTool:noteTool];
+  noteTool = _noteTool_;
+  [self addTool:noteTool];
+}
+
+@dynamic reboundTool;
+
+- (ELRicochetTool *)reboundTool {
+  return reboundTool;
+}
+
+- (void)setReboundTool:(ELRicochetTool *)_reboundTool_ {
+  [self removeTool:reboundTool];
+  reboundTool = _reboundTool_;
+  [self addTool:reboundTool];
+}
+
+@dynamic absorbTool;
+
+- (ELSinkTool *)absorbTool {
+  return absorbTool;
+}
+
+- (void)setAbsorbTool:(ELSinkTool *)_absorbTool_ {
+  [self removeTool:absorbTool];
+  absorbTool = _absorbTool_;
+  [self addTool:absorbTool];
+}
+
+@dynamic splitTool;
+
+- (ELSplitterTool *)splitTool {
+  return splitTool;
+}
+
+- (void)setSplitTool:(ELSplitterTool *)_splitTool_ {
+  [self removeTool:splitTool];
+  splitTool = _splitTool_;
+  [self addTool:splitTool];
+}
+
+@dynamic spinTool;
+
+- (ELRotorTool *)spinTool {
+  return spinTool;
+}
+
+- (void)setSpinTool:(ELRotorTool *)_spinTool_ {
+  [self removeTool:spinTool];
+  spinTool = _spinTool_;
+  [self addTool:spinTool];
+}
 
 // Hexes form a grid
 
@@ -82,40 +145,27 @@
 }
 
 - (void)addTool:(ELTool *)_tool_ {
-  [tools setObject:_tool_ forKey:[_tool_ toolType]];
-  [_tool_ addedToLayer:layer atPosition:self];
-  
-  for( NSString *keyPath in [_tool_ observableValues] ) {
-    NSLog( @"%@ becoming observer of %@:%@", self, _tool_, keyPath );
-    [_tool_ addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil]; //)
+  if( _tool_ ) {
+    [tools addObject:_tool_];
+    [_tool_ addedToLayer:layer atPosition:self];
+
+    for( NSString *keyPath in [_tool_ observableValues] ) {
+      [_tool_ addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil]; //)
+    }
   }
 }
 
-- (void)removeTool:(NSString *)_type_ {
-  ELTool *tool = [self toolOfType:_type_];
-  
-  for( NSString *keyPath in [tool observableValues] ) {
-    [tool removeObserver:self forKeyPath:keyPath];
+- (void)removeTool:(ELTool *)_tool_ {
+  if( _tool_ ) {
+    for( NSString *keyPath in [_tool_ observableValues] ) {
+      [_tool_ removeObserver:self forKeyPath:keyPath];
+    }
+    [_tool_ removedFromLayer:layer];
+    [tools removeObject:_tool_];
   }
-  [tool removedFromLayer:layer];
-  [tools removeObjectForKey:_type_];
 }
 
 - (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_changes_ context:(id)_context_ {
-  if( [_keyPath_ hasSuffix:@"Tool"] ) {
-    id oldTool = [_changes_ objectForKey:NSKeyValueChangeOldKey];
-    if( oldTool != [NSNull null] ) {
-      NSLog( @"Removing tool: %@", oldTool );
-      [self removeTool:[oldTool toolType]];
-    }
-    
-    id newTool = [_changes_ objectForKey:NSKeyValueChangeNewKey];
-    if( newTool != [NSNull null] ) {
-      NSLog( @"Adding tool: %@", newTool );
-      [self addTool:newTool];
-    }
-  }
-  
   [layer needsDisplay];
 }
 
@@ -129,24 +179,12 @@
 }
 
 - (NSArray *)tools {
-  return [tools allValues];
+  return [tools copy];
 }
 
-- (BOOL)hasStartTool {
-  return generateTool != nil;
-}
-
-- (BOOL)hasToolOfType:(NSString *)type {
-  return [self toolOfType:type] != nil;
-}
-
-- (ELTool *)toolOfType:(NSString *)_type {
-  return [tools objectForKey:_type];
-}
-
-- (NSArray *)toolsExceptType:(NSString *)_type {
-  NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"toolType != %@",_type];
-  return [[tools allValues] filteredArrayUsingPredicate:typePredicate];
+- (NSArray *)toolsExceptType:(NSString *)_type_ {
+  NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"toolType != %@",_type_];
+  return [tools filteredArrayUsingPredicate:typePredicate];
 }
 
 - (NSString *)description {
