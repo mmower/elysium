@@ -90,7 +90,7 @@ NSPredicate *deadPlayheadFilter;
   // UInt64 noteOnTime = timeBase + (beatCount * [self timerResolution]);
   // UInt64 noteOffTime = noteOnTime + ( _duration_ * 1000000 );
   // [player scheduleNote:_note_ channel:[self channel] velocity:[self velocity] on:noteOnTime off:noteOffTime];
-  [player playNote:_note_ channel:[channelKnob value] velocity:_velocity_ duration:_duration_];
+  [player playNote:([_note_ number] + [transposeKnob value]) channel:[channelKnob value] velocity:_velocity_ duration:_duration_];
 }
 
 - (int)timerResolution {
@@ -301,7 +301,7 @@ NSPredicate *deadPlayheadFilter;
   
   if( hex ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:hex];
-    [player playNote:[hex note] channel:[channelKnob value] velocity:[velocityKnob value] duration:[durationKnob value]];
+    [player playNote:[[hex note] number] channel:[channelKnob value] velocity:[velocityKnob value] duration:[durationKnob value]];
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
   }

@@ -89,7 +89,6 @@
 @synthesize harmonicTable;
 @synthesize isRunning;
 @synthesize showNotes;
-@synthesize pitchBend;
 
 @synthesize tempoKnob;
 @synthesize timeToLiveKnob;
@@ -132,23 +131,19 @@
   [layers makeObjectsPerformSelector:@selector(clear)];
 }
 
-- (void)playNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ duration:(float)_duration_ {
+- (void)playNote:(int)_note_ channel:(int)_channel_ velocity:(int)_velocity_ duration:(float)_duration_ {
   UInt64 hostTime = AudioGetCurrentHostTime();
-  // NSLog( @"hostTime = %llu", hostTime );
   UInt64 onTime = hostTime + AudioConvertNanosToHostTime(50000000);
-  // NSLog( @"onTime = %llu", onTime );
   UInt64 offTime = onTime + AudioConvertNanosToHostTime(_duration_ * 1000000000);
-  // NSLog( @"offTime = %llu", offTime );
   [self scheduleNote:_note_ channel:_channel_ velocity:_velocity_ on:onTime off:offTime];
 }
 
-- (void)scheduleNote:(ELNote *)_note_ channel:(int)_channel_ velocity:(int)_velocity_ on:(UInt64)_on_ off:(UInt64)_off_ {
-  NSLog( @"Play note %@ on channel:%d (current tempo %d)", _note_, _channel_, tempoKnob.value );
+- (void)scheduleNote:(int)_note_ channel:(int)_channel_ velocity:(int)_velocity_ on:(UInt64)_on_ off:(UInt64)_off_ {
+  NSLog( @"Play note %d on channel:%d (current tempo %d)", _note_, _channel_, tempoKnob.value );
   ELMIDIMessage *message = [midiController createMessage];
   
-  int noteNumber = [_note_ number] + ( pitchBend * 12 );
-  [message noteOn:noteNumber velocity:_velocity_ at:_on_ channel:_channel_];
-  [message noteOff:noteNumber velocity:_velocity_ at:_off_ channel:_channel_];
+  [message noteOn:_note_ velocity:_velocity_ at:_on_ channel:_channel_];
+  [message noteOff:_note_ velocity:_velocity_ at:_off_ channel:_channel_];
   [message send];
 }
 

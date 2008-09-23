@@ -27,7 +27,6 @@
   ELMIDIController    *midiController;  // Our interface to CoreMIDI
   int                 timerResolution;  
   UInt64              startTime;
-  int                 pitchBend;
   
   int                 nextLayerNumber;
   BOOL                showNotes;
@@ -43,7 +42,6 @@
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property (readonly) BOOL isRunning;
 @property BOOL showNotes;
-@property int pitchBend;
 
 @property (readonly) ELIntegerKnob *tempoKnob;
 @property (readonly) ELIntegerKnob *timeToLiveKnob;
@@ -65,8 +63,8 @@
 
 - (void)clearAll;
 
-- (void)playNote:(ELNote *)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
-- (void)scheduleNote:(ELNote *)note channel:(int)channel velocity:(int)velocity on:(UInt64)on off:(UInt64)off;
+- (void)playNote:(int)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
+- (void)scheduleNote:(int)note channel:(int)channel velocity:(int)velocity on:(UInt64)on off:(UInt64)off;
 
 // Drawing support
 
