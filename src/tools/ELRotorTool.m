@@ -50,10 +50,10 @@ static NSString * const toolType = @"rotor";
   if( [super run:_playhead_] ) {
     ELTool<DirectedTool> *tool;
     
-    if( [[_playhead_ position] toolOfType:@"ricochet"] ) {
-      tool = [[_playhead_ position] toolOfType:@"ricochet"];
-    } else if( [[_playhead_ position] toolOfType:@"start"] ) {
-      tool = [[_playhead_ position] toolOfType:@"start"];
+    if( [[_playhead_ position] reboundTool] ) {
+      tool = [[_playhead_ position] reboundTool];
+    } else if( [[_playhead_ position] generateTool] ) {
+      tool = [[_playhead_ position] generateTool];
     } else {
       tool = nil;
     }

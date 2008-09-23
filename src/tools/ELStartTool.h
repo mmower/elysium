@@ -12,7 +12,7 @@
 
 #import "ELTool.h"
 
-@interface ELStartTool : ELTool <NSMutableCopying,ELXmlData> {
+@interface ELStartTool : ELTool <NSMutableCopying,ELXmlData,DirectedTool> {
   ELIntegerKnob *directionKnob;
   ELIntegerKnob *timeToLiveKnob;
   ELIntegerKnob *pulseCountKnob;
