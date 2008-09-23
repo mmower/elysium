@@ -26,8 +26,8 @@
 }
 
 - (void)focus:(ELHex *)_hex_ {
-  
   [self setHex:_hex_];
+  [stackedList rearrangeSubviews];
 }
 
 - (void)selectionChanged:(NSNotification*)_notification_

@@ -15,13 +15,8 @@
 @class ELHex;
 
 @interface ELHexInspectorController : NSWindowController {
-  IBOutlet  id  generateBox;
-  IBOutlet  id  noteBox;
-  IBOutlet  id  reboundBox;
-  IBOutlet  id  absorbBox;
-  IBOutlet  id  splitBox;
-  IBOutlet  id  spinBox;
-  ELHex         *hex;
+  IBOutlet PAStackedListView  *stackedList;
+  ELHex                       *hex;
 }
 
 @property ELHex *hex;
