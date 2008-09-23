@@ -13,16 +13,20 @@
 extern NSArray const *ELFilterFunctions;
 
 @interface ELOscillator : NSObject {
-  NSString    *name;
+  NSString      *function;
+  NSString      *name;
   
-  ELFloatKnob *varianceKnob;
-  ELFloatKnob *periodKnob;
+  ELFloatKnob   *varianceKnob;
+  ELFloatKnob   *periodKnob;
+  
+  NSInvocation  *evalFunction;
 }
 
-- (id)initWithName:(NSString *)name variance:(float)variance period:(float)period;
-- (id)initWithName:(NSString *)name varianceKnob:(ELFloatKnob *)varianceKnob periodKnob:(ELFloatKnob *)periodKnob;
+- (id)initWithName:(NSString *)name function:(NSString *)function variance:(float)variance period:(float)period;
+- (id)initWithName:(NSString *)name function:(NSString *)function varianceKnob:(ELFloatKnob *)varianceKnob periodKnob:(ELFloatKnob *)periodKnob;
 
 @property (assign) NSString *name;
+@property (assign) NSString *function;
 
 @property (readonly) ELFloatKnob *varianceKnob;
 @property (readonly) ELFloatKnob *periodKnob;
