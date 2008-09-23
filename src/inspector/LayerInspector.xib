@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="76"/>
+			<integer value="77"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1579,6 +1579,306 @@
 					</object>
 					<int key="connectionID">228</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.tempoKnob.linkValue</string>
+						<reference key="source" ref="567673796"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="567673796"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.tempoKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.tempoKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">230</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.tempoKnob.linkValue</string>
+						<reference key="source" ref="333105392"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="333105392"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.tempoKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.tempoKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">232</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.tempoKnob.linkValue</string>
+						<reference key="source" ref="154654050"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="154654050"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.tempoKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.tempoKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">234</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.velocityKnob.linkValue</string>
+						<reference key="source" ref="632442182"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="632442182"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.velocityKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.velocityKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">236</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.velocityKnob.linkValue</string>
+						<reference key="source" ref="212872637"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="212872637"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.velocityKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.velocityKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">238</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.velocityKnob.linkValue</string>
+						<reference key="source" ref="238592361"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="238592361"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.velocityKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.velocityKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">240</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.durationKnob.linkValue</string>
+						<reference key="source" ref="656132197"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="656132197"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.durationKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.durationKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">242</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.durationKnob.linkValue</string>
+						<reference key="source" ref="805641235"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="805641235"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.durationKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.durationKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">244</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.durationKnob.linkValue</string>
+						<reference key="source" ref="799515531"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="799515531"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.durationKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.durationKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">246</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.timeToLiveKnob.linkValue</string>
+						<reference key="source" ref="215728418"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="215728418"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.timeToLiveKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.timeToLiveKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">254</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.timeToLiveKnob.linkValue</string>
+						<reference key="source" ref="386725331"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="386725331"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.timeToLiveKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.timeToLiveKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">256</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.timeToLiveKnob.linkValue</string>
+						<reference key="source" ref="539127895"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="539127895"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.timeToLiveKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.timeToLiveKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">258</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.pulseCountKnob.linkValue</string>
+						<reference key="source" ref="237073054"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="237073054"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.pulseCountKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.pulseCountKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">259</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.pulseCountKnob.linkValue</string>
+						<reference key="source" ref="1016939059"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1016939059"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.pulseCountKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.pulseCountKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">260</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: layer.pulseCountKnob.linkValue</string>
+						<reference key="source" ref="318703801"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="318703801"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: layer.pulseCountKnob.linkValue</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">layer.pulseCountKnob.linkValue</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">261</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2669,11 +2969,11 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{815, 188}, {321, 550}}</string>
+					<string>{{740, 190}, {321, 550}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="0" id="6"/>
 					<reference ref="6"/>
-					<string>{{815, 188}, {321, 550}}</string>
+					<string>{{740, 190}, {321, 550}}</string>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
@@ -2760,7 +3060,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">228</int>
+			<int key="maxID">261</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
