@@ -80,7 +80,20 @@
   NSAssert( hasValue || linkValue, @"ELIntegerKnob must have or be linked to a value" );
   
   if( linkValue ) {
-    return [self filteredValue:[(ELIntegerKnob *)linkedKnob value]];
+    return [(ELIntegerKnob *)linkedKnob value];
+  } else if( hasValue ) {
+    return value;
+  } else {
+    NSLog( @"value called on ELIntegerKnob with no value or linkage." );
+    abort();
+  }
+}
+
+- (int)filteredValue {
+  NSAssert( hasValue || linkValue, @"ELIntegerKnob must have or be linked to a value" );
+  
+  if( linkValue ) {
+    return [(ELIntegerKnob *)linkedKnob filteredValue];
   } else if( hasValue ) {
     return [self filteredValue:value];
   } else {
