@@ -18,16 +18,37 @@
 @class ELTool;
 @class ELPlayhead;
 
+@class ELStartTool;
+@class ELBeatTool;
+@class ELRicochetTool;
+@class ELSinkTool;
+@class ELSplitterTool;
+@class ELRotorTool;
+
 @interface ELHex : LMHexCell <ELXmlData> {
   ELLayer             *layer;
   ELNote              *note;
   ELHex               *neighbours[6];
   NSMutableDictionary *tools;
   NSMutableArray      *playheads;
+  
+  ELStartTool         *generateTool;
+  ELBeatTool          *noteTool;
+  ELRicochetTool      *reboundTool;
+  ELSinkTool          *absorbTool;
+  ELSplitterTool      *splitTool;
+  ELRotorTool         *spinTool;
 }
 
 @property (readonly) ELLayer *layer;
 @property (readonly) ELNote *note;
+
+@property ELStartTool *generateTool;
+@property ELBeatTool *noteTool;
+@property ELRicochetTool *reboundTool;
+@property ELSinkTool *absorbTool;
+@property ELSplitterTool *splitTool;
+@property ELRotorTool *spinTool;
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 

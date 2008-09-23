@@ -35,6 +35,13 @@
     [self connectNeighbour:nil direction:S];
     [self connectNeighbour:nil direction:SW];
     [self connectNeighbour:nil direction:NW];
+    
+    [self addObserver:self forKeyPath:@"generateTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self addObserver:self forKeyPath:@"noteTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self addObserver:self forKeyPath:@"reboundTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self addObserver:self forKeyPath:@"absorbTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self addObserver:self forKeyPath:@"splitTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self addObserver:self forKeyPath:@"spinTool" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
   }
   
   return self;
@@ -44,6 +51,13 @@
 
 @synthesize layer;
 @synthesize note;
+
+@synthesize generateTool;
+@synthesize noteTool;
+@synthesize reboundTool;
+@synthesize absorbTool;
+@synthesize splitTool;
+@synthesize spinTool;
 
 // Hexes form a grid
 
@@ -88,6 +102,20 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_changes_ context:(id)_context_ {
+  if( [_keyPath_ hasSuffix:@"Tool"] ) {
+    id oldTool = [_changes_ objectForKey:NSKeyValueChangeOldKey];
+    if( oldTool != [NSNull null] ) {
+      NSLog( @"Removing tool: %@", oldTool );
+      [self removeTool:[oldTool toolType]];
+    }
+    
+    id newTool = [_changes_ objectForKey:NSKeyValueChangeNewKey];
+    if( newTool != [NSNull null] ) {
+      NSLog( @"Adding tool: %@", newTool );
+      [self addTool:newTool];
+    }
+  }
+  
   [layer needsDisplay];
 }
 
