@@ -43,9 +43,11 @@ static NSString * const toolType = @"beat";
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
   
+  [velocityKnob setValue:[[_layer_ velocityKnob] value]];
   [velocityKnob setLinkedKnob:[_layer_ velocityKnob]];
   [velocityKnob setLinkValue:YES];
   
+  [durationKnob setValue:[[_layer_ durationKnob] value]];
   [durationKnob setLinkedKnob:[_layer_ durationKnob]];
   [durationKnob setLinkValue:YES];
 }
