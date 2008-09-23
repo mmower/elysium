@@ -144,6 +144,14 @@
   return [tools count] > 0;
 }
 
+- (void)run:(ELPlayhead *)_playhead_ {
+  [noteTool run:_playhead_];
+  [splitTool run:_playhead_];
+  [reboundTool run:_playhead_];
+  [absorbTool run:_playhead_];
+  [spinTool run:_playhead_];
+}
+
 - (void)addTool:(ELTool *)_tool_ {
   if( _tool_ ) {
     [tools addObject:_tool_];

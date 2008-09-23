@@ -61,6 +61,8 @@
 
 - (BOOL)shouldBeSaved;
 
+- (void)run:(ELPlayhead *)playhead;
+
 - (void)addTool:(ELTool *)tool;
 - (void)removeTool:(ELTool *)tool;
 - (void)removeAllTools;

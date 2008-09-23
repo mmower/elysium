@@ -121,12 +121,16 @@ NSPredicate *deadPlayheadFilter;
     
     // Run all current playheads
     for( ELPlayhead *playhead in [playheads copy] ) {
-      ELHex *hex = [playhead position];
-      for( ELTool *tool in [hex toolsExceptType:@"generate"] ) {
-        if( ![playhead isDead] ) {
-          [tool run:playhead];
-        }
+      if( ![playhead isDead] ) {
+        [[playhead position] run:playhead];
       }
+      
+      // ELHex *hex = [playhead position];
+      // for( ELTool *tool in [hex toolsExceptType:@"generate"] ) {
+      //   if( ![playhead isDead] ) {
+      //     [tool run:playhead];
+      //   }
+      // }
       
       if( ![playhead isDead] ) {
         [playhead advance];
