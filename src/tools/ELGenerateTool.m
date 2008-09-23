@@ -80,11 +80,11 @@ static NSString * const toolType = @"generate";
 // Tool runner
 
 - (BOOL)shouldPulseOnBeat:(int)_beat_ {
-  int pulseCount = [pulseCountKnob value];
+  int pulseCount = [pulseCountKnob filteredValue];
   if( pulseCount < 1 ) {
     return NO;
   } else {
-    return ( ( _beat_ - [offsetKnob value] ) % pulseCount ) == 0;
+    return ( ( _beat_ - [offsetKnob filteredValue] ) % pulseCount ) == 0;
   }
 }
 
@@ -92,7 +92,7 @@ static NSString * const toolType = @"generate";
   if( [super run:_playhead] ) {
     [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
                                                   direction:[directionKnob value]
-                                                        TTL:[timeToLiveKnob value]]];
+                                                        TTL:[timeToLiveKnob filteredValue]]];
     return YES;
   } else {
     return NO;

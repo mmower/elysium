@@ -71,8 +71,8 @@ static NSString * const toolType = @"note";
 - (BOOL)run:(ELPlayhead *)_playhead_ {
   if( [super run:_playhead_] ) {
     [layer playNote:[[_playhead_ position] note]
-           velocity:[velocityKnob value]
-           duration:[durationKnob value]];
+           velocity:[velocityKnob filteredValue]
+           duration:[durationKnob filteredValue]];
     return YES;
   } else {
     return NO;
