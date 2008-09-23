@@ -48,32 +48,6 @@
 							<reference key="NSSuperview" ref="715623736"/>
 							<string key="NSClassName">ELSurfaceView</string>
 						</object>
-						<object class="NSSlider" id="535270604">
-							<reference key="NSNextResponder" ref="715623736"/>
-							<int key="NSvFlags">290</int>
-							<string key="NSFrame">{{18, -9}, {743, 26}}</string>
-							<reference key="NSSuperview" ref="715623736"/>
-							<bool key="NSEnabled">YES</bool>
-							<object class="NSSliderCell" key="NSCell" id="45586357">
-								<int key="NSCellFlags">67239424</int>
-								<int key="NSCellFlags2">0</int>
-								<string key="NSContents"/>
-								<object class="NSFont" key="NSSupport">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">1.200000e+01</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<reference key="NSControlView" ref="535270604"/>
-								<double key="NSMaxValue">4.000000e+00</double>
-								<double key="NSMinValue">-4.000000e+00</double>
-								<double key="NSValue">0.000000e+00</double>
-								<double key="NSAltIncValue">0.000000e+00</double>
-								<int key="NSNumberOfTickMarks">9</int>
-								<int key="NSTickMarkPosition">1</int>
-								<bool key="NSAllowsTickMarkValuesOnly">YES</bool>
-								<bool key="NSVertical">NO</bool>
-							</object>
-						</object>
 					</object>
 					<string key="NSFrameSize">{779, 662}</string>
 					<reference key="NSSuperview"/>
@@ -101,30 +75,6 @@
 						<reference key="destination" ref="884539672"/>
 					</object>
 					<int key="connectionID">7</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">transposeSlider</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="535270604"/>
-					</object>
-					<int key="connectionID">10</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: layer.player.pitchBend</string>
-						<reference key="source" ref="535270604"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="535270604"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: layer.player.pitchBend</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">layer.player.pitchBend</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">13</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -172,7 +122,6 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="439878831"/>
-							<reference ref="535270604"/>
 						</object>
 						<reference key="parent" ref="884539672"/>
 					</object>
@@ -180,20 +129,6 @@
 						<int key="objectID">3</int>
 						<reference key="object" ref="439878831"/>
 						<reference key="parent" ref="715623736"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="535270604"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="45586357"/>
-						</object>
-						<reference key="parent" ref="715623736"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="45586357"/>
-						<reference key="parent" ref="535270604"/>
 					</object>
 				</object>
 			</object>
@@ -216,8 +151,6 @@
 					<string>2.IBPluginDependency</string>
 					<string>2.ImportedFromIB2</string>
 					<string>3.IBPluginDependency</string>
-					<string>8.IBPluginDependency</string>
-					<string>9.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -235,8 +168,6 @@
 					<string>{467, 379}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
