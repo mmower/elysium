@@ -15,17 +15,21 @@
 
 @interface ELPlayhead : NSObject {
   ELLayer   *layer;
+  ELHex     *parent;
   ELHex     *position;
   Direction direction;
   int       TTL;
+  BOOL      isNew;
 }
 
 - (id)initWithPosition:(ELHex *)position direction:(Direction)direction TTL:(int)TTL;
 
 @property ELHex *position;
+@property ELHex *parent;
 @property Direction direction;
 @property (readonly) BOOL isDead;
 @property (readonly) int TTL;
+@property (readonly) BOOL isNew;
 
 - (void)advance;
 - (void)cleanup;
