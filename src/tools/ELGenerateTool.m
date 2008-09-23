@@ -16,11 +16,15 @@ static NSString * const toolType = @"generate";
 
 @implementation ELGenerateTool
 
-- (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ timeToLiveKnob:(ELIntegerKnob *)_timeToLiveKnob_ pulseCountKnob:(ELIntegerKnob *)_pulseCountKnob_ {
+- (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_
+             timeToLiveKnob:(ELIntegerKnob *)_timeToLiveKnob_
+             pulseCountKnob:(ELIntegerKnob *)_pulseCountKnob_
+             offsetKnob:(ELIntegerKnob *)_offsetKnob_ {
   if( ( self = [super init] ) ) {
     directionKnob = _directionKnob_;
     timeToLiveKnob = _timeToLiveKnob_;
     pulseCountKnob = _pulseCountKnob_;
+    offsetKnob = _offsetKnob_;
     [self setPreferredOrder:1];
   }
   
@@ -30,7 +34,8 @@ static NSString * const toolType = @"generate";
 - (id)init {
   return [self initWithDirectionKnob:[[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N]
                       timeToLiveKnob:[[ELIntegerKnob alloc] initWithName:@"timeToLive"]
-                      pulseCountKnob:[[ELIntegerKnob alloc] initWithName:@"pulseCount"]];
+                      pulseCountKnob:[[ELIntegerKnob alloc] initWithName:@"pulseCount"]
+                          offsetKnob:[[ELIntegerKnob alloc] initWithName:@"offset" integerValue:0]];
 }
 
 - (NSString *)toolType {
@@ -40,6 +45,7 @@ static NSString * const toolType = @"generate";
 @synthesize directionKnob;
 @synthesize timeToLiveKnob;
 @synthesize pulseCountKnob;
+@synthesize offsetKnob;
 
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
@@ -59,6 +65,7 @@ static NSString * const toolType = @"generate";
   [_layer_ removeGenerator:self];
   
   [timeToLiveKnob setLinkedKnob:nil];
+  [pulseCountKnob setLinkedKnob:nil];
   
   [super removedFromLayer:_layer_];
 }
@@ -66,7 +73,7 @@ static NSString * const toolType = @"generate";
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionKnob.value",@"timeToLiveKnob.value",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionKnob.value",@"timeToLiveKnob.value",@"pulseCountKnob.value",@"offsetKnob.value",nil]];
   return keys;
 }
 
@@ -77,7 +84,7 @@ static NSString * const toolType = @"generate";
   if( pulseCount < 1 ) {
     return NO;
   } else {
-    return ( _beat_ % pulseCount ) == 0;
+    return ( ( _beat_ - [offsetKnob value] ) % pulseCount ) == 0;
   }
 }
 
@@ -117,13 +124,14 @@ static NSString * const toolType = @"generate";
   [controlsElement addChild:[directionKnob xmlRepresentation]];
   [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
   [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
+  [controlsElement addChild:[offsetKnob xmlRepresentation]];
   [generatorElement addChild:controlsElement];
   
   return generatorElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
-  if( ( self = [self initWithDirectionKnob:nil timeToLiveKnob:nil pulseCountKnob:nil] ) ) {
+  if( ( self = [self initWithDirectionKnob:nil timeToLiveKnob:nil pulseCountKnob:nil offsetKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
@@ -138,6 +146,10 @@ static NSString * const toolType = @"generate";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] pulseCountKnob]];
+
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='offset']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
   }
   
   return self;
@@ -148,7 +160,8 @@ static NSString * const toolType = @"generate";
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   return [[[self class] allocWithZone:_zone_] initWithDirectionKnob:[directionKnob mutableCopy]
                                                      timeToLiveKnob:[timeToLiveKnob mutableCopy]
-                                                     pulseCountKnob:[pulseCountKnob mutableCopy]];
+                                                     pulseCountKnob:[pulseCountKnob mutableCopy]
+                                                         offsetKnob:[offsetKnob mutableCopy]];
 }
 
 @end

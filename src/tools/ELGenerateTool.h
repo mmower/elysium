@@ -16,11 +16,13 @@
   ELIntegerKnob *directionKnob;
   ELIntegerKnob *timeToLiveKnob;
   ELIntegerKnob *pulseCountKnob;
+  ELIntegerKnob *offsetKnob;
 }
 
 @property (readonly) ELIntegerKnob *directionKnob;
 @property (readonly) ELIntegerKnob *timeToLiveKnob;
 @property (readonly) ELIntegerKnob *pulseCountKnob;
+@property (readonly) ELIntegerKnob *offsetKnob;
 
 - (BOOL)shouldPulseOnBeat:(int)beat;
 
