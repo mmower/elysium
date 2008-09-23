@@ -20,7 +20,7 @@ static NSString * const toolType = @"absorb";
 }
 
 - (BOOL)run:(ELPlayhead *)_playhead {
-  if( [super run:_playhead] ) {
+  if( [super run:_playhead] && ![_playhead isNew] ) {
     [_playhead kill];
     return YES;
   } else {
