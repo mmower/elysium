@@ -40,6 +40,9 @@
     durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
     transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
     
+    // Add a default filter, as much as a guide on creating new ones as anything else
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.0/60s" function:@"Sine" variance:1.0 period:60.0]];
+    
     nextLayerNumber = 1;
     showNotes       = NO;
   }
