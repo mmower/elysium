@@ -93,6 +93,12 @@ NSPredicate *deadPlayheadFilter;
   [player playNote:([_note_ number] + [transposeKnob filteredValue]) channel:[channelKnob value] velocity:_velocity_ duration:_duration_];
 }
 
+- (void)playNotes:(NSArray *)_notes_ velocity:(int)_velocity_ duration:(float)_duration_ {
+  for( ELNote *note in _notes_ ) {
+    [player playNote:([note number] + [transposeKnob filteredValue]) channel:[channelKnob value] velocity:_velocity_ duration:_duration_];
+  }
+}
+
 - (int)timerResolution {
   return 60000000 / [tempoKnob filteredValue];
 }

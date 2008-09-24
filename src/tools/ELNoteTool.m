@@ -19,10 +19,11 @@ static NSString * const toolType = @"note";
 
 @implementation ELNoteTool
 
-- (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ {
+- (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ triadKnob:(ELIntegerKnob *)_triadKnob_ {
   if( ( self = [super init] ) ) {
     velocityKnob = _velocityKnob_;
     durationKnob = _durationKnob_;
+    triadKnob    = _triadKnob_;
   }
   
   return self;
@@ -30,7 +31,8 @@ static NSString * const toolType = @"note";
 
 - (id)init {
   return [self initWithVelocityKnob:[[ELIntegerKnob alloc] initWithName:@"velocity"]
-                       durationKnob:[[ELFloatKnob alloc] initWithName:@"duration"]];
+                       durationKnob:[[ELFloatKnob alloc] initWithName:@"duration"]
+                          triadKnob:[[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0]];
 }
 
 - (NSString *)toolType {
@@ -39,6 +41,7 @@ static NSString * const toolType = @"note";
 
 @synthesize velocityKnob;
 @synthesize durationKnob;
+@synthesize triadKnob;
 
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
@@ -62,17 +65,21 @@ static NSString * const toolType = @"note";
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityKnob.value",@"durationKnob.value",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityKnob.value",@"durationKnob.value",@"triadKnob.value",nil]];
   return keys;
 }
 
 // Tool runner
 
 - (BOOL)run:(ELPlayhead *)_playhead_ {
+  NSLog( @"Triad to play = %d", [triadKnob value] );
   if( [super run:_playhead_] ) {
-    [layer playNote:[[_playhead_ position] note]
-           velocity:[velocityKnob filteredValue]
-           duration:[durationKnob filteredValue]];
+    [layer playNotes:[[_playhead_ position] triad:[triadKnob value]]
+            velocity:[velocityKnob filteredValue]
+            duration:[durationKnob filteredValue]];
+    // [layer playNote:[[_playhead_ position] note]
+    //        velocity:[velocityKnob filteredValue]
+    //        duration:[durationKnob filteredValue]];
     return YES;
   } else {
     return NO;
@@ -100,7 +107,7 @@ static NSString * const toolType = @"note";
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy] durationKnob:[durationKnob mutableCopy]];
+  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy] durationKnob:[durationKnob mutableCopy] triadKnob:[triadKnob mutableCopy]];
 }
 
 // Implement the ELXmlData protocol
@@ -111,23 +118,40 @@ static NSString * const toolType = @"note";
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
+  [controlsElement addChild:[triadKnob xmlRepresentation]];
   [noteElement addChild:controlsElement];
   
   return noteElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  if( ( self = [self initWithVelocityKnob:nil durationKnob:nil] ) ) {
+  if( ( self = [self initWithVelocityKnob:nil durationKnob:nil triadKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_];
+    } else {
+      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
+    }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_];
+    } else {
+      durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='triad']" error:nil];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      triadKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    } else {
+      triadKnob = [[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0];
+    }
   }
   
   return self;
