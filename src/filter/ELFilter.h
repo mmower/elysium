@@ -1,5 +1,5 @@
 //
-//  ELOscillator.h
+//  ELFilter.h
 //  Elysium
 //
 //  Created by Matt Mower on 08/09/2008.
@@ -12,7 +12,7 @@
 
 extern NSArray const *ELFilterFunctions;
 
-@interface ELOscillator : NSObject <ELXmlData> {
+@interface ELFilter : NSObject <ELXmlData> {
   NSString      *function;
   NSString      *name;
   

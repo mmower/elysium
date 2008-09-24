@@ -10,7 +10,7 @@
 
 #import "ELXmlData.h"
 
-@class ELOscillator;
+@class ELFilter;
 
 @interface ELKnob : NSObject <ELXmlData> {
   NSString        *name;            // name assigned to the knob
@@ -32,7 +32,7 @@
   BOOL            hasP;
   BOOL            linkP;
   
-  ELOscillator    *filter;          // an oscillator that can be linked to alpha
+  ELFilter        *filter;          // an function that supplies a dynamic alpha value in real-time
   BOOL            linkFilter;
   
   NSPredicate     *predicate;       // a predicate that be used to govern whether
@@ -40,7 +40,7 @@
 }
 
 - (id)initWithName:(NSString*)name
-        linkedKnob:(ELKnob*)knob
+        linkedKnob:(ELKnob *)knob
            enabled:(BOOL)enabled
         hasEnabled:(BOOL)hasEnabled
        linkEnabled:(BOOL)linkEnabled
@@ -52,9 +52,9 @@
                  p:(float)p
               hasP:(BOOL)hasP
              linkP:(BOOL)linkP
-            filter:(ELOscillator*)filter
+            filter:(ELFilter *)filter
         linkFilter:(BOOL)linkFilter
-         predicate:(NSPredicate*)predicate
+         predicate:(NSPredicate *)predicate
      linkPredicate:(BOOL)linkPredicate;
        
 - (id)initWithName:(NSString *)name;
@@ -92,8 +92,8 @@
 - (BOOL)linkP;
 - (void)setLinkP:(BOOL)linkP;
 
-- (ELOscillator *)filter;
-- (void)setFilter:(ELOscillator *)filter;
+- (ELFilter *)filter;
+- (void)setFilter:(ELFilter *)filter;
 
 - (BOOL)linkFilter;
 - (void)setLinkFilter:(BOOL)linkFilter;

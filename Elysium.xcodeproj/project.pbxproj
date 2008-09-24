@@ -78,7 +78,6 @@
 		C9A9F1E50E8A42DF009A06A3 /* ELPlayhead.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F19E0E8A42DF009A06A3 /* ELPlayhead.m */; };
 		C9A9F1E60E8A42DF009A06A3 /* ElysiumDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1A00E8A42DF009A06A3 /* ElysiumDocument.m */; };
 		C9A9F1E70E8A42DF009A06A3 /* ELFilterDesignerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */; };
-		C9A9F1E80E8A42DF009A06A3 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1A70E8A42DF009A06A3 /* ELOscillator.m */; };
 		C9A9F1E90E8A42DF009A06A3 /* ELHexInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1AB0E8A42DF009A06A3 /* ELHexInspectorController.m */; };
 		C9A9F1EA0E8A42DF009A06A3 /* ELLayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1AE0E8A42DF009A06A3 /* ELLayerInspectorController.m */; };
 		C9A9F1EB0E8A42DF009A06A3 /* ELPlayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1B10E8A42DF009A06A3 /* ELPlayerInspectorController.m */; };
@@ -102,6 +101,7 @@
 		C9A9F1FD0E8A42DF009A06A3 /* ELSpinTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DB0E8A42DF009A06A3 /* ELSpinTool.m */; };
 		C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */; };
 		C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */; };
+		C9A9F20F0E8A43F7009A06A3 /* ELFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
 		C9C9AFA80E82F11800277071 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */; };
@@ -246,8 +246,6 @@
 		C9A9F1A20E8A42DF009A06A3 /* Elysium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Elysium.h; path = src/Elysium.h; sourceTree = "<group>"; };
 		C9A9F1A40E8A42DF009A06A3 /* ELFilterDesignerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFilterDesignerController.h; sourceTree = "<group>"; };
 		C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFilterDesignerController.m; sourceTree = "<group>"; };
-		C9A9F1A60E8A42DF009A06A3 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
-		C9A9F1A70E8A42DF009A06A3 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
 		C9A9F1AA0E8A42DF009A06A3 /* ELHexInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexInspectorController.h; sourceTree = "<group>"; };
 		C9A9F1AB0E8A42DF009A06A3 /* ELHexInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexInspectorController.m; sourceTree = "<group>"; };
 		C9A9F1AD0E8A42DF009A06A3 /* ELLayerInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerInspectorController.h; sourceTree = "<group>"; };
@@ -294,6 +292,8 @@
 		C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSplitTool.m; sourceTree = "<group>"; };
 		C9A9F1DE0E8A42DF009A06A3 /* ELTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTool.h; sourceTree = "<group>"; };
 		C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
+		C9A9F20D0E8A43F7009A06A3 /* ELFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFilter.h; sourceTree = "<group>"; };
+		C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFilter.m; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9C9AF2B0E82D0F500277071 /* deploy.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.rake; sourceTree = "<group>"; };
 		C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
@@ -549,10 +549,10 @@
 		C9A9F1A30E8A42DF009A06A3 /* filter */ = {
 			isa = PBXGroup;
 			children = (
+				C9A9F20D0E8A43F7009A06A3 /* ELFilter.h */,
+				C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */,
 				C9A9F1A40E8A42DF009A06A3 /* ELFilterDesignerController.h */,
 				C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */,
-				C9A9F1A60E8A42DF009A06A3 /* ELOscillator.h */,
-				C9A9F1A70E8A42DF009A06A3 /* ELOscillator.m */,
 			);
 			name = filter;
 			path = src/filter;
@@ -928,7 +928,6 @@
 				C9A9F1E50E8A42DF009A06A3 /* ELPlayhead.m in Sources */,
 				C9A9F1E60E8A42DF009A06A3 /* ElysiumDocument.m in Sources */,
 				C9A9F1E70E8A42DF009A06A3 /* ELFilterDesignerController.m in Sources */,
-				C9A9F1E80E8A42DF009A06A3 /* ELOscillator.m in Sources */,
 				C9A9F1E90E8A42DF009A06A3 /* ELHexInspectorController.m in Sources */,
 				C9A9F1EA0E8A42DF009A06A3 /* ELLayerInspectorController.m in Sources */,
 				C9A9F1EB0E8A42DF009A06A3 /* ELPlayerInspectorController.m in Sources */,
@@ -952,6 +951,7 @@
 				C9A9F1FD0E8A42DF009A06A3 /* ELSpinTool.m in Sources */,
 				C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */,
 				C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */,
+				C9A9F20F0E8A43F7009A06A3 /* ELFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

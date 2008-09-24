@@ -23,7 +23,7 @@
 #import "ELNoteTool.h"
 #import "ELGenerateTool.h"
 
-#import "ELOscillator.h"
+#import "ELFilter.h"
 
 @implementation ELPlayer
 
@@ -193,7 +193,7 @@
 
 // Oscillator support
 
-- (void)addOscillator:(ELOscillator *)_oscillator_ {
+- (void)addFilter:(ELFilter *)_filter_ {
   // [oscillators setObject:_oscillator_ forKey:[_oscillator_ name]];
 }
 
@@ -218,7 +218,7 @@
   [surfaceElement addChild:controlsElement];
   
   NSXMLElement *filtersElement = [NSXMLNode elementWithName:@"filters"];
-  for( ELOscillator *filter in filters ) {
+  for( ELFilter *filter in filters ) {
     [filtersElement addChild:[filter xmlRepresentation]];
   }
   [surfaceElement addChild:filtersElement];
@@ -242,7 +242,7 @@
     nodes = [_representation_ nodesForXPath:@"filters/filter" error:nil];
     for( NSXMLNode *node in nodes ) {
       NSXMLElement *element = (NSXMLElement *)node;
-      ELOscillator *filter = [[ELOscillator alloc] initWithXmlRepresentation:element parent:nil player:self];
+      ELFilter *filter = [[ELFilter alloc] initWithXmlRepresentation:element parent:nil player:self];
       NSLog( @"Adding filter: %@", filter );
       [filters addObject:filter];
     }

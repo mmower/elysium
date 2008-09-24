@@ -42,7 +42,7 @@
 }
 
 - (id)initWithName:(NSString*)_name_
-        linkedKnob:(ELKnob*)_knob_
+        linkedKnob:(ELKnob *)_knob_
            enabled:(BOOL)_enabled_
         hasEnabled:(BOOL)_hasEnabled_
        linkEnabled:(BOOL)_linkEnabled_
@@ -54,9 +54,9 @@
                  p:(float)_p_
               hasP:(BOOL)_hasP_
              linkP:(BOOL)_linkP_
-            filter:(ELOscillator*)_filter_
+            filter:(ELFilter *)_filter_
         linkFilter:(BOOL)_linkFilter_
-         predicate:(NSPredicate*)_predicate_
+         predicate:(NSPredicate *)_predicate_
      linkPredicate:(BOOL)_linkPredicate_
 {
   if( ( self = [self init] ) ) {
@@ -197,7 +197,7 @@
   linkP = _linkP_;
 }
 
-- (ELOscillator *)filter {
+- (ELFilter *)filter {
   if( filter ) {
     return filter;
   } else if( linkFilter ) {
@@ -207,7 +207,7 @@
   }
 }
 
-- (void)setFilter:(ELOscillator *)_filter_ {
+- (void)setFilter:(ELFilter *)_filter_ {
   filter = _filter_;
 }
 

@@ -24,7 +24,7 @@
                  p:(float)_p_
               hasP:(BOOL)_hasP_
              linkP:(BOOL)_linkP_
-            filter:(ELOscillator*)_filter_
+            filter:(ELFilter*)_filter_
         linkFilter:(BOOL)_linkFilter_
          predicate:(NSPredicate*)_predicate_
      linkPredicate:(BOOL)_linkPredicate_

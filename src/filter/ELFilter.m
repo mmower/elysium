@@ -1,5 +1,5 @@
 //
-//  ELOscillator.m
+//  ELFilter.m
 //  Elysium
 //
 //  Created by Matt Mower on 08/09/2008.
@@ -8,11 +8,11 @@
 
 #import <CoreAudio/CoreAudio.h>
 
-#import "ELOscillator.h"
+#import "ELFilter.h"
 
 NSArray const *ELFilterFunctions;
 
-@implementation ELOscillator
+@implementation ELFilter
 
 + (void)initialize {
   if( !ELFilterFunctions ) {
