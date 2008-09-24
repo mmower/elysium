@@ -56,6 +56,7 @@
 
 - (ELHex *)neighbour:(Direction)direction;
 - (void)connectNeighbour:(ELHex *)hex direction:(Direction)direction;
+- (NSArray *)triad:(int)triad;
 
 // Tool management
 

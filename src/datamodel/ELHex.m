@@ -138,6 +138,68 @@
   return neighbours[_direction_];
 }
 
+- (NSArray *)triad:(int)_triad_ {
+  NSMutableArray *hexes = [[NSMutableArray alloc] init];
+  [hexes addObject:[self note]];
+  switch( _triad_) {
+    case 1:
+      if( [self neighbour:N] ) {
+        [hexes addObject:[[self neighbour:N] note]];
+      }
+      if( [self neighbour:NE] ) {
+        [hexes addObject:[[self neighbour:NE] note]];
+      }
+      break;
+    
+    case 2:
+      if( [self neighbour:NE] ) {
+        [hexes addObject:[[self neighbour:NE] note]];
+      }
+      if( [self neighbour:SE] ) {
+        [hexes addObject:[[self neighbour:SE] note]];
+      }
+      break;
+    
+    case 3:
+      if( [self neighbour:SE] ) {
+        [hexes addObject:[[self neighbour:SE] note]];
+      }
+      if( [self neighbour:S] ) {
+        [hexes addObject:[[self neighbour:S] note]];
+      }
+      break;
+    
+    case 4:
+      if( [self neighbour:S] ) {
+        [hexes addObject:[[self neighbour:S] note]];
+      }
+      if( [self neighbour:SW] ) {
+        [hexes addObject:[[self neighbour:SW] note]];
+      }
+      break;
+    
+    case 5:
+      if( [self neighbour:SW] ) {
+        [hexes addObject:[[self neighbour:SW] note]];
+      }
+      if( [self neighbour:NW] ) {
+        [hexes addObject:[[self neighbour:NW] note]];
+      }
+      break;
+    
+    case 6:
+      if( [self neighbour:NW] ) {
+        [hexes addObject:[[self neighbour:NW] note]];
+      }
+      if( [self neighbour:N] ) {
+        [hexes addObject:[[self neighbour:N] note]];
+      }
+      break;
+  }
+  
+  return hexes;
+}
+
 // Tool support
 
 - (BOOL)shouldBeSaved {
@@ -381,16 +443,6 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     [self setSpinTool:[[ELTool toolAlloc:@"spin"] initWithXmlRepresentation:(NSXMLElement *)[nodes objectAtIndex:0] parent:self player:_player_]];
   }
   
-  // 
-  // 
-  // 
-  // 
-  // 
-  // nodes = [_representation_ nodesForXPath:@"*" error:nil];
-  // for( NSXMLNode *node in nodes ) {
-  //   [self addTool:[[ELTool toolAlloc:[node name]] initWithXmlRepresentation:(NSXMLElement *)node parent:self player:_player_]];
-  // }
-  // 
   return self;
 }
 
