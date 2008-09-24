@@ -74,6 +74,7 @@
 @synthesize harmonicTable;
 @synthesize isRunning;
 @synthesize showNotes;
+@synthesize filters;
 
 @synthesize tempoKnob;
 @synthesize timeToLiveKnob;
@@ -216,26 +217,42 @@
   
   [surfaceElement addChild:controlsElement];
   
-  NSXMLElement *layersElement = [NSXMLNode elementWithName:@"layers"];
+  NSXMLElement *filtersElement = [NSXMLNode elementWithName:@"filters"];
+  for( ELOscillator *filter in filters ) {
+    [filtersElement addChild:[filter xmlRepresentation]];
+  }
+  [surfaceElement addChild:filtersElement];
   
+  NSXMLElement *layersElement = [NSXMLNode elementWithName:@"layers"];
   for( ELLayer *layer in layers ) {
     [layersElement addChild:[layer xmlRepresentation]];
   }
-  
   [surfaceElement addChild:layersElement];
   
   return surfaceElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_{
   if( ( self = [self init] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
+    // Restore the filters first, so that they can be referenced elsewhere
+    
+    nodes = [_representation_ nodesForXPath:@"filters/filter" error:nil];
+    for( NSXMLNode *node in nodes ) {
+      NSXMLElement *element = (NSXMLElement *)node;
+      ELOscillator *filter = [[ELOscillator alloc] initWithXmlRepresentation:element parent:nil player:self];
+      NSLog( @"Adding filter: %@", filter );
+      [filters addObject:filter];
+    }
+    
+    // Controls for the player
+    
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self];
+      tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self player:self];
     } else {
       tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
     }
@@ -243,7 +260,7 @@
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+      timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
     }
@@ -251,7 +268,7 @@
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+      pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
     }
@@ -259,7 +276,7 @@
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+      velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
     }
@@ -267,7 +284,7 @@
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:nil];
+      durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
     }
@@ -275,16 +292,18 @@
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+      transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
     }
+    
+    // Finally the layers
     
     nodes = [_representation_ nodesForXPath:@"layers/layer" error:nil];
     for( NSXMLNode *node in nodes ) {
       NSXMLElement *element = (NSXMLElement *)node;
       
-      ELLayer *layer = [[ELLayer alloc] initWithXmlRepresentation:element parent:self];
+      ELLayer *layer = [[ELLayer alloc] initWithXmlRepresentation:element parent:self player:self];
       if( layer ) {
         [self addLayer:layer];
         nextLayerNumber++; // Ensure that future defined layers don't get a duplicate id.

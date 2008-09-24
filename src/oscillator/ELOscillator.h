@@ -12,7 +12,7 @@
 
 extern NSArray const *ELFilterFunctions;
 
-@interface ELOscillator : NSObject {
+@interface ELOscillator : NSObject <ELXmlData> {
   NSString      *function;
   NSString      *name;
   

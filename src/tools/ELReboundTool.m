@@ -76,14 +76,14 @@ static NSString * const toolType = @"rebound";
   return ricochetElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   if( ( self = [self initWithDirectionKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
   }
   
   return self;

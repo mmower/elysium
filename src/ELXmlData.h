@@ -7,9 +7,11 @@
  *
  */
 
+@class ELPlayer;
+
 @protocol ELXmlData
 
 - (NSXMLElement *)xmlRepresentation;
-- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent;
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player;
 
 @end

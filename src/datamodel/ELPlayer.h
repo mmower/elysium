@@ -43,6 +43,7 @@
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property (readonly) BOOL isRunning;
 @property BOOL showNotes;
+@property (readonly) NSArray *filters;
 
 @property (readonly) ELIntegerKnob *tempoKnob;
 @property (readonly) ELIntegerKnob *timeToLiveKnob;

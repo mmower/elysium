@@ -8,6 +8,8 @@
 
 #import "ELKnob.h"
 
+#import "ElysiumDocument.h"
+
 //
 // An ELKnob instance represents something controllable in the
 // interface although it is not, in itself, a UI control. For
@@ -287,10 +289,18 @@
   [pElement setAttributesAsDictionary:attributes];
   [knobElement addChild:pElement];
   
+  if( filter ) {
+    NSXMLElement *filterElement = [NSXMLNode elementWithName:@"filter"];
+    attributes = [NSMutableDictionary dictionary];
+    [attributes setObject:[filter name] forKey:@"name"];
+    [filterElement setAttributesAsDictionary:attributes];
+    [knobElement addChild:filterElement];
+  }
+  
   return knobElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   if( ( self = [self initWithName:[[_representation_ attributeForName:@"name"] stringValue]] ) ) {
     NSArray *nodes;
     NSXMLElement *element;
@@ -345,11 +355,30 @@
     attrNode = [element attributeForName:@"current"];
     if( attrNode ) {
       [self setAlpha:[[attrNode stringValue] floatValue]];
-      
     }
     
     attrNode = [element attributeForName:@"linked"];
     [self setLinkP:[[attrNode stringValue] boolValue]];
+    
+    // Decode filter
+    
+    nodes = [_representation_ nodesForXPath:@"filter" error:nil];
+    if( [nodes count] > 0 ) {
+      NSLog( @"found filter element");
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      
+      attrNode = [element attributeForName:@"name"];
+      if( attrNode ) {
+        NSArray *matchingFilters = [[_player_ filters] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", [attrNode stringValue]]];
+        NSLog( @"matching filters = %@", matchingFilters );
+        
+        if( [matchingFilters count] > 0 ) {
+          [self setFilter:[matchingFilters objectAtIndex:0]];
+        } else {
+          NSLog( @"No filter matches: %@ !", [attrNode stringValue] );
+        }
+      }
+    }
   }
   
   return self;

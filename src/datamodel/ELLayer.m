@@ -360,7 +360,7 @@ NSPredicate *deadPlayheadFilter;
   return layerElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   if( ( self = [self initWithPlayer:_parent_] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
@@ -376,35 +376,35 @@ NSPredicate *deadPlayheadFilter;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    enabledKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil];
+    enabledKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='channel']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil];
+    channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob]];
+    tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob] player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ timeToLiveKnob]];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ timeToLiveKnob] player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ pulseCountKnob]];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ pulseCountKnob] player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ velocityKnob]];
+    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ velocityKnob] player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[_parent_ durationKnob]];
+    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[_parent_ durationKnob] player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ transposeKnob]];
+    transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ transposeKnob] player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"cells/cell" error:nil];
     for( NSXMLNode *node in nodes ) {
@@ -418,7 +418,7 @@ NSPredicate *deadPlayheadFilter;
       int row = [[attributeNode stringValue] intValue];
       
       ELHex *hex = [self hexAtColumn:col row:row];
-      [hex initWithXmlRepresentation:element parent:self];
+      [hex initWithXmlRepresentation:element parent:self player:_player_];
     }
     
   }

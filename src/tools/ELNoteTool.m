@@ -116,48 +116,21 @@ static NSString * const toolType = @"note";
   return noteElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   if( ( self = [self initWithVelocityKnob:nil durationKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob]];
+    velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob]];
+    durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_];
   }
   
   return self;
 }
-
-// // Save/Load support
-// 
-// - (void)saveToolConfig:(NSMutableDictionary *)_attributes_ {
-//   // if( [config definesValueForKey:@"velocity"] ) {
-//   //   [_attributes_ setObject:[config stringForKey:@"velocity"] forKey:@"velocity"];
-//   // }
-//   // if( [config definesValueForKey:@"duration"] ) {
-//   //   [_attributes_ setObject:[config stringForKey:@"duration"] forKey:@"duration"];
-//   // }
-// }
-// 
-// - (BOOL)loadToolConfig:(NSXMLElement *)_xml_ {
-//   // NSXMLNode *node;
-//   // 
-//   // node = [_xml_ attributeForName:@"velocity"];
-//   // if( node ) {
-//   //   [self setVelocity:[[node stringValue] intValue]];
-//   // }
-//   // 
-//   // node = [_xml_ attributeForName:@"duration"];
-//   // if( node ) {
-//   //   [self setDuration:[[node stringValue] floatValue]];
-//   // }
-//   // 
-//   return YES;
-// }
 
 @end

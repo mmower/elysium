@@ -86,7 +86,7 @@ NSMutableDictionary *toolMapping = nil;
   return nil;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   [self doesNotRecognizeSelector:_cmd];
   return nil;
 }

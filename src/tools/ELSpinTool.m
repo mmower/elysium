@@ -120,14 +120,14 @@ static NSString * const toolType = @"spin";
   return rotorElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   if( ( self = [self initWithClockwiseKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='clockwise']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
-    clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil];
+    clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
   }
   
   return self;

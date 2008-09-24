@@ -81,4 +81,40 @@ NSArray const *ELFilterFunctions;
   return (1+sin(angle))/2;
 }
 
+// Implement the ELXmlData protocol
+
+- (NSXMLElement *)xmlRepresentation {
+  NSXMLElement *filterElement = [NSXMLNode elementWithName:@"filter"];
+  
+  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+  [attributes setObject:name forKey:@"name"];
+  [attributes setObject:function forKey:@"function"];
+  [attributes setObject:[[NSNumber numberWithFloat:variance] stringValue] forKey:@"variance"];
+  [attributes setObject:[[NSNumber numberWithFloat:period] stringValue] forKey:@"period"];
+  [filterElement setAttributesAsDictionary:attributes];
+  
+  return filterElement;
+}
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+  if( ( self = [super init] ) ) {
+    
+    NSXMLNode *attributeNode;
+    
+    attributeNode = [_representation_ attributeForName:@"name"];
+    name = [attributeNode stringValue];
+    
+    attributeNode = [_representation_ attributeForName:@"function"];
+    function = [attributeNode stringValue];
+    
+    attributeNode = [_representation_ attributeForName:@"variance"];
+    variance = [[attributeNode stringValue] floatValue];
+    
+    attributeNode = [_representation_ attributeForName:@"period"];
+    period = [[attributeNode stringValue] floatValue];
+  }
+  
+  return self;
+}
+
 @end
