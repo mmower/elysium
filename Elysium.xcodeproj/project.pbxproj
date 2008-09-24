@@ -14,9 +14,6 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
-		C9095EB50E743C7800D68496 /* ELMIDIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9095EB40E743C7800D68496 /* ELMIDIMessage.m */; };
-		C92128BB0E7296E100D4D096 /* LayerManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92128BA0E7296E100D4D096 /* LayerManager.xib */; };
-		C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
 		C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54970E61F1250077C448 /* PYMIDI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C93D54AF0E61F1250077C448 /* PYMIDIEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -44,25 +41,7 @@
 		C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
 		C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
-		C93D553F0E62CC170077C448 /* ELData.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D553E0E62CC170077C448 /* ELData.h */; };
-		C93D55FA0E6411590077C448 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93D55F80E6411520077C448 /* Palette.xib */; };
-		C93D56000E64118E0077C448 /* ELPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D55FD0E64117C0077C448 /* ELPaletteController.m */; };
-		C94610AB0E7C156F001CA9B0 /* ELKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C94610AA0E7C156F001CA9B0 /* ELKnob.m */; };
-		C94610AE0E7C157A001CA9B0 /* ELFloatKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C94610AD0E7C157A001CA9B0 /* ELFloatKnob.m */; };
-		C94610B10E7C1584001CA9B0 /* ELIntegerKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C94610B00E7C1584001CA9B0 /* ELIntegerKnob.m */; };
-		C94610B40E7C158B001CA9B0 /* ELBooleanKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C94610B30E7C158B001CA9B0 /* ELBooleanKnob.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
-		C96A679D0E6B32F800A7C237 /* ELSurfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C96A679A0E6B32F800A7C237 /* ELSurfaceView.m */; };
-		C96A679E0E6B32F800A7C237 /* ElysiumController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96A679C0E6B32F800A7C237 /* ElysiumController.m */; };
-		C97FEB3C0E4E0D0B008F309B /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEB0C0E4E0490008F309B /* ELTool.m */; };
-		C97FEBD60E4F071E008F309B /* ELMIDIController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBD30E4F071E008F309B /* ELMIDIController.m */; };
-		C97FEBEB0E4F07A0008F309B /* ELHarmonicTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBDE0E4F07A0008F309B /* ELHarmonicTable.m */; };
-		C97FEBEC0E4F07A0008F309B /* ELHex.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE00E4F07A0008F309B /* ELHex.m */; };
-		C97FEBED0E4F07A0008F309B /* ELLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE20E4F07A0008F309B /* ELLayer.m */; };
-		C97FEBEE0E4F07A0008F309B /* ELNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE40E4F07A0008F309B /* ELNote.m */; };
-		C97FEBEF0E4F07A0008F309B /* ELPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE60E4F07A0008F309B /* ELPlayer.m */; };
-		C97FEBF00E4F07A0008F309B /* ELPlayhead.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBE80E4F07A0008F309B /* ELPlayhead.m */; };
-		C97FEBF10E4F07A0008F309B /* ElysiumDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEBEA0E4F07A0008F309B /* ElysiumDocument.m */; };
 		C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC8C0E4F6042008F309B /* sectionheader.gif */; };
 		C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C97FEC970E4F6042008F309B /* PACollapsibleSectionBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC8E0E4F6042008F309B /* PACollapsibleSectionBox.m */; };
@@ -83,31 +62,52 @@
 		C9874C2E0E42A1A10068E7BF /* LMRegularPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */; settings = {ATTRIBUTES = (); }; };
 		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
 		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
-		C98DB6D40E87D019009C699E /* ELPlayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB6D30E87D019009C699E /* ELPlayerInspectorController.m */; };
-		C98DB6DB0E87D03D009C699E /* ELHexInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB6DA0E87D03D009C699E /* ELHexInspectorController.m */; };
-		C98DB7260E883552009C699E /* HexInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98DB7250E883552009C699E /* HexInspector.xib */; };
 		C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8370E8907B6009C699E /* sectionheader.gif */; };
-		C98DB86D0E8924D0009C699E /* PlayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98DB86C0E8924D0009C699E /* PlayerInspector.xib */; };
-		C98DB8710E8924FD009C699E /* ELLayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB86F0E8924FD009C699E /* ELLayerInspectorController.m */; };
-		C98DB8720E8924FD009C699E /* LayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8700E8924FD009C699E /* LayerInspector.xib */; };
-		C98DB8C20E8931CB009C699E /* ELAbsorbTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8B70E8931CB009C699E /* ELAbsorbTool.m */; };
-		C98DB8C30E8931CB009C699E /* ELGenerateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8B90E8931CB009C699E /* ELGenerateTool.m */; };
-		C98DB8C40E8931CB009C699E /* ELNoteTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8BB0E8931CB009C699E /* ELNoteTool.m */; };
-		C98DB8C50E8931CB009C699E /* ELReboundTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8BD0E8931CB009C699E /* ELReboundTool.m */; };
-		C98DB8C60E8931CB009C699E /* ELSpinTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8BF0E8931CB009C699E /* ELSpinTool.m */; };
-		C98DB8C70E8931CB009C699E /* ELSplitTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB8C10E8931CB009C699E /* ELSplitTool.m */; };
-		C98DB9100E89755E009C699E /* ELFilterDesignerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DB90F0E89755E009C699E /* ELFilterDesignerController.m */; };
-		C98DB9120E897569009C699E /* FilterDesigner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98DB9110E897569009C699E /* FilterDesigner.xib */; };
-		C9A528490E7864BB0040E203 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A528460E7864BB0040E203 /* ELOscillator.m */; };
+		C9A9F16F0E8A41DC009A06A3 /* FilterDesigner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1610E8A41DC009A06A3 /* FilterDesigner.xib */; };
+		C9A9F1700E8A41DC009A06A3 /* HexInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */; };
+		C9A9F1710E8A41DC009A06A3 /* LayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1650E8A41DC009A06A3 /* LayerInspector.xib */; };
+		C9A9F1720E8A41DC009A06A3 /* LayerManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1670E8A41DC009A06A3 /* LayerManager.xib */; };
+		C9A9F1730E8A41DC009A06A3 /* LayerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1690E8A41DC009A06A3 /* LayerWindow.xib */; };
+		C9A9F1740E8A41DC009A06A3 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F16B0E8A41DC009A06A3 /* Palette.xib */; };
+		C9A9F1750E8A41DC009A06A3 /* PlayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F16D0E8A41DC009A06A3 /* PlayerInspector.xib */; };
+		C9A9F1E00E8A42DF009A06A3 /* ELHarmonicTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1940E8A42DF009A06A3 /* ELHarmonicTable.m */; };
+		C9A9F1E10E8A42DF009A06A3 /* ELHex.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1960E8A42DF009A06A3 /* ELHex.m */; };
+		C9A9F1E20E8A42DF009A06A3 /* ELLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1980E8A42DF009A06A3 /* ELLayer.m */; };
+		C9A9F1E30E8A42DF009A06A3 /* ELNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F19A0E8A42DF009A06A3 /* ELNote.m */; };
+		C9A9F1E40E8A42DF009A06A3 /* ELPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F19C0E8A42DF009A06A3 /* ELPlayer.m */; };
+		C9A9F1E50E8A42DF009A06A3 /* ELPlayhead.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F19E0E8A42DF009A06A3 /* ELPlayhead.m */; };
+		C9A9F1E60E8A42DF009A06A3 /* ElysiumDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1A00E8A42DF009A06A3 /* ElysiumDocument.m */; };
+		C9A9F1E70E8A42DF009A06A3 /* ELFilterDesignerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */; };
+		C9A9F1E80E8A42DF009A06A3 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1A70E8A42DF009A06A3 /* ELOscillator.m */; };
+		C9A9F1E90E8A42DF009A06A3 /* ELHexInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1AB0E8A42DF009A06A3 /* ELHexInspectorController.m */; };
+		C9A9F1EA0E8A42DF009A06A3 /* ELLayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1AE0E8A42DF009A06A3 /* ELLayerInspectorController.m */; };
+		C9A9F1EB0E8A42DF009A06A3 /* ELPlayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1B10E8A42DF009A06A3 /* ELPlayerInspectorController.m */; };
+		C9A9F1EC0E8A42DF009A06A3 /* ELBooleanKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1B40E8A42DF009A06A3 /* ELBooleanKnob.m */; };
+		C9A9F1ED0E8A42DF009A06A3 /* ELFloatKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1B60E8A42DF009A06A3 /* ELFloatKnob.m */; };
+		C9A9F1EE0E8A42DF009A06A3 /* ELIntegerKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1B80E8A42DF009A06A3 /* ELIntegerKnob.m */; };
+		C9A9F1EF0E8A42DF009A06A3 /* ELKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1BA0E8A42DF009A06A3 /* ELKnob.m */; };
+		C9A9F1F00E8A42DF009A06A3 /* ELLayerManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1BD0E8A42DF009A06A3 /* ELLayerManagerWindowController.m */; };
+		C9A9F1F10E8A42DF009A06A3 /* ELLayerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1C00E8A42DF009A06A3 /* ELLayerWindowController.m */; };
+		C9A9F1F20E8A42DF009A06A3 /* ELSurfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1C20E8A42DF009A06A3 /* ELSurfaceView.m */; };
+		C9A9F1F30E8A42DF009A06A3 /* ElysiumController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1C40E8A42DF009A06A3 /* ElysiumController.m */; };
+		C9A9F1F40E8A42DF009A06A3 /* ELMIDIController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1C70E8A42DF009A06A3 /* ELMIDIController.m */; };
+		C9A9F1F50E8A42DF009A06A3 /* ELMIDIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1C90E8A42DF009A06A3 /* ELMIDIMessage.m */; };
+		C9A9F1F60E8A42DF009A06A3 /* ELTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1CB0E8A42DF009A06A3 /* ELTimer.m */; };
+		C9A9F1F70E8A42DF009A06A3 /* ELPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1CE0E8A42DF009A06A3 /* ELPaletteController.m */; };
+		C9A9F1F80E8A42DF009A06A3 /* ELToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D00E8A42DF009A06A3 /* ELToolView.m */; };
+		C9A9F1F90E8A42DF009A06A3 /* ELAbsorbTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D30E8A42DF009A06A3 /* ELAbsorbTool.m */; };
+		C9A9F1FA0E8A42DF009A06A3 /* ELGenerateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D50E8A42DF009A06A3 /* ELGenerateTool.m */; };
+		C9A9F1FB0E8A42DF009A06A3 /* ELNoteTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D70E8A42DF009A06A3 /* ELNoteTool.m */; };
+		C9A9F1FC0E8A42DF009A06A3 /* ELReboundTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D90E8A42DF009A06A3 /* ELReboundTool.m */; };
+		C9A9F1FD0E8A42DF009A06A3 /* ELSpinTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DB0E8A42DF009A06A3 /* ELSpinTool.m */; };
+		C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */; };
+		C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
-		C9BB9DDA0E71E4D60088561D /* ELLayerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB9DD90E71E4D60088561D /* ELLayerWindowController.m */; };
-		C9BB9DEA0E71EC3D0088561D /* LayerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9BB9DE90E71EC3D0088561D /* LayerWindow.xib */; };
 		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
 		C9C9AFA80E82F11800277071 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
-		C9E8D8F70E687F2A005AD9B7 /* ELToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E8D8F60E687F2A005AD9B7 /* ELToolView.m */; };
 		C9E8D93A0E68B8AF005AD9B7 /* play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9360E68B8AF005AD9B7 /* play.pdf */; };
 		C9E8D93B0E68B8AF005AD9B7 /* ricochet.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */; };
 		C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */; };
@@ -171,12 +171,6 @@
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
-		C9095EB30E743C7800D68496 /* ELMIDIMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIMessage.h; sourceTree = "<group>"; };
-		C9095EB40E743C7800D68496 /* ELMIDIMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIMessage.m; sourceTree = "<group>"; };
-		C91C77A80E7E7AA000C4F78A /* ELXmlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELXmlData.h; sourceTree = "<group>"; };
-		C92128BA0E7296E100D4D096 /* LayerManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LayerManager.xib; path = src/layer_manager/LayerManager.xib; sourceTree = "<group>"; };
-		C92128BD0E7298C800D4D096 /* ELLayerManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerManagerWindowController.h; sourceTree = "<group>"; };
-		C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerManagerWindowController.m; sourceTree = "<group>"; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		C93D54910E61F0E80077C448 /* PYMIDI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PYMIDI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PYMIDI-Info.plist"; sourceTree = "<group>"; };
@@ -203,40 +197,6 @@
 		C93D54AB0E61F1250077C448 /* PYMIDIVirtualEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualEndpoint.m; sourceTree = "<group>"; };
 		C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualSource.h; sourceTree = "<group>"; };
 		C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
-		C93D553E0E62CC170077C448 /* ELData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELData.h; sourceTree = "<group>"; };
-		C93D55F80E6411520077C448 /* Palette.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Palette.xib; path = src/palette/Palette.xib; sourceTree = "<group>"; };
-		C93D55FC0E64117C0077C448 /* ELPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPaletteController.h; sourceTree = "<group>"; };
-		C93D55FD0E64117C0077C448 /* ELPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPaletteController.m; sourceTree = "<group>"; };
-		C94610A90E7C156F001CA9B0 /* ELKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKnob.h; sourceTree = "<group>"; };
-		C94610AA0E7C156F001CA9B0 /* ELKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKnob.m; sourceTree = "<group>"; };
-		C94610AC0E7C157A001CA9B0 /* ELFloatKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFloatKnob.h; sourceTree = "<group>"; };
-		C94610AD0E7C157A001CA9B0 /* ELFloatKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFloatKnob.m; sourceTree = "<group>"; };
-		C94610AF0E7C1584001CA9B0 /* ELIntegerKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELIntegerKnob.h; sourceTree = "<group>"; };
-		C94610B00E7C1584001CA9B0 /* ELIntegerKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELIntegerKnob.m; sourceTree = "<group>"; };
-		C94610B20E7C158B001CA9B0 /* ELBooleanKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELBooleanKnob.h; sourceTree = "<group>"; };
-		C94610B30E7C158B001CA9B0 /* ELBooleanKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELBooleanKnob.m; sourceTree = "<group>"; };
-		C96A67990E6B32F800A7C237 /* ELSurfaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSurfaceView.h; sourceTree = "<group>"; };
-		C96A679A0E6B32F800A7C237 /* ELSurfaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSurfaceView.m; sourceTree = "<group>"; };
-		C96A679B0E6B32F800A7C237 /* ElysiumController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElysiumController.h; sourceTree = "<group>"; };
-		C96A679C0E6B32F800A7C237 /* ElysiumController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumController.m; sourceTree = "<group>"; };
-		C97FEB0B0E4E0490008F309B /* ELTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTool.h; sourceTree = "<group>"; };
-		C97FEB0C0E4E0490008F309B /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
-		C97FEBD20E4F071E008F309B /* ELMIDIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIController.h; sourceTree = "<group>"; };
-		C97FEBD30E4F071E008F309B /* ELMIDIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIController.m; sourceTree = "<group>"; };
-		C97FEBDD0E4F07A0008F309B /* ELHarmonicTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHarmonicTable.h; sourceTree = "<group>"; };
-		C97FEBDE0E4F07A0008F309B /* ELHarmonicTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHarmonicTable.m; sourceTree = "<group>"; };
-		C97FEBDF0E4F07A0008F309B /* ELHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHex.h; sourceTree = "<group>"; };
-		C97FEBE00E4F07A0008F309B /* ELHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHex.m; sourceTree = "<group>"; };
-		C97FEBE10E4F07A0008F309B /* ELLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayer.h; sourceTree = "<group>"; };
-		C97FEBE20E4F07A0008F309B /* ELLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayer.m; sourceTree = "<group>"; };
-		C97FEBE30E4F07A0008F309B /* ELNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNote.h; sourceTree = "<group>"; };
-		C97FEBE40E4F07A0008F309B /* ELNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNote.m; sourceTree = "<group>"; };
-		C97FEBE50E4F07A0008F309B /* ELPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayer.h; sourceTree = "<group>"; };
-		C97FEBE60E4F07A0008F309B /* ELPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayer.m; sourceTree = "<group>"; };
-		C97FEBE70E4F07A0008F309B /* ELPlayhead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayhead.h; sourceTree = "<group>"; };
-		C97FEBE80E4F07A0008F309B /* ELPlayhead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayhead.m; sourceTree = "<group>"; };
-		C97FEBE90E4F07A0008F309B /* ElysiumDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElysiumDocument.h; sourceTree = "<group>"; };
-		C97FEBEA0E4F07A0008F309B /* ElysiumDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumDocument.m; sourceTree = "<group>"; };
 		C97FEC860E4F5FB2008F309B /* StackedListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackedListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StackedListView-Info.plist"; sourceTree = "<group>"; };
 		C97FEC8C0E4F6042008F309B /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
@@ -258,47 +218,87 @@
 		C9874C250E42A1A10068E7BF /* LMHoneycombView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMHoneycombView.m; path = ../Honeycomb/view/LMHoneycombView.m; sourceTree = SOURCE_ROOT; };
 		C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMRegularPolygon.h; path = ../Honeycomb/view/LMRegularPolygon.h; sourceTree = SOURCE_ROOT; };
 		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
-		C98DB6D20E87D019009C699E /* ELPlayerInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayerInspectorController.h; sourceTree = "<group>"; };
-		C98DB6D30E87D019009C699E /* ELPlayerInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayerInspectorController.m; sourceTree = "<group>"; };
-		C98DB6D90E87D03D009C699E /* ELHexInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexInspectorController.h; sourceTree = "<group>"; };
-		C98DB6DA0E87D03D009C699E /* ELHexInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexInspectorController.m; sourceTree = "<group>"; };
-		C98DB7250E883552009C699E /* HexInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HexInspector.xib; path = src/inspector/hex/HexInspector.xib; sourceTree = "<group>"; };
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
-		C98DB86C0E8924D0009C699E /* PlayerInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlayerInspector.xib; path = src/inspector/player/PlayerInspector.xib; sourceTree = "<group>"; };
-		C98DB86E0E8924FD009C699E /* ELLayerInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerInspectorController.h; sourceTree = "<group>"; };
-		C98DB86F0E8924FD009C699E /* ELLayerInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerInspectorController.m; sourceTree = "<group>"; };
-		C98DB8700E8924FD009C699E /* LayerInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LayerInspector.xib; path = src/inspector/layer/LayerInspector.xib; sourceTree = "<group>"; };
-		C98DB8B60E8931CB009C699E /* ELAbsorbTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAbsorbTool.h; sourceTree = "<group>"; };
-		C98DB8B70E8931CB009C699E /* ELAbsorbTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAbsorbTool.m; sourceTree = "<group>"; };
-		C98DB8B80E8931CB009C699E /* ELGenerateTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELGenerateTool.h; sourceTree = "<group>"; };
-		C98DB8B90E8931CB009C699E /* ELGenerateTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELGenerateTool.m; sourceTree = "<group>"; };
-		C98DB8BA0E8931CB009C699E /* ELNoteTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNoteTool.h; sourceTree = "<group>"; };
-		C98DB8BB0E8931CB009C699E /* ELNoteTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNoteTool.m; sourceTree = "<group>"; };
-		C98DB8BC0E8931CB009C699E /* ELReboundTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELReboundTool.h; sourceTree = "<group>"; };
-		C98DB8BD0E8931CB009C699E /* ELReboundTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELReboundTool.m; sourceTree = "<group>"; };
-		C98DB8BE0E8931CB009C699E /* ELSpinTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSpinTool.h; sourceTree = "<group>"; };
-		C98DB8BF0E8931CB009C699E /* ELSpinTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSpinTool.m; sourceTree = "<group>"; };
-		C98DB8C00E8931CB009C699E /* ELSplitTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSplitTool.h; sourceTree = "<group>"; };
-		C98DB8C10E8931CB009C699E /* ELSplitTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSplitTool.m; sourceTree = "<group>"; };
-		C98DB90E0E89755E009C699E /* ELFilterDesignerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFilterDesignerController.h; sourceTree = "<group>"; };
-		C98DB90F0E89755E009C699E /* ELFilterDesignerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFilterDesignerController.m; sourceTree = "<group>"; };
-		C98DB9110E897569009C699E /* FilterDesigner.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FilterDesigner.xib; path = src/filter/FilterDesigner.xib; sourceTree = "<group>"; };
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
-		C9A528450E7864BB0040E203 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
-		C9A528460E7864BB0040E203 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
-		C9A5286D0E7866BC0040E203 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9A5286E0E7866BC0040E203 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		C9A9F1620E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FilterDesigner.xib; sourceTree = "<group>"; };
+		C9A9F1640E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/HexInspector.xib; sourceTree = "<group>"; };
+		C9A9F1660E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LayerInspector.xib; sourceTree = "<group>"; };
+		C9A9F1680E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LayerManager.xib; sourceTree = "<group>"; };
+		C9A9F16A0E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LayerWindow.xib; sourceTree = "<group>"; };
+		C9A9F16C0E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Palette.xib; sourceTree = "<group>"; };
+		C9A9F16E0E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PlayerInspector.xib; sourceTree = "<group>"; };
+		C9A9F1920E8A42DF009A06A3 /* ELData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELData.h; sourceTree = "<group>"; };
+		C9A9F1930E8A42DF009A06A3 /* ELHarmonicTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHarmonicTable.h; sourceTree = "<group>"; };
+		C9A9F1940E8A42DF009A06A3 /* ELHarmonicTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHarmonicTable.m; sourceTree = "<group>"; };
+		C9A9F1950E8A42DF009A06A3 /* ELHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHex.h; sourceTree = "<group>"; };
+		C9A9F1960E8A42DF009A06A3 /* ELHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHex.m; sourceTree = "<group>"; };
+		C9A9F1970E8A42DF009A06A3 /* ELLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayer.h; sourceTree = "<group>"; };
+		C9A9F1980E8A42DF009A06A3 /* ELLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayer.m; sourceTree = "<group>"; };
+		C9A9F1990E8A42DF009A06A3 /* ELNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNote.h; sourceTree = "<group>"; };
+		C9A9F19A0E8A42DF009A06A3 /* ELNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNote.m; sourceTree = "<group>"; };
+		C9A9F19B0E8A42DF009A06A3 /* ELPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayer.h; sourceTree = "<group>"; };
+		C9A9F19C0E8A42DF009A06A3 /* ELPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayer.m; sourceTree = "<group>"; };
+		C9A9F19D0E8A42DF009A06A3 /* ELPlayhead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayhead.h; sourceTree = "<group>"; };
+		C9A9F19E0E8A42DF009A06A3 /* ELPlayhead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayhead.m; sourceTree = "<group>"; };
+		C9A9F19F0E8A42DF009A06A3 /* ElysiumDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElysiumDocument.h; sourceTree = "<group>"; };
+		C9A9F1A00E8A42DF009A06A3 /* ElysiumDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumDocument.m; sourceTree = "<group>"; };
+		C9A9F1A10E8A42DF009A06A3 /* ELXmlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELXmlData.h; path = src/ELXmlData.h; sourceTree = "<group>"; };
+		C9A9F1A20E8A42DF009A06A3 /* Elysium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Elysium.h; path = src/Elysium.h; sourceTree = "<group>"; };
+		C9A9F1A40E8A42DF009A06A3 /* ELFilterDesignerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFilterDesignerController.h; sourceTree = "<group>"; };
+		C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFilterDesignerController.m; sourceTree = "<group>"; };
+		C9A9F1A60E8A42DF009A06A3 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
+		C9A9F1A70E8A42DF009A06A3 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
+		C9A9F1AA0E8A42DF009A06A3 /* ELHexInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexInspectorController.h; sourceTree = "<group>"; };
+		C9A9F1AB0E8A42DF009A06A3 /* ELHexInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexInspectorController.m; sourceTree = "<group>"; };
+		C9A9F1AD0E8A42DF009A06A3 /* ELLayerInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerInspectorController.h; sourceTree = "<group>"; };
+		C9A9F1AE0E8A42DF009A06A3 /* ELLayerInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerInspectorController.m; sourceTree = "<group>"; };
+		C9A9F1B00E8A42DF009A06A3 /* ELPlayerInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayerInspectorController.h; sourceTree = "<group>"; };
+		C9A9F1B10E8A42DF009A06A3 /* ELPlayerInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayerInspectorController.m; sourceTree = "<group>"; };
+		C9A9F1B30E8A42DF009A06A3 /* ELBooleanKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELBooleanKnob.h; sourceTree = "<group>"; };
+		C9A9F1B40E8A42DF009A06A3 /* ELBooleanKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELBooleanKnob.m; sourceTree = "<group>"; };
+		C9A9F1B50E8A42DF009A06A3 /* ELFloatKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFloatKnob.h; sourceTree = "<group>"; };
+		C9A9F1B60E8A42DF009A06A3 /* ELFloatKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFloatKnob.m; sourceTree = "<group>"; };
+		C9A9F1B70E8A42DF009A06A3 /* ELIntegerKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELIntegerKnob.h; sourceTree = "<group>"; };
+		C9A9F1B80E8A42DF009A06A3 /* ELIntegerKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELIntegerKnob.m; sourceTree = "<group>"; };
+		C9A9F1B90E8A42DF009A06A3 /* ELKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKnob.h; sourceTree = "<group>"; };
+		C9A9F1BA0E8A42DF009A06A3 /* ELKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKnob.m; sourceTree = "<group>"; };
+		C9A9F1BC0E8A42DF009A06A3 /* ELLayerManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerManagerWindowController.h; sourceTree = "<group>"; };
+		C9A9F1BD0E8A42DF009A06A3 /* ELLayerManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerManagerWindowController.m; sourceTree = "<group>"; };
+		C9A9F1BF0E8A42DF009A06A3 /* ELLayerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerWindowController.h; sourceTree = "<group>"; };
+		C9A9F1C00E8A42DF009A06A3 /* ELLayerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerWindowController.m; sourceTree = "<group>"; };
+		C9A9F1C10E8A42DF009A06A3 /* ELSurfaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSurfaceView.h; sourceTree = "<group>"; };
+		C9A9F1C20E8A42DF009A06A3 /* ELSurfaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSurfaceView.m; sourceTree = "<group>"; };
+		C9A9F1C30E8A42DF009A06A3 /* ElysiumController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElysiumController.h; sourceTree = "<group>"; };
+		C9A9F1C40E8A42DF009A06A3 /* ElysiumController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumController.m; sourceTree = "<group>"; };
+		C9A9F1C60E8A42DF009A06A3 /* ELMIDIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIController.h; sourceTree = "<group>"; };
+		C9A9F1C70E8A42DF009A06A3 /* ELMIDIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIController.m; sourceTree = "<group>"; };
+		C9A9F1C80E8A42DF009A06A3 /* ELMIDIMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIMessage.h; sourceTree = "<group>"; };
+		C9A9F1C90E8A42DF009A06A3 /* ELMIDIMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIMessage.m; sourceTree = "<group>"; };
+		C9A9F1CA0E8A42DF009A06A3 /* ELTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTimer.h; sourceTree = "<group>"; };
+		C9A9F1CB0E8A42DF009A06A3 /* ELTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimer.m; sourceTree = "<group>"; };
+		C9A9F1CD0E8A42DF009A06A3 /* ELPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPaletteController.h; sourceTree = "<group>"; };
+		C9A9F1CE0E8A42DF009A06A3 /* ELPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPaletteController.m; sourceTree = "<group>"; };
+		C9A9F1CF0E8A42DF009A06A3 /* ELToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELToolView.h; sourceTree = "<group>"; };
+		C9A9F1D00E8A42DF009A06A3 /* ELToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELToolView.m; sourceTree = "<group>"; };
+		C9A9F1D20E8A42DF009A06A3 /* ELAbsorbTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAbsorbTool.h; sourceTree = "<group>"; };
+		C9A9F1D30E8A42DF009A06A3 /* ELAbsorbTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAbsorbTool.m; sourceTree = "<group>"; };
+		C9A9F1D40E8A42DF009A06A3 /* ELGenerateTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELGenerateTool.h; sourceTree = "<group>"; };
+		C9A9F1D50E8A42DF009A06A3 /* ELGenerateTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELGenerateTool.m; sourceTree = "<group>"; };
+		C9A9F1D60E8A42DF009A06A3 /* ELNoteTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNoteTool.h; sourceTree = "<group>"; };
+		C9A9F1D70E8A42DF009A06A3 /* ELNoteTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNoteTool.m; sourceTree = "<group>"; };
+		C9A9F1D80E8A42DF009A06A3 /* ELReboundTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELReboundTool.h; sourceTree = "<group>"; };
+		C9A9F1D90E8A42DF009A06A3 /* ELReboundTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELReboundTool.m; sourceTree = "<group>"; };
+		C9A9F1DA0E8A42DF009A06A3 /* ELSpinTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSpinTool.h; sourceTree = "<group>"; };
+		C9A9F1DB0E8A42DF009A06A3 /* ELSpinTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSpinTool.m; sourceTree = "<group>"; };
+		C9A9F1DC0E8A42DF009A06A3 /* ELSplitTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSplitTool.h; sourceTree = "<group>"; };
+		C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSplitTool.m; sourceTree = "<group>"; };
+		C9A9F1DE0E8A42DF009A06A3 /* ELTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTool.h; sourceTree = "<group>"; };
+		C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
-		C9BB9DD80E71E4D60088561D /* ELLayerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerWindowController.h; sourceTree = "<group>"; };
-		C9BB9DD90E71E4D60088561D /* ELLayerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayerWindowController.m; sourceTree = "<group>"; };
-		C9BB9DE90E71EC3D0088561D /* LayerWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LayerWindow.xib; path = src/mainview/LayerWindow.xib; sourceTree = "<group>"; };
 		C9C9AF2B0E82D0F500277071 /* deploy.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.rake; sourceTree = "<group>"; };
 		C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
-		C9E43C930E335E1B00C4D343 /* Elysium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elysium.h; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		C9E43D5E0E33C27100C4D343 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		C9E8D8F50E687F2A005AD9B7 /* ELToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELToolView.h; sourceTree = "<group>"; };
-		C9E8D8F60E687F2A005AD9B7 /* ELToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELToolView.m; sourceTree = "<group>"; };
 		C9E8D9360E68B8AF005AD9B7 /* play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = play.pdf; sourceTree = "<group>"; };
 		C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ricochet.pdf; sourceTree = "<group>"; };
 		C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = rotor.pdf; sourceTree = "<group>"; };
@@ -346,13 +346,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9A5286A0E7866BC0040E203 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -385,7 +378,6 @@
 				8D15AC370486D014006FF6A4 /* Elysium.app */,
 				C9874BFA0E429EF90068E7BF /* HoneycombView.framework */,
 				C97FEC860E4F5FB2008F309B /* StackedListView.framework */,
-				C9A5286D0E7866BC0040E203 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -393,10 +385,10 @@
 		2A37F4AAFDCFA73011CA2CEA /* Elysium */ = {
 			isa = PBXGroup;
 			children = (
+				C9A9F1900E8A42D0009A06A3 /* Sources */,
 				C93D54960E61F1250077C448 /* PYMIDI */,
 				C97FEC800E4F5F2F008F309B /* StackedListView */,
 				C9874C1F0E42A1860068E7BF /* honeycombview */,
-				2A37F4ABFDCFA73011CA2CEA /* src */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
@@ -407,27 +399,8 @@
 				C9E8D95F0E693A88005AD9B7 /* README.markdown */,
 				C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */,
 				C99B91830E6C7DB3004BE67A /* TODO.markdown */,
-				C9A5286E0E7866BC0040E203 /* UnitTests-Info.plist */,
 			);
 			name = Elysium;
-			sourceTree = "<group>";
-		};
-		2A37F4ABFDCFA73011CA2CEA /* src */ = {
-			isa = PBXGroup;
-			children = (
-				C94610A80E7C150B001CA9B0 /* knobs */,
-				C9A528440E7864BB0040E203 /* filter */,
-				C92128B90E7296C600D4D096 /* layer_manager */,
-				C96A67980E6B32F800A7C237 /* mainview */,
-				C97FEBD80E4F0754008F309B /* inspector */,
-				C93D55F70E64113F0077C448 /* palette */,
-				C97FEBDC0E4F07A0008F309B /* datamodel */,
-				C97FEBD10E4F071E008F309B /* midi */,
-				C97FEB020E4E0490008F309B /* tools */,
-				C9E43C930E335E1B00C4D343 /* Elysium.h */,
-				C91C77A80E7E7AA000C4F78A /* ELXmlData.h */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
@@ -442,17 +415,17 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C9A9F1610E8A41DC009A06A3 /* FilterDesigner.xib */,
+				C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */,
+				C9A9F1650E8A41DC009A06A3 /* LayerInspector.xib */,
+				C9A9F1670E8A41DC009A06A3 /* LayerManager.xib */,
+				C9A9F1690E8A41DC009A06A3 /* LayerWindow.xib */,
+				C9A9F16B0E8A41DC009A06A3 /* Palette.xib */,
+				C9A9F16D0E8A41DC009A06A3 /* PlayerInspector.xib */,
 				C9B88E400E64A5E400FA411E /* images */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
-				C98DB86C0E8924D0009C699E /* PlayerInspector.xib */,
-				C93D55F80E6411520077C448 /* Palette.xib */,
-				C98DB8700E8924FD009C699E /* LayerInspector.xib */,
-				C98DB7250E883552009C699E /* HexInspector.xib */,
-				C9BB9DE90E71EC3D0088561D /* LayerWindow.xib */,
 				1DDD58280DA1D0D100B32029 /* ElysiumDocument.xib */,
-				C92128BA0E7296E100D4D096 /* LayerManager.xib */,
-				C98DB9110E897569009C699E /* FilterDesigner.xib */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
 				C9C9AF2B0E82D0F500277071 /* deploy.rake */,
@@ -467,15 +440,6 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C92128B90E7296C600D4D096 /* layer_manager */ = {
-			isa = PBXGroup;
-			children = (
-				C92128BD0E7298C800D4D096 /* ELLayerManagerWindowController.h */,
-				C92128BE0E7298C800D4D096 /* ELLayerManagerWindowController.m */,
-			);
-			path = layer_manager;
 			sourceTree = "<group>";
 		};
 		C93D54960E61F1250077C448 /* PYMIDI */ = {
@@ -509,109 +473,6 @@
 			path = ../../Cocoa/3rdParty/Yandell/pymidi/trunk/Source;
 			sourceTree = SOURCE_ROOT;
 		};
-		C93D55F70E64113F0077C448 /* palette */ = {
-			isa = PBXGroup;
-			children = (
-				C93D55FC0E64117C0077C448 /* ELPaletteController.h */,
-				C93D55FD0E64117C0077C448 /* ELPaletteController.m */,
-				C9E8D8F50E687F2A005AD9B7 /* ELToolView.h */,
-				C9E8D8F60E687F2A005AD9B7 /* ELToolView.m */,
-			);
-			path = palette;
-			sourceTree = "<group>";
-		};
-		C94610A80E7C150B001CA9B0 /* knobs */ = {
-			isa = PBXGroup;
-			children = (
-				C94610A90E7C156F001CA9B0 /* ELKnob.h */,
-				C94610AA0E7C156F001CA9B0 /* ELKnob.m */,
-				C94610AC0E7C157A001CA9B0 /* ELFloatKnob.h */,
-				C94610AD0E7C157A001CA9B0 /* ELFloatKnob.m */,
-				C94610AF0E7C1584001CA9B0 /* ELIntegerKnob.h */,
-				C94610B00E7C1584001CA9B0 /* ELIntegerKnob.m */,
-				C94610B20E7C158B001CA9B0 /* ELBooleanKnob.h */,
-				C94610B30E7C158B001CA9B0 /* ELBooleanKnob.m */,
-			);
-			path = knobs;
-			sourceTree = "<group>";
-		};
-		C96A67980E6B32F800A7C237 /* mainview */ = {
-			isa = PBXGroup;
-			children = (
-				C96A67990E6B32F800A7C237 /* ELSurfaceView.h */,
-				C96A679A0E6B32F800A7C237 /* ELSurfaceView.m */,
-				C96A679B0E6B32F800A7C237 /* ElysiumController.h */,
-				C96A679C0E6B32F800A7C237 /* ElysiumController.m */,
-				C9BB9DD80E71E4D60088561D /* ELLayerWindowController.h */,
-				C9BB9DD90E71E4D60088561D /* ELLayerWindowController.m */,
-			);
-			path = mainview;
-			sourceTree = "<group>";
-		};
-		C97FEB020E4E0490008F309B /* tools */ = {
-			isa = PBXGroup;
-			children = (
-				C98DB8B60E8931CB009C699E /* ELAbsorbTool.h */,
-				C98DB8B70E8931CB009C699E /* ELAbsorbTool.m */,
-				C98DB8B80E8931CB009C699E /* ELGenerateTool.h */,
-				C98DB8B90E8931CB009C699E /* ELGenerateTool.m */,
-				C98DB8BA0E8931CB009C699E /* ELNoteTool.h */,
-				C98DB8BB0E8931CB009C699E /* ELNoteTool.m */,
-				C98DB8BC0E8931CB009C699E /* ELReboundTool.h */,
-				C98DB8BD0E8931CB009C699E /* ELReboundTool.m */,
-				C98DB8BE0E8931CB009C699E /* ELSpinTool.h */,
-				C98DB8BF0E8931CB009C699E /* ELSpinTool.m */,
-				C98DB8C00E8931CB009C699E /* ELSplitTool.h */,
-				C98DB8C10E8931CB009C699E /* ELSplitTool.m */,
-				C97FEB0B0E4E0490008F309B /* ELTool.h */,
-				C97FEB0C0E4E0490008F309B /* ELTool.m */,
-			);
-			path = tools;
-			sourceTree = "<group>";
-		};
-		C97FEBD10E4F071E008F309B /* midi */ = {
-			isa = PBXGroup;
-			children = (
-				C97FEBD20E4F071E008F309B /* ELMIDIController.h */,
-				C97FEBD30E4F071E008F309B /* ELMIDIController.m */,
-				C9095EB30E743C7800D68496 /* ELMIDIMessage.h */,
-				C9095EB40E743C7800D68496 /* ELMIDIMessage.m */,
-			);
-			path = midi;
-			sourceTree = "<group>";
-		};
-		C97FEBD80E4F0754008F309B /* inspector */ = {
-			isa = PBXGroup;
-			children = (
-				C98DB6D80E87D03D009C699E /* hex */,
-				C98DB6D10E87D019009C699E /* player */,
-				C9D036070E7082AB005AC915 /* layer */,
-			);
-			path = inspector;
-			sourceTree = "<group>";
-		};
-		C97FEBDC0E4F07A0008F309B /* datamodel */ = {
-			isa = PBXGroup;
-			children = (
-				C97FEBDD0E4F07A0008F309B /* ELHarmonicTable.h */,
-				C97FEBDE0E4F07A0008F309B /* ELHarmonicTable.m */,
-				C97FEBDF0E4F07A0008F309B /* ELHex.h */,
-				C97FEBE00E4F07A0008F309B /* ELHex.m */,
-				C97FEBE10E4F07A0008F309B /* ELLayer.h */,
-				C97FEBE20E4F07A0008F309B /* ELLayer.m */,
-				C97FEBE30E4F07A0008F309B /* ELNote.h */,
-				C97FEBE40E4F07A0008F309B /* ELNote.m */,
-				C97FEBE50E4F07A0008F309B /* ELPlayer.h */,
-				C97FEBE60E4F07A0008F309B /* ELPlayer.m */,
-				C97FEBE70E4F07A0008F309B /* ELPlayhead.h */,
-				C97FEBE80E4F07A0008F309B /* ELPlayhead.m */,
-				C97FEBE90E4F07A0008F309B /* ElysiumDocument.h */,
-				C97FEBEA0E4F07A0008F309B /* ElysiumDocument.m */,
-				C93D553E0E62CC170077C448 /* ELData.h */,
-			);
-			path = datamodel;
-			sourceTree = "<group>";
-		};
 		C97FEC800E4F5F2F008F309B /* StackedListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,34 +505,183 @@
 			name = honeycombview;
 			sourceTree = "<group>";
 		};
-		C98DB6D10E87D019009C699E /* player */ = {
+		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C98DB6D20E87D019009C699E /* ELPlayerInspectorController.h */,
-				C98DB6D30E87D019009C699E /* ELPlayerInspectorController.m */,
+				C9A9F1910E8A42DF009A06A3 /* datamodel */,
+				C9A9F1A10E8A42DF009A06A3 /* ELXmlData.h */,
+				C9A9F1A20E8A42DF009A06A3 /* Elysium.h */,
+				C9A9F1A30E8A42DF009A06A3 /* filter */,
+				C9A9F1A80E8A42DF009A06A3 /* inspector */,
+				C9A9F1B20E8A42DF009A06A3 /* knobs */,
+				C9A9F1BB0E8A42DF009A06A3 /* layer_manager */,
+				C9A9F1BE0E8A42DF009A06A3 /* mainview */,
+				C9A9F1C50E8A42DF009A06A3 /* midi */,
+				C9A9F1CC0E8A42DF009A06A3 /* palette */,
+				C9A9F1D10E8A42DF009A06A3 /* tools */,
 			);
-			name = player;
-			path = src/inspector/player;
-			sourceTree = SOURCE_ROOT;
+			name = Sources;
+			sourceTree = "<group>";
 		};
-		C98DB6D80E87D03D009C699E /* hex */ = {
+		C9A9F1910E8A42DF009A06A3 /* datamodel */ = {
 			isa = PBXGroup;
 			children = (
-				C98DB6D90E87D03D009C699E /* ELHexInspectorController.h */,
-				C98DB6DA0E87D03D009C699E /* ELHexInspectorController.m */,
+				C9A9F1920E8A42DF009A06A3 /* ELData.h */,
+				C9A9F1930E8A42DF009A06A3 /* ELHarmonicTable.h */,
+				C9A9F1940E8A42DF009A06A3 /* ELHarmonicTable.m */,
+				C9A9F1950E8A42DF009A06A3 /* ELHex.h */,
+				C9A9F1960E8A42DF009A06A3 /* ELHex.m */,
+				C9A9F1970E8A42DF009A06A3 /* ELLayer.h */,
+				C9A9F1980E8A42DF009A06A3 /* ELLayer.m */,
+				C9A9F1990E8A42DF009A06A3 /* ELNote.h */,
+				C9A9F19A0E8A42DF009A06A3 /* ELNote.m */,
+				C9A9F19B0E8A42DF009A06A3 /* ELPlayer.h */,
+				C9A9F19C0E8A42DF009A06A3 /* ELPlayer.m */,
+				C9A9F19D0E8A42DF009A06A3 /* ELPlayhead.h */,
+				C9A9F19E0E8A42DF009A06A3 /* ELPlayhead.m */,
+				C9A9F19F0E8A42DF009A06A3 /* ElysiumDocument.h */,
+				C9A9F1A00E8A42DF009A06A3 /* ElysiumDocument.m */,
+			);
+			name = datamodel;
+			path = src/datamodel;
+			sourceTree = "<group>";
+		};
+		C9A9F1A30E8A42DF009A06A3 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1A40E8A42DF009A06A3 /* ELFilterDesignerController.h */,
+				C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */,
+				C9A9F1A60E8A42DF009A06A3 /* ELOscillator.h */,
+				C9A9F1A70E8A42DF009A06A3 /* ELOscillator.m */,
+			);
+			name = filter;
+			path = src/filter;
+			sourceTree = "<group>";
+		};
+		C9A9F1A80E8A42DF009A06A3 /* inspector */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1A90E8A42DF009A06A3 /* hex */,
+				C9A9F1AC0E8A42DF009A06A3 /* layer */,
+				C9A9F1AF0E8A42DF009A06A3 /* player */,
+			);
+			name = inspector;
+			path = src/inspector;
+			sourceTree = "<group>";
+		};
+		C9A9F1A90E8A42DF009A06A3 /* hex */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1AA0E8A42DF009A06A3 /* ELHexInspectorController.h */,
+				C9A9F1AB0E8A42DF009A06A3 /* ELHexInspectorController.m */,
 			);
 			path = hex;
 			sourceTree = "<group>";
 		};
-		C9A528440E7864BB0040E203 /* filter */ = {
+		C9A9F1AC0E8A42DF009A06A3 /* layer */ = {
 			isa = PBXGroup;
 			children = (
-				C9A528450E7864BB0040E203 /* ELOscillator.h */,
-				C9A528460E7864BB0040E203 /* ELOscillator.m */,
-				C98DB90E0E89755E009C699E /* ELFilterDesignerController.h */,
-				C98DB90F0E89755E009C699E /* ELFilterDesignerController.m */,
+				C9A9F1AD0E8A42DF009A06A3 /* ELLayerInspectorController.h */,
+				C9A9F1AE0E8A42DF009A06A3 /* ELLayerInspectorController.m */,
 			);
-			path = filter;
+			path = layer;
+			sourceTree = "<group>";
+		};
+		C9A9F1AF0E8A42DF009A06A3 /* player */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1B00E8A42DF009A06A3 /* ELPlayerInspectorController.h */,
+				C9A9F1B10E8A42DF009A06A3 /* ELPlayerInspectorController.m */,
+			);
+			path = player;
+			sourceTree = "<group>";
+		};
+		C9A9F1B20E8A42DF009A06A3 /* knobs */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1B30E8A42DF009A06A3 /* ELBooleanKnob.h */,
+				C9A9F1B40E8A42DF009A06A3 /* ELBooleanKnob.m */,
+				C9A9F1B50E8A42DF009A06A3 /* ELFloatKnob.h */,
+				C9A9F1B60E8A42DF009A06A3 /* ELFloatKnob.m */,
+				C9A9F1B70E8A42DF009A06A3 /* ELIntegerKnob.h */,
+				C9A9F1B80E8A42DF009A06A3 /* ELIntegerKnob.m */,
+				C9A9F1B90E8A42DF009A06A3 /* ELKnob.h */,
+				C9A9F1BA0E8A42DF009A06A3 /* ELKnob.m */,
+			);
+			name = knobs;
+			path = src/knobs;
+			sourceTree = "<group>";
+		};
+		C9A9F1BB0E8A42DF009A06A3 /* layer_manager */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1BC0E8A42DF009A06A3 /* ELLayerManagerWindowController.h */,
+				C9A9F1BD0E8A42DF009A06A3 /* ELLayerManagerWindowController.m */,
+			);
+			name = layer_manager;
+			path = src/layer_manager;
+			sourceTree = "<group>";
+		};
+		C9A9F1BE0E8A42DF009A06A3 /* mainview */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1BF0E8A42DF009A06A3 /* ELLayerWindowController.h */,
+				C9A9F1C00E8A42DF009A06A3 /* ELLayerWindowController.m */,
+				C9A9F1C10E8A42DF009A06A3 /* ELSurfaceView.h */,
+				C9A9F1C20E8A42DF009A06A3 /* ELSurfaceView.m */,
+				C9A9F1C30E8A42DF009A06A3 /* ElysiumController.h */,
+				C9A9F1C40E8A42DF009A06A3 /* ElysiumController.m */,
+			);
+			name = mainview;
+			path = src/mainview;
+			sourceTree = "<group>";
+		};
+		C9A9F1C50E8A42DF009A06A3 /* midi */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1C60E8A42DF009A06A3 /* ELMIDIController.h */,
+				C9A9F1C70E8A42DF009A06A3 /* ELMIDIController.m */,
+				C9A9F1C80E8A42DF009A06A3 /* ELMIDIMessage.h */,
+				C9A9F1C90E8A42DF009A06A3 /* ELMIDIMessage.m */,
+				C9A9F1CA0E8A42DF009A06A3 /* ELTimer.h */,
+				C9A9F1CB0E8A42DF009A06A3 /* ELTimer.m */,
+			);
+			name = midi;
+			path = src/midi;
+			sourceTree = "<group>";
+		};
+		C9A9F1CC0E8A42DF009A06A3 /* palette */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1CD0E8A42DF009A06A3 /* ELPaletteController.h */,
+				C9A9F1CE0E8A42DF009A06A3 /* ELPaletteController.m */,
+				C9A9F1CF0E8A42DF009A06A3 /* ELToolView.h */,
+				C9A9F1D00E8A42DF009A06A3 /* ELToolView.m */,
+			);
+			name = palette;
+			path = src/palette;
+			sourceTree = "<group>";
+		};
+		C9A9F1D10E8A42DF009A06A3 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9F1D20E8A42DF009A06A3 /* ELAbsorbTool.h */,
+				C9A9F1D30E8A42DF009A06A3 /* ELAbsorbTool.m */,
+				C9A9F1D40E8A42DF009A06A3 /* ELGenerateTool.h */,
+				C9A9F1D50E8A42DF009A06A3 /* ELGenerateTool.m */,
+				C9A9F1D60E8A42DF009A06A3 /* ELNoteTool.h */,
+				C9A9F1D70E8A42DF009A06A3 /* ELNoteTool.m */,
+				C9A9F1D80E8A42DF009A06A3 /* ELReboundTool.h */,
+				C9A9F1D90E8A42DF009A06A3 /* ELReboundTool.m */,
+				C9A9F1DA0E8A42DF009A06A3 /* ELSpinTool.h */,
+				C9A9F1DB0E8A42DF009A06A3 /* ELSpinTool.m */,
+				C9A9F1DC0E8A42DF009A06A3 /* ELSplitTool.h */,
+				C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */,
+				C9A9F1DE0E8A42DF009A06A3 /* ELTool.h */,
+				C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */,
+			);
+			name = tools;
+			path = src/tools;
 			sourceTree = "<group>";
 		};
 		C9B88E400E64A5E400FA411E /* images */ = {
@@ -687,15 +697,6 @@
 				C9B88E410E64A60C00FA411E /* start.pdf */,
 			);
 			path = images;
-			sourceTree = "<group>";
-		};
-		C9D036070E7082AB005AC915 /* layer */ = {
-			isa = PBXGroup;
-			children = (
-				C98DB86E0E8924FD009C699E /* ELLayerInspectorController.h */,
-				C98DB86F0E8924FD009C699E /* ELLayerInspectorController.m */,
-			);
-			path = layer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -717,7 +718,6 @@
 				C93D54BF0E61F1250077C448 /* PYMIDIVirtualDestination.h in Headers */,
 				C93D54C10E61F1250077C448 /* PYMIDIVirtualEndpoint.h in Headers */,
 				C93D54C30E61F1250077C448 /* PYMIDIVirtualSource.h in Headers */,
-				C93D553F0E62CC170077C448 /* ELData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,24 +824,6 @@
 			productReference = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C9A5286C0E7866BC0040E203 /* UnitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C9A528710E7866BC0040E203 /* Build configuration list for PBXNativeTarget "UnitTests" */;
-			buildPhases = (
-				C9A528680E7866BC0040E203 /* Resources */,
-				C9A528690E7866BC0040E203 /* Sources */,
-				C9A5286A0E7866BC0040E203 /* Frameworks */,
-				C9A5286B0E7866BC0040E203 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = UnitTests;
-			productName = UnitTests;
-			productReference = C9A5286D0E7866BC0040E203 /* UnitTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -858,7 +840,6 @@
 				C9874BF90E429EF90068E7BF /* HoneycombView */,
 				C97FEC850E4F5FB2008F309B /* StackedListView */,
 				C93D54900E61F0E80077C448 /* PYMIDI */,
-				C9A5286C0E7866BC0040E203 /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -872,7 +853,6 @@
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				1DDD582C0DA1D0D100B32029 /* ElysiumDocument.xib in Resources */,
 				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
-				C93D55FA0E6411590077C448 /* Palette.xib in Resources */,
 				C9B88E420E64A60C00FA411E /* start.pdf in Resources */,
 				C9E8D93A0E68B8AF005AD9B7 /* play.pdf in Resources */,
 				C9E8D93B0E68B8AF005AD9B7 /* ricochet.pdf in Resources */,
@@ -881,15 +861,16 @@
 				C9E8D93F0E68B95D005AD9B7 /* splitter.pdf in Resources */,
 				C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */,
 				C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */,
-				C9BB9DEA0E71EC3D0088561D /* LayerWindow.xib in Resources */,
-				C92128BB0E7296E100D4D096 /* LayerManager.xib in Resources */,
 				C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */,
 				C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */,
-				C98DB7260E883552009C699E /* HexInspector.xib in Resources */,
 				C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */,
-				C98DB86D0E8924D0009C699E /* PlayerInspector.xib in Resources */,
-				C98DB8720E8924FD009C699E /* LayerInspector.xib in Resources */,
-				C98DB9120E897569009C699E /* FilterDesigner.xib in Resources */,
+				C9A9F16F0E8A41DC009A06A3 /* FilterDesigner.xib in Resources */,
+				C9A9F1700E8A41DC009A06A3 /* HexInspector.xib in Resources */,
+				C9A9F1710E8A41DC009A06A3 /* LayerInspector.xib in Resources */,
+				C9A9F1720E8A41DC009A06A3 /* LayerManager.xib in Resources */,
+				C9A9F1730E8A41DC009A06A3 /* LayerWindow.xib in Resources */,
+				C9A9F1740E8A41DC009A06A3 /* Palette.xib in Resources */,
+				C9A9F1750E8A41DC009A06A3 /* PlayerInspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,13 +896,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9A528680E7866BC0040E203 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -938,19 +912,6 @@
 			shellPath = /usr/bin/ruby;
 			shellScript = "APP_NAME = ENV['TARGET_NAME']\nBUILD_DIR = ENV['TARGET_BUILD_DIR']\n\nDir.chdir( BUILD_DIR  ) do\n\tapp_path = \"#{APP_NAME}.app\"\n\tplist_path = File.join( File.expand_path( app_path ), 'Contents', 'Info' )\n\tversion=`defaults read #{plist_path} CFBundleVersion`.chomp\n\ttar_name = \"#{APP_NAME}_#{version}.tgz\"\n\tcommand = \"tar czf #{tar_name} #{app_path}\"\n\tsystem( command )\nend";
 		};
-		C9A5286B0E7866BC0040E203 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -959,37 +920,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				C97FEB3C0E4E0D0B008F309B /* ELTool.m in Sources */,
-				C97FEBD60E4F071E008F309B /* ELMIDIController.m in Sources */,
-				C97FEBEB0E4F07A0008F309B /* ELHarmonicTable.m in Sources */,
-				C97FEBEC0E4F07A0008F309B /* ELHex.m in Sources */,
-				C97FEBED0E4F07A0008F309B /* ELLayer.m in Sources */,
-				C97FEBEE0E4F07A0008F309B /* ELNote.m in Sources */,
-				C97FEBEF0E4F07A0008F309B /* ELPlayer.m in Sources */,
-				C97FEBF00E4F07A0008F309B /* ELPlayhead.m in Sources */,
-				C97FEBF10E4F07A0008F309B /* ElysiumDocument.m in Sources */,
-				C93D56000E64118E0077C448 /* ELPaletteController.m in Sources */,
-				C9E8D8F70E687F2A005AD9B7 /* ELToolView.m in Sources */,
-				C96A679D0E6B32F800A7C237 /* ELSurfaceView.m in Sources */,
-				C96A679E0E6B32F800A7C237 /* ElysiumController.m in Sources */,
-				C9BB9DDA0E71E4D60088561D /* ELLayerWindowController.m in Sources */,
-				C92128BF0E7298C800D4D096 /* ELLayerManagerWindowController.m in Sources */,
-				C9095EB50E743C7800D68496 /* ELMIDIMessage.m in Sources */,
-				C9A528490E7864BB0040E203 /* ELOscillator.m in Sources */,
-				C94610AB0E7C156F001CA9B0 /* ELKnob.m in Sources */,
-				C94610AE0E7C157A001CA9B0 /* ELFloatKnob.m in Sources */,
-				C94610B10E7C1584001CA9B0 /* ELIntegerKnob.m in Sources */,
-				C94610B40E7C158B001CA9B0 /* ELBooleanKnob.m in Sources */,
-				C98DB6D40E87D019009C699E /* ELPlayerInspectorController.m in Sources */,
-				C98DB6DB0E87D03D009C699E /* ELHexInspectorController.m in Sources */,
-				C98DB8710E8924FD009C699E /* ELLayerInspectorController.m in Sources */,
-				C98DB8C20E8931CB009C699E /* ELAbsorbTool.m in Sources */,
-				C98DB8C30E8931CB009C699E /* ELGenerateTool.m in Sources */,
-				C98DB8C40E8931CB009C699E /* ELNoteTool.m in Sources */,
-				C98DB8C50E8931CB009C699E /* ELReboundTool.m in Sources */,
-				C98DB8C60E8931CB009C699E /* ELSpinTool.m in Sources */,
-				C98DB8C70E8931CB009C699E /* ELSplitTool.m in Sources */,
-				C98DB9100E89755E009C699E /* ELFilterDesignerController.m in Sources */,
+				C9A9F1E00E8A42DF009A06A3 /* ELHarmonicTable.m in Sources */,
+				C9A9F1E10E8A42DF009A06A3 /* ELHex.m in Sources */,
+				C9A9F1E20E8A42DF009A06A3 /* ELLayer.m in Sources */,
+				C9A9F1E30E8A42DF009A06A3 /* ELNote.m in Sources */,
+				C9A9F1E40E8A42DF009A06A3 /* ELPlayer.m in Sources */,
+				C9A9F1E50E8A42DF009A06A3 /* ELPlayhead.m in Sources */,
+				C9A9F1E60E8A42DF009A06A3 /* ElysiumDocument.m in Sources */,
+				C9A9F1E70E8A42DF009A06A3 /* ELFilterDesignerController.m in Sources */,
+				C9A9F1E80E8A42DF009A06A3 /* ELOscillator.m in Sources */,
+				C9A9F1E90E8A42DF009A06A3 /* ELHexInspectorController.m in Sources */,
+				C9A9F1EA0E8A42DF009A06A3 /* ELLayerInspectorController.m in Sources */,
+				C9A9F1EB0E8A42DF009A06A3 /* ELPlayerInspectorController.m in Sources */,
+				C9A9F1EC0E8A42DF009A06A3 /* ELBooleanKnob.m in Sources */,
+				C9A9F1ED0E8A42DF009A06A3 /* ELFloatKnob.m in Sources */,
+				C9A9F1EE0E8A42DF009A06A3 /* ELIntegerKnob.m in Sources */,
+				C9A9F1EF0E8A42DF009A06A3 /* ELKnob.m in Sources */,
+				C9A9F1F00E8A42DF009A06A3 /* ELLayerManagerWindowController.m in Sources */,
+				C9A9F1F10E8A42DF009A06A3 /* ELLayerWindowController.m in Sources */,
+				C9A9F1F20E8A42DF009A06A3 /* ELSurfaceView.m in Sources */,
+				C9A9F1F30E8A42DF009A06A3 /* ElysiumController.m in Sources */,
+				C9A9F1F40E8A42DF009A06A3 /* ELMIDIController.m in Sources */,
+				C9A9F1F50E8A42DF009A06A3 /* ELMIDIMessage.m in Sources */,
+				C9A9F1F60E8A42DF009A06A3 /* ELTimer.m in Sources */,
+				C9A9F1F70E8A42DF009A06A3 /* ELPaletteController.m in Sources */,
+				C9A9F1F80E8A42DF009A06A3 /* ELToolView.m in Sources */,
+				C9A9F1F90E8A42DF009A06A3 /* ELAbsorbTool.m in Sources */,
+				C9A9F1FA0E8A42DF009A06A3 /* ELGenerateTool.m in Sources */,
+				C9A9F1FB0E8A42DF009A06A3 /* ELNoteTool.m in Sources */,
+				C9A9F1FC0E8A42DF009A06A3 /* ELReboundTool.m in Sources */,
+				C9A9F1FD0E8A42DF009A06A3 /* ELSpinTool.m in Sources */,
+				C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */,
+				C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,13 +991,6 @@
 				C9874C2A0E42A1A10068E7BF /* LMHexCell.m in Sources */,
 				C9874C2D0E42A1A10068E7BF /* LMHoneycombView.m in Sources */,
 				C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9A528690E7866BC0040E203 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1090,6 +1045,62 @@
 				2A37F4BAFDCFA73011CA2CEA /* English */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		C9A9F1610E8A41DC009A06A3 /* FilterDesigner.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9F1620E8A41DC009A06A3 /* English */,
+			);
+			name = FilterDesigner.xib;
+			sourceTree = "<group>";
+		};
+		C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9F1640E8A41DC009A06A3 /* English */,
+			);
+			name = HexInspector.xib;
+			sourceTree = "<group>";
+		};
+		C9A9F1650E8A41DC009A06A3 /* LayerInspector.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9F1660E8A41DC009A06A3 /* English */,
+			);
+			name = LayerInspector.xib;
+			sourceTree = "<group>";
+		};
+		C9A9F1670E8A41DC009A06A3 /* LayerManager.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9F1680E8A41DC009A06A3 /* English */,
+			);
+			name = LayerManager.xib;
+			sourceTree = "<group>";
+		};
+		C9A9F1690E8A41DC009A06A3 /* LayerWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9F16A0E8A41DC009A06A3 /* English */,
+			);
+			name = LayerWindow.xib;
+			sourceTree = "<group>";
+		};
+		C9A9F16B0E8A41DC009A06A3 /* Palette.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9F16C0E8A41DC009A06A3 /* English */,
+			);
+			name = Palette.xib;
+			sourceTree = "<group>";
+		};
+		C9A9F16D0E8A41DC009A06A3 /* PlayerInspector.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9F16E0E8A41DC009A06A3 /* English */,
+			);
+			name = PlayerInspector.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1340,60 +1351,6 @@
 			};
 			name = Release;
 		};
-		C9A5286F0E7866BC0040E203 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "UnitTests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTests;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		C9A528700E7866BC0040E203 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "UnitTests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1438,15 +1395,6 @@
 			buildConfigurations = (
 				C9874BFC0E429EFA0068E7BF /* Debug */,
 				C9874BFD0E429EFA0068E7BF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C9A528710E7866BC0040E203 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C9A5286F0E7866BC0040E203 /* Debug */,
-				C9A528700E7866BC0040E203 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

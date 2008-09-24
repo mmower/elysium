@@ -9,6 +9,7 @@
 #import "Elysium.h"
 
 #import "ELTimer.h"
+#import "ELMIDIMessage.h"
 
 @implementation ELTimedEvent
 
@@ -25,7 +26,7 @@
 }
 
 - (id)initMessage:(int)_message channel:(int)_channel arg0:(int)_arg0 arg1:(int)_arg1 at:(UInt64)_time {
-  if( self = [super init] ) {
+  if( ( self = [super init] ) ) {
     message = _message;
     channel = _channel;
     arg0    = _arg0;
@@ -74,7 +75,7 @@
 }
 
 - (id)initWithResolution:(int)_resolution {
-  if( self = [super init] ) {
+  if( ( self = [super init] ) ) {
     resolution = _resolution;
     queue      = [[NSMutableArray alloc] init];
     thread     = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
