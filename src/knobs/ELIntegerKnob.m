@@ -77,7 +77,7 @@
 }
 
 - (int)value {
-  NSAssert( hasValue || linkValue, @"ELIntegerKnob must have or be linked to a value" );
+  NSAssert1( hasValue || linkValue, @"ELIntegerKnob(%@) must have or be linked to a value", name );
   
   if( linkValue ) {
     return [(ELIntegerKnob *)linkedKnob value];
@@ -90,7 +90,7 @@
 }
 
 - (int)filteredValue {
-  NSAssert( hasValue || linkValue, @"ELIntegerKnob must have or be linked to a value" );
+  NSAssert1( hasValue || linkValue, @"ELIntegerKnob(%@) must have or be linked to a value", name );
   
   if( linkValue ) {
     return [(ELIntegerKnob *)linkedKnob filteredValue];

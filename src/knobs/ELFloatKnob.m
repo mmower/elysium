@@ -77,7 +77,7 @@
 }
 
 - (float)value {
-  NSAssert( hasValue || linkValue, @"ELFloatKnob must have or be linked to a value" );
+  NSAssert1( hasValue || linkValue, @"ELFloatKnob(%@) must have or be linked to a value", name );
   
   if( linkValue ) {
     return [(ELFloatKnob *)linkedKnob value];
@@ -90,7 +90,7 @@
 }
 
 - (float)filteredValue {
-  NSAssert( hasValue || linkValue, @"ELFloatKnob must have or be linked to a value" );
+  NSAssert1( hasValue || linkValue, @"ELFloatKnob(%@) must have or be linked to a value", name );
   
   if( linkValue ) {
     return [(ELFloatKnob *)linkedKnob filteredValue];
