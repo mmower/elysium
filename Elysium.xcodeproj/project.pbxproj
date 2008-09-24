@@ -416,7 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				C94610A80E7C150B001CA9B0 /* knobs */,
-				C9A528440E7864BB0040E203 /* oscillator */,
+				C9A528440E7864BB0040E203 /* filter */,
 				C92128B90E7296C600D4D096 /* layer_manager */,
 				C96A67980E6B32F800A7C237 /* mainview */,
 				C97FEBD80E4F0754008F309B /* inspector */,
@@ -661,7 +661,7 @@
 			path = hex;
 			sourceTree = "<group>";
 		};
-		C9A528440E7864BB0040E203 /* oscillator */ = {
+		C9A528440E7864BB0040E203 /* filter */ = {
 			isa = PBXGroup;
 			children = (
 				C9A528450E7864BB0040E203 /* ELOscillator.h */,
@@ -670,7 +670,7 @@
 				C98DB90F0E89755E009C699E /* ELFilterDesignerController.m */,
 				C98DB9110E897569009C699E /* FilterDesigner.xib */,
 			);
-			path = oscillator;
+			path = filter;
 			sourceTree = "<group>";
 		};
 		C9B88E400E64A5E400FA411E /* images */ = {
