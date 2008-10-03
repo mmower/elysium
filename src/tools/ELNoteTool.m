@@ -72,7 +72,6 @@ static NSString * const toolType = @"note";
 // Tool runner
 
 - (BOOL)run:(ELPlayhead *)_playhead_ {
-  NSLog( @"Triad to play = %d", [triadKnob value] );
   if( [super run:_playhead_] ) {
     [layer playNotes:[[_playhead_ position] triad:[triadKnob value]]
             velocity:[velocityKnob filteredValue]
