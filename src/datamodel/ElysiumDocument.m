@@ -85,7 +85,7 @@
   NSArray *nodes = [rootElement nodesForXPath:@"surface" error:nil];
   NSXMLElement *surfaceElement = (NSXMLElement *)[nodes objectAtIndex:0];
   if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil] ) ) {
-    [player setMIDIController:[self midiController]];
+    [player setMidiController:[self midiController]];
     [player setDocument:self];
     NSLog( @"Loaded XML document" );
     return YES;
