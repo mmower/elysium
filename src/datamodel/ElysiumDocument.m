@@ -56,15 +56,15 @@
   [document setVersion:@"1.0"];
   [document setCharacterEncoding:@"UTF-8"];
   
-  [rootElement addChild:[player xmlRepresentation]];
-  
-  NSData *xml = [document XMLDataWithOptions:NSXMLNodePrettyPrint|NSXMLNodeCompactEmptyElement];
-  
-  return xml;
-  //     if ( outError != NULL ) {
-  //  *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
-  // }
-  // return nil;
+  NSXMLElement *playerElement = [player xmlRepresentation];
+  if( !player ) {
+    [rootElement addChild:playerElement];
+    NSData *xml = [document XMLDataWithOptions:NSXMLNodePrettyPrint|NSXMLNodeCompactEmptyElement];
+    return xml;
+  } else {
+    *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
+    return nil;
+  }
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
