@@ -8,6 +8,7 @@
  */
 
 #import <CoreAudio/CoreAudio.h>
+#import <FScript/FScript.h>
 
 // Type to represent compass directions (for a hex)
 typedef enum tagDirection {
