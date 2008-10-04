@@ -31,6 +31,8 @@
   int                 nextLayerNumber;
   BOOL                showNotes;
   
+  NSMutableDictionary *scripts;
+  
   ELIntegerKnob       *tempoKnob;
   ELIntegerKnob       *timeToLiveKnob;
   ELIntegerKnob       *pulseCountKnob;
@@ -45,6 +47,10 @@
 @property BOOL showNotes;
 @property (readonly) NSArray *filters;
 
+@property ELMIDIController *midiController;
+@property ElysiumDocument *document;
+@property (readonly) NSMutableDictionary *scripts;
+
 @property (readonly) ELIntegerKnob *tempoKnob;
 @property (readonly) ELIntegerKnob *timeToLiveKnob;
 @property (readonly) ELIntegerKnob *pulseCountKnob;
@@ -54,9 +60,6 @@
 
 - (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_;
 - (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)createDefaultLayer;
-
-- (void)setMIDIController:(ELMIDIController *)midiController;
-- (void)setDocument:(ElysiumDocument *)document;
 
 - (void)toggleNoteDisplay;
 

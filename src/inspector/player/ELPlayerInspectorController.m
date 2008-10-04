@@ -42,5 +42,52 @@
   }
 }
 
+- (IBAction)editScript:(id)sender {
+  Block *block;
+  NSString *callback = @"unknown";
+  
+  switch( [sender tag] ) {
+    case 0:
+      callback = @"willStart";
+      break;
+    case 1:
+      callback = @"didStart";
+      break;
+    case 2:
+      callback = @"willStop";
+      break;
+    case 3:
+      callback = @"didStop";
+      break;
+  }
+  
+  if( !( block = [[player scripts] objectForKey:callback] ) ) {
+    block = [@"[:player | true]" asBlock];
+    [[player scripts] setObject:block forKey:callback];
+  }
+  
+  [block inspect];
+}
+
+- (IBAction)removeScript:(id)sender {
+  NSString *callback = @"unknown";
+  
+  switch( [sender tag] ) {
+    case 0:
+      callback = @"willStart";
+      break;
+    case 1:
+      callback = @"didStart";
+      break;
+    case 2:
+      callback = @"willStop";
+      break;
+    case 3:
+      callback = @"didStop";
+      break;
+  }
+  
+  [[player scripts] removeObjectForKey:callback];
+}
 
 @end

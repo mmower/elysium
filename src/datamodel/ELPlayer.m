@@ -29,9 +29,9 @@
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    harmonicTable = [[ELHarmonicTable alloc] init];
-    layers        = [[NSMutableArray alloc] init];
-    filters       = [[NSMutableArray alloc] init];
+    harmonicTable  = [[ELHarmonicTable alloc] init];
+    layers         = [[NSMutableArray alloc] init];
+    filters        = [[NSMutableArray alloc] init];
     
     tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
     timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
@@ -39,6 +39,8 @@
     velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
     durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
     transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
+    
+    scripts        = [NSMutableDictionary dictionary];
     
     // Add a default filter, as much as a guide on creating new ones as anything else
     [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.0/60s" function:@"Sine" variance:1.0 period:60.0]];
@@ -55,7 +57,7 @@
 - (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ {
   if( ( self = [self init] ) ) {
     [self setDocument:_document_];
-    [self setMIDIController:_midiController_];
+    [self setMidiController:_midiController_];
   }
   
   return self;
@@ -86,14 +88,14 @@
 @synthesize durationKnob;
 @synthesize transposeKnob;
 
+@synthesize document;
+@synthesize midiController;
+@synthesize scripts;
+
 // Associations
 
 - (void)setMIDIController:(ELMIDIController *)_midiController {
   midiController = _midiController;
-}
-
-- (void)setDocument:(ElysiumDocument *)_document {
-  document = _document;
 }
 
 - (void)toggleNoteDisplay {
@@ -104,13 +106,17 @@
 // Player control
 
 - (void)start {
+  [[scripts objectForKey:@"willStart"] value:self];
   [layers makeObjectsPerformSelector:@selector(start)];
   isRunning = YES;
+  [[scripts objectForKey:@"didStart"] value:self];
 }
 
 - (void)stop {
+  [[scripts objectForKey:@"willStop"] value:self];
   [layers makeObjectsPerformSelector:@selector(stop)];
   isRunning = NO;
+  [[scripts objectForKey:@"didStop"] value:self];
 }
 
 - (void)reset {
@@ -232,6 +238,19 @@
   }
   [surfaceElement addChild:layersElement];
   
+  NSXMLElement *scriptsElement = [NSXMLNode elementWithName:@"scripts"];
+  for( NSString *name in [scripts allKeys] ) {
+    NSXMLElement *scriptElement = [NSXMLNode elementWithName:@"script"];
+    
+    [attributes removeAllObjects];
+    [attributes setObject:name forKey:@"name"];
+    [scriptElement setAttributesAsDictionary:attributes];
+    [scriptElement setStringValue:[scripts objectForKey:name]];
+    
+    [scriptsElement addChild:scriptElement];
+  }
+  [surfaceElement addChild:scriptsElement];
+  
   return surfaceElement;
 }
 
@@ -300,7 +319,7 @@
       transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
     }
     
-    // Finally the layers
+    // Layers
     
     nodes = [_representation_ nodesForXPath:@"layers/layer" error:nil];
     for( NSXMLNode *node in nodes ) {
@@ -314,6 +333,13 @@
         NSLog( @"Player detected faulty layer, cannot load." );
         return nil;
       }
+    }
+    
+    // Scripts
+    nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
+    for( NSXMLNode *node in nodes ) {
+      NSXMLElement *element = (NSXMLElement *)node;
+      [scripts setObject:[[element stringValue] asBlock] forKey:[[element attributeForName:@"name"] stringValue]];
     }
   }
   
