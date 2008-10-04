@@ -44,20 +44,18 @@
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-  NSLog( @"dataOfType:%@", typeName );
-  
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-
+  
   NSXMLElement *rootElement = [NSXMLNode elementWithName:@"elysium"];
   [attributes setObject:[NSNumber numberWithInt:2] forKey:@"version"];
   [rootElement setAttributesAsDictionary:attributes];
-
+  
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithRootElement:rootElement];
   [document setVersion:@"1.0"];
   [document setCharacterEncoding:@"UTF-8"];
   
   NSXMLElement *playerElement = [player xmlRepresentation];
-  if( !player ) {
+  if( playerElement ) {
     [rootElement addChild:playerElement];
     NSData *xml = [document XMLDataWithOptions:NSXMLNodePrettyPrint|NSXMLNodeCompactEmptyElement];
     return xml;
