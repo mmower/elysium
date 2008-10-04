@@ -19,4 +19,7 @@
 - (void)focus:(ELLayer *)layer;
 - (void)selectionChanged:(NSNotification*)notification;
 
+- (IBAction)editScript:(id)sender;
+- (IBAction)removeScript:(id)sender;
+
 @end

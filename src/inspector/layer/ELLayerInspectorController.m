@@ -39,4 +39,41 @@
   }
 }
 
+- (IBAction)editScript:(id)sender {
+  Block *block;
+  NSString *callback = @"unknown";
+  
+  switch( [sender tag] ) {
+    case 0:
+      callback = @"willRun";
+      break;
+    case 1:
+      callback = @"didRun";
+      break;
+  }
+  
+  if( !( block = [[layer scripts] objectForKey:callback] ) ) {
+    block = [@"[:layer | true]" asBlock];
+    [[layer scripts] setObject:block forKey:callback];
+  }
+  
+  [block inspect];
+}
+
+- (IBAction)removeScript:(id)sender {
+  NSString *callback = @"unknown";
+  
+  switch( [sender tag] ) {
+    case 0:
+      callback = @"willRun";
+      break;
+    case 1:
+      callback = @"didRun";
+      break;
+  }
+  
+  [[layer scripts] removeObjectForKey:callback];
+}
+
+
 @end

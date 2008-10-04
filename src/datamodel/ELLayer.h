@@ -34,6 +34,8 @@
   NSThread            *runner;      // The thread that runs this layer
   BOOL                isRunning;    // Whether or not this layer is running
   
+  NSMutableDictionary *scripts;
+  
   NSString            *layerId;
   
   ELHex               *selectedHex;
@@ -67,6 +69,8 @@
 @property (readonly) ELIntegerKnob *velocityKnob;
 @property (readonly) ELFloatKnob *durationKnob;
 @property (readonly) ELIntegerKnob *transposeKnob;
+
+@property (readonly) NSMutableDictionary *scripts;
 
 - (ELPlayer *)player;
 - (ELHex *)hexAtColumn:(int)col row:(int)row;

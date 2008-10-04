@@ -40,8 +40,10 @@ NSPredicate *deadPlayheadFilter;
     isRunning   = 0;
     selectedHex = nil;
     
-    enabledKnob   = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
-    channelKnob   = [[ELIntegerKnob alloc] initWithName:@"channel"];
+    scripts     = [NSMutableDictionary dictionary];
+    
+    enabledKnob = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
+    channelKnob = [[ELIntegerKnob alloc] initWithName:@"channel"];
   }
   
   return self;
@@ -85,6 +87,8 @@ NSPredicate *deadPlayheadFilter;
 @synthesize velocityKnob;
 @synthesize durationKnob;
 @synthesize transposeKnob;
+
+@synthesize scripts;
 
 - (void)playNote:(ELNote *)_note_ velocity:(int)_velocity_ duration:(float)_duration_ {
   // UInt64 noteOnTime = timeBase + (beatCount * [self timerResolution]);
@@ -161,7 +165,9 @@ NSPredicate *deadPlayheadFilter;
   timeBase  = AudioGetCurrentHostTime();
   isRunning = YES;
   while( ![runner isCancelled] ) {
+    [[scripts objectForKey:@"willRun"] value:self];
     [self run];
+    [[scripts objectForKey:@"didRun"] value:self];
     usleep( [self timerResolution] );
   }
   
@@ -363,6 +369,19 @@ NSPredicate *deadPlayheadFilter;
   
   [layerElement addChild:cellsElement];
   
+  NSXMLElement *scriptsElement = [NSXMLNode elementWithName:@"scripts"];
+  for( NSString *name in [scripts allKeys] ) {
+    NSXMLElement *scriptElement = [NSXMLNode elementWithName:@"script"];
+    
+    [attributes removeAllObjects];
+    [attributes setObject:name forKey:@"name"];
+    [scriptElement setAttributesAsDictionary:attributes];
+    [scriptElement setStringValue:[scripts objectForKey:name]];
+    
+    [scriptsElement addChild:scriptElement];
+  }
+  [layerElement addChild:scriptsElement];
+  
   return layerElement;
 }
 
@@ -427,6 +446,13 @@ NSPredicate *deadPlayheadFilter;
       [hex initWithXmlRepresentation:element parent:self player:_player_];
     }
     
+    // Scripts
+    nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
+    for( NSXMLNode *node in nodes ) {
+      NSXMLElement *element = (NSXMLElement *)node;
+      [scripts setObject:[[element stringValue] asBlock]
+                  forKey:[[element attributeForName:@"name"] stringValue]];
+    }
   }
   
   return self;
