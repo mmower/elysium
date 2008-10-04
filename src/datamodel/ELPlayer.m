@@ -339,7 +339,8 @@
     nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
     for( NSXMLNode *node in nodes ) {
       NSXMLElement *element = (NSXMLElement *)node;
-      [scripts setObject:[[element stringValue] asBlock] forKey:[[element attributeForName:@"name"] stringValue]];
+      [scripts setObject:[[element stringValue] asBlock]
+                  forKey:[[element attributeForName:@"name"] stringValue]];
     }
   }
   
