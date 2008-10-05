@@ -8,13 +8,13 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="482"/>
-			<integer value="644"/>
 			<integer value="481"/>
+			<integer value="482"/>
 			<integer value="480"/>
-			<integer value="485"/>
 			<integer value="483"/>
+			<integer value="644"/>
 			<integer value="484"/>
+			<integer value="485"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2351,6 +2351,7 @@
 									</object>
 									<string key="NSFrame">{{1, 1}, {302, 472}}</string>
 									<reference key="NSSuperview" ref="700743471"/>
+									<reference key="NSNextKeyView" ref="89439431"/>
 									<reference key="NSDocView" ref="89439431"/>
 									<reference key="NSBGColor" ref="911093383"/>
 									<int key="NScvFlags">4</int>
@@ -2378,6 +2379,7 @@
 							</object>
 							<string key="NSFrame">{{-1, -1}, {304, 474}}</string>
 							<reference key="NSSuperview" ref="190764514"/>
+							<reference key="NSNextKeyView" ref="980272829"/>
 							<int key="NSsFlags">530</int>
 							<reference key="NSVScroller" ref="109301908"/>
 							<reference key="NSHScroller" ref="441309264"/>
@@ -4888,6 +4890,246 @@
 					</object>
 					<int key="connectionID">891</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="902713656"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="902713656"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">894</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="675275904"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="675275904"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">896</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="256554789"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="256554789"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">898</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="725588196"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="725588196"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">900</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="856908814"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="856908814"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">902</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="967269696"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="967269696"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">904</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="931825824"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="931825824"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">906</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="722043934"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="722043934"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">908</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="349988494"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="349988494"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">910</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="1489"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1489"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">912</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="243093617"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="243093617"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">914</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: hex.layer.player.running</string>
+						<reference key="source" ref="968680813"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="968680813"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: hex.layer.player.running</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">hex.layer.player.running</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">916</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -6930,9 +7172,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{952, 690}, {302, 472}}</string>
+					<string>{{1111, 690}, {302, 472}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{952, 690}, {302, 472}}</string>
+					<string>{{1111, 690}, {302, 472}}</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -7054,7 +7296,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">891</int>
+			<int key="maxID">916</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
