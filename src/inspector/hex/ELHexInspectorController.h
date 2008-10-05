@@ -13,6 +13,7 @@
 #import <StackedListView/PASectionHeaderView.h>
 
 @class ELHex;
+@class ELTool;
 
 @interface ELHexInspectorController : NSWindowController {
   IBOutlet PAStackedListView  *stackedList;
@@ -30,5 +31,10 @@
 
 - (void)focus:(ELHex *)hex;
 - (void)selectionChanged:(NSNotification*)notification;
+
+- (void)editWillRunScript:(ELTool *)tool;
+- (void)editDidRunScript:(ELTool *)tool;
+- (void)removeWillRunScript:(ELTool *)tool;
+- (void)removeDidRunScript:(ELTool *)tool;
 
 @end

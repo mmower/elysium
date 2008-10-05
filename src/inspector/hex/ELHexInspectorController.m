@@ -9,6 +9,7 @@
 #import "ELHexInspectorController.h"
 
 #import "ELHex.h"
+#import "ELTool.h"
 
 @implementation ELHexInspectorController
 
@@ -42,6 +43,36 @@
   if( [[_notification_ object] isKindOfClass:[ELHex class]] ) {
     [self focus:[_notification_ object]];
   }
+}
+
+- (void)editWillRunScript:(ELTool *)_tool_ {
+  Block *block;
+  
+  if( !( block = [[_tool_ scripts] objectForKey:@"willRun"] ) ) {
+    block = [[NSString stringWithFormat:@"[:%@ | true]", [_tool_ toolType]] asBlock];
+    [[_tool_ scripts] setObject:block forKey:@"willRun"];
+  }
+  
+  [block inspect];
+}
+
+- (void)editDidRunScript:(ELTool *)_tool_ {
+  Block *block;
+  
+  if( !( block = [[_tool_ scripts] objectForKey:@"didRun"] ) ) {
+    block = [[NSString stringWithFormat:@"[:%@ | true]", [_tool_ toolType]] asBlock];
+    [[_tool_ scripts] setObject:block forKey:@"didRun"];
+  }
+  
+  [block inspect];
+}
+
+- (void)removeWillRunScript:(ELTool *)_tool_ {
+  [[_tool_ scripts] removeObjectForKey:@"willRun"];
+}
+
+- (void)removeDidRunScript:(ELTool *)_tool_ {
+  [[_tool_ scripts] removeObjectForKey:@"didRun"];
 }
 
 @end

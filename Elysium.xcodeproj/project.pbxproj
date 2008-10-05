@@ -16,6 +16,13 @@
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
 		C916000B0E977D4E0052DB9F /* FScript.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C916FFF70E977D470052DB9F /* FScript.framework */; };
 		C91600480E97EAFD0052DB9F /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = C91600470E97EAFD0052DB9F /* AppIcon.icns */; };
+		C91600720E982D990052DB9F /* triad1.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600710E982D990052DB9F /* triad1.tif */; };
+		C916007E0E9830530052DB9F /* triad2.tif in Resources */ = {isa = PBXBuildFile; fileRef = C916007D0E9830530052DB9F /* triad2.tif */; };
+		C91600800E989EB20052DB9F /* triad3.tif in Resources */ = {isa = PBXBuildFile; fileRef = C916007F0E989EB20052DB9F /* triad3.tif */; };
+		C91600A60E98FF3C0052DB9F /* triad0.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A20E98FF3C0052DB9F /* triad0.tif */; };
+		C91600A70E98FF3C0052DB9F /* triad4.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A30E98FF3C0052DB9F /* triad4.tif */; };
+		C91600A80E98FF3C0052DB9F /* triad5.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A40E98FF3C0052DB9F /* triad5.tif */; };
+		C91600A90E98FF3C0052DB9F /* triad6.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A50E98FF3C0052DB9F /* triad6.tif */; };
 		C916FFF80E977D470052DB9F /* FScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C916FFF70E977D470052DB9F /* FScript.framework */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
 		C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54970E61F1250077C448 /* PYMIDI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -176,6 +183,13 @@
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
 		C91600470E97EAFD0052DB9F /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		C91600710E982D990052DB9F /* triad1.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad1.tif; sourceTree = "<group>"; };
+		C916007D0E9830530052DB9F /* triad2.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad2.tif; sourceTree = "<group>"; };
+		C916007F0E989EB20052DB9F /* triad3.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad3.tif; sourceTree = "<group>"; };
+		C91600A20E98FF3C0052DB9F /* triad0.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad0.tif; sourceTree = "<group>"; };
+		C91600A30E98FF3C0052DB9F /* triad4.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad4.tif; sourceTree = "<group>"; };
+		C91600A40E98FF3C0052DB9F /* triad5.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad5.tif; sourceTree = "<group>"; };
+		C91600A50E98FF3C0052DB9F /* triad6.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad6.tif; sourceTree = "<group>"; };
 		C916FFF70E977D470052DB9F /* FScript.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FScript.framework; path = ../../Cocoa/frameworks/FScript_2_0_alpha/Binaries/FScript.framework; sourceTree = SOURCE_ROOT; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		C93D54910E61F0E80077C448 /* PYMIDI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PYMIDI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -695,6 +709,13 @@
 		C9B88E400E64A5E400FA411E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C91600A20E98FF3C0052DB9F /* triad0.tif */,
+				C91600A30E98FF3C0052DB9F /* triad4.tif */,
+				C91600A40E98FF3C0052DB9F /* triad5.tif */,
+				C91600A50E98FF3C0052DB9F /* triad6.tif */,
+				C916007F0E989EB20052DB9F /* triad3.tif */,
+				C916007D0E9830530052DB9F /* triad2.tif */,
+				C91600710E982D990052DB9F /* triad1.tif */,
 				C91600470E97EAFD0052DB9F /* AppIcon.icns */,
 				C98DB8370E8907B6009C699E /* sectionheader.gif */,
 				C905E00D0E733C2A00C39302 /* hexdrag.pdf */,
@@ -881,6 +902,13 @@
 				C9A9F1740E8A41DC009A06A3 /* Palette.xib in Resources */,
 				C9A9F1750E8A41DC009A06A3 /* PlayerInspector.xib in Resources */,
 				C91600480E97EAFD0052DB9F /* AppIcon.icns in Resources */,
+				C91600720E982D990052DB9F /* triad1.tif in Resources */,
+				C916007E0E9830530052DB9F /* triad2.tif in Resources */,
+				C91600800E989EB20052DB9F /* triad3.tif in Resources */,
+				C91600A60E98FF3C0052DB9F /* triad0.tif in Resources */,
+				C91600A70E98FF3C0052DB9F /* triad4.tif in Resources */,
+				C91600A80E98FF3C0052DB9F /* triad5.tif in Resources */,
+				C91600A90E98FF3C0052DB9F /* triad6.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

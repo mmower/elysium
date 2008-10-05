@@ -36,6 +36,7 @@ NSMutableDictionary *toolMapping = nil;
   if( ( self = [super init] ) ) {
     preferredOrder = 5;
     enabled        = YES;
+    scripts        = [NSMutableDictionary dictionary];
   }
   
   return self;
@@ -47,7 +48,7 @@ NSMutableDictionary *toolMapping = nil;
 @synthesize preferredOrder;
 @synthesize layer;
 @synthesize hex;
-
+@synthesize scripts;
 
 - (NSString *)toolType {
   [self doesNotRecognizeSelector:_cmd];

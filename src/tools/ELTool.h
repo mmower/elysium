@@ -19,16 +19,18 @@
 @end
 
 @interface ELTool : NSObject <ELXmlData> {
-  BOOL      enabled;
-  ELLayer   *layer;
-  ELHex     *hex;
-  int       preferredOrder;
+  BOOL                enabled;
+  ELLayer             *layer;
+  ELHex               *hex;
+  int                 preferredOrder;
+  NSMutableDictionary *scripts;
 }
 
 @property BOOL enabled;
 @property int preferredOrder;
 @property (readonly) ELLayer *layer;
 @property (readonly) ELHex *hex;
+@property (readonly) NSMutableDictionary *scripts;
 
 + (ELTool *)toolAlloc:(NSString *)key;
 
