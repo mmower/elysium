@@ -45,6 +45,7 @@ NSMutableDictionary *toolMapping = nil;
 // Properties
 
 @synthesize enabled;
+@synthesize skip;
 @synthesize preferredOrder;
 @synthesize layer;
 @synthesize hex;
@@ -74,7 +75,10 @@ NSMutableDictionary *toolMapping = nil;
 - (void)run:(ELPlayhead *)_playhead_ {
   if( enabled ) {
     [[scripts objectForKey:@"willRun"] value:self value:_playhead_];
-    [self runTool:_playhead_];
+    if( !skip ) {
+      [self runTool:_playhead_];
+    }
+    skip = NO;
     [[scripts objectForKey:@"didRun"] value:self value:_playhead_];
   }
 }

@@ -24,9 +24,11 @@
   ELHex               *hex;
   int                 preferredOrder;
   NSMutableDictionary *scripts;
+  BOOL                skip;
 }
 
 @property BOOL enabled;
+@property BOOL skip;
 @property int preferredOrder;
 @property (readonly) ELLayer *layer;
 @property (readonly) ELHex *hex;
