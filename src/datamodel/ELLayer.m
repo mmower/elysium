@@ -78,6 +78,7 @@ NSPredicate *deadPlayheadFilter;
 @synthesize delegate;
 @synthesize layerId;
 @synthesize selectedHex;
+@synthesize beatCount;
 
 @synthesize enabledKnob;
 @synthesize channelKnob;

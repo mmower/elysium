@@ -60,6 +60,7 @@
 @property BOOL visible;
 @property (assign) NSString *layerId;
 @property ELHex *selectedHex;
+@property int beatCount;
 
 @property (readonly) ELBooleanKnob *enabledKnob;
 @property (readonly) ELIntegerKnob *channelKnob;
