@@ -69,9 +69,19 @@ NSMutableDictionary *toolMapping = nil;
   hex = nil;
 }
 
-// Tool specific invocation goes here
-- (BOOL)run:(ELPlayhead *)_playhead_ {
-  return enabled;
+// Tool-run protocol. The layer will call run and, as long as the tool is enabled,
+// the tool will invoke it's scripts and the subclass overriden runTool between them.
+- (void)run:(ELPlayhead *)_playhead_ {
+  if( enabled ) {
+    [[scripts objectForKey:@"willRun"] value:self value:_playhead_];
+    [self runTool:_playhead_];
+    [[scripts objectForKey:@"didRun"] value:self value:_playhead_];
+  }
+}
+
+// Should be overridden by tool subclasses
+- (void)runTool:(ELPlayhead *)_playhead_ {
+  [self doesNotRecognizeSelector:_cmd];
 }
 
 // Drawing

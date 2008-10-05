@@ -46,27 +46,21 @@ static NSString * const toolType = @"spin";
 
 // What happens when a playhead arrives
 
-- (BOOL)run:(ELPlayhead *)_playhead_ {
-  if( [super run:_playhead_] ) {
-    ELTool<DirectedTool> *tool;
-    
-    if( [[_playhead_ position] reboundTool] ) {
-      tool = [[_playhead_ position] reboundTool];
-    } else if( [[_playhead_ position] generateTool] ) {
-      tool = [[_playhead_ position] generateTool];
-    } else {
-      tool = nil;
-    }
-    
-    if( [clockwiseKnob value] ) {
-      [[tool directionKnob] setValue:(([[tool directionKnob] value]+1) % 6)];
-    } else {
-      [[tool directionKnob] setValue:(([[tool directionKnob] value]-1) % 6)];
-    }
-
-    return YES;
+- (void)runTool:(ELPlayhead *)_playhead_ {
+  ELTool<DirectedTool> *tool;
+  
+  if( [[_playhead_ position] reboundTool] ) {
+    tool = [[_playhead_ position] reboundTool];
+  } else if( [[_playhead_ position] generateTool] ) {
+    tool = [[_playhead_ position] generateTool];
   } else {
-    return NO;
+    tool = nil;
+  }
+  
+  if( [clockwiseKnob value] ) {
+    [[tool directionKnob] setValue:(([[tool directionKnob] value]+1) % 6)];
+  } else {
+    [[tool directionKnob] setValue:(([[tool directionKnob] value]-1) % 6)];
   }
 }
 

@@ -88,15 +88,10 @@ static NSString * const toolType = @"generate";
   }
 }
 
-- (BOOL)run:(ELPlayhead *)_playhead {
-  if( [super run:_playhead] ) {
+- (void)runTool:(ELPlayhead *)_playhead_ {
     [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
                                                   direction:[directionKnob value]
                                                         TTL:[timeToLiveKnob filteredValue]]];
-    return YES;
-  } else {
-    return NO;
-  }
 }
 
 // Drawing

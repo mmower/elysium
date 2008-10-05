@@ -71,18 +71,10 @@ static NSString * const toolType = @"note";
 
 // Tool runner
 
-- (BOOL)run:(ELPlayhead *)_playhead_ {
-  if( [super run:_playhead_] ) {
-    [layer playNotes:[[_playhead_ position] triad:[triadKnob value]]
-            velocity:[velocityKnob filteredValue]
-            duration:[durationKnob filteredValue]];
-    // [layer playNote:[[_playhead_ position] note]
-    //        velocity:[velocityKnob filteredValue]
-    //        duration:[durationKnob filteredValue]];
-    return YES;
-  } else {
-    return NO;
-  }
+- (void)runTool:(ELPlayhead *)_playhead_ {
+  [layer playNotes:[[_playhead_ position] triad:[triadKnob value]]
+          velocity:[velocityKnob filteredValue]
+          duration:[durationKnob filteredValue]];
 }
 
 // Drawing

@@ -20,19 +20,14 @@ static NSString * const toolType = @"split";
   return toolType;
 }
 
-- (BOOL)run:(ELPlayhead *)_playhead_ {
-  if( [super run:_playhead_] ) {
-    [_playhead_ setPosition:nil];
-    for( int direction = N; direction <= NW; direction++ ) {
-      if( direction != INVERSE_DIRECTION( [_playhead_ direction] ) ) {
-        [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:[hex neighbour:direction]
-                                                      direction:direction
-                                                            TTL:[_playhead_ TTL]]];
-      }
+- (void)runTool:(ELPlayhead *)_playhead_ {
+  [_playhead_ setPosition:nil];
+  for( int direction = N; direction <= NW; direction++ ) {
+    if( direction != INVERSE_DIRECTION( [_playhead_ direction] ) ) {
+      [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:[hex neighbour:direction]
+                                                    direction:direction
+                                                          TTL:[_playhead_ TTL]]];
     }
-    return YES;
-  } else {
-    return NO;
   }
 }
 

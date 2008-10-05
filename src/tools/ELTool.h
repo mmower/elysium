@@ -41,7 +41,8 @@
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;
 - (void)removedFromLayer:(ELLayer *)layer;
 
-- (BOOL)run:(ELPlayhead *)playhead;
+- (void)run:(ELPlayhead *)playhead;
+- (void)runTool:(ELPlayhead *)playhead;
 
 - (void)drawWithAttributes:(NSDictionary *)attributes;
 

@@ -43,13 +43,8 @@ static NSString * const toolType = @"rebound";
 
 // Tool runner
 
-- (BOOL)run:(ELPlayhead *)_playhead_ {
-  if( [super run:_playhead_] ) {
-    [_playhead_ setDirection:[directionKnob value]];
-    return YES;
-  } else {
-    return NO;
-  }
+- (void)run:(ELPlayhead *)_playhead_ {
+  [_playhead_ setDirection:[directionKnob value]];
 }
 
 // Drawing
