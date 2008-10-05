@@ -19,6 +19,13 @@
 }
 
 - (void)awakeFromNib {
+  [stackedList addSubview:generateBox];
+  [stackedList addSubview:noteBox];
+  [stackedList addSubview:reboundBox];
+  [stackedList addSubview:absorbBox];
+  [stackedList addSubview:splitBox];
+  [stackedList addSubview:spinBox];
+  
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(selectionChanged:)
                                                name:ELNotifyObjectSelectionDidChange
