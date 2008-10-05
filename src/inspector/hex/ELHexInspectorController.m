@@ -49,7 +49,7 @@
   Block *block;
   
   if( !( block = [[_tool_ scripts] objectForKey:@"willRun"] ) ) {
-    block = [[NSString stringWithFormat:@"[:%@ | true]", [_tool_ toolType]] asBlock];
+    block = [[NSString stringWithFormat:@"[:%@Tool :playhead | true]", [_tool_ toolType]] asBlock];
     [[_tool_ scripts] setObject:block forKey:@"willRun"];
   }
   
@@ -60,7 +60,7 @@
   Block *block;
   
   if( !( block = [[_tool_ scripts] objectForKey:@"didRun"] ) ) {
-    block = [[NSString stringWithFormat:@"[:%@ | true]", [_tool_ toolType]] asBlock];
+    block = [[NSString stringWithFormat:@"[:%@Tool playhead | true]", [_tool_ toolType]] asBlock];
     [[_tool_ scripts] setObject:block forKey:@"didRun"];
   }
   
