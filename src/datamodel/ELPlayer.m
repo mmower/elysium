@@ -77,7 +77,7 @@
 
 @synthesize startTime;
 @synthesize harmonicTable;
-@synthesize isRunning;
+@synthesize running;
 @synthesize showNotes;
 @synthesize filters;
 
@@ -108,14 +108,14 @@
 - (void)start {
   [[scripts objectForKey:@"willStart"] value:self];
   [layers makeObjectsPerformSelector:@selector(start)];
-  isRunning = YES;
+  [self setRunning:YES];
   [[scripts objectForKey:@"didStart"] value:self];
 }
 
 - (void)stop {
   [[scripts objectForKey:@"willStop"] value:self];
   [layers makeObjectsPerformSelector:@selector(stop)];
-  isRunning = NO;
+  [self setRunning:NO];
   [[scripts objectForKey:@"didStop"] value:self];
 }
 

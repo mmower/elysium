@@ -106,7 +106,7 @@
 // Actions
 
 - (IBAction)startStop:(id)_sender_ {
-  if( [player isRunning] ) {
+  if( [player running] ) {
     [player stop];
   } else {
     [player start];
