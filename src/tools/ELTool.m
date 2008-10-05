@@ -74,12 +74,12 @@ NSMutableDictionary *toolMapping = nil;
 // the tool will invoke it's scripts and the subclass overriden runTool between them.
 - (void)run:(ELPlayhead *)_playhead_ {
   if( enabled ) {
-    [[scripts objectForKey:@"willRun"] value:self value:_playhead_];
+    [[scripts objectForKey:@"willRun"] guardedValue:self value:_playhead_];
     if( !skip ) {
       [self runTool:_playhead_];
     }
     skip = NO;
-    [[scripts objectForKey:@"didRun"] value:self value:_playhead_];
+    [[scripts objectForKey:@"didRun"] guardedValue:self value:_playhead_];
   }
 }
 

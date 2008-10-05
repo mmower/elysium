@@ -106,17 +106,17 @@
 // Player control
 
 - (void)start {
-  [[scripts objectForKey:@"willStart"] value:self];
+  [[scripts objectForKey:@"willStart"] guardedValue:self];
   [layers makeObjectsPerformSelector:@selector(start)];
   [self setRunning:YES];
-  [[scripts objectForKey:@"didStart"] value:self];
+  [[scripts objectForKey:@"didStart"] guardedValue:self];
 }
 
 - (void)stop {
-  [[scripts objectForKey:@"willStop"] value:self];
+  [[scripts objectForKey:@"willStop"] guardedValue:self];
   [layers makeObjectsPerformSelector:@selector(stop)];
   [self setRunning:NO];
-  [[scripts objectForKey:@"didStop"] value:self];
+  [[scripts objectForKey:@"didStop"] guardedValue:self];
 }
 
 - (void)reset {

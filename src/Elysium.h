@@ -10,6 +10,8 @@
 #import <CoreAudio/CoreAudio.h>
 #import <FScript/FScript.h>
 
+#import "Block+NAryGuardedValue.h"
+
 // Type to represent compass directions (for a hex)
 typedef enum tagDirection {
   N = 0,

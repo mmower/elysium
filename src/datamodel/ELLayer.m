@@ -165,9 +165,9 @@ NSPredicate *deadPlayheadFilter;
   timeBase  = AudioGetCurrentHostTime();
   isRunning = YES;
   while( ![runner isCancelled] ) {
-    [[scripts objectForKey:@"willRun"] value:self];
+    [[scripts objectForKey:@"willRun"] guardedValue:self];
     [self run];
-    [[scripts objectForKey:@"didRun"] value:self];
+    [[scripts objectForKey:@"didRun"] guardedValue:self];
     usleep( [self timerResolution] );
   }
   
