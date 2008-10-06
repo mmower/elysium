@@ -58,17 +58,12 @@ static NSString * const toolType = @"split";
 
 // Implement the ELXmlData protocol
 
-- (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *splitterElement = [NSXMLNode elementWithName:toolType];
-  
-  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
-  [splitterElement addChild:controlsElement];
-  
-  return splitterElement;
-}
-
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  return [self init];
+  if( ( self = [self init] ) ) {
+    [self loadScripts:_representation_];
+  }
+  
+  return self;
 }
 
 @end

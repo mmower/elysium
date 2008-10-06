@@ -104,14 +104,10 @@ static NSString * const toolType = @"spin";
 
 // Implement the ELXmlData protocol
 
-- (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *rotorElement = [NSXMLNode elementWithName:toolType];
-  
-  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+- (NSXMLElement *)controlsXmlRepresentation {
+  NSXMLElement *controlsElement = [super controlsXmlRepresentation];
   [controlsElement addChild:[clockwiseKnob xmlRepresentation]];
-  [rotorElement addChild:controlsElement];
-  
-  return rotorElement;
+  return controlsElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
@@ -122,6 +118,8 @@ static NSString * const toolType = @"spin";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='clockwise']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    
+    [self loadScripts:_representation_];
   }
   
   return self;

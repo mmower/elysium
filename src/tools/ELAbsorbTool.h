@@ -10,7 +10,7 @@
 
 #import "ELTool.h"
 
-@interface ELAbsorbTool : ELTool <NSMutableCopying,ELXmlData> {
+@interface ELAbsorbTool : ELTool <NSMutableCopying> {
 }
 
 @end

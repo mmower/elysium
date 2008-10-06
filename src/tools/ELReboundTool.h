@@ -12,7 +12,7 @@
 
 #import "ELTool.h"
 
-@interface ELReboundTool : ELTool <NSMutableCopying,ELXmlData,DirectedTool> {
+@interface ELReboundTool : ELTool <NSMutableCopying,DirectedTool> {
   ELIntegerKnob *directionKnob;
 }
 

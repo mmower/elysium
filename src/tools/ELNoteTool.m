@@ -103,16 +103,12 @@ static NSString * const toolType = @"note";
 
 // Implement the ELXmlData protocol
 
-- (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *noteElement = [NSXMLNode elementWithName:toolType];
-  
-  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+- (NSXMLElement *)controlsXmlRepresentation {
+  NSXMLElement *controlsElement = [super controlsXmlRepresentation];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
   [controlsElement addChild:[triadKnob xmlRepresentation]];
-  [noteElement addChild:controlsElement];
-  
-  return noteElement;
+  return controlsElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
@@ -143,6 +139,8 @@ static NSString * const toolType = @"note";
     } else {
       triadKnob = [[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0];
     }
+    
+    [self loadScripts:_representation_];
   }
   
   return self;

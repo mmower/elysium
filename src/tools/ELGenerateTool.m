@@ -112,17 +112,13 @@ static NSString * const toolType = @"generate";
 
 // Implement the ELXmlData protocol
 
-- (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *generatorElement = [NSXMLNode elementWithName:toolType];
-  
-  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+- (NSXMLElement *)controlsXmlRepresentation {
+  NSXMLElement *controlsElement = [super controlsXmlRepresentation];
   [controlsElement addChild:[directionKnob xmlRepresentation]];
   [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
   [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
   [controlsElement addChild:[offsetKnob xmlRepresentation]];
-  [generatorElement addChild:controlsElement];
-  
-  return generatorElement;
+  return controlsElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
@@ -145,6 +141,8 @@ static NSString * const toolType = @"generate";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='offset']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    
+    [self loadScripts:_representation_];
   }
   
   return self;

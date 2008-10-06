@@ -48,4 +48,8 @@
 
 - (void)drawWithAttributes:(NSDictionary *)attributes;
 
+- (NSXMLElement *)controlsXmlRepresentation;
+- (NSXMLElement *)scriptsXmlRepresentation;
+- (void)loadScripts:(NSXMLElement *)representation;
+
 @end

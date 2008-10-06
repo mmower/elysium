@@ -12,7 +12,7 @@
 
 #import "ELTool.h"
 
-@interface ELSplitTool : ELTool <NSMutableCopying,ELXmlData> {
+@interface ELSplitTool : ELTool <NSMutableCopying> {
 
 }
 

@@ -377,8 +377,9 @@ NSPredicate *deadPlayheadFilter;
     [attributes removeAllObjects];
     [attributes setObject:name forKey:@"name"];
     [scriptElement setAttributesAsDictionary:attributes];
-    [scriptElement setStringValue:[scripts objectForKey:name]];
-    
+    NSXMLNode *cdataNode = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
+    [cdataNode setStringValue:[scripts objectForKey:name]];
+    [scriptElement addChild:cdataNode];
     [scriptsElement addChild:scriptElement];
   }
   [layerElement addChild:scriptsElement];

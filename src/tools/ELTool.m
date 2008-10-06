@@ -97,13 +97,49 @@ NSMutableDictionary *toolMapping = nil;
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  [self doesNotRecognizeSelector:_cmd];
-  return nil;
+  NSXMLElement *element = [NSXMLNode elementWithName:[self toolType]];
+  [element addChild:[self controlsXmlRepresentation]];
+  [element addChild:[self scriptsXmlRepresentation]];
+  return element;
+}
+
+- (NSXMLElement *)controlsXmlRepresentation {
+  return [NSXMLNode elementWithName:@"controls"];
+}
+
+- (NSXMLElement *)scriptsXmlRepresentation {
+  NSXMLElement *scriptsElement = [NSXMLNode elementWithName:@"scripts"];
+  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+  
+  for( NSString *name in [scripts allKeys] ) {
+    NSXMLElement *scriptElement = [NSXMLNode elementWithName:@"script"];
+
+    [attributes removeAllObjects];
+    [attributes setObject:name forKey:@"name"];
+    [scriptElement setAttributesAsDictionary:attributes];
+    
+    NSXMLNode *cdataNode = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
+    [cdataNode setStringValue:[scripts objectForKey:name]];
+    [scriptElement addChild:cdataNode];
+    
+    [scriptsElement addChild:scriptElement];
+  }
+  
+  return scriptsElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   [self doesNotRecognizeSelector:_cmd];
   return nil;
+}
+
+- (void)loadScripts:(NSXMLElement *)_representation_ {
+  NSArray *nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
+  for( NSXMLNode *node in nodes ) {
+    NSXMLElement *element = (NSXMLElement *)node;
+    [scripts setObject:[[element stringValue] asBlock]
+                forKey:[[element attributeForName:@"name"] stringValue]];
+  }
 }
 
 @end

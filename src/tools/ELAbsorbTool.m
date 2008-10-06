@@ -46,17 +46,12 @@ static NSString * const toolType = @"absorb";
 
 // Implement the ELXmlData protocol
 
-- (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *sinkElement = [NSXMLNode elementWithName:toolType];
-  
-  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
-  [sinkElement addChild:controlsElement];
-  
-  return sinkElement;
-}
-
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  return [self init];
+  if( ( self = [self init] ) ) {
+    [self loadScripts:_representation_];
+  }
+  
+  return self;
 }
 
 @end

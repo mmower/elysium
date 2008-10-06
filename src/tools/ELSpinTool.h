@@ -12,7 +12,7 @@
 
 #import "ELTool.h"
 
-@interface ELSpinTool : ELTool <NSMutableCopying,ELXmlData> {
+@interface ELSpinTool : ELTool <NSMutableCopying> {
   ELBooleanKnob *clockwiseKnob;
 
 }
