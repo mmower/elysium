@@ -280,6 +280,17 @@
   [playheads removeObject:_playhead];
 }
 
+// Context menu
+
+- (NSMenu *)contextMenu {
+  NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Context Menu"];
+  
+  NSMenuItem *item = [menu insertItemWithTitle:@"Beep" action:@selector(beep:) keyEquivalent:@"" atIndex:0];
+  [item setTarget:self];
+  
+  return menu;
+}
+
 // Drawing
 
 - (void)drawText:(NSString *)_text_ withAttributes:(NSMutableDictionary *)_attributes_ {
@@ -444,6 +455,12 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   }
   
   return self;
+}
+
+// Actions
+
+- (IBAction)beep:(id)sender {
+  NSBeep();
 }
 
 @end

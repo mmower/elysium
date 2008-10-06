@@ -83,4 +83,8 @@
 - (void)drawTriangleInDirection:(Direction)direction withAttributes:(NSDictionary *)attributes;
 - (void)drawText:(NSString *)text  withAttributes:(NSMutableDictionary *)attributes;
 
+// Actions for tool management
+
+- (IBAction)beep:(id)sender;
+
 @end
