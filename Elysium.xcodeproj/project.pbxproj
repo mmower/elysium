@@ -74,6 +74,8 @@
 		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
 		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
 		C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8370E8907B6009C699E /* sectionheader.gif */; };
+		C99F7BAA0E9AAC1100AA61A8 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */; };
+		C99F7BAE0E9AAC1700AA61A8 /* MacRuby.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */; };
 		C9A9F16F0E8A41DC009A06A3 /* FilterDesigner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1610E8A41DC009A06A3 /* FilterDesigner.xib */; };
 		C9A9F1700E8A41DC009A06A3 /* HexInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */; };
 		C9A9F1710E8A41DC009A06A3 /* LayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1650E8A41DC009A06A3 /* LayerInspector.xib */; };
@@ -159,6 +161,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C99F7BAE0E9AAC1700AA61A8 /* MacRuby.framework in CopyFiles */,
 				C916000B0E977D4E0052DB9F /* FScript.framework in CopyFiles */,
 				C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */,
 				C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */,
@@ -243,6 +246,7 @@
 		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
+		C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MacRuby.framework; sourceTree = "<group>"; };
 		C9A9F1620E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FilterDesigner.xib; sourceTree = "<group>"; };
 		C9A9F1640E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/HexInspector.xib; sourceTree = "<group>"; };
 		C9A9F1660E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LayerInspector.xib; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 				C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */,
 				C9C9AFA80E82F11800277071 /* JavaScriptCore.framework in Frameworks */,
 				C916FFF80E977D470052DB9F /* FScript.framework in Frameworks */,
+				C99F7BAA0E9AAC1100AA61A8 /* MacRuby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +381,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */,
 				C916FFF70E977D470052DB9F /* FScript.framework */,
 				C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */,
 				C93D54910E61F0E80077C448 /* PYMIDI.framework */,
