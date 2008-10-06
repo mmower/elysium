@@ -14,11 +14,12 @@
 
 @interface ELSpinTool : ELTool <NSMutableCopying> {
   ELBooleanKnob *clockwiseKnob;
-
+  ELIntegerKnob *steppingKnob;
 }
 
-- (id)initWithClockwiseKnob:(ELBooleanKnob *)clockwiseKnob;
+- (id)initWithClockwiseKnob:(ELBooleanKnob *)clockwiseKnob steppingKnob:(ELIntegerKnob *)steppingKnob;
 
 @property (readonly) ELBooleanKnob *clockwiseKnob;
+@property (readonly) ELIntegerKnob *steppingKnob;
 
 @end
