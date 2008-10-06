@@ -17,9 +17,10 @@ static NSString * const toolType = @"spin";
 
 @implementation ELSpinTool
 
-- (id)initWithClockwiseKnob:(ELBooleanKnob *)_clockwiseKnob_ {
+- (id)initWithClockwiseKnob:(ELBooleanKnob *)_clockwiseKnob_ steppingKnob:(ELIntegerKnob *)_steppingKnob_ {
   if( ( self = [super init] ) ) {
     clockwiseKnob = _clockwiseKnob_;
+    steppingKnob  = _steppingKnob_;
     [self setPreferredOrder:9];
   }
   
@@ -27,8 +28,8 @@ static NSString * const toolType = @"spin";
 }
 
 - (id)init {
-  return [self initWithClockwiseKnob:[[ELBooleanKnob alloc] initWithName:@"clockwise"
-                                                            booleanValue:YES]];
+  return [self initWithClockwiseKnob:[[ELBooleanKnob alloc] initWithName:@"clockwise" booleanValue:YES]
+                        steppingKnob:[[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1]];
 }
 
 - (NSString *)toolType {
@@ -36,11 +37,12 @@ static NSString * const toolType = @"spin";
 }
 
 @synthesize clockwiseKnob;
+@synthesize steppingKnob;
 
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwiseKnob.value",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwiseKnob.value",@"steppingKnob.value",nil]];
   return keys;
 }
 
@@ -58,9 +60,9 @@ static NSString * const toolType = @"spin";
   }
   
   if( [clockwiseKnob value] ) {
-    [[tool directionKnob] setValue:(([[tool directionKnob] value]+1) % 6)];
+    [[tool directionKnob] setValue:(([[tool directionKnob] value]+[steppingKnob value]) % 6)];
   } else {
-    [[tool directionKnob] setValue:(([[tool directionKnob] value]-1) % 6)];
+    [[tool directionKnob] setValue:(([[tool directionKnob] value]-[steppingKnob value]) % 6)];
   }
 }
 
@@ -99,7 +101,7 @@ static NSString * const toolType = @"spin";
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithClockwiseKnob:[clockwiseKnob mutableCopy]];
+  return [[[self class] allocWithZone:_zone_] initWithClockwiseKnob:[clockwiseKnob mutableCopy] steppingKnob:[steppingKnob mutableCopy]];
 }
 
 // Implement the ELXmlData protocol
@@ -107,17 +109,22 @@ static NSString * const toolType = @"spin";
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
   [controlsElement addChild:[clockwiseKnob xmlRepresentation]];
+  [controlsElement addChild:[steppingKnob xmlRepresentation]];
   return controlsElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  if( ( self = [self initWithClockwiseKnob:nil] ) ) {
+  if( ( self = [self initWithClockwiseKnob:nil steppingKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='clockwise']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='stepping']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    steppingKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
     
     [self loadScripts:_representation_];
   }
