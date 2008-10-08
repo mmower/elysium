@@ -11,6 +11,8 @@
 #import "ELHex.h"
 #import "ELLayer.h"
 
+#import "ELBlock.h"
+
 @implementation ELLayerInspectorController
 
 @synthesize layer;
@@ -40,7 +42,7 @@
 }
 
 - (IBAction)editScript:(id)sender {
-  Block *block;
+  ELBlock *block;
   NSString *callback = @"unknown";
   
   switch( [sender tag] ) {
@@ -53,7 +55,7 @@
   }
   
   if( !( block = [[layer scripts] objectForKey:callback] ) ) {
-    block = [@"[:layer | true]" asBlock];
+    block = [@"do |layer|\n# write your callback code here\nend\n" asRubyBlock];
     [[layer scripts] setObject:block forKey:callback];
   }
   

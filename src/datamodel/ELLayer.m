@@ -17,6 +17,7 @@
 #import "ELPlayhead.h"
 #import "ELGenerateTool.h"
 #import "ELHarmonicTable.h"
+#import "ELBlock.h"
 
 NSPredicate *deadPlayheadFilter;
 
@@ -166,9 +167,9 @@ NSPredicate *deadPlayheadFilter;
   timeBase  = AudioGetCurrentHostTime();
   isRunning = YES;
   while( ![runner isCancelled] ) {
-    [[scripts objectForKey:@"willRun"] guardedValue:self];
+    [[scripts objectForKey:@"willRun"] evalWithArg:self];
     [self run];
-    [[scripts objectForKey:@"didRun"] guardedValue:self];
+    [[scripts objectForKey:@"didRun"] evalWithArg:self];
     usleep( [self timerResolution] );
   }
   
@@ -452,7 +453,7 @@ NSPredicate *deadPlayheadFilter;
     nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
     for( NSXMLNode *node in nodes ) {
       NSXMLElement *element = (NSXMLElement *)node;
-      [scripts setObject:[[element stringValue] asBlock]
+      [scripts setObject:[[element stringValue] asRubyBlock]
                   forKey:[[element attributeForName:@"name"] stringValue]];
     }
   }

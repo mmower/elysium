@@ -11,6 +11,8 @@
 #import "ELHex.h"
 #import "ELTool.h"
 
+#import "ELBlock.h"
+
 @implementation ELHexInspectorController
 
 @synthesize hex;
@@ -46,10 +48,10 @@
 }
 
 - (void)editWillRunScript:(ELTool *)_tool_ {
-  Block *block;
+  ELBlock *block;
   
   if( !( block = [[_tool_ scripts] objectForKey:@"willRun"] ) ) {
-    block = [[NSString stringWithFormat:@"[:%@Tool :playhead | true]", [_tool_ toolType]] asBlock];
+    block = [[NSString stringWithFormat:@"do |%@Tool,playhead|\n# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];
     [[_tool_ scripts] setObject:block forKey:@"willRun"];
   }
   
@@ -57,10 +59,10 @@
 }
 
 - (void)editDidRunScript:(ELTool *)_tool_ {
-  Block *block;
+  ELBlock *block;
   
   if( !( block = [[_tool_ scripts] objectForKey:@"didRun"] ) ) {
-    block = [[NSString stringWithFormat:@"[:%@Tool playhead | true]", [_tool_ toolType]] asBlock];
+    block = [[NSString stringWithFormat:@"do |@%Tool,playhead|\n# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];
     [[_tool_ scripts] setObject:block forKey:@"didRun"];
   }
   
