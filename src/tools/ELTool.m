@@ -21,6 +21,8 @@
 #import "ELSplitTool.h"
 #import "ELSpinTool.h"
 
+#import "ELBlock.h"
+
 NSMutableDictionary *toolMapping = nil;
 
 @implementation ELTool
@@ -28,7 +30,6 @@ NSMutableDictionary *toolMapping = nil;
 + (ELTool *)toolAlloc:(NSString *)_key_ {
   Class toolClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Tool", [_key_ capitalizedString]] );
   ELTool *tool = [toolClass alloc];
-  NSLog( @"toolAlloc:%@ -> %@ -> %@", _key_, toolClass, tool );
   return tool;
 }
 
@@ -74,12 +75,12 @@ NSMutableDictionary *toolMapping = nil;
 // the tool will invoke it's scripts and the subclass overriden runTool between them.
 - (void)run:(ELPlayhead *)_playhead_ {
   if( enabled ) {
-    [[scripts objectForKey:@"willRun"] guardedValue:self value:_playhead_];
+    [[scripts objectForKey:@"willRun"] evalWithArg:self arg:_playhead_];
     if( !skip ) {
       [self runTool:_playhead_];
     }
     skip = NO;
-    [[scripts objectForKey:@"didRun"] guardedValue:self value:_playhead_];
+    [[scripts objectForKey:@"didRun"] evalWithArg:self arg:_playhead_];
   }
 }
 
@@ -137,7 +138,7 @@ NSMutableDictionary *toolMapping = nil;
   NSArray *nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
   for( NSXMLNode *node in nodes ) {
     NSXMLElement *element = (NSXMLElement *)node;
-    [scripts setObject:[[element stringValue] asBlock]
+    [scripts setObject:[[element stringValue] asRubyBlock]
                 forKey:[[element attributeForName:@"name"] stringValue]];
   }
 }

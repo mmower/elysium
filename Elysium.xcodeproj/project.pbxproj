@@ -14,7 +14,6 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
-		C916000B0E977D4E0052DB9F /* FScript.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C916FFF70E977D470052DB9F /* FScript.framework */; };
 		C91600480E97EAFD0052DB9F /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = C91600470E97EAFD0052DB9F /* AppIcon.icns */; };
 		C91600720E982D990052DB9F /* triad1.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600710E982D990052DB9F /* triad1.tif */; };
 		C916007E0E9830530052DB9F /* triad2.tif in Resources */ = {isa = PBXBuildFile; fileRef = C916007D0E9830530052DB9F /* triad2.tif */; };
@@ -23,8 +22,6 @@
 		C91600A70E98FF3C0052DB9F /* triad4.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A30E98FF3C0052DB9F /* triad4.tif */; };
 		C91600A80E98FF3C0052DB9F /* triad5.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A40E98FF3C0052DB9F /* triad5.tif */; };
 		C91600A90E98FF3C0052DB9F /* triad6.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A50E98FF3C0052DB9F /* triad6.tif */; };
-		C91601130E99533A0052DB9F /* Block+NAryGuardedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91601120E99533A0052DB9F /* Block+NAryGuardedValue.m */; };
-		C916FFF80E977D470052DB9F /* FScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C916FFF70E977D470052DB9F /* FScript.framework */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
 		C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54970E61F1250077C448 /* PYMIDI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C93D54AF0E61F1250077C448 /* PYMIDIEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -115,9 +112,12 @@
 		C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */; };
 		C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */; };
 		C9A9F20F0E8A43F7009A06A3 /* ELFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */; };
+		C9B1F3700E9BF8000017092F /* ELBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F36F0E9BF8000017092F /* ELBlock.m */; };
+		C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */; };
+		C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */; };
+		C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
-		C9C9AFA80E82F11800277071 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
@@ -162,7 +162,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				C99F7BAE0E9AAC1700AA61A8 /* MacRuby.framework in CopyFiles */,
-				C916000B0E977D4E0052DB9F /* FScript.framework in CopyFiles */,
 				C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */,
 				C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */,
 				C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */,
@@ -194,9 +193,6 @@
 		C91600A30E98FF3C0052DB9F /* triad4.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad4.tif; sourceTree = "<group>"; };
 		C91600A40E98FF3C0052DB9F /* triad5.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad5.tif; sourceTree = "<group>"; };
 		C91600A50E98FF3C0052DB9F /* triad6.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad6.tif; sourceTree = "<group>"; };
-		C91601110E99533A0052DB9F /* Block+NAryGuardedValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Block+NAryGuardedValue.h"; sourceTree = "<group>"; };
-		C91601120E99533A0052DB9F /* Block+NAryGuardedValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Block+NAryGuardedValue.m"; sourceTree = "<group>"; };
-		C916FFF70E977D470052DB9F /* FScript.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FScript.framework; path = ../../Cocoa/frameworks/FScript_2_0_alpha/Binaries/FScript.framework; sourceTree = SOURCE_ROOT; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		C93D54910E61F0E80077C448 /* PYMIDI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PYMIDI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PYMIDI-Info.plist"; sourceTree = "<group>"; };
@@ -321,9 +317,15 @@
 		C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
 		C9A9F20D0E8A43F7009A06A3 /* ELFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFilter.h; sourceTree = "<group>"; };
 		C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFilter.m; sourceTree = "<group>"; };
+		C9B1F36E0E9BF8000017092F /* ELBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELBlock.h; sourceTree = "<group>"; };
+		C9B1F36F0E9BF8000017092F /* ELBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELBlock.m; sourceTree = "<group>"; };
+		C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+AsRubyBlock.h"; sourceTree = "<group>"; };
+		C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "String+AsRubyBlock.m"; sourceTree = "<group>"; };
+		C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScriptInspector.xib; sourceTree = "<group>"; };
+		C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptInspectorController.h; sourceTree = "<group>"; };
+		C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptInspectorController.m; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9C9AF2B0E82D0F500277071 /* deploy.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.rake; sourceTree = "<group>"; };
-		C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		C9E43D5E0E33C27100C4D343 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		C9E8D9360E68B8AF005AD9B7 /* play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = play.pdf; sourceTree = "<group>"; };
@@ -347,8 +349,6 @@
 				C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */,
 				C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */,
 				C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */,
-				C9C9AFA80E82F11800277071 /* JavaScriptCore.framework in Frameworks */,
-				C916FFF80E977D470052DB9F /* FScript.framework in Frameworks */,
 				C99F7BAA0E9AAC1100AA61A8 /* MacRuby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,8 +382,6 @@
 			isa = PBXGroup;
 			children = (
 				C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */,
-				C916FFF70E977D470052DB9F /* FScript.framework */,
-				C9C9AFA70E82F11800277071 /* JavaScriptCore.framework */,
 				C93D54910E61F0E80077C448 /* PYMIDI.framework */,
 				C92EDDB50E353EDD00017DFE /* CoreAudio.framework */,
 				C9E43D5E0E33C27100C4D343 /* Sparkle.framework */,
@@ -476,8 +474,8 @@
 		C916010F0E99526A0052DB9F /* categories */ = {
 			isa = PBXGroup;
 			children = (
-				C91601110E99533A0052DB9F /* Block+NAryGuardedValue.h */,
-				C91601120E99533A0052DB9F /* Block+NAryGuardedValue.m */,
+				C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */,
+				C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */,
 			);
 			name = categories;
 			path = src/categories;
@@ -549,6 +547,7 @@
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C9B1F36B0E9BF6BF0017092F /* scripting */,
 				C916010F0E99526A0052DB9F /* categories */,
 				C9A9F1910E8A42DF009A06A3 /* datamodel */,
 				C9A9F1A10E8A42DF009A06A3 /* ELXmlData.h */,
@@ -724,6 +723,19 @@
 			);
 			name = tools;
 			path = src/tools;
+			sourceTree = "<group>";
+		};
+		C9B1F36B0E9BF6BF0017092F /* scripting */ = {
+			isa = PBXGroup;
+			children = (
+				C9B1F36E0E9BF8000017092F /* ELBlock.h */,
+				C9B1F36F0E9BF8000017092F /* ELBlock.m */,
+				C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */,
+				C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */,
+				C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */,
+			);
+			name = scripting;
+			path = src/scripting;
 			sourceTree = "<group>";
 		};
 		C9B88E400E64A5E400FA411E /* images */ = {
@@ -929,6 +941,7 @@
 				C91600A70E98FF3C0052DB9F /* triad4.tif in Resources */,
 				C91600A80E98FF3C0052DB9F /* triad5.tif in Resources */,
 				C91600A90E98FF3C0052DB9F /* triad6.tif in Resources */,
+				C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,7 +1023,9 @@
 				C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */,
 				C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */,
 				C9A9F20F0E8A43F7009A06A3 /* ELFilter.m in Sources */,
-				C91601130E99533A0052DB9F /* Block+NAryGuardedValue.m in Sources */,
+				C9B1F3700E9BF8000017092F /* ELBlock.m in Sources */,
+				C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */,
+				C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

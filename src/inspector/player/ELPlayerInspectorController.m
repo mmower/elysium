@@ -12,6 +12,8 @@
 #import "ELLayer.h"
 #import "ELPlayer.h"
 
+#import "ELBlock.h"
+
 @implementation ELPlayerInspectorController
 
 @synthesize player;
@@ -43,7 +45,7 @@
 }
 
 - (IBAction)editScript:(id)sender {
-  Block *block;
+  ELBlock *block;
   NSString *callback = @"unknown";
   
   switch( [sender tag] ) {
@@ -62,7 +64,7 @@
   }
   
   if( !( block = [[player scripts] objectForKey:callback] ) ) {
-    block = [@"[:player | true]" asBlock];
+    block = [@"do |player|\n# write your callback code here\nend\n" asRubyBlock];
     [[player scripts] setObject:block forKey:callback];
   }
   

@@ -25,6 +25,8 @@
 
 #import "ELFilter.h"
 
+#import "ELBlock.h"
+
 @implementation ELPlayer
 
 - (id)init {
@@ -106,17 +108,17 @@
 // Player control
 
 - (void)start {
-  [[scripts objectForKey:@"willStart"] guardedValue:self];
+  [[scripts objectForKey:@"willStart"] evalWithArg:self];
   [layers makeObjectsPerformSelector:@selector(start)];
   [self setRunning:YES];
-  [[scripts objectForKey:@"didStart"] guardedValue:self];
+  [[scripts objectForKey:@"didStart"] evalWithArg:self];
 }
 
 - (void)stop {
-  [[scripts objectForKey:@"willStop"] guardedValue:self];
+  [[scripts objectForKey:@"willStop"] evalWithArg:self];
   [layers makeObjectsPerformSelector:@selector(stop)];
   [self setRunning:NO];
-  [[scripts objectForKey:@"didStop"] guardedValue:self];
+  [[scripts objectForKey:@"didStop"] evalWithArg:self];
 }
 
 - (void)reset {
@@ -342,7 +344,7 @@
     nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
     for( NSXMLNode *node in nodes ) {
       NSXMLElement *element = (NSXMLElement *)node;
-      [scripts setObject:[[element stringValue] asBlock]
+      [scripts setObject:[[element stringValue] asRubyBlock]
                   forKey:[[element attributeForName:@"name"] stringValue]];
     }
   }
