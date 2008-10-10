@@ -25,7 +25,7 @@
 
 #import "ELFilter.h"
 
-#import "ELBlock.h"
+#import "RubyBlock.h"
 
 @implementation ELPlayer
 
@@ -108,17 +108,17 @@
 // Player control
 
 - (void)start {
-  [[scripts objectForKey:@"willStart"] evalWithArg:self];
+  [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
   [layers makeObjectsPerformSelector:@selector(start)];
   [self setRunning:YES];
-  [[scripts objectForKey:@"didStart"] evalWithArg:self];
+  [self performSelectorOnMainThread:@selector(runDidStartScript) withObject:nil waitUntilDone:YES];
 }
 
 - (void)stop {
-  [[scripts objectForKey:@"willStop"] evalWithArg:self];
+  [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
   [layers makeObjectsPerformSelector:@selector(stop)];
   [self setRunning:NO];
-  [[scripts objectForKey:@"didStop"] evalWithArg:self];
+  [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
 }
 
 - (void)reset {
@@ -128,6 +128,26 @@
 - (void)clearAll {
   [layers makeObjectsPerformSelector:@selector(clear)];
 }
+
+// Scripting
+
+- (void)runWillStartScript {
+  [[scripts objectForKey:@"willStart"] evalWithArg:self];
+}
+
+- (void)runDidStartScript {
+  [[scripts objectForKey:@"didStart"] evalWithArg:self];
+}
+
+- (void)runWillStopScript {
+  [[scripts objectForKey:@"willStop"] evalWithArg:self];
+}
+
+- (void)runDidStopScript {
+  [[scripts objectForKey:@"didStop"] evalWithArg:self];
+}
+
+// Scheduling notes
 
 - (void)playNote:(int)_note_ channel:(int)_channel_ velocity:(int)_velocity_ duration:(float)_duration_ {
   UInt64 hostTime = AudioGetCurrentHostTime();

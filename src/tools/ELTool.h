@@ -52,4 +52,7 @@
 - (NSXMLElement *)scriptsXmlRepresentation;
 - (void)loadScripts:(NSXMLElement *)representation;
 
+- (void)runWillRunScript:(ELPlayhead *)playhead;
+- (void)runDidRunScript:(ELPlayhead *)playhead;
+
 @end

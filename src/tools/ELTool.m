@@ -21,7 +21,7 @@
 #import "ELSplitTool.h"
 #import "ELSpinTool.h"
 
-#import "ELBlock.h"
+#import "RubyBlock.h"
 
 NSMutableDictionary *toolMapping = nil;
 
@@ -75,18 +75,28 @@ NSMutableDictionary *toolMapping = nil;
 // the tool will invoke it's scripts and the subclass overriden runTool between them.
 - (void)run:(ELPlayhead *)_playhead_ {
   if( enabled ) {
-    [[scripts objectForKey:@"willRun"] evalWithArg:self arg:_playhead_];
+    [self performSelectorOnMainThread:@selector(runWillRunScript:) withObject:_playhead_ waitUntilDone:YES];
     if( !skip ) {
       [self runTool:_playhead_];
     }
     skip = NO;
-    [[scripts objectForKey:@"didRun"] evalWithArg:self arg:_playhead_];
+    [self performSelectorOnMainThread:@selector(runDidRunScript:) withObject:_playhead_ waitUntilDone:YES];
   }
 }
 
 // Should be overridden by tool subclasses
 - (void)runTool:(ELPlayhead *)_playhead_ {
   [self doesNotRecognizeSelector:_cmd];
+}
+
+// Scripting
+
+- (void)runWillRunScript:(ELPlayhead *)_playhead_ {
+  [[scripts objectForKey:@"willRun"] evalWithArg:self arg:_playhead_];
+}
+
+- (void)runDidRunScript:(ELPlayhead *)_playhead_ {
+  [[scripts objectForKey:@"didRun"] evalWithArg:self arg:_playhead_];
 }
 
 // Drawing

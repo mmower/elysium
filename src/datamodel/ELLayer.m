@@ -17,7 +17,8 @@
 #import "ELPlayhead.h"
 #import "ELGenerateTool.h"
 #import "ELHarmonicTable.h"
-#import "ELBlock.h"
+
+#import "RubyBlock.h"
 
 NSPredicate *deadPlayheadFilter;
 
@@ -167,14 +168,22 @@ NSPredicate *deadPlayheadFilter;
   timeBase  = AudioGetCurrentHostTime();
   isRunning = YES;
   while( ![runner isCancelled] ) {
-    [[scripts objectForKey:@"willRun"] evalWithArg:self];
+    [self performSelectorOnMainThread:@selector(runWillRunScript) withObject:nil waitUntilDone:YES];
     [self run];
-    [[scripts objectForKey:@"didRun"] evalWithArg:self];
+    [self performSelectorOnMainThread:@selector(runDidRunScript) withObject:nil waitUntilDone:YES];
     usleep( [self timerResolution] );
   }
   
   isRunning = NO;
   [self reset];
+}
+
+- (void)runWillRunScript {
+  [[scripts objectForKey:@"willRun"] evalWithArg:self];
+}
+
+- (void)runDidRunScript {
+  [[scripts objectForKey:@"didRun"] evalWithArg:self];
 }
 
 - (void)start {

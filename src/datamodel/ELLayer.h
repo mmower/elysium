@@ -100,4 +100,7 @@
 
 - (void)needsDisplay;
 
+- (void)runWillRunScript;
+- (void)runDidRunScript;
+
 @end
