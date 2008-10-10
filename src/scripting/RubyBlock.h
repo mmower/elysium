@@ -10,7 +10,7 @@
 
 #import <MacRuby/MacRuby.h>
 
-@interface ELBlock : NSObject {
+@interface RubyBlock : NSObject {
   NSString *source;
   id proc;
 }
