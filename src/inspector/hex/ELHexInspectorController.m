@@ -11,7 +11,7 @@
 #import "ELHex.h"
 #import "ELTool.h"
 
-#import "ELBlock.h"
+#import "RubyBlock.h"
 
 @implementation ELHexInspectorController
 
@@ -48,7 +48,7 @@
 }
 
 - (void)editWillRunScript:(ELTool *)_tool_ {
-  ELBlock *block;
+  RubyBlock *block;
   
   if( !( block = [[_tool_ scripts] objectForKey:@"willRun"] ) ) {
     block = [[NSString stringWithFormat:@"do |%@Tool,playhead|\n# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];
@@ -59,7 +59,7 @@
 }
 
 - (void)editDidRunScript:(ELTool *)_tool_ {
-  ELBlock *block;
+  RubyBlock *block;
   
   if( !( block = [[_tool_ scripts] objectForKey:@"didRun"] ) ) {
     block = [[NSString stringWithFormat:@"do |@%Tool,playhead|\n# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];

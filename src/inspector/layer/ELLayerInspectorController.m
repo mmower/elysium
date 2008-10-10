@@ -11,7 +11,7 @@
 #import "ELHex.h"
 #import "ELLayer.h"
 
-#import "ELBlock.h"
+#import "RubyBlock.h"
 
 @implementation ELLayerInspectorController
 
@@ -42,7 +42,7 @@
 }
 
 - (IBAction)editScript:(id)sender {
-  ELBlock *block;
+  RubyBlock *block;
   NSString *callback = @"unknown";
   
   switch( [sender tag] ) {

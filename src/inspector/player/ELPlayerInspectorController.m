@@ -12,7 +12,7 @@
 #import "ELLayer.h"
 #import "ELPlayer.h"
 
-#import "ELBlock.h"
+#import "RubyBlock.h"
 
 @implementation ELPlayerInspectorController
 
@@ -45,7 +45,7 @@
 }
 
 - (IBAction)editScript:(id)sender {
-  ELBlock *block;
+  RubyBlock *block;
   NSString *callback = @"unknown";
   
   switch( [sender tag] ) {
