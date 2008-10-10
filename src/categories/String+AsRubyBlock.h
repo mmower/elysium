@@ -8,10 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ELBlock;
+@class RubyBlock;
 
 @interface NSString (String_AsRubyBlock)
 
-- (ELBlock *)asRubyBlock;
+- (RubyBlock *)asRubyBlock;
 
 @end
