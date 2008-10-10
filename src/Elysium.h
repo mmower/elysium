@@ -9,6 +9,7 @@
 
 #import <CoreAudio/CoreAudio.h>
 
+#import <MacRuby/MacRuby.h>
 #import "String+AsRubyBlock.h"
 
 // Type to represent compass directions (for a hex)
