@@ -68,6 +68,21 @@
 - (void)removeTool:(ELTool *)tool;
 - (void)removeAllTools;
 
+// Actions for tool management
+- (IBAction)clearTools;
+- (IBAction)addGenerateTool;
+- (IBAction)removeGenerateTool;
+- (IBAction)addNoteTool;
+- (IBAction)removeNoteTool;
+- (IBAction)addReboundTool;
+- (IBAction)removeReboundTool;
+- (IBAction)addAbsorbTool;
+- (IBAction)removeAbsorbTool;
+- (IBAction)addSplitTool;
+- (IBAction)removeSplitTool;
+- (IBAction)addSpinTool;
+- (IBAction)removeSpinTool;
+
 - (NSArray *)tools;
 - (NSArray *)toolsExceptType:(NSString *)type;
 
@@ -83,8 +98,8 @@
 - (void)drawTriangleInDirection:(Direction)direction withAttributes:(NSDictionary *)attributes;
 - (void)drawText:(NSString *)text  withAttributes:(NSMutableDictionary *)attributes;
 
-// Actions for tool management
-
-- (IBAction)beep:(id)sender;
+// Menu support
+- (NSMenuItem *)toolMenuItem:(NSString *)name present:(BOOL)present addSelector:(SEL)addSelector removeSelector:(SEL)removeSelector;
+- (void)makeCurrentSelection;
 
 @end

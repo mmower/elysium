@@ -27,10 +27,10 @@
 
 @implementation ELHex
 
-- (id)initWithLayer:(ELLayer *)_layer note:(ELNote *)_note column:(int)_col row:(int)_row {
-  if( ( self = [super initWithColumn:_col row:_row] ) ) {
-    layer     = _layer;
-    note      = _note;
+- (id)initWithLayer:(ELLayer *)_layer_ note:(ELNote *)_note_ column:(int)_col_ row:(int)_row_ {
+  if( ( self = [super initWithColumn:_col_ row:_row_] ) ) {
+    layer     = _layer_;
+    note      = _note_;
     tools     = [[NSMutableArray alloc] init];
     playheads = [[NSMutableArray alloc] init];
     
@@ -285,10 +285,132 @@
 - (NSMenu *)contextMenu {
   NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Context Menu"];
   
-  NSMenuItem *item = [menu insertItemWithTitle:@"Beep" action:@selector(beep:) keyEquivalent:@"" atIndex:0];
+  // Add a dummy separator as item-0 which the pull-down will use to store the title. Lord knows why...
+  [menu addItem:[NSMenuItem separatorItem]];
+  
+  NSMenuItem *item;
+  
+  [menu addItem:[self toolMenuItem:@"Generate"
+                           present:([self generateTool] != nil)
+                       addSelector:@selector(addGenerateTool)
+                    removeSelector:@selector(removeGenerateTool)]];
+  
+  [menu addItem:[self toolMenuItem:@"Note"
+                           present:([self noteTool] != nil)
+                       addSelector:@selector(addNoteTool)
+                    removeSelector:@selector(removeNoteTool)]];
+  
+  [menu addItem:[self toolMenuItem:@"Rebound"
+                           present:([self reboundTool] != nil)
+                       addSelector:@selector(addReboundTool)
+                    removeSelector:@selector(removeReboundTool)]];
+  
+  [menu addItem:[self toolMenuItem:@"Absorb"
+                           present:([self absorbTool] != nil)
+                       addSelector:@selector(addAbsorbTool)
+                    removeSelector:@selector(removeAbsorbTool)]];
+  
+  [menu addItem:[self toolMenuItem:@"Split"
+                           present:([self splitTool] != nil)
+                       addSelector:@selector(addSplitTool)
+                    removeSelector:@selector(removeSplitTool)]];
+  
+  [menu addItem:[self toolMenuItem:@"Spin"
+                           present:([self spinTool] != nil)
+                       addSelector:@selector(addSpinTool)
+                    removeSelector:@selector(removeSpinTool)]];
+  
+  [menu addItem:[NSMenuItem separatorItem]];
+  
+  item = [[NSMenuItem alloc] initWithTitle:@"Clear" action:@selector(clearTools) keyEquivalent:@""];
   [item setTarget:self];
+  [menu addItem:item];
   
   return menu;
+}
+
+- (NSMenuItem *)toolMenuItem:(NSString *)_name_ present:(BOOL)_present_ addSelector:(SEL)_addSelector_ removeSelector:(SEL)_removeSelector_ {
+  NSMenuItem *item;
+  
+  if( _present_ ) {
+    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Remove %@",_name_] action:_removeSelector_ keyEquivalent:@""];
+  } else {
+    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Add %@",_name_] action:_addSelector_ keyEquivalent:@""];
+  }
+  [item setTarget:self];
+  
+  return item;
+}
+
+// Tool support
+
+- (IBAction)clearTools {
+  [self removeAllTools];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)addGenerateTool {
+  [self setGenerateTool:[[ELGenerateTool alloc] init]];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)removeGenerateTool {
+  [self setGenerateTool:nil];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)addNoteTool {
+  [self setNoteTool:[[ELNoteTool alloc] init]];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)removeNoteTool {
+  [self setNoteTool:nil];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)addReboundTool {
+  [self setReboundTool:[[ELReboundTool alloc] init]];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)removeReboundTool {
+  [self setReboundTool:nil];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)addAbsorbTool {
+  [self setAbsorbTool:[[ELAbsorbTool alloc] init]];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)removeAbsorbTool {
+  [self setAbsorbTool:nil];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)addSplitTool {
+  [self setSplitTool:[[ELSplitTool alloc] init]];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)removeSplitTool {
+  [self setSplitTool:nil];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)addSpinTool {
+  [self setSpinTool:[[ELSpinTool alloc] init]];
+  [self makeCurrentSelection];
+}
+
+- (IBAction)removeSpinTool {
+  [self setSpinTool:nil];
+  [self makeCurrentSelection];
+}
+
+- (void)makeCurrentSelection {
+  [(LMHoneycombView *)[[self layer] delegate] setSelected:self];
 }
 
 // Drawing
@@ -455,12 +577,6 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   }
   
   return self;
-}
-
-// Actions
-
-- (IBAction)beep:(id)sender {
-  NSBeep();
 }
 
 @end
