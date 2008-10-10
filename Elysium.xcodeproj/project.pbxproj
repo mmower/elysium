@@ -112,10 +112,11 @@
 		C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */; };
 		C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */; };
 		C9A9F20F0E8A43F7009A06A3 /* ELFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */; };
-		C9B1F3700E9BF8000017092F /* ELBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F36F0E9BF8000017092F /* ELBlock.m */; };
+		C9B1F3700E9BF8000017092F /* RubyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F36F0E9BF8000017092F /* RubyBlock.m */; };
 		C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */; };
 		C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */; };
 		C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */; };
+		C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
@@ -317,13 +318,15 @@
 		C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
 		C9A9F20D0E8A43F7009A06A3 /* ELFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFilter.h; sourceTree = "<group>"; };
 		C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFilter.m; sourceTree = "<group>"; };
-		C9B1F36E0E9BF8000017092F /* ELBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELBlock.h; sourceTree = "<group>"; };
-		C9B1F36F0E9BF8000017092F /* ELBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELBlock.m; sourceTree = "<group>"; };
+		C9B1F36E0E9BF8000017092F /* RubyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RubyBlock.h; sourceTree = "<group>"; };
+		C9B1F36F0E9BF8000017092F /* RubyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubyBlock.m; sourceTree = "<group>"; };
 		C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+AsRubyBlock.h"; sourceTree = "<group>"; };
 		C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "String+AsRubyBlock.m"; sourceTree = "<group>"; };
 		C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScriptInspector.xib; sourceTree = "<group>"; };
 		C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptInspectorController.h; sourceTree = "<group>"; };
 		C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptInspectorController.m; sourceTree = "<group>"; };
+		C9B1F3F40E9C99DE0017092F /* MacRuby+EvalProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MacRuby+EvalProc.h"; sourceTree = "<group>"; };
+		C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MacRuby+EvalProc.m"; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9C9AF2B0E82D0F500277071 /* deploy.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.rake; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
@@ -476,6 +479,8 @@
 			children = (
 				C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */,
 				C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */,
+				C9B1F3F40E9C99DE0017092F /* MacRuby+EvalProc.h */,
+				C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */,
 			);
 			name = categories;
 			path = src/categories;
@@ -728,8 +733,8 @@
 		C9B1F36B0E9BF6BF0017092F /* scripting */ = {
 			isa = PBXGroup;
 			children = (
-				C9B1F36E0E9BF8000017092F /* ELBlock.h */,
-				C9B1F36F0E9BF8000017092F /* ELBlock.m */,
+				C9B1F36E0E9BF8000017092F /* RubyBlock.h */,
+				C9B1F36F0E9BF8000017092F /* RubyBlock.m */,
 				C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */,
 				C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */,
 				C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */,
@@ -1023,9 +1028,10 @@
 				C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */,
 				C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */,
 				C9A9F20F0E8A43F7009A06A3 /* ELFilter.m in Sources */,
-				C9B1F3700E9BF8000017092F /* ELBlock.m in Sources */,
+				C9B1F3700E9BF8000017092F /* RubyBlock.m in Sources */,
 				C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */,
 				C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */,
+				C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
