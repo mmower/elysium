@@ -87,4 +87,10 @@
 - (NSArray *)layers;
 - (ELLayer *)layer:(int)index;
 
+// Script support
+- (void)runWillStartScript;
+- (void)runDidStartScript;
+- (void)runWillStopScript;
+- (void)runDidStopScript;
+
 @end
