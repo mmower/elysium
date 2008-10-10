@@ -8,12 +8,12 @@
 
 #import "String+AsRubyBlock.h"
 
-#import "ELBlock.h"
+#import "RubyBlock.h"
 
 @implementation NSString (String_AsRubyBlock)
 
-- (ELBlock *)asRubyBlock {
-  return [[ELBlock alloc] initWithSource:self];
+- (RubyBlock *)asRubyBlock {
+  return [[RubyBlock alloc] initWithSource:self];
 }
 
 @end
