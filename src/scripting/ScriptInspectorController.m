@@ -8,14 +8,14 @@
 
 #import "ScriptInspectorController.h"
 
-#import "ELBlock.h"
+#import "RubyBlock.h"
 
 @implementation ScriptInspectorController
 
 @synthesize block;
 @synthesize editableSource;
 
-- (id)initWithBlock:(ELBlock *)_block_ {
+- (id)initWithBlock:(RubyBlock *)_block_ {
   if( ( self = [super initWithWindowNibName:@"ScriptInspector"] ) ) {
     [self setBlock:_block_];
     NSLog( @"Source = %@", block );
@@ -23,6 +23,10 @@
   }
   
   return self;
+}
+
+- (void)awakeFromNib {
+  [sourceEditor setFont:[NSFont fontWithName:@"Monaco" size:9.0]];
 }
 
 - (IBAction)saveScript:(id)sender {

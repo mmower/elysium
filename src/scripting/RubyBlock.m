@@ -8,7 +8,7 @@
 
 #import "RubyBlock.h"
 
-#import "MacRuby+Helper.h"
+#import "MacRuby+EvalProc.h"
 
 #import "ScriptInspectorController.h"
 

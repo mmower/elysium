@@ -8,17 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ELBlock;
+@class RubyBlock;
 
 @interface ScriptInspectorController : NSWindowController {
-  NSString  *editableSource;
-  ELBlock   *block;
+  NSString              *editableSource;
+  RubyBlock             *block;
+  IBOutlet NSTextView   *sourceEditor;
 }
 
-@property ELBlock *block;
+@property RubyBlock *block;
 @property (copy,readwrite) NSString *editableSource;
 
-- (id)initWithBlock:(ELBlock *)block;
+- (id)initWithBlock:(RubyBlock *)block;
 
 - (IBAction)saveScript:(id)sender;
 - (IBAction)cancelEditScript:(id)sender;
