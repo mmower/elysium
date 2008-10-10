@@ -48,11 +48,6 @@ static VALUE evalProc( VALUE args ) {
   }
   
   struct eval_proc_call *epc = (struct eval_proc_call *)args;
-  NSLog( @"proc = %@", (id)epc->proc );
-  for( int i = 0; i < epc->argc; i++ ) {
-    NSLog( @"arg<%d> = %@", i, (id)epc->argv[i] );
-  }
-  
   return rb_funcall2( epc->proc, call, epc->argc, epc->argv );
 }
 
