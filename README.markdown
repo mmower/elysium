@@ -1,5 +1,5 @@
 # Elysium
-### Version 0.01 - 30.Aug.2008
+### Version 0.7.1 - 11.Oct.2008
 ### by Matt Mower <matt@lucidmac.com>
 ### [http://lucidmac.com/products/elysium](http://lucidmac.com/products/elysium)
 
@@ -39,21 +39,26 @@ At this point you should be able to click any hex and hear it's accompanying not
 
 ## Wired for sound
 
-The basic idea in Elysium is to drop tools from the palette onto hexes and set it playing.
+Elysium is a generative music application works by playing MIDI instruments. It does not generate music itself so much as it is an environment where you build  "patterns" of objects that will, in turn, create music for you.
+
+A pattern is composed of one or more layers of hexes that represent a harmonic table. Hence each hex corresponds to a note and neighbouring hexes are related to notes that are close together. Each layer represents the same notes and spans several octaves with pitch increasing from the bottom to the top of a layer. By placing different kinds of tokens onto the hexes you build up a structure that plays notes when the composition is run.
+
+A note gets played when a "playhead" token hits a "note" token, playing the note corresponding to the hex the note token is on. Playheads appear, at intervals, on "generator" tokens and are given a direction to travel in. At the beginning of each "beat" all existing playheads will move in their current direction. Playheads keep moving until they hit an "absorb" token, the edge of their layer, or they die of old age.
+
+Every time a playhead passes over a note token the corresponding note for that hex is played. When a playhead passes over a hex without a note token no note is played. 
+
+You can change the direction of a playhead using a rebound token placed on a hex or stop it altogether with an absorb token. When a playhead passes over a hex with a split token the playhead is copied and each copy moves off in a different direction from the point of impact. A spin object modifies the direction in which generator and rebound hexes operate.
+
+Each layer is associated with a MIDI channel so each layer can play a different instrument.
 
 ## Things to hack on
 
 ### UI
 
-* Focus issues for the inspector, palette, and main window.
-* Palette controls don't look right
-* Palette controls new need icons
+* Do we still need the palette now that we have a context menu?
+** Palette controls don't look right
+** Palette controls new need icons
 * Tools need better symbols in the main view
-* Need inspectors for
-** Splitter
-** Rotor
-** Sink
-** Ricochet
 
 ## Acknowledgements
 
