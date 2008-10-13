@@ -85,7 +85,7 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
 - (void)awakeFromNib {
   // Ensure the MacRuby runtime is initialized on the event thread
-  [MacRuby sharedRuntime];
+  //[MacRuby sharedRuntime];
 }
 
 - (ELMIDIController *)midiController {
