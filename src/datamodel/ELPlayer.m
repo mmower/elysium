@@ -49,6 +49,8 @@
     
     nextLayerNumber = 1;
     showNotes       = NO;
+    showOctaves     = NO;
+    showKey         = NO;
   }
   
   return self;
@@ -81,6 +83,8 @@
 @synthesize harmonicTable;
 @synthesize running;
 @synthesize showNotes;
+@synthesize showOctaves;
+@synthesize showKey;
 @synthesize filters;
 
 @synthesize tempoKnob;

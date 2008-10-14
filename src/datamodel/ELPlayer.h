@@ -30,6 +30,8 @@
   
   int                 nextLayerNumber;
   BOOL                showNotes;
+  BOOL                showOctaves;
+  BOOL                showKey;
   
   NSMutableDictionary *scripts;
   
@@ -45,6 +47,8 @@
 @property (readonly) ELHarmonicTable *harmonicTable;
 @property BOOL running;
 @property BOOL showNotes;
+@property BOOL showOctaves;
+@property BOOL showKey;
 @property (readonly) NSArray *filters;
 
 @property ELMIDIController *midiController;

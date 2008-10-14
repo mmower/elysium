@@ -33,5 +33,7 @@
 - (IBAction)newLayer:(id)sender;
 - (IBAction)closeDocument:(id)sender;
 - (IBAction)notesOnOff:(id)sender;
+- (IBAction)toggleKeyDisplay:(id)sender;
+- (IBAction)toggleOctavesDisplay:(id)sender;
 
 @end

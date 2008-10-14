@@ -117,6 +117,22 @@
   [player toggleNoteDisplay];
 }
 
+- (IBAction)toggleKeyDisplay:(id)_sender_ {
+  BOOL showKey = ![player showKey];
+  [player setShowKey:showKey];
+  if( showKey ) {
+    [player setShowOctaves:NO];
+  }
+}
+
+- (IBAction)toggleOctavesDisplay:(id)_sender_ {
+  BOOL showOctave = ![player showOctaves];
+  [player setShowOctaves:showOctave];
+  if( showOctave ) {
+    [player setShowKey:NO];
+  }
+}
+
 - (IBAction)clearAll:(id)_sender_ {
   NSAlert *alert = [[NSAlert alloc] init];
   [alert setAlertStyle:NSWarningAlertStyle];
