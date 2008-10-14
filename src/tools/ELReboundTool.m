@@ -61,14 +61,24 @@ static NSString * const toolType = @"rebound";
 
 // Implement the ELXmlData protocol
 
+- (NSXMLElement *)controlsXmlRepresentation {
+  NSXMLElement *controlsElement = [super controlsXmlRepresentation];
+  [controlsElement addChild:[directionKnob xmlRepresentation]];
+  return controlsElement;
+}
+
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   if( ( self = [self initWithDirectionKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    } else {
+      directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N];
+    }
     
     [self loadScripts:_representation_];
   }

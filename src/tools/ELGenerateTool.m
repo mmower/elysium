@@ -127,20 +127,36 @@ static NSString * const toolType = @"generate";
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    } else {
+      directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N];
+    }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] timeToLiveKnob] player:_player_];
-
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] timeToLiveKnob] player:_player_];
+    } else {
+      timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive"];
+    }
+    
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] pulseCountKnob] player:_player_];
-
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] pulseCountKnob] player:_player_];
+    } else {
+      pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount"];
+    }
+    
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='offset']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      offsetKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    } else {
+      offsetKnob = [[ELIntegerKnob alloc] initWithName:@"offset" integerValue:0];
+    }
     
     [self loadScripts:_representation_];
   }

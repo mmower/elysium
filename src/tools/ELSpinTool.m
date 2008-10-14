@@ -119,18 +119,25 @@ static NSString * const toolType = @"spin";
     NSArray *nodes;
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='clockwise']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
-
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    } else {
+      clockwiseKnob = [[ELBooleanKnob alloc] initWithName:@"clockwise" booleanValue:YES];
+    }
+    
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='stepping']" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    steppingKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      steppingKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    } else {
+      steppingKnob = [[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1];
+    }
     
     [self loadScripts:_representation_];
   }
   
   return self;
 }
-
 
 @end
