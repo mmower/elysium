@@ -11,7 +11,35 @@
 #import "ELNote.h"
 #import "ELHarmonicTable.h"
 
+static NSMutableDictionary *scales = nil;
+
 @implementation ELHarmonicTable
+
++ (void)initialize {
+  if( scales == nil ) {
+    scales = [NSMutableDictionary dictionary];
+    
+    [scales setObject:[NSArray arrayWithObjects:@"A",@"B",@"C#",@"D",@"E",@"F#",@"G#",nil] forKey:@"A major"];
+    [scales setObject:[NSArray arrayWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",nil] forKey:@"A minor"];
+    [scales setObject:[NSArray arrayWithObjects:@"A#",@"B#",@"C#",@"D#",@"E#",@"F#",@"G#",nil] forKey:@"A# minor"];
+    [scales setObject:[NSArray arrayWithObjects:@"B",@"C#",@"D#",@"E",@"F#",@"G#",@"A#",nil] forKey:@"B major"];
+    [scales setObject:[NSArray arrayWithObjects:@"B",@"C#",@"D",@"E",@"F#",@"G",@"A",nil] forKey:@"B minor"];
+    [scales setObject:[NSArray arrayWithObjects:@"C",@"D",@"E",@"F",@"G",@"A",@"B",nil] forKey:@"C major"];
+    [scales setObject:[NSArray arrayWithObjects:@"C#",@"D#",@"E#",@"F#",@"G#",@"A#",@"B#",nil] forKey:@"C# major"];
+    [scales setObject:[NSArray arrayWithObjects:@"C#",@"D#",@"E",@"F#",@"G#",@"A",@"B",nil] forKey:@"C# minor"];
+    [scales setObject:[NSArray arrayWithObjects:@"D",@"E",@"F#",@"G",@"A",@"B",@"C#",nil] forKey:@"D major"];
+    [scales setObject:[NSArray arrayWithObjects:@"D#",@"E#",@"F#",@"G#",@"A#",@"B",@"C#",nil] forKey:@"D# minor"];
+    [scales setObject:[NSArray arrayWithObjects:@"E",@"F#",@"G#",@"A",@"B",@"C#",@"D#",nil] forKey:@"E major"];
+    [scales setObject:[NSArray arrayWithObjects:@"F#",@"G#",@"A#",@"B",@"C#",@"D#",@"E#",nil] forKey:@"F# major"];
+    [scales setObject:[NSArray arrayWithObjects:@"F#",@"G#",@"A",@"B",@"C#",@"D",@"E",nil] forKey:@"F# minor"];
+    [scales setObject:[NSArray arrayWithObjects:@"G",@"A",@"B",@"C",@"D",@"E",@"F#",nil] forKey:@"G major"];
+    [scales setObject:[NSArray arrayWithObjects:@"G#",@"A#",@"B",@"C#",@"D#",@"E",@"F#",nil] forKey:@"C major"];
+  }
+}
+
++ (NSArray *)scaleForKey:(NSString *)_key_ {
+  return [scales objectForKey:_key_];
+}
 
 - (id)init {
   if( ( self = [super init] ) != nil ) {

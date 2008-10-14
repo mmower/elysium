@@ -14,6 +14,8 @@
   NSMutableArray	*entries;
 }
 
++ (NSArray *)scaleForKey:(NSString *)key;
+
 - (ELNote *)noteAtCol:(int)col row:(int)row;
 
 - (int)size;
