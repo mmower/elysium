@@ -38,6 +38,8 @@
   
   NSString            *layerId;
   
+  NSString            *key;         // If this layer is in a musical key
+  
   ELHex               *selectedHex;
   
   ELBooleanKnob       *enabledKnob;
@@ -61,6 +63,7 @@
 @property (assign) NSString *layerId;
 @property ELHex *selectedHex;
 @property int beatCount;
+@property (assign) NSString *key;
 
 @property (readonly) ELBooleanKnob *enabledKnob;
 @property (readonly) ELIntegerKnob *channelKnob;

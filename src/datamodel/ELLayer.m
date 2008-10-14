@@ -81,6 +81,7 @@ NSPredicate *deadPlayheadFilter;
 @synthesize layerId;
 @synthesize selectedHex;
 @synthesize beatCount;
+@synthesize key;
 
 @synthesize enabledKnob;
 @synthesize channelKnob;
@@ -366,6 +367,9 @@ NSPredicate *deadPlayheadFilter;
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
   [attributes setObject:layerId forKey:@"id"];
+  if( key ) {
+    [attributes setObject:key forKey:@"key"];
+  }
   [layerElement setAttributesAsDictionary:attributes];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
@@ -422,6 +426,11 @@ NSPredicate *deadPlayheadFilter;
     } else {
       NSLog( @"Found layer without id, cannot load it!" );
       return nil;
+    }
+    
+    attributeNode = [_representation_ attributeForName:@"key"];
+    if( attributeNode ) {
+      [self setKey:[attributeNode stringValue]];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:nil];
