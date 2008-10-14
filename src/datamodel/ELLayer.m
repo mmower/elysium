@@ -168,10 +168,23 @@ NSPredicate *deadPlayheadFilter;
   timeBase  = AudioGetCurrentHostTime();
   isRunning = YES;
   while( ![runner isCancelled] ) {
+    UInt64 start = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() );
+    
     [self performSelectorOnMainThread:@selector(runWillRunScript) withObject:nil waitUntilDone:YES];
     [self run];
     [self performSelectorOnMainThread:@selector(runDidRunScript) withObject:nil waitUntilDone:YES];
-    usleep( [self timerResolution] );
+    
+    int elapsed = (AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) - start) / 1000;
+    int delay = [self timerResolution] - elapsed;
+    if( delay < 1 ) {
+      delay = 1;
+    }
+    
+    // NSLog( @"Elapsed usec = %d", elapsed );
+    // NSLog( @"Delay usec   = %d", delay );
+    // NSLog( @"----" );
+    
+    usleep( delay );
   }
   
   isRunning = NO;
