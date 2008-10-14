@@ -39,7 +39,7 @@
   }
   
   [self addWindowController:[[ELLayerManagerWindowController alloc] init]];
-  [[NSApp delegate] showPalette:self];
+  // [[NSApp delegate] showPalette:self];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
