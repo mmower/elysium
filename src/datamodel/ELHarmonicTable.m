@@ -33,7 +33,7 @@ static NSMutableDictionary *scales = nil;
     [scales setObject:[NSArray arrayWithObjects:@"F#",@"G#",@"A#",@"B",@"C#",@"D#",@"E#",nil] forKey:@"F# major"];
     [scales setObject:[NSArray arrayWithObjects:@"F#",@"G#",@"A",@"B",@"C#",@"D",@"E",nil] forKey:@"F# minor"];
     [scales setObject:[NSArray arrayWithObjects:@"G",@"A",@"B",@"C",@"D",@"E",@"F#",nil] forKey:@"G major"];
-    [scales setObject:[NSArray arrayWithObjects:@"G#",@"A#",@"B",@"C#",@"D#",@"E",@"F#",nil] forKey:@"C major"];
+    [scales setObject:[NSArray arrayWithObjects:@"G#",@"A#",@"B",@"C#",@"D#",@"E",@"F#",nil] forKey:@"G# minor"];
   }
 }
 
