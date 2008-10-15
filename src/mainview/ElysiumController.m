@@ -38,15 +38,15 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 + (void)initialize {
   NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
   
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(12.0/255)
-                                                                                        green:(153.0/255)
-                                                                                         blue:(206.0/255)
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(173.0/255)
+                                                                                        green:(195.0/255)
+                                                                                         blue:(214.0/255)
                                                                                         alpha:0.8]]
                     forKey:ELDefaultCellBackgroundColor];
   
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(58.0/255)
-                                                                                             green:(46.0/255)
-                                                                                              blue:(223.0/255)
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(105.0/255)
+                                                                                             green:(146.0/255)
+                                                                                              blue:(180.0/255)
                                                                                              alpha:0.8]]
                     forKey:ELDefaultCellBorderColor];
   
