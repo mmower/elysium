@@ -13,12 +13,14 @@
 static NSMutableDictionary *noteToNoteNames = nil;
 static NSMutableDictionary *namesToNoteNums = nil;
 static NSArray *noteSequence = nil;
+static NSArray *alternateSequence = nil;
 
 @implementation ELNote
 
 + (void)initialize {
   if( noteSequence == nil ) {
     noteSequence = [NSArray arrayWithObjects:@"C",@"C#",@"D",@"D#",@"E",@"F",@"F#",@"G",@"G#",@"A",@"A#",@"B",nil];
+    alternateSequence = [NSArray arrayWithObjects:@"C",@"Db",@"D",@"Eb",@"F",@"Gb",@"G",@"Ab",@"A",@"Bb",@"B",nil];
     
     noteToNoteNames = [[NSMutableDictionary alloc] init];
     namesToNoteNums = [[NSMutableDictionary alloc] init];
@@ -44,10 +46,11 @@ static NSArray *noteSequence = nil;
 - (id)initWithName:(NSString *)_name_ {
   if( ( self = [super init] ) )
   {
-    name   = _name_;
-    number = [ELNote noteNumber:_name_];
-    octave = floor( number / 12 ) - 1;
-    tone   = [noteSequence objectAtIndex:(number % 12)];
+    name          = _name_;
+    number        = [ELNote noteNumber:_name_];
+    octave        = floor( number / 12 ) - 1;
+    tone          = [noteSequence objectAtIndex:(number % 12)];
+    alternateTone = [alternateSequence objectAtIndex:(number % 12)];
   }
   return self;
 }
@@ -70,6 +73,18 @@ static NSArray *noteSequence = nil;
 
 - (NSString *)tone {
   return tone;
+}
+
+- (NSString *)alternateTone {
+  return alternateTone;
+}
+
+- (NSString *)tone:(BOOL)_sharp_ {
+  if( _sharp_ ) {
+    return tone;
+  } else {
+    return alternateTone;
+  }
 }
 
 @end

@@ -14,6 +14,7 @@
   int       octave;
   NSString  *name;
   NSString  *tone;
+  NSString  *alternateTone;
 }
 
 + (int)noteNumber:(NSString *)noteName;
@@ -26,5 +27,7 @@
 
 - (NSString *)name;
 - (NSString *)tone;
+- (NSString *)alternateTone;
+- (NSString *)tone:(BOOL)sharp;
 
 @end
