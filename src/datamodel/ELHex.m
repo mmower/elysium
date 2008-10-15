@@ -509,7 +509,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     CGFloat fader = 0.5 + ( 0.5 * ((float)minTTL/5) );
     [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
   } else {
-    if( [layer key] ) {
+    if( [[layer player] showKey] && [layer key] ) {
       NSUInteger index = [[ELHarmonicTable scaleForKey:[layer key]] indexOfObject:[note name]];
       switch( index ) {
         case NSNotFound:
@@ -524,13 +524,10 @@ NSString* elementDescription( NSBezierPathElement elt ) {
           [_attributes_ setObject:[_attributes_ objectForKey:ELScaleNoteColor] forKey:LMHoneycombViewDefaultColor];
           break;
       }
-    } else {
+    } else if( [[layer player] showOctaves] ) {
       [_attributes_ setObject:[(ELSurfaceView *)_view_ octaveColor:[note octave]] forKey:LMHoneycombViewDefaultColor];
     }
   }
-  // } else if( [[self tools] count] > 0 ) {
-  //   [_attributes_ setObject:[NSColor colorWithDeviceRed:(40.0/255) green:(121.0/255) blue:(241.0/255) alpha:0.8] forKey:LMHoneycombViewDefaultColor];
-  // }
   
   [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
   

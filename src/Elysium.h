@@ -53,6 +53,9 @@ extern NSString * const ELDefaultSelectedCellBorderColor;
 extern NSString * const ELDefaultToolColor;
 extern NSString * const ELDefaultActivePlayheadColor;
 
+extern NSString * const ELTonicNoteColor;
+extern NSString * const ELScaleNoteColor;
+
 #import "ELXmlData.h"
 
 #import "ELKnob.h"

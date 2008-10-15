@@ -21,12 +21,14 @@
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
 
-extern NSString * const ELDefaultCellBackgroundColor;
-extern NSString * const ELDefaultCellBorderColor;
-extern NSString * const ELDefaultSelectedCellBackgroundColor;
-extern NSString * const ELDefaultSelectedCellBorderColor;
-extern NSString * const ELDefaultToolColor;
-extern NSString * const ELDefaultActivePlayheadColor;
+// extern NSString * const ELDefaultCellBackgroundColor;
+// extern NSString * const ELDefaultCellBorderColor;
+// extern NSString * const ELDefaultSelectedCellBackgroundColor;
+// extern NSString * const ELDefaultSelectedCellBorderColor;
+// extern NSString * const ELDefaultToolColor;
+// extern NSString * const ELDefaultActivePlayheadColor;
+// extern NSString * const ELTonicNoteColor;
+
 
 NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidChange";
 NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
@@ -72,6 +74,18 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
                                                                                              alpha:0.8]]
                     forKey:ELDefaultActivePlayheadColor];
   
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(158.0/255)
+                                                                                             green:(48.0/255)
+                                                                                              blue:(75.0/255)
+                                                                                             alpha:0.8]]
+                    forKey:ELTonicNoteColor];
+  
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(39.0/255)
+                                                                                             green:(118.0/255)
+                                                                                              blue:(131.0/255)
+                                                                                             alpha:0.8]]
+                    forKey:ELScaleNoteColor];
+  
   [[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 }
 
@@ -85,7 +99,7 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
 - (void)awakeFromNib {
   // Ensure the MacRuby runtime is initialized on the event thread
-  //[MacRuby sharedRuntime];
+  // [MacRuby sharedRuntime];
 }
 
 - (ELMIDIController *)midiController {

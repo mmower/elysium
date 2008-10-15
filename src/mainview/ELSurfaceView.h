@@ -22,7 +22,10 @@
 
 - (void)setActivePlayheadColor:(NSColor *)color;
 - (NSColor *)activePlayheadColor;
-
+- (void)setTonicNoteColor:(NSColor *)color;
+- (NSColor *)tonicNoteColor;
+- (void)setScaleNoteColor:(NSColor *)color;
+- (NSColor *)scaleNoteColor;
 - (NSColor *)octaveColor:(int)octave;
 
 - (ELHex *)cellUnderMouseLocation:(NSPoint)point;
