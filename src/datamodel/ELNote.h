@@ -13,17 +13,18 @@
   int       number;
   int       octave;
   NSString  *name;
+  NSString  *tone;
 }
 
 + (int)noteNumber:(NSString *)noteName;
 + (NSString *)noteName:(int)noteNum;
 
-- (id)initWithNumber:(int)number;
 - (id)initWithName:(NSString *)name;
 
 - (int)number;
-- (NSString *)name;
-
 - (int)octave;
+
+- (NSString *)name;
+- (NSString *)tone;
 
 @end
