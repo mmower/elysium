@@ -510,7 +510,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
   } else {
     if( [[layer player] showKey] && [layer key] ) {
-      NSUInteger index = [[ELHarmonicTable scaleForKey:[layer key]] indexOfObject:[note name]];
+      NSUInteger index = [[ELHarmonicTable scaleForKey:[layer key]] indexOfObject:[note tone]];
       switch( index ) {
         case NSNotFound:
           // Do nothing, use default colour
