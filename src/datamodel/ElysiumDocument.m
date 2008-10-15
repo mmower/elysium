@@ -39,7 +39,8 @@
   }
   
   [self addWindowController:[[ELLayerManagerWindowController alloc] init]];
-  // [[NSApp delegate] showPalette:self];
+  
+  [[NSApp delegate] showInspectorPanel:self];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -105,6 +106,46 @@
 
 // Actions
 
+- (BOOL)validateMenuItem:(NSMenuItem *)_item_ {
+  SEL action = [_item_ action];
+  
+  if( action == @selector(toggleKeyDisplay:) ) {
+    if( [player showKey] ) {
+      [_item_ setTitle:@"Hide Key"];
+      [_item_ setState:NSOnState];
+    } else {
+      [_item_ setTitle:@"Show Key"];
+      [_item_ setState:NSOffState];
+    }
+  } else if( action == @selector(toggleOctavesDisplay:) ) {
+    if( [player showOctaves] ) {
+      [_item_ setTitle:@"Hide Octaves"];
+      [_item_ setState:NSOnState];
+    } else {
+      [_item_ setTitle:@"Show Octaves"];
+      [_item_ setState:NSOffState];
+    }
+  } else if( action == @selector(toggleNoteDisplay:) ) {
+    if( [player showNotes] ) {
+      [_item_ setTitle:@"Hide Notes"];
+      [_item_ setState:NSOnState];
+    } else {
+      [_item_ setTitle:@"Show Notes"];
+      [_item_ setState:NSOffState];
+    }
+  } else if( action == @selector(startStop:) ) {
+    if( [player running] ) {
+      [_item_ setTitle:@"Stop Playing"];
+      [_item_ setState:NSOnState];
+    } else {
+      [_item_ setTitle:@"Start Playing"];
+      [_item_ setState:NSOffState];
+    }
+  }
+  
+  return YES;
+}
+
 - (IBAction)startStop:(id)_sender_ {
   if( [player running] ) {
     [player stop];
@@ -113,8 +154,9 @@
   }
 }
 
-- (IBAction)notesOnOff:(id)_sender_ {
+- (IBAction)toggleNoteDisplay:(id)_sender_ {
   [player toggleNoteDisplay];
+  [self updateView:self];
 }
 
 - (IBAction)toggleKeyDisplay:(id)_sender_ {
@@ -123,6 +165,7 @@
   if( showKey ) {
     [player setShowOctaves:NO];
   }
+  [self updateView:self];
 }
 
 - (IBAction)toggleOctavesDisplay:(id)_sender_ {
@@ -131,6 +174,7 @@
   if( showOctave ) {
     [player setShowKey:NO];
   }
+  [self updateView:self];
 }
 
 - (IBAction)clearAll:(id)_sender_ {

@@ -106,7 +106,6 @@
 
 - (void)toggleNoteDisplay {
   showNotes = !showNotes;
-  [self needsDisplay];
 }
 
 // Player control
