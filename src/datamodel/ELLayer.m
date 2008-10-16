@@ -61,11 +61,13 @@ NSPredicate *deadPlayheadFilter;
     player = _player_;
     
     tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedTo:[player tempoKnob]];
+    barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" linkedTo:[player barLengthKnob]];
     timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedTo:[player timeToLiveKnob]];
     pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedTo:[player pulseCountKnob]];
     velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedTo:[player velocityKnob]];
+    emphasisKnob   = [[ELIntegerKnob alloc] initWithName:@"emphasis" linkedTo:[player emphasisKnob]];
     durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" linkedTo:[player durationKnob]];
-    transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedTo:[player transposeKnob]];
+    transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedTo:[player transposeKnob]];
     
     [self configureHexes];
   }
@@ -91,9 +93,11 @@ NSPredicate *deadPlayheadFilter;
 @synthesize enabledKnob;
 @synthesize channelKnob;
 @synthesize tempoKnob;
+@synthesize barLengthKnob;
 @synthesize timeToLiveKnob;
 @synthesize pulseCountKnob;
 @synthesize velocityKnob;
+@synthesize emphasisKnob;
 @synthesize durationKnob;
 @synthesize transposeKnob;
 
@@ -387,9 +391,11 @@ NSPredicate *deadPlayheadFilter;
   [controlsElement addChild:[enabledKnob xmlRepresentation]];
   [controlsElement addChild:[channelKnob xmlRepresentation]];
   [controlsElement addChild:[tempoKnob xmlRepresentation]];
+  [controlsElement addChild:[barLengthKnob xmlRepresentation]];
   [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
   [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
+  [controlsElement addChild:[emphasisKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
   [controlsElement addChild:[transposeKnob xmlRepresentation]];
   [layerElement addChild:controlsElement];
@@ -456,6 +462,10 @@ NSPredicate *deadPlayheadFilter;
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob] player:_player_];
     
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    barLengthKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ barLengthKnob] player:_player_];
+    
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ timeToLiveKnob] player:_player_];
@@ -467,6 +477,10 @@ NSPredicate *deadPlayheadFilter;
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
     velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ velocityKnob] player:_player_];
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:nil];
+    element = (NSXMLElement *)[nodes objectAtIndex:0];
+    emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ emphasisKnob] player:_player_];
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     element = (NSXMLElement *)[nodes objectAtIndex:0];
