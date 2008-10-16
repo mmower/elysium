@@ -47,6 +47,8 @@ NSPredicate *deadPlayheadFilter;
     
     key         = [ELKey noKey];
     
+    [self addObserver:self forKeyPath:@"key" options:0 context:nil];
+    
     enabledKnob = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
     channelKnob = [[ELIntegerKnob alloc] initWithName:@"channel"];
   }
@@ -112,6 +114,12 @@ NSPredicate *deadPlayheadFilter;
 
 - (int)timerResolution {
   return 60000000 / [tempoKnob filteredValue];
+}
+
+- (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(void *)_context_ {
+  if( [_keyPath_ isEqualToString:@"key"] ) {
+    [self needsDisplay];
+  }
 }
 
 @dynamic visible;
