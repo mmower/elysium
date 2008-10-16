@@ -13,15 +13,17 @@
 
 #import "ELHex.h"
 #import "ELLayer.h"
+#import "ELLayer.h"
 #import "ELPlayhead.h"
 
 static NSString * const toolType = @"note";
 
 @implementation ELNoteTool
 
-- (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ triadKnob:(ELIntegerKnob *)_triadKnob_ {
+- (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ emphasisKnob:(ELIntegerKnob *)_emphasisKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ triadKnob:(ELIntegerKnob *)_triadKnob_ {
   if( ( self = [super init] ) ) {
     velocityKnob = _velocityKnob_;
+    emphasisKnob = _emphasisKnob_;
     durationKnob = _durationKnob_;
     triadKnob    = _triadKnob_;
   }
@@ -31,6 +33,7 @@ static NSString * const toolType = @"note";
 
 - (id)init {
   return [self initWithVelocityKnob:[[ELIntegerKnob alloc] initWithName:@"velocity"]
+                       emphasisKnob:[[ELIntegerKnob alloc] initWithName:@"emphasis"]
                        durationKnob:[[ELFloatKnob alloc] initWithName:@"duration"]
                           triadKnob:[[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0]];
 }
@@ -40,6 +43,7 @@ static NSString * const toolType = @"note";
 }
 
 @synthesize velocityKnob;
+@synthesize emphasisKnob;
 @synthesize durationKnob;
 @synthesize triadKnob;
 
@@ -50,6 +54,10 @@ static NSString * const toolType = @"note";
   [velocityKnob setLinkedKnob:[_layer_ velocityKnob]];
   [velocityKnob setLinkValue:YES];
   
+  [emphasisKnob setValue:[[_layer_ emphasisKnob] value]];
+  [emphasisKnob setLinkedKnob:[_layer_ emphasisKnob]];
+  [emphasisKnob setLinkValue:YES];
+  
   [durationKnob setValue:[[_layer_ durationKnob] value]];
   [durationKnob setLinkedKnob:[_layer_ durationKnob]];
   [durationKnob setLinkValue:YES];
@@ -59,21 +67,30 @@ static NSString * const toolType = @"note";
   [super removedFromLayer:_layer_];
   
   [velocityKnob setLinkedKnob:nil];
+  [emphasisKnob setLinkedKnob:nil];
   [durationKnob setLinkedKnob:nil];
 }
 
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityKnob.value",@"durationKnob.value",@"triadKnob.value",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityKnob.value",@"emphasisKnob.value",@"durationKnob.value",@"triadKnob.value",nil]];
   return keys;
 }
 
 // Tool runner
 
 - (void)runTool:(ELPlayhead *)_playhead_ {
+  int velocity;
+  
+  if( [layer firstBeatInBar] ) {
+    velocity = [emphasisKnob filteredValue];
+  } else {
+    velocity = [velocityKnob filteredValue];
+  }
+  
   [layer playNotes:[[_playhead_ position] triad:[triadKnob value]]
-          velocity:[velocityKnob filteredValue]
+          velocity:velocity
           duration:[durationKnob filteredValue]];
 }
 
@@ -98,7 +115,7 @@ static NSString * const toolType = @"note";
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy] durationKnob:[durationKnob mutableCopy] triadKnob:[triadKnob mutableCopy]];
+  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy] emphasisKnob:[emphasisKnob mutableCopy] durationKnob:[durationKnob mutableCopy] triadKnob:[triadKnob mutableCopy]];
 }
 
 // Implement the ELXmlData protocol
@@ -106,13 +123,14 @@ static NSString * const toolType = @"note";
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
+  [controlsElement addChild:[emphasisKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
   [controlsElement addChild:[triadKnob xmlRepresentation]];
   return controlsElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  if( ( self = [self initWithVelocityKnob:nil durationKnob:nil triadKnob:nil] ) ) {
+  if( ( self = [self initWithVelocityKnob:nil emphasisKnob:nil durationKnob:nil triadKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
@@ -123,6 +141,15 @@ static NSString * const toolType = @"note";
     } else {
       velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
     }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:nil];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_];
+    } else {
+      emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis"];
+    }
+    
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     if( [nodes count] > 0 ) {

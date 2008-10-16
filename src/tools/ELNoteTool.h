@@ -12,13 +12,15 @@
 
 @interface ELNoteTool : ELTool <NSMutableCopying> {
   ELIntegerKnob *velocityKnob;
+  ELIntegerKnob *emphasisKnob;
   ELFloatKnob   *durationKnob;
   ELIntegerKnob *triadKnob;
 }
 
-- (id)initWithVelocityKnob:(ELIntegerKnob *)velocityKnob durationKnob:(ELFloatKnob *)durationKnob triadKnob:(ELIntegerKnob *)triadKnob;
+- (id)initWithVelocityKnob:(ELIntegerKnob *)velocityKnob emphasisKnob:(ELIntegerKnob *)emphasisKnob durationKnob:(ELFloatKnob *)durationKnob triadKnob:(ELIntegerKnob *)triadKnob;
 
 @property (readonly) ELIntegerKnob *velocityKnob;
+@property (readonly) ELIntegerKnob *emphasisKnob;
 @property (readonly) ELFloatKnob *durationKnob;
 @property (readonly) ELIntegerKnob *triadKnob;
 
