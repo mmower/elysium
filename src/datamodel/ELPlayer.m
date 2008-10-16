@@ -190,7 +190,9 @@
   [layer setLayerId:[NSString stringWithFormat:@"Layer-%d", nextLayerNumber++]];
   
   [[layer tempoKnob] setValue:[tempoKnob value]];
+  [[layer barLengthKnob] setValue:[barLengthKnob value]];
   [[layer velocityKnob] setValue:[velocityKnob value]];
+  [[layer emphasisKnob] setValue:[emphasisKnob value]];
   [[layer durationKnob] setValue:[durationKnob value]];
   [[layer pulseCountKnob] setValue:[pulseCountKnob value]];
   [[layer timeToLiveKnob] setValue:[timeToLiveKnob value]];
