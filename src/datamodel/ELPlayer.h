@@ -39,6 +39,7 @@
   ELIntegerKnob       *timeToLiveKnob;
   ELIntegerKnob       *pulseCountKnob;
   ELIntegerKnob       *velocityKnob;
+  ELIntegerKnob       *emphasisKnob;
   ELFloatKnob         *durationKnob;
   ELIntegerKnob       *transposeKnob;
 }
@@ -59,6 +60,7 @@
 @property (readonly) ELIntegerKnob *timeToLiveKnob;
 @property (readonly) ELIntegerKnob *pulseCountKnob;
 @property (readonly) ELIntegerKnob *velocityKnob;
+@property (readonly) ELIntegerKnob *emphasisKnob;
 @property (readonly) ELFloatKnob   *durationKnob;
 @property (readonly) ELIntegerKnob *transposeKnob;
 

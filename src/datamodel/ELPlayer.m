@@ -38,7 +38,8 @@
     tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
     timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
     pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
-    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
+    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90];
+    emphasisKnob   = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120];
     durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
     transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
     
@@ -91,6 +92,7 @@
 @synthesize timeToLiveKnob;
 @synthesize pulseCountKnob;
 @synthesize velocityKnob;
+@synthesize emphasisKnob;
 @synthesize durationKnob;
 @synthesize transposeKnob;
 
@@ -246,6 +248,7 @@
   [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
   [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
+  [controlsElement addChild:[emphasisKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
   [controlsElement addChild:[transposeKnob xmlRepresentation]];
   
@@ -328,7 +331,15 @@
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
-      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:100];
+      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90];
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:nil];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
+    } else {
+      emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
