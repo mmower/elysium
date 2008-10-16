@@ -19,7 +19,6 @@
 }
 
 - (void)windowDidLoad {
-  NSLog( @"Layer manager window loaded." );
   [[self window] setTitle:[NSString stringWithFormat:@"%@ - Layer Manager", [[self document] displayName]]];
 }
 

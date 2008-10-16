@@ -26,6 +26,8 @@ NSString * const ELDefaultSelectedCellBackgroundColor = @"selected.cell.backgrou
 NSString * const ELDefaultSelectedCellBorderColor = @"selected.cell.border.color";
 NSString * const ELDefaultToolColor = @"tool.color";
 NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
+NSString * const ELTonicNoteColor = @"tonic.note.color";
+NSString * const ELScaleNoteColor = @"scale.note.color";
 
 @implementation ELSurfaceView
 
@@ -49,6 +51,8 @@ NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
     [self setSelectedBorderColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultSelectedCellBorderColor]]];
     [self setToolColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultToolColor]]];
     [self setActivePlayheadColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultActivePlayheadColor]]];
+    [self setTonicNoteColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELTonicNoteColor]]];
+    [self setScaleNoteColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELScaleNoteColor]]];
     
     [self registerForDraggedTypes:[NSArray arrayWithObjects:ToolPBoardType,HexPBoardType,nil]];
     
@@ -77,6 +81,22 @@ NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
 
 - (NSColor *)activePlayheadColor {
   return [[self drawingAttributes] objectForKey:ELDefaultActivePlayheadColor];
+}
+
+- (void)setTonicNoteColor:(NSColor *)_color_ {
+  [[self drawingAttributes] setObject:_color_ forKey:ELTonicNoteColor];
+}
+
+- (NSColor *)tonicNoteColor {
+  return [[self drawingAttributes] objectForKey:ELTonicNoteColor];
+}
+
+- (void)setScaleNoteColor:(NSColor *)_color_ {
+  [[self drawingAttributes] setObject:_color_ forKey:ELScaleNoteColor];
+}
+
+- (NSColor *)scaleNoteColor {
+  return [[self drawingAttributes] objectForKey:ELScaleNoteColor];
 }
 
 - (NSColor *)octaveColor:(int)_octave_ {

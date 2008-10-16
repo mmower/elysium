@@ -13,6 +13,7 @@
 #import "Elysium.h"
 
 @class ELHex;
+@class ELKey;
 @class ELNote;
 @class ELPlayer;
 @class ELPlayhead;
@@ -38,6 +39,8 @@
   
   NSString            *layerId;
   
+  ELKey               *key;         // If this layer is in a musical key
+  
   ELHex               *selectedHex;
   
   ELBooleanKnob       *enabledKnob;
@@ -61,6 +64,7 @@
 @property (assign) NSString *layerId;
 @property ELHex *selectedHex;
 @property int beatCount;
+@property ELKey *key;
 
 @property (readonly) ELBooleanKnob *enabledKnob;
 @property (readonly) ELIntegerKnob *channelKnob;

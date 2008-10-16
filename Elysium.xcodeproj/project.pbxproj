@@ -14,7 +14,6 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
-		C91600480E97EAFD0052DB9F /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = C91600470E97EAFD0052DB9F /* AppIcon.icns */; };
 		C91600720E982D990052DB9F /* triad1.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600710E982D990052DB9F /* triad1.tif */; };
 		C916007E0E9830530052DB9F /* triad2.tif in Resources */ = {isa = PBXBuildFile; fileRef = C916007D0E9830530052DB9F /* triad2.tif */; };
 		C91600800E989EB20052DB9F /* triad3.tif in Resources */ = {isa = PBXBuildFile; fileRef = C916007F0E989EB20052DB9F /* triad3.tif */; };
@@ -49,6 +48,7 @@
 		C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
 		C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
+		C94F55760EA6A73900320BF5 /* ELKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C94F55750EA6A73900320BF5 /* ELKey.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
 		C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC8C0E4F6042008F309B /* sectionheader.gif */; };
 		C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -119,6 +119,7 @@
 		C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
+		C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DA148F0EA730780087EDD3 /* Elysium.icns */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
@@ -186,7 +187,6 @@
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
-		C91600470E97EAFD0052DB9F /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		C91600710E982D990052DB9F /* triad1.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad1.tif; sourceTree = "<group>"; };
 		C916007D0E9830530052DB9F /* triad2.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad2.tif; sourceTree = "<group>"; };
 		C916007F0E989EB20052DB9F /* triad3.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad3.tif; sourceTree = "<group>"; };
@@ -220,6 +220,8 @@
 		C93D54AB0E61F1250077C448 /* PYMIDIVirtualEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualEndpoint.m; sourceTree = "<group>"; };
 		C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualSource.h; sourceTree = "<group>"; };
 		C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
+		C94F55740EA6A73900320BF5 /* ELKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKey.h; sourceTree = "<group>"; };
+		C94F55750EA6A73900320BF5 /* ELKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKey.m; sourceTree = "<group>"; };
 		C97FEC860E4F5FB2008F309B /* StackedListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackedListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StackedListView-Info.plist"; sourceTree = "<group>"; };
 		C97FEC8C0E4F6042008F309B /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MacRuby+EvalProc.m"; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9C9AF2B0E82D0F500277071 /* deploy.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.rake; sourceTree = "<group>"; };
+		C9DA148F0EA730780087EDD3 /* Elysium.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Elysium.icns; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		C9E43D5E0E33C27100C4D343 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		C9E8D9360E68B8AF005AD9B7 /* play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = play.pdf; sourceTree = "<group>"; };
@@ -587,6 +590,8 @@
 				C9A9F19E0E8A42DF009A06A3 /* ELPlayhead.m */,
 				C9A9F19F0E8A42DF009A06A3 /* ElysiumDocument.h */,
 				C9A9F1A00E8A42DF009A06A3 /* ElysiumDocument.m */,
+				C94F55740EA6A73900320BF5 /* ELKey.h */,
+				C94F55750EA6A73900320BF5 /* ELKey.m */,
 			);
 			name = datamodel;
 			path = src/datamodel;
@@ -746,6 +751,7 @@
 		C9B88E400E64A5E400FA411E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C9DA148F0EA730780087EDD3 /* Elysium.icns */,
 				C91600A20E98FF3C0052DB9F /* triad0.tif */,
 				C91600A30E98FF3C0052DB9F /* triad4.tif */,
 				C91600A40E98FF3C0052DB9F /* triad5.tif */,
@@ -753,7 +759,6 @@
 				C916007F0E989EB20052DB9F /* triad3.tif */,
 				C916007D0E9830530052DB9F /* triad2.tif */,
 				C91600710E982D990052DB9F /* triad1.tif */,
-				C91600470E97EAFD0052DB9F /* AppIcon.icns */,
 				C98DB8370E8907B6009C699E /* sectionheader.gif */,
 				C905E00D0E733C2A00C39302 /* hexdrag.pdf */,
 				C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */,
@@ -938,7 +943,6 @@
 				C9A9F1730E8A41DC009A06A3 /* LayerWindow.xib in Resources */,
 				C9A9F1740E8A41DC009A06A3 /* Palette.xib in Resources */,
 				C9A9F1750E8A41DC009A06A3 /* PlayerInspector.xib in Resources */,
-				C91600480E97EAFD0052DB9F /* AppIcon.icns in Resources */,
 				C91600720E982D990052DB9F /* triad1.tif in Resources */,
 				C916007E0E9830530052DB9F /* triad2.tif in Resources */,
 				C91600800E989EB20052DB9F /* triad3.tif in Resources */,
@@ -947,6 +951,7 @@
 				C91600A80E98FF3C0052DB9F /* triad5.tif in Resources */,
 				C91600A90E98FF3C0052DB9F /* triad6.tif in Resources */,
 				C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */,
+				C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1032,6 +1037,7 @@
 				C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */,
 				C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */,
 				C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */,
+				C94F55760EA6A73900320BF5 /* ELKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

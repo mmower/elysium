@@ -12,21 +12,26 @@
 
 static NSMutableDictionary *noteToNoteNames = nil;
 static NSMutableDictionary *namesToNoteNums = nil;
+static NSArray *noteSequence = nil;
+static NSArray *alternateSequence = nil;
 
 @implementation ELNote
 
-+ (void)load {
-  NSArray *noteSequence = [NSArray arrayWithObjects:@"C",@"C#",@"D",@"D#",@"E",@"F",@"F#",@"G",@"G#",@"A",@"A#",@"B",nil];
-  
-  noteToNoteNames = [[NSMutableDictionary alloc] init];
-  namesToNoteNums = [[NSMutableDictionary alloc] init];
-  
-  for( int noteNum = 0; noteNum < 127; noteNum++ ) {
-    NSString *noteName = [noteSequence objectAtIndex:(noteNum % 12)];
-    int octave = floor( noteNum / 12 ) - 1;
++ (void)initialize {
+  if( noteSequence == nil ) {
+    noteSequence = [NSArray arrayWithObjects:@"C",@"C#",@"D",@"D#",@"E",@"F",@"F#",@"G",@"G#",@"A",@"A#",@"B",nil];
+    alternateSequence = [NSArray arrayWithObjects:@"C",@"Db",@"D",@"Eb",@"E",@"F",@"Gb",@"G",@"Ab",@"A",@"Bb",@"B",nil];
     
-    [noteToNoteNames setObject:[noteName stringByAppendingFormat:@"%d", octave]	forKey:[NSNumber numberWithInt:noteNum]];
-    [namesToNoteNums setObject:[NSNumber numberWithInt:noteNum] forKey:[noteName stringByAppendingFormat:@"%d", octave]];
+    noteToNoteNames = [[NSMutableDictionary alloc] init];
+    namesToNoteNums = [[NSMutableDictionary alloc] init];
+    
+    for( int noteNum = 0; noteNum < 127; noteNum++ ) {
+      NSString *noteName = [noteSequence objectAtIndex:(noteNum % 12)];
+      int octave = floor( noteNum / 12 ) - 1;
+
+      [noteToNoteNames setObject:[noteName stringByAppendingFormat:@"%d", octave]	forKey:[NSNumber numberWithInt:noteNum]];
+      [namesToNoteNums setObject:[NSNumber numberWithInt:noteNum] forKey:[noteName stringByAppendingFormat:@"%d", octave]];
+    }
   }
 }
 
@@ -38,23 +43,14 @@ static NSMutableDictionary *namesToNoteNums = nil;
   return [noteToNoteNames objectForKey:[NSNumber numberWithInt:noteNum]];
 }
 
-- (id)initWithNumber:(int)_number_
-{
-  if( ( self = [self init] ) )
-  {
-    number = _number_;
-    octave = floor( _number_ / 12 ) - 1;
-    name   = [ELNote noteName:number];
-  }
-  return self;
-}
-
 - (id)initWithName:(NSString *)_name_ {
   if( ( self = [super init] ) )
   {
-    name   = _name_;
-    number = [ELNote noteNumber:_name_];
-    octave = floor( number / 12 ) - 1;
+    name          = _name_;
+    number        = [ELNote noteNumber:_name_];
+    octave        = floor( number / 12 ) - 1;
+    tone          = [noteSequence objectAtIndex:(number % 12)];
+    alternateTone = [alternateSequence objectAtIndex:(number % 12)];
   }
   return self;
 }
@@ -73,6 +69,26 @@ static NSMutableDictionary *namesToNoteNums = nil;
 
 - (int)octave {
   return octave;
+}
+
+- (NSString *)tone {
+  return tone;
+}
+
+- (NSString *)alternateTone {
+  return alternateTone;
+}
+
+- (NSString *)tone:(BOOL)_flat_ {
+  if( _flat_ ) {
+    return alternateTone;
+  } else {
+    return tone;
+  }
+}
+
+- (NSString *)flattenedName {
+  return alternateTone;
 }
 
 @end

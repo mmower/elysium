@@ -11,11 +11,13 @@
 #import <HoneycombView/LMHoneycombView.h>
 
 #import "ELHex.h"
+#import "ELKey.h"
 #import "ELNote.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELTool.h"
 #import "ELPlayhead.h"
+#import "ELHarmonicTable.h"
 #import "ELSurfaceView.h"
 
 #import "ELGenerateTool.h"
@@ -505,21 +507,32 @@ NSString* elementDescription( NSBezierPathElement elt ) {
         minTTL = [playhead TTL];
       }
     }
-    
     CGFloat fader = 0.5 + ( 0.5 * ((float)minTTL/5) );
-    
     [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
   } else {
-    [_attributes_ setObject:[(ELSurfaceView *)_view_ octaveColor:[note octave]] forKey:LMHoneycombViewDefaultColor];
+    if( [[layer player] showKey] ) {
+      BOOL isTonic;
+      if( [[layer key] containsNote:note isTonic:&isTonic] ) {
+        if( isTonic ) {
+          [_attributes_ setObject:[_attributes_ objectForKey:ELTonicNoteColor] forKey:LMHoneycombViewDefaultColor];
+        } else {
+          [_attributes_ setObject:[_attributes_ objectForKey:ELScaleNoteColor] forKey:LMHoneycombViewDefaultColor];
+        }
+      }
+    } else if( [[layer player] showOctaves] ) {
+      [_attributes_ setObject:[(ELSurfaceView *)_view_ octaveColor:[note octave]] forKey:LMHoneycombViewDefaultColor];
+    }
   }
-  // } else if( [[self tools] count] > 0 ) {
-  //   [_attributes_ setObject:[NSColor colorWithDeviceRed:(40.0/255) green:(121.0/255) blue:(241.0/255) alpha:0.8] forKey:LMHoneycombViewDefaultColor];
-  // }
   
   [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
   
   if( [[layer player] showNotes] ) {
-    [self drawText:[note name] withAttributes:_attributes_];
+    if( [[layer key] flat] ) {
+      [self drawText:[note flattenedName] withAttributes:_attributes_];
+    } else {
+      [self drawText:[note name] withAttributes:_attributes_];
+    }
+    
   }
   
   [[self tools] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];
