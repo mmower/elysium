@@ -21,15 +21,6 @@
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
 
-// extern NSString * const ELDefaultCellBackgroundColor;
-// extern NSString * const ELDefaultCellBorderColor;
-// extern NSString * const ELDefaultSelectedCellBackgroundColor;
-// extern NSString * const ELDefaultSelectedCellBorderColor;
-// extern NSString * const ELDefaultToolColor;
-// extern NSString * const ELDefaultActivePlayheadColor;
-// extern NSString * const ELTonicNoteColor;
-
-
 NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidChange";
 NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 

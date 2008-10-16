@@ -207,7 +207,6 @@
 
 // Sent by background threads when the view needs to be updated
 - (void)updateView:(id)_sender_ {
-  NSLog( @"document#needsDisplay" );
   [player needsDisplay];
 }
 
