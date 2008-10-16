@@ -25,7 +25,7 @@ static NSMutableDictionary *keyLookup = nil;
     [allKeys addObject:[[ELKey alloc] initWithName:@"A minor" scale:[NSArray arrayWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"A flat major" scale:[NSArray arrayWithObjects:@"Ab",@"Bb",@"C",@"Db",@"Eb",@"F",@"G",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"A flat minor" scale:[NSArray arrayWithObjects:@"Ab",@"Bb",@"B",@"Db",@"Eb",@"E",@"Gb",nil]]];
-    [allKeys addObject:[[ELKey alloc] initWithName:@"A sharp minor" scale:[NSArray arrayWithObjects:@"A#",@"B#",@"C#",@"D#",@"E#",@"F#",@"G#",nil]]];
+    [allKeys addObject:[[ELKey alloc] initWithName:@"A sharp minor" scale:[NSArray arrayWithObjects:@"A#",@"C",@"C#",@"D#",@"F",@"F#",@"G#",nil]]];
 
     [allKeys addObject:[[ELKey alloc] initWithName:@"B major" scale:[NSArray arrayWithObjects:@"B",@"C#",@"D#",@"E",@"F#",@"G#",@"A#",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"B minor" scale:[NSArray arrayWithObjects:@"B",@"C#",@"D",@"E",@"F#",@"G",@"A",nil]]];
@@ -35,14 +35,14 @@ static NSMutableDictionary *keyLookup = nil;
     [allKeys addObject:[[ELKey alloc] initWithName:@"C major" scale:[NSArray arrayWithObjects:@"C",@"D",@"E",@"F",@"G",@"A",@"B",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"C minor" scale:[NSArray arrayWithObjects:@"C",@"D",@"Eb",@"F",@"G",@"Ab",@"Bb",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"C flat major" scale:[NSArray arrayWithObjects:@"B",@"Db",@"Eb",@"E",@"Gb",@"Ab",@"Bb",nil]]];
-    [allKeys addObject:[[ELKey alloc] initWithName:@"C sharp major" scale:[NSArray arrayWithObjects:@"C#",@"D#",@"E#",@"F#",@"G#",@"A#",@"B#",nil]]];
+    [allKeys addObject:[[ELKey alloc] initWithName:@"C sharp major" scale:[NSArray arrayWithObjects:@"C#",@"D#",@"F",@"F#",@"G#",@"A#",@"C",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"C sharp minor" scale:[NSArray arrayWithObjects:@"C#",@"D#",@"E",@"F#",@"G#",@"A",@"B",nil]]];
 
     [allKeys addObject:[[ELKey alloc] initWithName:@"D major" scale:[NSArray arrayWithObjects:@"D",@"E",@"F#",@"G",@"A",@"B",@"C#",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"D minor" scale:[NSArray arrayWithObjects:@"D",@"E",@"F",@"G",@"A",@"Bb",@"C",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"D flat major" scale:[NSArray arrayWithObjects:@"Db",@"Eb",@"F",@"Gb",@"Ab",@"Bb",@"C",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"D flat minor" scale:[NSArray arrayWithObjects:@"Db",@"Eb",@"E",@"Gb",@"Ab",@"Bb",@"B",nil]]];
-    [allKeys addObject:[[ELKey alloc] initWithName:@"D sharp minor" scale:[NSArray arrayWithObjects:@"D#",@"E#",@"F#",@"G#",@"A#",@"B",@"C#",nil]]];
+    [allKeys addObject:[[ELKey alloc] initWithName:@"D sharp minor" scale:[NSArray arrayWithObjects:@"D#",@"F",@"F#",@"G#",@"A#",@"B",@"C#",nil]]];
 
     [allKeys addObject:[[ELKey alloc] initWithName:@"E major" scale:[NSArray arrayWithObjects:@"E",@"F#",@"G#",@"A",@"B",@"C#",@"D#",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"E minor" scale:[NSArray arrayWithObjects:@"E",@"F#",@"G",@"A",@"B",@"C",@"D",nil]]];
@@ -52,7 +52,7 @@ static NSMutableDictionary *keyLookup = nil;
 
     [allKeys addObject:[[ELKey alloc] initWithName:@"F minor" scale:[NSArray arrayWithObjects:@"F",@"G",@"Ab",@"Bb",@"C",@"Db",@"Eb",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"F flat major" scale:[NSArray arrayWithObjects:@"E",@"Gb",@"Ab",@"A",@"B",@"Db",@"Eb",@"E",nil]]];
-    [allKeys addObject:[[ELKey alloc] initWithName:@"F sharp major" scale:[NSArray arrayWithObjects:@"F#",@"G#",@"A#",@"B",@"C#",@"D#",@"E#",nil]]];
+    [allKeys addObject:[[ELKey alloc] initWithName:@"F sharp major" scale:[NSArray arrayWithObjects:@"F#",@"G#",@"A#",@"B",@"C#",@"D#",@"F",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"F sharp minor" scale:[NSArray arrayWithObjects:@"F#",@"G#",@"A",@"B",@"C#",@"D",@"E",nil]]];
 
     [allKeys addObject:[[ELKey alloc] initWithName:@"G major" scale:[NSArray arrayWithObjects:@"G",@"A",@"B",@"C",@"D",@"E",@"F#",nil]]];
