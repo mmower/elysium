@@ -36,6 +36,7 @@
     filters        = [[NSMutableArray alloc] init];
     
     tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
+    barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4];
     timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
     pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
     velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90];
@@ -89,6 +90,7 @@
 @synthesize filters;
 
 @synthesize tempoKnob;
+@synthesize barLengthKnob;
 @synthesize timeToLiveKnob;
 @synthesize pulseCountKnob;
 @synthesize velocityKnob;
@@ -245,6 +247,7 @@
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [controlsElement addChild:[tempoKnob xmlRepresentation]];
+  [controlsElement addChild:[barLengthKnob xmlRepresentation]];
   [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
   [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
   [controlsElement addChild:[velocityKnob xmlRepresentation]];
@@ -308,6 +311,14 @@
       tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self player:self];
     } else {
       tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
+    }
+
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:nil];
+    if( [nodes count] > 0 ) {
+      element = (NSXMLElement *)[nodes objectAtIndex:0];
+      barLengthKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self player:self];
+    } else {
+      barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];

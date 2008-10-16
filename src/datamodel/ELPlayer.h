@@ -36,6 +36,7 @@
   NSMutableDictionary *scripts;
   
   ELIntegerKnob       *tempoKnob;
+  ELIntegerKnob       *barLengthKnob;
   ELIntegerKnob       *timeToLiveKnob;
   ELIntegerKnob       *pulseCountKnob;
   ELIntegerKnob       *velocityKnob;
@@ -57,6 +58,7 @@
 @property (readonly) NSMutableDictionary *scripts;
 
 @property (readonly) ELIntegerKnob *tempoKnob;
+@property (readonly) ELIntegerKnob *barLengthKnob;
 @property (readonly) ELIntegerKnob *timeToLiveKnob;
 @property (readonly) ELIntegerKnob *pulseCountKnob;
 @property (readonly) ELIntegerKnob *velocityKnob;
