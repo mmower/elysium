@@ -142,6 +142,10 @@ NSPredicate *deadPlayheadFilter;
 
 // Manipulate layer
 
+- (BOOL)firstBeatInBar {
+  return (beatCount % [barLengthKnob filteredValue]) == 0;
+}
+
 - (void)run {
   if( [enabledKnob value] ) {
     // On the first and every pulseCount beats, generate new playheads
