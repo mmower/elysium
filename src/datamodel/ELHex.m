@@ -11,6 +11,7 @@
 #import <HoneycombView/LMHoneycombView.h>
 
 #import "ELHex.h"
+#import "ELKey.h"
 #import "ELNote.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
@@ -509,8 +510,12 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     CGFloat fader = 0.5 + ( 0.5 * ((float)minTTL/5) );
     [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
   } else {
-    if( [[layer player] showKey] && [layer key] ) {
-      NSUInteger index = [[ELHarmonicTable scaleForKey:[layer key]] indexOfObject:[note tone]];
+    if( [[layer player] showKey] ) {
+      
+      ELKey *key = [layer key];
+      NSArray *scale = [key scale];
+      NSUInteger index = [scale indexOfObject:[note tone]];
+      
       switch( index ) {
         case NSNotFound:
           // Do nothing, use default colour

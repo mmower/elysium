@@ -9,6 +9,7 @@
 #import "ELLayerInspectorController.h"
 
 #import "ELHex.h"
+#import "ELKey.h"
 #import "ELLayer.h"
 
 #import "RubyBlock.h"
@@ -75,6 +76,10 @@
   }
   
   [[layer scripts] removeObjectForKey:callback];
+}
+
+- (NSArray *)allKeys {
+  return [ELKey allKeys];
 }
 
 

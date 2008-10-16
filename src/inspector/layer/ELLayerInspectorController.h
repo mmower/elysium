@@ -22,4 +22,6 @@
 - (IBAction)editScript:(id)sender;
 - (IBAction)removeScript:(id)sender;
 
+- (NSArray *)allKeys;
+
 @end

@@ -11,6 +11,7 @@
 #import "ELLayer.h"
 
 #import "ELHex.h"
+#import "ELKey.h"
 #import "ELNote.h"
 #import "ELTool.h"
 #import "ELPlayer.h"
@@ -43,6 +44,8 @@ NSPredicate *deadPlayheadFilter;
     selectedHex = nil;
     
     scripts     = [NSMutableDictionary dictionary];
+    
+    key         = [ELKey noKey];
     
     enabledKnob = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
     channelKnob = [[ELIntegerKnob alloc] initWithName:@"channel"];
@@ -368,7 +371,7 @@ NSPredicate *deadPlayheadFilter;
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
   [attributes setObject:layerId forKey:@"id"];
   if( key ) {
-    [attributes setObject:key forKey:@"key"];
+    [attributes setObject:[key name] forKey:@"key"];
   }
   [layerElement setAttributesAsDictionary:attributes];
   
@@ -430,7 +433,7 @@ NSPredicate *deadPlayheadFilter;
     
     attributeNode = [_representation_ attributeForName:@"key"];
     if( attributeNode ) {
-      [self setKey:[attributeNode stringValue]];
+      [self setKey:[ELKey keyNamed:[attributeNode stringValue]]];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:nil];
