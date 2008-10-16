@@ -120,6 +120,8 @@
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
 		C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DA148F0EA730780087EDD3 /* Elysium.icns */; };
+		C9DA150E0EA7F05D0087EDD3 /* ActivityViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */; };
+		C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DA15110EA7F14A0087EDD3 /* ELActivityViewerController.m */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
@@ -332,6 +334,9 @@
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9C9AF2B0E82D0F500277071 /* deploy.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.rake; sourceTree = "<group>"; };
 		C9DA148F0EA730780087EDD3 /* Elysium.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Elysium.icns; sourceTree = "<group>"; };
+		C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ActivityViewer.xib; path = src/activity_viewer/ActivityViewer.xib; sourceTree = "<group>"; };
+		C9DA15100EA7F14A0087EDD3 /* ELActivityViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELActivityViewerController.h; sourceTree = "<group>"; };
+		C9DA15110EA7F14A0087EDD3 /* ELActivityViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELActivityViewerController.m; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		C9E43D5E0E33C27100C4D343 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		C9E8D9360E68B8AF005AD9B7 /* play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = play.pdf; sourceTree = "<group>"; };
@@ -450,6 +455,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */,
 				C9A9F1610E8A41DC009A06A3 /* FilterDesigner.xib */,
 				C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */,
 				C9A9F1650E8A41DC009A06A3 /* LayerInspector.xib */,
@@ -555,6 +561,7 @@
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C9DA150C0EA7F02C0087EDD3 /* activity_viewer */,
 				C9B1F36B0E9BF6BF0017092F /* scripting */,
 				C916010F0E99526A0052DB9F /* categories */,
 				C9A9F1910E8A42DF009A06A3 /* datamodel */,
@@ -771,6 +778,16 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		C9DA150C0EA7F02C0087EDD3 /* activity_viewer */ = {
+			isa = PBXGroup;
+			children = (
+				C9DA15100EA7F14A0087EDD3 /* ELActivityViewerController.h */,
+				C9DA15110EA7F14A0087EDD3 /* ELActivityViewerController.m */,
+			);
+			name = activity_viewer;
+			path = src/activity_viewer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -952,6 +969,7 @@
 				C91600A90E98FF3C0052DB9F /* triad6.tif in Resources */,
 				C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */,
 				C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */,
+				C9DA150E0EA7F05D0087EDD3 /* ActivityViewer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,6 +1056,7 @@
 				C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */,
 				C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */,
 				C94F55760EA6A73900320BF5 /* ELKey.m in Sources */,
+				C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

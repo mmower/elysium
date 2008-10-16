@@ -15,6 +15,7 @@
 @class ELLayerInspectorController;
 @class ELPlayerInspectorController;
 @class ELFilterDesignerController;
+@class ELActivityViewerController;
 
 @interface ElysiumController : NSObject {
   ELHexInspectorController    *hexInspectorController;
@@ -24,9 +25,10 @@
   
   ELMIDIController            *midiController;
   ELPaletteController         *paletteController;
+  ELActivityViewerController  *activityViewerController;
+  
+  NSMutableArray              *activities;
 }
-
-- (IBAction)showPalette:(id)sender;
 
 - (IBAction)showFilterDesigner:(id)sender;
 - (IBAction)showHexInspector:(id)sender;
@@ -34,6 +36,11 @@
 - (IBAction)showPlayerInspector:(id)sender;
 - (IBAction)showInspectorPanel:(id)sender;
 
+- (IBAction)showPalette:(id)sender;
+- (IBAction)showActivityViewer:(id)sender;
+
 - (ELMIDIController *)midiController;
+
+- (void)recordActivity:(NSDictionary *)activity;
 
 @end

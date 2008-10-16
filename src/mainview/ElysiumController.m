@@ -17,6 +17,7 @@
 #import "ELLayerInspectorController.h"
 #import "ELPlayerInspectorController.h"
 #import "ELFilterDesignerController.h"
+#import "ELActivityViewerController.h"
 
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
@@ -83,6 +84,7 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 - (id)init {
   if( ( self = [super init] ) ) {
     midiController = [[ELMIDIController alloc] init];
+    activities     = [[NSMutableArray alloc] init];
   }
   
   return self;
@@ -147,6 +149,18 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
   
   // Asking inspector to show itself
   [paletteController showWindow:self];
+}
+
+- (IBAction)showActivityViewer:(id)_sender_ {
+  if( !activityViewerController ) {
+    activityViewerController = [[ELActivityViewerController alloc] init];
+  }
+  
+  [activityViewerController showWindow:self];
+}
+
+- (void)recordActivity:(NSDictionary *)_activity_ {
+  [activityViewerController recordActivity:_activity_];
 }
 
 @end

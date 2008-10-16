@@ -15,6 +15,7 @@
 #import "ELLayer.h"
 #import "ElysiumDocument.h"
 #import "ELHarmonicTable.h"
+#import "ElysiumController.h"
 
 #import "ELMIDIMessage.h"
 #import "ELMIDIController.h"
@@ -164,9 +165,11 @@
 }
 
 - (void)scheduleNote:(int)_note_ channel:(int)_channel_ velocity:(int)_velocity_ on:(UInt64)_on_ off:(UInt64)_off_ {
-  NSLog( @"Play note %d (velocity:%d channel:%d tempo:%d)", _note_, _velocity_, _channel_, [tempoKnob filteredValue] );
-  ELMIDIMessage *message = [midiController createMessage];
+  [[NSApp delegate] performSelectorOnMainThread:@selector(recordActivity:)
+                                     withObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Play note %d (velocity:%d channel:%d tempo:%d)", _note_, _velocity_, _channel_, [tempoKnob filteredValue]],@"activity",[[NSDate date] descriptionWithCalendarFormat:@"%H:%M:%S.%F" timeZone:nil locale:nil],@"time",nil]
+                                  waitUntilDone:NO];
   
+  ELMIDIMessage *message = [midiController createMessage];
   [message noteOn:_note_ velocity:_velocity_ at:_on_ channel:_channel_];
   [message noteOff:_note_ velocity:_velocity_ at:_off_ channel:_channel_];
   [message send];
