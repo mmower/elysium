@@ -511,23 +511,13 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
   } else {
     if( [[layer player] showKey] ) {
-      
-      ELKey *key = [layer key];
-      NSArray *scale = [key scale];
-      NSUInteger index = [scale indexOfObject:[note tone]];
-      
-      switch( index ) {
-        case NSNotFound:
-          // Do nothing, use default colour
-          break;
-        case 0:
-          // The tonic
+      BOOL isTonic;
+      if( [[layer key] containsNote:note isTonic:&isTonic] ) {
+        if( isTonic ) {
           [_attributes_ setObject:[_attributes_ objectForKey:ELTonicNoteColor] forKey:LMHoneycombViewDefaultColor];
-          break;
-        default:
-          // Note in the scale
+        } else {
           [_attributes_ setObject:[_attributes_ objectForKey:ELScaleNoteColor] forKey:LMHoneycombViewDefaultColor];
-          break;
+        }
       }
     } else if( [[layer player] showOctaves] ) {
       [_attributes_ setObject:[(ELSurfaceView *)_view_ octaveColor:[note octave]] forKey:LMHoneycombViewDefaultColor];

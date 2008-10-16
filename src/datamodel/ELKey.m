@@ -8,6 +8,8 @@
 
 #import "ELKey.h"
 
+#import "ELNote.h"
+
 static NSMutableArray *allKeys = nil;
 static NSMutableDictionary *keyLookup = nil;
 
@@ -90,6 +92,21 @@ static NSMutableDictionary *keyLookup = nil;
 
 - (NSString *)description {
   return name;
+}
+
+- (BOOL)containsNote:(ELNote *)_note_ isTonic:(BOOL *)_isTonic_ {
+  NSUInteger index = [scale indexOfObject:[_note_ tone]];
+  if( index == NSNotFound ) {
+    return NO;
+  }
+  
+  if( index == 0 ) {
+    *(_isTonic_) = YES;
+  } else {
+    *(_isTonic_) = NO;
+  }
+  
+  return YES;
 }
 
 @end

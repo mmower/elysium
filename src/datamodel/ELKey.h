@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELNote;
+
 @interface ELKey : NSObject {
   NSString *name;
   NSArray *scale;
@@ -22,5 +24,6 @@
 
 - (id)initWithName:(NSString *)name scale:(NSArray *)scale;
 
+- (BOOL)containsNote:(ELNote *)note isTonic:(BOOL *)isTonic;
 
 @end
