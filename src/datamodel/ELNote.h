@@ -28,6 +28,7 @@
 - (NSString *)name;
 - (NSString *)tone;
 - (NSString *)alternateTone;
-- (NSString *)tone:(BOOL)sharp;
+- (NSString *)tone:(BOOL)flat;
+- (NSString *)flattenedName;
 
 @end

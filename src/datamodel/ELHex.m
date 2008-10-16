@@ -527,7 +527,12 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
   
   if( [[layer player] showNotes] ) {
-    [self drawText:[note name] withAttributes:_attributes_];
+    if( [[layer key] flat] ) {
+      [self drawText:[note flattenedName] withAttributes:_attributes_];
+    } else {
+      [self drawText:[note name] withAttributes:_attributes_];
+    }
+    
   }
   
   [[self tools] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];

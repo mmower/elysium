@@ -20,7 +20,7 @@ static NSArray *alternateSequence = nil;
 + (void)initialize {
   if( noteSequence == nil ) {
     noteSequence = [NSArray arrayWithObjects:@"C",@"C#",@"D",@"D#",@"E",@"F",@"F#",@"G",@"G#",@"A",@"A#",@"B",nil];
-    alternateSequence = [NSArray arrayWithObjects:@"C",@"Db",@"D",@"Eb",@"F",@"Gb",@"G",@"Ab",@"A",@"Bb",@"B",nil];
+    alternateSequence = [NSArray arrayWithObjects:@"C",@"Db",@"D",@"Eb",@"E",@"F",@"Gb",@"G",@"Ab",@"A",@"Bb",@"B",nil];
     
     noteToNoteNames = [[NSMutableDictionary alloc] init];
     namesToNoteNums = [[NSMutableDictionary alloc] init];
@@ -79,12 +79,16 @@ static NSArray *alternateSequence = nil;
   return alternateTone;
 }
 
-- (NSString *)tone:(BOOL)_sharp_ {
-  if( _sharp_ ) {
-    return tone;
-  } else {
+- (NSString *)tone:(BOOL)_flat_ {
+  if( _flat_ ) {
     return alternateTone;
+  } else {
+    return tone;
   }
+}
+
+- (NSString *)flattenedName {
+  return alternateTone;
 }
 
 @end

@@ -82,6 +82,14 @@ static NSMutableDictionary *keyLookup = nil;
   if( ( self = [super init] ) ) {
     name  = _name_;
     scale = _scale_;
+    
+    flat = NO;
+    for( NSString *note in scale ) {
+      if( [[note substringFromIndex:[note length]-1] isEqualToString:@"b"] ) {
+        flat = YES;
+        break;
+      }
+    }
   }
   
   return self;
@@ -89,13 +97,14 @@ static NSMutableDictionary *keyLookup = nil;
 
 @synthesize name;
 @synthesize scale;
+@synthesize flat;
 
 - (NSString *)description {
   return name;
 }
 
 - (BOOL)containsNote:(ELNote *)_note_ isTonic:(BOOL *)_isTonic_ {
-  NSUInteger index = [scale indexOfObject:[_note_ tone]];
+  NSUInteger index = [scale indexOfObject:[_note_ tone:flat]];
   if( index == NSNotFound ) {
     return NO;
   }

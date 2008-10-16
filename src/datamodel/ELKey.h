@@ -13,10 +13,12 @@
 @interface ELKey : NSObject {
   NSString *name;
   NSArray *scale;
+  BOOL    flat;
 }
 
 @property (readonly) NSString *name;
 @property (readonly) NSArray *scale;
+@property (readonly) BOOL flat;
 
 + (NSArray *)allKeys;
 + (ELKey *)keyNamed:(NSString *)name;
