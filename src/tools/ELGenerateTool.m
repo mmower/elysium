@@ -126,6 +126,8 @@ static NSString * const toolType = @"generate";
     NSXMLElement *element;
     NSArray *nodes;
     
+    [self loadIsEnabled:_representation_];
+    
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];

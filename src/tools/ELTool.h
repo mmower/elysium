@@ -56,4 +56,6 @@
 - (void)runWillRunScript:(ELPlayhead *)playhead;
 - (void)runDidRunScript:(ELPlayhead *)playhead;
 
+- (void)loadIsEnabled:(NSXMLElement *)representation;
+
 @end

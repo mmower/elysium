@@ -119,7 +119,7 @@ NSMutableDictionary *toolMapping = nil;
   NSXMLElement *toolElement = [NSXMLNode elementWithName:[self toolType]];
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:[[NSNumber numberWithBool:[self enabled]] stringValue] forKey:@"enabled"];
+  [attributes setObject:([self enabled] ? @"YES" : @"NO") forKey:@"enabled"];
   [toolElement setAttributesAsDictionary:attributes];
   
   [toolElement addChild:[self controlsXmlRepresentation]];
@@ -155,6 +155,10 @@ NSMutableDictionary *toolMapping = nil;
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   [self doesNotRecognizeSelector:_cmd];
   return nil;
+}
+
+- (void)loadIsEnabled:(NSXMLElement *)_representation_ {
+  [self setEnabled:([[[_representation_ attributeForName:@"enabled"] stringValue] boolValue])];
 }
 
 - (void)loadScripts:(NSXMLElement *)_representation_ {

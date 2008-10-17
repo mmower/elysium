@@ -60,6 +60,7 @@ static NSString * const toolType = @"split";
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   if( ( self = [self init] ) ) {
+    [self loadIsEnabled:_representation_];
     [self loadScripts:_representation_];
   }
   

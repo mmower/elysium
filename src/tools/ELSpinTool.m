@@ -118,6 +118,8 @@ static NSString * const toolType = @"spin";
     NSXMLElement *element;
     NSArray *nodes;
     
+    [self loadIsEnabled:_representation_];
+    
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='clockwise']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
