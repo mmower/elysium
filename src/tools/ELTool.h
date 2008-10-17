@@ -47,6 +47,7 @@
 - (void)runTool:(ELPlayhead *)playhead;
 
 - (void)drawWithAttributes:(NSDictionary *)attributes;
+- (void)setToolDrawColor:(NSDictionary *)attributes;
 
 - (NSXMLElement *)controlsXmlRepresentation;
 - (NSXMLElement *)scriptsXmlRepresentation;

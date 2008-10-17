@@ -494,7 +494,6 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     [trianglePath transformUsingAffineTransform:transform];
   }
   
-  [[_attributes_ objectForKey:ELDefaultToolColor] set];
   [trianglePath setLineWidth:2.0];
   [trianglePath stroke];
 }

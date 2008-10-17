@@ -25,6 +25,7 @@ NSString * const ELDefaultCellBorderColor = @"cell.border.color";
 NSString * const ELDefaultSelectedCellBackgroundColor = @"selected.cell.background.color";
 NSString * const ELDefaultSelectedCellBorderColor = @"selected.cell.border.color";
 NSString * const ELDefaultToolColor = @"tool.color";
+NSString * const ELDisabledToolColor = @"tool.disabled.color";
 NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
 NSString * const ELTonicNoteColor = @"tonic.note.color";
 NSString * const ELScaleNoteColor = @"scale.note.color";

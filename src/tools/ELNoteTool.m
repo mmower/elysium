@@ -107,7 +107,7 @@ static NSString * const toolType = @"note";
   [symbolPath closePath];
   [symbolPath setLineWidth:2.0];
   
-  [[_attributes_ objectForKey:ELDefaultToolColor] set];
+  [self setToolDrawColor:_attributes_];
   
   [symbolPath stroke];
 }

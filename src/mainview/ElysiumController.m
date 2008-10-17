@@ -60,6 +60,12 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
                                                                                              alpha:0.8]]
                     forKey:ELDefaultToolColor];
   
+  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(121.0/255)
+                                                                                             green:(121.0/255)
+                                                                                              blue:(152.0/255)
+                                                                                             alpha:0.8]]
+                    forKey:ELDisabledToolColor];
+  
   [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(156.0/255)
                                                                                              green:(16.0/255)
                                                                                               blue:(45.0/255)

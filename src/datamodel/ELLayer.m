@@ -347,11 +347,7 @@ NSPredicate *deadPlayheadFilter;
 
 - (void)hexCellSelected:(LMHexCell *)_cell_ {
   ELHex *hex = (ELHex *)_cell_;
-  
   [self setSelectedHex:hex];
-  
-  // NSLog( @"Selected hex: %@", _cell_ );
-  
   if( hex ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:hex];
     [player playNote:[[hex note] number] channel:[channelKnob value] velocity:[velocityKnob filteredValue] duration:[durationKnob filteredValue]];
@@ -444,6 +440,12 @@ NSPredicate *deadPlayheadFilter;
     
     attributeNode = [_representation_ attributeForName:@"key"];
     if( attributeNode ) {
+      NSString *keyName = [attributeNode stringValue];
+      NSLog( @"Layer specified key name: %@", keyName );
+      
+      ELKey *theKey = [ELKey keyNamed:keyName];
+      NSLog( @"Corresponding key = %@", theKey );
+      
       [self setKey:[ELKey keyNamed:[attributeNode stringValue]]];
     }
     

@@ -104,7 +104,7 @@ static NSString * const toolType = @"generate";
   symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/3, centre.y - radius/3, 2*radius/3, 2*radius/3 )];
   [symbolPath setLineWidth:2.0];
 
-  [[_attributes_ objectForKey:ELDefaultToolColor] set];
+  [self setToolDrawColor:_attributes_];
   [symbolPath stroke];
   
   [[self hex] drawTriangleInDirection:[directionKnob value] withAttributes:_attributes_];

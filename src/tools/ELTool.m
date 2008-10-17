@@ -105,13 +105,26 @@ NSMutableDictionary *toolMapping = nil;
   NSLog( @"Drawing has not been defined for tool class %@", [self className] );
 }
 
+- (void)setToolDrawColor:(NSDictionary *)_attributes_ {
+  if( enabled ) {
+    [[_attributes_ objectForKey:ELDefaultToolColor] set];
+  } else {
+    [[_attributes_ objectForKey:ELDisabledToolColor] set];
+  }
+}
+
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *element = [NSXMLNode elementWithName:[self toolType]];
-  [element addChild:[self controlsXmlRepresentation]];
-  [element addChild:[self scriptsXmlRepresentation]];
-  return element;
+  NSXMLElement *toolElement = [NSXMLNode elementWithName:[self toolType]];
+  
+  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+  [attributes setObject:[[NSNumber numberWithBool:[self enabled]] stringValue] forKey:@"enabled"];
+  [toolElement setAttributesAsDictionary:attributes];
+  
+  [toolElement addChild:[self controlsXmlRepresentation]];
+  [toolElement addChild:[self scriptsXmlRepresentation]];
+  return toolElement;
 }
 
 - (NSXMLElement *)controlsXmlRepresentation {

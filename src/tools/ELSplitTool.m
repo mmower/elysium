@@ -45,7 +45,7 @@ static NSString * const toolType = @"split";
   [symbolPath moveToPoint:centre];
   [symbolPath lineToPoint:NSMakePoint( centre.x + radius/3, centre.y - radius/4 )];
   
-  [[_attributes_ objectForKey:ELDefaultToolColor] set];
+  [self setToolDrawColor:_attributes_];
   [symbolPath setLineWidth:2.0];
   [symbolPath stroke];
 }

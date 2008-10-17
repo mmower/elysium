@@ -51,6 +51,7 @@ extern NSString * const ELDefaultCellBorderColor;
 extern NSString * const ELDefaultSelectedCellBackgroundColor;
 extern NSString * const ELDefaultSelectedCellBorderColor;
 extern NSString * const ELDefaultToolColor;
+extern NSString * const ELDisabledToolColor;
 extern NSString * const ELDefaultActivePlayheadColor;
 
 extern NSString * const ELTonicNoteColor;

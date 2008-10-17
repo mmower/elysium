@@ -71,8 +71,8 @@ static NSString * const toolType = @"spin";
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
   NSPoint centre = [[self hex] centre];
   float radius = [[self hex] radius];
-
-  [[_attributes_ objectForKey:ELDefaultToolColor] set];
+  
+  [self setToolDrawColor:_attributes_];
   
   NSBezierPath *symbolPath = [NSBezierPath bezierPath];
   

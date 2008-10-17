@@ -50,6 +50,7 @@ static NSString * const toolType = @"rebound";
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
+  [self setToolDrawColor:_attributes_];
   [[self hex] drawTriangleInDirection:[directionKnob value] withAttributes:_attributes_];
 }
 
