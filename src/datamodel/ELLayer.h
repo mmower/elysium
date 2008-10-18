@@ -99,9 +99,6 @@
 
 - (BOOL)firstBeatInBar;
 
-- (void)playNote:(ELNote *)note velocity:(int)velocity duration:(float)duration;
-- (void)playNotes:(NSArray *)notes velocity:(int)velocity duration:(float)duration;
-
 - (void)removeAllPlayheads;
 - (void)addPlayhead:(ELPlayhead *)playhead;
 - (void)pulse;

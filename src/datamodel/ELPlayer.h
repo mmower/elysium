@@ -53,7 +53,6 @@
 @property BOOL showKey;
 @property (readonly) NSArray *filters;
 
-@property ELMIDIController *midiController;
 @property ElysiumDocument *document;
 @property (readonly) NSMutableDictionary *scripts;
 
@@ -66,8 +65,8 @@
 @property (readonly) ELFloatKnob   *durationKnob;
 @property (readonly) ELIntegerKnob *transposeKnob;
 
-- (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_;
-- (id)initWithDocument:(ElysiumDocument *)document midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)createDefaultLayer;
+- (id)initWithDocument:(ElysiumDocument *)document;
+- (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)createDefaultLayer;
 
 - (void)toggleNoteDisplay;
 
@@ -76,9 +75,6 @@
 - (void)reset;
 
 - (void)clearAll;
-
-- (void)playNote:(int)note channel:(int)channel velocity:(int)velocity duration:(float)duration;
-- (void)scheduleNote:(int)note channel:(int)channel velocity:(int)velocity on:(UInt64)on off:(UInt64)off;
 
 // Drawing support
 

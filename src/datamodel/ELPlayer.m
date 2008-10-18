@@ -6,7 +6,7 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import <CoreAudio/HostTime.h>
+//#import <CoreAudio/HostTime.h>
 
 #import "ELPlayer.h"
 
@@ -61,17 +61,16 @@
 
 
 // There is an issue here!
-- (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ {
+- (id)initWithDocument:(ElysiumDocument *)_document_ {
   if( ( self = [self init] ) ) {
     [self setDocument:_document_];
-    [self setMidiController:_midiController_];
   }
   
   return self;
 }
 
-- (id)initWithDocument:(ElysiumDocument *)_document_ midiController:(ELMIDIController *)_midiController_ createDefaultLayer:(BOOL)_createDefaultLayer_ {
-  if( ( self = [self initWithDocument:_document_ midiController:_midiController_] ) ) {
+- (id)initWithDocument:(ElysiumDocument *)_document_ createDefaultLayer:(BOOL)_createDefaultLayer_ {
+  if( ( self = [self initWithDocument:_document_] ) ) {
     if( _createDefaultLayer_ ) {
       [self createLayer];
     }
@@ -100,14 +99,7 @@
 @synthesize transposeKnob;
 
 @synthesize document;
-@synthesize midiController;
 @synthesize scripts;
-
-// Associations
-
-- (void)setMIDIController:(ELMIDIController *)_midiController {
-  midiController = _midiController;
-}
 
 - (void)toggleNoteDisplay {
   showNotes = !showNotes;
@@ -153,26 +145,6 @@
 
 - (void)runDidStopScript {
   [[scripts objectForKey:@"didStop"] evalWithArg:self];
-}
-
-// Scheduling notes
-
-- (void)playNote:(int)_note_ channel:(int)_channel_ velocity:(int)_velocity_ duration:(float)_duration_ {
-  UInt64 hostTime = AudioGetCurrentHostTime();
-  UInt64 onTime = hostTime + AudioConvertNanosToHostTime(50000000);
-  UInt64 offTime = onTime + AudioConvertNanosToHostTime(_duration_ * 1000000000);
-  [self scheduleNote:_note_ channel:_channel_ velocity:_velocity_ on:onTime off:offTime];
-}
-
-- (void)scheduleNote:(int)_note_ channel:(int)_channel_ velocity:(int)_velocity_ on:(UInt64)_on_ off:(UInt64)_off_ {
-  [[NSApp delegate] performSelectorOnMainThread:@selector(recordActivity:)
-                                     withObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Play note %d (velocity:%d channel:%d tempo:%d)", _note_, _velocity_, _channel_, [tempoKnob filteredValue]],@"activity",[[NSDate date] descriptionWithCalendarFormat:@"%H:%M:%S.%F" timeZone:nil locale:nil],@"time",nil]
-                                  waitUntilDone:NO];
-  
-  ELMIDIMessage *message = [midiController createMessage];
-  [message noteOn:_note_ velocity:_velocity_ at:_on_ channel:_channel_];
-  [message noteOff:_note_ velocity:_velocity_ at:_off_ channel:_channel_];
-  [message send];
 }
 
 // Drawing Support

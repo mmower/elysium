@@ -103,19 +103,6 @@ NSPredicate *deadPlayheadFilter;
 
 @synthesize scripts;
 
-- (void)playNote:(ELNote *)_note_ velocity:(int)_velocity_ duration:(float)_duration_ {
-  // UInt64 noteOnTime = timeBase + (beatCount * [self timerResolution]);
-  // UInt64 noteOffTime = noteOnTime + ( _duration_ * 1000000 );
-  // [player scheduleNote:_note_ channel:[self channel] velocity:[self velocity] on:noteOnTime off:noteOffTime];
-  [player playNote:([_note_ number] + [transposeKnob filteredValue]) channel:[channelKnob value] velocity:_velocity_ duration:_duration_];
-}
-
-- (void)playNotes:(NSArray *)_notes_ velocity:(int)_velocity_ duration:(float)_duration_ {
-  for( ELNote *note in _notes_ ) {
-    [player playNote:([note number] + [transposeKnob filteredValue]) channel:[channelKnob value] velocity:_velocity_ duration:_duration_];
-  }
-}
-
 - (int)timerResolution {
   return 60000000 / [tempoKnob filteredValue];
 }
@@ -350,7 +337,7 @@ NSPredicate *deadPlayheadFilter;
   [self setSelectedHex:hex];
   if( hex ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:hex];
-    [player playNote:[[hex note] number] channel:[channelKnob value] velocity:[velocityKnob filteredValue] duration:[durationKnob filteredValue]];
+    [[hex note] playOnChannel:[channelKnob value] duration:[durationKnob filteredValue] velocity:[velocityKnob filteredValue] transpose:0];
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
   }

@@ -8,7 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ELNote : NSObject
+#import "ELPlayable.h"
+
+@interface ELNote : ELPlayable
 {
   int       number;
   int       octave;

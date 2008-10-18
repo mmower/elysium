@@ -9,6 +9,7 @@
 #import "Elysium.h"
 
 #import "ELNote.h"
+#import "ELMIDIMessage.h"
 
 static NSMutableDictionary *noteToNoteNames = nil;
 static NSMutableDictionary *namesToNoteNums = nil;
@@ -89,6 +90,17 @@ static NSArray *alternateSequence = nil;
 
 - (NSString *)flattenedName {
   return alternateTone;
+}
+
+- (void)prepareMIDIMessage:(ELMIDIMessage*)_message_
+                   channel:(int)_channel_
+                    onTime:(UInt64)_onTime_
+                   offTime:(UInt64)_offTime_
+                  velocity:(int)_velocity_
+                 transpose:(int)_transpose_
+{
+  [_message_ noteOn:(number+_transpose_) velocity:_velocity_ at:_onTime_ channel:_channel_];
+  [_message_ noteOff:(number+_transpose_) velocity:_velocity_ at:_offTime_ channel:_channel_];
 }
 
 @end
