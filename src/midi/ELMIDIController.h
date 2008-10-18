@@ -17,6 +17,8 @@
   PYMIDIVirtualSource   *source;
 }
 
++ (ELMIDIController *)sharedInstance;
+
 - (ELMIDIMessage *)createMessage;
 - (void)sendPackets:(MIDIPacketList *)packetList;
 

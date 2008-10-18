@@ -13,7 +13,19 @@
 #import "ELMIDIMessage.h"
 #import "ELMIDIController.h"
 
+static ELMIDIController *singletonInstance = nil;
+
 @implementation ELMIDIController
+
++ (void)initialize {
+  if( nil == singletonInstance ) {
+    singletonInstance = [[ELMIDIController alloc] init];
+  }
+}
+
++ (ELMIDIController *)sharedInstance {
+  return singletonInstance;
+}
 
 - (id)init {
   if( ( self = [super init] ) ) {
