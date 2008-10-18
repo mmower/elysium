@@ -22,7 +22,6 @@
 @property (readonly) ELPlayer *player;
 
 - (ElysiumController *)appController;
-- (ELMIDIController *)midiController;
 
 - (void)updateView:(id)sender;
 

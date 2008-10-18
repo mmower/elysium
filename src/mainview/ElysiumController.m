@@ -89,8 +89,6 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    midiController = [[ELMIDIController alloc] init];
-    activities     = [[NSMutableArray alloc] init];
   }
   
   return self;
@@ -99,10 +97,6 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 - (void)awakeFromNib {
   // Ensure the MacRuby runtime is initialized on the event thread
   // [MacRuby sharedRuntime];
-}
-
-- (ELMIDIController *)midiController {
-  return midiController;
 }
 
 // Actions

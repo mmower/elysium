@@ -23,11 +23,8 @@
   ELPlayerInspectorController *playerInspectorController;
   ELFilterDesignerController  *filterDesignerController;
   
-  ELMIDIController            *midiController;
   ELPaletteController         *paletteController;
   ELActivityViewerController  *activityViewerController;
-  
-  NSMutableArray              *activities;
 }
 
 - (IBAction)showFilterDesigner:(id)sender;
@@ -38,8 +35,6 @@
 
 - (IBAction)showPalette:(id)sender;
 - (IBAction)showActivityViewer:(id)sender;
-
-- (ELMIDIController *)midiController;
 
 - (void)recordActivity:(NSDictionary *)activity;
 

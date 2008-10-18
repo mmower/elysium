@@ -29,7 +29,7 @@
 
 - (void)makeWindowControllers {
   if( !player ) {
-    player = [[ELPlayer alloc] initWithDocument:self midiController:[self midiController] createDefaultLayer:YES];
+    player = [[ELPlayer alloc] initWithDocument:self createDefaultLayer:YES];
   }
   
   [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument" owner:self]];
@@ -86,22 +86,17 @@
   NSArray *nodes = [rootElement nodesForXPath:@"surface" error:nil];
   NSXMLElement *surfaceElement = (NSXMLElement *)[nodes objectAtIndex:0];
   if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil] ) ) {
-    [player setMidiController:[self midiController]];
     [player setDocument:self];
-    NSLog( @"Loaded XML document" );
+    NSLog( @"Loaded file." );
     return YES;
   } else {
-    NSLog( @"Problem loading document" );
+    NSLog( @"Error loading file." );
     return NO;
   }
 }
 
 - (ElysiumController *)appController {
   return [[NSApplication sharedApplication] delegate];
-}
-
-- (ELMIDIController *)midiController {
-  return [[self appController] midiController];
 }
 
 // Actions
