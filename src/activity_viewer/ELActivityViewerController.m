@@ -21,7 +21,11 @@
 }
 
 - (void)recordActivity:(NSDictionary *)_activity_ {
-  [[self mutableArrayValueForKey:@"activities"] addObject:_activity_];
+  id proxy = [self mutableArrayValueForKey:@"activities"];
+  if( [proxy count] > 32 ) {
+    [proxy removeObjectAtIndex:0];
+  }
+  [proxy addObject:_activity_];
 }
 
 - (void)recordActivity:(NSString *)_type_ when:(NSString *)_when_ {
