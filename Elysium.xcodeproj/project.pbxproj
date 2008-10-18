@@ -14,6 +14,8 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
+		C9104A5A0EAA1B0300B78267 /* ELNoteGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9104A590EAA1B0300B78267 /* ELNoteGroup.m */; };
+		C9104AA80EAA2D9600B78267 /* ELPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = C9104AA70EAA2D9600B78267 /* ELPlayable.m */; };
 		C91600720E982D990052DB9F /* triad1.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600710E982D990052DB9F /* triad1.tif */; };
 		C916007E0E9830530052DB9F /* triad2.tif in Resources */ = {isa = PBXBuildFile; fileRef = C916007D0E9830530052DB9F /* triad2.tif */; };
 		C91600800E989EB20052DB9F /* triad3.tif in Resources */ = {isa = PBXBuildFile; fileRef = C916007F0E989EB20052DB9F /* triad3.tif */; };
@@ -189,6 +191,11 @@
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
+		C9104A570EAA1AB800B78267 /* ELPlayable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayable.h; sourceTree = "<group>"; };
+		C9104A580EAA1B0300B78267 /* ELNoteGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNoteGroup.h; sourceTree = "<group>"; };
+		C9104A590EAA1B0300B78267 /* ELNoteGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNoteGroup.m; sourceTree = "<group>"; };
+		C9104AA60EAA2D9600B78267 /* ELPlayable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayable.h; sourceTree = "<group>"; };
+		C9104AA70EAA2D9600B78267 /* ELPlayable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayable.m; sourceTree = "<group>"; };
 		C91600710E982D990052DB9F /* triad1.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad1.tif; sourceTree = "<group>"; };
 		C916007D0E9830530052DB9F /* triad2.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad2.tif; sourceTree = "<group>"; };
 		C916007F0E989EB20052DB9F /* triad3.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad3.tif; sourceTree = "<group>"; };
@@ -599,6 +606,11 @@
 				C9A9F1A00E8A42DF009A06A3 /* ElysiumDocument.m */,
 				C94F55740EA6A73900320BF5 /* ELKey.h */,
 				C94F55750EA6A73900320BF5 /* ELKey.m */,
+				C9104A570EAA1AB800B78267 /* ELPlayable.h */,
+				C9104A580EAA1B0300B78267 /* ELNoteGroup.h */,
+				C9104A590EAA1B0300B78267 /* ELNoteGroup.m */,
+				C9104AA60EAA2D9600B78267 /* ELPlayable.h */,
+				C9104AA70EAA2D9600B78267 /* ELPlayable.m */,
 			);
 			name = datamodel;
 			path = src/datamodel;
@@ -1057,6 +1069,8 @@
 				C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */,
 				C94F55760EA6A73900320BF5 /* ELKey.m in Sources */,
 				C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */,
+				C9104A5A0EAA1B0300B78267 /* ELNoteGroup.m in Sources */,
+				C9104AA80EAA2D9600B78267 /* ELPlayable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
