@@ -13,7 +13,7 @@
 
 #import "ELHex.h"
 #import "ELLayer.h"
-#import "ELLayer.h"
+#import "ELPlayable.h"
 #import "ELPlayhead.h"
 
 static NSString * const toolType = @"note";
@@ -89,9 +89,7 @@ static NSString * const toolType = @"note";
     velocity = [velocityKnob filteredValue];
   }
   
-  [layer playNotes:[[_playhead_ position] triad:[triadKnob value]]
-          velocity:velocity
-          duration:[durationKnob filteredValue]];
+  [[[_playhead_ position] triad:[triadKnob value]] playOnChannel:[[layer channelKnob] value] duration:[durationKnob filteredValue] velocity:velocity transpose:[[layer transposeKnob] value]];
 }
 
 // Drawing

@@ -17,6 +17,7 @@
 #import "ELPlayer.h"
 #import "ELTool.h"
 #import "ELPlayhead.h"
+#import "ELNoteGroup.h"
 #import "ELHarmonicTable.h"
 #import "ELSurfaceView.h"
 
@@ -140,66 +141,65 @@
   return neighbours[_direction_];
 }
 
-- (NSArray *)triad:(int)_triad_ {
-  NSMutableArray *hexes = [[NSMutableArray alloc] init];
-  [hexes addObject:[self note]];
+- (ELNoteGroup *)triad:(int)_triad_ {
+  ELNoteGroup *triad = [[ELNoteGroup alloc] initWithNote:[self note]];
   switch( _triad_) {
     case 1:
       if( [self neighbour:N] ) {
-        [hexes addObject:[[self neighbour:N] note]];
+        [triad addNote:[[self neighbour:N] note]];
       }
       if( [self neighbour:NE] ) {
-        [hexes addObject:[[self neighbour:NE] note]];
+        [triad addNote:[[self neighbour:NE] note]];
       }
       break;
     
     case 2:
       if( [self neighbour:NE] ) {
-        [hexes addObject:[[self neighbour:NE] note]];
+        [triad addNote:[[self neighbour:NE] note]];
       }
       if( [self neighbour:SE] ) {
-        [hexes addObject:[[self neighbour:SE] note]];
+        [triad addNote:[[self neighbour:SE] note]];
       }
       break;
     
     case 3:
       if( [self neighbour:SE] ) {
-        [hexes addObject:[[self neighbour:SE] note]];
+        [triad addNote:[[self neighbour:SE] note]];
       }
       if( [self neighbour:S] ) {
-        [hexes addObject:[[self neighbour:S] note]];
+        [triad addNote:[[self neighbour:S] note]];
       }
       break;
     
     case 4:
       if( [self neighbour:S] ) {
-        [hexes addObject:[[self neighbour:S] note]];
+        [triad addNote:[[self neighbour:S] note]];
       }
       if( [self neighbour:SW] ) {
-        [hexes addObject:[[self neighbour:SW] note]];
+        [triad addNote:[[self neighbour:SW] note]];
       }
       break;
     
     case 5:
       if( [self neighbour:SW] ) {
-        [hexes addObject:[[self neighbour:SW] note]];
+        [triad addNote:[[self neighbour:SW] note]];
       }
       if( [self neighbour:NW] ) {
-        [hexes addObject:[[self neighbour:NW] note]];
+        [triad addNote:[[self neighbour:NW] note]];
       }
       break;
     
     case 6:
       if( [self neighbour:NW] ) {
-        [hexes addObject:[[self neighbour:NW] note]];
+        [triad addNote:[[self neighbour:NW] note]];
       }
       if( [self neighbour:N] ) {
-        [hexes addObject:[[self neighbour:N] note]];
+        [triad addNote:[[self neighbour:N] note]];
       }
       break;
   }
   
-  return hexes;
+  return triad;
 }
 
 // Tool support

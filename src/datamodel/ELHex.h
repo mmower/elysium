@@ -17,6 +17,7 @@
 @class ELNote;
 @class ELTool;
 @class ELPlayhead;
+@class ELNoteGroup;
 
 @class ELGenerateTool;
 @class ELNoteTool;
@@ -56,7 +57,7 @@
 
 - (ELHex *)neighbour:(Direction)direction;
 - (void)connectNeighbour:(ELHex *)hex direction:(Direction)direction;
-- (NSArray *)triad:(int)triad;
+- (ELNoteGroup *)triad:(int)triad;
 
 // Tool management
 
