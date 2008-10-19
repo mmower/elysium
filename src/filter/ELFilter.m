@@ -12,6 +12,8 @@
 
 NSArray const *ELFilterFunctions;
 
+static int nextFilterNumber = 1;
+
 @implementation ELFilter
 
 + (void)initialize {
@@ -20,10 +22,22 @@ NSArray const *ELFilterFunctions;
   }
 }
 
+- (id)init {
+  if( ( self = [super init] ) ) {
+    name = [NSString stringWithFormat:@"Filter-%d", nextFilterNumber];
+    function = [ELFilterFunctions objectAtIndex:0];
+    variance = 1.0;
+    period = 60;
+    nextFilterNumber += 1;
+  }
+  
+  return self;
+}
+
 - (id)initWithName:(NSString *)_name_ function:(NSString *)_function_ variance:(float)_variance_ period:(float)_period_ {
   if( ( self = [self init] ) ) {
-    name         = _name_;
-    function     = _function_;
+    name     = _name_;
+    function = _function_;
     variance = _variance_;
     period   = _period_;
   }
