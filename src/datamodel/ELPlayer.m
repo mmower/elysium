@@ -47,8 +47,27 @@
     
     scripts        = [NSMutableDictionary dictionary];
     
-    // Add a default filter, as much as a guide on creating new ones as anything else
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.0/60s" function:@"Sine" variance:1.0 period:60.0]];
+    // Add some useful default filters, as much as a guide on creating new ones as anything else
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/15s" function:@"Sine" variance:1.0 period:15.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/15s" function:@"Sine" variance:0.75 period:15.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/15s" function:@"Sine" variance:0.5 period:15.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/15s" function:@"Sine" variance:0.25 period:15.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/30s" function:@"Sine" variance:1.0 period:30.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/30s" function:@"Sine" variance:0.75 period:30.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/30s" function:@"Sine" variance:0.5 period:30.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/30s" function:@"Sine" variance:0.25 period:30.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/60s" function:@"Sine" variance:1.0 period:60.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/60s" function:@"Sine" variance:0.75 period:60.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/60s" function:@"Sine" variance:0.5 period:60.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/60s" function:@"Sine" variance:0.25 period:60.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/90s" function:@"Sine" variance:1.0 period:90.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/90s" function:@"Sine" variance:0.75 period:90.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/90s" function:@"Sine" variance:0.5 period:90.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/90s" function:@"Sine" variance:0.25 period:90.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/120s" function:@"Sine" variance:1.0 period:120.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/120s" function:@"Sine" variance:0.75 period:120.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/120s" function:@"Sine" variance:0.5 period:120.0]];
+    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/120s" function:@"Sine" variance:0.25 period:120.0]];
     
     nextLayerNumber = 1;
     showNotes       = NO;
