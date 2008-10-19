@@ -89,7 +89,12 @@ static NSString * const toolType = @"note";
     velocity = [velocityKnob filteredValue];
   }
   
-  [[[_playhead_ position] triad:[triadKnob value]] playOnChannel:[[layer channelKnob] value] duration:[durationKnob filteredValue] velocity:velocity transpose:[[layer transposeKnob] value]];
+  int triad = [triadKnob value];
+  if( triad == 0 ) {
+    [[[_playhead_ position] note] playOnChannel:[[layer channelKnob] value] duration:[durationKnob filteredValue] velocity:velocity transpose:[[layer transposeKnob] value]];
+  } else {
+    [[[_playhead_ position] triad:triad] playOnChannel:[[layer channelKnob] value] duration:[durationKnob filteredValue] velocity:velocity transpose:[[layer transposeKnob] value]];
+  }
 }
 
 // Drawing
