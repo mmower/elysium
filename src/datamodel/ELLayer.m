@@ -104,7 +104,12 @@ NSPredicate *deadPlayheadFilter;
 @synthesize scripts;
 
 - (int)timerResolution {
-  return 60000000 / [tempoKnob filteredValue];
+  int tempo = [tempoKnob filteredValue];
+  if( tempo < 1 ) {
+    tempo = 1;
+  }
+  
+  return 60000000 / tempo;
 }
 
 - (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(void *)_context_ {
