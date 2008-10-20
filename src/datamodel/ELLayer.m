@@ -432,12 +432,6 @@ NSPredicate *deadPlayheadFilter;
     
     attributeNode = [_representation_ attributeForName:@"key"];
     if( attributeNode ) {
-      NSString *keyName = [attributeNode stringValue];
-      NSLog( @"Layer specified key name: %@", keyName );
-      
-      ELKey *theKey = [ELKey keyNamed:keyName];
-      NSLog( @"Corresponding key = %@", theKey );
-      
       [self setKey:[ELKey keyNamed:[attributeNode stringValue]]];
     }
     
