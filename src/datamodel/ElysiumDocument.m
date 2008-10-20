@@ -48,7 +48,7 @@
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
   
   NSXMLElement *rootElement = [NSXMLNode elementWithName:@"elysium"];
-  [attributes setObject:[NSNumber numberWithInt:2] forKey:@"version"];
+  [attributes setObject:[NSNumber numberWithInt:3] forKey:@"version"];
   [rootElement setAttributesAsDictionary:attributes];
   
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithRootElement:rootElement];
@@ -78,7 +78,7 @@
     NSLog( @"Invalid root element type!" );
     return NO;
   }
-  if( ![[[rootElement attributeForName:@"version"] stringValue] isEqualToString:@"2"] ) {
+  if( ![[[rootElement attributeForName:@"version"] stringValue] isEqualToString:@"3"] ) {
     NSLog( @"Invalid document version!" );
     return NO;
   }

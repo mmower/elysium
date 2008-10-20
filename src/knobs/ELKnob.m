@@ -10,6 +10,8 @@
 
 #import "ElysiumDocument.h"
 
+#import "ELFilter.h"
+
 //
 // An ELKnob instance represents something controllable in the
 // interface although it is not, in itself, a UI control. For
@@ -290,11 +292,7 @@
   [knobElement addChild:pElement];
   
   if( filter ) {
-    NSXMLElement *filterElement = [NSXMLNode elementWithName:@"filter"];
-    attributes = [NSMutableDictionary dictionary];
-    [attributes setObject:[filter name] forKey:@"name"];
-    [filterElement setAttributesAsDictionary:attributes];
-    [knobElement addChild:filterElement];
+    [knobElement addChild:[filter xmlRepresentation]];
   }
   
   return knobElement;
@@ -366,18 +364,7 @@
     if( [nodes count] > 0 ) {
       NSLog( @"found filter element");
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      
-      attrNode = [element attributeForName:@"name"];
-      if( attrNode ) {
-        NSArray *matchingFilters = [[_player_ filters] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", [attrNode stringValue]]];
-        NSLog( @"matching filters = %@", matchingFilters );
-        
-        if( [matchingFilters count] > 0 ) {
-          [self setFilter:[matchingFilters objectAtIndex:0]];
-        } else {
-          NSLog( @"No filter matches: %@ !", [attrNode stringValue] );
-        }
-      }
+      [self setFilter:[[ELFilter alloc] initWithXmlRepresentation:element parent:self player:_player_]];
     }
   }
   

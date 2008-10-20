@@ -9,90 +9,65 @@
 #import <CoreAudio/CoreAudio.h>
 
 #import "ELFilter.h"
+#import "ELSquareFilter.h"
+#import "ELSawFilter.h"
+#import "ELSineFilter.h"
 
-NSArray const *ELFilterFunctions;
-
-static int nextFilterNumber = 1;
+UInt64 currentTimeInMillis( void ) {
+  return AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 100000;
+}
 
 @implementation ELFilter
 
-+ (void)initialize {
-  if( !ELFilterFunctions ) {
-    ELFilterFunctions = [[NSArray alloc] initWithObjects:@"Sine",nil];
-  }
-}
-
-- (id)init {
+- (id)initWithMinimum:(float)_minimum_ maximum:(float)_maximum_ {
   if( ( self = [super init] ) ) {
-    name = [NSString stringWithFormat:@"Filter-%d", nextFilterNumber];
-    function = [ELFilterFunctions objectAtIndex:0];
-    variance = 1.0;
-    period = 60;
-    nextFilterNumber += 1;
+    [self setMinimum:_minimum_];
+    [self setMinimum:_maximum_];
   }
   
   return self;
 }
 
-- (id)initWithName:(NSString *)_name_ function:(NSString *)_function_ variance:(float)_variance_ period:(float)_period_ {
-  if( ( self = [self init] ) ) {
-    name     = _name_;
-    function = _function_;
-    variance = _variance_;
-    period   = _period_;
-  }
-  
-  return self;
+- (NSString *)type {
+  return @"filter";
 }
 
-@synthesize name;
-@synthesize function;
-@synthesize variance;
-@synthesize period;
+@dynamic minimum;
 
-- (NSString *)description {
-  return name;
+- (float)minimum {
+  return minimum;
+}
+
+- (void)setMinimum:(float)_minimum_ {
+  minimum = _minimum_;
+  range = maximum - minimum;
+}
+
+@dynamic maximum;
+
+- (float)maximum {
+  return maximum;
+}
+
+- (void)setMaximum:(float)_maximum_ {
+  maximum = _maximum_;
+  range = maximum - minimum;
+}
+
+@synthesize range;
+
+- (int)periodInMillis {
+  [self doesNotRecognizeSelector:_cmd];
+  return 0.0; // Should never get here
 }
 
 - (float)generate {
-  // Get time in tenths of a second
-  UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 100000000;
-  
-  // Find out where we are in the cycle
-  time = time % (int)( period * 10 );
-  
-  float t = time / 10.0;
-  
-  return [self generateWithT:t];
+  return [self generateWithT:( currentTimeInMillis() % [self periodInMillis] )];
 }
 
-- (float)generateWithT:(float)_t_ {
-  if( !evalFunction ) {
-    
-    SEL sel = NSSelectorFromString( [NSString stringWithFormat:@"generate%@WithT:", function] );
-    NSMethodSignature *sig = [[self class] instanceMethodSignatureForSelector:sel];
-    
-    evalFunction = [NSInvocation invocationWithMethodSignature:sig];
-    [evalFunction setTarget:self];
-    [evalFunction setSelector:sel];
-
-    NSAssert1( evalFunction, @"Unable to obtain SEL for filter function! (%@)", function );
-  }
-  
-  [evalFunction setArgument:&_t_ atIndex:2];
-  [evalFunction invoke];
-  
-  float result;
-  [evalFunction getReturnValue:&result];
-  return result;
-}
-
-- (float)generateSineWithT:(float)_t_ {
-  // Convert to angular form
-  float angle = (_t_ / period) * 2 * M_PI * variance;
-  
-  // Get the sinewave value
-  return (1+sin(angle))/2;
+- (float)generateWithT:(int)_t_ {
+  [self doesNotRecognizeSelector:_cmd];
+  return 0.0; // Should never happen
 }
 
 // Implement the ELXmlData protocol
@@ -101,34 +76,26 @@ static int nextFilterNumber = 1;
   NSXMLElement *filterElement = [NSXMLNode elementWithName:@"filter"];
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:name forKey:@"name"];
-  [attributes setObject:function forKey:@"function"];
-  [attributes setObject:[[NSNumber numberWithFloat:variance] stringValue] forKey:@"variance"];
-  [attributes setObject:[[NSNumber numberWithFloat:period] stringValue] forKey:@"period"];
   [filterElement setAttributesAsDictionary:attributes];
   
   return filterElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  if( ( self = [super init] ) ) {
-    
-    NSXMLNode *attributeNode;
-    
-    attributeNode = [_representation_ attributeForName:@"name"];
-    name = [attributeNode stringValue];
-    
-    attributeNode = [_representation_ attributeForName:@"function"];
-    function = [attributeNode stringValue];
-    
-    attributeNode = [_representation_ attributeForName:@"variance"];
-    variance = [[attributeNode stringValue] floatValue];
-    
-    attributeNode = [_representation_ attributeForName:@"period"];
-    period = [[attributeNode stringValue] floatValue];
+  NSXMLNode *attributeNode;
+  attributeNode = [_representation_ attributeForName:@"type"];
+  NSString *type = [attributeNode stringValue];
+
+  if( [type isEqualToString:@"square"] ) {
+    return [[ELSquareFilter alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
+  } else if( [type isEqualToString:@"saw"] ) {
+    return [[ELSawFilter alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
+  } else if( [type isEqualToString:@"sine"] ) {
+    return [[ELSineFilter alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
+  } else {
+    NSLog( @"Unknown filter type '%@' detected.", type );
+    return nil;
   }
-  
-  return self;
 }
 
 @end

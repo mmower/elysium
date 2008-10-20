@@ -10,26 +10,22 @@
 
 #import "Elysium.h"
 
-extern NSArray const *ELFilterFunctions;
-
 @interface ELFilter : NSObject <ELXmlData> {
-  NSString      *function;
-  NSString      *name;
-  
-  float         variance;
-  float         period;
-  
-  NSInvocation  *evalFunction;
+  float         minimum;
+  float         maximum;
+  float         range;
 }
 
-- (id)initWithName:(NSString *)name function:(NSString *)function variance:(float)variance period:(float)period;
+- (id)initWithMinimum:(float)minimum maximum:(float)maximum;
 
-@property (assign) NSString *name;
-@property (assign) NSString *function;
-@property float variance;
-@property float period;
+@property float minimum;
+@property float maximum;
+@property (readonly) float range;
+
+- (NSString *)type;
+- (int)periodInMillis;
 
 - (float)generate;
-- (float)generateWithT:(float)t;
+- (float)generateWithT:(int)t;
 
 @end

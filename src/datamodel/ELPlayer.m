@@ -34,7 +34,6 @@
   if( ( self = [super init] ) ) {
     harmonicTable  = [[ELHarmonicTable alloc] init];
     layers         = [[NSMutableArray alloc] init];
-    filters        = [[NSMutableArray alloc] init];
     
     tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
     barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4];
@@ -46,28 +45,6 @@
     transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
     
     scripts        = [NSMutableDictionary dictionary];
-    
-    // Add some useful default filters, as much as a guide on creating new ones as anything else
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/15s" function:@"Sine" variance:1.0 period:15.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/15s" function:@"Sine" variance:0.75 period:15.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/15s" function:@"Sine" variance:0.5 period:15.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/15s" function:@"Sine" variance:0.25 period:15.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/30s" function:@"Sine" variance:1.0 period:30.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/30s" function:@"Sine" variance:0.75 period:30.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/30s" function:@"Sine" variance:0.5 period:30.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/30s" function:@"Sine" variance:0.25 period:30.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/60s" function:@"Sine" variance:1.0 period:60.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/60s" function:@"Sine" variance:0.75 period:60.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/60s" function:@"Sine" variance:0.5 period:60.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/60s" function:@"Sine" variance:0.25 period:60.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/90s" function:@"Sine" variance:1.0 period:90.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/90s" function:@"Sine" variance:0.75 period:90.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/90s" function:@"Sine" variance:0.5 period:90.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/90s" function:@"Sine" variance:0.25 period:90.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/1.00/120s" function:@"Sine" variance:1.0 period:120.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.75/120s" function:@"Sine" variance:0.75 period:120.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.50/120s" function:@"Sine" variance:0.5 period:120.0]];
-    [filters addObject:[[ELFilter alloc] initWithName:@"Sine/0.25/120s" function:@"Sine" variance:0.25 period:120.0]];
     
     nextLayerNumber = 1;
     showNotes       = NO;
@@ -106,7 +83,6 @@
 @synthesize showNotes;
 @synthesize showOctaves;
 @synthesize showKey;
-@synthesize filters;
 
 @synthesize tempoKnob;
 @synthesize barLengthKnob;
@@ -170,10 +146,6 @@
 
 - (void)needsDisplay {
   [layers makeObjectsPerformSelector:@selector(needsDisplay)];
-}
-
-- (NSArray *)filterFunctions {
-  return (NSArray *)ELFilterFunctions;
 }
 
 // Layer Management
@@ -253,12 +225,6 @@
   
   [surfaceElement addChild:controlsElement];
   
-  NSXMLElement *filtersElement = [NSXMLNode elementWithName:@"filters"];
-  for( ELFilter *filter in filters ) {
-    [filtersElement addChild:[filter xmlRepresentation]];
-  }
-  [surfaceElement addChild:filtersElement];
-  
   NSXMLElement *layersElement = [NSXMLNode elementWithName:@"layers"];
   for( ELLayer *layer in layers ) {
     [layersElement addChild:[layer xmlRepresentation]];
@@ -288,16 +254,6 @@
   if( ( self = [self init] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
-    
-    // Restore the filters first, so that they can be referenced elsewhere
-    
-    nodes = [_representation_ nodesForXPath:@"filters/filter" error:nil];
-    for( NSXMLNode *node in nodes ) {
-      NSXMLElement *element = (NSXMLElement *)node;
-      ELFilter *filter = [[ELFilter alloc] initWithXmlRepresentation:element parent:nil player:self];
-      NSLog( @"Adding filter: %@", filter );
-      [filters addObject:filter];
-    }
     
     // Controls for the player
     

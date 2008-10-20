@@ -119,6 +119,9 @@
 		C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */; };
 		C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */; };
 		C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */; };
+		C9B641FF0EAD1495006AA089 /* ELSineFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B641FE0EAD1495006AA089 /* ELSineFilter.m */; };
+		C9B642020EAD1504006AA089 /* ELSquareFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642010EAD1504006AA089 /* ELSquareFilter.m */; };
+		C9B642050EAD153B006AA089 /* ELSawFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642040EAD153B006AA089 /* ELSawFilter.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
 		C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DA148F0EA730780087EDD3 /* Elysium.icns */; };
@@ -338,10 +341,16 @@
 		C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptInspectorController.m; sourceTree = "<group>"; };
 		C9B1F3F40E9C99DE0017092F /* MacRuby+EvalProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MacRuby+EvalProc.h"; sourceTree = "<group>"; };
 		C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MacRuby+EvalProc.m"; sourceTree = "<group>"; };
+		C9B641FD0EAD1495006AA089 /* ELSineFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSineFilter.h; sourceTree = "<group>"; };
+		C9B641FE0EAD1495006AA089 /* ELSineFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSineFilter.m; sourceTree = "<group>"; };
+		C9B642000EAD1504006AA089 /* ELSquareFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSquareFilter.h; sourceTree = "<group>"; };
+		C9B642010EAD1504006AA089 /* ELSquareFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSquareFilter.m; sourceTree = "<group>"; };
+		C9B642030EAD153B006AA089 /* ELSawFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSawFilter.h; sourceTree = "<group>"; };
+		C9B642040EAD153B006AA089 /* ELSawFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSawFilter.m; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9C9AF2B0E82D0F500277071 /* deploy.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.rake; sourceTree = "<group>"; };
 		C9DA148F0EA730780087EDD3 /* Elysium.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Elysium.icns; sourceTree = "<group>"; };
-		C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ActivityViewer.xib; path = src/activity_viewer/ActivityViewer.xib; sourceTree = "<group>"; };
+		C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ActivityViewer.xib; path = English.lproj/ActivityViewer.xib; sourceTree = "<group>"; };
 		C9DA15100EA7F14A0087EDD3 /* ELActivityViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELActivityViewerController.h; sourceTree = "<group>"; };
 		C9DA15110EA7F14A0087EDD3 /* ELActivityViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELActivityViewerController.m; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
@@ -623,6 +632,12 @@
 				C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */,
 				C9A9F1A40E8A42DF009A06A3 /* ELFilterDesignerController.h */,
 				C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */,
+				C9B641FD0EAD1495006AA089 /* ELSineFilter.h */,
+				C9B641FE0EAD1495006AA089 /* ELSineFilter.m */,
+				C9B642000EAD1504006AA089 /* ELSquareFilter.h */,
+				C9B642010EAD1504006AA089 /* ELSquareFilter.m */,
+				C9B642030EAD153B006AA089 /* ELSawFilter.h */,
+				C9B642040EAD153B006AA089 /* ELSawFilter.m */,
 			);
 			name = filter;
 			path = src/filter;
@@ -1071,6 +1086,9 @@
 				C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */,
 				C9104A5A0EAA1B0300B78267 /* ELNoteGroup.m in Sources */,
 				C9104AA80EAA2D9600B78267 /* ELPlayable.m in Sources */,
+				C9B641FF0EAD1495006AA089 /* ELSineFilter.m in Sources */,
+				C9B642020EAD1504006AA089 /* ELSquareFilter.m in Sources */,
+				C9B642050EAD153B006AA089 /* ELSawFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1269,8 +1287,10 @@
 					"\"$(SRCROOT)/../../Cocoa/frameworks/FScript_2_0_alpha/Binaries\"",
 				);
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Elysium_Prefix.pch;
+				GCC_UNROLL_LOOPS = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../XCode/Release/HoneycombView.framework/Versions/A/Headers\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
