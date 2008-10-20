@@ -60,6 +60,7 @@ static NSMutableDictionary *keyLookup = nil;
     [allKeys addObject:[[ELKey alloc] initWithName:@"G flat minor" scale:[NSArray arrayWithObjects:@"Gb",@"Ab",@"Bb",@"B",@"Db",@"Eb",@"F",nil]]];
     [allKeys addObject:[[ELKey alloc] initWithName:@"G sharp minor" scale:[NSArray arrayWithObjects:@"G#",@"A#",@"B",@"C#",@"D#",@"E",@"F#",nil]]];
     
+    keyLookup = [NSMutableDictionary dictionary];
     for( ELKey *key in allKeys ) {
       [keyLookup setObject:key forKey:[key name]];
     }
