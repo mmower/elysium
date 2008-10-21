@@ -12,9 +12,6 @@
 
 @implementation ELSquareFilter
 
-@synthesize rest;
-@synthesize sustain;
-
 - (id)initWithMinimum:(float)_minimum_ maximum:(float)_maximum_ rest:(float)_rest_ sustain:(float)_sustain_ {
   if( ( self = [super initWithMinimum:_minimum_ maximum:_maximum_] ) ) {
     [self setRest:_rest_];
@@ -25,15 +22,11 @@
 }
 
 - (NSString *)type {
-  return @"square";
+  return @"Square";
 }
 
 @synthesize rest;
 @synthesize sustain;
-
-- (int)periodInMillis {
-  return rest + sustain;
-}
 
 - (float)generateWithT:(int)_t_ {
   if( _t_ < sustain ) {

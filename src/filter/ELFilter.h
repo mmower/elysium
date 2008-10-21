@@ -11,21 +11,15 @@
 #import "Elysium.h"
 
 @interface ELFilter : NSObject <ELXmlData> {
-  float         minimum;
-  float         maximum;
-  float         range;
+  BOOL    enabled;
 }
 
-- (id)initWithMinimum:(float)minimum maximum:(float)maximum;
+@property BOOL enabled;
 
-@property float minimum;
-@property float maximum;
-@property (readonly) float range;
+- (id)initEnabled:(BOOL)enabled;
 
 - (NSString *)type;
-- (int)periodInMillis;
 
 - (float)generate;
-- (float)generateWithT:(int)t;
 
 @end

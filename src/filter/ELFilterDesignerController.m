@@ -8,18 +8,18 @@
 
 #import "ELFilterDesignerController.h"
 
-#import "ELPlayer.h"
+#import "ELKnob.h"
 
 @implementation ELFilterDesignerController
 
-- (id)initWithPlayer:(ELPlayer *)_player_ {
+- (id)initWithKnob:(ELKnob *)_knob_ {
   if( ( self = [self initWithWindowNibName:@"FilterDesigner"] ) ) {
-    player = _player_;
+    knob = _knob_;
   }
   
   return self;
 }
 
-@synthesize player;
+@synthesize knob;
 
 @end

@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELFilter.h"
+#import "ELRangedFilter.h"
 
-@interface ELSineFilter : ELFilter {
+@interface ELSineFilter : ELRangedFilter {
   float period;
 }
 

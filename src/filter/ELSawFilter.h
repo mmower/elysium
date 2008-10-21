@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELFilter.h"
+#import "ELRangedFilter.h"
 
-@interface ELSawFilter : ELFilter {
+@interface ELSawFilter : ELRangedFilter {
   float rest;
   float attack;
   float sustain;
@@ -22,6 +22,8 @@
   float decayBase;
   float decayDelta;
 }
+
+- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum rest:(float)rest attack:(float)attack sustain:(float)sustain decay:(float)decay;
 
 @property float rest;
 @property float attack;

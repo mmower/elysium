@@ -13,61 +13,26 @@
 #import "ELSawFilter.h"
 #import "ELSineFilter.h"
 
-UInt64 currentTimeInMillis( void ) {
-  return AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 100000;
-}
-
 @implementation ELFilter
 
-- (id)initWithMinimum:(float)_minimum_ maximum:(float)_maximum_ {
+- (id)initEnabled:(BOOL)_enabled_ {
   if( ( self = [super init] ) ) {
-    [self setMinimum:_minimum_];
-    [self setMinimum:_maximum_];
+    [self setEnabled:_enabled_];
   }
   
   return self;
 }
 
+@synthesize enabled;
+
 - (NSString *)type {
   return @"filter";
 }
 
-@dynamic minimum;
-
-- (float)minimum {
-  return minimum;
-}
-
-- (void)setMinimum:(float)_minimum_ {
-  minimum = _minimum_;
-  range = maximum - minimum;
-}
-
-@dynamic maximum;
-
-- (float)maximum {
-  return maximum;
-}
-
-- (void)setMaximum:(float)_maximum_ {
-  maximum = _maximum_;
-  range = maximum - minimum;
-}
-
-@synthesize range;
-
-- (int)periodInMillis {
-  [self doesNotRecognizeSelector:_cmd];
-  return 0.0; // Should never get here
-}
-
 - (float)generate {
-  return [self generateWithT:( currentTimeInMillis() % [self periodInMillis] )];
-}
-
-- (float)generateWithT:(int)_t_ {
-  [self doesNotRecognizeSelector:_cmd];
-  return 0.0; // Should never happen
+  @throw [NSException exceptionWithName:@"FilterException"
+                                 reason:@"Filter#generate should never be called"
+                               userInfo:[NSDictionary dictionaryWithObject:self forKey:@"filter"]];
 }
 
 // Implement the ELXmlData protocol
@@ -82,20 +47,9 @@ UInt64 currentTimeInMillis( void ) {
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  NSXMLNode *attributeNode;
-  attributeNode = [_representation_ attributeForName:@"type"];
-  NSString *type = [attributeNode stringValue];
-
-  if( [type isEqualToString:@"square"] ) {
-    return [[ELSquareFilter alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
-  } else if( [type isEqualToString:@"saw"] ) {
-    return [[ELSawFilter alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
-  } else if( [type isEqualToString:@"sine"] ) {
-    return [[ELSineFilter alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
-  } else {
-    NSLog( @"Unknown filter type '%@' detected.", type );
-    return nil;
-  }
+  NSXMLNode *attributeNode = [_representation_ attributeForName:@"type"];
+  Class filterClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Filter", [attributeNode stringValue]] );
+  return [[filterClass alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
 }
 
 @end

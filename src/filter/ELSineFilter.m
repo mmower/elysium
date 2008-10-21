@@ -12,25 +12,21 @@
 
 - (id)initWithName:(NSString *)_name_ minimum:(float)_minimum_ maximum:(float)_maximum_ period:(float)_period_ {
   if( ( self = [super initWithMinimum:_minimum_ maximum:_maximum_] ) ) {
-    [self setPeriod:_period_];
+    period = _period_;
   }
   
   return self;
 }
 
 - (NSString *)type {
-  return @"sine";
+  return @"Sine";
 }
 
 @synthesize period;
 
-- (int)periodInMillis {
-  return period;
-}
-
 - (float)generateWithT:(int)_t_ {
   // Convert to angular form and use as a proportion of the range
-  return minimum + ( [self range] * sin( ( _t_ / period ) * M_PI ) );
+  return minimum + ( range * sin( ( _t_ / period ) * M_PI ) );
 }
 
 @end

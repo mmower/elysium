@@ -12,8 +12,8 @@
 
 @implementation ELSawFilter
 
-- (id)initWithName:(NSString *)_name_ minimum:(float)_minimum_ maximum:(float)_maximum_ rest:(float)_rest_ attack:(float)_attack_ sustain:(float)_sustain_ decay:(float)_decay_ {
-  if( ( self = [super initWithMinimum:_minimum_ maximum:_maximum_] ) ) {
+- (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ rest:(float)_rest_ attack:(float)_attack_ sustain:(float)_sustain_ decay:(float)_decay_ {
+  if( ( self = [super initEnabled:_enabled_ minimum:_minimum_ maximum:_maximum_] ) ) {
     [self setRest:_rest_];
     [self setAttack:_attack_];
     [self setSustain:_sustain_];
@@ -24,17 +24,13 @@
 }
 
 - (NSString *)type {
-  return @"saw";
+  return @"Saw";
 }
 
 @synthesize rest;
 @synthesize attack;
 @synthesize sustain;
 @synthesize decay;
-
-- (int)periodInMillis {
-  return rest + attack + sustain + decay;
-}
 
 - (float)generateWithT:(int)_t_ {
   if( _t_ <= rest ) {

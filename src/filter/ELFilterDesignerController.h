@@ -8,14 +8,25 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ELPlayer;
+@class ELKnob;
+@class ELSquareFilter;
+@class ELSawFilter;
+@class ELSineFilter;
+@class ELListFilter;
+@class ELRandomFilter;
 
 @interface ELFilterDesignerController : NSWindowController {
-  ELPlayer *player;
+  ELKnob          *knob;
+  
+  ELSquareFilter  *squareFilter;
+  ELSawFilter     *sawFilter;
+  ELSineFilter    *sineFilter;
+  ELListFilter    *fixedFilter;
+  ELRandomFilter  *randomFilter;
 }
 
-- (id)initWithPlayer:(ELPlayer *)player;
+- (id)initWithKnob:(ELKnob *)knob;
 
-@property (readonly) ELPlayer *player;
+@property (readonly) ELKnob *knob;
 
 @end

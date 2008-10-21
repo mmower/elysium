@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELFilter.h"
+#import "ELRangedFilter.h"
 
-@interface ELSquareFilter : ELFilter {
+@interface ELSquareFilter : ELRangedFilter {
   float rest;
   float sustain;
 }
