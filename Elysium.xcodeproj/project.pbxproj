@@ -51,6 +51,9 @@
 		C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
 		C94F55760EA6A73900320BF5 /* ELKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C94F55750EA6A73900320BF5 /* ELKey.m */; };
+		C9599AE80EAE5D9000310D3D /* ELRandomFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AE70EAE5D9000310D3D /* ELRandomFilter.m */; };
+		C9599AEB0EAE5DA500310D3D /* ELListFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEA0EAE5DA500310D3D /* ELListFilter.m */; };
+		C9599AEF0EAE7C1E00310D3D /* ELRangedFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEE0EAE7C1E00310D3D /* ELRangedFilter.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
 		C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC8C0E4F6042008F309B /* sectionheader.gif */; };
 		C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -234,6 +237,12 @@
 		C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
 		C94F55740EA6A73900320BF5 /* ELKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKey.h; sourceTree = "<group>"; };
 		C94F55750EA6A73900320BF5 /* ELKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKey.m; sourceTree = "<group>"; };
+		C9599AE60EAE5D9000310D3D /* ELRandomFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRandomFilter.h; sourceTree = "<group>"; };
+		C9599AE70EAE5D9000310D3D /* ELRandomFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRandomFilter.m; sourceTree = "<group>"; };
+		C9599AE90EAE5DA500310D3D /* ELListFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELListFilter.h; sourceTree = "<group>"; };
+		C9599AEA0EAE5DA500310D3D /* ELListFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELListFilter.m; sourceTree = "<group>"; };
+		C9599AED0EAE7C1E00310D3D /* ELRangedFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedFilter.h; sourceTree = "<group>"; };
+		C9599AEE0EAE7C1E00310D3D /* ELRangedFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedFilter.m; sourceTree = "<group>"; };
 		C97FEC860E4F5FB2008F309B /* StackedListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackedListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StackedListView-Info.plist"; sourceTree = "<group>"; };
 		C97FEC8C0E4F6042008F309B /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
@@ -638,6 +647,12 @@
 				C9B642010EAD1504006AA089 /* ELSquareFilter.m */,
 				C9B642030EAD153B006AA089 /* ELSawFilter.h */,
 				C9B642040EAD153B006AA089 /* ELSawFilter.m */,
+				C9599AE60EAE5D9000310D3D /* ELRandomFilter.h */,
+				C9599AE70EAE5D9000310D3D /* ELRandomFilter.m */,
+				C9599AE90EAE5DA500310D3D /* ELListFilter.h */,
+				C9599AEA0EAE5DA500310D3D /* ELListFilter.m */,
+				C9599AED0EAE7C1E00310D3D /* ELRangedFilter.h */,
+				C9599AEE0EAE7C1E00310D3D /* ELRangedFilter.m */,
 			);
 			name = filter;
 			path = src/filter;
@@ -1089,6 +1104,9 @@
 				C9B641FF0EAD1495006AA089 /* ELSineFilter.m in Sources */,
 				C9B642020EAD1504006AA089 /* ELSquareFilter.m in Sources */,
 				C9B642050EAD153B006AA089 /* ELSawFilter.m in Sources */,
+				C9599AE80EAE5D9000310D3D /* ELRandomFilter.m in Sources */,
+				C9599AEB0EAE5DA500310D3D /* ELListFilter.m in Sources */,
+				C9599AEF0EAE7C1E00310D3D /* ELRangedFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
