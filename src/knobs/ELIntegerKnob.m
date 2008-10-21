@@ -97,7 +97,7 @@
 }
 
 - (int)filteredValue:(int)_value_ {
-  if( filter && [filer enabled] ) {
+  if( filter && [filter enabled] ) {
     return [filter generate];
   } else {
     return _value_;

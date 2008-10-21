@@ -97,6 +97,7 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 - (void)awakeFromNib {
   // Ensure the MacRuby runtime is initialized on the event thread
   // [MacRuby sharedRuntime];
+  [ELMIDIController sharedInstance];
 }
 
 // Actions
@@ -138,8 +139,8 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
 - (IBAction)showInspectorPanel:(id)_sender_ {
   [self showPlayerInspector:self];
-  [self showLayerInspector:self];
-  [self showHexInspector:self];
+  // [self showLayerInspector:self];
+  // [self showHexInspector:self];
 }
 
 - (IBAction)showPalette:(id)_sender_ {
