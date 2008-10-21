@@ -22,16 +22,65 @@
   if( ( self = [self initWithWindowNibName:@"FilterDesigner"] ) ) {
     knob = _knob_;
     
-    squareFilter = [[ELSquareFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0 rest:30000 sustain:30000];
-    sawFilter = [[ELSawFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0 rest:30000 attack:30000 sustain:30000 decay:30000];
-    sineFilter = [[ELSineFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0 period:30000];
-    listFilter = [[ELListFilter alloc] initEnabled:YES values:[NSArray array]];
-    randomFilter = [[ELRandomFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0];
+    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+      squareFilter = (ELSquareFilter *)[knob filter];
+      selectedTag = @"square";
+    } else {
+      squareFilter = [[ELSquareFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0 rest:30000 sustain:30000];
+    }
+    
+    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+      sawFilter = (ELSawFilter *)[knob filter];
+      selectedTag = @"saw";
+    } else {
+      sawFilter = [[ELSawFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0 rest:30000 attack:30000 sustain:30000 decay:30000];
+    }
+    
+    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+      sineFilter = (ELSineFilter *)[knob filter];
+      selectedTag = @"saw";
+    } else {
+      sineFilter = [[ELSineFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0 period:30000];
+    }
+    
+    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+      listFilter = (ELListFilter *)[knob filter];
+      selectedTag = @"list";
+    } else {
+      listFilter = [[ELListFilter alloc] initEnabled:YES values:[NSArray array]];
+    }
+    
+    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+      randomFilter = (ELRandomFilter *)[knob filter];
+      selectedTag = @"random";
+    } else {
+      randomFilter = [[ELRandomFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0];
+    }
   }
   
   return self;
 }
 
+- (void)awakeFromNib {
+  if( selectedTag ) {
+    [tabView selectTabViewItemWithIdentifier:selectedTag];
+  }
+}
+
 @synthesize knob;
+
+@synthesize squareFilter;
+@synthesize sawFilter;
+@synthesize sineFilter;
+@synthesize listFilter;
+@synthesize randomFilter;
+
+- (IBAction)save:(id)_sender_ {
+  [[self window] close];
+}
+
+- (IBAction)cancel:(id)_sender_ {
+  [[self window] close];
+}
 
 @end

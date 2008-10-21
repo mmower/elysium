@@ -16,17 +16,29 @@
 @class ELRandomFilter;
 
 @interface ELFilterDesignerController : NSWindowController {
-  ELKnob          *knob;
+  IBOutlet NSTabView  *tabView;
+
+  ELKnob              *knob;
+  ELSquareFilter      *squareFilter;
+  ELSawFilter         *sawFilter;
+  ELSineFilter        *sineFilter;
+  ELListFilter        *listFilter;
+  ELRandomFilter      *randomFilter;
   
-  ELSquareFilter  *squareFilter;
-  ELSawFilter     *sawFilter;
-  ELSineFilter    *sineFilter;
-  ELListFilter    *listFilter;
-  ELRandomFilter  *randomFilter;
+  NSString            *selectedTag;
 }
 
 - (id)initWithKnob:(ELKnob *)knob;
 
 @property (readonly) ELKnob *knob;
+
+@property (readonly) ELSquareFilter *squareFilter;
+@property (readonly) ELSawFilter *sawFilter;
+@property (readonly) ELSineFilter *sineFilter;
+@property (readonly) ELListFilter *listFilter;
+@property (readonly) ELRandomFilter *randomFilter;
+
+- (IBAction)save:(id)sender;
+- (IBAction)cancel:(id)sender;
 
 @end
