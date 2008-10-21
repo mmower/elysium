@@ -15,6 +15,8 @@
   int             index;
 }
 
+- (id)initEnabled:(BOOL)enabled values:(NSArray *)values;
+
 @property (readonly) NSMutableArray *values;
 
 @end

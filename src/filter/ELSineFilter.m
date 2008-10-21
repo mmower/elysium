@@ -10,8 +10,8 @@
 
 @implementation ELSineFilter
 
-- (id)initWithName:(NSString *)_name_ minimum:(float)_minimum_ maximum:(float)_maximum_ period:(float)_period_ {
-  if( ( self = [super initWithMinimum:_minimum_ maximum:_maximum_] ) ) {
+- (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ period:(float)_period_ {
+  if( ( self = [super initEnabled:_enabled_ minimum:_minimum_ maximum:_maximum_] ) ) {
     period = _period_;
   }
   

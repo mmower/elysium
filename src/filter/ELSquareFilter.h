@@ -15,6 +15,8 @@
   float sustain;
 }
 
+- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum rest:(float)rest sustain:(float)sustain;
+
 @property float rest;
 @property float sustain;
 

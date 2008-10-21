@@ -14,6 +14,8 @@
   float period;
 }
 
+- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum period:(float)period;
+
 @property float period;
 
 @end

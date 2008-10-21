@@ -21,7 +21,7 @@
   ELSquareFilter  *squareFilter;
   ELSawFilter     *sawFilter;
   ELSineFilter    *sineFilter;
-  ELListFilter    *fixedFilter;
+  ELListFilter    *listFilter;
   ELRandomFilter  *randomFilter;
 }
 

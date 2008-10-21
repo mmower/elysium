@@ -12,8 +12,8 @@
 
 @implementation ELSquareFilter
 
-- (id)initWithMinimum:(float)_minimum_ maximum:(float)_maximum_ rest:(float)_rest_ sustain:(float)_sustain_ {
-  if( ( self = [super initWithMinimum:_minimum_ maximum:_maximum_] ) ) {
+- (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ rest:(float)_rest_ sustain:(float)_sustain_ {
+  if( ( self = [super initEnabled:_enabled_ minimum:_minimum_ maximum:_maximum_] ) ) {
     [self setRest:_rest_];
     [self setSustain:_sustain_];
   }

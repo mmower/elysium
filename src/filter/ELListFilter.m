@@ -10,8 +10,8 @@
 
 @implementation ELListFilter
 
-- (id)initWithValues:(NSArray *)_values_ {
-  if( ( self = [super init] ) ) {
+- (id)initEnabled:(BOOL)_enabled_ values:(NSArray *)_values_ {
+  if( ( self = [super initEnabled:_enabled_] ) ) {
     values = [_values_ mutableCopy];
     index  = 0;
   }
