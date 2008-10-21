@@ -22,6 +22,8 @@
   if( ( self = [self initWithWindowNibName:@"FilterDesigner"] ) ) {
     knob = _knob_;
     
+    selectedTag = nil;
+    
     if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
       squareFilter = (ELSquareFilter *)[knob filter];
       selectedTag = @"square";
@@ -76,11 +78,11 @@
 @synthesize randomFilter;
 
 - (IBAction)save:(id)_sender_ {
-  [[self window] close];
+  // [[self window] close];
 }
 
 - (IBAction)cancel:(id)_sender_ {
-  [[self window] close];
+  // [[self window] close];
 }
 
 @end
