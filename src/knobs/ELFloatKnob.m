@@ -77,34 +77,28 @@
 }
 
 - (float)value {
-  NSAssert1( hasValue || linkValue, @"ELFloatKnob(%@) must have or be linked to a value", name );
-  
   if( linkValue ) {
     return [(ELFloatKnob *)linkedKnob value];
   } else if( hasValue ) {
     return value;
   } else {
-    NSLog( @"value called on ELFloatKnob with no value or linkage." );
-    abort();
+    @throw [NSException exceptionWithName:@"KnobException" reason:@"Value called on ELFloatKnob with no value or linkage." userInfo:[NSDictionary dictionaryWithObject:self forKey:@"knob"]];
   }
 }
 
 - (float)filteredValue {
-  NSAssert1( hasValue || linkValue, @"ELFloatKnob(%@) must have or be linked to a value", name );
-  
   if( linkValue ) {
     return [(ELFloatKnob *)linkedKnob filteredValue];
   } else if( hasValue ) {
     return [self filteredValue:value];
   } else {
-    NSLog( @"value called on ELFloatKnob with no value or linkage." );
-    abort();
+    @throw [NSException exceptionWithName:@"KnobException" reason:@"Value called on ELFloatKnob with no value or linkage." userInfo:[NSDictionary dictionaryWithObject:self forKey:@"knob"]];
   }
 }
 
 - (float)filteredValue:(float)_value_ {
-  if( filter ) {
-    return _value_ * [filter generate];
+  if( filter && [filter enabled] ) {
+    return [filter generate];
   } else {
     return _value_;
   }

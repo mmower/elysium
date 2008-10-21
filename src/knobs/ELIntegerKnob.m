@@ -77,34 +77,28 @@
 }
 
 - (int)value {
-  NSAssert1( hasValue || linkValue, @"ELIntegerKnob(%@) must have or be linked to a value", name );
-  
   if( linkValue ) {
     return [(ELIntegerKnob *)linkedKnob value];
   } else if( hasValue ) {
     return value;
   } else {
-    NSLog( @"value called on ELIntegerKnob with no value or linkage." );
-    abort();
+    @throw [NSException exceptionWithName:@"KnobException" reason:@"Value called on ELIntegerKnob with no value or linkage." userInfo:[NSDictionary dictionaryWithObject:self forKey:@"knob"]];
   }
 }
 
 - (int)filteredValue {
-  NSAssert1( hasValue || linkValue, @"ELIntegerKnob(%@) must have or be linked to a value", name );
-  
   if( linkValue ) {
     return [(ELIntegerKnob *)linkedKnob filteredValue];
   } else if( hasValue ) {
     return [self filteredValue:value];
   } else {
-    NSLog( @"value called on ELIntegerKnob with no value or linkage." );
-    abort();
+    @throw [NSException exceptionWithName:@"KnobException" reason:@"Value called on ELIntegerKnob with no value or linkage." userInfo:[NSDictionary dictionaryWithObject:self forKey:@"knob"]];
   }
 }
 
 - (int)filteredValue:(int)_value_ {
-  if( filter ) {
-    return _value_ * [filter generate];
+  if( filter && [filer enabled] ) {
+    return [filter generate];
   } else {
     return _value_;
   }
