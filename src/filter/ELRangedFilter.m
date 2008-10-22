@@ -13,7 +13,7 @@
 - (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ {
   if( ( self = [super initEnabled:_enabled_] ) ) {
     [self setMinimum:_minimum_];
-    [self setMinimum:_maximum_];
+    [self setMaximum:_maximum_];
   }
   
   return self;
