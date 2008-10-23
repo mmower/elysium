@@ -35,7 +35,7 @@ static NSString * const toolType = @"note";
   return [self initWithVelocityKnob:[[ELIntegerKnob alloc] initWithName:@"velocity"]
                        emphasisKnob:[[ELIntegerKnob alloc] initWithName:@"emphasis"]
                        durationKnob:[[ELFloatKnob alloc] initWithName:@"duration"]
-                          triadKnob:[[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0]];
+                          triadKnob:[[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1]];
 }
 
 - (NSString *)toolType {
@@ -169,7 +169,7 @@ static NSString * const toolType = @"note";
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       triadKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
     } else {
-      triadKnob = [[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0];
+      triadKnob = [[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1];
     }
     
     [self loadScripts:_representation_];

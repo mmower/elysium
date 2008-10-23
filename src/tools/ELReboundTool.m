@@ -25,7 +25,10 @@ static NSString * const toolType = @"rebound";
 
 - (id)init {
   return [self initWithDirectionKnob:[[ELIntegerKnob alloc] initWithName:@"direction"
-                                                            integerValue:N]];
+                                                            integerValue:N
+                                                            minimum:0
+                                                            maximum:5
+                                                            stepping:1]];
 }
 
 - (NSString *)toolType {
@@ -80,7 +83,7 @@ static NSString * const toolType = @"rebound";
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
     } else {
-      directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N];
+      directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N minimum:0 maximum:5 stepping:1];
     }
     
     [self loadScripts:_representation_];

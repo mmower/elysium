@@ -35,14 +35,14 @@
     harmonicTable  = [[ELHarmonicTable alloc] init];
     layers         = [[NSMutableArray alloc] init];
     
-    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
-    barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
-    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90];
-    emphasisKnob   = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120];
-    durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
-    transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
+    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600 minimum:30 maximum:900 stepping:1];
+    barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
+    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90 minimum:1 maximum:127 stepping:1];
+    emphasisKnob   = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
+    durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5 minimum:0.1 maximum:5.0 stepping:0.1];
+    transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
     
     scripts        = [NSMutableDictionary dictionary];
     
@@ -262,7 +262,7 @@
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self player:self];
     } else {
-      tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600];
+      tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600 minimum:30 maximum:900 stepping:1];
     }
 
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:nil];
@@ -270,7 +270,7 @@
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       barLengthKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self player:self];
     } else {
-      barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4];
+      barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
@@ -278,7 +278,7 @@
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
-      timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16];
+      timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
@@ -286,7 +286,7 @@
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
-      pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16];
+      pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
@@ -294,7 +294,7 @@
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
-      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90];
+      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90 minimum:1 maximum:127 stepping:1];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:nil];
@@ -302,7 +302,7 @@
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
-      emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120];
+      emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
@@ -310,7 +310,7 @@
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
-      durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5];
+      durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5 minimum:0.1 maximum:5.0 stepping:0.1];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
@@ -318,7 +318,7 @@
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
-      transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0];
+      transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
     }
     
     // Layers

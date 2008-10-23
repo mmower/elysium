@@ -29,7 +29,7 @@ static NSString * const toolType = @"spin";
 
 - (id)init {
   return [self initWithClockwiseKnob:[[ELBooleanKnob alloc] initWithName:@"clockwise" booleanValue:YES]
-                        steppingKnob:[[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1]];
+                        steppingKnob:[[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1 minimum:0 maximum:5 stepping:1]];
 }
 
 - (NSString *)toolType {
@@ -133,7 +133,7 @@ static NSString * const toolType = @"spin";
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       steppingKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
     } else {
-      steppingKnob = [[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1];
+      steppingKnob = [[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1 minimum:0 maximum:5 stepping:1];
     }
     
     [self loadScripts:_representation_];

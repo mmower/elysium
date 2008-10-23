@@ -60,14 +60,14 @@ NSPredicate *deadPlayheadFilter;
   if( ( self = [self init] ) ) {
     player = _player_;
     
-    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedTo:[player tempoKnob]];
-    barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" linkedTo:[player barLengthKnob]];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedTo:[player timeToLiveKnob]];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedTo:[player pulseCountKnob]];
-    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedTo:[player velocityKnob]];
-    emphasisKnob   = [[ELIntegerKnob alloc] initWithName:@"emphasis" linkedTo:[player emphasisKnob]];
-    durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" linkedTo:[player durationKnob]];
-    transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedTo:[player transposeKnob]];
+    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedToIntegerKnob:[player tempoKnob]];
+    barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" linkedToIntegerKnob:[player barLengthKnob]];
+    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedToIntegerKnob:[player timeToLiveKnob]];
+    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedToIntegerKnob:[player pulseCountKnob]];
+    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedToIntegerKnob:[player velocityKnob]];
+    emphasisKnob   = [[ELIntegerKnob alloc] initWithName:@"emphasis" linkedToIntegerKnob:[player emphasisKnob]];
+    durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" linkedToFloatKnob:[player durationKnob]];
+    transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedToIntegerKnob:[player transposeKnob]];
     
     [self configureHexes];
   }
@@ -448,7 +448,7 @@ NSPredicate *deadPlayheadFilter;
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
     } else {
-      channelKnob = [[ELIntegerKnob alloc] initWithName:@"channel" integerValue:1];
+      channelKnob = [[ELIntegerKnob alloc] initWithName:@"channel" integerValue:1 minimum:1 maximum:16 stepping:1];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
@@ -456,7 +456,7 @@ NSPredicate *deadPlayheadFilter;
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob] player:_player_];
     } else {
-      tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedTo:[_player_ tempoKnob]];
+      tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedToIntegerKnob:[_player_ tempoKnob]];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:nil];
@@ -464,7 +464,7 @@ NSPredicate *deadPlayheadFilter;
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       barLengthKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ barLengthKnob] player:_player_];
     } else {
-      barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" linkedTo:[_player_ barLengthKnob]];
+      barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" linkedToIntegerKnob:[_player_ barLengthKnob]];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
@@ -472,7 +472,7 @@ NSPredicate *deadPlayheadFilter;
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ timeToLiveKnob] player:_player_];
     } else {
-      timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedTo:[_player_ timeToLiveKnob]];
+      timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedToIntegerKnob:[_player_ timeToLiveKnob]];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
@@ -480,7 +480,7 @@ NSPredicate *deadPlayheadFilter;
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ pulseCountKnob] player:_player_];
     } else {
-      pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedTo:[_player_ pulseCountKnob]];
+      pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedToIntegerKnob:[_player_ pulseCountKnob]];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
@@ -488,7 +488,7 @@ NSPredicate *deadPlayheadFilter;
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ velocityKnob] player:_player_];
     } else {
-      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedTo:[_player_ velocityKnob]];
+      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedToIntegerKnob:[_player_ velocityKnob]];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:nil];
@@ -496,7 +496,7 @@ NSPredicate *deadPlayheadFilter;
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ emphasisKnob] player:_player_];
     } else {
-      emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" linkedTo:[_player_ emphasisKnob]];
+      emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" linkedToIntegerKnob:[_player_ emphasisKnob]];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
@@ -504,7 +504,7 @@ NSPredicate *deadPlayheadFilter;
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[_parent_ durationKnob] player:_player_];
     } else {
-      durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" linkedTo:[_player_ durationKnob]];
+      durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" linkedToFloatKnob:[_player_ durationKnob]];
     }
     
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
@@ -512,7 +512,7 @@ NSPredicate *deadPlayheadFilter;
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ transposeKnob] player:_player_];
     } else {
-      transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedTo:[_player_ transposeKnob]];
+      transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedToIntegerKnob:[_player_ transposeKnob]];
     }
     
     nodes = [_representation_ nodesForXPath:@"cells/cell" error:nil];
