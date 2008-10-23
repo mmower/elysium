@@ -14,6 +14,8 @@
 
 #import "RubyBlock.h"
 
+#import "ELFilterDesignerController.h"
+
 @implementation ELPlayerInspectorController
 
 @synthesize player;
@@ -44,11 +46,15 @@
   }
 }
 
-- (IBAction)editScript:(id)sender {
+- (IBAction)editFilter:(id)_sender_ {
+  [[[ELFilterDesignerController alloc] initWithKnob:_sender_] showWindow:self];
+}
+
+- (IBAction)editScript:(id)_sender_ {
   RubyBlock *block;
   NSString *callback = @"unknown";
   
-  switch( [sender tag] ) {
+  switch( [_sender_ tag] ) {
     case 0:
       callback = @"willStart";
       break;
@@ -71,10 +77,10 @@
   [block inspect];
 }
 
-- (IBAction)removeScript:(id)sender {
+- (IBAction)removeScript:(id)_sender_ {
   NSString *callback = @"unknown";
   
-  switch( [sender tag] ) {
+  switch( [_sender_ tag] ) {
     case 0:
       callback = @"willStart";
       break;

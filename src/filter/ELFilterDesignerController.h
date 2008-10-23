@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ELKnob;
+@class ELRangedKnob;
 @class ELSquareFilter;
 @class ELSawFilter;
 @class ELSineFilter;
@@ -18,7 +18,7 @@
 @interface ELFilterDesignerController : NSWindowController {
   IBOutlet NSTabView  *tabView;
 
-  ELKnob              *knob;
+  ELRangedKnob        *knob;
   ELSquareFilter      *squareFilter;
   ELSawFilter         *sawFilter;
   ELSineFilter        *sineFilter;
@@ -28,9 +28,9 @@
   NSString            *selectedTag;
 }
 
-- (id)initWithKnob:(ELKnob *)knob;
+- (id)initWithKnob:(ELRangedKnob *)knob;
 
-@property (readonly) ELKnob *knob;
+@property (readonly) ELRangedKnob *knob;
 
 @property (readonly) ELSquareFilter *squareFilter;
 @property (readonly) ELSawFilter *sawFilter;

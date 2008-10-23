@@ -126,6 +126,7 @@
 		C9B642020EAD1504006AA089 /* ELSquareFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642010EAD1504006AA089 /* ELSquareFilter.m */; };
 		C9B642050EAD153B006AA089 /* ELSawFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642040EAD153B006AA089 /* ELSawFilter.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
+		C9C931620EB12DA1009528C6 /* ELRangedKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C931610EB12DA1009528C6 /* ELRangedKnob.m */; };
 		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
 		C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DA148F0EA730780087EDD3 /* Elysium.icns */; };
 		C9DA150E0EA7F05D0087EDD3 /* ActivityViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */; };
@@ -357,6 +358,8 @@
 		C9B642030EAD153B006AA089 /* ELSawFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSawFilter.h; sourceTree = "<group>"; };
 		C9B642040EAD153B006AA089 /* ELSawFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSawFilter.m; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
+		C9C931600EB12DA1009528C6 /* ELRangedKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedKnob.h; sourceTree = "<group>"; };
+		C9C931610EB12DA1009528C6 /* ELRangedKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedKnob.m; sourceTree = "<group>"; };
 		C9C9AF2B0E82D0F500277071 /* deploy.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.rake; sourceTree = "<group>"; };
 		C9DA148F0EA730780087EDD3 /* Elysium.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Elysium.icns; sourceTree = "<group>"; };
 		C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ActivityViewer.xib; path = English.lproj/ActivityViewer.xib; sourceTree = "<group>"; };
@@ -707,6 +710,8 @@
 				C9A9F1B80E8A42DF009A06A3 /* ELIntegerKnob.m */,
 				C9A9F1B90E8A42DF009A06A3 /* ELKnob.h */,
 				C9A9F1BA0E8A42DF009A06A3 /* ELKnob.m */,
+				C9C931600EB12DA1009528C6 /* ELRangedKnob.h */,
+				C9C931610EB12DA1009528C6 /* ELRangedKnob.m */,
 			);
 			name = knobs;
 			path = src/knobs;
@@ -1107,6 +1112,7 @@
 				C9599AE80EAE5D9000310D3D /* ELRandomFilter.m in Sources */,
 				C9599AEB0EAE5DA500310D3D /* ELListFilter.m in Sources */,
 				C9599AEF0EAE7C1E00310D3D /* ELRangedFilter.m in Sources */,
+				C9C931620EB12DA1009528C6 /* ELRangedKnob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 #import "ELFilterDesignerController.h"
 
-#import "ELKnob.h"
+#import "ELRangedKnob.h"
 
 #import "ELSquareFilter.h"
 #import "ELSawFilter.h"
@@ -18,46 +18,49 @@
 
 @implementation ELFilterDesignerController
 
-- (id)initWithKnob:(ELKnob *)_knob_ {
+- (id)initWithKnob:(ELRangedKnob *)_knob_ {
   if( ( self = [self initWithWindowNibName:@"FilterDesigner"] ) ) {
     knob = _knob_;
     
-    selectedTag = nil;
+    NSLog( @"Knob = %@, Min=%f, Max=%f, Stepping=%f, Filter = %@", knob, [knob minimum], [knob maximum], [knob stepping], [knob filter] );
     
-    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+    if( [knob filter] ) {
+      selectedTag = [[knob filter] type];
+    } else {
+      selectedTag = nil;
+    }
+    
+    if( [selectedTag isEqualToString:@"Square"] ) {
       squareFilter = (ELSquareFilter *)[knob filter];
-      selectedTag = @"square";
     } else {
-      squareFilter = [[ELSquareFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0 rest:30000 sustain:30000];
+      squareFilter = [[ELSquareFilter alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000];
     }
     
-    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+    if( [selectedTag isEqualToString:@"Saw"] ) {
       sawFilter = (ELSawFilter *)[knob filter];
-      selectedTag = @"saw";
     } else {
-      sawFilter = [[ELSawFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0 rest:30000 attack:30000 sustain:30000 decay:30000];
+      sawFilter = [[ELSawFilter alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000];
     }
     
-    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+    if( [selectedTag isKindOfClass:@"Sine"] ) {
       sineFilter = (ELSineFilter *)[knob filter];
-      selectedTag = @"saw";
     } else {
-      sineFilter = [[ELSineFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0 period:30000];
+      sineFilter = [[ELSineFilter alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000];
     }
     
-    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+    if( [selectedTag isEqualToString:@"List"] ) {
       listFilter = (ELListFilter *)[knob filter];
-      selectedTag = @"list";
     } else {
       listFilter = [[ELListFilter alloc] initEnabled:YES values:[NSArray array]];
     }
     
-    if( [[knob filter] isKindOfClass:[ELSquareFilter class]] ) {
+    if( [selectedTag isEqualToString:@"Random"] ) {
       randomFilter = (ELRandomFilter *)[knob filter];
-      selectedTag = @"random";
     } else {
-      randomFilter = [[ELRandomFilter alloc] initEnabled:YES minimum:0.0 maximum:100.0];
+      randomFilter = [[ELRandomFilter alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]];
     }
+    
+    NSLog( @"SelectedTag = %@", selectedTag );
   }
   
   return self;
@@ -78,11 +81,27 @@
 @synthesize randomFilter;
 
 - (IBAction)save:(id)_sender_ {
-  // [[self window] close];
+  NSLog( @"Save & Close" );
+  
+  NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
+  NSLog( @"Tab id = %@", tabId );
+  if( [tabId isEqualToString:@"Square"] ) {
+    [knob setFilter:squareFilter];
+  } else if( [tabId isEqualToString:@"Saw"] ) {
+    [knob setFilter:sawFilter];
+  } else if( [tabId isEqualToString:@"Sine"] ) {
+    [knob setFilter:sineFilter];
+  } else if( [tabId isEqualToString:@"List"] ) {
+    [knob setFilter:listFilter];
+  } else if( [tabId isEqualToString:@"Random"] ) {
+    [knob setFilter:randomFilter];
+  }
+  
+  [self close];
 }
 
 - (IBAction)cancel:(id)_sender_ {
-  // [[self window] close];
+  [self close];
 }
 
 @end
