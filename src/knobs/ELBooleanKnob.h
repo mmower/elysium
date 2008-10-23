@@ -23,19 +23,11 @@
        linkEnabled:(BOOL)_linkEnabled
           hasValue:(BOOL)_hasValue
          linkValue:(BOOL)_linkValue
-             alpha:(float)_alpha
-          hasAlpha:(BOOL)_hasAlpha
-         linkAlpha:(BOOL)_linkAlpha
-                 p:(float)_p
-              hasP:(BOOL)_hasP
-             linkP:(BOOL)_linkP
             filter:(ELFilter *)filter
-        linkFilter:(BOOL)linkFilter
-         predicate:(NSPredicate *)predicate
-     linkPredicate:(BOOL)linkPredicate;
+        linkFilter:(BOOL)linkFilter;
          
 - (id)initWithName:(NSString *)name booleanValue:(BOOL)value;
-- (id)initWithName:(NSString *)name linkedTo:(ELKnob *)knob;
+- (id)initWithName:(NSString *)name linkedToBooleanKnob:(ELBooleanKnob *)knob;
 
 - (BOOL)value;
 - (void)setValue:(BOOL)value;

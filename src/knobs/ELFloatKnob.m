@@ -12,59 +12,49 @@
 
 @implementation ELFloatKnob
 
-- (id)initWithName:(NSString*)_name_
+- (id)initWithName:(NSString *)_name_
         floatValue:(float)_value_
-        linkedKnob:(ELKnob*)_knob_
+           minimum:(float)_minimum_
+           maximum:(float)_maximum_
+          stepping:(float)_stepping_
+        linkedKnob:(ELKnob *)_knob_
            enabled:(BOOL)_enabled_
         hasEnabled:(BOOL)_hasEnabled_
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-             alpha:(float)_alpha_
-          hasAlpha:(BOOL)_hasAlpha_
-         linkAlpha:(BOOL)_linkAlpha_
-                 p:(float)_p_
-              hasP:(BOOL)_hasP_
-             linkP:(BOOL)_linkP_
-            filter:(ELFilter*)_filter_
+            filter:(ELFilter *)_filter_
         linkFilter:(BOOL)_linkFilter_
-         predicate:(NSPredicate*)_predicate_
-     linkPredicate:(BOOL)_linkPredicate_
 {
   if( ( self = [self initWithName:name
+                          minimum:_minimum_
+                          maximum:_maximum_
+                         stepping:_stepping_
                        linkedKnob:_knob_
                           enabled:_enabled_
                        hasEnabled:_hasEnabled_
                       linkEnabled:_linkEnabled_
                          hasValue:_hasValue_
                         linkValue:_linkValue_
-                            alpha:_alpha_
-                         hasAlpha:_hasAlpha_
-                        linkAlpha:_linkAlpha_
-                                p:_p_
-                             hasP:_hasP_
-                            linkP:_linkP_
                            filter:_filter_
-                       linkFilter:_linkFilter_
-                        predicate:_predicate_
-                    linkPredicate:_linkPredicate_] ) )
+                       linkFilter:_linkFilter_] ) )
   {
-    value = _value_;
-  }
-  
-  return self;
-}
-
-- (id)initWithName:(NSString *)_name_ floatValue:(float)_value_ {
-  if( ( self = [self initWithName:_name_] ) ) {
     [self setValue:_value_];
   }
   
   return self;
 }
 
-- (id)initWithName:(NSString *)_name_ linkedTo:(ELKnob *)_knob_ {
-  if( ( self = [self initWithName:_name_] ) ) {
+- (id)initWithName:(NSString *)_name_ floatValue:(float)_value_ minimum:(float)_minimum_ maximum:(float)_maximum_ stepping:(float)_stepping_ {
+  if( ( self = [self initWithName:_name_ minimum:_maximum_ maximum:_maximum_ stepping:_stepping_] ) ) {
+    [self setValue:_value_];
+  }
+  
+  return self;
+}
+
+- (id)initWithName:(NSString *)_name_ linkedToFloatKnob:(ELFloatKnob *)_knob_ {
+  if( ( self = [self initWithName:_name_ minimum:[_knob_ minimum] maximum:[_knob_ maximum] stepping:[_knob_ stepping]] ) ) {
     [self setLinkedKnob:_knob_];
     [self setLinkValue:YES];
   }
@@ -78,6 +68,10 @@
 
 - (NSString *)xmlType {
   return @"float";
+}
+
+- (BOOL)encodesType:(char *)_type_ {
+  return strcmp( _type_, @encode(float)) == 0;
 }
 
 - (float)value {
@@ -130,22 +124,17 @@
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   return [[[self class] allocWithZone:_zone_] initWithName:name
                                                 floatValue:value
+                                                   minimum:minimum
+                                                   maximum:maximum
+                                                  stepping:stepping
                                                 linkedKnob:linkedKnob
                                                    enabled:enabled
                                                 hasEnabled:hasEnabled
                                                linkEnabled:linkEnabled
                                                   hasValue:hasValue
                                                  linkValue:linkValue
-                                                     alpha:alpha
-                                                  hasAlpha:hasAlpha
-                                                 linkAlpha:linkAlpha
-                                                         p:p
-                                                      hasP:hasP
-                                                     linkP:linkP
                                                     filter:filter
-                                                linkFilter:linkFilter
-                                                 predicate:predicate
-                                             linkPredicate:linkPredicate];
+                                                linkFilter:linkFilter];
 }
 
 @end

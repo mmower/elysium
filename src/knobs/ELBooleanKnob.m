@@ -18,16 +18,8 @@
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-             alpha:(float)_alpha_
-          hasAlpha:(BOOL)_hasAlpha_
-         linkAlpha:(BOOL)_linkAlpha_
-                 p:(float)_p_
-              hasP:(BOOL)_hasP_
-             linkP:(BOOL)_linkP_
             filter:(ELFilter*)_filter_
         linkFilter:(BOOL)_linkFilter_
-         predicate:(NSPredicate*)_predicate_
-     linkPredicate:(BOOL)_linkPredicate_
 {
   if( ( self = [self initWithName:name
                        linkedKnob:_knob_
@@ -36,16 +28,8 @@
                       linkEnabled:_linkEnabled_
                          hasValue:_hasValue_
                         linkValue:_linkValue_
-                            alpha:_alpha_
-                         hasAlpha:_hasAlpha_
-                        linkAlpha:_linkAlpha_
-                                p:_p_
-                             hasP:_hasP_
-                            linkP:_linkP_
                            filter:_filter_
-                       linkFilter:_linkFilter_
-                        predicate:_predicate_
-                    linkPredicate:_linkPredicate_] ) )
+                       linkFilter:_linkFilter_] ) )
   {
     value = _value_;
   }
@@ -61,7 +45,7 @@
   return self;
 }
 
-- (id)initWithName:(NSString *)_name_ linkedTo:(ELKnob *)_knob_ {
+- (id)initWithName:(NSString *)_name_ linkedToBooleanKnob:(ELBooleanKnob *)_knob_ {
   if( ( self = [self initWithName:_name_] ) ) {
     [self setLinkedKnob:_knob_];
     [self setLinkValue:YES];
@@ -72,6 +56,10 @@
 
 - (NSString *)xmlType {
   return @"boolean";
+}
+
+- (BOOL)encodesType:(char *)_type_ {
+  return strcmp( _type_, @encode(BOOL)) == 0;
 }
 
 - (BOOL)value {
@@ -115,16 +103,8 @@
                                                linkEnabled:linkEnabled
                                                   hasValue:hasValue
                                                  linkValue:linkValue
-                                                     alpha:alpha
-                                                  hasAlpha:hasAlpha
-                                                 linkAlpha:linkAlpha
-                                                         p:p
-                                                      hasP:hasP
-                                                     linkP:linkP
                                                     filter:filter
-                                                linkFilter:linkFilter
-                                                 predicate:predicate
-                                             linkPredicate:linkPredicate];
+                                                linkFilter:linkFilter];
 }
 
 @end

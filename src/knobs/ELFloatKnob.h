@@ -8,38 +8,29 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELKnob.h"
+#import "ELRangedKnob.h"
 #import "Elysium.h"
 
-@interface ELFloatKnob : ELKnob <NSMutableCopying> {
+@interface ELFloatKnob : ELRangedKnob <NSMutableCopying> {
   float value;
-  
-  float minimum;
-  float maximum;
-  float stepping;
 }
 
 - (id)initWithName:(NSString *)name
         floatValue:(float)value
+           minimum:(float)minimum
+           maximum:(float)maximum
+          stepping:(float)stepping
         linkedKnob:(ELKnob *)knob
            enabled:(BOOL)_enabled
         hasEnabled:(BOOL)_hasEnabled
        linkEnabled:(BOOL)_linkEnabled
           hasValue:(BOOL)_hasValue
          linkValue:(BOOL)_linkValue
-             alpha:(float)_alpha
-          hasAlpha:(BOOL)_hasAlpha
-         linkAlpha:(BOOL)_linkAlpha
-                 p:(float)_p
-              hasP:(BOOL)_hasP
-             linkP:(BOOL)_linkP
             filter:(ELFilter *)filter
-        linkFilter:(BOOL)linkFilter
-         predicate:(NSPredicate *)predicate
-     linkPredicate:(BOOL)linkPredicate;
+        linkFilter:(BOOL)linkFilter;
 
-- (id)initWithName:(NSString *)name floatValue:(float)value;
-- (id)initWithName:(NSString *)name linkedTo:(ELKnob *)knob;
+- (id)initWithName:(NSString *)name floatValue:(float)value minimum:(float)minimum maximum:(float)maximum stepping:(float)stepping;
+- (id)initWithName:(NSString *)name linkedToFloatKnob:(ELFloatKnob *)knob;
 
 @property float minimum;
 @property float maximum;

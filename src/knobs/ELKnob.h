@@ -24,44 +24,27 @@
   BOOL            hasValue;         // If a value is stored in this knob
   BOOL            linkValue;
   
-  float           alpha;
-  BOOL            hasAlpha;
-  BOOL            linkAlpha;
-  
-  float           p;
-  BOOL            hasP;
-  BOOL            linkP;
-  
   ELFilter        *filter;          // an function that supplies a dynamic alpha value in real-time
   BOOL            linkFilter;
-  
-  NSPredicate     *predicate;       // a predicate that be used to govern whether
-  BOOL            linkPredicate;    // this knob is enabled or not
 }
 
 - (id)initWithName:(NSString*)name
-        linkedKnob:(ELKnob *)knob
+        linkedKnob:(ELKnob*)knob
            enabled:(BOOL)enabled
         hasEnabled:(BOOL)hasEnabled
        linkEnabled:(BOOL)linkEnabled
           hasValue:(BOOL)hasValue
          linkValue:(BOOL)linkValue
-             alpha:(float)alpha
-          hasAlpha:(BOOL)hasAlpha
-         linkAlpha:(BOOL)linkAlpha
-                 p:(float)p
-              hasP:(BOOL)hasP
-             linkP:(BOOL)linkP
-            filter:(ELFilter *)filter
-        linkFilter:(BOOL)linkFilter
-         predicate:(NSPredicate *)predicate
-     linkPredicate:(BOOL)linkPredicate;
+            filter:(ELFilter*)filter
+        linkFilter:(BOOL)linkFilter;
        
 - (id)initWithName:(NSString *)name;
 
 - (NSString *)name;
 
 - (NSString *)xmlType;
+
+- (BOOL)encodesType:(char *)type;
 
 - (NSString *)stringValue;
 - (void)setValueWithString:(NSString *)stringValue;
@@ -80,28 +63,10 @@
 - (BOOL)linkValue;
 - (void)setLinkValue:(BOOL)linkValue;
 
-- (float)alpha;
-- (void)setAlpha:(float)alpha;
-
-- (BOOL)linkAlpha;
-- (void)setLinkAlpha:(BOOL)linkAlpha;
-
-- (float)p;
-- (void)setP:(float)p;
-
-- (BOOL)linkP;
-- (void)setLinkP:(BOOL)linkP;
-
 - (ELFilter *)filter;
 - (void)setFilter:(ELFilter *)filter;
 
 - (BOOL)linkFilter;
 - (void)setLinkFilter:(BOOL)linkFilter;
-
-- (NSPredicate *)predicate;
-- (void)setPredicate:(NSPredicate *)predicate;
-
-- (BOOL)linkPredicate;
-- (void)setLinkPredicate:(BOOL)linkPredicate;
 
 @end
