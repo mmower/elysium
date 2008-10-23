@@ -72,6 +72,10 @@
   return self;
 }
 
+@synthesize minimum;
+@synthesize maximum;
+@synthesize stepping;
+
 - (NSString *)xmlType {
   return @"integer";
 }

@@ -13,6 +13,10 @@
 
 @interface ELFloatKnob : ELKnob <NSMutableCopying> {
   float value;
+  
+  float minimum;
+  float maximum;
+  float stepping;
 }
 
 - (id)initWithName:(NSString *)name
@@ -36,6 +40,10 @@
 
 - (id)initWithName:(NSString *)name floatValue:(float)value;
 - (id)initWithName:(NSString *)name linkedTo:(ELKnob *)knob;
+
+@property float minimum;
+@property float maximum;
+@property float stepping;
 
 - (float)value;
 - (float)filteredValue;

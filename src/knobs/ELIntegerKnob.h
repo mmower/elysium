@@ -13,6 +13,10 @@
 
 @interface ELIntegerKnob : ELKnob <NSMutableCopying> {
   int value;
+  
+  int minimum;
+  int maximum;
+  int stepping;
 }
 
 - (id)initWithName:(NSString *)name
@@ -36,6 +40,10 @@
 
 - (id)initWithName:(NSString *)name integerValue:(int)value;
 - (id)initWithName:(NSString *)name linkedTo:(ELKnob *)knob;
+
+@property int minimum;
+@property int maximum;
+@property int stepping;
 
 - (int)value;
 - (int)filteredValue;
