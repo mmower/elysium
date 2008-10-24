@@ -44,7 +44,7 @@
 }
 
 - (id)initWithName:(NSString *)_name_ floatValue:(float)_value_ minimum:(float)_minimum_ maximum:(float)_maximum_ stepping:(float)_stepping_ {
-  if( ( self = [self initWithName:_name_ minimum:_maximum_ maximum:_maximum_ stepping:_stepping_] ) ) {
+  if( ( self = [self initWithName:_name_ minimum:_minimum_ maximum:_maximum_ stepping:_stepping_] ) ) {
     [self setValue:_value_];
   }
   
