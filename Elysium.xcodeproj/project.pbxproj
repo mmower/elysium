@@ -78,7 +78,7 @@
 		C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8370E8907B6009C699E /* sectionheader.gif */; };
 		C99F7BAA0E9AAC1100AA61A8 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */; };
 		C99F7BAE0E9AAC1700AA61A8 /* MacRuby.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */; };
-		C9A9F16F0E8A41DC009A06A3 /* FilterDesigner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1610E8A41DC009A06A3 /* FilterDesigner.xib */; };
+		C9A9F16F0E8A41DC009A06A3 /* OscillatorDesigner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1610E8A41DC009A06A3 /* OscillatorDesigner.xib */; };
 		C9A9F1700E8A41DC009A06A3 /* HexInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */; };
 		C9A9F1710E8A41DC009A06A3 /* LayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1650E8A41DC009A06A3 /* LayerInspector.xib */; };
 		C9A9F1720E8A41DC009A06A3 /* LayerManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1670E8A41DC009A06A3 /* LayerManager.xib */; };
@@ -268,7 +268,7 @@
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
 		C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MacRuby.framework; sourceTree = "<group>"; };
-		C9A9F1620E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FilterDesigner.xib; sourceTree = "<group>"; };
+		C9A9F1620E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/OscillatorDesigner.xib; sourceTree = "<group>"; };
 		C9A9F1640E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/HexInspector.xib; sourceTree = "<group>"; };
 		C9A9F1660E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LayerInspector.xib; sourceTree = "<group>"; };
 		C9A9F1680E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LayerManager.xib; sourceTree = "<group>"; };
@@ -484,7 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */,
-				C9A9F1610E8A41DC009A06A3 /* FilterDesigner.xib */,
+				C9A9F1610E8A41DC009A06A3 /* OscillatorDesigner.xib */,
 				C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */,
 				C9A9F1650E8A41DC009A06A3 /* LayerInspector.xib */,
 				C9A9F1670E8A41DC009A06A3 /* LayerManager.xib */,
@@ -1000,7 +1000,7 @@
 				C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */,
 				C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */,
 				C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */,
-				C9A9F16F0E8A41DC009A06A3 /* FilterDesigner.xib in Resources */,
+				C9A9F16F0E8A41DC009A06A3 /* OscillatorDesigner.xib in Resources */,
 				C9A9F1700E8A41DC009A06A3 /* HexInspector.xib in Resources */,
 				C9A9F1710E8A41DC009A06A3 /* LayerInspector.xib in Resources */,
 				C9A9F1720E8A41DC009A06A3 /* LayerManager.xib in Resources */,
@@ -1208,12 +1208,12 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		C9A9F1610E8A41DC009A06A3 /* FilterDesigner.xib */ = {
+		C9A9F1610E8A41DC009A06A3 /* OscillatorDesigner.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C9A9F1620E8A41DC009A06A3 /* English */,
 			);
-			name = FilterDesigner.xib;
+			name = OscillatorDesigner.xib;
 			sourceTree = "<group>";
 		};
 		C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */ = {
