@@ -26,8 +26,8 @@
        linkEnabled:(BOOL)_linkEnabled
           hasValue:(BOOL)_hasValue
          linkValue:(BOOL)_linkValue
-            filter:(ELOscillator *)filter
-        linkFilter:(BOOL)linkFilter;
+            oscillator:(ELOscillator *)filter
+        linkOscillator:(BOOL)linkFilter;
 
 - (id)initWithName:(NSString *)name floatValue:(float)value minimum:(float)minimum maximum:(float)maximum stepping:(float)stepping;
 - (id)initWithName:(NSString *)name linkedToFloatKnob:(ELFloatKnob *)knob;

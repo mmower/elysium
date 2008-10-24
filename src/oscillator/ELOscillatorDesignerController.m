@@ -105,15 +105,15 @@
 - (IBAction)save:(id)_sender_ {
   NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
   if( [tabId isEqualToString:@"Square"] ) {
-    [knob setFilter:squareFilter];
+    [knob setOscillator:squareFilter];
   } else if( [tabId isEqualToString:@"Saw"] ) {
-    [knob setFilter:sawFilter];
+    [knob setOscillator:sawFilter];
   } else if( [tabId isEqualToString:@"Sine"] ) {
-    [knob setFilter:sineFilter];
+    [knob setOscillator:sineFilter];
   } else if( [tabId isEqualToString:@"List"] ) {
-    [knob setFilter:listFilter];
+    [knob setOscillator:listFilter];
   } else if( [tabId isEqualToString:@"Random"] ) {
-    [knob setFilter:randomFilter];
+    [knob setOscillator:randomFilter];
   }
   
   [self close];

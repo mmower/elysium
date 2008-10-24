@@ -23,8 +23,8 @@
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-            filter:(ELOscillator *)_filter_
-        linkFilter:(BOOL)_linkFilter_
+            oscillator:(ELOscillator *)_filter_
+        linkOscillator:(BOOL)_linkFilter_
 {
   if( ( self = [self initWithName:name
                           minimum:_minimum_
@@ -36,8 +36,8 @@
                       linkEnabled:_linkEnabled_
                          hasValue:_hasValue_
                         linkValue:_linkValue_
-                           filter:_filter_
-                       linkFilter:_linkFilter_] ) )
+                           oscillator:_filter_
+                       linkOscillator:_linkFilter_] ) )
   {
     [self setValue:_value_];
   }
@@ -133,8 +133,8 @@
                                                linkEnabled:linkEnabled
                                                   hasValue:hasValue
                                                  linkValue:linkValue
-                                                    filter:filter
-                                                linkFilter:linkFilter];
+                                                    oscillator:filter
+                                                linkOscillator:linkFilter];
 }
 
 @end

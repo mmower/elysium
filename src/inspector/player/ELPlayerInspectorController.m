@@ -46,7 +46,7 @@
   }
 }
 
-- (IBAction)editFilter:(id)_sender_ {
+- (IBAction)editOscillator:(id)_sender_ {
   [[[ELOscillatorDesignerController alloc] initWithKnob:_sender_] showWindow:self];
 }
 

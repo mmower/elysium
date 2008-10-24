@@ -19,7 +19,7 @@
 - (void)focus:(ELPlayer *)player;
 - (void)selectionChanged:(NSNotification*)notification;
 
-- (IBAction)editFilter:(id)sender;
+- (IBAction)editOscillator:(id)sender;
 - (IBAction)editScript:(id)sender;
 - (IBAction)removeScript:(id)sender;
 

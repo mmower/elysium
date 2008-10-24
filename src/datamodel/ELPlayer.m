@@ -199,7 +199,7 @@
 
 // Oscillator support
 
-- (void)addFilter:(ELOscillator *)_filter_ {
+- (void)addOscillator:(ELOscillator *)_filter_ {
   // [oscillators setObject:_oscillator_ forKey:[_oscillator_ name]];
 }
 

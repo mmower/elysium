@@ -35,8 +35,8 @@
        linkEnabled:(BOOL)linkEnabled
           hasValue:(BOOL)hasValue
          linkValue:(BOOL)linkValue
-            filter:(ELOscillator*)filter
-        linkFilter:(BOOL)linkFilter;
+            oscillator:(ELOscillator*)filter
+        linkOscillator:(BOOL)linkFilter;
        
 - (id)initWithName:(NSString *)name;
 
@@ -64,9 +64,9 @@
 - (void)setLinkValue:(BOOL)linkValue;
 
 - (ELOscillator *)filter;
-- (void)setFilter:(ELOscillator *)filter;
+- (void)setOscillator:(ELOscillator *)filter;
 
 - (BOOL)linkFilter;
-- (void)setLinkFilter:(BOOL)linkFilter;
+- (void)setLinkOscillator:(BOOL)linkFilter;
 
 @end

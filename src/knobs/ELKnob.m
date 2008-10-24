@@ -44,8 +44,8 @@
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-            filter:(ELOscillator *)_filter_
-        linkFilter:(BOOL)_linkFilter_
+            oscillator:(ELOscillator *)_filter_
+        linkOscillator:(BOOL)_linkFilter_
 {
   if( ( self = [self init] ) ) {
     name          = _name_;
@@ -145,7 +145,7 @@
   }
 }
 
-- (void)setFilter:(ELOscillator *)_filter_ {
+- (void)setOscillator:(ELOscillator *)_filter_ {
   filter = _filter_;
 }
 
@@ -153,7 +153,7 @@
   return linkFilter;
 }
 
-- (void)setLinkFilter:(BOOL)_linkFilter_ {
+- (void)setLinkOscillator:(BOOL)_linkFilter_ {
   linkFilter = _linkFilter_;
 }
 
@@ -234,7 +234,7 @@
     if( [nodes count] > 0 ) {
       NSLog( @"found filter element");
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      [self setFilter:[[ELOscillator alloc] initWithXmlRepresentation:element parent:self player:_player_]];
+      [self setOscillator:[[ELOscillator alloc] initWithXmlRepresentation:element parent:self player:_player_]];
     }
   }
   
