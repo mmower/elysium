@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="288"/>
+			<integer value="164"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -29,7 +29,7 @@
 			<object class="NSWindowTemplate" id="361337605">
 				<int key="NSWindowStyleMask">151</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{60, 22}, {241, 618}}</string>
+				<string key="NSWindowRect">{{60, 22}, {191, 618}}</string>
 				<int key="NSWTFlags">-1543503872</int>
 				<string key="NSWindowTitle">Player</string>
 				<string key="NSWindowClass">NSPanel</string>
@@ -315,11 +315,11 @@
 											</object>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 1}, {205, 108}}</string>
+									<string key="NSFrame">{{1, 1}, {155, 108}}</string>
 									<reference key="NSSuperview" ref="674964783"/>
 								</object>
 							</object>
-							<string key="NSFrame">{{17, 16}, {207, 124}}</string>
+							<string key="NSFrame">{{17, 16}, {157, 124}}</string>
 							<reference key="NSSuperview" ref="40083010"/>
 							<string key="NSOffsets">{0, 0}</string>
 							<object class="NSTextFieldCell" key="NSTitleCell">
@@ -558,11 +558,11 @@
 											</object>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 1}, {205, 107}}</string>
+									<string key="NSFrame">{{1, 1}, {155, 107}}</string>
 									<reference key="NSSuperview" ref="125913330"/>
 								</object>
 							</object>
-							<string key="NSFrame">{{17, 144}, {207, 123}}</string>
+							<string key="NSFrame">{{17, 144}, {157, 123}}</string>
 							<reference key="NSSuperview" ref="40083010"/>
 							<string key="NSOffsets">{0, 0}</string>
 							<object class="NSTextFieldCell" key="NSTitleCell">
@@ -1150,11 +1150,11 @@
 											</object>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 1}, {205, 311}}</string>
+									<string key="NSFrame">{{1, 1}, {155, 311}}</string>
 									<reference key="NSSuperview" ref="683082574"/>
 								</object>
 							</object>
-							<string key="NSFrame">{{17, 271}, {207, 327}}</string>
+							<string key="NSFrame">{{17, 271}, {157, 327}}</string>
 							<reference key="NSSuperview" ref="40083010"/>
 							<string key="NSOffsets">{0, 0}</string>
 							<object class="NSTextFieldCell" key="NSTitleCell">
@@ -1175,7 +1175,7 @@
 							<bool key="NSTransparent">NO</bool>
 						</object>
 					</object>
-					<string key="NSFrameSize">{241, 618}</string>
+					<string key="NSFrameSize">{191, 618}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -1871,7 +1871,7 @@
 						<string key="label">argument: player.transposeKnob</string>
 						<reference key="source" ref="713660084"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="370255733">
+						<object class="NSNibBindingConnector" key="connector" id="953993302">
 							<reference key="NSSource" ref="713660084"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.transposeKnob</string>
@@ -1901,7 +1901,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="370255733"/>
+							<reference key="NSPreviousConnector" ref="953993302"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -1912,7 +1912,7 @@
 						<string key="label">argument: player.durationKnob</string>
 						<reference key="source" ref="539101981"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="146977714">
+						<object class="NSNibBindingConnector" key="connector" id="547800799">
 							<reference key="NSSource" ref="539101981"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.durationKnob</string>
@@ -1942,7 +1942,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="146977714"/>
+							<reference key="NSPreviousConnector" ref="547800799"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2966,9 +2966,9 @@
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{115, 390}, {241, 618}}</string>
+					<string>{{115, 390}, {191, 618}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{115, 390}, {241, 618}}</string>
+					<string>{{115, 390}, {191, 618}}</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3141,31 +3141,6 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>dynamicBarLength</string>
-							<string>dynamicDuration</string>
-							<string>dynamicEmphasis</string>
-							<string>dynamicPulseCount</string>
-							<string>dynamicTempo</string>
-							<string>dynamicTimeToLive</string>
-							<string>dynamicTranspose</string>
-							<string>dynamicVelocity</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
