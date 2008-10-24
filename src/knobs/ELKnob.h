@@ -24,19 +24,19 @@
   BOOL            hasValue;         // If a value is stored in this knob
   BOOL            linkValue;
   
-  ELOscillator        *oscillator;          // an function that supplies a dynamic alpha value in real-time
+  ELOscillator    *oscillator;          // an function that supplies a dynamic alpha value in real-time
   BOOL            linkOscillator;
 }
 
-- (id)initWithName:(NSString*)name
-        linkedKnob:(ELKnob*)knob
+- (id)initWithName:(NSString *)name
+        linkedKnob:(ELKnob *)knob
            enabled:(BOOL)enabled
         hasEnabled:(BOOL)hasEnabled
        linkEnabled:(BOOL)linkEnabled
           hasValue:(BOOL)hasValue
          linkValue:(BOOL)linkValue
-            oscillator:(ELOscillator*)oscillator
-        linkOscillator:(BOOL)linkOscillator;
+        oscillator:(ELOscillator *)oscillator
+    linkOscillator:(BOOL)linkOscillator;
        
 - (id)initWithName:(NSString *)name;
 

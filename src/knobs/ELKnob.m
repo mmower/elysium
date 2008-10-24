@@ -37,26 +37,26 @@
   return self;
 }
 
-- (id)initWithName:(NSString*)_name_
+- (id)initWithName:(NSString *)_name_
         linkedKnob:(ELKnob *)_knob_
            enabled:(BOOL)_enabled_
         hasEnabled:(BOOL)_hasEnabled_
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-            oscillator:(ELOscillator *)_oscillator_
-        linkOscillator:(BOOL)_linkOscillator_
+        oscillator:(ELOscillator *)_oscillator_
+    linkOscillator:(BOOL)_linkOscillator_
 {
   if( ( self = [self init] ) ) {
-    name          = _name_;
-    linkedKnob    = _knob_;
-    enabled       = _enabled_;
-    hasEnabled    = _hasEnabled_;
-    linkEnabled   = _linkEnabled_;
-    hasValue      = _hasValue_;
-    linkValue     = _linkValue_;
-    oscillator        = _oscillator_;
-    linkOscillator    = _linkOscillator_;
+    name            = _name_;
+    linkedKnob      = _knob_;
+    enabled         = _enabled_;
+    hasEnabled      = _hasEnabled_;
+    linkEnabled     = _linkEnabled_;
+    hasValue        = _hasValue_;
+    linkValue       = _linkValue_;
+    oscillator      = _oscillator_;
+    linkOscillator  = _linkOscillator_;
   }
   
   return self;

@@ -15,7 +15,7 @@
   BOOL  value;
 }
 
-- (id)initWithName:(NSString *)name
+- (id)initWithName:(NSString*)name
       booleanValue:(BOOL)value
         linkedKnob:(ELKnob *)knob
            enabled:(BOOL)_enabled
@@ -23,8 +23,8 @@
        linkEnabled:(BOOL)_linkEnabled
           hasValue:(BOOL)_hasValue
          linkValue:(BOOL)_linkValue
-            oscillator:(ELOscillator *)oscillator
-        linkOscillator:(BOOL)linkOscillator;
+        oscillator:(ELOscillator *)oscillator
+    linkOscillator:(BOOL)linkOscillator;
          
 - (id)initWithName:(NSString *)name booleanValue:(BOOL)value;
 - (id)initWithName:(NSString *)name linkedToBooleanKnob:(ELBooleanKnob *)knob;

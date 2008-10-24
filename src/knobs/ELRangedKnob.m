@@ -20,8 +20,8 @@
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-            oscillator:(ELOscillator *)_oscillator_
-        linkOscillator:(BOOL)_linkOscillator_
+        oscillator:(ELOscillator *)_oscillator_
+    linkOscillator:(BOOL)_linkOscillator_
 {
   if( ( self = [super initWithName:_name_
                         linkedKnob:_linkedKnob_
