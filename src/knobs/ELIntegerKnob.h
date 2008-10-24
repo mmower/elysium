@@ -32,8 +32,8 @@
 - (id)initWithName:(NSString *)name linkedToIntegerKnob:(ELIntegerKnob *)knob;
 
 - (int)value;
-- (int)filteredValue;
-- (int)filteredValue:(int)value;
+- (int)dynamicValue;
+- (int)dynamicValue:(int)value;
 - (void)setValue:(int)value;
 
 @end

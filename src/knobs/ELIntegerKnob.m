@@ -78,17 +78,17 @@
   }
 }
 
-- (int)filteredValue {
+- (int)dynamicValue {
   if( linkValue ) {
-    return [(ELIntegerKnob *)linkedKnob filteredValue];
+    return [(ELIntegerKnob *)linkedKnob dynamicValue];
   } else if( hasValue ) {
-    return [self filteredValue:value];
+    return [self dynamicValue:value];
   } else {
     @throw [NSException exceptionWithName:@"KnobException" reason:@"Value called on ELIntegerKnob with no value or linkage." userInfo:[NSDictionary dictionaryWithObject:self forKey:@"knob"]];
   }
 }
 
-- (int)filteredValue:(int)_value_ {
+- (int)dynamicValue:(int)_value_ {
   if( oscillator && [oscillator enabled] ) {
     return [oscillator generate];
   } else {

@@ -31,13 +31,10 @@
 - (id)initWithName:(NSString *)name floatValue:(float)value minimum:(float)minimum maximum:(float)maximum stepping:(float)stepping;
 - (id)initWithName:(NSString *)name linkedToFloatKnob:(ELFloatKnob *)knob;
 
-@property float minimum;
-@property float maximum;
-@property float stepping;
-
 - (float)value;
-- (float)filteredValue;
-- (float)filteredValue:(float)value;
 - (void)setValue:(float)value;
+
+- (float)dynamicValue;
+- (float)dynamicValue:(float)value;
 
 @end

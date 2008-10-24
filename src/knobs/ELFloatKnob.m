@@ -60,10 +60,6 @@
   return self;
 }
 
-@synthesize minimum;
-@synthesize maximum;
-@synthesize stepping;
-
 - (NSString *)xmlType {
   return @"float";
 }
@@ -82,17 +78,17 @@
   }
 }
 
-- (float)filteredValue {
+- (float)dynamicValue {
   if( linkValue ) {
-    return [(ELFloatKnob *)linkedKnob filteredValue];
+    return [(ELFloatKnob *)linkedKnob dynamicValue];
   } else if( hasValue ) {
-    return [self filteredValue:value];
+    return [self dynamicValue:value];
   } else {
     @throw [NSException exceptionWithName:@"KnobException" reason:@"Value called on ELFloatKnob with no value or linkage." userInfo:[NSDictionary dictionaryWithObject:self forKey:@"knob"]];
   }
 }
 
-- (float)filteredValue:(float)_value_ {
+- (float)dynamicValue:(float)_value_ {
   if( oscillator && [oscillator enabled] ) {
     return [oscillator generate];
   } else {

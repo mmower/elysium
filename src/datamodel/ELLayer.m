@@ -104,7 +104,7 @@ NSPredicate *deadPlayheadFilter;
 @synthesize scripts;
 
 - (int)timerResolution {
-  int tempo = [tempoKnob filteredValue];
+  int tempo = [tempoKnob dynamicValue];
   if( tempo < 1 ) {
     tempo = 1;
   }
@@ -135,7 +135,7 @@ NSPredicate *deadPlayheadFilter;
 // Manipulate layer
 
 - (BOOL)firstBeatInBar {
-  return (beatCount % [barLengthKnob filteredValue]) == 0;
+  return (beatCount % [barLengthKnob dynamicValue]) == 0;
 }
 
 - (void)run {
