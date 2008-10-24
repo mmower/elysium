@@ -38,6 +38,8 @@
 @property (readonly) ELListFilter *listFilter;
 @property (readonly) ELRandomFilter *randomFilter;
 
+- (void)setView:(NSView *)view cellsAllowFloats:(BOOL)allowFloat;
+
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
 

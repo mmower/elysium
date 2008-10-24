@@ -59,14 +59,19 @@
     } else {
       randomFilter = [[ELRandomFilter alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]];
     }
-    
-    NSLog( @"SelectedTag = %@", selectedTag );
   }
   
   return self;
 }
 
 - (void)awakeFromNib {
+  
+  // Determine whether the cell formatters for the fields should allow
+  // decimals for float values or not
+  for( NSTabViewItem *item in [tabView tabViewItems] ) {
+    [self setView:[item view] cellsAllowFloats:[knob encodesType:@encode(float)]];
+  }
+  
   if( selectedTag ) {
     [tabView selectTabViewItemWithIdentifier:selectedTag];
   }
@@ -79,6 +84,23 @@
 @synthesize sineFilter;
 @synthesize listFilter;
 @synthesize randomFilter;
+
+- (void)setView:(NSView *)_view_ cellsAllowFloats:(BOOL)_allowFloats_ {
+  for( NSView *view in [_view_ subviews] ) {
+    [self setView:view cellsAllowFloats:_allowFloats_];
+  }
+  
+  id cell, formatter;
+  if( [_view_ isKindOfClass:[NSControl class]] ) {
+    if( ( cell = [(NSControl *)_view_ cell] ) ) {
+      if( ( formatter = [cell formatter] ) ) {
+        if( [formatter isKindOfClass:[NSNumberFormatter class]] ) {
+          [formatter setAllowsFloats:_allowFloats_];
+        }
+      }
+    }
+  }
+}
 
 - (IBAction)save:(id)_sender_ {
   NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
