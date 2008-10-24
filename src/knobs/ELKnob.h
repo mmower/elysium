@@ -25,7 +25,6 @@
   BOOL            linkValue;
   
   ELOscillator    *oscillator;          // an function that supplies a dynamic alpha value in real-time
-  BOOL            linkOscillator;
 }
 
 - (id)initWithName:(NSString *)name
@@ -35,8 +34,7 @@
        linkEnabled:(BOOL)linkEnabled
           hasValue:(BOOL)hasValue
          linkValue:(BOOL)linkValue
-        oscillator:(ELOscillator *)oscillator
-    linkOscillator:(BOOL)linkOscillator;
+        oscillator:(ELOscillator *)oscillator;
        
 - (id)initWithName:(NSString *)name;
 
@@ -65,8 +63,5 @@
 
 - (ELOscillator *)oscillator;
 - (void)setOscillator:(ELOscillator *)oscillator;
-
-- (BOOL)linkOscillator;
-- (void)setLinkOscillator:(BOOL)linkOscillator;
 
 @end

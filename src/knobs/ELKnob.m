@@ -24,14 +24,13 @@
 
 - (id)initWithName:(NSString *)_name_ {
   if( ( self = [self init] ) ) {
-    name = _name_;
+    name        = _name_;
     
     // By default we inherit nothing
-    hasValue      = NO;
-    linkEnabled   = NO;
-    linkValue     = NO;
-    oscillator        = nil;
-    linkOscillator    = NO;
+    hasValue    = NO;
+    linkEnabled = NO;
+    linkValue   = NO;
+    oscillator  = nil;
   }
   
   return self;
@@ -45,7 +44,6 @@
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
         oscillator:(ELOscillator *)_oscillator_
-    linkOscillator:(BOOL)_linkOscillator_
 {
   if( ( self = [self init] ) ) {
     name            = _name_;
@@ -56,7 +54,6 @@
     hasValue        = _hasValue_;
     linkValue       = _linkValue_;
     oscillator      = _oscillator_;
-    linkOscillator  = _linkOscillator_;
   }
   
   return self;
@@ -136,25 +133,11 @@
 }
 
 - (ELOscillator *)oscillator {
-  if( oscillator ) {
-    return oscillator;
-  } else if( linkOscillator ) {
-    return [linkedKnob oscillator];
-  } else {
-    return nil;
-  }
+  return oscillator;
 }
 
 - (void)setOscillator:(ELOscillator *)_oscillator_ {
   oscillator = _oscillator_;
-}
-
-- (BOOL)linkOscillator {
-  return linkOscillator;
-}
-
-- (void)setLinkOscillator:(BOOL)_linkOscillator_ {
-  linkOscillator = _linkOscillator_;
 }
 
 // ELXmlData protocol
