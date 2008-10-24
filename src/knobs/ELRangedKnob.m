@@ -20,7 +20,7 @@
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-            oscillator:(ELOscillator *)_filter_
+            oscillator:(ELOscillator *)_oscillator_
         linkOscillator:(BOOL)_linkFilter_
 {
   if( ( self = [super initWithName:_name_
@@ -30,7 +30,7 @@
                        linkEnabled:_linkEnabled_
                           hasValue:_hasValue_
                          linkValue:_linkValue_
-                            oscillator:_filter_
+                            oscillator:_oscillator_
                         linkOscillator:_linkFilter_] ) )
   {
     [self setMinimum:_minimum_];

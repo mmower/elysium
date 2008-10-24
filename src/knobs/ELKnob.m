@@ -44,7 +44,7 @@
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-            oscillator:(ELOscillator *)_filter_
+            oscillator:(ELOscillator *)_oscillator_
         linkOscillator:(BOOL)_linkFilter_
 {
   if( ( self = [self init] ) ) {
@@ -55,7 +55,7 @@
     linkEnabled   = _linkEnabled_;
     hasValue      = _hasValue_;
     linkValue     = _linkValue_;
-    filter        = _filter_;
+    filter        = _oscillator_;
     linkFilter    = _linkFilter_;
   }
   
@@ -145,8 +145,8 @@
   }
 }
 
-- (void)setOscillator:(ELOscillator *)_filter_ {
-  filter = _filter_;
+- (void)setOscillator:(ELOscillator *)_oscillator_ {
+  filter = _oscillator_;
 }
 
 - (BOOL)linkFilter {
