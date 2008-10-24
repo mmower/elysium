@@ -1,16 +1,16 @@
 //
-//  ELSawFilter.m
+//  ELSawOscillator.m
 //  Elysium
 //
 //  Created by Matt Mower on 20/10/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELSawFilter.h"
+#import "ELSawOscillator.h"
 
-#import "ELFilter.h"
+#import "ELOscillator.h"
 
-@implementation ELSawFilter
+@implementation ELSawOscillator
 
 - (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ rest:(float)_rest_ attack:(float)_attack_ sustain:(float)_sustain_ decay:(float)_decay_ {
   if( ( self = [super initEnabled:_enabled_ minimum:_minimum_ maximum:_maximum_] ) ) {

@@ -1,5 +1,5 @@
 //
-//  ELSawFilter.h
+//  ELSawOscillator.h
 //  Elysium
 //
 //  Created by Matt Mower on 20/10/2008.
@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELRangedFilter.h"
+#import "ELRangedOscillator.h"
 
-@interface ELSawFilter : ELRangedFilter {
+@interface ELSawOscillator : ELRangedOscillator {
   float rest;
   float attack;
   float sustain;

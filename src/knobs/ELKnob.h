@@ -10,7 +10,7 @@
 
 #import "ELXmlData.h"
 
-@class ELFilter;
+@class ELOscillator;
 
 @interface ELKnob : NSObject <ELXmlData> {
   NSString        *name;            // name assigned to the knob
@@ -24,7 +24,7 @@
   BOOL            hasValue;         // If a value is stored in this knob
   BOOL            linkValue;
   
-  ELFilter        *filter;          // an function that supplies a dynamic alpha value in real-time
+  ELOscillator        *filter;          // an function that supplies a dynamic alpha value in real-time
   BOOL            linkFilter;
 }
 
@@ -35,7 +35,7 @@
        linkEnabled:(BOOL)linkEnabled
           hasValue:(BOOL)hasValue
          linkValue:(BOOL)linkValue
-            filter:(ELFilter*)filter
+            filter:(ELOscillator*)filter
         linkFilter:(BOOL)linkFilter;
        
 - (id)initWithName:(NSString *)name;
@@ -63,8 +63,8 @@
 - (BOOL)linkValue;
 - (void)setLinkValue:(BOOL)linkValue;
 
-- (ELFilter *)filter;
-- (void)setFilter:(ELFilter *)filter;
+- (ELOscillator *)filter;
+- (void)setFilter:(ELOscillator *)filter;
 
 - (BOOL)linkFilter;
 - (void)setLinkFilter:(BOOL)linkFilter;

@@ -1,14 +1,14 @@
 //
-//  ELFixedFilter.m
+//  ELFixedOscillator.m
 //  Elysium
 //
 //  Created by Matt Mower on 21/10/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELListFilter.h"
+#import "ELListOscillator.h"
 
-@implementation ELListFilter
+@implementation ELListOscillator
 
 - (id)initEnabled:(BOOL)_enabled_ values:(NSArray *)_values_ {
   if( ( self = [super initEnabled:_enabled_] ) ) {

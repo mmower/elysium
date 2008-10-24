@@ -1,14 +1,14 @@
 //
-//  ELRangedFilter.m
+//  ELRangedOscillator.m
 //  Elysium
 //
 //  Created by Matt Mower on 21/10/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELRangedFilter.h"
+#import "ELRangedOscillator.h"
 
-@implementation ELRangedFilter
+@implementation ELRangedOscillator
 
 - (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ {
   if( ( self = [super initEnabled:_enabled_] ) ) {

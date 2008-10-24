@@ -20,7 +20,7 @@
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-            filter:(ELFilter *)_filter_
+            filter:(ELOscillator *)_filter_
         linkFilter:(BOOL)_linkFilter_
 {
   if( ( self = [super initWithName:_name_

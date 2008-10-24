@@ -1,22 +1,22 @@
 //
-//  ELFilterDesignerController.m
+//  ELOscillatorDesignerController.m
 //  Elysium
 //
 //  Created by Matt Mower on 23/09/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELFilterDesignerController.h"
+#import "ELOscillatorDesignerController.h"
 
 #import "ELRangedKnob.h"
 
-#import "ELSquareFilter.h"
-#import "ELSawFilter.h"
-#import "ELSineFilter.h"
-#import "ELListFilter.h"
-#import "ELRandomFilter.h"
+#import "ELSquareOscillator.h"
+#import "ELSawOscillator.h"
+#import "ELSineOscillator.h"
+#import "ELListOscillator.h"
+#import "ELRandomOscillator.h"
 
-@implementation ELFilterDesignerController
+@implementation ELOscillatorDesignerController
 
 - (id)initWithKnob:(ELRangedKnob *)_knob_ {
   if( ( self = [self initWithWindowNibName:@"FilterDesigner"] ) ) {
@@ -31,33 +31,33 @@
     }
     
     if( [selectedTag isEqualToString:@"Square"] ) {
-      squareFilter = (ELSquareFilter *)[knob filter];
+      squareFilter = (ELSquareOscillator *)[knob filter];
     } else {
-      squareFilter = [[ELSquareFilter alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000];
+      squareFilter = [[ELSquareOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000];
     }
     
     if( [selectedTag isEqualToString:@"Saw"] ) {
-      sawFilter = (ELSawFilter *)[knob filter];
+      sawFilter = (ELSawOscillator *)[knob filter];
     } else {
-      sawFilter = [[ELSawFilter alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000];
+      sawFilter = [[ELSawOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000];
     }
     
     if( [selectedTag isKindOfClass:@"Sine"] ) {
-      sineFilter = (ELSineFilter *)[knob filter];
+      sineFilter = (ELSineOscillator *)[knob filter];
     } else {
-      sineFilter = [[ELSineFilter alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000];
+      sineFilter = [[ELSineOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000];
     }
     
     if( [selectedTag isEqualToString:@"List"] ) {
-      listFilter = (ELListFilter *)[knob filter];
+      listFilter = (ELListOscillator *)[knob filter];
     } else {
-      listFilter = [[ELListFilter alloc] initEnabled:YES values:[NSArray array]];
+      listFilter = [[ELListOscillator alloc] initEnabled:YES values:[NSArray array]];
     }
     
     if( [selectedTag isEqualToString:@"Random"] ) {
-      randomFilter = (ELRandomFilter *)[knob filter];
+      randomFilter = (ELRandomOscillator *)[knob filter];
     } else {
-      randomFilter = [[ELRandomFilter alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]];
+      randomFilter = [[ELRandomOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]];
     }
   }
   

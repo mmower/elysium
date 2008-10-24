@@ -1,5 +1,5 @@
 //
-//  ELSineFilter.h
+//  ELSineOscillator.h
 //  Elysium
 //
 //  Created by Matt Mower on 20/10/2008.
@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELRangedFilter.h"
+#import "ELRangedOscillator.h"
 
-@interface ELSineFilter : ELRangedFilter {
+@interface ELSineOscillator : ELRangedOscillator {
   float period;
 }
 

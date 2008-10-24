@@ -1,5 +1,5 @@
 //
-//  ELFilter.m
+//  ELOscillator.m
 //  Elysium
 //
 //  Created by Matt Mower on 08/09/2008.
@@ -8,12 +8,12 @@
 
 #import <CoreAudio/CoreAudio.h>
 
-#import "ELFilter.h"
-#import "ELSquareFilter.h"
-#import "ELSawFilter.h"
-#import "ELSineFilter.h"
+#import "ELOscillator.h"
+#import "ELSquareOscillator.h"
+#import "ELSawOscillator.h"
+#import "ELSineOscillator.h"
 
-@implementation ELFilter
+@implementation ELOscillator
 
 - (id)initEnabled:(BOOL)_enabled_ {
   if( ( self = [super init] ) ) {

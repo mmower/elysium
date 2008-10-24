@@ -24,7 +24,7 @@
 #import "ELNoteTool.h"
 #import "ELGenerateTool.h"
 
-#import "ELFilter.h"
+#import "ELOscillator.h"
 
 #import "RubyBlock.h"
 
@@ -199,7 +199,7 @@
 
 // Oscillator support
 
-- (void)addFilter:(ELFilter *)_filter_ {
+- (void)addFilter:(ELOscillator *)_filter_ {
   // [oscillators setObject:_oscillator_ forKey:[_oscillator_ name]];
 }
 

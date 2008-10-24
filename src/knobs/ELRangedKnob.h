@@ -26,7 +26,7 @@
        linkEnabled:(BOOL)linkEnabled
           hasValue:(BOOL)hasValue
          linkValue:(BOOL)linkValue
-            filter:(ELFilter *)filter
+            filter:(ELOscillator *)filter
         linkFilter:(BOOL)linkFilter;
 
 - (id)initWithName:(NSString *)name minimum:(float)minimum maximum:(float)maximum stepping:(float)stepping;

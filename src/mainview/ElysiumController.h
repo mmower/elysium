@@ -14,14 +14,14 @@
 @class ELHexInspectorController;
 @class ELLayerInspectorController;
 @class ELPlayerInspectorController;
-@class ELFilterDesignerController;
+@class ELOscillatorDesignerController;
 @class ELActivityViewerController;
 
 @interface ElysiumController : NSObject {
   ELHexInspectorController    *hexInspectorController;
   ELLayerInspectorController  *layerInspectorController;
   ELPlayerInspectorController *playerInspectorController;
-  ELFilterDesignerController  *filterDesignerController;
+  ELOscillatorDesignerController  *filterDesignerController;
   
   ELPaletteController         *paletteController;
   ELActivityViewerController  *activityViewerController;

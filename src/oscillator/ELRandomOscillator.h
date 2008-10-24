@@ -1,5 +1,5 @@
 //
-//  ELRandomFilter.h
+//  ELRandomOscillator.h
 //  Elysium
 //
 //  Created by Matt Mower on 21/10/2008.
@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELRangedFilter.h"
+#import "ELRangedOscillator.h"
 
-@interface ELRandomFilter : ELRangedFilter {
+@interface ELRandomOscillator : ELRangedOscillator {
 }
 
 @end

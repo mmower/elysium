@@ -14,7 +14,7 @@
 
 #import "RubyBlock.h"
 
-#import "ELFilterDesignerController.h"
+#import "ELOscillatorDesignerController.h"
 
 @implementation ELPlayerInspectorController
 
@@ -47,7 +47,7 @@
 }
 
 - (IBAction)editFilter:(id)_sender_ {
-  [[[ELFilterDesignerController alloc] initWithKnob:_sender_] showWindow:self];
+  [[[ELOscillatorDesignerController alloc] initWithKnob:_sender_] showWindow:self];
 }
 
 - (IBAction)editScript:(id)_sender_ {

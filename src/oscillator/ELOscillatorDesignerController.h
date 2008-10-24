@@ -1,5 +1,5 @@
 //
-//  ELFilterDesignerController.h
+//  ELOscillatorDesignerController.h
 //  Elysium
 //
 //  Created by Matt Mower on 23/09/2008.
@@ -9,21 +9,21 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELRangedKnob;
-@class ELSquareFilter;
-@class ELSawFilter;
-@class ELSineFilter;
-@class ELListFilter;
-@class ELRandomFilter;
+@class ELSquareOscillator;
+@class ELSawOscillator;
+@class ELSineOscillator;
+@class ELListOscillator;
+@class ELRandomOscillator;
 
-@interface ELFilterDesignerController : NSWindowController {
+@interface ELOscillatorDesignerController : NSWindowController {
   IBOutlet NSTabView  *tabView;
 
   ELRangedKnob        *knob;
-  ELSquareFilter      *squareFilter;
-  ELSawFilter         *sawFilter;
-  ELSineFilter        *sineFilter;
-  ELListFilter        *listFilter;
-  ELRandomFilter      *randomFilter;
+  ELSquareOscillator      *squareFilter;
+  ELSawOscillator         *sawFilter;
+  ELSineOscillator        *sineFilter;
+  ELListOscillator        *listFilter;
+  ELRandomOscillator      *randomFilter;
   
   NSString            *selectedTag;
 }
@@ -32,11 +32,11 @@
 
 @property (readonly) ELRangedKnob *knob;
 
-@property (readonly) ELSquareFilter *squareFilter;
-@property (readonly) ELSawFilter *sawFilter;
-@property (readonly) ELSineFilter *sineFilter;
-@property (readonly) ELListFilter *listFilter;
-@property (readonly) ELRandomFilter *randomFilter;
+@property (readonly) ELSquareOscillator *squareFilter;
+@property (readonly) ELSawOscillator *sawFilter;
+@property (readonly) ELSineOscillator *sineFilter;
+@property (readonly) ELListOscillator *listFilter;
+@property (readonly) ELRandomOscillator *randomFilter;
 
 - (void)setView:(NSView *)view cellsAllowFloats:(BOOL)allowFloat;
 

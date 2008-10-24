@@ -1,16 +1,16 @@
 //
-//  ELSquareFilter.m
+//  ELSquareOscillator.m
 //  Elysium
 //
 //  Created by Matt Mower on 20/10/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELSquareFilter.h"
+#import "ELSquareOscillator.h"
 
-#import "ELFilter.h"
+#import "ELOscillator.h"
 
-@implementation ELSquareFilter
+@implementation ELSquareOscillator
 
 - (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ rest:(float)_rest_ sustain:(float)_sustain_ {
   if( ( self = [super initEnabled:_enabled_ minimum:_minimum_ maximum:_maximum_] ) ) {

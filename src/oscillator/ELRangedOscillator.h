@@ -1,5 +1,5 @@
 //
-//  ELRangedFilter.h
+//  ELRangedOscillator.h
 //  Elysium
 //
 //  Created by Matt Mower on 21/10/2008.
@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELFilter.h"
+#import "ELOscillator.h"
 
-@interface ELRangedFilter : ELFilter {
+@interface ELRangedOscillator : ELOscillator {
   float minimum;
   float maximum;
   

@@ -1,5 +1,5 @@
 //
-//  ELFilter.h
+//  ELOscillator.h
 //  Elysium
 //
 //  Created by Matt Mower on 08/09/2008.
@@ -10,7 +10,7 @@
 
 #import "Elysium.h"
 
-@interface ELFilter : NSObject <ELXmlData> {
+@interface ELOscillator : NSObject <ELXmlData> {
   BOOL    enabled;
 }
 

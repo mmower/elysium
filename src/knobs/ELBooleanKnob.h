@@ -23,7 +23,7 @@
        linkEnabled:(BOOL)_linkEnabled
           hasValue:(BOOL)_hasValue
          linkValue:(BOOL)_linkValue
-            filter:(ELFilter *)filter
+            filter:(ELOscillator *)filter
         linkFilter:(BOOL)linkFilter;
          
 - (id)initWithName:(NSString *)name booleanValue:(BOOL)value;

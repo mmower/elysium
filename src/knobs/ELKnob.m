@@ -10,7 +10,7 @@
 
 #import "ElysiumDocument.h"
 
-#import "ELFilter.h"
+#import "ELOscillator.h"
 
 //
 // An ELKnob instance represents something controllable in the
@@ -44,7 +44,7 @@
        linkEnabled:(BOOL)_linkEnabled_
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
-            filter:(ELFilter *)_filter_
+            filter:(ELOscillator *)_filter_
         linkFilter:(BOOL)_linkFilter_
 {
   if( ( self = [self init] ) ) {
@@ -135,7 +135,7 @@
   [self didChangeValueForKey:@"value"];
 }
 
-- (ELFilter *)filter {
+- (ELOscillator *)filter {
   if( filter ) {
     return filter;
   } else if( linkFilter ) {
@@ -145,7 +145,7 @@
   }
 }
 
-- (void)setFilter:(ELFilter *)_filter_ {
+- (void)setFilter:(ELOscillator *)_filter_ {
   filter = _filter_;
 }
 
@@ -234,7 +234,7 @@
     if( [nodes count] > 0 ) {
       NSLog( @"found filter element");
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      [self setFilter:[[ELFilter alloc] initWithXmlRepresentation:element parent:self player:_player_]];
+      [self setFilter:[[ELOscillator alloc] initWithXmlRepresentation:element parent:self player:_player_]];
     }
   }
   

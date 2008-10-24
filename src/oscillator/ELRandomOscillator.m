@@ -1,14 +1,14 @@
 //
-//  ELRandomFilter.m
+//  ELRandomOscillator.m
 //  Elysium
 //
 //  Created by Matt Mower on 21/10/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELRandomFilter.h"
+#import "ELRandomOscillator.h"
 
-@implementation ELRandomFilter
+@implementation ELRandomOscillator
 
 + (void)initialize {
   srandomdev();

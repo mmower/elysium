@@ -1,14 +1,14 @@
 //
-//  ELSineFilter.m
+//  ELSineOscillator.m
 //  Elysium
 //
 //  Created by Matt Mower on 20/10/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELSineFilter.h"
+#import "ELSineOscillator.h"
 
-@implementation ELSineFilter
+@implementation ELSineOscillator
 
 - (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ period:(float)_period_ {
   if( ( self = [super initEnabled:_enabled_ minimum:_minimum_ maximum:_maximum_] ) ) {

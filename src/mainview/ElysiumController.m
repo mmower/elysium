@@ -16,7 +16,7 @@
 #import "ELHexInspectorController.h"
 #import "ELLayerInspectorController.h"
 #import "ELPlayerInspectorController.h"
-#import "ELFilterDesignerController.h"
+#import "ELOscillatorDesignerController.h"
 #import "ELActivityViewerController.h"
 
 #import "ElysiumDocument.h"
@@ -104,7 +104,7 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
 - (IBAction)showFilterDesigner:(id)_sender_ {
   if( !filterDesignerController ) {
-    filterDesignerController = [[ELFilterDesignerController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+    filterDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
   }
   
   [filterDesignerController showWindow:self];
