@@ -93,7 +93,7 @@
   id cell, formatter;
   if( [_view_ isKindOfClass:[NSControl class]] ) {
     if( ( cell = [(NSControl *)_view_ cell] ) ) {
-      if( ( formatter = [cell formatter] ) ) {
+      if( ( formatter = [cell formatter] )   ) {
         if( [formatter isKindOfClass:[NSNumberFormatter class]] ) {
           [formatter setAllowsFloats:_allowFloats_];
         }
