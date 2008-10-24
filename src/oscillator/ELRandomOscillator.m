@@ -19,7 +19,7 @@
 }
 
 - (float)generate {
-  long lrange = range * 100;
+  long lrange = ( range + 1 ) * 100;
   return minimum + ( ( random() % lrange ) / 100 );
 }
 
