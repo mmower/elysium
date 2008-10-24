@@ -1596,166 +1596,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: player.transposeKnob.filter</string>
-						<reference key="source" ref="1064230982"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1064230982"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: player.transposeKnob.filter</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">player.transposeKnob.filter</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSIsNotNil</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">380</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: player.tempoKnob.filter</string>
-						<reference key="source" ref="207308660"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="207308660"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: player.tempoKnob.filter</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">player.tempoKnob.filter</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSIsNotNil</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">382</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: player.barLengthKnob.filter</string>
-						<reference key="source" ref="41633524"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="41633524"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: player.barLengthKnob.filter</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">player.barLengthKnob.filter</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSIsNotNil</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">384</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: player.velocityKnob.filter</string>
-						<reference key="source" ref="495435429"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="495435429"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: player.velocityKnob.filter</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">player.velocityKnob.filter</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSIsNotNil</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">386</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: player.emphasisKnob.filter</string>
-						<reference key="source" ref="447839051"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="447839051"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: player.emphasisKnob.filter</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">player.emphasisKnob.filter</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSIsNotNil</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">388</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: player.durationKnob.filter</string>
-						<reference key="source" ref="143398534"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="143398534"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: player.durationKnob.filter</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">player.durationKnob.filter</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSIsNotNil</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">390</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: player.timeToLiveKnob.filter</string>
-						<reference key="source" ref="330343161"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="330343161"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: player.timeToLiveKnob.filter</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">player.timeToLiveKnob.filter</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSIsNotNil</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">392</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: player.pulseCountKnob.filter</string>
-						<reference key="source" ref="665126878"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="665126878"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: player.pulseCountKnob.filter</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">player.pulseCountKnob.filter</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSIsNotNil</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">394</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: player.transposeKnob.linkValue</string>
 						<reference key="source" ref="1064230982"/>
 						<reference key="destination" ref="1001"/>
@@ -1884,10 +1724,170 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: player.transposeKnob.oscillator</string>
+						<reference key="source" ref="1064230982"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1064230982"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: player.transposeKnob.oscillator</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">player.transposeKnob.oscillator</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">419</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: player.tempoKnob.oscillator</string>
+						<reference key="source" ref="207308660"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="207308660"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: player.tempoKnob.oscillator</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">player.tempoKnob.oscillator</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">420</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: player.barLengthKnob.oscillator</string>
+						<reference key="source" ref="41633524"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="41633524"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: player.barLengthKnob.oscillator</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">player.barLengthKnob.oscillator</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">421</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: player.velocityKnob.oscillator</string>
+						<reference key="source" ref="495435429"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="495435429"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: player.velocityKnob.oscillator</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">player.velocityKnob.oscillator</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">422</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: player.emphasisKnob.oscillator</string>
+						<reference key="source" ref="447839051"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="447839051"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: player.emphasisKnob.oscillator</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">player.emphasisKnob.oscillator</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">423</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: player.durationKnob.oscillator</string>
+						<reference key="source" ref="143398534"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="143398534"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: player.durationKnob.oscillator</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">player.durationKnob.oscillator</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">424</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: player.timeToLiveKnob.oscillator</string>
+						<reference key="source" ref="330343161"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="330343161"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: player.timeToLiveKnob.oscillator</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">player.timeToLiveKnob.oscillator</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">425</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: player.pulseCountKnob.oscillator</string>
+						<reference key="source" ref="665126878"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="665126878"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: player.pulseCountKnob.oscillator</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">player.pulseCountKnob.oscillator</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">426</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: player.transposeKnob</string>
 						<reference key="source" ref="713660084"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="1064160026">
+						<object class="NSNibBindingConnector" key="connector" id="837020755">
 							<reference key="NSSource" ref="713660084"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.transposeKnob</string>
@@ -1895,12 +1895,12 @@
 							<string key="NSKeyPath">player.transposeKnob</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSSelectorName</string>
-								<string key="NS.object.0">editFilter:</string>
+								<string key="NS.object.0">editOscillator:</string>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">413</int>
+					<int key="connectionID">429</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1915,20 +1915,20 @@
 							<string key="NSKeyPath">self</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSSelectorName</string>
-								<string key="NS.object.0">editFilter:</string>
+								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="1064160026"/>
+							<reference key="NSPreviousConnector" ref="837020755"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">414</int>
+					<int key="connectionID">430</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: player.durationKnob</string>
 						<reference key="source" ref="539101981"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="540269644">
+						<object class="NSNibBindingConnector" key="connector" id="477703883">
 							<reference key="NSSource" ref="539101981"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.durationKnob</string>
@@ -1936,12 +1936,12 @@
 							<string key="NSKeyPath">player.durationKnob</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSSelectorName</string>
-								<string key="NS.object.0">editFilter:</string>
+								<string key="NS.object.0">editOscillator:</string>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">417</int>
+					<int key="connectionID">431</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1956,13 +1956,13 @@
 							<string key="NSKeyPath">self</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSSelectorName</string>
-								<string key="NS.object.0">editFilter:</string>
+								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="540269644"/>
+							<reference key="NSPreviousConnector" ref="477703883"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">418</int>
+					<int key="connectionID">433</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3079,7 +3079,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">418</int>
+			<int key="maxID">433</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3112,7 +3112,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>editFilter:</string>
+							<string>editOscillator:</string>
 							<string>editScript:</string>
 							<string>removeScript:</string>
 						</object>

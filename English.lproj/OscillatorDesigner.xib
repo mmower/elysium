@@ -18,7 +18,7 @@
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSCustomObject" id="1001">
-				<string key="NSClassName">ELFilterDesignerController</string>
+				<string key="NSClassName">ELOscillatorDesignerController</string>
 			</object>
 			<object class="NSCustomObject" id="1003">
 				<string key="NSClassName">FirstResponder</string>
@@ -31,7 +31,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 138}, {207, 372}}</string>
 				<int key="NSWTFlags">-1543503872</int>
-				<string key="NSWindowTitle">Filter Designer</string>
+				<string key="NSWindowTitle">Oscillator Designer</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -1248,7 +1248,7 @@
 																					<object class="NSMutableArray" key="dict.values">
 																						<bool key="EncodedWithXMLCoder">YES</bool>
 																						<reference ref="9"/>
-																						<integer value="1040"/>
+																						<reference ref="492619525"/>
 																						<reference ref="9"/>
 																						<reference ref="6"/>
 																					</object>
@@ -1648,38 +1648,6 @@
 					<int key="connectionID">169</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: randomFilter.minimum</string>
-						<reference key="source" ref="420864786"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="420864786"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: randomFilter.minimum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">randomFilter.minimum</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">170</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: randomFilter.maximum</string>
-						<reference key="source" ref="752458398"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="752458398"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: randomFilter.maximum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">randomFilter.maximum</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">171</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">save:</string>
 						<reference key="source" ref="1003"/>
@@ -1696,220 +1664,252 @@
 					<int key="connectionID">173</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: squareFilter.minimum</string>
-						<reference key="source" ref="276646807"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="276646807"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: squareFilter.minimum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">squareFilter.minimum</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">174</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: squareFilter.maximum</string>
-						<reference key="source" ref="376700349"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="376700349"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: squareFilter.maximum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">squareFilter.maximum</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">175</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: squareFilter.rest</string>
-						<reference key="source" ref="978183639"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="978183639"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: squareFilter.rest</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">squareFilter.rest</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">176</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: squareFilter.sustain</string>
-						<reference key="source" ref="27009581"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="27009581"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: squareFilter.sustain</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">squareFilter.sustain</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">177</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sawFilter.minimum</string>
-						<reference key="source" ref="426130054"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="426130054"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sawFilter.minimum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sawFilter.minimum</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">182</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sawFilter.maximum</string>
-						<reference key="source" ref="985186759"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="985186759"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sawFilter.maximum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sawFilter.maximum</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">183</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sawFilter.rest</string>
-						<reference key="source" ref="132264095"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="132264095"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sawFilter.rest</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sawFilter.rest</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">184</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sawFilter.attack</string>
-						<reference key="source" ref="243883291"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="243883291"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sawFilter.attack</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sawFilter.attack</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">185</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sawFilter.sustain</string>
-						<reference key="source" ref="163382660"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="163382660"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sawFilter.sustain</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sawFilter.sustain</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">186</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sawFilter.decay</string>
-						<reference key="source" ref="198339827"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="198339827"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sawFilter.decay</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sawFilter.decay</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">187</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sineFilter.minimum</string>
-						<reference key="source" ref="710061641"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="710061641"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sineFilter.minimum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sineFilter.minimum</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">194</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sineFilter.maximum</string>
-						<reference key="source" ref="710513323"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="710513323"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sineFilter.maximum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sineFilter.maximum</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">202</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sineFilter.period</string>
-						<reference key="source" ref="711427410"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="711427410"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sineFilter.period</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sineFilter.period</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">203</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">tabView</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="257470903"/>
 					</object>
 					<int key="connectionID">204</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: randomOscillator.minimum</string>
+						<reference key="source" ref="420864786"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="420864786"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: randomOscillator.minimum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">randomOscillator.minimum</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">206</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: randomOscillator.maximum</string>
+						<reference key="source" ref="752458398"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="752458398"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: randomOscillator.maximum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">randomOscillator.maximum</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">207</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: squareOscillator.minimum</string>
+						<reference key="source" ref="276646807"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="276646807"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: squareOscillator.minimum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">squareOscillator.minimum</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">208</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: squareOscillator.maximum</string>
+						<reference key="source" ref="376700349"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="376700349"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: squareOscillator.maximum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">squareOscillator.maximum</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">209</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: squareOscillator.rest</string>
+						<reference key="source" ref="978183639"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="978183639"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: squareOscillator.rest</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">squareOscillator.rest</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">210</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: squareOscillator.sustain</string>
+						<reference key="source" ref="27009581"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="27009581"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: squareOscillator.sustain</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">squareOscillator.sustain</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">211</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sawOscillator.minimum</string>
+						<reference key="source" ref="426130054"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="426130054"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sawOscillator.minimum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sawOscillator.minimum</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">212</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sawOscillator.maximum</string>
+						<reference key="source" ref="985186759"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="985186759"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sawOscillator.maximum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sawOscillator.maximum</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">213</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sawOscillator.rest</string>
+						<reference key="source" ref="132264095"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="132264095"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sawOscillator.rest</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sawOscillator.rest</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">214</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sawOscillator.attack</string>
+						<reference key="source" ref="243883291"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="243883291"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sawOscillator.attack</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sawOscillator.attack</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">215</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sawOscillator.sustain</string>
+						<reference key="source" ref="163382660"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="163382660"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sawOscillator.sustain</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sawOscillator.sustain</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">216</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sawOscillator.decay</string>
+						<reference key="source" ref="198339827"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="198339827"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sawOscillator.decay</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sawOscillator.decay</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">217</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sineOscillator.minimum</string>
+						<reference key="source" ref="710061641"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="710061641"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sineOscillator.minimum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sineOscillator.minimum</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">218</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sineOscillator.maximum</string>
+						<reference key="source" ref="710513323"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="710513323"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sineOscillator.maximum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sineOscillator.maximum</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">219</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sineOscillator.period</string>
+						<reference key="source" ref="711427410"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="711427410"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sineOscillator.period</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sineOscillator.period</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">220</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2993,13 +2993,13 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">205</int>
+			<int key="maxID">220</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">ELFilterDesignerController</string>
+					<string key="className">ELOscillatorDesignerController</string>
 					<string key="superclassName">NSWindowController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3020,7 +3020,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">src/filter/ELFilterDesignerController.h</string>
+						<string key="minorKey">src/oscillator/ELOscillatorDesignerController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
