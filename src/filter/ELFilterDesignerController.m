@@ -81,10 +81,7 @@
 @synthesize randomFilter;
 
 - (IBAction)save:(id)_sender_ {
-  NSLog( @"Save & Close" );
-  
   NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
-  NSLog( @"Tab id = %@", tabId );
   if( [tabId isEqualToString:@"Square"] ) {
     [knob setFilter:squareFilter];
   } else if( [tabId isEqualToString:@"Saw"] ) {
