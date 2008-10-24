@@ -1,14 +1,14 @@
 //
-//  ELFixedOscillator.m
+//  ELSequencescillator.m
 //  Elysium
 //
 //  Created by Matt Mower on 21/10/2008.
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
-#import "ELListOscillator.h"
+#import "ELSequenceOscillator.h"
 
-@implementation ELListOscillator
+@implementation ELSequenceOscillator
 
 - (id)initEnabled:(BOOL)_enabled_ values:(NSArray *)_values_ {
   if( ( self = [super initEnabled:_enabled_] ) ) {
@@ -23,7 +23,7 @@
 
 - (float)generate {
   if( [values count] < 1 ) {
-    @throw [NSException exceptionWithName:@"OscillatorException" reason:@"ListOscillator has no values" userInfo:[NSDictionary dictionaryWithObject:self forKey:@"oscillator"]];
+    @throw [NSException exceptionWithName:@"OscillatorException" reason:@"SequenceOscillator has no values" userInfo:[NSDictionary dictionaryWithObject:self forKey:@"oscillator"]];
   }
   
   float value = [[values objectAtIndex:index] floatValue];

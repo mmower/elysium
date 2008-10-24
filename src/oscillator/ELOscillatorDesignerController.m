@@ -13,7 +13,7 @@
 #import "ELSquareOscillator.h"
 #import "ELSawOscillator.h"
 #import "ELSineOscillator.h"
-#import "ELListOscillator.h"
+#import "ELSequenceOscillator.h"
 #import "ELRandomOscillator.h"
 
 @implementation ELOscillatorDesignerController
@@ -49,9 +49,9 @@
     }
     
     if( [selectedTag isEqualToString:@"List"] ) {
-      listOscillator = (ELListOscillator *)[knob oscillator];
+      sequenceOscillator = (ELSequenceOscillator *)[knob oscillator];
     } else {
-      listOscillator = [[ELListOscillator alloc] initEnabled:YES values:[NSArray array]];
+      sequenceOscillator = [[ELSequenceOscillator alloc] initEnabled:YES values:[NSArray array]];
     }
     
     if( [selectedTag isEqualToString:@"Random"] ) {
@@ -82,7 +82,7 @@
 @synthesize squareOscillator;
 @synthesize sawOscillator;
 @synthesize sineOscillator;
-@synthesize listOscillator;
+@synthesize sequenceOscillator;
 @synthesize randomOscillator;
 
 - (void)setView:(NSView *)_view_ cellsAllowFloats:(BOOL)_allowFloats_ {
@@ -111,7 +111,7 @@
   } else if( [tabId isEqualToString:@"Sine"] ) {
     [knob setOscillator:sineOscillator];
   } else if( [tabId isEqualToString:@"List"] ) {
-    [knob setOscillator:listOscillator];
+    [knob setOscillator:sequenceOscillator];
   } else if( [tabId isEqualToString:@"Random"] ) {
     [knob setOscillator:randomOscillator];
   }

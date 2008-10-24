@@ -12,20 +12,20 @@
 @class ELSquareOscillator;
 @class ELSawOscillator;
 @class ELSineOscillator;
-@class ELListOscillator;
+@class ELSequenceOscillator;
 @class ELRandomOscillator;
 
 @interface ELOscillatorDesignerController : NSWindowController {
-  IBOutlet NSTabView  *tabView;
+  IBOutlet NSTabView    *tabView;
 
-  ELRangedKnob        *knob;
-  ELSquareOscillator  *squareOscillator;
-  ELSawOscillator     *sawOscillator;
-  ELSineOscillator    *sineOscillator;
-  ELListOscillator    *listOscillator;
-  ELRandomOscillator  *randomOscillator;
+  ELRangedKnob          *knob;
+  ELSquareOscillator    *squareOscillator;
+  ELSawOscillator       *sawOscillator;
+  ELSineOscillator      *sineOscillator;
+  ELSequenceOscillator  *sequenceOscillator;
+  ELRandomOscillator    *randomOscillator;
   
-  NSString            *selectedTag;
+  NSString              *selectedTag;
 }
 
 - (id)initWithKnob:(ELRangedKnob *)knob;
@@ -35,7 +35,7 @@
 @property (readonly) ELSquareOscillator *squareOscillator;
 @property (readonly) ELSawOscillator *sawOscillator;
 @property (readonly) ELSineOscillator *sineOscillator;
-@property (readonly) ELListOscillator *listOscillator;
+@property (readonly) ELSequenceOscillator *sequenceOscillator;
 @property (readonly) ELRandomOscillator *randomOscillator;
 
 - (void)setView:(NSView *)view cellsAllowFloats:(BOOL)allowFloat;

@@ -1,5 +1,5 @@
 //
-//  ELFixedOscillator.h
+//  ELSequenceOscillator.h
 //  Elysium
 //
 //  Created by Matt Mower on 21/10/2008.
@@ -10,7 +10,7 @@
 
 #import "ELOscillator.h"
 
-@interface ELListOscillator : ELOscillator {
+@interface ELSequenceOscillator : ELOscillator {
   NSMutableArray  *values;
   int             index;
 }
