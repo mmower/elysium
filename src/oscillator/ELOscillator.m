@@ -26,30 +26,30 @@
 @synthesize enabled;
 
 - (NSString *)type {
-  return @"filter";
+  return @"oscillator";
 }
 
 - (float)generate {
-  @throw [NSException exceptionWithName:@"FilterException"
-                                 reason:@"Filter#generate should never be called"
-                               userInfo:[NSDictionary dictionaryWithObject:self forKey:@"filter"]];
+  @throw [NSException exceptionWithName:@"OscillatorException"
+                                 reason:@"Oscillator#generate should never be called"
+                               userInfo:[NSDictionary dictionaryWithObject:self forKey:@"oscillator"]];
 }
 
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *filterElement = [NSXMLNode elementWithName:@"filter"];
+  NSXMLElement *oscillatorElement = [NSXMLNode elementWithName:@"oscillator"];
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [filterElement setAttributesAsDictionary:attributes];
+  [oscillatorElement setAttributesAsDictionary:attributes];
   
-  return filterElement;
+  return oscillatorElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   NSXMLNode *attributeNode = [_representation_ attributeForName:@"type"];
-  Class filterClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Filter", [attributeNode stringValue]] );
-  return [[filterClass alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
+  Class oscillatorClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Oscillator", [attributeNode stringValue]] );
+  return [[oscillatorClass alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
 }
 
 @end

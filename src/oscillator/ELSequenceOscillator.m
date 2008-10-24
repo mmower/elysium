@@ -23,7 +23,7 @@
 
 - (float)generate {
   if( [values count] < 1 ) {
-    @throw [NSException exceptionWithName:@"FilterException" reason:@"ListFilter has no values" userInfo:[NSDictionary dictionaryWithObject:self forKey:@"filter"]];
+    @throw [NSException exceptionWithName:@"OscillatorException" reason:@"ListOscillator has no values" userInfo:[NSDictionary dictionaryWithObject:self forKey:@"oscillator"]];
   }
   
   float value = [[values objectAtIndex:index] floatValue];

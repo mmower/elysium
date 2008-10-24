@@ -18,16 +18,15 @@
 @class ELActivityViewerController;
 
 @interface ElysiumController : NSObject {
-  ELHexInspectorController    *hexInspectorController;
-  ELLayerInspectorController  *layerInspectorController;
-  ELPlayerInspectorController *playerInspectorController;
-  ELOscillatorDesignerController  *filterDesignerController;
-  
-  ELPaletteController         *paletteController;
-  ELActivityViewerController  *activityViewerController;
+  ELHexInspectorController        *hexInspectorController;
+  ELLayerInspectorController      *layerInspectorController;
+  ELPlayerInspectorController     *playerInspectorController;
+  ELOscillatorDesignerController  *oscillatorDesignerController;
+  ELPaletteController             *paletteController;
+  ELActivityViewerController      *activityViewerController;
 }
 
-- (IBAction)showFilterDesigner:(id)sender;
+- (IBAction)showOscillatorDesigner:(id)sender;
 - (IBAction)showHexInspector:(id)sender;
 - (IBAction)showLayerInspector:(id)sender;
 - (IBAction)showPlayerInspector:(id)sender;

@@ -30,8 +30,8 @@
     hasValue      = NO;
     linkEnabled   = NO;
     linkValue     = NO;
-    filter        = nil;
-    linkFilter    = NO;
+    oscillator        = nil;
+    linkOscillator    = NO;
   }
   
   return self;
@@ -45,7 +45,7 @@
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
             oscillator:(ELOscillator *)_oscillator_
-        linkOscillator:(BOOL)_linkFilter_
+        linkOscillator:(BOOL)_linkOscillator_
 {
   if( ( self = [self init] ) ) {
     name          = _name_;
@@ -55,8 +55,8 @@
     linkEnabled   = _linkEnabled_;
     hasValue      = _hasValue_;
     linkValue     = _linkValue_;
-    filter        = _oscillator_;
-    linkFilter    = _linkFilter_;
+    oscillator        = _oscillator_;
+    linkOscillator    = _linkOscillator_;
   }
   
   return self;
@@ -135,26 +135,26 @@
   [self didChangeValueForKey:@"value"];
 }
 
-- (ELOscillator *)filter {
-  if( filter ) {
-    return filter;
-  } else if( linkFilter ) {
-    return [linkedKnob filter];
+- (ELOscillator *)oscillator {
+  if( oscillator ) {
+    return oscillator;
+  } else if( linkOscillator ) {
+    return [linkedKnob oscillator];
   } else {
     return nil;
   }
 }
 
 - (void)setOscillator:(ELOscillator *)_oscillator_ {
-  filter = _oscillator_;
+  oscillator = _oscillator_;
 }
 
-- (BOOL)linkFilter {
-  return linkFilter;
+- (BOOL)linkOscillator {
+  return linkOscillator;
 }
 
-- (void)setLinkOscillator:(BOOL)_linkFilter_ {
-  linkFilter = _linkFilter_;
+- (void)setLinkOscillator:(BOOL)_linkOscillator_ {
+  linkOscillator = _linkOscillator_;
 }
 
 // ELXmlData protocol
@@ -187,8 +187,8 @@
   [enabledElement setAttributesAsDictionary:attributes];
   [knobElement addChild:enabledElement];
 
-  if( filter ) {
-    [knobElement addChild:[filter xmlRepresentation]];
+  if( oscillator ) {
+    [knobElement addChild:[oscillator xmlRepresentation]];
   }
   
   return knobElement;
@@ -228,11 +228,11 @@
     attrNode = [element attributeForName:@"linked"];
     [self setLinkEnabled:[[attrNode stringValue] boolValue]];
     
-    // Decode filter
+    // Decode oscillator
     
-    nodes = [_representation_ nodesForXPath:@"filter" error:nil];
+    nodes = [_representation_ nodesForXPath:@"oscillator" error:nil];
     if( [nodes count] > 0 ) {
-      NSLog( @"found filter element");
+      NSLog( @"found oscillator element");
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       [self setOscillator:[[ELOscillator alloc] initWithXmlRepresentation:element parent:self player:_player_]];
     }

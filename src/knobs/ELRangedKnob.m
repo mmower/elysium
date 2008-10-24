@@ -21,7 +21,7 @@
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
             oscillator:(ELOscillator *)_oscillator_
-        linkOscillator:(BOOL)_linkFilter_
+        linkOscillator:(BOOL)_linkOscillator_
 {
   if( ( self = [super initWithName:_name_
                         linkedKnob:_linkedKnob_
@@ -31,7 +31,7 @@
                           hasValue:_hasValue_
                          linkValue:_linkValue_
                             oscillator:_oscillator_
-                        linkOscillator:_linkFilter_] ) )
+                        linkOscillator:_linkOscillator_] ) )
   {
     [self setMinimum:_minimum_];
     [self setMaximum:_maximum_];

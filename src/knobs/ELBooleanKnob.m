@@ -19,7 +19,7 @@
           hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
             oscillator:(ELOscillator*)_oscillator_
-        linkOscillator:(BOOL)_linkFilter_
+        linkOscillator:(BOOL)_linkOscillator_
 {
   if( ( self = [self initWithName:name
                        linkedKnob:_knob_
@@ -29,7 +29,7 @@
                          hasValue:_hasValue_
                         linkValue:_linkValue_
                            oscillator:_oscillator_
-                       linkOscillator:_linkFilter_] ) )
+                       linkOscillator:_linkOscillator_] ) )
   {
     value = _value_;
   }
@@ -103,8 +103,8 @@
                                                linkEnabled:linkEnabled
                                                   hasValue:hasValue
                                                  linkValue:linkValue
-                                                    oscillator:filter
-                                                linkOscillator:linkFilter];
+                                                    oscillator:oscillator
+                                                linkOscillator:linkOscillator];
 }
 
 @end

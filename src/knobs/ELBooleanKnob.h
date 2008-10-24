@@ -23,8 +23,8 @@
        linkEnabled:(BOOL)_linkEnabled
           hasValue:(BOOL)_hasValue
          linkValue:(BOOL)_linkValue
-            oscillator:(ELOscillator *)filter
-        linkOscillator:(BOOL)linkFilter;
+            oscillator:(ELOscillator *)oscillator
+        linkOscillator:(BOOL)linkOscillator;
          
 - (id)initWithName:(NSString *)name booleanValue:(BOOL)value;
 - (id)initWithName:(NSString *)name linkedToBooleanKnob:(ELBooleanKnob *)knob;

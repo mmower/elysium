@@ -102,12 +102,12 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
 // Actions
 
-- (IBAction)showFilterDesigner:(id)_sender_ {
-  if( !filterDesignerController ) {
-    filterDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+- (IBAction)showOscillatorDesigner:(id)_sender_ {
+  if( !oscillatorDesignerController ) {
+    oscillatorDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
   }
   
-  [filterDesignerController showWindow:self];
+  [oscillatorDesignerController showWindow:self];
 }
 
 - (IBAction)showHexInspector:(id)_sender_ {

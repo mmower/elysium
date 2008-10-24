@@ -19,45 +19,45 @@
 @implementation ELOscillatorDesignerController
 
 - (id)initWithKnob:(ELRangedKnob *)_knob_ {
-  if( ( self = [self initWithWindowNibName:@"FilterDesigner"] ) ) {
+  if( ( self = [self initWithWindowNibName:@"OscillatorDesigner"] ) ) {
     knob = _knob_;
     
-    NSLog( @"Knob = %@, Min=%f, Max=%f, Stepping=%f, Filter = %@", knob, [knob minimum], [knob maximum], [knob stepping], [knob filter] );
+    NSLog( @"Knob = %@, Min=%f, Max=%f, Stepping=%f, Oscillator = %@", knob, [knob minimum], [knob maximum], [knob stepping], [knob oscillator] );
     
-    if( [knob filter] ) {
-      selectedTag = [[knob filter] type];
+    if( [knob oscillator] ) {
+      selectedTag = [[knob oscillator] type];
     } else {
       selectedTag = nil;
     }
     
     if( [selectedTag isEqualToString:@"Square"] ) {
-      squareFilter = (ELSquareOscillator *)[knob filter];
+      squareOscillator = (ELSquareOscillator *)[knob oscillator];
     } else {
-      squareFilter = [[ELSquareOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000];
+      squareOscillator = [[ELSquareOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000];
     }
     
     if( [selectedTag isEqualToString:@"Saw"] ) {
-      sawFilter = (ELSawOscillator *)[knob filter];
+      sawOscillator = (ELSawOscillator *)[knob oscillator];
     } else {
-      sawFilter = [[ELSawOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000];
+      sawOscillator = [[ELSawOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000];
     }
     
     if( [selectedTag isKindOfClass:@"Sine"] ) {
-      sineFilter = (ELSineOscillator *)[knob filter];
+      sineOscillator = (ELSineOscillator *)[knob oscillator];
     } else {
-      sineFilter = [[ELSineOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000];
+      sineOscillator = [[ELSineOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000];
     }
     
     if( [selectedTag isEqualToString:@"List"] ) {
-      listFilter = (ELListOscillator *)[knob filter];
+      listOscillator = (ELListOscillator *)[knob oscillator];
     } else {
-      listFilter = [[ELListOscillator alloc] initEnabled:YES values:[NSArray array]];
+      listOscillator = [[ELListOscillator alloc] initEnabled:YES values:[NSArray array]];
     }
     
     if( [selectedTag isEqualToString:@"Random"] ) {
-      randomFilter = (ELRandomOscillator *)[knob filter];
+      randomOscillator = (ELRandomOscillator *)[knob oscillator];
     } else {
-      randomFilter = [[ELRandomOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]];
+      randomOscillator = [[ELRandomOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]];
     }
   }
   
@@ -79,11 +79,11 @@
 
 @synthesize knob;
 
-@synthesize squareFilter;
-@synthesize sawFilter;
-@synthesize sineFilter;
-@synthesize listFilter;
-@synthesize randomFilter;
+@synthesize squareOscillator;
+@synthesize sawOscillator;
+@synthesize sineOscillator;
+@synthesize listOscillator;
+@synthesize randomOscillator;
 
 - (void)setView:(NSView *)_view_ cellsAllowFloats:(BOOL)_allowFloats_ {
   for( NSView *view in [_view_ subviews] ) {
@@ -105,15 +105,15 @@
 - (IBAction)save:(id)_sender_ {
   NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
   if( [tabId isEqualToString:@"Square"] ) {
-    [knob setOscillator:squareFilter];
+    [knob setOscillator:squareOscillator];
   } else if( [tabId isEqualToString:@"Saw"] ) {
-    [knob setOscillator:sawFilter];
+    [knob setOscillator:sawOscillator];
   } else if( [tabId isEqualToString:@"Sine"] ) {
-    [knob setOscillator:sineFilter];
+    [knob setOscillator:sineOscillator];
   } else if( [tabId isEqualToString:@"List"] ) {
-    [knob setOscillator:listFilter];
+    [knob setOscillator:listOscillator];
   } else if( [tabId isEqualToString:@"Random"] ) {
-    [knob setOscillator:randomFilter];
+    [knob setOscillator:randomOscillator];
   }
   
   [self close];
