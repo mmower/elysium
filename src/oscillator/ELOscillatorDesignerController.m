@@ -22,8 +22,6 @@
   if( ( self = [self initWithWindowNibName:@"OscillatorDesigner"] ) ) {
     knob = _knob_;
     
-    NSLog( @"Knob = %@, Min=%f, Max=%f, Stepping=%f, Oscillator = %@", knob, [knob minimum], [knob maximum], [knob stepping], [knob oscillator] );
-    
     if( [knob oscillator] ) {
       selectedTag = [[knob oscillator] type];
     } else {
