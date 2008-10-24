@@ -51,9 +51,9 @@
 		C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
 		C94F55760EA6A73900320BF5 /* ELKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C94F55750EA6A73900320BF5 /* ELKey.m */; };
-		C9599AE80EAE5D9000310D3D /* ELRandomFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AE70EAE5D9000310D3D /* ELRandomFilter.m */; };
-		C9599AEB0EAE5DA500310D3D /* ELListFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEA0EAE5DA500310D3D /* ELListFilter.m */; };
-		C9599AEF0EAE7C1E00310D3D /* ELRangedFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEE0EAE7C1E00310D3D /* ELRangedFilter.m */; };
+		C9599AE80EAE5D9000310D3D /* ELRandomOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AE70EAE5D9000310D3D /* ELRandomOscillator.m */; };
+		C9599AEB0EAE5DA500310D3D /* ELSequenceOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */; };
+		C9599AEF0EAE7C1E00310D3D /* ELRangedOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
 		C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC8C0E4F6042008F309B /* sectionheader.gif */; };
 		C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -92,7 +92,7 @@
 		C9A9F1E40E8A42DF009A06A3 /* ELPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F19C0E8A42DF009A06A3 /* ELPlayer.m */; };
 		C9A9F1E50E8A42DF009A06A3 /* ELPlayhead.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F19E0E8A42DF009A06A3 /* ELPlayhead.m */; };
 		C9A9F1E60E8A42DF009A06A3 /* ElysiumDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1A00E8A42DF009A06A3 /* ElysiumDocument.m */; };
-		C9A9F1E70E8A42DF009A06A3 /* ELFilterDesignerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */; };
+		C9A9F1E70E8A42DF009A06A3 /* ELOscillatorDesignerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1A50E8A42DF009A06A3 /* ELOscillatorDesignerController.m */; };
 		C9A9F1E90E8A42DF009A06A3 /* ELHexInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1AB0E8A42DF009A06A3 /* ELHexInspectorController.m */; };
 		C9A9F1EA0E8A42DF009A06A3 /* ELLayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1AE0E8A42DF009A06A3 /* ELLayerInspectorController.m */; };
 		C9A9F1EB0E8A42DF009A06A3 /* ELPlayerInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1B10E8A42DF009A06A3 /* ELPlayerInspectorController.m */; };
@@ -116,15 +116,15 @@
 		C9A9F1FD0E8A42DF009A06A3 /* ELSpinTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DB0E8A42DF009A06A3 /* ELSpinTool.m */; };
 		C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */; };
 		C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */; };
-		C9A9F20F0E8A43F7009A06A3 /* ELFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */; };
+		C9A9F20F0E8A43F7009A06A3 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */; };
 		C9B1F3700E9BF8000017092F /* RubyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F36F0E9BF8000017092F /* RubyBlock.m */; };
 		C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */; };
 		C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */; };
 		C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */; };
 		C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */; };
-		C9B641FF0EAD1495006AA089 /* ELSineFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B641FE0EAD1495006AA089 /* ELSineFilter.m */; };
-		C9B642020EAD1504006AA089 /* ELSquareFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642010EAD1504006AA089 /* ELSquareFilter.m */; };
-		C9B642050EAD153B006AA089 /* ELSawFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642040EAD153B006AA089 /* ELSawFilter.m */; };
+		C9B641FF0EAD1495006AA089 /* ELSineOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B641FE0EAD1495006AA089 /* ELSineOscillator.m */; };
+		C9B642020EAD1504006AA089 /* ELSquareOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642010EAD1504006AA089 /* ELSquareOscillator.m */; };
+		C9B642050EAD153B006AA089 /* ELSawOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642040EAD153B006AA089 /* ELSawOscillator.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9C931620EB12DA1009528C6 /* ELRangedKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C931610EB12DA1009528C6 /* ELRangedKnob.m */; };
 		C9C9AF2C0E82D0F500277071 /* deploy.rake in Resources */ = {isa = PBXBuildFile; fileRef = C9C9AF2B0E82D0F500277071 /* deploy.rake */; };
@@ -238,12 +238,12 @@
 		C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
 		C94F55740EA6A73900320BF5 /* ELKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKey.h; sourceTree = "<group>"; };
 		C94F55750EA6A73900320BF5 /* ELKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKey.m; sourceTree = "<group>"; };
-		C9599AE60EAE5D9000310D3D /* ELRandomFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRandomFilter.h; sourceTree = "<group>"; };
-		C9599AE70EAE5D9000310D3D /* ELRandomFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRandomFilter.m; sourceTree = "<group>"; };
-		C9599AE90EAE5DA500310D3D /* ELListFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELListFilter.h; sourceTree = "<group>"; };
-		C9599AEA0EAE5DA500310D3D /* ELListFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELListFilter.m; sourceTree = "<group>"; };
-		C9599AED0EAE7C1E00310D3D /* ELRangedFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedFilter.h; sourceTree = "<group>"; };
-		C9599AEE0EAE7C1E00310D3D /* ELRangedFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedFilter.m; sourceTree = "<group>"; };
+		C9599AE60EAE5D9000310D3D /* ELRandomOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRandomOscillator.h; sourceTree = "<group>"; };
+		C9599AE70EAE5D9000310D3D /* ELRandomOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRandomOscillator.m; sourceTree = "<group>"; };
+		C9599AE90EAE5DA500310D3D /* ELSequenceOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSequenceOscillator.h; sourceTree = "<group>"; };
+		C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSequenceOscillator.m; sourceTree = "<group>"; };
+		C9599AED0EAE7C1E00310D3D /* ELRangedOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedOscillator.h; sourceTree = "<group>"; };
+		C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedOscillator.m; sourceTree = "<group>"; };
 		C97FEC860E4F5FB2008F309B /* StackedListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackedListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StackedListView-Info.plist"; sourceTree = "<group>"; };
 		C97FEC8C0E4F6042008F309B /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
@@ -292,8 +292,8 @@
 		C9A9F1A00E8A42DF009A06A3 /* ElysiumDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElysiumDocument.m; sourceTree = "<group>"; };
 		C9A9F1A10E8A42DF009A06A3 /* ELXmlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELXmlData.h; path = src/ELXmlData.h; sourceTree = "<group>"; };
 		C9A9F1A20E8A42DF009A06A3 /* Elysium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Elysium.h; path = src/Elysium.h; sourceTree = "<group>"; };
-		C9A9F1A40E8A42DF009A06A3 /* ELFilterDesignerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFilterDesignerController.h; sourceTree = "<group>"; };
-		C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFilterDesignerController.m; sourceTree = "<group>"; };
+		C9A9F1A40E8A42DF009A06A3 /* ELOscillatorDesignerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillatorDesignerController.h; sourceTree = "<group>"; };
+		C9A9F1A50E8A42DF009A06A3 /* ELOscillatorDesignerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillatorDesignerController.m; sourceTree = "<group>"; };
 		C9A9F1AA0E8A42DF009A06A3 /* ELHexInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHexInspectorController.h; sourceTree = "<group>"; };
 		C9A9F1AB0E8A42DF009A06A3 /* ELHexInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHexInspectorController.m; sourceTree = "<group>"; };
 		C9A9F1AD0E8A42DF009A06A3 /* ELLayerInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayerInspectorController.h; sourceTree = "<group>"; };
@@ -340,8 +340,8 @@
 		C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSplitTool.m; sourceTree = "<group>"; };
 		C9A9F1DE0E8A42DF009A06A3 /* ELTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTool.h; sourceTree = "<group>"; };
 		C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
-		C9A9F20D0E8A43F7009A06A3 /* ELFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELFilter.h; sourceTree = "<group>"; };
-		C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELFilter.m; sourceTree = "<group>"; };
+		C9A9F20D0E8A43F7009A06A3 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
+		C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
 		C9B1F36E0E9BF8000017092F /* RubyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RubyBlock.h; sourceTree = "<group>"; };
 		C9B1F36F0E9BF8000017092F /* RubyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubyBlock.m; sourceTree = "<group>"; };
 		C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+AsRubyBlock.h"; sourceTree = "<group>"; };
@@ -351,12 +351,12 @@
 		C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptInspectorController.m; sourceTree = "<group>"; };
 		C9B1F3F40E9C99DE0017092F /* MacRuby+EvalProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MacRuby+EvalProc.h"; sourceTree = "<group>"; };
 		C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MacRuby+EvalProc.m"; sourceTree = "<group>"; };
-		C9B641FD0EAD1495006AA089 /* ELSineFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSineFilter.h; sourceTree = "<group>"; };
-		C9B641FE0EAD1495006AA089 /* ELSineFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSineFilter.m; sourceTree = "<group>"; };
-		C9B642000EAD1504006AA089 /* ELSquareFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSquareFilter.h; sourceTree = "<group>"; };
-		C9B642010EAD1504006AA089 /* ELSquareFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSquareFilter.m; sourceTree = "<group>"; };
-		C9B642030EAD153B006AA089 /* ELSawFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSawFilter.h; sourceTree = "<group>"; };
-		C9B642040EAD153B006AA089 /* ELSawFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSawFilter.m; sourceTree = "<group>"; };
+		C9B641FD0EAD1495006AA089 /* ELSineOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSineOscillator.h; sourceTree = "<group>"; };
+		C9B641FE0EAD1495006AA089 /* ELSineOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSineOscillator.m; sourceTree = "<group>"; };
+		C9B642000EAD1504006AA089 /* ELSquareOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSquareOscillator.h; sourceTree = "<group>"; };
+		C9B642010EAD1504006AA089 /* ELSquareOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSquareOscillator.m; sourceTree = "<group>"; };
+		C9B642030EAD153B006AA089 /* ELSawOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSawOscillator.h; sourceTree = "<group>"; };
+		C9B642040EAD153B006AA089 /* ELSawOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSawOscillator.m; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9C931600EB12DA1009528C6 /* ELRangedKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedKnob.h; sourceTree = "<group>"; };
 		C9C931610EB12DA1009528C6 /* ELRangedKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedKnob.m; sourceTree = "<group>"; };
@@ -595,7 +595,7 @@
 				C9A9F1910E8A42DF009A06A3 /* datamodel */,
 				C9A9F1A10E8A42DF009A06A3 /* ELXmlData.h */,
 				C9A9F1A20E8A42DF009A06A3 /* Elysium.h */,
-				C9A9F1A30E8A42DF009A06A3 /* filter */,
+				C9A9F1A30E8A42DF009A06A3 /* oscillator */,
 				C9A9F1A80E8A42DF009A06A3 /* inspector */,
 				C9A9F1B20E8A42DF009A06A3 /* knobs */,
 				C9A9F1BB0E8A42DF009A06A3 /* layer_manager */,
@@ -637,28 +637,28 @@
 			path = src/datamodel;
 			sourceTree = "<group>";
 		};
-		C9A9F1A30E8A42DF009A06A3 /* filter */ = {
+		C9A9F1A30E8A42DF009A06A3 /* oscillator */ = {
 			isa = PBXGroup;
 			children = (
-				C9A9F20D0E8A43F7009A06A3 /* ELFilter.h */,
-				C9A9F20E0E8A43F7009A06A3 /* ELFilter.m */,
-				C9A9F1A40E8A42DF009A06A3 /* ELFilterDesignerController.h */,
-				C9A9F1A50E8A42DF009A06A3 /* ELFilterDesignerController.m */,
-				C9B641FD0EAD1495006AA089 /* ELSineFilter.h */,
-				C9B641FE0EAD1495006AA089 /* ELSineFilter.m */,
-				C9B642000EAD1504006AA089 /* ELSquareFilter.h */,
-				C9B642010EAD1504006AA089 /* ELSquareFilter.m */,
-				C9B642030EAD153B006AA089 /* ELSawFilter.h */,
-				C9B642040EAD153B006AA089 /* ELSawFilter.m */,
-				C9599AE60EAE5D9000310D3D /* ELRandomFilter.h */,
-				C9599AE70EAE5D9000310D3D /* ELRandomFilter.m */,
-				C9599AE90EAE5DA500310D3D /* ELListFilter.h */,
-				C9599AEA0EAE5DA500310D3D /* ELListFilter.m */,
-				C9599AED0EAE7C1E00310D3D /* ELRangedFilter.h */,
-				C9599AEE0EAE7C1E00310D3D /* ELRangedFilter.m */,
+				C9A9F20D0E8A43F7009A06A3 /* ELOscillator.h */,
+				C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */,
+				C9A9F1A40E8A42DF009A06A3 /* ELOscillatorDesignerController.h */,
+				C9A9F1A50E8A42DF009A06A3 /* ELOscillatorDesignerController.m */,
+				C9B641FD0EAD1495006AA089 /* ELSineOscillator.h */,
+				C9B641FE0EAD1495006AA089 /* ELSineOscillator.m */,
+				C9B642000EAD1504006AA089 /* ELSquareOscillator.h */,
+				C9B642010EAD1504006AA089 /* ELSquareOscillator.m */,
+				C9B642030EAD153B006AA089 /* ELSawOscillator.h */,
+				C9B642040EAD153B006AA089 /* ELSawOscillator.m */,
+				C9599AE60EAE5D9000310D3D /* ELRandomOscillator.h */,
+				C9599AE70EAE5D9000310D3D /* ELRandomOscillator.m */,
+				C9599AE90EAE5DA500310D3D /* ELSequenceOscillator.h */,
+				C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */,
+				C9599AED0EAE7C1E00310D3D /* ELRangedOscillator.h */,
+				C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */,
 			);
-			name = filter;
-			path = src/filter;
+			name = oscillator;
+			path = src/oscillator;
 			sourceTree = "<group>";
 		};
 		C9A9F1A80E8A42DF009A06A3 /* inspector */ = {
@@ -1073,7 +1073,7 @@
 				C9A9F1E40E8A42DF009A06A3 /* ELPlayer.m in Sources */,
 				C9A9F1E50E8A42DF009A06A3 /* ELPlayhead.m in Sources */,
 				C9A9F1E60E8A42DF009A06A3 /* ElysiumDocument.m in Sources */,
-				C9A9F1E70E8A42DF009A06A3 /* ELFilterDesignerController.m in Sources */,
+				C9A9F1E70E8A42DF009A06A3 /* ELOscillatorDesignerController.m in Sources */,
 				C9A9F1E90E8A42DF009A06A3 /* ELHexInspectorController.m in Sources */,
 				C9A9F1EA0E8A42DF009A06A3 /* ELLayerInspectorController.m in Sources */,
 				C9A9F1EB0E8A42DF009A06A3 /* ELPlayerInspectorController.m in Sources */,
@@ -1097,7 +1097,7 @@
 				C9A9F1FD0E8A42DF009A06A3 /* ELSpinTool.m in Sources */,
 				C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */,
 				C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */,
-				C9A9F20F0E8A43F7009A06A3 /* ELFilter.m in Sources */,
+				C9A9F20F0E8A43F7009A06A3 /* ELOscillator.m in Sources */,
 				C9B1F3700E9BF8000017092F /* RubyBlock.m in Sources */,
 				C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */,
 				C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */,
@@ -1106,12 +1106,12 @@
 				C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */,
 				C9104A5A0EAA1B0300B78267 /* ELNoteGroup.m in Sources */,
 				C9104AA80EAA2D9600B78267 /* ELPlayable.m in Sources */,
-				C9B641FF0EAD1495006AA089 /* ELSineFilter.m in Sources */,
-				C9B642020EAD1504006AA089 /* ELSquareFilter.m in Sources */,
-				C9B642050EAD153B006AA089 /* ELSawFilter.m in Sources */,
-				C9599AE80EAE5D9000310D3D /* ELRandomFilter.m in Sources */,
-				C9599AEB0EAE5DA500310D3D /* ELListFilter.m in Sources */,
-				C9599AEF0EAE7C1E00310D3D /* ELRangedFilter.m in Sources */,
+				C9B641FF0EAD1495006AA089 /* ELSineOscillator.m in Sources */,
+				C9B642020EAD1504006AA089 /* ELSquareOscillator.m in Sources */,
+				C9B642050EAD153B006AA089 /* ELSawOscillator.m in Sources */,
+				C9599AE80EAE5D9000310D3D /* ELRandomOscillator.m in Sources */,
+				C9599AEB0EAE5DA500310D3D /* ELSequenceOscillator.m in Sources */,
+				C9599AEF0EAE7C1E00310D3D /* ELRangedOscillator.m in Sources */,
 				C9C931620EB12DA1009528C6 /* ELRangedKnob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
