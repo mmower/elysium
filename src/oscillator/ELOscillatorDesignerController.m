@@ -100,7 +100,7 @@
   }
 }
 
-- (IBAction)save:(id)_sender_ {
+- (IBAction)saveOscillator:(id)_sender_ {
   NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
   if( [tabId isEqualToString:@"Square"] ) {
     [knob setOscillator:squareOscillator];
@@ -117,7 +117,12 @@
   [self close];
 }
 
-- (IBAction)cancel:(id)_sender_ {
+- (IBAction)cancelOscillator:(id)_sender_ {
+  [self close];
+}
+
+- (IBAction)removeOscillator:(id)_sender_ {
+  [knob setOscillator:nil];
   [self close];
 }
 

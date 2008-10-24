@@ -40,7 +40,8 @@
 
 - (void)setView:(NSView *)view cellsAllowFloats:(BOOL)allowFloat;
 
-- (IBAction)save:(id)sender;
-- (IBAction)cancel:(id)sender;
+- (IBAction)saveOscillator:(id)sender;
+- (IBAction)cancelOscillator:(id)sender;
+- (IBAction)removeOscillator:(id)sender;
 
 @end
