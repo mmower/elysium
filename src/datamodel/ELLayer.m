@@ -342,7 +342,7 @@ NSPredicate *deadPlayheadFilter;
   [self setSelectedHex:hex];
   if( hex ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:hex];
-    [[hex note] playOnChannel:[channelKnob value] duration:[durationKnob filteredValue] velocity:[velocityKnob filteredValue] transpose:0];
+    [[hex note] playOnChannel:[channelKnob value] duration:[durationKnob dynamicValue] velocity:[velocityKnob dynamicValue] transpose:0];
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
   }

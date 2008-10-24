@@ -80,18 +80,18 @@ static NSString * const toolType = @"generate";
 // Tool runner
 
 - (BOOL)shouldPulseOnBeat:(int)_beat_ {
-  int pulseCount = [pulseCountKnob filteredValue];
+  int pulseCount = [pulseCountKnob dynamicValue];
   if( pulseCount < 1 ) {
     return NO;
   } else {
-    return ( ( _beat_ - [offsetKnob filteredValue] ) % pulseCount ) == 0;
+    return ( ( _beat_ - [offsetKnob dynamicValue] ) % pulseCount ) == 0;
   }
 }
 
 - (void)runTool:(ELPlayhead *)_playhead_ {
     [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
                                                   direction:[directionKnob value]
-                                                        TTL:[timeToLiveKnob filteredValue]]];
+                                                        TTL:[timeToLiveKnob dynamicValue]]];
 }
 
 // Drawing

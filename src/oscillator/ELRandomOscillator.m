@@ -14,6 +14,10 @@
   srandomdev();
 }
 
+- (NSString *)type {
+  return @"Random";
+}
+
 - (float)generate {
   long lrange = range * 100;
   return minimum + ( ( random() % lrange ) / 100 );

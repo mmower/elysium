@@ -84,16 +84,16 @@ static NSString * const toolType = @"note";
   int velocity;
   
   if( [layer firstBeatInBar] ) {
-    velocity = [emphasisKnob filteredValue];
+    velocity = [emphasisKnob dynamicValue];
   } else {
-    velocity = [velocityKnob filteredValue];
+    velocity = [velocityKnob dynamicValue];
   }
   
   int triad = [triadKnob value];
   if( triad == 0 ) {
-    [[[_playhead_ position] note] playOnChannel:[[layer channelKnob] value] duration:[durationKnob filteredValue] velocity:velocity transpose:[[layer transposeKnob] value]];
+    [[[_playhead_ position] note] playOnChannel:[[layer channelKnob] value] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue]];
   } else {
-    [[[_playhead_ position] triad:triad] playOnChannel:[[layer channelKnob] value] duration:[durationKnob filteredValue] velocity:velocity transpose:[[layer transposeKnob] value]];
+    [[[_playhead_ position] triad:triad] playOnChannel:[[layer channelKnob] value] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue]];
   }
 }
 
