@@ -37,6 +37,10 @@
                                              object:nil];
 }
 
+- (BOOL)acceptsFirstMouse:(NSEvent *)_event_ {
+  return YES;
+}
+
 - (void)focus:(ELHex *)_hex_ {
   [self setHex:_hex_];
   [stackedList rearrangeSubviews];
