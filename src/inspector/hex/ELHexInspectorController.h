@@ -32,6 +32,7 @@
 - (void)focus:(ELHex *)hex;
 - (void)selectionChanged:(NSNotification*)notification;
 
+- (IBAction)editOscillator:(id)sender;
 - (void)editWillRunScript:(ELTool *)tool;
 - (void)editDidRunScript:(ELTool *)tool;
 - (void)removeWillRunScript:(ELTool *)tool;

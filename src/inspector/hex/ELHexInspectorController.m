@@ -11,6 +11,8 @@
 #import "ELHex.h"
 #import "ELTool.h"
 
+#import "ELOscillatorDesignerController.h"
+
 #import "RubyBlock.h"
 
 @implementation ELHexInspectorController
@@ -56,6 +58,10 @@
   }
   
   [block inspect];
+}
+
+- (IBAction)editOscillator:(id)_sender_ {
+  [[[ELOscillatorDesignerController alloc] initWithKnob:_sender_] showWindow:self];
 }
 
 - (void)editDidRunScript:(ELTool *)_tool_ {
