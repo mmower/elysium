@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="164"/>
+			<integer value="163"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -27,7 +27,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSWindowTemplate" id="361337605">
-				<int key="NSWindowStyleMask">151</int>
+				<int key="NSWindowStyleMask">135</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{60, 79}, {157, 561}}</string>
 				<int key="NSWTFlags">-1543503872</int>
@@ -1759,7 +1759,7 @@
 						<string key="label">argument: player.transposeKnob</string>
 						<reference key="source" ref="713660084"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="676094871">
+						<object class="NSNibBindingConnector" key="connector" id="453720297">
 							<reference key="NSSource" ref="713660084"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.transposeKnob</string>
@@ -1789,7 +1789,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="676094871"/>
+							<reference key="NSPreviousConnector" ref="453720297"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -1800,7 +1800,7 @@
 						<string key="label">argument: player.durationKnob</string>
 						<reference key="source" ref="539101981"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="81463749">
+						<object class="NSNibBindingConnector" key="connector" id="843158097">
 							<reference key="NSSource" ref="539101981"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.durationKnob</string>
@@ -1830,7 +1830,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="81463749"/>
+							<reference key="NSPreviousConnector" ref="843158097"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -1897,7 +1897,7 @@
 						<string key="label">argument: player.tempoKnob</string>
 						<reference key="source" ref="351995328"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="592642670">
+						<object class="NSNibBindingConnector" key="connector" id="475366906">
 							<reference key="NSSource" ref="351995328"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.tempoKnob</string>
@@ -1927,7 +1927,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="592642670"/>
+							<reference key="NSPreviousConnector" ref="475366906"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -1938,7 +1938,7 @@
 						<string key="label">argument: player.barLengthKnob</string>
 						<reference key="source" ref="333067846"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="26244470">
+						<object class="NSNibBindingConnector" key="connector" id="464841623">
 							<reference key="NSSource" ref="333067846"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.barLengthKnob</string>
@@ -1968,7 +1968,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="26244470"/>
+							<reference key="NSPreviousConnector" ref="464841623"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -1979,7 +1979,7 @@
 						<string key="label">argument: player.velocityKnob</string>
 						<reference key="source" ref="25301679"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="371284354">
+						<object class="NSNibBindingConnector" key="connector" id="461063264">
 							<reference key="NSSource" ref="25301679"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.velocityKnob</string>
@@ -2009,7 +2009,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="371284354"/>
+							<reference key="NSPreviousConnector" ref="461063264"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2020,7 +2020,7 @@
 						<string key="label">argument: player.emphasisKnob</string>
 						<reference key="source" ref="570210602"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="400063036">
+						<object class="NSNibBindingConnector" key="connector" id="257908721">
 							<reference key="NSSource" ref="570210602"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.emphasisKnob</string>
@@ -2050,7 +2050,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="400063036"/>
+							<reference key="NSPreviousConnector" ref="257908721"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2061,7 +2061,7 @@
 						<string key="label">argument: player.timeToLiveKnob</string>
 						<reference key="source" ref="532586792"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="1066749111">
+						<object class="NSNibBindingConnector" key="connector" id="311459179">
 							<reference key="NSSource" ref="532586792"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.timeToLiveKnob</string>
@@ -2091,7 +2091,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="1066749111"/>
+							<reference key="NSPreviousConnector" ref="311459179"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2102,7 +2102,7 @@
 						<string key="label">argument: player.pulseCountKnob</string>
 						<reference key="source" ref="892221174"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="956902794">
+						<object class="NSNibBindingConnector" key="connector" id="737584377">
 							<reference key="NSSource" ref="892221174"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: player.pulseCountKnob</string>
@@ -2132,7 +2132,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="956902794"/>
+							<reference key="NSPreviousConnector" ref="737584377"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3512,9 +3512,9 @@
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{2, 601}, {157, 561}}</string>
+					<string>{{2, 595}, {157, 561}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{2, 601}, {157, 561}}</string>
+					<string>{{2, 595}, {157, 561}}</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3657,11 +3657,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>editOscillator:</string>
 							<string>editScript:</string>
 							<string>removeScript:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>

@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="317"/>
+			<integer value="76"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -27,7 +27,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSWindowTemplate" id="339898598">
-				<int key="NSWindowStyleMask">151</int>
+				<int key="NSWindowStyleMask">135</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{144, 142}, {157, 651}}</string>
 				<int key="NSWTFlags">-1543503872</int>
@@ -60,7 +60,7 @@
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134217728</int>
 												<string key="NSContents"/>
-												<object class="NSFont" key="NSSupport" id="185989915">
+												<object class="NSFont" key="NSSupport" id="812466810">
 													<string key="NSName">LucidaGrande</string>
 													<double key="NSSize">1.300000e+01</double>
 													<int key="NSfFlags">1044</int>
@@ -328,50 +328,50 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSTextField" id="540078208">
+										<object class="NSTextField" id="977314928">
 											<reference key="NSNextResponder" ref="697137782"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{15, 81}, {86, 11}}</string>
 											<reference key="NSSuperview" ref="697137782"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSTextFieldCell" key="NSCell" id="10175593">
+											<object class="NSTextFieldCell" key="NSCell" id="986794563">
 												<int key="NSCellFlags">68288064</int>
 												<int key="NSCellFlags2">272892928</int>
 												<string key="NSContents">Time to Live:</string>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="540078208"/>
+												<reference key="NSControlView" ref="977314928"/>
 												<reference key="NSBackgroundColor" ref="525061022"/>
 												<reference key="NSTextColor" ref="167922562"/>
 											</object>
 										</object>
-										<object class="NSTextField" id="446261384">
+										<object class="NSTextField" id="743967861">
 											<reference key="NSNextResponder" ref="697137782"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{18, 57}, {49, 16}}</string>
 											<reference key="NSSuperview" ref="697137782"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSTextFieldCell" key="NSCell" id="591048885">
+											<object class="NSTextFieldCell" key="NSCell" id="941628289">
 												<int key="NSCellFlags">-1804468671</int>
 												<int key="NSCellFlags2">272892928</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="446261384"/>
+												<reference key="NSControlView" ref="743967861"/>
 												<bool key="NSDrawsBackground">YES</bool>
 												<reference key="NSBackgroundColor" ref="427958969"/>
 												<reference key="NSTextColor" ref="297904422"/>
 											</object>
 										</object>
-										<object class="NSStepper" id="1006267823">
+										<object class="NSStepper" id="43657908">
 											<reference key="NSNextResponder" ref="697137782"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{72, 58}, {13, 15}}</string>
 											<reference key="NSSuperview" ref="697137782"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSStepperCell" key="NSCell" id="290588473">
+											<object class="NSStepperCell" key="NSCell" id="224474750">
 												<int key="NSCellFlags">68025888</int>
 												<int key="NSCellFlags2">262144</int>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="1006267823"/>
+												<reference key="NSControlView" ref="43657908"/>
 												<double key="NSValue">1.000000e+00</double>
 												<double key="NSMinValue">1.000000e+00</double>
 												<double key="NSMaxValue">1.000000e+02</double>
@@ -379,18 +379,18 @@
 												<bool key="NSAutorepeat">YES</bool>
 											</object>
 										</object>
-										<object class="NSButton" id="879031057">
+										<object class="NSButton" id="326664015">
 											<reference key="NSNextResponder" ref="697137782"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{70, 78}, {63, 18}}</string>
 											<reference key="NSSuperview" ref="697137782"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="391270126">
+											<object class="NSButtonCell" key="NSCell" id="66066392">
 												<int key="NSCellFlags">-2080244224</int>
 												<int key="NSCellFlags2">262144</int>
 												<string key="NSContents">Inherit</string>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="879031057"/>
+												<reference key="NSControlView" ref="326664015"/>
 												<int key="NSButtonFlags">1211912703</int>
 												<int key="NSButtonFlags2">130</int>
 												<reference key="NSNormalImage" ref="1071146594"/>
@@ -401,18 +401,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="559443550">
+										<object class="NSButton" id="345179854">
 											<reference key="NSNextResponder" ref="697137782"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{91, 57}, {16, 16}}</string>
 											<reference key="NSSuperview" ref="697137782"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="184049179">
+											<object class="NSButtonCell" key="NSCell" id="158783324">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134479872</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="559443550"/>
+												<reference key="NSControlView" ref="345179854"/>
 												<int key="NSButtonFlags">-2037645057</int>
 												<int key="NSButtonFlags2">162</int>
 												<string key="NSAlternateContents"/>
@@ -421,18 +421,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="1073279706">
+										<object class="NSButton" id="843294690">
 											<reference key="NSNextResponder" ref="697137782"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{111, 57}, {22, 18}}</string>
 											<reference key="NSSuperview" ref="697137782"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="100698850">
+											<object class="NSButtonCell" key="NSCell" id="339263844">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">262144</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="1073279706"/>
+												<reference key="NSControlView" ref="843294690"/>
 												<int key="NSButtonFlags">1211912703</int>
 												<int key="NSButtonFlags2">130</int>
 												<reference key="NSNormalImage" ref="1071146594"/>
@@ -443,18 +443,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="601763712">
+										<object class="NSButton" id="539433603">
 											<reference key="NSNextResponder" ref="697137782"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{91, 14}, {16, 16}}</string>
 											<reference key="NSSuperview" ref="697137782"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="837274515">
+											<object class="NSButtonCell" key="NSCell" id="760649835">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134479872</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="601763712"/>
+												<reference key="NSControlView" ref="539433603"/>
 												<int key="NSButtonFlags">-2037645057</int>
 												<int key="NSButtonFlags2">162</int>
 												<string key="NSAlternateContents"/>
@@ -463,18 +463,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="836796723">
+										<object class="NSButton" id="265475505">
 											<reference key="NSNextResponder" ref="697137782"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{111, 14}, {22, 18}}</string>
 											<reference key="NSSuperview" ref="697137782"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="392881653">
+											<object class="NSButtonCell" key="NSCell" id="853559081">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">262144</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="836796723"/>
+												<reference key="NSControlView" ref="265475505"/>
 												<int key="NSButtonFlags">1211912703</int>
 												<int key="NSButtonFlags2">130</int>
 												<reference key="NSNormalImage" ref="1071146594"/>
@@ -957,18 +957,18 @@
 												<bool key="NSAutorepeat">YES</bool>
 											</object>
 										</object>
-										<object class="NSButton" id="27996859">
+										<object class="NSButton" id="528764876">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{91, 230}, {16, 16}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="6279625">
+											<object class="NSButtonCell" key="NSCell" id="957983346">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134217728</int>
 												<string key="NSContents"/>
-												<reference key="NSSupport" ref="185989915"/>
-												<reference key="NSControlView" ref="27996859"/>
+												<reference key="NSSupport" ref="812466810"/>
+												<reference key="NSControlView" ref="528764876"/>
 												<int key="NSButtonFlags">-2038169345</int>
 												<int key="NSButtonFlags2">162</int>
 												<string key="NSAlternateContents"/>
@@ -977,18 +977,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="508573321">
+										<object class="NSButton" id="615504006">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{110, 230}, {22, 18}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="369621843">
+											<object class="NSButtonCell" key="NSCell" id="968823676">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">262144</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="508573321"/>
+												<reference key="NSControlView" ref="615504006"/>
 												<int key="NSButtonFlags">1211912703</int>
 												<int key="NSButtonFlags2">130</int>
 												<reference key="NSNormalImage" ref="1071146594"/>
@@ -999,18 +999,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="896954928">
+										<object class="NSButton" id="595268117">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{91, 187}, {16, 16}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="144882219">
+											<object class="NSButtonCell" key="NSCell" id="963047905">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134479872</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="896954928"/>
+												<reference key="NSControlView" ref="595268117"/>
 												<int key="NSButtonFlags">-2037645057</int>
 												<int key="NSButtonFlags2">162</int>
 												<string key="NSAlternateContents"/>
@@ -1019,18 +1019,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="954125753">
+										<object class="NSButton" id="684784571">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{110, 187}, {22, 18}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="427777188">
+											<object class="NSButtonCell" key="NSCell" id="1017993313">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">262144</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="954125753"/>
+												<reference key="NSControlView" ref="684784571"/>
 												<int key="NSButtonFlags">1211912703</int>
 												<int key="NSButtonFlags2">130</int>
 												<reference key="NSNormalImage" ref="1071146594"/>
@@ -1041,18 +1041,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="30010962">
+										<object class="NSButton" id="482355244">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{91, 143}, {16, 16}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="253942448">
+											<object class="NSButtonCell" key="NSCell" id="966090796">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134479872</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="30010962"/>
+												<reference key="NSControlView" ref="482355244"/>
 												<int key="NSButtonFlags">-2037645057</int>
 												<int key="NSButtonFlags2">162</int>
 												<string key="NSAlternateContents"/>
@@ -1061,18 +1061,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="1021652534">
+										<object class="NSButton" id="914534257">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{110, 143}, {22, 18}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="419435759">
+											<object class="NSButtonCell" key="NSCell" id="609168514">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">262144</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="1021652534"/>
+												<reference key="NSControlView" ref="914534257"/>
 												<int key="NSButtonFlags">1211912703</int>
 												<int key="NSButtonFlags2">130</int>
 												<reference key="NSNormalImage" ref="1071146594"/>
@@ -1083,18 +1083,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="202028547">
+										<object class="NSButton" id="694857337">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{91, 100}, {16, 16}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="334974479">
+											<object class="NSButtonCell" key="NSCell" id="349439311">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134479872</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="202028547"/>
+												<reference key="NSControlView" ref="694857337"/>
 												<int key="NSButtonFlags">-2037645057</int>
 												<int key="NSButtonFlags2">162</int>
 												<string key="NSAlternateContents"/>
@@ -1103,18 +1103,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="539970003">
+										<object class="NSButton" id="496173446">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{110, 100}, {22, 18}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="137798936">
+											<object class="NSButtonCell" key="NSCell" id="732910782">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">262144</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="539970003"/>
+												<reference key="NSControlView" ref="496173446"/>
 												<int key="NSButtonFlags">1211912703</int>
 												<int key="NSButtonFlags2">130</int>
 												<reference key="NSNormalImage" ref="1071146594"/>
@@ -1125,18 +1125,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="127269489">
+										<object class="NSButton" id="8019509">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{91, 57}, {16, 16}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="222011186">
+											<object class="NSButtonCell" key="NSCell" id="794719729">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134479872</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="127269489"/>
+												<reference key="NSControlView" ref="8019509"/>
 												<int key="NSButtonFlags">-2037645057</int>
 												<int key="NSButtonFlags2">162</int>
 												<string key="NSAlternateContents"/>
@@ -1145,18 +1145,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="428290725">
+										<object class="NSButton" id="483272837">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{111, 57}, {22, 18}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="5224669">
+											<object class="NSButtonCell" key="NSCell" id="1020102637">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">262144</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="428290725"/>
+												<reference key="NSControlView" ref="483272837"/>
 												<int key="NSButtonFlags">1211912703</int>
 												<int key="NSButtonFlags2">130</int>
 												<reference key="NSNormalImage" ref="1071146594"/>
@@ -1167,18 +1167,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="822374350">
+										<object class="NSButton" id="949892743">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{91, 14}, {16, 16}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="207642341">
+											<object class="NSButtonCell" key="NSCell" id="238453754">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">134479872</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="822374350"/>
+												<reference key="NSControlView" ref="949892743"/>
 												<int key="NSButtonFlags">-2037645057</int>
 												<int key="NSButtonFlags2">162</int>
 												<string key="NSAlternateContents"/>
@@ -1187,18 +1187,18 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="929190782">
+										<object class="NSButton" id="851176607">
 											<reference key="NSNextResponder" ref="529635454"/>
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{111, 14}, {22, 18}}</string>
 											<reference key="NSSuperview" ref="529635454"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="52580474">
+											<object class="NSButtonCell" key="NSCell" id="435293995">
 												<int key="NSCellFlags">67239424</int>
 												<int key="NSCellFlags2">262144</int>
 												<string key="NSContents"/>
 												<reference key="NSSupport" ref="22"/>
-												<reference key="NSControlView" ref="929190782"/>
+												<reference key="NSControlView" ref="851176607"/>
 												<int key="NSButtonFlags">1211912703</int>
 												<int key="NSButtonFlags2">130</int>
 												<reference key="NSNormalImage" ref="1071146594"/>
@@ -1283,11 +1283,11 @@
 													<string key="NSKeyEquiv"/>
 													<int key="NSMnemonicLoc">2147483647</int>
 													<int key="NSState">1</int>
-													<object class="NSCustomResource" key="NSOnImage" id="106538411">
+													<object class="NSCustomResource" key="NSOnImage" id="958638743">
 														<string key="NSClassName">NSImage</string>
 														<string key="NSResourceName">NSMenuCheckmark</string>
 													</object>
-													<object class="NSCustomResource" key="NSMixedImage" id="507445066">
+													<object class="NSCustomResource" key="NSMixedImage" id="340990543">
 														<string key="NSClassName">NSImage</string>
 														<string key="NSResourceName">NSMenuMixedState</string>
 													</object>
@@ -1305,8 +1305,8 @@
 															<string key="NSTitle">2</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1315,8 +1315,8 @@
 															<string key="NSTitle">3</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1325,8 +1325,8 @@
 															<string key="NSTitle">4</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1335,8 +1335,8 @@
 															<string key="NSTitle">5</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1345,8 +1345,8 @@
 															<string key="NSTitle">6</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1355,8 +1355,8 @@
 															<string key="NSTitle">7</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1365,8 +1365,8 @@
 															<string key="NSTitle">8</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1375,8 +1375,8 @@
 															<string key="NSTitle">9</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1385,8 +1385,8 @@
 															<string key="NSTitle">10</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1395,8 +1395,8 @@
 															<string key="NSTitle">12</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1405,8 +1405,8 @@
 															<string key="NSTitle">11</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1415,8 +1415,8 @@
 															<string key="NSTitle">13</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1425,8 +1425,8 @@
 															<string key="NSTitle">14</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1435,8 +1435,8 @@
 															<string key="NSTitle">15</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1445,8 +1445,8 @@
 															<string key="NSTitle">16</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="811038733"/>
 														</object>
@@ -1520,8 +1520,8 @@
 													<int key="NSKeyEquivModMask">1048576</int>
 													<int key="NSMnemonicLoc">2147483647</int>
 													<int key="NSState">1</int>
-													<reference key="NSOnImage" ref="106538411"/>
-													<reference key="NSMixedImage" ref="507445066"/>
+													<reference key="NSOnImage" ref="958638743"/>
+													<reference key="NSMixedImage" ref="340990543"/>
 													<string key="NSAction">_popUpItemAction:</string>
 													<reference key="NSTarget" ref="542884456"/>
 												</object>
@@ -1537,8 +1537,8 @@
 															<string key="NSKeyEquiv"/>
 															<int key="NSKeyEquivModMask">1048576</int>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="542884456"/>
 														</object>
@@ -1548,8 +1548,8 @@
 															<string key="NSKeyEquiv"/>
 															<int key="NSKeyEquivModMask">1048576</int>
 															<int key="NSMnemonicLoc">2147483647</int>
-															<reference key="NSOnImage" ref="106538411"/>
-															<reference key="NSMixedImage" ref="507445066"/>
+															<reference key="NSOnImage" ref="958638743"/>
+															<reference key="NSMixedImage" ref="340990543"/>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="542884456"/>
 														</object>
@@ -1835,7 +1835,7 @@
 						<string key="label">enabled: layer.tempoKnob.linkValue</string>
 						<reference key="source" ref="567673796"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="966800332">
+						<object class="NSNibBindingConnector" key="connector" id="100811090">
 							<reference key="NSSource" ref="567673796"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.tempoKnob.linkValue</string>
@@ -1855,7 +1855,7 @@
 						<string key="label">enabled: layer.tempoKnob.linkValue</string>
 						<reference key="source" ref="333105392"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="784695041">
+						<object class="NSNibBindingConnector" key="connector" id="325356839">
 							<reference key="NSSource" ref="333105392"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.tempoKnob.linkValue</string>
@@ -1875,7 +1875,7 @@
 						<string key="label">enabled: layer.velocityKnob.linkValue</string>
 						<reference key="source" ref="632442182"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="986722588">
+						<object class="NSNibBindingConnector" key="connector" id="1020213177">
 							<reference key="NSSource" ref="632442182"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.velocityKnob.linkValue</string>
@@ -1895,7 +1895,7 @@
 						<string key="label">enabled: layer.velocityKnob.linkValue</string>
 						<reference key="source" ref="212872637"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="748802477">
+						<object class="NSNibBindingConnector" key="connector" id="117208377">
 							<reference key="NSSource" ref="212872637"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.velocityKnob.linkValue</string>
@@ -1915,7 +1915,7 @@
 						<string key="label">enabled: layer.durationKnob.linkValue</string>
 						<reference key="source" ref="656132197"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="497435002">
+						<object class="NSNibBindingConnector" key="connector" id="1067100120">
 							<reference key="NSSource" ref="656132197"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.durationKnob.linkValue</string>
@@ -1935,7 +1935,7 @@
 						<string key="label">enabled: layer.durationKnob.linkValue</string>
 						<reference key="source" ref="805641235"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="897424491">
+						<object class="NSNibBindingConnector" key="connector" id="800797638">
 							<reference key="NSSource" ref="805641235"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.durationKnob.linkValue</string>
@@ -1955,7 +1955,7 @@
 						<string key="label">enabled: layer.pulseCountKnob.linkValue</string>
 						<reference key="source" ref="237073054"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="473878302">
+						<object class="NSNibBindingConnector" key="connector" id="1039292687">
 							<reference key="NSSource" ref="237073054"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.pulseCountKnob.linkValue</string>
@@ -1975,7 +1975,7 @@
 						<string key="label">enabled: layer.pulseCountKnob.linkValue</string>
 						<reference key="source" ref="1016939059"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="751632311">
+						<object class="NSNibBindingConnector" key="connector" id="457439752">
 							<reference key="NSSource" ref="1016939059"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.pulseCountKnob.linkValue</string>
@@ -2244,7 +2244,7 @@
 						<string key="label">enabled: layer.barLengthKnob.linkValue</string>
 						<reference key="source" ref="322405145"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="914709043">
+						<object class="NSNibBindingConnector" key="connector" id="1015344347">
 							<reference key="NSSource" ref="322405145"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.barLengthKnob.linkValue</string>
@@ -2264,7 +2264,7 @@
 						<string key="label">enabled: layer.barLengthKnob.linkValue</string>
 						<reference key="source" ref="304902163"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="208833474">
+						<object class="NSNibBindingConnector" key="connector" id="694776756">
 							<reference key="NSSource" ref="304902163"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.barLengthKnob.linkValue</string>
@@ -2284,7 +2284,7 @@
 						<string key="label">enabled: layer.emphasisKnob.linkValue</string>
 						<reference key="source" ref="660446723"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="341269490">
+						<object class="NSNibBindingConnector" key="connector" id="429744189">
 							<reference key="NSSource" ref="660446723"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.emphasisKnob.linkValue</string>
@@ -2304,7 +2304,7 @@
 						<string key="label">enabled: layer.emphasisKnob.linkValue</string>
 						<reference key="source" ref="91869386"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="1041977532">
+						<object class="NSNibBindingConnector" key="connector" id="1023362856">
 							<reference key="NSSource" ref="91869386"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.emphasisKnob.linkValue</string>
@@ -2338,10 +2338,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.timeToLiveKnob.value</string>
-						<reference key="source" ref="446261384"/>
+						<reference key="source" ref="743967861"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="446261384"/>
+							<reference key="NSSource" ref="743967861"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.timeToLiveKnob.value</string>
 							<string key="NSBinding">value</string>
@@ -2354,10 +2354,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.timeToLiveKnob.linkValue</string>
-						<reference key="source" ref="446261384"/>
+						<reference key="source" ref="743967861"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="447806901">
-							<reference key="NSSource" ref="446261384"/>
+						<object class="NSNibBindingConnector" key="connector" id="314639109">
+							<reference key="NSSource" ref="743967861"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.timeToLiveKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -2374,10 +2374,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.timeToLiveKnob.value</string>
-						<reference key="source" ref="1006267823"/>
+						<reference key="source" ref="43657908"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1006267823"/>
+							<reference key="NSSource" ref="43657908"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.timeToLiveKnob.value</string>
 							<string key="NSBinding">value</string>
@@ -2390,10 +2390,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.timeToLiveKnob.linkValue</string>
-						<reference key="source" ref="1006267823"/>
+						<reference key="source" ref="43657908"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="1004877070">
-							<reference key="NSSource" ref="1006267823"/>
+						<object class="NSNibBindingConnector" key="connector" id="334346841">
+							<reference key="NSSource" ref="43657908"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.timeToLiveKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -2410,10 +2410,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.timeToLiveKnob.linkValue</string>
-						<reference key="source" ref="879031057"/>
+						<reference key="source" ref="326664015"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="879031057"/>
+							<reference key="NSSource" ref="326664015"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.timeToLiveKnob.linkValue</string>
 							<string key="NSBinding">value</string>
@@ -2426,10 +2426,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: layer.transposeKnob</string>
-						<reference key="source" ref="27996859"/>
+						<reference key="source" ref="528764876"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="303826409">
-							<reference key="NSSource" ref="27996859"/>
+						<object class="NSNibBindingConnector" key="connector" id="142803641">
+							<reference key="NSSource" ref="528764876"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: layer.transposeKnob</string>
 							<string key="NSBinding">argument</string>
@@ -2446,10 +2446,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">target: self</string>
-						<reference key="source" ref="27996859"/>
+						<reference key="source" ref="528764876"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="27996859"/>
+							<reference key="NSSource" ref="528764876"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">target: self</string>
 							<string key="NSBinding">target</string>
@@ -2458,7 +2458,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="303826409"/>
+							<reference key="NSPreviousConnector" ref="142803641"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2467,10 +2467,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: layer.tempoKnob</string>
-						<reference key="source" ref="896954928"/>
+						<reference key="source" ref="595268117"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="79040348">
-							<reference key="NSSource" ref="896954928"/>
+						<object class="NSNibBindingConnector" key="connector" id="652448722">
+							<reference key="NSSource" ref="595268117"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: layer.tempoKnob</string>
 							<string key="NSBinding">argument</string>
@@ -2487,10 +2487,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">target: self</string>
-						<reference key="source" ref="896954928"/>
+						<reference key="source" ref="595268117"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="896954928"/>
+							<reference key="NSSource" ref="595268117"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">target: self</string>
 							<string key="NSBinding">target</string>
@@ -2499,7 +2499,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="79040348"/>
+							<reference key="NSPreviousConnector" ref="652448722"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2508,10 +2508,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: layer.barLengthKnob</string>
-						<reference key="source" ref="30010962"/>
+						<reference key="source" ref="482355244"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="117171583">
-							<reference key="NSSource" ref="30010962"/>
+						<object class="NSNibBindingConnector" key="connector" id="976079425">
+							<reference key="NSSource" ref="482355244"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: layer.barLengthKnob</string>
 							<string key="NSBinding">argument</string>
@@ -2528,10 +2528,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">target: self</string>
-						<reference key="source" ref="30010962"/>
+						<reference key="source" ref="482355244"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="30010962"/>
+							<reference key="NSSource" ref="482355244"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">target: self</string>
 							<string key="NSBinding">target</string>
@@ -2540,7 +2540,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="117171583"/>
+							<reference key="NSPreviousConnector" ref="976079425"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2549,10 +2549,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: layer.velocityKnob</string>
-						<reference key="source" ref="202028547"/>
+						<reference key="source" ref="694857337"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="612699985">
-							<reference key="NSSource" ref="202028547"/>
+						<object class="NSNibBindingConnector" key="connector" id="840778821">
+							<reference key="NSSource" ref="694857337"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: layer.velocityKnob</string>
 							<string key="NSBinding">argument</string>
@@ -2569,10 +2569,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">target: self</string>
-						<reference key="source" ref="202028547"/>
+						<reference key="source" ref="694857337"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="202028547"/>
+							<reference key="NSSource" ref="694857337"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">target: self</string>
 							<string key="NSBinding">target</string>
@@ -2581,7 +2581,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="612699985"/>
+							<reference key="NSPreviousConnector" ref="840778821"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2590,10 +2590,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: layer.emphasisKnob</string>
-						<reference key="source" ref="127269489"/>
+						<reference key="source" ref="8019509"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="381095532">
-							<reference key="NSSource" ref="127269489"/>
+						<object class="NSNibBindingConnector" key="connector" id="153015651">
+							<reference key="NSSource" ref="8019509"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: layer.emphasisKnob</string>
 							<string key="NSBinding">argument</string>
@@ -2610,10 +2610,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">target: self</string>
-						<reference key="source" ref="127269489"/>
+						<reference key="source" ref="8019509"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="127269489"/>
+							<reference key="NSSource" ref="8019509"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">target: self</string>
 							<string key="NSBinding">target</string>
@@ -2622,7 +2622,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="381095532"/>
+							<reference key="NSPreviousConnector" ref="153015651"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2631,10 +2631,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: layer.durationKnob</string>
-						<reference key="source" ref="822374350"/>
+						<reference key="source" ref="949892743"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="488974563">
-							<reference key="NSSource" ref="822374350"/>
+						<object class="NSNibBindingConnector" key="connector" id="16356056">
+							<reference key="NSSource" ref="949892743"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: layer.durationKnob</string>
 							<string key="NSBinding">argument</string>
@@ -2651,10 +2651,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">target: self</string>
-						<reference key="source" ref="822374350"/>
+						<reference key="source" ref="949892743"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="822374350"/>
+							<reference key="NSSource" ref="949892743"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">target: self</string>
 							<string key="NSBinding">target</string>
@@ -2663,7 +2663,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="488974563"/>
+							<reference key="NSPreviousConnector" ref="16356056"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2672,10 +2672,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: layer.timeToLiveKnob</string>
-						<reference key="source" ref="559443550"/>
+						<reference key="source" ref="345179854"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="79034370">
-							<reference key="NSSource" ref="559443550"/>
+						<object class="NSNibBindingConnector" key="connector" id="744349926">
+							<reference key="NSSource" ref="345179854"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: layer.timeToLiveKnob</string>
 							<string key="NSBinding">argument</string>
@@ -2692,10 +2692,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">target: self</string>
-						<reference key="source" ref="559443550"/>
+						<reference key="source" ref="345179854"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="559443550"/>
+							<reference key="NSSource" ref="345179854"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">target: self</string>
 							<string key="NSBinding">target</string>
@@ -2704,7 +2704,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="79034370"/>
+							<reference key="NSPreviousConnector" ref="744349926"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2713,10 +2713,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">argument: layer.pulseCountKnob</string>
-						<reference key="source" ref="601763712"/>
+						<reference key="source" ref="539433603"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="827355916">
-							<reference key="NSSource" ref="601763712"/>
+						<object class="NSNibBindingConnector" key="connector" id="896982513">
+							<reference key="NSSource" ref="539433603"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">argument: layer.pulseCountKnob</string>
 							<string key="NSBinding">argument</string>
@@ -2733,10 +2733,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">target: self</string>
-						<reference key="source" ref="601763712"/>
+						<reference key="source" ref="539433603"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="601763712"/>
+							<reference key="NSSource" ref="539433603"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">target: self</string>
 							<string key="NSBinding">target</string>
@@ -2745,7 +2745,7 @@
 								<string key="NS.key.0">NSSelectorName</string>
 								<string key="NS.object.0">editOscillator:</string>
 							</object>
-							<reference key="NSPreviousConnector" ref="827355916"/>
+							<reference key="NSPreviousConnector" ref="896982513"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2754,10 +2754,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.transposeKnob.oscillator.enabled</string>
-						<reference key="source" ref="508573321"/>
+						<reference key="source" ref="615504006"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="508573321"/>
+							<reference key="NSSource" ref="615504006"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.transposeKnob.oscillator.enabled</string>
 							<string key="NSBinding">value</string>
@@ -2772,7 +2772,7 @@
 						<string key="label">enabled: layer.transposeKnob.linkValue</string>
 						<reference key="source" ref="871929492"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="421498563">
+						<object class="NSNibBindingConnector" key="connector" id="60010967">
 							<reference key="NSSource" ref="871929492"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.transposeKnob.linkValue</string>
@@ -2817,7 +2817,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="421498563"/>
+							<reference key="NSPreviousConnector" ref="60010967"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2828,7 +2828,7 @@
 						<string key="label">enabled: layer.transposeKnob.linkValue</string>
 						<reference key="source" ref="594312298"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="958064427">
+						<object class="NSNibBindingConnector" key="connector" id="1071010943">
 							<reference key="NSSource" ref="594312298"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.transposeKnob.linkValue</string>
@@ -2873,7 +2873,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="958064427"/>
+							<reference key="NSPreviousConnector" ref="1071010943"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2882,10 +2882,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.transposeKnob.linkValue</string>
-						<reference key="source" ref="27996859"/>
+						<reference key="source" ref="528764876"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="27996859"/>
+							<reference key="NSSource" ref="528764876"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.transposeKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -2902,10 +2902,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.transposeKnob.oscillator</string>
-						<reference key="source" ref="508573321"/>
+						<reference key="source" ref="615504006"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="274554539">
-							<reference key="NSSource" ref="508573321"/>
+						<object class="NSNibBindingConnector" key="connector" id="719864432">
+							<reference key="NSSource" ref="615504006"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.transposeKnob.oscillator</string>
 							<string key="NSBinding">enabled</string>
@@ -2922,10 +2922,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.tempoKnob.linkValue</string>
-						<reference key="source" ref="896954928"/>
+						<reference key="source" ref="595268117"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="896954928"/>
+							<reference key="NSSource" ref="595268117"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.tempoKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -2942,10 +2942,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.barLengthKnob.linkValue</string>
-						<reference key="source" ref="30010962"/>
+						<reference key="source" ref="482355244"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="30010962"/>
+							<reference key="NSSource" ref="482355244"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.barLengthKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -2962,10 +2962,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.velocityKnob.linkValue</string>
-						<reference key="source" ref="202028547"/>
+						<reference key="source" ref="694857337"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="202028547"/>
+							<reference key="NSSource" ref="694857337"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.velocityKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -2982,10 +2982,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.emphasisKnob.linkValue</string>
-						<reference key="source" ref="127269489"/>
+						<reference key="source" ref="8019509"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="127269489"/>
+							<reference key="NSSource" ref="8019509"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.emphasisKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -3002,10 +3002,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.durationKnob.linkValue</string>
-						<reference key="source" ref="822374350"/>
+						<reference key="source" ref="949892743"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="822374350"/>
+							<reference key="NSSource" ref="949892743"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.durationKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -3022,10 +3022,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.timeToLiveKnob.linkValue</string>
-						<reference key="source" ref="559443550"/>
+						<reference key="source" ref="345179854"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="559443550"/>
+							<reference key="NSSource" ref="345179854"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.timeToLiveKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -3042,10 +3042,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.pulseCountKnob.linkValue</string>
-						<reference key="source" ref="601763712"/>
+						<reference key="source" ref="539433603"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="601763712"/>
+							<reference key="NSSource" ref="539433603"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.pulseCountKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -3062,10 +3062,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.transposeKnob.linkValue</string>
-						<reference key="source" ref="508573321"/>
+						<reference key="source" ref="615504006"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="508573321"/>
+							<reference key="NSSource" ref="615504006"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.transposeKnob.linkValue</string>
 							<string key="NSBinding">enabled2</string>
@@ -3089,7 +3089,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="274554539"/>
+							<reference key="NSPreviousConnector" ref="719864432"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3098,10 +3098,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.tempoKnob.oscillator.enabled</string>
-						<reference key="source" ref="954125753"/>
+						<reference key="source" ref="684784571"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="954125753"/>
+							<reference key="NSSource" ref="684784571"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.tempoKnob.oscillator.enabled</string>
 							<string key="NSBinding">value</string>
@@ -3114,10 +3114,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.tempoKnob.oscillator</string>
-						<reference key="source" ref="954125753"/>
+						<reference key="source" ref="684784571"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="980941113">
-							<reference key="NSSource" ref="954125753"/>
+						<object class="NSNibBindingConnector" key="connector" id="405189821">
+							<reference key="NSSource" ref="684784571"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.tempoKnob.oscillator</string>
 							<string key="NSBinding">enabled</string>
@@ -3134,10 +3134,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.tempoKnob.linkValue</string>
-						<reference key="source" ref="954125753"/>
+						<reference key="source" ref="684784571"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="954125753"/>
+							<reference key="NSSource" ref="684784571"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.tempoKnob.linkValue</string>
 							<string key="NSBinding">enabled2</string>
@@ -3161,7 +3161,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="980941113"/>
+							<reference key="NSPreviousConnector" ref="405189821"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3170,10 +3170,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.barLengthKnob.oscillator.enabled</string>
-						<reference key="source" ref="1021652534"/>
+						<reference key="source" ref="914534257"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1021652534"/>
+							<reference key="NSSource" ref="914534257"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.barLengthKnob.oscillator.enabled</string>
 							<string key="NSBinding">value</string>
@@ -3186,10 +3186,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.barLengthKnob.linkValue</string>
-						<reference key="source" ref="1021652534"/>
+						<reference key="source" ref="914534257"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="957600311">
-							<reference key="NSSource" ref="1021652534"/>
+						<object class="NSNibBindingConnector" key="connector" id="840561810">
+							<reference key="NSSource" ref="914534257"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.barLengthKnob.linkValue</string>
 							<string key="NSBinding">enabled</string>
@@ -3206,10 +3206,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.barLengthKnob.oscillator</string>
-						<reference key="source" ref="1021652534"/>
+						<reference key="source" ref="914534257"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1021652534"/>
+							<reference key="NSSource" ref="914534257"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.barLengthKnob.oscillator</string>
 							<string key="NSBinding">enabled2</string>
@@ -3233,7 +3233,7 @@
 									<string>NSIsNotNil</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="957600311"/>
+							<reference key="NSPreviousConnector" ref="840561810"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3242,10 +3242,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.velocityKnob.oscillator.enabled</string>
-						<reference key="source" ref="539970003"/>
+						<reference key="source" ref="496173446"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="539970003"/>
+							<reference key="NSSource" ref="496173446"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.velocityKnob.oscillator.enabled</string>
 							<string key="NSBinding">value</string>
@@ -3258,10 +3258,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.velocityKnob.oscillator</string>
-						<reference key="source" ref="539970003"/>
+						<reference key="source" ref="496173446"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="876317252">
-							<reference key="NSSource" ref="539970003"/>
+						<object class="NSNibBindingConnector" key="connector" id="185554213">
+							<reference key="NSSource" ref="496173446"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.velocityKnob.oscillator</string>
 							<string key="NSBinding">enabled</string>
@@ -3278,10 +3278,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.velocityKnob.linkValue</string>
-						<reference key="source" ref="539970003"/>
+						<reference key="source" ref="496173446"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="539970003"/>
+							<reference key="NSSource" ref="496173446"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.velocityKnob.linkValue</string>
 							<string key="NSBinding">enabled2</string>
@@ -3305,7 +3305,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="876317252"/>
+							<reference key="NSPreviousConnector" ref="185554213"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3314,10 +3314,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.emphasisKnob.oscillator.enabled</string>
-						<reference key="source" ref="428290725"/>
+						<reference key="source" ref="483272837"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="428290725"/>
+							<reference key="NSSource" ref="483272837"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.emphasisKnob.oscillator.enabled</string>
 							<string key="NSBinding">value</string>
@@ -3330,10 +3330,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.emphasisKnob.oscillator</string>
-						<reference key="source" ref="428290725"/>
+						<reference key="source" ref="483272837"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="743994013">
-							<reference key="NSSource" ref="428290725"/>
+						<object class="NSNibBindingConnector" key="connector" id="670664326">
+							<reference key="NSSource" ref="483272837"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.emphasisKnob.oscillator</string>
 							<string key="NSBinding">enabled</string>
@@ -3350,10 +3350,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.emphasisKnob.linkValue</string>
-						<reference key="source" ref="428290725"/>
+						<reference key="source" ref="483272837"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="428290725"/>
+							<reference key="NSSource" ref="483272837"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.emphasisKnob.linkValue</string>
 							<string key="NSBinding">enabled2</string>
@@ -3377,7 +3377,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="743994013"/>
+							<reference key="NSPreviousConnector" ref="670664326"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3386,10 +3386,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.durationKnob.oscillator.enabled</string>
-						<reference key="source" ref="929190782"/>
+						<reference key="source" ref="851176607"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="929190782"/>
+							<reference key="NSSource" ref="851176607"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.durationKnob.oscillator.enabled</string>
 							<string key="NSBinding">value</string>
@@ -3402,10 +3402,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.durationKnob.oscillator</string>
-						<reference key="source" ref="929190782"/>
+						<reference key="source" ref="851176607"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="69846403">
-							<reference key="NSSource" ref="929190782"/>
+						<object class="NSNibBindingConnector" key="connector" id="579286795">
+							<reference key="NSSource" ref="851176607"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.durationKnob.oscillator</string>
 							<string key="NSBinding">enabled</string>
@@ -3422,10 +3422,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.durationKnob.linkValue</string>
-						<reference key="source" ref="929190782"/>
+						<reference key="source" ref="851176607"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="929190782"/>
+							<reference key="NSSource" ref="851176607"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.durationKnob.linkValue</string>
 							<string key="NSBinding">enabled2</string>
@@ -3449,7 +3449,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="69846403"/>
+							<reference key="NSPreviousConnector" ref="579286795"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3458,10 +3458,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.timeToLiveKnob.oscillator.enabled</string>
-						<reference key="source" ref="1073279706"/>
+						<reference key="source" ref="843294690"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1073279706"/>
+							<reference key="NSSource" ref="843294690"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.timeToLiveKnob.oscillator.enabled</string>
 							<string key="NSBinding">value</string>
@@ -3474,10 +3474,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.timeToLiveKnob.oscillator</string>
-						<reference key="source" ref="1073279706"/>
+						<reference key="source" ref="843294690"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="904313111">
-							<reference key="NSSource" ref="1073279706"/>
+						<object class="NSNibBindingConnector" key="connector" id="714316091">
+							<reference key="NSSource" ref="843294690"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.timeToLiveKnob.oscillator</string>
 							<string key="NSBinding">enabled</string>
@@ -3494,10 +3494,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.timeToLiveKnob.linkValue</string>
-						<reference key="source" ref="1073279706"/>
+						<reference key="source" ref="843294690"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1073279706"/>
+							<reference key="NSSource" ref="843294690"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.timeToLiveKnob.linkValue</string>
 							<string key="NSBinding">enabled2</string>
@@ -3521,7 +3521,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="904313111"/>
+							<reference key="NSPreviousConnector" ref="714316091"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3530,10 +3530,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: layer.pulseCountKnob.oscillator.enabled</string>
-						<reference key="source" ref="836796723"/>
+						<reference key="source" ref="265475505"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="836796723"/>
+							<reference key="NSSource" ref="265475505"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">value: layer.pulseCountKnob.oscillator.enabled</string>
 							<string key="NSBinding">value</string>
@@ -3546,10 +3546,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: layer.pulseCountKnob.oscillator</string>
-						<reference key="source" ref="836796723"/>
+						<reference key="source" ref="265475505"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="178825510">
-							<reference key="NSSource" ref="836796723"/>
+						<object class="NSNibBindingConnector" key="connector" id="212424510">
+							<reference key="NSSource" ref="265475505"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled: layer.pulseCountKnob.oscillator</string>
 							<string key="NSBinding">enabled</string>
@@ -3566,10 +3566,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.pulseCountKnob.linkValue</string>
-						<reference key="source" ref="836796723"/>
+						<reference key="source" ref="265475505"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="836796723"/>
+							<reference key="NSSource" ref="265475505"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.pulseCountKnob.linkValue</string>
 							<string key="NSBinding">enabled2</string>
@@ -3593,7 +3593,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="178825510"/>
+							<reference key="NSPreviousConnector" ref="212424510"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3629,7 +3629,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="966800332"/>
+							<reference key="NSPreviousConnector" ref="100811090"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3665,7 +3665,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="784695041"/>
+							<reference key="NSPreviousConnector" ref="325356839"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3701,7 +3701,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="208833474"/>
+							<reference key="NSPreviousConnector" ref="694776756"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3737,7 +3737,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="914709043"/>
+							<reference key="NSPreviousConnector" ref="1015344347"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3773,7 +3773,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="986722588"/>
+							<reference key="NSPreviousConnector" ref="1020213177"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3809,7 +3809,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="748802477"/>
+							<reference key="NSPreviousConnector" ref="117208377"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3845,7 +3845,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="1041977532"/>
+							<reference key="NSPreviousConnector" ref="1023362856"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3881,7 +3881,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="341269490"/>
+							<reference key="NSPreviousConnector" ref="429744189"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3917,7 +3917,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="497435002"/>
+							<reference key="NSPreviousConnector" ref="1067100120"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3953,7 +3953,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="897424491"/>
+							<reference key="NSPreviousConnector" ref="800797638"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3962,10 +3962,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.timeToLiveKnob.oscillator.enabled</string>
-						<reference key="source" ref="446261384"/>
+						<reference key="source" ref="743967861"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="446261384"/>
+							<reference key="NSSource" ref="743967861"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.timeToLiveKnob.oscillator.enabled</string>
 							<string key="NSBinding">enabled2</string>
@@ -3989,7 +3989,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="447806901"/>
+							<reference key="NSPreviousConnector" ref="314639109"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3998,10 +3998,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled2: layer.timeToLiveKnob.oscillator.enabled</string>
-						<reference key="source" ref="1006267823"/>
+						<reference key="source" ref="43657908"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1006267823"/>
+							<reference key="NSSource" ref="43657908"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">enabled2: layer.timeToLiveKnob.oscillator.enabled</string>
 							<string key="NSBinding">enabled2</string>
@@ -4025,7 +4025,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="1004877070"/>
+							<reference key="NSPreviousConnector" ref="334346841"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -4061,7 +4061,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="473878302"/>
+							<reference key="NSPreviousConnector" ref="1039292687"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -4097,7 +4097,7 @@
 									<string>NSNegateBoolean</string>
 								</object>
 							</object>
-							<reference key="NSPreviousConnector" ref="751632311"/>
+							<reference key="NSPreviousConnector" ref="457439752"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -4258,18 +4258,18 @@
 						<reference key="object" ref="979143471"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="540078208"/>
-							<reference ref="446261384"/>
-							<reference ref="1006267823"/>
+							<reference ref="977314928"/>
+							<reference ref="743967861"/>
+							<reference ref="43657908"/>
 							<reference ref="361504066"/>
 							<reference ref="237073054"/>
 							<reference ref="1016939059"/>
-							<reference ref="879031057"/>
+							<reference ref="326664015"/>
 							<reference ref="961467393"/>
-							<reference ref="559443550"/>
-							<reference ref="601763712"/>
-							<reference ref="1073279706"/>
-							<reference ref="836796723"/>
+							<reference ref="345179854"/>
+							<reference ref="539433603"/>
+							<reference ref="843294690"/>
+							<reference ref="265475505"/>
 						</object>
 						<reference key="parent" ref="161330416"/>
 					</object>
@@ -4357,19 +4357,19 @@
 							<reference ref="519003125"/>
 							<reference ref="656132197"/>
 							<reference ref="805641235"/>
-							<reference ref="30010962"/>
-							<reference ref="202028547"/>
-							<reference ref="822374350"/>
-							<reference ref="896954928"/>
+							<reference ref="482355244"/>
+							<reference ref="694857337"/>
+							<reference ref="949892743"/>
+							<reference ref="595268117"/>
 							<reference ref="594312298"/>
-							<reference ref="1021652534"/>
-							<reference ref="539970003"/>
-							<reference ref="428290725"/>
-							<reference ref="929190782"/>
-							<reference ref="27996859"/>
-							<reference ref="508573321"/>
-							<reference ref="127269489"/>
-							<reference ref="954125753"/>
+							<reference ref="914534257"/>
+							<reference ref="496173446"/>
+							<reference ref="483272837"/>
+							<reference ref="851176607"/>
+							<reference ref="528764876"/>
+							<reference ref="615504006"/>
+							<reference ref="8019509"/>
+							<reference ref="684784571"/>
 						</object>
 						<reference key="parent" ref="161330416"/>
 					</object>
@@ -4683,59 +4683,59 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">460</int>
-						<reference key="object" ref="540078208"/>
+						<reference key="object" ref="977314928"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="10175593"/>
+							<reference ref="986794563"/>
 						</object>
 						<reference key="parent" ref="979143471"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">461</int>
-						<reference key="object" ref="446261384"/>
+						<reference key="object" ref="743967861"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="591048885"/>
+							<reference ref="941628289"/>
 						</object>
 						<reference key="parent" ref="979143471"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">462</int>
-						<reference key="object" ref="1006267823"/>
+						<reference key="object" ref="43657908"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="290588473"/>
+							<reference ref="224474750"/>
 						</object>
 						<reference key="parent" ref="979143471"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">463</int>
-						<reference key="object" ref="879031057"/>
+						<reference key="object" ref="326664015"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="391270126"/>
+							<reference ref="66066392"/>
 						</object>
 						<reference key="parent" ref="979143471"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">464</int>
-						<reference key="object" ref="391270126"/>
-						<reference key="parent" ref="879031057"/>
+						<reference key="object" ref="66066392"/>
+						<reference key="parent" ref="326664015"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">465</int>
-						<reference key="object" ref="290588473"/>
-						<reference key="parent" ref="1006267823"/>
+						<reference key="object" ref="224474750"/>
+						<reference key="parent" ref="43657908"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">466</int>
-						<reference key="object" ref="591048885"/>
-						<reference key="parent" ref="446261384"/>
+						<reference key="object" ref="941628289"/>
+						<reference key="parent" ref="743967861"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">467</int>
-						<reference key="object" ref="10175593"/>
-						<reference key="parent" ref="540078208"/>
+						<reference key="object" ref="986794563"/>
+						<reference key="parent" ref="977314928"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">264</int>
@@ -4767,31 +4767,31 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">476</int>
-						<reference key="object" ref="27996859"/>
+						<reference key="object" ref="528764876"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="6279625"/>
+							<reference ref="957983346"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">477</int>
-						<reference key="object" ref="6279625"/>
-						<reference key="parent" ref="27996859"/>
+						<reference key="object" ref="957983346"/>
+						<reference key="parent" ref="528764876"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">478</int>
-						<reference key="object" ref="508573321"/>
+						<reference key="object" ref="615504006"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="369621843"/>
+							<reference ref="968823676"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">479</int>
-						<reference key="object" ref="369621843"/>
-						<reference key="parent" ref="508573321"/>
+						<reference key="object" ref="968823676"/>
+						<reference key="parent" ref="615504006"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">319</int>
@@ -5016,199 +5016,199 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">480</int>
-						<reference key="object" ref="896954928"/>
+						<reference key="object" ref="595268117"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="144882219"/>
+							<reference ref="963047905"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">481</int>
-						<reference key="object" ref="954125753"/>
+						<reference key="object" ref="684784571"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="427777188"/>
+							<reference ref="1017993313"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">482</int>
-						<reference key="object" ref="427777188"/>
-						<reference key="parent" ref="954125753"/>
+						<reference key="object" ref="1017993313"/>
+						<reference key="parent" ref="684784571"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">483</int>
-						<reference key="object" ref="144882219"/>
-						<reference key="parent" ref="896954928"/>
+						<reference key="object" ref="963047905"/>
+						<reference key="parent" ref="595268117"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">488</int>
-						<reference key="object" ref="30010962"/>
+						<reference key="object" ref="482355244"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="253942448"/>
+							<reference ref="966090796"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">489</int>
-						<reference key="object" ref="1021652534"/>
+						<reference key="object" ref="914534257"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="419435759"/>
+							<reference ref="609168514"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">490</int>
-						<reference key="object" ref="419435759"/>
-						<reference key="parent" ref="1021652534"/>
+						<reference key="object" ref="609168514"/>
+						<reference key="parent" ref="914534257"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">491</int>
-						<reference key="object" ref="253942448"/>
-						<reference key="parent" ref="30010962"/>
+						<reference key="object" ref="966090796"/>
+						<reference key="parent" ref="482355244"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">496</int>
-						<reference key="object" ref="202028547"/>
+						<reference key="object" ref="694857337"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="334974479"/>
+							<reference ref="349439311"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">497</int>
-						<reference key="object" ref="539970003"/>
+						<reference key="object" ref="496173446"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="137798936"/>
+							<reference ref="732910782"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">498</int>
-						<reference key="object" ref="137798936"/>
-						<reference key="parent" ref="539970003"/>
+						<reference key="object" ref="732910782"/>
+						<reference key="parent" ref="496173446"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">499</int>
-						<reference key="object" ref="334974479"/>
-						<reference key="parent" ref="202028547"/>
+						<reference key="object" ref="349439311"/>
+						<reference key="parent" ref="694857337"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">500</int>
-						<reference key="object" ref="127269489"/>
+						<reference key="object" ref="8019509"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="222011186"/>
+							<reference ref="794719729"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">501</int>
-						<reference key="object" ref="428290725"/>
+						<reference key="object" ref="483272837"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="5224669"/>
+							<reference ref="1020102637"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">502</int>
-						<reference key="object" ref="5224669"/>
-						<reference key="parent" ref="428290725"/>
+						<reference key="object" ref="1020102637"/>
+						<reference key="parent" ref="483272837"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">503</int>
-						<reference key="object" ref="222011186"/>
-						<reference key="parent" ref="127269489"/>
+						<reference key="object" ref="794719729"/>
+						<reference key="parent" ref="8019509"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">504</int>
-						<reference key="object" ref="822374350"/>
+						<reference key="object" ref="949892743"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="207642341"/>
+							<reference ref="238453754"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">505</int>
-						<reference key="object" ref="929190782"/>
+						<reference key="object" ref="851176607"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="52580474"/>
+							<reference ref="435293995"/>
 						</object>
 						<reference key="parent" ref="369806746"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">506</int>
-						<reference key="object" ref="52580474"/>
-						<reference key="parent" ref="929190782"/>
+						<reference key="object" ref="435293995"/>
+						<reference key="parent" ref="851176607"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">507</int>
-						<reference key="object" ref="207642341"/>
-						<reference key="parent" ref="822374350"/>
+						<reference key="object" ref="238453754"/>
+						<reference key="parent" ref="949892743"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">508</int>
-						<reference key="object" ref="559443550"/>
+						<reference key="object" ref="345179854"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="184049179"/>
+							<reference ref="158783324"/>
 						</object>
 						<reference key="parent" ref="979143471"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">509</int>
-						<reference key="object" ref="1073279706"/>
+						<reference key="object" ref="843294690"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="100698850"/>
+							<reference ref="339263844"/>
 						</object>
 						<reference key="parent" ref="979143471"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">510</int>
-						<reference key="object" ref="100698850"/>
-						<reference key="parent" ref="1073279706"/>
+						<reference key="object" ref="339263844"/>
+						<reference key="parent" ref="843294690"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">511</int>
-						<reference key="object" ref="184049179"/>
-						<reference key="parent" ref="559443550"/>
+						<reference key="object" ref="158783324"/>
+						<reference key="parent" ref="345179854"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">516</int>
-						<reference key="object" ref="601763712"/>
+						<reference key="object" ref="539433603"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="837274515"/>
+							<reference ref="760649835"/>
 						</object>
 						<reference key="parent" ref="979143471"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">517</int>
-						<reference key="object" ref="836796723"/>
+						<reference key="object" ref="265475505"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="392881653"/>
+							<reference ref="853559081"/>
 						</object>
 						<reference key="parent" ref="979143471"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">518</int>
-						<reference key="object" ref="392881653"/>
-						<reference key="parent" ref="836796723"/>
+						<reference key="object" ref="853559081"/>
+						<reference key="parent" ref="265475505"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">519</int>
-						<reference key="object" ref="837274515"/>
-						<reference key="parent" ref="601763712"/>
+						<reference key="object" ref="760649835"/>
+						<reference key="parent" ref="539433603"/>
 					</object>
 				</object>
 			</object>
@@ -5686,11 +5686,11 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{506, 511}, {157, 651}}</string>
+					<string>{{177, 505}, {157, 651}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="0" id="6"/>
 					<reference ref="6"/>
-					<string>{{506, 511}, {157, 651}}</string>
+					<string>{{177, 505}, {157, 651}}</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
