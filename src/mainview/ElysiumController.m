@@ -139,7 +139,7 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
 - (IBAction)showInspectorPanel:(id)_sender_ {
   [self showPlayerInspector:self];
-  // [self showLayerInspector:self];
+  [self showLayerInspector:self];
   // [self showHexInspector:self];
 }
 

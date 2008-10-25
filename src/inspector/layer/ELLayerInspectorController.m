@@ -12,6 +12,8 @@
 #import "ELKey.h"
 #import "ELLayer.h"
 
+#import "ELOscillatorDesignerController.h"
+
 #import "RubyBlock.h"
 
 @implementation ELLayerInspectorController
@@ -40,6 +42,10 @@
   } else if( [[_notification_ object] isKindOfClass:[ELHex class]] ) {
     [self focus:(ELLayer *)[[_notification_ object] layer]];
   }
+}
+
+- (IBAction)editOscillator:(id)_sender_ {
+  [[[ELOscillatorDesignerController alloc] initWithKnob:_sender_] showWindow:self];
 }
 
 - (IBAction)editScript:(id)sender {

@@ -19,6 +19,7 @@
 - (void)focus:(ELLayer *)layer;
 - (void)selectionChanged:(NSNotification*)notification;
 
+- (IBAction)editOscillator:(id)sender;
 - (IBAction)editScript:(id)sender;
 - (IBAction)removeScript:(id)sender;
 
