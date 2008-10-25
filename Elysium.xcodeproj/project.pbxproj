@@ -1056,7 +1056,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/ruby;
-			shellScript = "APP_NAME = ENV['TARGET_NAME']\nBUILD_DIR = ENV['TARGET_BUILD_DIR']\n\nDir.chdir( BUILD_DIR  ) do\n\tapp_path = \"#{APP_NAME}.app\"\n\tplist_path = File.join( File.expand_path( app_path ), 'Contents', 'Info' )\n\tversion=`defaults read #{plist_path} CFBundleVersion`.chomp\n\ttar_name = \"#{APP_NAME}_#{version}.tgz\"\n\tcommand = \"tar czf #{tar_name} #{app_path}\"\n\tsystem( command )\nend";
+			shellScript = "APP_NAME = ENV['TARGET_NAME']\nBUILD_DIR = ENV['TARGET_BUILD_DIR']\n\ndef tarzip( tar_name, app_path )\n\tsystem( \"tar czf #{tar_name} #{app_path}\" )\nend\n\nDir.chdir( BUILD_DIR  ) do\n\ttarzip( \"#{APP_NAME}.tgz\", \"#{APP_NAME}.app\" )\n\n\tplist_path = File.join( File.expand_path( \"#{APP_NAME}.app\" ), 'Contents', 'Info' )\n\tversion=`defaults read #{plist_path} CFBundleVersion`.chomp\n\ttarzip( \"#{APP_NAME}_#{version}.tgz\", \"#{APP_NAME}.app\" )\nend";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1335,7 +1335,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
@@ -1351,6 +1351,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
