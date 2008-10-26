@@ -11,13 +11,18 @@
 #import "ELRangedOscillator.h"
 
 @interface ELSquareOscillator : ELRangedOscillator {
-  float rest;
-  float sustain;
+  int rest;
+  int sustain;
+  
+  int period;
 }
 
-- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum rest:(float)rest sustain:(float)sustain;
+- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum rest:(int)rest sustain:(int)sustain;
 
-@property float rest;
-@property float sustain;
+@property int rest;
+@property int sustain;
+
+- (void)updatePeriod;
+- (float)generateWithT:(int)t;
 
 @end

@@ -23,4 +23,8 @@
   return minimum + ( ( random() % lrange ) / 100 );
 }
 
+- (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
+  [super storeAttributes:_attributes_];
+}
+
 @end

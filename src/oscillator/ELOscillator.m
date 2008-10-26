@@ -15,6 +15,16 @@
 
 @implementation ELOscillator
 
++ (ELOscillator *)loadFromXml:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+  NSXMLNode *attributeNode = [_representation_ attributeForName:@"type"];
+  if( attributeNode ) {
+    Class oscillatorClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Oscillator", [attributeNode stringValue]] );
+    return [[oscillatorClass alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
+  } else {
+    return nil;
+  }
+}
+
 - (id)initEnabled:(BOOL)_enabled_ {
   if( ( self = [super init] ) ) {
     [self setEnabled:_enabled_];
@@ -41,15 +51,24 @@
   NSXMLElement *oscillatorElement = [NSXMLNode elementWithName:@"oscillator"];
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+  [attributes setObject:[self type] forKey:@"type"];
+  [self storeAttributes:attributes];
   [oscillatorElement setAttributesAsDictionary:attributes];
   
   return oscillatorElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  NSXMLNode *attributeNode = [_representation_ attributeForName:@"type"];
-  Class oscillatorClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Oscillator", [attributeNode stringValue]] );
-  return [[oscillatorClass alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
+  NSXMLNode *attributeNode = [_representation_ attributeForName:@"enabled"];
+  if( attributeNode ) {
+    return [self initEnabled:[[attributeNode stringValue] boolValue]];
+  } else {
+    return [self initEnabled:YES];
+  }
+}
+
+- (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
+  [_attributes_ setObject:[NSNumber numberWithBool:[self enabled]] forKey:@"enabled"];
 }
 
 @end

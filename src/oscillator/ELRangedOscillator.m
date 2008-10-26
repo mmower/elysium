@@ -43,4 +43,35 @@
 
 @synthesize range;
 
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_] ) ) {
+    NSXMLNode *attributeNode;
+    
+    attributeNode = [_representation_ attributeForName:@"minimum"];
+    if( !attributeNode ) {
+      NSLog( @"No or invalid 'minimum' attribute node for oscillator!" );
+      return nil;
+    } else {
+      [self setMinimum:[[attributeNode stringValue] floatValue]];
+    }
+
+    attributeNode = [_representation_ attributeForName:@"maximum"];
+    if( !attributeNode ) {
+      NSLog( @"No or invalid 'maximum' attribute node for oscillator" );
+      return nil;
+    } else {
+      [self setMaximum:[[attributeNode stringValue] floatValue]];
+    }
+  }
+  
+  return self;
+}
+
+- (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
+  [super storeAttributes:_attributes_];
+  
+  [_attributes_ setObject:[NSNumber numberWithFloat:[self minimum]] forKey:@"minimum"];
+  [_attributes_ setObject:[NSNumber numberWithFloat:[self maximum]] forKey:@"maximum"];
+}
+
 @end

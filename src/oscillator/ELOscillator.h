@@ -14,6 +14,8 @@
   BOOL    enabled;
 }
 
++ (ELOscillator *)loadFromXml:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player;
+
 @property BOOL enabled;
 
 - (id)initEnabled:(BOOL)enabled;
@@ -21,5 +23,7 @@
 - (NSString *)type;
 
 - (float)generate;
+
+- (void)storeAttributes:(NSMutableDictionary *)attributes;
 
 @end

@@ -11,11 +11,13 @@
 #import "ELRangedOscillator.h"
 
 @interface ELSineOscillator : ELRangedOscillator {
-  float period;
+  int period;
 }
 
-- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum period:(float)period;
+- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum period:(int)period;
 
-@property float period;
+@property int period;
+
+- (float)generateWithT:(int)t;
 
 @end

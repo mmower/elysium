@@ -17,6 +17,6 @@
 
 - (id)initEnabled:(BOOL)enabled values:(NSArray *)values;
 
-@property (readonly) NSMutableArray *values;
+@property (assign) NSMutableArray *values;
 
 @end

@@ -34,4 +34,26 @@
   return value;
 }
 
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_] ) ) {
+    NSXMLNode *attributeNode;
+    
+    attributeNode = [_representation_ attributeForName:@"values"];
+    if( !attributeNode ) {
+      NSLog( @"No or invalid 'values' attribute node for oscillator!" );
+      return nil;
+    } else {
+      [self setValues:[[[attributeNode stringValue] componentsSeparatedByString:@","] mutableCopy]];
+    }
+  }
+  
+  return self;
+}
+
+- (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
+  [super storeAttributes:_attributes_];
+  
+  [_attributes_ setObject:[values componentsJoinedByString:@","] forKey:@"values"];
+}
+
 @end
