@@ -217,7 +217,7 @@
     if( [nodes count] > 0 ) {
       NSLog( @"found oscillator element");
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      [self setOscillator:[[ELOscillator alloc] initWithXmlRepresentation:element parent:self player:_player_]];
+      [self setOscillator:[ELOscillator loadFromXml:element parent:self player:_player_]];
     }
   }
   
