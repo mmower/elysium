@@ -18,24 +18,42 @@
 - (id)initWithBlock:(RubyBlock *)_block_ {
   if( ( self = [super initWithWindowNibName:@"ScriptInspector"] ) ) {
     [self setBlock:_block_];
-    NSLog( @"Source = %@", block );
-    [self setEditableSource:[_block_ source]];
+    editableSource = [[NSMutableAttributedString alloc] initWithString:[_block_ source]];
   }
   
   return self;
 }
 
 - (void)awakeFromNib {
-  [sourceEditor setFont:[NSFont fontWithName:@"Monaco" size:9.0]];
+  NSFont *scriptFont = [NSFont fontWithName:@"Monaco" size:10.0];
+  
+  [sourceEditor setFont:scriptFont];
+  
+  NSDictionary *sizeAttribute = [[NSDictionary alloc] initWithObjectsAndKeys:scriptFont, NSFontAttributeName, nil];
+  CGFloat tabSize = [@"  " sizeWithAttributes:sizeAttribute].width;
+  
+  NSMutableParagraphStyle *style = [[sourceEditor defaultParagraphStyle] mutableCopy];
+  NSArray *array = [style tabStops];
+  for( id item in array ) {
+    [style removeTabStop:item];
+  }
+  [style setDefaultTabInterval:tabSize];
+  // [sourceEditor setDefaultParagraphStyle:style];
+  // NSDictionary *attributes = [[NSDictionary alloc] initWithObjectsAndKeys:style, NSParagraphStyleAttributeName, nil];
+  // [sourceEditor setTypingAttributes:attributes];
 }
 
-- (IBAction)saveScript:(id)sender {
+- (IBAction)close:(id)_sender_ {
   [[self window] performClose:self];
-  [block setSource:editableSource];
 }
 
-- (IBAction)cancelEditScript:(id)sender {
-  [[self window] performClose:self];
+- (IBAction)saveScript:(id)_sender_ {
+  [block setSource:[editableSource string]];
+  [block closeInspector:_sender_];
+}
+
+- (IBAction)cancelEditScript:(id)_sender_ {
+  [block closeInspector:_sender_];
 }
 
 @end

@@ -8,16 +8,23 @@
 
 #import "RubyBlock.h"
 
-#import "MacRuby+EvalProc.h"
-
 #import "ScriptInspectorController.h"
 
+static BOOL initialized = NO;
+static SEL callSelector;
+
 @implementation RubyBlock
+
++ (void)initialize {
+  if( !initialized ) {
+    callSelector = @selector(call:);
+    initialized = YES;
+  }
+}
 
 - (id)initWithSource:(NSString *)_source_ {
   if( ( self = [super init] ) ) {
     [self setSource:_source_];
-    NSLog( @"Block initialize with: %@", _source_ );
   }
   
   return self;
@@ -31,30 +38,35 @@
   return source;
 }
 
-//
-//
 - (void)setSource:(NSString *)_source_ {
   source = _source_;
-  NSString *procSource = [NSString stringWithFormat:@"proc %@", source];
-  NSLog( @"proc source:\n%@", procSource );
-  
-  proc = [[MacRuby sharedRuntime] evaluateString:procSource];
+  proc = [[MacRuby sharedRuntime] evaluateString:[NSString stringWithFormat:@"proc %@", source]];
 }
 
 - (id)eval {
-  return [[MacRuby sharedRuntime] evalProc:proc];
+  return [proc performRubySelector:callSelector];
 }
 
 - (id)evalWithArg:(id)_arg_ {
-  return [[MacRuby sharedRuntime] evalProc:proc arg:_arg_];
+  return [proc performRubySelector:callSelector withArguments:_arg_,nil];
 }
 
 - (id)evalWithArg:(id)_arg1_ arg:(id)_arg2_ {
-  return [[MacRuby sharedRuntime] evalProc:proc arg:_arg1_ arg:_arg2_];
+  return [proc performRubySelector:callSelector withArguments:_arg1_,_arg2_,nil];
 }
 
-- (void)inspect {
-  [[[ScriptInspectorController alloc] initWithBlock:self] showWindow:self];
+- (id)evalWithArg:(id)_arg1_ arg:(id)_arg2_ arg:(id)_arg3_ {
+  return [proc performRubySelector:callSelector withArguments:_arg1_,_arg2_,_arg3_,nil];
+}
+
+- (IBAction)inspect:(id)_sender_ {
+  inspector = [[ScriptInspectorController alloc] initWithBlock:self];
+  [inspector showWindow:self];
+}
+
+- (IBAction)closeInspector:(id)_sender_ {
+  [inspector close:_sender_];
+  inspector = nil;
 }
 
 @end

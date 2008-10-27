@@ -10,9 +10,12 @@
 
 #import <MacRuby/MacRuby.h>
 
+@class ScriptInspectorController;
+
 @interface RubyBlock : NSObject {
-  NSString *source;
-  id proc;
+  NSString                  *source;
+  id                        proc;
+  ScriptInspectorController *inspector;
 }
 
 - (NSString *)source;
@@ -21,7 +24,9 @@
 - (id)eval;
 - (id)evalWithArg:(id)arg;
 - (id)evalWithArg:(id)arg1 arg:(id)arg2;
+- (id)evalWithArg:(id)arg1 arg:(id)arg2 arg:(id)arg3;
 
-- (void)inspect;
+- (IBAction)closeInspector:(id)sender;
+- (IBAction)inspect:(id)sender;
 
 @end

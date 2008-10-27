@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
+			<integer value="20"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -50,7 +50,7 @@
 							<object class="NSButtonCell" key="NSCell" id="869407061">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134348800</int>
-								<string key="NSContents">Ok</string>
+								<string key="NSContents">Save</string>
 								<object class="NSFont" key="NSSupport" id="26">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">1.100000e+01</double>
@@ -121,7 +121,7 @@
 													<string>WebURLsWithTitlesPboardType</string>
 												</object>
 											</object>
-											<string key="NSFrameSize">{303, 142}</string>
+											<string key="NSFrameSize">{303, 132}</string>
 											<reference key="NSSuperview" ref="937096564"/>
 											<object class="NSTextContainer" key="NSTextContainer" id="436887889">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -321,7 +321,7 @@
 												<int key="NSTCFlags">1</int>
 											</object>
 											<object class="NSTextViewSharedData" key="NSSharedData">
-												<int key="NSFlags">11239</int>
+												<int key="NSFlags">12035</int>
 												<object class="NSColor" key="NSBackgroundColor" id="149279230">
 													<int key="NSColorSpace">3</int>
 													<bytes key="NSWhite">MQA</bytes>
@@ -370,14 +370,14 @@
 															<int key="NSColorSpace">1</int>
 															<bytes key="NSRGB">MCAwIDEAA</bytes>
 														</object>
-														<integer value="1"/>
+														<integer value="1" id="9"/>
 													</object>
 												</object>
 												<nil key="NSDefaultParagraphStyle"/>
 											</object>
 											<int key="NSTVFlags">6</int>
-											<string key="NSMaxSize">{463, 1e+07}</string>
-											<string key="NSMinize">{223, 133}</string>
+											<string key="NSMaxSize">{623, 1e+07}</string>
+											<string key="NSMinize">{223, 0}</string>
 											<nil key="NSDelegate"/>
 										</object>
 									</object>
@@ -484,10 +484,14 @@
 							<string key="NSLabel">attributedString: editableSource</string>
 							<string key="NSBinding">attributedString</string>
 							<string key="NSKeyPath">editableSource</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
+								<integer value="1" key="NS.object.0"/>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">22</int>
+					<int key="connectionID">23</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -628,9 +632,9 @@
 					<string>{{623, 583}, {360, 360}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{623, 583}, {360, 360}}</string>
-					<integer value="1" id="5"/>
-					<reference ref="5"/>
-					<reference ref="5"/>
+					<reference ref="9"/>
+					<reference ref="9"/>
+					<reference ref="9"/>
 					<string>{360, 360}</string>
 					<string>{220, 244}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -664,7 +668,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">23</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

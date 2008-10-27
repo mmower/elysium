@@ -11,16 +11,17 @@
 @class RubyBlock;
 
 @interface ScriptInspectorController : NSWindowController {
-  NSString              *editableSource;
-  RubyBlock             *block;
-  IBOutlet NSTextView   *sourceEditor;
+  NSMutableAttributedString *editableSource;
+  RubyBlock                 *block;
+  IBOutlet NSTextView       *sourceEditor;
 }
 
 @property RubyBlock *block;
-@property (copy,readwrite) NSString *editableSource;
+@property (readonly) NSMutableAttributedString *editableSource;
 
 - (id)initWithBlock:(RubyBlock *)block;
 
+- (IBAction)close:(id)sender;
 - (IBAction)saveScript:(id)sender;
 - (IBAction)cancelEditScript:(id)sender;
 
