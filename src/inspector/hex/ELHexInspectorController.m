@@ -57,11 +57,11 @@
   RubyBlock *block;
   
   if( !( block = [[_tool_ scripts] objectForKey:@"willRun"] ) ) {
-    block = [[NSString stringWithFormat:@"do |%@Tool,playhead|\n# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];
+    block = [[NSString stringWithFormat:@"do |%@Tool,playhead|\n\t# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];
     [[_tool_ scripts] setObject:block forKey:@"willRun"];
   }
   
-  [block inspect];
+  [block inspect:self];
 }
 
 - (IBAction)editOscillator:(id)_sender_ {
@@ -72,11 +72,11 @@
   RubyBlock *block;
   
   if( !( block = [[_tool_ scripts] objectForKey:@"didRun"] ) ) {
-    block = [[NSString stringWithFormat:@"do |@%Tool,playhead|\n# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];
+    block = [[NSString stringWithFormat:@"do |@%Tool,playhead|\n\t# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];
     [[_tool_ scripts] setObject:block forKey:@"didRun"];
   }
   
-  [block inspect];
+  [block inspect:self];
 }
 
 - (void)removeWillRunScript:(ELTool *)_tool_ {

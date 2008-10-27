@@ -70,11 +70,11 @@
   }
   
   if( !( block = [[player scripts] objectForKey:callback] ) ) {
-    block = [@"do |player|\n# write your callback code here\nend\n" asRubyBlock];
+    block = [@"do |player|\n\t# write your callback code here\nend\n" asRubyBlock];
     [[player scripts] setObject:block forKey:callback];
   }
   
-  [block inspect];
+  [block inspect:self];
 }
 
 - (IBAction)removeScript:(id)_sender_ {

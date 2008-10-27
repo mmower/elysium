@@ -62,11 +62,11 @@
   }
   
   if( !( block = [[layer scripts] objectForKey:callback] ) ) {
-    block = [@"do |layer|\n# write your callback code here\nend\n" asRubyBlock];
+    block = [@"do |layer|\n\t# write your callback code here\nend\n" asRubyBlock];
     [[layer scripts] setObject:block forKey:callback];
   }
   
-  [block inspect];
+  [block inspect:self];
 }
 
 - (IBAction)removeScript:(id)sender {
