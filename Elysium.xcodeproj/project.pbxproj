@@ -121,7 +121,6 @@
 		C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */; };
 		C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */; };
 		C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */; };
-		C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */; };
 		C9B641FF0EAD1495006AA089 /* ELSineOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B641FE0EAD1495006AA089 /* ELSineOscillator.m */; };
 		C9B642020EAD1504006AA089 /* ELSquareOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642010EAD1504006AA089 /* ELSquareOscillator.m */; };
 		C9B642050EAD153B006AA089 /* ELSawOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642040EAD153B006AA089 /* ELSawOscillator.m */; };
@@ -348,8 +347,6 @@
 		C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScriptInspector.xib; sourceTree = "<group>"; };
 		C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptInspectorController.h; sourceTree = "<group>"; };
 		C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptInspectorController.m; sourceTree = "<group>"; };
-		C9B1F3F40E9C99DE0017092F /* MacRuby+EvalProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MacRuby+EvalProc.h"; sourceTree = "<group>"; };
-		C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MacRuby+EvalProc.m"; sourceTree = "<group>"; };
 		C9B641FD0EAD1495006AA089 /* ELSineOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSineOscillator.h; sourceTree = "<group>"; };
 		C9B641FE0EAD1495006AA089 /* ELSineOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSineOscillator.m; sourceTree = "<group>"; };
 		C9B642000EAD1504006AA089 /* ELSquareOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSquareOscillator.h; sourceTree = "<group>"; };
@@ -508,18 +505,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C916010F0E99526A0052DB9F /* categories */ = {
-			isa = PBXGroup;
-			children = (
-				C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */,
-				C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */,
-				C9B1F3F40E9C99DE0017092F /* MacRuby+EvalProc.h */,
-				C9B1F3F50E9C99DE0017092F /* MacRuby+EvalProc.m */,
-			);
-			name = categories;
-			path = src/categories;
-			sourceTree = "<group>";
-		};
 		C93D54960E61F1250077C448 /* PYMIDI */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,7 +573,6 @@
 			children = (
 				C9DA150C0EA7F02C0087EDD3 /* activity_viewer */,
 				C9B1F36B0E9BF6BF0017092F /* scripting */,
-				C916010F0E99526A0052DB9F /* categories */,
 				C9A9F1910E8A42DF009A06A3 /* datamodel */,
 				C9A9F1A10E8A42DF009A06A3 /* ELXmlData.h */,
 				C9A9F1A20E8A42DF009A06A3 /* Elysium.h */,
@@ -794,6 +778,8 @@
 				C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */,
 				C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */,
 				C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */,
+				C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */,
+				C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */,
 			);
 			name = scripting;
 			path = src/scripting;
@@ -1097,7 +1083,6 @@
 				C9B1F3700E9BF8000017092F /* RubyBlock.m in Sources */,
 				C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */,
 				C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */,
-				C9B1F3F60E9C99DE0017092F /* MacRuby+EvalProc.m in Sources */,
 				C94F55760EA6A73900320BF5 /* ELKey.m in Sources */,
 				C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */,
 				C9104A5A0EAA1B0300B78267 /* ELNoteGroup.m in Sources */,
@@ -1331,7 +1316,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
@@ -1347,7 +1332,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
