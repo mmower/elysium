@@ -28,12 +28,16 @@
     // Get time in milliseconds
     UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 1000000;
     int t = time % period;
+    
+    NSLog( @"time = %llu, period = %d, t = %d", time, period, t );
+    
     return [self generateWithT:t];
 }
 
 - (float)generateWithT:(int)_t_ {
   // Convert to angular form and use as a proportion of the range
-  return minimum + ( range * sin( ( _t_ / period ) * M_PI ) );
+  float angle = ((float)_t_ / period) * M_PI;
+  return minimum + ( range * sin( angle ) );
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {

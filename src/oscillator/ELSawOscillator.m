@@ -91,12 +91,12 @@
 - (float)generateWithT:(int)_t_ {
   if( _t_ <= rest ) {
     return minimum;
-  } else if( _t_ <= attack ) {
-    return ( attackDelta * ( _t_ - (attackBase) ) ) + minimum;
-  } else if( _t_ <= sustain ) {
+  } else if( _t_ <= attackBase ) {
+    return ( attackDelta * ( _t_ - attackBase ) ) + minimum;
+  } else if( _t_ <= decayBase ) {
     return maximum;
   } else {
-    return ( decayDelta * ( _t_ - (decayBase) ) ) + minimum;
+    return ( decayDelta * ( _t_ - decayBase ) ) + minimum;
   }
 }
 
