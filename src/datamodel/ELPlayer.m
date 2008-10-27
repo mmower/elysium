@@ -35,7 +35,7 @@
     harmonicTable  = [[ELHarmonicTable alloc] init];
     layers         = [[NSMutableArray alloc] init];
     
-    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600 minimum:30 maximum:900 stepping:1];
+    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:120 minimum:30 maximum:600 stepping:1];
     barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
     timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
     pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
