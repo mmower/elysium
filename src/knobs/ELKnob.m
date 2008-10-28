@@ -36,6 +36,8 @@
   return self;
 }
 
+@synthesize oscillatorController;
+
 - (id)initWithName:(NSString *)_name_
         linkedKnob:(ELKnob *)_knob_
            enabled:(BOOL)_enabled_

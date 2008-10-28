@@ -25,7 +25,10 @@
   BOOL            linkValue;
   
   ELOscillator    *oscillator;          // an function that supplies a dynamic alpha value in real-time
+  id              oscillatorController;
 }
+
+@property id oscillatorController;
 
 - (id)initWithName:(NSString *)name
         linkedKnob:(ELKnob *)knob
