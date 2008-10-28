@@ -79,10 +79,12 @@
     [knob setOscillator:randomOscillator];
   }
   
+  [knob setOscillatorController:nil];
   [self close];
 }
 
 - (IBAction)cancelOscillator:(id)_sender_ {
+  [knob setOscillatorController:nil];
   [self close];
 }
 
