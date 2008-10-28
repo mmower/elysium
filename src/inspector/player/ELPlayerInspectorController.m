@@ -9,11 +9,13 @@
 #import "ELPlayerInspectorController.h"
 
 #import "ELHex.h"
+#import "ELKnob.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 
 #import "RubyBlock.h"
 
+#import "ELOscillator.h"
 #import "ELOscillatorDesignerController.h"
 
 @implementation ELPlayerInspectorController
@@ -21,7 +23,11 @@
 @synthesize player;
 
 - (id)init {
-  return [super initWithWindowNibName:@"PlayerInspector"];
+  if( ( self = [super initWithWindowNibName:@"PlayerInspector"] ) ) {
+    oscillatorDesigners = [NSMutableDictionary dictionary];
+  }
+  
+  return self;
 }
 
 - (void)awakeFromNib {
@@ -47,7 +53,14 @@
 }
 
 - (IBAction)editOscillator:(id)_sender_ {
-  [[[ELOscillatorDesignerController alloc] initWithKnob:_sender_] showWindow:self];
+  ELOscillatorDesignerController *controller;
+  
+  if( !( controller = [_sender_ oscillatorController] ) ) {
+    controller = [[ELOscillatorDesignerController alloc] initWithKnob:_sender_];
+    [_sender_ setOscillatorController:controller];
+  }
+  
+  [controller edit];
 }
 
 - (IBAction)editScript:(id)_sender_ {

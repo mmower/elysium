@@ -11,7 +11,8 @@
 @class ELPlayer;
 
 @interface ELPlayerInspectorController : NSWindowController {
-  ELPlayer *player;
+  ELPlayer            *player;
+  NSMutableDictionary *oscillatorDesigners;
 }
 
 @property ELPlayer *player;
