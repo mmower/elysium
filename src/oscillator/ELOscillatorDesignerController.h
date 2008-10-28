@@ -44,4 +44,7 @@
 - (IBAction)cancelOscillator:(id)sender;
 - (IBAction)removeOscillator:(id)sender;
 
+- (void)setupOscillators;
+- (void)edit;
+
 @end

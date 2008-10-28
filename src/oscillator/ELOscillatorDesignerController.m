@@ -21,42 +21,7 @@
 - (id)initWithKnob:(ELRangedKnob *)_knob_ {
   if( ( self = [self initWithWindowNibName:@"OscillatorDesigner"] ) ) {
     knob = _knob_;
-    
-    if( [knob oscillator] ) {
-      selectedTag = [[knob oscillator] type];
-    } else {
-      selectedTag = nil;
-    }
-    
-    if( [selectedTag isEqualToString:@"Square"] ) {
-      squareOscillator = (ELSquareOscillator *)[knob oscillator];
-    } else {
-      squareOscillator = [[ELSquareOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000];
-    }
-    
-    if( [selectedTag isEqualToString:@"Saw"] ) {
-      sawOscillator = (ELSawOscillator *)[knob oscillator];
-    } else {
-      sawOscillator = [[ELSawOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000];
-    }
-    
-    if( [selectedTag isKindOfClass:@"Sine"] ) {
-      sineOscillator = (ELSineOscillator *)[knob oscillator];
-    } else {
-      sineOscillator = [[ELSineOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000];
-    }
-    
-    if( [selectedTag isEqualToString:@"List"] ) {
-      sequenceOscillator = (ELSequenceOscillator *)[knob oscillator];
-    } else {
-      sequenceOscillator = [[ELSequenceOscillator alloc] initEnabled:YES values:[NSArray array]];
-    }
-    
-    if( [selectedTag isEqualToString:@"Random"] ) {
-      randomOscillator = (ELRandomOscillator *)[knob oscillator];
-    } else {
-      randomOscillator = [[ELRandomOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]];
-    }
+    [self setupOscillators];
   }
   
   return self;
@@ -124,6 +89,49 @@
 - (IBAction)removeOscillator:(id)_sender_ {
   [knob setOscillator:nil];
   [self close];
+}
+
+- (void)setupOscillators {
+  if( [knob oscillator] ) {
+    selectedTag = [[knob oscillator] type];
+  } else {
+    selectedTag = nil;
+  }
+  
+  if( [selectedTag isEqualToString:@"Square"] ) {
+    squareOscillator = (ELSquareOscillator *)[[knob oscillator] mutableCopy];
+  } else {
+    squareOscillator = [[ELSquareOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000];
+  }
+  
+  if( [selectedTag isEqualToString:@"Saw"] ) {
+    sawOscillator = (ELSawOscillator *)[[knob oscillator] mutableCopy];
+  } else {
+    sawOscillator = [[ELSawOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000];
+  }
+  
+  if( [selectedTag isKindOfClass:@"Sine"] ) {
+    sineOscillator = (ELSineOscillator *)[[knob oscillator] mutableCopy];
+  } else {
+    sineOscillator = [[ELSineOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000];
+  }
+  
+  if( [selectedTag isEqualToString:@"List"] ) {
+    sequenceOscillator = (ELSequenceOscillator *)[[knob oscillator] mutableCopy];
+  } else {
+    sequenceOscillator = [[ELSequenceOscillator alloc] initEnabled:YES values:[NSArray array]];
+  }
+  
+  if( [selectedTag isEqualToString:@"Random"] ) {
+    randomOscillator = (ELRandomOscillator *)[[knob oscillator] mutableCopy];
+  } else {
+    randomOscillator = [[ELRandomOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]];
+  }
+}
+
+- (void)edit {
+  [self setupOscillators];
+  [self showWindow:self];
 }
 
 @end
