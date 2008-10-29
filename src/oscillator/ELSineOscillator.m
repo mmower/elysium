@@ -62,4 +62,12 @@
   [_attributes_ setObject:[NSNumber numberWithFloat:[self period]] forKey:@"period"];
 }
 
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
+                                                  minimum:[self minimum]
+                                                  maximum:[self maximum]
+                                                   period:[self period]];
+}
+
+
 @end

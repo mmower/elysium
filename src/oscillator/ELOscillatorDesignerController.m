@@ -73,7 +73,7 @@
     [knob setOscillator:sawOscillator];
   } else if( [tabId isEqualToString:@"Sine"] ) {
     [knob setOscillator:sineOscillator];
-  } else if( [tabId isEqualToString:@"List"] ) {
+  } else if( [tabId isEqualToString:@"Sequence"] ) {
     [knob setOscillator:sequenceOscillator];
   } else if( [tabId isEqualToString:@"Random"] ) {
     [knob setOscillator:randomOscillator];
@@ -101,33 +101,33 @@
   }
   
   if( [selectedTag isEqualToString:@"Square"] ) {
-    squareOscillator = (ELSquareOscillator *)[[knob oscillator] mutableCopy];
+    [self setSquareOscillator:[[knob oscillator] mutableCopy]];
   } else {
-    squareOscillator = [[ELSquareOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000];
+    [self setSquareOscillator:[[ELSquareOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000]];
   }
   
   if( [selectedTag isEqualToString:@"Saw"] ) {
-    sawOscillator = (ELSawOscillator *)[[knob oscillator] mutableCopy];
+    [self setSawOscillator:[[knob oscillator] mutableCopy]];
   } else {
-    sawOscillator = [[ELSawOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000];
+    [self setSawOscillator:[[ELSawOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000]];
   }
   
   if( [selectedTag isKindOfClass:@"Sine"] ) {
-    sineOscillator = (ELSineOscillator *)[[knob oscillator] mutableCopy];
+    [self setSineOscillator:[[knob oscillator] mutableCopy]];
   } else {
-    sineOscillator = [[ELSineOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000];
+    [self setSineOscillator:[[ELSineOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000]];
   }
   
-  if( [selectedTag isEqualToString:@"List"] ) {
-    sequenceOscillator = (ELSequenceOscillator *)[[knob oscillator] mutableCopy];
+  if( [selectedTag isEqualToString:@"Sequence"] ) {
+    [self setSequenceOscillator:[[knob oscillator] mutableCopy]];
   } else {
-    sequenceOscillator = [[ELSequenceOscillator alloc] initEnabled:YES values:[NSArray array]];
+    [self setSequenceOscillator:[[ELSequenceOscillator alloc] initEnabled:YES values:[NSArray array]]];
   }
   
   if( [selectedTag isEqualToString:@"Random"] ) {
-    randomOscillator = (ELRandomOscillator *)[[knob oscillator] mutableCopy];
+    [self setRandomOscillator:[[knob oscillator] mutableCopy]];
   } else {
-    randomOscillator = [[ELRandomOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]];
+    [self setRandomOscillator:[[ELRandomOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]]];
   }
 }
 

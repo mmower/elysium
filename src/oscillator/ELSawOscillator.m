@@ -149,4 +149,14 @@
   [_attributes_ setObject:[NSNumber numberWithFloat:[self decay]] forKey:@"decay"];
 }
 
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
+                                                  minimum:[self minimum]
+                                                  maximum:[self maximum]
+                                                     rest:[self rest]
+                                                   attack:[self attack]
+                                                  sustain:[self sustain]
+                                                    decay:[self decay]];
+}
+
 @end

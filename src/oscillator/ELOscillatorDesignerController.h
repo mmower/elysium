@@ -32,11 +32,11 @@
 
 @property (readonly) ELRangedKnob *knob;
 
-@property (readonly) ELSquareOscillator *squareOscillator;
-@property (readonly) ELSawOscillator *sawOscillator;
-@property (readonly) ELSineOscillator *sineOscillator;
-@property (readonly) ELSequenceOscillator *sequenceOscillator;
-@property (readonly) ELRandomOscillator *randomOscillator;
+@property (assign) ELSquareOscillator *squareOscillator;
+@property (assign) ELSawOscillator *sawOscillator;
+@property (assign) ELSineOscillator *sineOscillator;
+@property (assign) ELSequenceOscillator *sequenceOscillator;
+@property (assign) ELRandomOscillator *randomOscillator;
 
 - (void)setView:(NSView *)view cellsAllowFloats:(BOOL)allowFloat;
 

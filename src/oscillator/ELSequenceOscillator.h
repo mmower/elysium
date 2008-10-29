@@ -10,6 +10,18 @@
 
 #import "ELOscillator.h"
 
+@interface ELSequenceValue : NSObject {
+  float     floatValue;
+  NSString  *stringValue;
+}
+
+- (id)initWithStringValue:(NSString *)stringValue;
+
+@property float floatValue;
+@property (assign) NSString *stringValue;
+
+@end
+
 @interface ELSequenceOscillator : ELOscillator {
   NSMutableArray  *values;
   int             index;
@@ -18,5 +30,9 @@
 - (id)initEnabled:(BOOL)enabled values:(NSArray *)values;
 
 @property (assign) NSMutableArray *values;
+
+// - (void)setEditable:(BOOL)editable;
+// - (NSMutableArray *)editableValues;
+// - (NSMutableArray *)usableValues;
 
 @end

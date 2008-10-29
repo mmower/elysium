@@ -97,4 +97,12 @@
   [_attributes_ setObject:[NSNumber numberWithFloat:[self sustain]] forKey:@"sustain"];
 }
 
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
+                                                  minimum:[self minimum]
+                                                  maximum:[self maximum]
+                                                     rest:[self rest]
+                                                  sustain:[self sustain]];
+}
+
 @end

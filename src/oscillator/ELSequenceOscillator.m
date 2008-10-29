@@ -8,11 +8,45 @@
 
 #import "ELSequenceOscillator.h"
 
+@implementation ELSequenceValue
+
+- (id)initWithStringValue:(NSString *)_stringValue_ {
+  if( ( self = [super init] ) ) {
+    [self setStringValue:_stringValue_];
+  }
+  
+  return self;
+}
+
+@dynamic floatValue;
+
+- (float)floatValue {
+  return floatValue;
+}
+
+- (void)setFloatValue:(float)_floatValue_ {
+  floatValue = _floatValue_;
+  stringValue = [[NSNumber numberWithFloat:floatValue] stringValue];
+}
+
+@dynamic stringValue;
+
+- (NSString *)stringValue {
+  return stringValue;
+}
+
+- (void)setStringValue:(NSString *)_stringValue_ {
+  stringValue = _stringValue_;
+  floatValue = [stringValue floatValue];
+}
+
+@end
+
 @implementation ELSequenceOscillator
 
 - (id)initEnabled:(BOOL)_enabled_ values:(NSArray *)_values_ {
   if( ( self = [super initEnabled:_enabled_] ) ) {
-    values = [_values_ mutableCopy];
+    [self setValues:[_values_ mutableCopy]];
     index  = 0;
   }
   
@@ -20,6 +54,10 @@
 }
 
 @synthesize values;
+
+- (NSString *)type {
+  return @"Sequence";
+}
 
 - (float)generate {
   if( [values count] < 1 ) {
@@ -43,7 +81,14 @@
       NSLog( @"No or invalid 'values' attribute node for oscillator!" );
       return nil;
     } else {
-      [self setValues:[[[attributeNode stringValue] componentsSeparatedByString:@","] mutableCopy]];
+      NSArray *terms = [[attributeNode stringValue] componentsSeparatedByString:@","];
+      NSMutableArray *sequenceValues = [[NSMutableArray alloc] init];
+      
+      for( NSString *term in terms ) {
+        [sequenceValues addObject:[[ELSequenceValue alloc] initWithStringValue:term]];
+      }
+      
+      [self setValues:sequenceValues];
     }
   }
   
@@ -54,6 +99,11 @@
   [super storeAttributes:_attributes_];
   
   [_attributes_ setObject:[values componentsJoinedByString:@","] forKey:@"values"];
+}
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
+                                                   values:[self values]];
 }
 
 @end
