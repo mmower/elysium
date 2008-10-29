@@ -17,7 +17,11 @@
 @interface ELMIDIController : NSObject {
   PYMIDIVirtualSource       *source;
   PYMIDIEndpoint            *endpoint;
+  
+  id                        delegate;
 }
+
+@property (assign) id delegate;
 
 + (ELMIDIController *)sharedInstance;
 
@@ -27,5 +31,6 @@
 - (void)setInput:(PYMIDIEndpoint *)endpoint;
 
 - (void)processMIDIPacketList:(MIDIPacketList*)packetList sender:(id)sender;
+- (void)handleMIDIMessage:(Byte*)message ofSize:(int)size;
 
 @end

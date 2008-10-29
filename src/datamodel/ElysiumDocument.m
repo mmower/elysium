@@ -147,9 +147,9 @@
 
 - (IBAction)startStop:(id)_sender_ {
   if( [player running] ) {
-    [player stop];
+    [player stop:self];
   } else {
-    [player start];
+    [player start:self];
   }
 }
 

@@ -44,6 +44,9 @@ extern NSString * const ELNotifyObjectSelectionDidChange;
 
 extern NSString * const ELNotifyCellWasUpdated;
 
+extern NSString * const ELNotifyPlayerShouldStart;
+extern NSString * const ELNotifyPlayerShouldStop;
+
 // Defaults keys
 
 extern NSString * const ELDefaultCellBackgroundColor;

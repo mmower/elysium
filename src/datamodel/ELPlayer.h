@@ -68,8 +68,8 @@
 
 - (void)toggleNoteDisplay;
 
-- (void)start;
-- (void)stop;
+- (void)start:(id)_sender_;
+- (void)stop:(id)_sender_;
 - (void)reset;
 
 - (void)clearAll;

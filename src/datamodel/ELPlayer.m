@@ -50,6 +50,9 @@
     showNotes       = NO;
     showOctaves     = NO;
     showKey         = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(start:) name:ELNotifyPlayerShouldStart object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop:) name:ELNotifyPlayerShouldStop object:nil];
   }
   
   return self;
@@ -102,18 +105,24 @@
 
 // Player control
 
-- (void)start {
-  [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
-  [layers makeObjectsPerformSelector:@selector(start)];
-  [self setRunning:YES];
-  [self performSelectorOnMainThread:@selector(runDidStartScript) withObject:nil waitUntilDone:YES];
+- (void)start:(id)_sender_ {
+  if( ![self running] ) {
+    NSLog( @"Player Start" );
+    [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
+    [layers makeObjectsPerformSelector:@selector(start)];
+    [self setRunning:YES];
+    [self performSelectorOnMainThread:@selector(runDidStartScript) withObject:nil waitUntilDone:YES];
+  }
 }
 
-- (void)stop {
-  [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
-  [layers makeObjectsPerformSelector:@selector(stop)];
-  [self setRunning:NO];
-  [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
+- (void)stop:(id)_sender_ {
+  if( [self running] ) {
+    NSLog( @"Player Stop" );
+    [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
+    [layers makeObjectsPerformSelector:@selector(stop)];
+    [self setRunning:NO];
+    [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
+  }
 }
 
 - (void)reset {

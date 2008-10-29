@@ -26,6 +26,9 @@
 NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidChange";
 NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
+NSString * const ELNotifyPlayerShouldStart = @"elysium.playerShouldStart";
+NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
+
 @implementation ElysiumController
 
 + (void)initialize {
