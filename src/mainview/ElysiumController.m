@@ -161,6 +161,10 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
   [activityViewerController showWindow:self];
 }
 
+- (IBAction)satisfyMe:(id)_sender_ {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getsatisfaction.com/lucidmac/products/lucidmac_elysium"]];
+}
+
 - (void)recordActivity:(NSDictionary *)_activity_ {
   [activityViewerController recordActivity:_activity_];
 }

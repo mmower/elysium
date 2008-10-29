@@ -34,6 +34,7 @@
 
 - (IBAction)showPalette:(id)sender;
 - (IBAction)showActivityViewer:(id)sender;
+- (IBAction)satisfyMe:(id)sender;
 
 - (void)recordActivity:(NSDictionary *)activity;
 
