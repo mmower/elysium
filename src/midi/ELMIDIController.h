@@ -11,15 +11,21 @@
 #import <CoreMIDI/CoreMIDI.h>
 
 @class ELMIDIMessage;
+@class PYMIDIEndpoint;
 @class PYMIDIVirtualSource;
 
 @interface ELMIDIController : NSObject {
-  PYMIDIVirtualSource   *source;
+  PYMIDIVirtualSource       *source;
+  PYMIDIEndpoint            *endpoint;
 }
 
 + (ELMIDIController *)sharedInstance;
 
 - (ELMIDIMessage *)createMessage;
 - (void)sendPackets:(MIDIPacketList *)packetList;
+
+- (void)setInput:(PYMIDIEndpoint *)endpoint;
+
+- (void)processMIDIPacketList:(MIDIPacketList*)packetList sender:(id)sender;
 
 @end

@@ -18,6 +18,7 @@
 #import "ELPlayerInspectorController.h"
 #import "ELOscillatorDesignerController.h"
 #import "ELActivityViewerController.h"
+#import "ELMIDIConfigController.h"
 
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
@@ -159,6 +160,14 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
   }
   
   [activityViewerController showWindow:self];
+}
+
+- (IBAction)showMIDIConfigInspector:(id)_sender_ {
+  if( !midiConfigController ) {
+    midiConfigController = [[ELMIDIConfigController alloc] init];
+  }
+  
+  [midiConfigController showWindow:self];
 }
 
 - (IBAction)satisfyMe:(id)_sender_ {

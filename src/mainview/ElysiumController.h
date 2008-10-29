@@ -16,6 +16,7 @@
 @class ELPlayerInspectorController;
 @class ELOscillatorDesignerController;
 @class ELActivityViewerController;
+@class ELMIDIConfigController;
 
 @interface ElysiumController : NSObject {
   ELHexInspectorController        *hexInspectorController;
@@ -24,6 +25,7 @@
   ELOscillatorDesignerController  *oscillatorDesignerController;
   ELPaletteController             *paletteController;
   ELActivityViewerController      *activityViewerController;
+  ELMIDIConfigController          *midiConfigController;
 }
 
 - (IBAction)showOscillatorDesigner:(id)sender;
@@ -31,6 +33,7 @@
 - (IBAction)showLayerInspector:(id)sender;
 - (IBAction)showPlayerInspector:(id)sender;
 - (IBAction)showInspectorPanel:(id)sender;
+- (IBAction)showMIDIConfigInspector:(id)sender;
 
 - (IBAction)showPalette:(id)sender;
 - (IBAction)showActivityViewer:(id)sender;

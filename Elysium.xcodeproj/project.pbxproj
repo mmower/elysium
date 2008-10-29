@@ -78,6 +78,8 @@
 		C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8370E8907B6009C699E /* sectionheader.gif */; };
 		C99F7BAA0E9AAC1100AA61A8 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */; };
 		C99F7BAE0E9AAC1700AA61A8 /* MacRuby.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */; };
+		C99FA9E20EB8F69E002305EF /* ELMIDIConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */; };
+		C99FA9E40EB8F6A9002305EF /* MIDIConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */; };
 		C9A9F16F0E8A41DC009A06A3 /* OscillatorDesigner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1610E8A41DC009A06A3 /* OscillatorDesigner.xib */; };
 		C9A9F1700E8A41DC009A06A3 /* HexInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */; };
 		C9A9F1710E8A41DC009A06A3 /* LayerInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1650E8A41DC009A06A3 /* LayerInspector.xib */; };
@@ -266,6 +268,9 @@
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
 		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
 		C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MacRuby.framework; sourceTree = "<group>"; };
+		C99FA9E00EB8F69E002305EF /* ELMIDIConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIConfigController.h; sourceTree = "<group>"; };
+		C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIConfigController.m; sourceTree = "<group>"; };
+		C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MIDIConfig.xib; path = English.lproj/MIDIConfig.xib; sourceTree = "<group>"; };
 		C9A9F1620E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/OscillatorDesigner.xib; sourceTree = "<group>"; };
 		C9A9F1640E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/HexInspector.xib; sourceTree = "<group>"; };
 		C9A9F1660E8A41DC009A06A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LayerInspector.xib; sourceTree = "<group>"; };
@@ -344,7 +349,7 @@
 		C9B1F36F0E9BF8000017092F /* RubyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubyBlock.m; sourceTree = "<group>"; };
 		C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+AsRubyBlock.h"; sourceTree = "<group>"; };
 		C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "String+AsRubyBlock.m"; sourceTree = "<group>"; };
-		C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScriptInspector.xib; sourceTree = "<group>"; };
+		C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScriptInspector.xib; path = src/scripting/ScriptInspector.xib; sourceTree = "<group>"; };
 		C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptInspectorController.h; sourceTree = "<group>"; };
 		C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptInspectorController.m; sourceTree = "<group>"; };
 		C9B641FD0EAD1495006AA089 /* ELSineOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSineOscillator.h; sourceTree = "<group>"; };
@@ -478,6 +483,8 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */,
+				C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */,
 				C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */,
 				C9A9F1610E8A41DC009A06A3 /* OscillatorDesigner.xib */,
 				C9A9F1630E8A41DC009A06A3 /* HexInspector.xib */,
@@ -731,6 +738,8 @@
 				C9A9F1C90E8A42DF009A06A3 /* ELMIDIMessage.m */,
 				C9A9F1CA0E8A42DF009A06A3 /* ELTimer.h */,
 				C9A9F1CB0E8A42DF009A06A3 /* ELTimer.m */,
+				C99FA9E00EB8F69E002305EF /* ELMIDIConfigController.h */,
+				C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */,
 			);
 			name = midi;
 			path = src/midi;
@@ -775,7 +784,6 @@
 			children = (
 				C9B1F36E0E9BF8000017092F /* RubyBlock.h */,
 				C9B1F36F0E9BF8000017092F /* RubyBlock.m */,
-				C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */,
 				C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */,
 				C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */,
 				C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */,
@@ -999,6 +1007,7 @@
 				C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */,
 				C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */,
 				C9DA150E0EA7F05D0087EDD3 /* ActivityViewer.xib in Resources */,
+				C99FA9E40EB8F6A9002305EF /* MIDIConfig.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1094,6 +1103,7 @@
 				C9599AEB0EAE5DA500310D3D /* ELSequenceOscillator.m in Sources */,
 				C9599AEF0EAE7C1E00310D3D /* ELRangedOscillator.m in Sources */,
 				C9C931620EB12DA1009528C6 /* ELRangedKnob.m in Sources */,
+				C99FA9E20EB8F69E002305EF /* ELMIDIConfigController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

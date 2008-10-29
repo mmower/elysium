@@ -30,17 +30,9 @@ static ELMIDIController *singletonInstance = nil;
 - (id)init {
   if( ( self = [super init] ) ) {
     
-    source = [[PYMIDIVirtualSource alloc] initWithName:@"Elysium"];
+    NSLog( @"Initialzing MIDI output" );
+    source = [[PYMIDIVirtualSource alloc] initWithName:@"Elysium out"];
     [source addSender:self];
-    
-    PYMIDIManager*  manager = [PYMIDIManager sharedInstance];
-    NSArray* endpointArray = [manager realDestinations];
-    
-    NSEnumerator* enumerator = [endpointArray objectEnumerator];
-    PYMIDIEndpoint* endpoint;
-    while( ( endpoint = [enumerator nextObject] ) ) {
-      NSLog( @"Detected endpoint = %@", [endpoint displayName] );
-    }
     
     NSLog( @"MIDIController initialization complete." );
   }
@@ -55,6 +47,17 @@ static ELMIDIController *singletonInstance = nil;
 - (void)sendPackets:(MIDIPacketList *)_packetList_ {
   // NSLog( @"Send MIDI packets" );
   [source processMIDIPacketList:_packetList_ sender:self];
+}
+
+- (void)setInput:(PYMIDIEndpoint *)_endpoint_ {
+  // [endpoint removeReceiever:self];
+  endpoint = _endpoint_;
+  NSLog( @"Setting input endpoint: %@ (%@)", [endpoint name], [endpoint displayName] );
+  [endpoint addReceiver:self];
+}
+
+- (void)processMIDIPacketList:(MIDIPacketList *)_packetList_ sender:(id)_sender_ {
+  NSLog( @"Whoop!" );
 }
 
 @end
