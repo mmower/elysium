@@ -10,6 +10,9 @@
 
 #import "Elysium.h"
 
+#import "ELMIDITrigger.h"
+#import "ELMIDIController.h"
+
 @class ELNote;
 @class ELLayer;
 @class ELTimer;
@@ -33,6 +36,8 @@
   BOOL                showKey;
   
   NSMutableDictionary *scripts;
+  NSMutableArray      *triggers;        // ELMIDITrigger objects
+  NSThread            *triggerThread;
   
   ELIntegerKnob       *tempoKnob;
   ELIntegerKnob       *barLengthKnob;
@@ -53,6 +58,7 @@
 
 @property ElysiumDocument *document;
 @property (readonly) NSMutableDictionary *scripts;
+@property (readonly) NSMutableArray *triggers;
 
 @property (readonly) ELIntegerKnob *tempoKnob;
 @property (readonly) ELIntegerKnob *barLengthKnob;
@@ -85,6 +91,10 @@
 - (void)removeLayers;
 - (NSArray *)layers;
 - (ELLayer *)layer:(int)index;
+
+// MIDI Trigger support
+- (void)processMIDIControlMessage:(ELMIDIControlMessage *)message;
+- (void)handleMIDIControlMessage:(ELMIDIControlMessage *)message;
 
 // Script support
 - (void)runWillStartScript;

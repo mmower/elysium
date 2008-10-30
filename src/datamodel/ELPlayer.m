@@ -45,6 +45,7 @@
     transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
     
     scripts        = [NSMutableDictionary dictionary];
+    triggers       = [[NSMutableArray alloc] init];
     
     nextLayerNumber = 1;
     showNotes       = NO;
@@ -98,6 +99,7 @@
 
 @synthesize document;
 @synthesize scripts;
+@synthesize triggers;
 
 - (void)toggleNoteDisplay {
   showNotes = !showNotes;
@@ -110,6 +112,8 @@
     NSLog( @"Player Start" );
     [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
     [layers makeObjectsPerformSelector:@selector(start)];
+    triggerThread = [[NSThread alloc] initWithTarget:self selector:@selector(triggerMain) object:nil];
+    [triggerThread start];
     [self setRunning:YES];
     [self performSelectorOnMainThread:@selector(runDidStartScript) withObject:nil waitUntilDone:YES];
   }
@@ -119,6 +123,7 @@
   if( [self running] ) {
     NSLog( @"Player Stop" );
     [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
+    [triggerThread cancel];
     [layers makeObjectsPerformSelector:@selector(stop)];
     [self setRunning:NO];
     [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
@@ -131,6 +136,12 @@
 
 - (void)clearAll {
   [layers makeObjectsPerformSelector:@selector(clear)];
+}
+
+- (void)triggerMain {
+  do {
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+  } while( ![[NSThread currentThread] isCancelled] );
 }
 
 // Scripting
@@ -206,6 +217,16 @@
   }
 }
 
+// MIDI Trigger support
+
+- (void)processMIDIControlMessage:(ELMIDIControlMessage *)_message_ {
+  [self performSelector:@selector(processMIDIControlMessage:) onThread:triggerThread withObject:_message_ waitUntilDone:NO];
+}
+
+- (void)handleMIDIControlMessage:(ELMIDIControlMessage *)_message_ {
+  [triggers makeObjectsPerformSelector:@selector(handleMIDIControlMessage:) withObject:_message_];
+}
+
 // Oscillator support
 
 - (void)addOscillator:(ELOscillator *)_oscillator_ {
@@ -239,6 +260,12 @@
     [layersElement addChild:[layer xmlRepresentation]];
   }
   [surfaceElement addChild:layersElement];
+  
+  NSXMLElement *triggersElement = [NSXMLNode elementWithName:@"triggers"];
+  for( ELMIDITrigger *trigger in [self triggers] ) {
+    [triggersElement addChild:[trigger xmlRepresentation]];
+  }
+  [surfaceElement addChild:triggersElement];
   
   NSXMLElement *scriptsElement = [NSXMLNode elementWithName:@"scripts"];
   for( NSString *name in [scripts allKeys] ) {
@@ -344,6 +371,13 @@
         NSLog( @"Player detected faulty layer, cannot load." );
         return nil;
       }
+    }
+    
+    // Triggers
+    nodes = [_representation_ nodesForXPath:@"triggers/trigger" error:nil];
+    for( NSXMLNode *node in nodes ) {
+      NSXMLElement *element = (NSXMLElement *)node;
+      [triggers addObject:[[ELMIDITrigger alloc] initWithXmlRepresentation:element parent:nil player:self]];
     }
     
     // Scripts
