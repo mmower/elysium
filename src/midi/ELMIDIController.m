@@ -10,8 +10,11 @@
 
 #import "Elysium.h"
 
+#import "ElysiumDocument.h"
+
 #import "ELMIDIMessage.h"
 #import "ELMIDIController.h"
+#import "ELMIDIControlMessage.h"
 
 static ELMIDIController *singletonInstance = nil;
 
@@ -89,33 +92,19 @@ static ELMIDIController *singletonInstance = nil;
       [self handleMIDIMessage:message ofSize:messageSize];
 }
 
+/* Handle routing MIDI control messages to the foreground player.
+ * The message is bundled into a struct for easy passing.
+ */
 - (void)handleMIDIMessage:(Byte*)_message_ ofSize:(int)_size_ {
   // Look for Control Change
   if( ( _message_[0] & 0xF0) == 0xB0) {
-    // int channel = _message_[0] & 0x0F;
-    int control = _message_[1];
-    int value = _message_[2];
+    ELMIDIControlMessage *message = [[ELMIDIControlMessage alloc] initWithChannel:_message_[0] & 0x0F
+                                                                       controller:_message_[1]
+                                                                            value:_message_[2]];
+                                                                            
+    ELPlayer *player = [[[NSDocumentController sharedDocumentController] currentDocument] player];
     
-    switch( control ) {
-      case 0x08:
-        switch( value ) {
-          case 0x00:
-            NSLog( @"Receved player stop control change message." );
-            [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyPlayerShouldStop object:self];
-            break;
-          case 0x7F:
-            NSLog( @"Receved player start control change message." );
-            [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyPlayerShouldStart object:self];
-            break;
-          default:
-            // NSLog( @"Received unhandled control change message %d/%d/%d", channel, control, value );
-            ;
-        }
-        break;
-      default:
-        // NSLog( @"Received unhandled control change message %d/%d/%d", channel, control, value );
-        ;
-    }
+    [player processMIDIControlMessage:message];
   }
 }
 
