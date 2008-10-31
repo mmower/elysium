@@ -8,14 +8,24 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELPlayer;
+@class ELMIDITriggerArrayController;
+
 @interface ELMIDIConfigController : NSWindowController {
-  IBOutlet NSTableView        *destinationsTable;
-  NSArray                     *destinations;
+  IBOutlet NSTableView                  *destinationsTable;
+  IBOutlet NSTableView                  *triggersTable;
+  IBOutlet ELMIDITriggerArrayController *triggerArrayController;
+  NSArray                               *destinations;
+  ELPlayer                              *player;
 }
 
+- (id)initWithPlayer:(ELPlayer *)player;
+
 @property (assign) NSArray *destinations;
+@property (assign) ELPlayer *player;
 
 - (IBAction)rescanMidiBus:(id)sender;
 - (IBAction)setMidiDestination:(id)sender;
+- (IBAction)editTriggerCallback:(id)sender;
 
 @end

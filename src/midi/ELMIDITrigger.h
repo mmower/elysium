@@ -11,20 +11,24 @@
 #import "ELXmlData.h"
 
 @class RubyBlock;
+
+@class ELPlayer;
 @class ELMIDIControlMessage;
 
 @interface ELMIDITrigger : NSObject <ELXmlData> {
-  Byte      channelMask;
-  Byte      controller;
+  ELPlayer  *player;
+  int       channelMask;
+  int       controller;
   RubyBlock *callback;
 }
 
-- (id)initWithChannelMask:(Byte)channelMask controller:(Byte)controller callback:(RubyBlock *)callback;
+- (id)initWithPlayer:(ELPlayer *)player channelMask:(Byte)channelMask controller:(Byte)controller callback:(RubyBlock *)callback;
 
-@property Byte channelMask;
-@property Byte controller;
+@property ELPlayer *player;
+@property int channelMask;
+@property int controller;
 @property (assign) RubyBlock *callback;
 
-- (BOOL)handleControlMessage:(ELMIDIControlMessage *)controlMessage;
+- (BOOL)handleMIDIControlMessage:(ELMIDIControlMessage *)controlMessage;
 
 @end

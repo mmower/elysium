@@ -6,20 +6,32 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
+#import "Elysium.h"
+
 #import <PYMIDI/PYMIDI.h>
 
 #import "ELMIDIConfigController.h"
 
+#import "ELPlayer.h"
 #import "ELMIDIController.h"
+
+#import "RubyBlock.h"
 
 @implementation ELMIDIConfigController
 
-- (id)init {
+- (id)initWithPlayer:(ELPlayer *)_player_ {
   if( ( self = [super initWithWindowNibName:@"MIDIConfig"] ) ) {
+    [self setPlayer:_player_];
     [self rescanMidiBus:nil];
   }
   
   return self;
+}
+
+@synthesize player;
+
+- (void)awakeFromNib {
+  [triggerArrayController setPlayer:[self player]];
 }
 
 @synthesize destinations;
@@ -29,14 +41,18 @@
 }
 
 - (IBAction)setMidiDestination:(id)_sender_ {
-  
   int index = [destinationsTable selectedRow];
-  NSLog( @"selected index = %d", index );
-  
-  PYMIDIRealDestination *destination = [destinations objectAtIndex:index];
-  NSLog( @"Destination = %@", destination );
-  
-  [[ELMIDIController sharedInstance] setInput:destination];
+  if( index >= 0 ) {
+    [[ELMIDIController sharedInstance] setInput:[destinations objectAtIndex:index]];
+  }
+}
+
+- (IBAction)editTriggerCallback:(id)_sender_ {
+  int index = [triggersTable selectedRow];
+  if( index >= 0 ) {
+    ELMIDITrigger *trigger = [[player triggers] objectAtIndex:index];
+    [[trigger callback] inspect:self];
+  }
 }
 
 @end

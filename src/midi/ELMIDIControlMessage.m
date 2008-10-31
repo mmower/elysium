@@ -27,8 +27,17 @@
 @synthesize controller;
 @synthesize value;
 
+/*
+  Determine whether this message matches the given criteria.
+  
+  Note: MIDI channel #1 is returned as 0
+*/
 - (BOOL)matchesChannelMask:(Byte)_channelMask_ andController:(Byte)_controller_ {
-  return [self channel] & _channelMask_ && [self controller] == _controller_;  
+  return ( ( [self channel]+1 ) & _channelMask_ ) && ( [self controller] == _controller_ );
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"MIDI CC channel:%d controller:%d value:%d", [self channel], [self controller], [self value]];
 }
 
 @end
