@@ -52,6 +52,10 @@
     showOctaves     = NO;
     showKey         = NO;
     
+    // Note that we start this here, otherwise MIDI CC cannot be used to trigger the player itself
+    triggerThread = [[NSThread alloc] initWithTarget:self selector:@selector(triggerMain) object:nil];
+    [triggerThread start];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(start:) name:ELNotifyPlayerShouldStart object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop:) name:ELNotifyPlayerShouldStop object:nil];
   }
@@ -112,8 +116,6 @@
     NSLog( @"Player Start" );
     [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
     [layers makeObjectsPerformSelector:@selector(start)];
-    triggerThread = [[NSThread alloc] initWithTarget:self selector:@selector(triggerMain) object:nil];
-    [triggerThread start];
     [self setRunning:YES];
     [self performSelectorOnMainThread:@selector(runDidStartScript) withObject:nil waitUntilDone:YES];
   }
@@ -123,7 +125,7 @@
   if( [self running] ) {
     NSLog( @"Player Stop" );
     [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
-    [triggerThread cancel];
+    // [triggerThread cancel];
     [layers makeObjectsPerformSelector:@selector(stop)];
     [self setRunning:NO];
     [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
@@ -139,8 +141,13 @@
 }
 
 - (void)triggerMain {
+  // Without any inputs attached a runloop will automatically exit
+  // This would create a spin loop that will eat a lot of CPU
+  [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+  
   do {
-    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
+    // [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
   } while( ![[NSThread currentThread] isCancelled] );
 }
 
@@ -220,10 +227,12 @@
 // MIDI Trigger support
 
 - (void)processMIDIControlMessage:(ELMIDIControlMessage *)_message_ {
-  [self performSelector:@selector(processMIDIControlMessage:) onThread:triggerThread withObject:_message_ waitUntilDone:NO];
+  NSLog( @"processMIDIControlMessage:%@", _message_ );
+  [self performSelector:@selector(handleMIDIControlMessage:) onThread:triggerThread withObject:_message_ waitUntilDone:NO];
 }
 
 - (void)handleMIDIControlMessage:(ELMIDIControlMessage *)_message_ {
+  NSLog( @"handleMIDIControlMessage:%@", _message_ );
   [triggers makeObjectsPerformSelector:@selector(handleMIDIControlMessage:) withObject:_message_];
 }
 
