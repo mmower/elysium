@@ -143,6 +143,7 @@
 		C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D95F0E693A88005AD9B7 /* README.markdown */; };
 		C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */; };
 		C9FE0E030EBA506400A59130 /* ELMIDIControlMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE0E020EBA506400A59130 /* ELMIDIControlMessage.m */; };
+		C9FE0E4D0EBA6B9400A59130 /* ELMIDITriggerArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE0E4C0EBA6B9400A59130 /* ELMIDITriggerArrayController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -380,6 +381,8 @@
 		C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = INSTALL.markdown; sourceTree = "<group>"; };
 		C9FE0E010EBA506400A59130 /* ELMIDIControlMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIControlMessage.h; sourceTree = "<group>"; };
 		C9FE0E020EBA506400A59130 /* ELMIDIControlMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIControlMessage.m; sourceTree = "<group>"; };
+		C9FE0E4B0EBA6B9400A59130 /* ELMIDITriggerArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDITriggerArrayController.h; sourceTree = "<group>"; };
+		C9FE0E4C0EBA6B9400A59130 /* ELMIDITriggerArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDITriggerArrayController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -750,6 +753,8 @@
 				C90A940D0EB9FEDB004AA5BE /* ELMIDITrigger.m */,
 				C9FE0E010EBA506400A59130 /* ELMIDIControlMessage.h */,
 				C9FE0E020EBA506400A59130 /* ELMIDIControlMessage.m */,
+				C9FE0E4B0EBA6B9400A59130 /* ELMIDITriggerArrayController.h */,
+				C9FE0E4C0EBA6B9400A59130 /* ELMIDITriggerArrayController.m */,
 			);
 			name = midi;
 			path = src/midi;
@@ -1116,6 +1121,7 @@
 				C99FA9E20EB8F69E002305EF /* ELMIDIConfigController.m in Sources */,
 				C90A940E0EB9FEDB004AA5BE /* ELMIDITrigger.m in Sources */,
 				C9FE0E030EBA506400A59130 /* ELMIDIControlMessage.m in Sources */,
+				C9FE0E4D0EBA6B9400A59130 /* ELMIDITriggerArrayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

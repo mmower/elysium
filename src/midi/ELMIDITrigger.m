@@ -21,8 +21,20 @@
 
 @implementation ELMIDITrigger
 
-- (id)initWithChannelMask:(Byte)_channelMask_ controller:(Byte)_controller_ callback:(RubyBlock *)_callback_ {
+- (id)init {
   if( ( self = [super init] ) ) {
+    [self setChannelMask:0x0F];
+    [self setController:0x00];
+    [self setCallback:[@"do |player,message|\n\t# write your callback code here\nend\n" asRubyBlock]];
+    [self setPlayer:nil];
+  }
+  
+  return self;
+}
+
+- (id)initWithPlayer:(ELPlayer *)_player_ channelMask:(Byte)_channelMask_ controller:(Byte)_controller_ callback:(RubyBlock *)_callback_ {
+  if( ( self = [self init] ) ) {
+    [self setPlayer:_player_];
     [self setChannelMask:_channelMask_];
     [self setController:_controller_];
     [self setCallback:_callback_];
@@ -31,13 +43,15 @@
   return self;
 }
 
+@synthesize player;
 @synthesize channelMask;
 @synthesize controller;
 @synthesize callback;
 
-- (BOOL)handleControlMessage:(ELMIDIControlMessage *)controlMessage {
-  if( [controlMessage matchesChannelMask:[self channelMask] andController:[self controller]] ) {
-    [[self callback] evalWithArg:[NSNumber numberWithInteger:[controlMessage value]]];
+- (BOOL)handleMIDIControlMessage:(ELMIDIControlMessage *)_controlMessage_ {
+  NSLog( @"Trigger %@ checking CC message: %@", self, _controlMessage_ );
+  if( [_controlMessage_ matchesChannelMask:[self channelMask] andController:[self controller]] ) {
+    [[self callback] evalWithArg:[self player] arg:_controlMessage_];
     return YES;
   } else {
     return NO;
@@ -64,36 +78,36 @@
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  NSXMLNode *attributeNode;
-  
-  Byte newChannelMask;
-  Byte newController;
-  RubyBlock *newCallback;
-  
-  if( ( attributeNode = [_representation_ attributeForName:@"channelMask"] ) ) {
-    newChannelMask = [[attributeNode stringValue] intValue];
-  } else {
-    NSLog( @"Trigger found without channelMask" );
-    return nil;
+  if( ( self = [self init] ) ) {
+    NSXMLNode *attributeNode;
+    
+    [self setPlayer:_player_];
+    
+    if( ( attributeNode = [_representation_ attributeForName:@"channelMask"] ) ) {
+      [self setChannelMask:[[attributeNode stringValue] intValue]];
+    } else {
+      NSLog( @"Trigger found without channelMask" );
+      return nil;
+    }
+    
+    if( ( attributeNode = [_representation_ attributeForName:@"controller"] ) ) {
+      [self setController:[[attributeNode stringValue] intValue]];
+    } else {
+      NSLog( @"Trigger found without controller" );
+      return nil;
+    }
+
+    NSArray *nodes = [_representation_ nodesForXPath:@"callback" error:nil];
+    if( [nodes count] > 0 ) {
+      NSXMLElement *element = (NSXMLElement *)[nodes objectAtIndex:0];
+      [self setCallback:[[element stringValue] asRubyBlock]];
+    } else {
+      NSLog( @"Trigger found without callback" );
+      return nil;
+    }
   }
   
-  if( ( attributeNode = [_representation_ attributeForName:@"controller"] ) ) {
-    newController = [[attributeNode stringValue] intValue];
-  } else {
-    NSLog( @"Trigger found without controller" );
-    return nil;
-  }
-  
-  NSArray *nodes = [_representation_ nodesForXPath:@"callback" error:nil];
-  if( [nodes count] > 0 ) {
-    NSXMLElement *element = (NSXMLElement *)[nodes objectAtIndex:0];
-    newCallback = [[element stringValue] asRubyBlock];
-  } else {
-    NSLog( @"Trigger found without callback" );
-    return nil;
-  }
-  
-  return [self initWithChannelMask:newChannelMask controller:newController callback:newCallback];
+  return self;
 }
 
 @end
