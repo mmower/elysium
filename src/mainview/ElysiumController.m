@@ -167,7 +167,7 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 - (IBAction)showMIDIConfigInspector:(id)_sender_ {
   if( !midiConfigController ) {
-    midiConfigController = [[ELMIDIConfigController alloc] init];
+    midiConfigController = [[ELMIDIConfigController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
   }
   
   [midiConfigController showWindow:self];
