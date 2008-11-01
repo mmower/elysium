@@ -10,6 +10,8 @@
 
 #import "RubyBlock.h"
 
+#import "NoodleLineNumberView.h"
+
 @implementation ScriptInspectorController
 
 @synthesize block;
@@ -25,19 +27,26 @@
 }
 
 - (void)awakeFromNib {
-  NSFont *scriptFont = [NSFont fontWithName:@"Monaco" size:10.0];
   
-  [sourceEditor setFont:scriptFont];
+  [scrollView setVerticalRulerView:[[NoodleLineNumberView alloc] initWithScrollView:scrollView]];
+  [scrollView setHasHorizontalRuler:NO];
+  [scrollView setHasVerticalRuler:YES];
+  [scrollView setRulersVisible:YES];
+  [sourceEditor setFont:[NSFont userFixedPitchFontOfSize:[NSFont smallSystemFontSize]]];
   
-  NSDictionary *sizeAttribute = [[NSDictionary alloc] initWithObjectsAndKeys:scriptFont, NSFontAttributeName, nil];
-  CGFloat tabSize = [@"  " sizeWithAttributes:sizeAttribute].width;
-  
-  NSMutableParagraphStyle *style = [[sourceEditor defaultParagraphStyle] mutableCopy];
-  NSArray *array = [style tabStops];
-  for( id item in array ) {
-    [style removeTabStop:item];
-  }
-  [style setDefaultTabInterval:tabSize];
+  // NSFont *scriptFont = [NSFont fontWithName:@"Monaco" size:10.0];
+  // 
+  // [sourceEditor setFont:scriptFont];
+  // 
+  // NSDictionary *sizeAttribute = [[NSDictionary alloc] initWithObjectsAndKeys:scriptFont, NSFontAttributeName, nil];
+  // CGFloat tabSize = [@"  " sizeWithAttributes:sizeAttribute].width;
+  // 
+  // NSMutableParagraphStyle *style = [[sourceEditor defaultParagraphStyle] mutableCopy];
+  // NSArray *array = [style tabStops];
+  // for( id item in array ) {
+  //   [style removeTabStop:item];
+  // }
+  // [style setDefaultTabInterval:tabSize];
   // [sourceEditor setDefaultParagraphStyle:style];
   // NSDictionary *attributes = [[NSDictionary alloc] initWithObjectsAndKeys:style, NSParagraphStyleAttributeName, nil];
   // [sourceEditor setTypingAttributes:attributes];
