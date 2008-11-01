@@ -12,6 +12,8 @@
 
 #import "ELMIDIConfigController.h"
 
+#import "ELHex.h"
+#import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELMIDIController.h"
 
@@ -28,13 +30,29 @@
   return self;
 }
 
-@synthesize player;
-
 - (void)awakeFromNib {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(selectionChanged:)
+                                               name:ELNotifyObjectSelectionDidChange
+                                             object:nil];
   [triggerArrayController setPlayer:[self player]];
 }
 
+@synthesize player;
 @synthesize destinations;
+
+- (void)selectionChanged:(NSNotification*)_notification_
+{
+  if( [[_notification_ object] isKindOfClass:[ELPlayer class]] ) {
+    [self setPlayer:[_notification_ object]];
+  } else if( [[_notification_ object] isKindOfClass:[ELLayer class]] ) {
+    [self setPlayer:(ELPlayer *)[[_notification_ object] player]];
+  } else if( [[_notification_ object] isKindOfClass:[ELHex class]] ) {
+    [self setPlayer:(ELPlayer *)[[[_notification_ object] layer] player]];
+  }
+  
+  [triggerArrayController setPlayer:[self player]];
+}
 
 - (IBAction)rescanMidiBus:(id)_sender_ {
   [self setDestinations:[[PYMIDIManager sharedInstance] realSources]];

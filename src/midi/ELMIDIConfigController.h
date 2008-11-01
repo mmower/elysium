@@ -24,6 +24,7 @@
 @property (assign) NSArray *destinations;
 @property (assign) ELPlayer *player;
 
+- (void)selectionChanged:(NSNotification*)notification;
 - (IBAction)rescanMidiBus:(id)sender;
 - (IBAction)setMidiDestination:(id)sender;
 - (IBAction)editTriggerCallback:(id)sender;
