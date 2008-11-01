@@ -25,6 +25,9 @@
 		C91600A80E98FF3C0052DB9F /* triad5.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A40E98FF3C0052DB9F /* triad5.tif */; };
 		C91600A90E98FF3C0052DB9F /* triad6.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A50E98FF3C0052DB9F /* triad6.tif */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
+		C930CA000EBBC3A000DE0817 /* Elysium.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = C930C9FF0EBBC3A000DE0817 /* Elysium.bridgesupport */; };
+		C930CA190EBBD54300DE0817 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = C930CA180EBBD54300DE0817 /* NoodleLineNumberView.m */; };
+		C930CA230EBBD66D00DE0817 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = C930CA220EBBD66D00DE0817 /* NoodleLineNumberMarker.m */; };
 		C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54970E61F1250077C448 /* PYMIDI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C93D54AF0E61F1250077C448 /* PYMIDIEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C93D54B00E61F1250077C448 /* PYMIDIEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54990E61F1250077C448 /* PYMIDIEndpoint.m */; };
@@ -216,6 +219,11 @@
 		C91600A40E98FF3C0052DB9F /* triad5.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad5.tif; sourceTree = "<group>"; };
 		C91600A50E98FF3C0052DB9F /* triad6.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad6.tif; sourceTree = "<group>"; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
+		C930C9FF0EBBC3A000DE0817 /* Elysium.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Elysium.bridgesupport; sourceTree = "<group>"; };
+		C930CA170EBBD54300DE0817 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
+		C930CA180EBBD54300DE0817 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
+		C930CA210EBBD66D00DE0817 /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
+		C930CA220EBBD66D00DE0817 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
 		C93D54910E61F0E80077C448 /* PYMIDI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PYMIDI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PYMIDI-Info.plist"; sourceTree = "<group>"; };
 		C93D54970E61F1250077C448 /* PYMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDI.h; sourceTree = "<group>"; };
@@ -508,6 +516,7 @@
 				1DDD58280DA1D0D100B32029 /* ElysiumDocument.xib */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
+				C930C9FF0EBBC3A000DE0817 /* Elysium.bridgesupport */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -519,6 +528,18 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C930CA150EBBD4F800DE0817 /* line_number_view */ = {
+			isa = PBXGroup;
+			children = (
+				C930CA210EBBD66D00DE0817 /* NoodleLineNumberMarker.h */,
+				C930CA220EBBD66D00DE0817 /* NoodleLineNumberMarker.m */,
+				C930CA170EBBD54300DE0817 /* NoodleLineNumberView.h */,
+				C930CA180EBBD54300DE0817 /* NoodleLineNumberView.m */,
+			);
+			name = line_number_view;
+			path = src/line_number_view;
 			sourceTree = "<group>";
 		};
 		C93D54960E61F1250077C448 /* PYMIDI */ = {
@@ -587,6 +608,7 @@
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C930CA150EBBD4F800DE0817 /* line_number_view */,
 				C9DA150C0EA7F02C0087EDD3 /* activity_viewer */,
 				C9B1F36B0E9BF6BF0017092F /* scripting */,
 				C9A9F1910E8A42DF009A06A3 /* datamodel */,
@@ -1023,6 +1045,7 @@
 				C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */,
 				C9DA150E0EA7F05D0087EDD3 /* ActivityViewer.xib in Resources */,
 				C99FA9E40EB8F6A9002305EF /* MIDIConfig.xib in Resources */,
+				C930CA000EBBC3A000DE0817 /* Elysium.bridgesupport in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1122,6 +1145,8 @@
 				C90A940E0EB9FEDB004AA5BE /* ELMIDITrigger.m in Sources */,
 				C9FE0E030EBA506400A59130 /* ELMIDIControlMessage.m in Sources */,
 				C9FE0E4D0EBA6B9400A59130 /* ELMIDITriggerArrayController.m in Sources */,
+				C930CA190EBBD54300DE0817 /* NoodleLineNumberView.m in Sources */,
+				C930CA230EBBD66D00DE0817 /* NoodleLineNumberMarker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

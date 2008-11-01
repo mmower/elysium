@@ -14,6 +14,7 @@
   NSMutableAttributedString *editableSource;
   RubyBlock                 *block;
   IBOutlet NSTextView       *sourceEditor;
+  IBOutlet NSScrollView     *scrollView;
 }
 
 @property RubyBlock *block;
