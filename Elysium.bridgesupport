@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='0.9'>
+  <class name='ELPlayer'>
+  
+    <method selector='running'>
+      <retval type='B'/>
+    </method>
+    
+    <method selector='showNotes'>
+      <retval type='B'/>
+    </method>
+    
+    <method selector='setShowNotes:'>
+      <arg type='B' index='0'/>
+    </method>
+    
+    <method selector='showOctaves'>
+      <retval type='B'/>
+    </method>
+    
+    <method selector='setShowOctaves:'>
+      <arg type='B' index='0'/>
+    </method>
+
+    <method selector='showKey'>
+      <retval type='B'/>
+    </method>
+    
+    <method selector='setShowKey:'>
+      <arg type='B' index='0'/>
+    </method>
+    
+  </class>
+</signatures>
