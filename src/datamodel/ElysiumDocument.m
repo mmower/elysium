@@ -42,6 +42,7 @@
   
   // Show the inspectors by default, and ensure something is selected from the right player/layer
   [[NSApp delegate] showInspectorPanel:self];
+  [[NSApp delegate] showMIDIConfigInspector:self];
   ELLayer *firstLayer = [player layer:0];
   ELHex *selectionHex = [firstLayer hexAtColumn:8 row:6];
   [firstLayer hexCellSelected:selectionHex];
