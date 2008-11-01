@@ -132,6 +132,8 @@
 		C9B642050EAD153B006AA089 /* ELSawOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642040EAD153B006AA089 /* ELSawOscillator.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9C931620EB12DA1009528C6 /* ELRangedKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C931610EB12DA1009528C6 /* ELRangedKnob.m */; };
+		C9D6B15A0EBCE83300CA98DC /* control_play_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D6B1590EBCE83300CA98DC /* control_play_blue.png */; };
+		C9D6B15C0EBCE83D00CA98DC /* control_stop_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D6B15B0EBCE83D00CA98DC /* control_stop_blue.png */; };
 		C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DA148F0EA730780087EDD3 /* Elysium.icns */; };
 		C9DA150E0EA7F05D0087EDD3 /* ActivityViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */; };
 		C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DA15110EA7F14A0087EDD3 /* ELActivityViewerController.m */; };
@@ -374,6 +376,8 @@
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9C931600EB12DA1009528C6 /* ELRangedKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedKnob.h; sourceTree = "<group>"; };
 		C9C931610EB12DA1009528C6 /* ELRangedKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedKnob.m; sourceTree = "<group>"; };
+		C9D6B1590EBCE83300CA98DC /* control_play_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = control_play_blue.png; sourceTree = "<group>"; };
+		C9D6B15B0EBCE83D00CA98DC /* control_stop_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = control_stop_blue.png; sourceTree = "<group>"; };
 		C9DA148F0EA730780087EDD3 /* Elysium.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Elysium.icns; sourceTree = "<group>"; };
 		C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ActivityViewer.xib; path = English.lproj/ActivityViewer.xib; sourceTree = "<group>"; };
 		C9DA15100EA7F14A0087EDD3 /* ELActivityViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELActivityViewerController.h; sourceTree = "<group>"; };
@@ -833,6 +837,8 @@
 		C9B88E400E64A5E400FA411E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C9D6B15B0EBCE83D00CA98DC /* control_stop_blue.png */,
+				C9D6B1590EBCE83300CA98DC /* control_play_blue.png */,
 				C9DA148F0EA730780087EDD3 /* Elysium.icns */,
 				C91600A20E98FF3C0052DB9F /* triad0.tif */,
 				C91600A30E98FF3C0052DB9F /* triad4.tif */,
@@ -1046,6 +1052,8 @@
 				C9DA150E0EA7F05D0087EDD3 /* ActivityViewer.xib in Resources */,
 				C99FA9E40EB8F6A9002305EF /* MIDIConfig.xib in Resources */,
 				C930CA000EBBC3A000DE0817 /* Elysium.bridgesupport in Resources */,
+				C9D6B15A0EBCE83300CA98DC /* control_play_blue.png in Resources */,
+				C9D6B15C0EBCE83D00CA98DC /* control_stop_blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
