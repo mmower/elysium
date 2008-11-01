@@ -99,10 +99,16 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 }
 
 - (void)awakeFromNib {
-  [[NSGarbageCollector defaultCollector] disable];
-  [MacRuby sharedRuntime];
-  [[NSGarbageCollector defaultCollector] enable];
   [ELMIDIController sharedInstance];
+  [self initMacRuby];
+}
+
+- (void)initMacRuby {
+  [[NSGarbageCollector defaultCollector] disable];
+  MacRuby *runtime = [MacRuby sharedRuntime];
+  [[NSGarbageCollector defaultCollector] enable];
+  [runtime loadBridgeSupportFileAtPath:[[NSBundle mainBundle] pathForResource:@"Elysium" ofType:@"bridgesupport"]];
+  [runtime evaluateString:@"framework 'Cocoa'"];
 }
 
 // Actions

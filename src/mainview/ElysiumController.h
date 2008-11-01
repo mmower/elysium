@@ -28,6 +28,8 @@
   ELMIDIConfigController          *midiConfigController;
 }
 
+- (void)initMacRuby;
+
 - (IBAction)showOscillatorDesigner:(id)sender;
 - (IBAction)showHexInspector:(id)sender;
 - (IBAction)showLayerInspector:(id)sender;
