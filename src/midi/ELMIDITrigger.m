@@ -51,11 +51,17 @@
 - (BOOL)handleMIDIControlMessage:(ELMIDIControlMessage *)_controlMessage_ {
   NSLog( @"Trigger %@ checking CC message: %@", self, _controlMessage_ );
   if( [_controlMessage_ matchesChannelMask:[self channelMask] andController:[self controller]] ) {
-    [[self callback] evalWithArg:[self player] arg:_controlMessage_];
-    return YES;
-  } else {
-    return NO;
+    @try {
+      NSLog( @"Invoke Ruby callback" );
+      [[self callback] evalWithArg:[self player] arg:_controlMessage_];
+      return YES;
+    }
+    @catch( NSException *exception ) {
+      NSLog( @"We got an exception trying to go Ruby: %@", exception );
+    }
   }
+  
+  return NO;
 }
 
 // ELXmlData protocol conformance
