@@ -91,7 +91,6 @@
 
 @synthesize startTime;
 @synthesize harmonicTable;
-@synthesize running;
 @synthesize showNotes;
 @synthesize showOctaves;
 @synthesize showKey;
@@ -109,31 +108,50 @@
 @synthesize scripts;
 @synthesize triggers;
 
-- (void)toggleNoteDisplay {
-  showNotes = !showNotes;
+// Player status & control
+
+@dynamic running;
+
+- (BOOL)running {
+  return running;
 }
 
-// Player control
+- (void)setRunning:(BOOL)_running_ {
+  NSLog( @"[player setRunning:%@]", _running_ ? @"YES" : @"NO" );
+  if( _running_ ) {
+    if( ![self running] ) {
+      [self start];
+    }
+  } else {
+    if( [self running] ) {
+      [self stop];
+    }
+  }
+  NSLog( @"player.running = %@", running ? @"YES" : @"NO" );
+}
 
 - (void)start:(id)_sender_ {
-  if( ![self running] ) {
-    NSLog( @"Player Start" );
-    [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
-    [layers makeObjectsPerformSelector:@selector(start)];
-    [self setRunning:YES];
-    [self performSelectorOnMainThread:@selector(runDidStartScript) withObject:nil waitUntilDone:YES];
-  }
+  [self setRunning:YES];
+}
+
+- (void)start {
+  NSLog( @"Player starting" );
+  [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
+  [layers makeObjectsPerformSelector:@selector(start)];
+  running = YES;
+  [self performSelectorOnMainThread:@selector(runDidStartScript) withObject:nil waitUntilDone:YES];
 }
 
 - (void)stop:(id)_sender_ {
-  if( [self running] ) {
-    NSLog( @"Player Stop" );
-    [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
-    // [triggerThread cancel];
-    [layers makeObjectsPerformSelector:@selector(stop)];
-    [self setRunning:NO];
-    [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
-  }
+  [self setRunning:NO];
+}
+
+- (void)stop {
+  NSLog( @"Player stopping" );
+  [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
+  [layers makeObjectsPerformSelector:@selector(stop)];
+  running = NO;
+  [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
 }
 
 - (void)reset {
@@ -174,6 +192,10 @@
 }
 
 // Drawing Support
+
+- (void)toggleNoteDisplay {
+  showNotes = !showNotes;
+}
 
 - (void)needsDisplay {
   [layers makeObjectsPerformSelector:@selector(needsDisplay)];
