@@ -8,6 +8,8 @@
 
 //#import <CoreAudio/HostTime.h>
 
+#define USE_TRIGGER_THREAD NO
+
 #import "ELPlayer.h"
 
 #import "ELHex.h"
@@ -53,8 +55,10 @@
     showKey         = NO;
     
     // Note that we start this here, otherwise MIDI CC cannot be used to trigger the player itself
-    triggerThread = [[NSThread alloc] initWithTarget:self selector:@selector(triggerMain) object:nil];
-    [triggerThread start];
+    if( USE_TRIGGER_THREAD ) {
+      triggerThread = [[NSThread alloc] initWithTarget:self selector:@selector(triggerMain) object:nil];
+      [triggerThread start];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(start:) name:ELNotifyPlayerShouldStart object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop:) name:ELNotifyPlayerShouldStop object:nil];
@@ -228,7 +232,13 @@
 
 - (void)processMIDIControlMessage:(ELMIDIControlMessage *)_message_ {
   NSLog( @"processMIDIControlMessage:%@", _message_ );
-  [self performSelector:@selector(handleMIDIControlMessage:) onThread:triggerThread withObject:_message_ waitUntilDone:NO];
+  
+  if( USE_TRIGGER_THREAD ) {
+    [self performSelector:@selector(handleMIDIControlMessage:) onThread:triggerThread withObject:_message_ waitUntilDone:NO];
+  } else {
+    [self performSelectorOnMainThread:@selector(handleMIDIControlMessage:) withObject:_message_ waitUntilDone:NO];
+  }
+  
 }
 
 - (void)handleMIDIControlMessage:(ELMIDIControlMessage *)_message_ {
