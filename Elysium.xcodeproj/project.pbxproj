@@ -54,6 +54,7 @@
 		C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
 		C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
+		C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */; };
 		C94F55760EA6A73900320BF5 /* ELKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C94F55750EA6A73900320BF5 /* ELKey.m */; };
 		C9599AE80EAE5D9000310D3D /* ELRandomOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AE70EAE5D9000310D3D /* ELRandomOscillator.m */; };
 		C9599AEB0EAE5DA500310D3D /* ELSequenceOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */; };
@@ -254,6 +255,8 @@
 		C93D54AB0E61F1250077C448 /* PYMIDIVirtualEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualEndpoint.m; sourceTree = "<group>"; };
 		C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualSource.h; sourceTree = "<group>"; };
 		C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
+		C94957C90EBE365D00AC42AD /* ELTimerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTimerCallback.h; sourceTree = "<group>"; };
+		C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimerCallback.m; sourceTree = "<group>"; };
 		C94F55740EA6A73900320BF5 /* ELKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKey.h; sourceTree = "<group>"; };
 		C94F55750EA6A73900320BF5 /* ELKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKey.m; sourceTree = "<group>"; };
 		C9599AE60EAE5D9000310D3D /* ELRandomOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRandomOscillator.h; sourceTree = "<group>"; };
@@ -842,6 +845,8 @@
 				C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */,
 				C9F4506A0EBDE3F3002C3637 /* ELScriptPackage.h */,
 				C9F4506B0EBDE3F3002C3637 /* ELScriptPackage.m */,
+				C94957C90EBE365D00AC42AD /* ELTimerCallback.h */,
+				C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */,
 			);
 			name = scripting;
 			path = src/scripting;
@@ -1171,6 +1176,7 @@
 				C930CA230EBBD66D00DE0817 /* NoodleLineNumberMarker.m in Sources */,
 				C9F450630EBDD1B7002C3637 /* ELScriptPackageController.m in Sources */,
 				C9F4506C0EBDE3F3002C3637 /* ELScriptPackage.m in Sources */,
+				C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
