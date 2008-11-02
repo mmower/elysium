@@ -37,13 +37,17 @@
 
 - (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(id)_context_ {
   if( [_keyPath_ isEqualToString:@"active"] ) {
-    timer = [NSTimer timerWithTimeInterval:[self interval] target:self selector:@selector(run) userInfo:nil repeats:YES];
-  } else {
-    [timer invalidate];
+    if( [self active] ) {
+      timer = [NSTimer timerWithTimeInterval:[self interval] target:self selector:@selector(runCallback:) userInfo:nil repeats:YES];
+      [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    } else {
+      [timer invalidate];
+    }
   }
 }
 
-- (void)run {
+- (void)runCallback:(NSTimer *)_timer_ {
+  NSLog( @"Timer has fired." );
   [callback evalWithArg:[self player] arg:self];
 }
 
