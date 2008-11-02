@@ -8,6 +8,8 @@
 
 #import "Elysium.h"
 
+#define CURRENT_DOCUMENT_VERSION 5
+
 #import <HoneycombView/LMHoneycombView.h>
 
 #import "ElysiumDocument.h"
@@ -53,7 +55,7 @@
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
   
   NSXMLElement *rootElement = [NSXMLNode elementWithName:@"elysium"];
-  [attributes setObject:[NSNumber numberWithInt:4] forKey:@"version"];
+  [attributes setObject:[NSNumber numberWithInt:CURRENT_DOCUMENT_VERSION] forKey:@"version"];
   [rootElement setAttributesAsDictionary:attributes];
   
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithRootElement:rootElement];
@@ -83,8 +85,10 @@
     NSLog( @"Invalid root element type!" );
     return NO;
   }
-  if( ![[[rootElement attributeForName:@"version"] stringValue] isEqualToString:@"4"] ) {
-    NSLog( @"Invalid document version!" );
+  
+  int docVersion = [[[rootElement attributeForName:@"version"] stringValue] intValue];
+  if( docVersion < CURRENT_DOCUMENT_VERSION ) {
+    NSLog( @"Invalid document version: %d!", docVersion );
     return NO;
   }
   

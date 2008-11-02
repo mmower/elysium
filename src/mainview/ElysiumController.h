@@ -8,24 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ELMIDIController;
-@class ELPaletteController;
-
 @class ELHexInspectorController;
 @class ELLayerInspectorController;
 @class ELPlayerInspectorController;
 @class ELOscillatorDesignerController;
-@class ELActivityViewerController;
 @class ELMIDIConfigController;
+@class ELScriptPackageController;
 
 @interface ElysiumController : NSObject {
   ELHexInspectorController        *hexInspectorController;
   ELLayerInspectorController      *layerInspectorController;
   ELPlayerInspectorController     *playerInspectorController;
   ELOscillatorDesignerController  *oscillatorDesignerController;
-  ELPaletteController             *paletteController;
-  ELActivityViewerController      *activityViewerController;
   ELMIDIConfigController          *midiConfigController;
+  ELScriptPackageController       *scriptPackageController;
 }
 
 - (void)initMacRuby;
@@ -36,11 +32,7 @@
 - (IBAction)showPlayerInspector:(id)sender;
 - (IBAction)showInspectorPanel:(id)sender;
 - (IBAction)showMIDIConfigInspector:(id)sender;
-
-- (IBAction)showPalette:(id)sender;
-- (IBAction)showActivityViewer:(id)sender;
+- (IBAction)showScriptPackageInspector:(id)sender;
 - (IBAction)satisfyMe:(id)sender;
-
-- (void)recordActivity:(NSDictionary *)activity;
 
 @end

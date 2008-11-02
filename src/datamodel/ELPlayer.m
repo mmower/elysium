@@ -8,6 +8,8 @@
 
 //#import <CoreAudio/HostTime.h>
 
+#import "Elysium.h"
+
 #define USE_TRIGGER_THREAD NO
 
 #import "ELPlayer.h"
@@ -18,6 +20,7 @@
 #import "ElysiumDocument.h"
 #import "ELHarmonicTable.h"
 #import "ElysiumController.h"
+#import "ELScriptPackage.h"
 
 #import "ELMIDIMessage.h"
 #import "ELMIDIController.h"
@@ -34,20 +37,21 @@
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    harmonicTable  = [[ELHarmonicTable alloc] init];
-    layers         = [[NSMutableArray alloc] init];
+    harmonicTable   = [[ELHarmonicTable alloc] init];
+    layers          = [[NSMutableArray alloc] init];
     
-    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:120 minimum:30 maximum:600 stepping:1];
-    barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
-    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90 minimum:1 maximum:127 stepping:1];
-    emphasisKnob   = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
-    durationKnob   = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5 minimum:0.1 maximum:5.0 stepping:0.1];
-    transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
+    tempoKnob       = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:120 minimum:30 maximum:600 stepping:1];
+    barLengthKnob   = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
+    timeToLiveKnob  = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
+    pulseCountKnob  = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
+    velocityKnob    = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90 minimum:1 maximum:127 stepping:1];
+    emphasisKnob    = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
+    durationKnob    = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5 minimum:0.1 maximum:5.0 stepping:0.1];
+    transposeKnob   = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
     
-    scripts        = [NSMutableDictionary dictionary];
-    triggers       = [[NSMutableArray alloc] init];
+    scripts         = [NSMutableDictionary dictionary];
+    triggers        = [[NSMutableArray alloc] init];
+    pkg             = [[ELScriptPackage alloc] init];
     
     nextLayerNumber = 1;
     showNotes       = NO;
@@ -107,6 +111,7 @@
 @synthesize document;
 @synthesize scripts;
 @synthesize triggers;
+@synthesize pkg;
 
 // Player status & control
 
@@ -324,6 +329,8 @@
   }
   [surfaceElement addChild:scriptsElement];
   
+  [surfaceElement addChild:[pkg xmlRepresentation]];
+  
   return surfaceElement;
 }
 
@@ -427,6 +434,11 @@
       NSXMLElement *element = (NSXMLElement *)node;
       [scripts setObject:[[element stringValue] asRubyBlock]
                   forKey:[[element attributeForName:@"name"] stringValue]];
+    }
+    
+    // Convenient, even though there should only ever be one
+    for( NSXMLNode *node in [_representation_ nodesForXPath:@"package" error:nil] ) {
+      pkg = [[ELScriptPackage alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:self];
     }
   }
   
