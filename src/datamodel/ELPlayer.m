@@ -51,7 +51,7 @@
     
     scripts         = [NSMutableDictionary dictionary];
     triggers        = [[NSMutableArray alloc] init];
-    pkg             = [[ELScriptPackage alloc] init];
+    pkg             = [[ELScriptPackage alloc] initWithPlayer:self];
     
     nextLayerNumber = 1;
     showNotes       = NO;
