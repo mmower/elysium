@@ -28,4 +28,6 @@
 @property (readonly) RubyBlock *callback;
 @property (assign) ELPlayer *player;
 
+- (void)runCallback:(NSTimer *)_timer_;
+
 @end

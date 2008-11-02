@@ -31,8 +31,6 @@
     }
   }
   
-  NSLog( @"Timer 1 interval = %f", [timer[0] interval] );
-  
   return self;
 }
 
