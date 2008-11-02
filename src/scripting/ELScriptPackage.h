@@ -10,13 +10,21 @@
 
 #import "Elysium.h"
 
+#import "ELTimerCallback.h"
+
 @interface ELScriptPackage : NSObject <ELXmlData> {
-  BOOL  flag[8];
+  ELPlayer        *player;
   
-  float var[8];
-  float varMin[8];
-  float varMax[8];
+  BOOL            flag[8];
+  
+  float           var[8];
+  float           varMin[8];
+  float           varMax[8];
+  
+  ELTimerCallback *timer[4];
 }
+
+@property (assign) ELPlayer *player;
 
 @property BOOL f1;
 @property BOOL f2;
@@ -58,5 +66,10 @@
 @property float v8;
 @property float v8min;
 @property float v8max;
+
+@property (readonly) ELTimerCallback *timer1;
+@property (readonly) ELTimerCallback *timer2;
+@property (readonly) ELTimerCallback *timer3;
+@property (readonly) ELTimerCallback *timer4;
 
 @end

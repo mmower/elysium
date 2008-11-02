@@ -18,6 +18,8 @@
   ScriptInspectorController *inspector;
 }
 
+- (id)initWithSource:(NSString *)source;
+
 - (NSString *)source;
 - (void)setSource:(NSString *)source;
 

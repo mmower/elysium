@@ -6,12 +6,18 @@
 //  Copyright 2008 LucidMac Software. All rights reserved.
 //
 
+#import "Elysium.h"
+
 #import "ELScriptPackage.h"
+
+#import "ELPlayer.h"
+#import "ELTimerCallback.h"
 
 @implementation ELScriptPackage
 
-- (id)init {
+- (id)initWithPlayer:(ELPlayer *)_player_ {
   if( ( self = [super init] ) ) {
+    player = _player_;
     
     for( int i = 0; i < 8; i++ ) {
       flag[i] = NO;
@@ -19,10 +25,16 @@
       varMin[i] = 0.0;
       varMax[i] = 127.0;
     }
+    
+    for( int i = 0; i < 4; i++ ) {
+      timer[i] = [[ELTimerCallback alloc] initWithPlayer:player];
+    }
   }
   
   return self;
 }
+
+@synthesize player;
 
 @dynamic f1;
 
@@ -392,11 +404,35 @@
   }
 }
 
+@dynamic timer1;
+
+- (ELTimerCallback *)timer1 {
+  return timer[0];
+}
+
+@dynamic timer2;
+
+- (ELTimerCallback *)timer2 {
+  return timer[1];
+}
+
+@dynamic timer3;
+
+- (ELTimerCallback *)timer3 {
+  return timer[2];
+}
+
+@dynamic timer4;
+
+- (ELTimerCallback *)timer4 {
+  return timer[3];
+}
+
 // ELXmlData protocol implementation
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   if( ( self = [self init] ) ) {
-    for( NSXMLNode *node in [_representation_ nodesForXPath:@"flag" error:nil] ) {
+    for( NSXMLNode *node in [_representation_ nodesForXPath:@"flags/flag" error:nil] ) {
       NSXMLElement *element = (NSXMLElement *)node;
       
       int index = [[[element attributeForName:@"index"] stringValue] intValue];
@@ -405,7 +441,7 @@
       flag[index] = set;
     }
     
-    for( NSXMLNode *node in [_representation_ nodesForXPath:@"var" error:nil] ) {
+    for( NSXMLNode *node in [_representation_ nodesForXPath:@"vars/var" error:nil] ) {
       NSXMLElement *element = (NSXMLElement *)node;
       
       int index = [[[element attributeForName:@"index"] stringValue] intValue];
@@ -425,26 +461,37 @@
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *pkgElement = [NSXMLNode elementWithName:@"package"];
   
-  NSXMLElement *elt;
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
   
+  NSXMLElement *flagsElement = [NSXMLNode elementWithName:@"flags"];
   for( int i = 0; i < 8; i++ ) {
-    elt = [NSXMLNode elementWithName:@"flag"];
+    NSXMLElement *flagElement = [NSXMLNode elementWithName:@"flag"];
+    [attributes removeAllObjects];
     [attributes setObject:[NSNumber numberWithBool:flag[i]] forKey:@"set"];
     [attributes setObject:[NSNumber numberWithInt:i] forKey:@"index"];
-    [elt setAttributesAsDictionary:attributes];
-    [pkgElement addChild:elt];
+    [flagElement setAttributesAsDictionary:attributes];
+    [flagsElement addChild:flagElement];
   }
+  [pkgElement addChild:flagsElement];
   
+  NSXMLElement *varsElement = [NSXMLNode elementWithName:@"vars"];
   for( int i = 0; i < 8; i++ ) {
-    elt = [NSXMLNode elementWithName:@"var"];
+    NSXMLElement *varElement = [NSXMLNode elementWithName:@"var"];
+    [attributes removeAllObjects];
     [attributes setObject:[NSNumber numberWithFloat:var[i]] forKey:@"value"];
     [attributes setObject:[NSNumber numberWithFloat:varMin[i]] forKey:@"min"];
     [attributes setObject:[NSNumber numberWithFloat:varMax[i]] forKey:@"max"];
     [attributes setObject:[NSNumber numberWithInt:i] forKey:@"index"];
-    [elt setAttributesAsDictionary:attributes];
-    [pkgElement addChild:elt];
+    [varElement setAttributesAsDictionary:attributes];
+    [varsElement addChild:varElement];
   }
+  [pkgElement addChild:varsElement];
+  
+  NSXMLElement *timersElement = [NSXMLNode elementWithName:@"timers"];
+  for( int i = 0; i < 4; i++ ) {
+    [timersElement addChild:[timer[i] xmlRepresentation]];
+  }
+  [pkgElement addChild:timersElement];
   
   return pkgElement;
 }
