@@ -147,6 +147,9 @@
 		C9E8D93F0E68B95D005AD9B7 /* splitter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */; };
 		C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D95F0E693A88005AD9B7 /* README.markdown */; };
 		C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */; };
+		C9F450630EBDD1B7002C3637 /* ELScriptPackageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */; };
+		C9F450650EBDD1BF002C3637 /* ScriptPackageInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */; };
+		C9F4506C0EBDE3F3002C3637 /* ELScriptPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F4506B0EBDE3F3002C3637 /* ELScriptPackage.m */; };
 		C9FE0E030EBA506400A59130 /* ELMIDIControlMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE0E020EBA506400A59130 /* ELMIDIControlMessage.m */; };
 		C9FE0E4D0EBA6B9400A59130 /* ELMIDITriggerArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE0E4C0EBA6B9400A59130 /* ELMIDITriggerArrayController.m */; };
 /* End PBXBuildFile section */
@@ -391,6 +394,11 @@
 		C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = splitter.pdf; sourceTree = "<group>"; };
 		C9E8D95F0E693A88005AD9B7 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = INSTALL.markdown; sourceTree = "<group>"; };
+		C9F450610EBDD1B7002C3637 /* ELScriptPackageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELScriptPackageController.h; sourceTree = "<group>"; };
+		C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScriptPackageController.m; sourceTree = "<group>"; };
+		C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScriptPackageInspector.xib; path = English.lproj/ScriptPackageInspector.xib; sourceTree = "<group>"; };
+		C9F4506A0EBDE3F3002C3637 /* ELScriptPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELScriptPackage.h; sourceTree = "<group>"; };
+		C9F4506B0EBDE3F3002C3637 /* ELScriptPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScriptPackage.m; sourceTree = "<group>"; };
 		C9FE0E010EBA506400A59130 /* ELMIDIControlMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIControlMessage.h; sourceTree = "<group>"; };
 		C9FE0E020EBA506400A59130 /* ELMIDIControlMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIControlMessage.m; sourceTree = "<group>"; };
 		C9FE0E4B0EBA6B9400A59130 /* ELMIDITriggerArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDITriggerArrayController.h; sourceTree = "<group>"; };
@@ -504,6 +512,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */,
 				C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */,
 				C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */,
 				C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */,
@@ -829,6 +838,10 @@
 				C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */,
 				C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */,
 				C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */,
+				C9F450610EBDD1B7002C3637 /* ELScriptPackageController.h */,
+				C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */,
+				C9F4506A0EBDE3F3002C3637 /* ELScriptPackage.h */,
+				C9F4506B0EBDE3F3002C3637 /* ELScriptPackage.m */,
 			);
 			name = scripting;
 			path = src/scripting;
@@ -1054,6 +1067,7 @@
 				C930CA000EBBC3A000DE0817 /* Elysium.bridgesupport in Resources */,
 				C9D6B15A0EBCE83300CA98DC /* control_play_blue.png in Resources */,
 				C9D6B15C0EBCE83D00CA98DC /* control_stop_blue.png in Resources */,
+				C9F450650EBDD1BF002C3637 /* ScriptPackageInspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,6 +1169,8 @@
 				C9FE0E4D0EBA6B9400A59130 /* ELMIDITriggerArrayController.m in Sources */,
 				C930CA190EBBD54300DE0817 /* NoodleLineNumberView.m in Sources */,
 				C930CA230EBBD66D00DE0817 /* NoodleLineNumberMarker.m in Sources */,
+				C9F450630EBDD1B7002C3637 /* ELScriptPackageController.m in Sources */,
+				C9F4506C0EBDE3F3002C3637 /* ELScriptPackage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

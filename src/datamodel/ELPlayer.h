@@ -19,6 +19,7 @@
 @class ELHarmonicTable;
 @class ELMIDIController;
 @class ElysiumDocument;
+@class ELScriptPackage;
 @class ELEnvelopeProbabilityGenerator;
 
 @interface ELPlayer : NSObject <ELXmlData> {
@@ -38,6 +39,8 @@
   NSMutableDictionary *scripts;
   NSMutableArray      *triggers;        // ELMIDITrigger objects
   NSThread            *triggerThread;
+  
+  ELScriptPackage     *pkg;
   
   ELIntegerKnob       *tempoKnob;
   ELIntegerKnob       *barLengthKnob;
@@ -59,6 +62,7 @@
 @property ElysiumDocument *document;
 @property (readonly) NSMutableDictionary *scripts;
 @property (readonly) NSMutableArray *triggers;
+@property (readonly) ELScriptPackage *pkg;
 
 @property (readonly) ELIntegerKnob *tempoKnob;
 @property (readonly) ELIntegerKnob *barLengthKnob;

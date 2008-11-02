@@ -11,14 +11,13 @@
 #import "ElysiumController.h"
 
 #import "ELMIDIController.h"
-#import "ELPaletteController.h"
 
 #import "ELHexInspectorController.h"
 #import "ELLayerInspectorController.h"
 #import "ELPlayerInspectorController.h"
 #import "ELOscillatorDesignerController.h"
-#import "ELActivityViewerController.h"
 #import "ELMIDIConfigController.h"
+#import "ELScriptPackageController.h"
 
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
@@ -154,23 +153,6 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   [self showHexInspector:self];
 }
 
-- (IBAction)showPalette:(id)_sender_ {
-  if( !paletteController ) {
-    paletteController = [[ELPaletteController alloc] init];
-  }
-  
-  // Asking inspector to show itself
-  [paletteController showWindow:self];
-}
-
-- (IBAction)showActivityViewer:(id)_sender_ {
-  if( !activityViewerController ) {
-    activityViewerController = [[ELActivityViewerController alloc] init];
-  }
-  
-  [activityViewerController showWindow:self];
-}
-
 - (IBAction)showMIDIConfigInspector:(id)_sender_ {
   if( !midiConfigController ) {
     midiConfigController = [[ELMIDIConfigController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
@@ -179,12 +161,16 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   [midiConfigController showWindow:self];
 }
 
-- (IBAction)satisfyMe:(id)_sender_ {
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getsatisfaction.com/lucidmac/products/lucidmac_elysium"]];
+- (IBAction)showScriptPackageInspector:(id)_sender_ {
+  if( !scriptPackageController ) {
+    scriptPackageController = [[ELScriptPackageController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+  }
+  
+  [scriptPackageController showWindow:self];
 }
 
-- (void)recordActivity:(NSDictionary *)_activity_ {
-  [activityViewerController recordActivity:_activity_];
+- (IBAction)satisfyMe:(id)_sender_ {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getsatisfaction.com/lucidmac/products/lucidmac_elysium"]];
 }
 
 @end
