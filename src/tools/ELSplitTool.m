@@ -16,6 +16,27 @@ static NSString * const toolType = @"split";
 
 @implementation ELSplitTool
 
+- (id)initWithBounceBackKnob:(ELBooleanKnob *)_bounceBackKnob_ {
+  if( ( self = [super init] ) ) {
+    bounceBackKnob = _bounceBackKnob_;
+  }
+  
+  return self;
+}
+
+- (id)init {
+  return [self initWithBounceBackKnob:[[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO]];
+}
+
+@synthesize bounceBackKnob;
+
+- (NSArray *)observableValues {
+  NSMutableArray *keys = [[NSMutableArray alloc] init];
+  [keys addObjectsFromArray:[super observableValues]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"bounceBackKnob.value",nil]];
+  return keys;
+}
+
 - (NSString *)toolType {
   return toolType;
 }
@@ -23,11 +44,14 @@ static NSString * const toolType = @"split";
 - (void)runTool:(ELPlayhead *)_playhead_ {
   [_playhead_ setPosition:nil];
   for( int direction = N; direction <= NW; direction++ ) {
-    if( direction != INVERSE_DIRECTION( [_playhead_ direction] ) ) {
-      [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:[hex neighbour:direction]
-                                                    direction:direction
-                                                          TTL:[_playhead_ TTL]]];
+    NSLog( @"bounceBack = %@", [bounceBackKnob value] ? @"YES" : @"NO" );
+    if( ![bounceBackKnob value] && direction == INVERSE_DIRECTION( [_playhead_ direction] ) ) {
+      continue;
     }
+    
+    [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:[hex neighbour:direction]
+                                                  direction:direction
+                                                        TTL:[_playhead_ TTL]]];
   }
 }
 
@@ -53,14 +77,29 @@ static NSString * const toolType = @"split";
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] init];
+  return [[[self class] allocWithZone:_zone_] initWithBounceBackKnob:[[self bounceBackKnob] mutableCopy]];
 }
 
 // Implement the ELXmlData protocol
 
+- (NSXMLElement *)controlsXmlRepresentation {
+  NSXMLElement *controlsElement = [super controlsXmlRepresentation];
+  [controlsElement addChild:[bounceBackKnob xmlRepresentation]];
+  return controlsElement;
+}
+
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
   if( ( self = [self init] ) ) {
     [self loadIsEnabled:_representation_];
+    
+    NSArray *nodes = [_representation_ nodesForXPath:@"controls/knob[@name='bounceBack']" error:nil];
+    if( [nodes count] > 0 ) {
+      NSXMLElement *element = (NSXMLElement *)[nodes objectAtIndex:0];
+      bounceBackKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    } else {
+      bounceBackKnob = [[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO];
+    }
+    
     [self loadScripts:_representation_];
   }
   
