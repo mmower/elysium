@@ -18,7 +18,7 @@ static NSString * const toolType = @"split";
 
 - (id)initWithBounceBackKnob:(ELBooleanKnob *)_bounceBackKnob_ {
   if( ( self = [super init] ) ) {
-    [self setBounceBackKnob:_bounceBackKnob_];
+    bounceBackKnob = _bounceBackKnob_;
   }
   
   return self;
@@ -28,6 +28,15 @@ static NSString * const toolType = @"split";
   return [self initWithBounceBackKnob:[[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO]];
 }
 
+@synthesize bounceBackKnob;
+
+- (NSArray *)observableValues {
+  NSMutableArray *keys = [[NSMutableArray alloc] init];
+  [keys addObjectsFromArray:[super observableValues]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"bounceBackKnob.value",nil]];
+  return keys;
+}
+
 - (NSString *)toolType {
   return toolType;
 }
@@ -35,6 +44,7 @@ static NSString * const toolType = @"split";
 - (void)runTool:(ELPlayhead *)_playhead_ {
   [_playhead_ setPosition:nil];
   for( int direction = N; direction <= NW; direction++ ) {
+    NSLog( @"bounceBack = %@", [bounceBackKnob value] ? @"YES" : @"NO" );
     if( ![bounceBackKnob value] && direction == INVERSE_DIRECTION( [_playhead_ direction] ) ) {
       continue;
     }
@@ -82,12 +92,12 @@ static NSString * const toolType = @"split";
   if( ( self = [self init] ) ) {
     [self loadIsEnabled:_representation_];
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='bounceBack']" error:nil];
+    NSArray *nodes = [_representation_ nodesForXPath:@"controls/knob[@name='bounceBack']" error:nil];
     if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      [self setBounceBackKnob:[[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_]]
+      NSXMLElement *element = (NSXMLElement *)[nodes objectAtIndex:0];
+      bounceBackKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
     } else {
-      [self setBounceBackKnob:[[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO]]
+      bounceBackKnob = [[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO];
     }
     
     [self loadScripts:_representation_];
