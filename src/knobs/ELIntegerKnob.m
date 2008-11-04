@@ -25,17 +25,18 @@
          linkValue:(BOOL)_linkValue_
         oscillator:(ELOscillator *)_oscillator_
 {
-  if( ( self = [self initWithName:name
-                          minimum:_minimum_
-                          maximum:_maximum_
-                         stepping:_stepping_
-                       linkedKnob:_knob_
-                          enabled:_enabled_
-                       hasEnabled:_hasEnabled_
-                      linkEnabled:_linkEnabled_
-                         hasValue:_hasValue_
-                        linkValue:_linkValue_
-                       oscillator:_oscillator_] ) )
+  // Call the ELRangedKnob init
+  if( ( self = [super initWithName:_name_
+                           minimum:_minimum_
+                           maximum:_maximum_
+                          stepping:_stepping_
+                        linkedKnob:_knob_
+                           enabled:_enabled_
+                        hasEnabled:_hasEnabled_
+                       linkEnabled:_linkEnabled_
+                          hasValue:_hasValue_
+                         linkValue:_linkValue_
+                        oscillator:_oscillator_] ) )
   {
     [self setValue:_value_];
   }
@@ -112,10 +113,10 @@
 // NSMutableCopying protocol
 
 - (id)copyWithZone:(NSZone *)_zone_ {
-  NSLog( @"in copyWithZone:%@", _zone_ );
   return [self mutableCopyWithZone:_zone_];
 }
 
+// FIXME: Name is being passed but not arriving
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   return [[[self class] allocWithZone:_zone_] initWithName:name
                                               integerValue:value

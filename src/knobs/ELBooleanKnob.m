@@ -20,7 +20,7 @@
          linkValue:(BOOL)_linkValue_
         oscillator:(ELOscillator *)_oscillator_
 {
-  if( ( self = [self initWithName:name
+  if( ( self = [self initWithName:_name_
                        linkedKnob:_knob_
                           enabled:_enabled_
                        hasEnabled:_hasEnabled_

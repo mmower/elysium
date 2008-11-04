@@ -22,8 +22,12 @@
 
 @implementation ELKnob
 
+- (id)init {
+  @throw [NSException exceptionWithName:@"KnobException" reason:@"Unnamed init called on ELKnob." userInfo:[NSDictionary dictionaryWithObject:self forKey:@"knob"]];
+}
+
 - (id)initWithName:(NSString *)_name_ {
-  if( ( self = [self init] ) ) {
+  if( ( self = [super init] ) ) {
     name        = _name_;
     
     // By default we inherit nothing
@@ -47,8 +51,7 @@
          linkValue:(BOOL)_linkValue_
         oscillator:(ELOscillator *)_oscillator_
 {
-  if( ( self = [self init] ) ) {
-    name            = _name_;
+  if( ( self = [self initWithName:_name_] ) ) {
     linkedKnob      = _knob_;
     enabled         = _enabled_;
     hasEnabled      = _hasEnabled_;
@@ -217,7 +220,6 @@
     
     nodes = [_representation_ nodesForXPath:@"oscillator" error:nil];
     if( [nodes count] > 0 ) {
-      NSLog( @"found oscillator element");
       element = (NSXMLElement *)[nodes objectAtIndex:0];
       [self setOscillator:[ELOscillator loadFromXml:element parent:self player:_player_]];
     }

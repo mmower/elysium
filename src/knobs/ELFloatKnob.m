@@ -25,7 +25,7 @@
          linkValue:(BOOL)_linkValue_
         oscillator:(ELOscillator *)_oscillator_
 {
-  if( ( self = [self initWithName:name
+  if( ( self = [self initWithName:_name_
                           minimum:_minimum_
                           maximum:_maximum_
                          stepping:_stepping_
