@@ -43,9 +43,12 @@ static NSString * const toolType = @"split";
 
 - (void)runTool:(ELPlayhead *)_playhead_ {
   [_playhead_ setPosition:nil];
+  
+  BOOL bounceBack = ![bounceBackKnob value];
+  int bounceBackDirection = INVERSE_DIRECTION( [_playhead_ direction] );
+  
   for( int direction = N; direction <= NW; direction++ ) {
-    NSLog( @"bounceBack = %@", [bounceBackKnob value] ? @"YES" : @"NO" );
-    if( ![bounceBackKnob value] && direction == INVERSE_DIRECTION( [_playhead_ direction] ) ) {
+    if( bounceBack && ( direction == bounceBackDirection ) ) {
       continue;
     }
     
