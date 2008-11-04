@@ -32,12 +32,8 @@ static ELMIDIController *singletonInstance = nil;
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    
-    NSLog( @"Initialzing MIDI output" );
     source = [[PYMIDIVirtualSource alloc] initWithName:@"Elysium out"];
     [source addSender:self];
-    
-    NSLog( @"MIDIController initialization complete." );
   }
   
   return self;
@@ -57,7 +53,6 @@ static ELMIDIController *singletonInstance = nil;
 - (void)setInput:(PYMIDIEndpoint *)_endpoint_ {
   [endpoint removeReceiver:self];
   endpoint = _endpoint_;
-  NSLog( @"Setting input endpoint: %@ (%@)", [endpoint name], [endpoint displayName] );
   [endpoint addReceiver:self];
 }
 

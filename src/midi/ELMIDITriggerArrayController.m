@@ -18,7 +18,6 @@
 - (id)newObject {
   ELMIDITrigger *trigger = (ELMIDITrigger *)[super newObject];
   [trigger setPlayer:[self player]];
-  NSLog( @"Made new %@ with player %@", [trigger className], [self player] );
   return trigger;
 }
 
