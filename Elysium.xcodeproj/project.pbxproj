@@ -15,6 +15,7 @@
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
 		C90A940E0EB9FEDB004AA5BE /* ELMIDITrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = C90A940D0EB9FEDB004AA5BE /* ELMIDITrigger.m */; };
+		C90BDFC20EC072040003B0CD /* NSXML+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BDFC10EC072040003B0CD /* NSXML+Helpers.m */; };
 		C9104A5A0EAA1B0300B78267 /* ELNoteGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9104A590EAA1B0300B78267 /* ELNoteGroup.m */; };
 		C9104AA80EAA2D9600B78267 /* ELPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = C9104AA70EAA2D9600B78267 /* ELPlayable.m */; };
 		C91600720E982D990052DB9F /* triad1.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600710E982D990052DB9F /* triad1.tif */; };
@@ -212,6 +213,8 @@
 		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
 		C90A940C0EB9FEDB004AA5BE /* ELMIDITrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDITrigger.h; sourceTree = "<group>"; };
 		C90A940D0EB9FEDB004AA5BE /* ELMIDITrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDITrigger.m; sourceTree = "<group>"; };
+		C90BDFC00EC072040003B0CD /* NSXML+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXML+Helpers.h"; sourceTree = "<group>"; };
+		C90BDFC10EC072040003B0CD /* NSXML+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXML+Helpers.m"; sourceTree = "<group>"; };
 		C9104A570EAA1AB800B78267 /* ELPlayable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayable.h; sourceTree = "<group>"; };
 		C9104A580EAA1B0300B78267 /* ELNoteGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNoteGroup.h; sourceTree = "<group>"; };
 		C9104A590EAA1B0300B78267 /* ELNoteGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNoteGroup.m; sourceTree = "<group>"; };
@@ -667,6 +670,8 @@
 				C9104A590EAA1B0300B78267 /* ELNoteGroup.m */,
 				C9104AA60EAA2D9600B78267 /* ELPlayable.h */,
 				C9104AA70EAA2D9600B78267 /* ELPlayable.m */,
+				C90BDFC00EC072040003B0CD /* NSXML+Helpers.h */,
+				C90BDFC10EC072040003B0CD /* NSXML+Helpers.m */,
 			);
 			name = datamodel;
 			path = src/datamodel;
@@ -1177,6 +1182,7 @@
 				C9F450630EBDD1B7002C3637 /* ELScriptPackageController.m in Sources */,
 				C9F4506C0EBDE3F3002C3637 /* ELScriptPackage.m in Sources */,
 				C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */,
+				C90BDFC20EC072040003B0CD /* NSXML+Helpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

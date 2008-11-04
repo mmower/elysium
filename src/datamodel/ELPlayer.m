@@ -338,68 +338,52 @@
   if( ( self = [self init] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
+    NSError *error;
     
     // Controls for the player
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
+    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:&error] firstXMLElement] ) ) {
       tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self player:self];
     } else {
       tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600 minimum:30 maximum:900 stepping:1];
     }
-
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
+    
+    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:&error] firstXMLElement] ) ) {
       barLengthKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self player:self];
     } else {
       barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
+    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:&error] firstXMLElement] ) ) {
       timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
+    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:&error] firstXMLElement] ) ) {
       pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
+    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:&error] firstXMLElement] ) ) {
       velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90 minimum:1 maximum:127 stepping:1];
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
+    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:&error] firstXMLElement] ) ) {
       emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
+    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:&error] firstXMLElement] ) ) {
       durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5 minimum:0.1 maximum:5.0 stepping:0.1];
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
+    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:&error] firstXMLElement] ) ) {
       transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
     } else {
       transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
@@ -407,7 +391,7 @@
     
     // Layers
     
-    nodes = [_representation_ nodesForXPath:@"layers/layer" error:nil];
+    nodes = [_representation_ nodesForXPath:@"layers/layer" error:&error];
     for( NSXMLNode *node in nodes ) {
       NSXMLElement *element = (NSXMLElement *)node;
       
@@ -422,14 +406,14 @@
     }
     
     // Triggers
-    nodes = [_representation_ nodesForXPath:@"triggers/trigger" error:nil];
+    nodes = [_representation_ nodesForXPath:@"triggers/trigger" error:&error];
     for( NSXMLNode *node in nodes ) {
       NSXMLElement *element = (NSXMLElement *)node;
       [triggers addObject:[[ELMIDITrigger alloc] initWithXmlRepresentation:element parent:nil player:self]];
     }
     
     // Scripts
-    nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
+    nodes = [_representation_ nodesForXPath:@"scripts/script" error:&error];
     for( NSXMLNode *node in nodes ) {
       NSXMLElement *element = (NSXMLElement *)node;
       [scripts setObject:[[element stringValue] asRubyBlock]
@@ -437,8 +421,8 @@
     }
     
     // Convenient, even though there should only ever be one
-    for( NSXMLNode *node in [_representation_ nodesForXPath:@"package" error:nil] ) {
-      pkg = [[ELScriptPackage alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:self];
+    if( ( element = [[_representation_ nodesForXPath:@"package" error:&error] firstXMLElement] ) ) {
+      pkg = [[ELScriptPackage alloc] initWithXmlRepresentation:element parent:nil player:self];
     }
   }
   

@@ -12,6 +12,8 @@
 #import <MacRuby/MacRuby.h>
 #import "String+AsRubyBlock.h"
 
+#import "NSXML+Helpers.h"
+
 // Type to represent compass directions (for a hex)
 typedef enum tagDirection {
   N = 0,
@@ -37,6 +39,9 @@ typedef enum tagDirection {
 
 // Calculate an offset into a linear array representing a hex-table
 #define COL_ROW_OFFSET(col,row) ((col * HTABLE_ROWS) + row)
+
+// Our error domain
+extern NSString * const ELErrorDomain;
 
 // Notification names
 // extern NSString* notifyObjectSelectionDidChange;

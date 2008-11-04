@@ -22,6 +22,8 @@
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
 
+NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
+
 NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidChange";
 NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
