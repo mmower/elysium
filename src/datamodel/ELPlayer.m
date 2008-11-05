@@ -122,7 +122,6 @@
 }
 
 - (void)setRunning:(BOOL)_running_ {
-  NSLog( @"[player setRunning:%@]", _running_ ? @"YES" : @"NO" );
   if( _running_ ) {
     if( ![self running] ) {
       [self start];
@@ -132,7 +131,6 @@
       [self stop];
     }
   }
-  NSLog( @"player.running = %@", running ? @"YES" : @"NO" );
 }
 
 - (void)start:(id)_sender_ {
@@ -140,7 +138,6 @@
 }
 
 - (void)start {
-  NSLog( @"Player starting" );
   [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
   [layers makeObjectsPerformSelector:@selector(start)];
   running = YES;
@@ -152,7 +149,6 @@
 }
 
 - (void)stop {
-  NSLog( @"Player stopping" );
   [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
   [layers makeObjectsPerformSelector:@selector(stop)];
   running = NO;
@@ -276,6 +272,7 @@
 // Oscillator support
 
 - (void)addOscillator:(ELOscillator *)_oscillator_ {
+  [self doesNotRecognizeSelector:_cmd];
   // [oscillators setObject:_oscillator_ forKey:[_oscillator_ name]];
 }
 
