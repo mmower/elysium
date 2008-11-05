@@ -69,4 +69,14 @@ static SEL callSelector;
   inspector = nil;
 }
 
+// Implementing copying
+
+- (id)copyWithZone:(NSZone *)_zone_ {
+  return [self mutableCopyWithZone:_zone_];
+}
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initWithSource:[self source]];
+}
+
 @end

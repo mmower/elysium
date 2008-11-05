@@ -12,7 +12,7 @@
 
 @class ScriptInspectorController;
 
-@interface RubyBlock : NSObject {
+@interface RubyBlock : NSObject <NSMutableCopying> {
   NSString                  *source;
   id                        proc;
   ScriptInspectorController *inspector;
