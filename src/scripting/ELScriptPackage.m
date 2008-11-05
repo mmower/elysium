@@ -430,7 +430,7 @@
 
 // ELXmlData protocol implementation
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self init] ) ) {
     for( NSXMLNode *node in [_representation_ nodesForXPath:@"flags/flag" error:nil] ) {
       NSXMLElement *element = (NSXMLElement *)node;

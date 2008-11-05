@@ -76,6 +76,15 @@
 - (id)initWithDocument:(ElysiumDocument *)document;
 - (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)createDefaultLayer;
 
+- (ELIntegerKnob *)defaultTempoKnob;
+- (ELIntegerKnob *)defaultBarLengthKnob;
+- (ELIntegerKnob *)defaultTimeToLiveKnob;
+- (ELIntegerKnob *)defaultPulseCountKnob;
+- (ELIntegerKnob *)defaultVelocityKnob;
+- (ELIntegerKnob *)defaultEmphasisKnob;
+- (ELFloatKnob *)defaultDurationKnob;
+- (ELIntegerKnob *)defaultTransposeKnob;
+
 - (void)toggleNoteDisplay;
 
 - (void)start:(id)_sender_;

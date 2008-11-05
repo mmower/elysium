@@ -71,7 +71,7 @@ static NSString * const toolType = @"rebound";
   return controlsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self initWithDirectionKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
@@ -81,7 +81,7 @@ static NSString * const toolType = @"rebound";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+      directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
     } else {
       directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N minimum:0 maximum:5 stepping:1];
     }

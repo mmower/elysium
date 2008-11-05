@@ -13,3 +13,15 @@
 - (NSXMLElement *)firstXMLElement;
 
 @end
+
+@interface NSXMLElement (NSXML_Helpers)
+
+- (NSString *)attributeAsString:(NSString *)name;
+
+@end
+
+@interface NSError (NSXML_Helpers)
+
++ (NSError *)errorForLoadFailure:(NSString *)message code:(int)code withError:(NSError **)underlyingError;
+
+@end

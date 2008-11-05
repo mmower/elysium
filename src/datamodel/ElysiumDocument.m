@@ -75,6 +75,8 @@
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
+  assert( outError != nil );
+  
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithData:data options:0 error:outError];
   if( document == nil ) {
     return NO;
@@ -83,27 +85,28 @@
   NSXMLElement *rootElement = [document rootElement];
   if( ![[rootElement name] isEqualToString:@"elysium"] ) {
     *outError = [[NSError alloc] initWithDomain:ELErrorDomain
-                                           code:EL_INVALID_DOCUMENT_ROOT
+                                           code:EL_ERR_DOCUMENT_INVALID_ROOT
                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Document root element must be 'elysium'", NSLocalizedDescriptionKey, nil]];
     return NO;
   }
   
   int docVersion = [[[rootElement attributeForName:@"version"] stringValue] intValue];
   if( docVersion < CURRENT_DOCUMENT_VERSION ) {
+    NSLog( @"Wrong document version." );
     *outError = [[NSError alloc] initWithDomain:ELErrorDomain
-                                           code:EL_INVALID_DOCUMENT_VERSION
+                                           code:EL_ERR_DOCUMENT_INVALID_VERSION
                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Document version %d is not supported",docVersion], NSLocalizedDescriptionKey, nil]];
     return NO;
   }
   
   NSArray *nodes = [rootElement nodesForXPath:@"surface" error:nil];
   NSXMLElement *surfaceElement = (NSXMLElement *)[nodes objectAtIndex:0];
-  if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil] ) ) {
+  if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil error:outError] ) ) {
     [player setDocument:self];
     return YES;
   } else {
     *outError = [[NSError alloc] initWithDomain:ELErrorDomain
-                                           code:EL_DOCUMENT_LOAD_FAILURE
+                                           code:EL_ERR_DOCUMENT_LOAD_FAILURE
                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cannot load document, reason unknown.", NSLocalizedDescriptionKey, nil]];
     return NO;
   }

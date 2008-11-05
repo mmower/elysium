@@ -416,126 +416,215 @@ NSPredicate *deadPlayheadFilter;
   return layerElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self initWithPlayer:_parent_] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
-    NSXMLNode *attributeNode;
     
-    attributeNode = [_representation_ attributeForName:@"id"];
-    if( attributeNode ) {
-      [self setLayerId:[attributeNode stringValue]];
-    } else {
-      NSLog( @"Found layer without id, cannot load it!" );
+    NSString *idAttribute = [_representation_ attributeAsString:@"id"];
+    if( idAttribute == nil ) {
+      *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain
+                                             code:EL_ERR_LAYER_MISSING_ID
+                                         userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Layer found without an ID attribute", NSLocalizedDescriptionKey, nil]];
       return nil;
-    }
-    
-    attributeNode = [_representation_ attributeForName:@"key"];
-    if( attributeNode ) {
-      [self setKey:[ELKey keyNamed:[attributeNode stringValue]]];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      enabledKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
     } else {
-      enabledKnob = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
+      [self setLayerId:idAttribute];
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='channel']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+    NSString *keyAttribute = [_representation_ attributeAsString:@"key"];
+    if( keyAttribute ) {
+      [self setKey:[ELKey keyNamed:keyAttribute]];
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
     } else {
-      channelKnob = [[ELIntegerKnob alloc] initWithName:@"channel" integerValue:1 minimum:1 maximum:16 stepping:1];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob] player:_player_];
-    } else {
-      tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedToIntegerKnob:[_player_ tempoKnob]];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      barLengthKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ barLengthKnob] player:_player_];
-    } else {
-      barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" linkedToIntegerKnob:[_player_ barLengthKnob]];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ timeToLiveKnob] player:_player_];
-    } else {
-      timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedToIntegerKnob:[_player_ timeToLiveKnob]];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ pulseCountKnob] player:_player_];
-    } else {
-      pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedToIntegerKnob:[_player_ pulseCountKnob]];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ velocityKnob] player:_player_];
-    } else {
-      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedToIntegerKnob:[_player_ velocityKnob]];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ emphasisKnob] player:_player_];
-    } else {
-      emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" linkedToIntegerKnob:[_player_ emphasisKnob]];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[_parent_ durationKnob] player:_player_];
-    } else {
-      durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" linkedToFloatKnob:[_player_ durationKnob]];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ transposeKnob] player:_player_];
-    } else {
-      transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedToIntegerKnob:[_player_ transposeKnob]];
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"cells/cell" error:nil];
-    for( NSXMLNode *node in nodes ) {
-      NSXMLElement *element = (NSXMLElement *)node;
-      NSXMLNode *attributeNode;
+      if( ( element = [nodes firstXMLElement] ) ) {
+        enabledKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+      } else {
+        enabledKnob = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
+      }
       
-      attributeNode = [element attributeForName:@"col"];
-      int col = [[attributeNode stringValue] intValue];
+      if( enabledKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='channel']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+      } else {
+        channelKnob = [[ELIntegerKnob alloc] initWithName:@"channel" integerValue:1 minimum:1 maximum:16 stepping:1];
+      }
       
-      attributeNode = [element attributeForName:@"row"];
-      int row = [[attributeNode stringValue] intValue];
+      if( channelKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob] player:_player_ error:_error_];
+      } else {
+        tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedToIntegerKnob:[_player_ tempoKnob]];
+      }
       
-      ELHex *hex = [self hexAtColumn:col row:row];
-      [hex initWithXmlRepresentation:element parent:self player:_player_];
+      if( tempoKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        barLengthKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ barLengthKnob] player:_player_ error:_error_];
+      } else {
+        barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" linkedToIntegerKnob:[_player_ barLengthKnob]];
+      }
+      
+      if( barLengthKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ timeToLiveKnob] player:_player_ error:_error_];
+      } else {
+        timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedToIntegerKnob:[_player_ timeToLiveKnob]];
+      }
+      
+      if( timeToLiveKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ pulseCountKnob] player:_player_ error:_error_];
+      } else {
+        pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedToIntegerKnob:[_player_ pulseCountKnob]];
+      }
+      
+      if( pulseCountKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ velocityKnob] player:_player_ error:_error_];
+      } else {
+        velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedToIntegerKnob:[_player_ velocityKnob]];
+      }
+      
+      if( velocityKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ emphasisKnob] player:_player_ error:_error_];
+      } else {
+        emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" linkedToIntegerKnob:[_player_ emphasisKnob]];
+      }
+      
+      if( emphasisKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[_parent_ durationKnob] player:_player_ error:_error_];
+      } else {
+        durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" linkedToFloatKnob:[_player_ durationKnob]];
+      }
+      
+      if( durationKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ transposeKnob] player:_player_ error:_error_];
+      } else {
+        transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedToIntegerKnob:[_player_ transposeKnob]];
+      }
+      
+      if( transposeKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"cells/cell" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      for( NSXMLNode *node in nodes ) {
+        NSXMLElement *element = (NSXMLElement *)node;
+        NSXMLNode *attributeNode;
+
+        attributeNode = [element attributeForName:@"col"];
+        if( attributeNode == nil ) {
+          *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid column reference",NSLocalizedDescriptionKey,nil]];
+          return nil;
+        }
+        int col = [[attributeNode stringValue] intValue];
+
+        attributeNode = [element attributeForName:@"row"];
+        if( attributeNode == nil ) {
+          *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid row reference",NSLocalizedDescriptionKey,nil]];
+          return nil;
+        }
+        int row = [[attributeNode stringValue] intValue];
+
+        ELHex *hex = [[self hexAtColumn:col row:row] initWithXmlRepresentation:element parent:self player:_player_ error:_error_];
+        if( hex == nil ) {
+          return nil;
+        }
+      }
     }
     
     // Scripts
-    nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
-    for( NSXMLNode *node in nodes ) {
-      NSXMLElement *element = (NSXMLElement *)node;
-      [scripts setObject:[[element stringValue] asRubyBlock]
-                  forKey:[[element attributeForName:@"name"] stringValue]];
+    nodes = [_representation_ nodesForXPath:@"scripts/script" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      for( NSXMLNode *node in nodes ) {
+        NSXMLElement *element = (NSXMLElement *)node;
+        [scripts setObject:[[element stringValue] asRubyBlock]
+                    forKey:[[element attributeForName:@"name"] stringValue]];
+      }
     }
   }
   

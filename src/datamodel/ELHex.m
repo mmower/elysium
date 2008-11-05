@@ -555,37 +555,37 @@ NSString* elementDescription( NSBezierPathElement elt ) {
 
 // This method is slightly different in that we know the object already
 // exists within the layer, we're sort of over-initing it
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
-  NSArray *nodes;
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
+  NSXMLElement *element;
   
-  nodes = [_representation_ nodesForXPath:@"generate" error:nil];
-  if( [nodes count] > 0 ) {
-    [self setGenerateTool:[[ELTool toolAlloc:@"generate"] initWithXmlRepresentation:(NSXMLElement *)[nodes objectAtIndex:0] parent:self player:_player_]];
+  element = [[_representation_ nodesForXPath:@"generate" error:_error_] firstXMLElement];
+  if( element ) {
+    [self setGenerateTool:[[ELTool toolAlloc:@"generate"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
-  nodes = [_representation_ nodesForXPath:@"note" error:nil];
-  if( [nodes count] > 0 ) {
-    [self setNoteTool:[[ELTool toolAlloc:@"note"] initWithXmlRepresentation:(NSXMLElement *)[nodes objectAtIndex:0] parent:self player:_player_]];
+  element = [[_representation_ nodesForXPath:@"note" error:_error_] firstXMLElement];
+  if( element ) {
+    [self setNoteTool:[[ELTool toolAlloc:@"note"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
-  nodes = [_representation_ nodesForXPath:@"rebound" error:nil];
-  if( [nodes count] > 0 ) {
-    [self setReboundTool:[[ELTool toolAlloc:@"rebound"] initWithXmlRepresentation:(NSXMLElement *)[nodes objectAtIndex:0] parent:self player:_player_]];
+  element = [[_representation_ nodesForXPath:@"rebound" error:_error_] firstXMLElement];
+  if( element ) {
+    [self setReboundTool:[[ELTool toolAlloc:@"rebound"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
-  nodes = [_representation_ nodesForXPath:@"absorb" error:nil];
-  if( [nodes count] > 0 ) {
-    [self setAbsorbTool:[[ELTool toolAlloc:@"absorb"] initWithXmlRepresentation:(NSXMLElement *)[nodes objectAtIndex:0] parent:self player:_player_]];
+  element = [[_representation_ nodesForXPath:@"absorb" error:_error_] firstXMLElement];
+  if( element ) {
+    [self setAbsorbTool:[[ELTool toolAlloc:@"absorb"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
-  nodes = [_representation_ nodesForXPath:@"split" error:nil];
-  if( [nodes count] > 0 ) {
-    [self setSplitTool:[[ELTool toolAlloc:@"split"] initWithXmlRepresentation:(NSXMLElement *)[nodes objectAtIndex:0] parent:self player:_player_]];
+  element = [[_representation_ nodesForXPath:@"split" error:_error_] firstXMLElement];
+  if( element ) {
+    [self setSplitTool:[[ELTool toolAlloc:@"split"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
-  nodes = [_representation_ nodesForXPath:@"spin" error:nil];
-  if( [nodes count] > 0 ) {
-    [self setSpinTool:[[ELTool toolAlloc:@"spin"] initWithXmlRepresentation:(NSXMLElement *)[nodes objectAtIndex:0] parent:self player:_player_]];
+  element = [[_representation_ nodesForXPath:@"spin" error:_error_] firstXMLElement];
+  if( element ) {
+    [self setSpinTool:[[ELTool toolAlloc:@"spin"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
   return self;

@@ -152,7 +152,7 @@ NSMutableDictionary *toolMapping = nil;
   return scriptsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   [self doesNotRecognizeSelector:_cmd];
   return nil;
 }

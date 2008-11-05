@@ -14,7 +14,7 @@
   BOOL    enabled;
 }
 
-+ (ELOscillator *)loadFromXml:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player;
++ (ELOscillator *)loadFromXml:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error;
 
 @property BOOL enabled;
 

@@ -182,7 +182,7 @@
   return knobElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self initWithName:[[_representation_ attributeForName:@"name"] stringValue]] ) ) {
     NSArray *nodes;
     NSXMLElement *element;
@@ -221,7 +221,7 @@
     nodes = [_representation_ nodesForXPath:@"oscillator" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      [self setOscillator:[ELOscillator loadFromXml:element parent:self player:_player_]];
+      [self setOscillator:[ELOscillator loadFromXml:element parent:self player:_player_ error:_error_]];
     }
   }
   

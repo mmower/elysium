@@ -43,9 +43,14 @@ typedef enum tagDirection {
 // Our error domain
 extern NSString * const ELErrorDomain;
 
-#define EL_DOCUMENT_LOAD_FAILURE      0x00
-#define EL_INVALID_DOCUMENT_ROOT      0x01
-#define EL_INVALID_DOCUMENT_VERSION   0x02
+#define EL_ERR_DOCUMENT_LOAD_FAILURE      0x0000
+#define EL_ERR_DOCUMENT_INVALID_ROOT      0x0001
+#define EL_ERR_DOCUMENT_INVALID_VERSION   0x0002
+#define EL_ERR_PLAYER_LOAD_FAILURE        0x0100
+#define EL_ERR_LAYER_MISSING_ID           0x0200
+#define EL_ERR_LAYER_CELL_REF_INVALID     0x0201
+#define EL_ERR_HEX_INVALID_ATTR           0x0300
+#define EL_ERR_OSCILLATOR_INVALID_ATTR    0x0500
 
 // Notification names
 // extern NSString* notifyObjectSelectionDidChange;

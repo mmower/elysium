@@ -12,6 +12,6 @@
 @protocol ELXmlData
 
 - (NSXMLElement *)xmlRepresentation;
-- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player;
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error;
 
 @end

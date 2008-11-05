@@ -113,7 +113,7 @@ static NSString * const toolType = @"spin";
   return controlsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self initWithClockwiseKnob:nil steppingKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
@@ -123,7 +123,7 @@ static NSString * const toolType = @"spin";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='clockwise']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+      clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
     } else {
       clockwiseKnob = [[ELBooleanKnob alloc] initWithName:@"clockwise" booleanValue:YES];
     }
@@ -131,7 +131,7 @@ static NSString * const toolType = @"spin";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='stepping']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      steppingKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+      steppingKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
     } else {
       steppingKnob = [[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1 minimum:0 maximum:5 stepping:1];
     }

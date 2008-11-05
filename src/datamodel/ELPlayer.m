@@ -40,14 +40,14 @@
     harmonicTable   = [[ELHarmonicTable alloc] init];
     layers          = [[NSMutableArray alloc] init];
     
-    tempoKnob       = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:120 minimum:30 maximum:600 stepping:1];
-    barLengthKnob   = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
-    timeToLiveKnob  = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
-    pulseCountKnob  = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
-    velocityKnob    = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90 minimum:1 maximum:127 stepping:1];
-    emphasisKnob    = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
-    durationKnob    = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5 minimum:0.1 maximum:5.0 stepping:0.1];
-    transposeKnob   = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
+    tempoKnob       = [self defaultTempoKnob];
+    barLengthKnob   = [self defaultBarLengthKnob];
+    timeToLiveKnob  = [self defaultTimeToLiveKnob];
+    pulseCountKnob  = [self defaultPulseCountKnob];
+    velocityKnob    = [self defaultVelocityKnob];
+    emphasisKnob    = [self defaultEmphasisKnob];
+    durationKnob    = [self defaultDurationKnob];
+    transposeKnob   = [self defaultTransposeKnob];
     
     scripts         = [NSMutableDictionary dictionary];
     triggers        = [[NSMutableArray alloc] init];
@@ -112,6 +112,40 @@
 @synthesize scripts;
 @synthesize triggers;
 @synthesize pkg;
+
+- (ELIntegerKnob *)defaultTempoKnob {
+  return [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:120 minimum:30 maximum:900 stepping:1];
+}
+
+- (ELIntegerKnob *)defaultBarLengthKnob {
+  return [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
+}
+
+- (ELIntegerKnob *)defaultTimeToLiveKnob {
+  return [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
+}
+
+- (ELIntegerKnob *)defaultPulseCountKnob {
+  return [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
+}
+
+- (ELIntegerKnob *)defaultVelocityKnob {
+  return [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90 minimum:1 maximum:127 stepping:1];
+}
+
+- (ELIntegerKnob *)defaultEmphasisKnob {
+  return [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
+}
+
+- (ELFloatKnob *)defaultDurationKnob {
+  return [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5 minimum:0.1 maximum:5.0 stepping:0.1];
+}
+
+- (ELIntegerKnob *)defaultTransposeKnob {
+  return [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
+}
+
+
 
 // Player status & control
 
@@ -331,95 +365,180 @@
   return surfaceElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_{
+- (ELIntegerKnob *)loadIntegerKnobFrom:(NSXMLElement *)_element_ withError:(NSError **)_error_ andMessage:(NSString *)_message_ orCreateVia:(SEL)_default_ {
+  ELIntegerKnob *knob;
+  
+  if( _element_ ) {
+    knob = [[ELIntegerKnob alloc] initWithXmlRepresentation:_element_ parent:self player:self error:_error_];
+  } else {
+    knob = [self performSelector:_default_];
+  }
+  
+  if( knob == nil ) {
+    *_error_ = [NSError errorForLoadFailure:_message_ code:EL_ERR_PLAYER_LOAD_FAILURE withError:_error_];
+  }
+  
+  return knob;
+}
+
+- (ELFloatKnob *)loadFloatKnobFrom:(NSXMLElement *)_element_ withError:(NSError **)_error_ andMessage:(NSString *)_message_ orCreateVia:(SEL)_default_ {
+  ELFloatKnob *knob;
+  
+  if( _element_ ) {
+    knob = [[ELFloatKnob alloc] initWithXmlRepresentation:_element_ parent:self player:self error:_error_];
+  } else {
+    knob = [self performSelector:_default_];
+  }
+  
+  if( knob == nil ) {
+    *_error_ = [NSError errorForLoadFailure:_message_ code:EL_ERR_PLAYER_LOAD_FAILURE withError:_error_];
+  }
+  
+  return knob;
+}
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self init] ) ) {
-    NSXMLElement *element;
     NSArray *nodes;
-    NSError *error;
     
     // Controls for the player
-    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:&error] firstXMLElement] ) ) {
-      tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self player:self];
+    *_error_ = nil;
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
     } else {
-      tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:600 minimum:30 maximum:900 stepping:1];
-    }
-    
-    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:&error] firstXMLElement] ) ) {
-      barLengthKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:self player:self];
-    } else {
-      barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
-    }
-    
-    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:&error] firstXMLElement] ) ) {
-      timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
-    } else {
-      timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
-    }
-    
-    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:&error] firstXMLElement] ) ) {
-      pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
-    } else {
-      pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
-    }
-    
-    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:&error] firstXMLElement] ) ) {
-      velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
-    } else {
-      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90 minimum:1 maximum:127 stepping:1];
-    }
-    
-    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:&error] firstXMLElement] ) ) {
-      emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
-    } else {
-      emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
-    }
-    
-    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:&error] firstXMLElement] ) ) {
-      durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
-    } else {
-      durationKnob = [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5 minimum:0.1 maximum:5.0 stepping:0.1];
-    }
-    
-    if( ( element = [[_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:&error] firstXMLElement] ) ) {
-      transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:self];
-    } else {
-      transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
-    }
-    
-    // Layers
-    
-    nodes = [_representation_ nodesForXPath:@"layers/layer" error:&error];
-    for( NSXMLNode *node in nodes ) {
-      NSXMLElement *element = (NSXMLElement *)node;
-      
-      ELLayer *layer = [[ELLayer alloc] initWithXmlRepresentation:element parent:self player:self];
-      if( layer ) {
-        [self addLayer:layer];
-        nextLayerNumber++; // Ensure that future defined layers don't get a duplicate id.
-      } else {
-        NSLog( @"Player detected faulty layer, cannot load." );
+      tempoKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player tempoKnob" orCreateVia:@selector(defaultTempoKnob)];
+      if( tempoKnob == nil ) {
         return nil;
       }
     }
     
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      barLengthKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player barLengthKnob" orCreateVia:@selector(defaultBarLengthKnob)];
+      if( barLengthKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      timeToLiveKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player timeToLiveKnob" orCreateVia:@selector(defaultTimeToLiveKnob)];
+      if( timeToLiveKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      pulseCountKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player pulseCountKnob" orCreateVia:@selector(defaultPulseCountKnob)];
+      if( pulseCountKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      velocityKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player velocityKnob" orCreateVia:@selector(defaultVelocityKnob)];
+      if( velocityKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      emphasisKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player emphasisKnob" orCreateVia:@selector(defaultEmphasisKnob)];
+      if( emphasisKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      durationKnob = [self loadFloatKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player durationKnob" orCreateVia:@selector(defaultDurationKnob)];
+      if( durationKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      transposeKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player tranposeKnob" orCreateVia:@selector(defaultTransposeKnob)];
+      if( transposeKnob == nil ) {
+        return nil;
+      }
+    }
+    
+    // Layers
+    nodes = [_representation_ nodesForXPath:@"layers/layer" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      for( NSXMLNode *node in nodes ) {
+        ELLayer *layer = [[ELLayer alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:self player:self error:_error_];
+        if( layer == nil ) {
+          return nil;
+        } else {
+          [self addLayer:layer];
+          nextLayerNumber++; // Ensure that future defined layers don't get a duplicate id.
+        }
+      }
+    }
+    
     // Triggers
-    nodes = [_representation_ nodesForXPath:@"triggers/trigger" error:&error];
-    for( NSXMLNode *node in nodes ) {
-      NSXMLElement *element = (NSXMLElement *)node;
-      [triggers addObject:[[ELMIDITrigger alloc] initWithXmlRepresentation:element parent:nil player:self]];
+    nodes = [_representation_ nodesForXPath:@"triggers/trigger" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      for( NSXMLNode *node in nodes ) {
+        ELMIDITrigger *trigger = [[ELMIDITrigger alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:self error:_error_];
+        if( trigger == nil ) {
+          return nil;
+        } else {
+          [triggers addObject:trigger];
+        }
+      }
     }
     
     // Scripts
-    nodes = [_representation_ nodesForXPath:@"scripts/script" error:&error];
-    for( NSXMLNode *node in nodes ) {
-      NSXMLElement *element = (NSXMLElement *)node;
-      [scripts setObject:[[element stringValue] asRubyBlock]
-                  forKey:[[element attributeForName:@"name"] stringValue]];
+    nodes = [_representation_ nodesForXPath:@"scripts/script" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      for( NSXMLNode *node in nodes ) {
+        NSXMLElement *element = (NSXMLElement *)node;
+        [scripts setObject:[[element stringValue] asRubyBlock]
+                    forKey:[element attributeAsString:@"name"]];
+      }
     }
     
     // Convenient, even though there should only ever be one
-    if( ( element = [[_representation_ nodesForXPath:@"package" error:&error] firstXMLElement] ) ) {
-      pkg = [[ELScriptPackage alloc] initWithXmlRepresentation:element parent:nil player:self];
+    nodes = [_representation_ nodesForXPath:@"package" error:_error_];
+    if( nodes == nil ) {
+      return nil;
+    } else {
+      NSXMLElement *element;;
+      if( ( element = [nodes firstXMLElement] ) ) {
+        pkg = [[ELScriptPackage alloc] initWithXmlRepresentation:element parent:nil player:self error:_error_];
+        if( pkg == nil ) {
+          return nil;
+        }
+      }
     }
   }
   

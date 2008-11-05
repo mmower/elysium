@@ -91,14 +91,14 @@ static NSString * const toolType = @"split";
   return controlsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self init] ) ) {
     [self loadIsEnabled:_representation_];
     
     NSArray *nodes = [_representation_ nodesForXPath:@"controls/knob[@name='bounceBack']" error:nil];
     if( [nodes count] > 0 ) {
       NSXMLElement *element = (NSXMLElement *)[nodes objectAtIndex:0];
-      bounceBackKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+      bounceBackKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
     } else {
       bounceBackKnob = [[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO];
     }

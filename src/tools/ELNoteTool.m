@@ -132,7 +132,7 @@ static NSString * const toolType = @"note";
   return controlsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self initWithVelocityKnob:nil emphasisKnob:nil durationKnob:nil triadKnob:nil] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
@@ -142,7 +142,7 @@ static NSString * const toolType = @"note";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_];
+      velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_ error:_error_];
     } else {
       velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
     }
@@ -150,7 +150,7 @@ static NSString * const toolType = @"note";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_];
+      emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_ error:_error_];
     } else {
       emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis"];
     }
@@ -159,7 +159,7 @@ static NSString * const toolType = @"note";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_];
+      durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_ error:_error_];
     } else {
       durationKnob = [[ELFloatKnob alloc] initWithName:@"duration"];
     }
@@ -167,7 +167,7 @@ static NSString * const toolType = @"note";
     nodes = [_representation_ nodesForXPath:@"controls/knob[@name='triad']" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];
-      triadKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_];
+      triadKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
     } else {
       triadKnob = [[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1];
     }

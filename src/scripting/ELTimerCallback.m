@@ -53,7 +53,7 @@
 
 // ELXmlData
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self initWithPlayer:_player_] ) ) {
     
     [self setInterval:[[[_representation_ attributeForName:@"interval"] stringValue] doubleValue]];

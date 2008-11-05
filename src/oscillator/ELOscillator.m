@@ -15,11 +15,11 @@
 
 @implementation ELOscillator
 
-+ (ELOscillator *)loadFromXml:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
++ (ELOscillator *)loadFromXml:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   NSXMLNode *attributeNode = [_representation_ attributeForName:@"type"];
   if( attributeNode ) {
     Class oscillatorClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Oscillator", [attributeNode stringValue]] );
-    return [[oscillatorClass alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_];
+    return [[oscillatorClass alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_];
   } else {
     return nil;
   }
@@ -58,7 +58,7 @@
   return oscillatorElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   NSXMLNode *attributeNode = [_representation_ attributeForName:@"enabled"];
   if( attributeNode ) {
     return [self initEnabled:[[attributeNode stringValue] boolValue]];
