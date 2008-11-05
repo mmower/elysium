@@ -82,13 +82,17 @@
   
   NSXMLElement *rootElement = [document rootElement];
   if( ![[rootElement name] isEqualToString:@"elysium"] ) {
-    NSLog( @"Invalid root element type!" );
+    *outError = [[NSError alloc] initWithDomain:ELErrorDomain
+                                           code:EL_INVALID_DOCUMENT_ROOT
+                                       userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Document root element must be 'elysium'", NSLocalizedDescriptionKey, nil]];
     return NO;
   }
   
   int docVersion = [[[rootElement attributeForName:@"version"] stringValue] intValue];
   if( docVersion < CURRENT_DOCUMENT_VERSION ) {
-    NSLog( @"Invalid document version: %d!", docVersion );
+    *outError = [[NSError alloc] initWithDomain:ELErrorDomain
+                                           code:EL_INVALID_DOCUMENT_VERSION
+                                       userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Document version %d is not supported",docVersion], NSLocalizedDescriptionKey, nil]];
     return NO;
   }
   
@@ -96,10 +100,11 @@
   NSXMLElement *surfaceElement = (NSXMLElement *)[nodes objectAtIndex:0];
   if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil] ) ) {
     [player setDocument:self];
-    NSLog( @"Loaded file." );
     return YES;
   } else {
-    NSLog( @"Error loading file." );
+    *outError = [[NSError alloc] initWithDomain:ELErrorDomain
+                                           code:EL_DOCUMENT_LOAD_FAILURE
+                                       userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cannot load document, reason unknown.", NSLocalizedDescriptionKey, nil]];
     return NO;
   }
 }
