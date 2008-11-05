@@ -46,7 +46,7 @@ static NSString * const toolType = @"rebound";
 
 // Tool runner
 
-- (void)run:(ELPlayhead *)_playhead_ {
+- (void)runTool:(ELPlayhead *)_playhead_ {
   [_playhead_ setDirection:[directionKnob value]];
 }
 
