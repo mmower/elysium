@@ -170,4 +170,17 @@ NSMutableDictionary *toolMapping = nil;
   }
 }
 
+- (RubyBlock *)script:(NSString *)_scriptName_ {
+  RubyBlock *script = [scripts objectForKey:_scriptName_];
+  if( script == nil ) {
+    script = [[NSString stringWithFormat:@"do |%@Tool,playhead|\n\t# write your callback code here\nend\n", [self toolType]] asRubyBlock];
+    [scripts setObject:script forKey:_scriptName_];
+  }
+  return script;
+}
+
+- (void)removeScript:(NSString *)_scriptName_ {
+  [scripts removeObjectForKey:_scriptName_];
+}
+
 @end

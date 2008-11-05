@@ -58,4 +58,7 @@
 
 - (void)loadIsEnabled:(NSXMLElement *)representation;
 
+- (RubyBlock *)script:(NSString *)scriptName;
+- (void)removeScript:(NSString *)scriptName;
+
 @end

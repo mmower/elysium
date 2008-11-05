@@ -54,14 +54,7 @@
 }
 
 - (void)editWillRunScript:(ELTool *)_tool_ {
-  RubyBlock *block;
-  
-  if( !( block = [[_tool_ scripts] objectForKey:@"willRun"] ) ) {
-    block = [[NSString stringWithFormat:@"do |%@Tool,playhead|\n\t# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];
-    [[_tool_ scripts] setObject:block forKey:@"willRun"];
-  }
-  
-  [block inspect:self];
+  [[_tool_ script:@"willRun"] inspect:self];
 }
 
 - (IBAction)editOscillator:(id)_sender_ {
@@ -69,22 +62,15 @@
 }
 
 - (void)editDidRunScript:(ELTool *)_tool_ {
-  RubyBlock *block;
-  
-  if( !( block = [[_tool_ scripts] objectForKey:@"didRun"] ) ) {
-    block = [[NSString stringWithFormat:@"do |@%Tool,playhead|\n\t# write your callback code here\nend\n", [_tool_ toolType]] asRubyBlock];
-    [[_tool_ scripts] setObject:block forKey:@"didRun"];
-  }
-  
-  [block inspect:self];
+  [[_tool_ script:@"didRun"] inspect:self];
 }
 
 - (void)removeWillRunScript:(ELTool *)_tool_ {
-  [[_tool_ scripts] removeObjectForKey:@"willRun"];
+  [_tool_ removeScript:@"willRun"];
 }
 
 - (void)removeDidRunScript:(ELTool *)_tool_ {
-  [[_tool_ scripts] removeObjectForKey:@"didRun"];
+  [_tool_ removeScript:@"didRun"];
 }
 
 @end
