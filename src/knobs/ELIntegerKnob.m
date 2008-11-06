@@ -20,7 +20,6 @@
         linkedKnob:(ELKnob *)_knob_
            enabled:(BOOL)_enabled_
          linkValue:(BOOL)_linkValue_
-                 p:(float)_p_
         oscillator:(ELOscillator *)_oscillator_
 {
   // Call the ELRangedKnob init
@@ -31,7 +30,6 @@
                         linkedKnob:_knob_
                            enabled:_enabled_
                          linkValue:_linkValue_
-                                 p:_p_
                         oscillator:_oscillator_] ) )
   {
     [self setValue:_value_];
@@ -117,7 +115,6 @@
                                                 linkedKnob:linkedKnob
                                                    enabled:enabled
                                                  linkValue:linkValue
-                                                         p:p
                                                 oscillator:oscillator];
 }
 

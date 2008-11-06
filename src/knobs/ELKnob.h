@@ -31,7 +31,6 @@
         linkedKnob:(ELKnob *)knob
            enabled:(BOOL)enabled
          linkValue:(BOOL)linkValue
-                 p:(float)p
         oscillator:(ELOscillator *)oscillator;
 
 - (id)initWithName:(NSString *)name;

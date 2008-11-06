@@ -77,6 +77,8 @@
 {
   assert( outError != nil );
   
+  NSLog( @"Foo" );
+  
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithData:data options:0 error:outError];
   if( document == nil ) {
     return NO;

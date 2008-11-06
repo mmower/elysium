@@ -44,7 +44,6 @@
         linkedKnob:(ELKnob *)_knob_
            enabled:(BOOL)_enabled_
          linkValue:(BOOL)_linkValue_
-                 p:(float)_p_
         oscillator:(ELOscillator *)_oscillator_
 {
   if( ( self = [self initWithName:_name_] ) ) {
