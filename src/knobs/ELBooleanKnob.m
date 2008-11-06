@@ -14,18 +14,12 @@
       booleanValue:(BOOL)_value_
         linkedKnob:(ELKnob *)_knob_
            enabled:(BOOL)_enabled_
-        hasEnabled:(BOOL)_hasEnabled_
-       linkEnabled:(BOOL)_linkEnabled_
-          hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
         oscillator:(ELOscillator *)_oscillator_
 {
   if( ( self = [self initWithName:_name_
                        linkedKnob:_knob_
                           enabled:_enabled_
-                       hasEnabled:_hasEnabled_
-                      linkEnabled:_linkEnabled_
-                         hasValue:_hasValue_
                         linkValue:_linkValue_
                        oscillator:_oscillator_] ) )
   {
@@ -61,15 +55,10 @@
 }
 
 - (BOOL)value {
-  NSAssert( hasValue || linkValue, @"Value must be either defined or linked!" );
-  
   if( linkValue ) {
     return [(ELBooleanKnob *)linkedKnob value];
-  } else if( hasValue ) {
-    return value;
   } else {
-    NSLog( @"value called on ELBooleanKnob with no value or linkage." );
-    abort();
+    return value;
   }
 }
 
@@ -82,12 +71,7 @@
 }
 
 - (void)setValue:(BOOL)_value_ {
-  hasValue = YES;
-  value    = _value_;
-}
-
-- (void)clearValue {
-  hasValue = NO;
+  value = _value_;
 }
 
 // NSMutableCopying protocol
@@ -97,9 +81,6 @@
                                               booleanValue:value
                                                 linkedKnob:linkedKnob
                                                    enabled:enabled
-                                                hasEnabled:hasEnabled
-                                               linkEnabled:linkEnabled
-                                                  hasValue:hasValue
                                                  linkValue:linkValue
                                                 oscillator:oscillator];
 }

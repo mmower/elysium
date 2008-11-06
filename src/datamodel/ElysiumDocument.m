@@ -8,7 +8,7 @@
 
 #import "Elysium.h"
 
-#define CURRENT_DOCUMENT_VERSION 5
+#define CURRENT_DOCUMENT_VERSION 6
 
 #import <HoneycombView/LMHoneycombView.h>
 
@@ -76,6 +76,8 @@
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
   assert( outError != nil );
+  
+  NSLog( @"Foo" );
   
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithData:data options:0 error:outError];
   if( document == nil ) {

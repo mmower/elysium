@@ -22,9 +22,6 @@
           stepping:(float)stepping
         linkedKnob:(ELKnob *)knob
            enabled:(BOOL)_enabled
-        hasEnabled:(BOOL)_hasEnabled
-       linkEnabled:(BOOL)_linkEnabled
-          hasValue:(BOOL)_hasValue
          linkValue:(BOOL)_linkValue
         oscillator:(ELOscillator *)oscillator;
 

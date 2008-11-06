@@ -51,6 +51,7 @@ extern NSString * const ELErrorDomain;
 #define EL_ERR_LAYER_CELL_REF_INVALID     0x0201
 #define EL_ERR_HEX_INVALID_ATTR           0x0300
 #define EL_ERR_OSCILLATOR_INVALID_ATTR    0x0500
+#define EL_ERR_KNOB_MISSING_VALUE         0x0700
 
 // Notification names
 // extern NSString* notifyObjectSelectionDidChange;

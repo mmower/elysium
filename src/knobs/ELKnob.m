@@ -28,13 +28,11 @@
 
 - (id)initWithName:(NSString *)_name_ {
   if( ( self = [super init] ) ) {
-    name        = _name_;
-    
-    // By default we inherit nothing
-    hasValue    = NO;
-    linkEnabled = NO;
-    linkValue   = NO;
-    oscillator  = nil;
+    name       = _name_;
+    enabled    = YES;
+    linkValue  = NO;
+    oscillator = nil;
+    p          = 1.0;
   }
   
   return self;
@@ -45,18 +43,12 @@
 - (id)initWithName:(NSString *)_name_
         linkedKnob:(ELKnob *)_knob_
            enabled:(BOOL)_enabled_
-        hasEnabled:(BOOL)_hasEnabled_
-       linkEnabled:(BOOL)_linkEnabled_
-          hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
         oscillator:(ELOscillator *)_oscillator_
 {
   if( ( self = [self initWithName:_name_] ) ) {
     linkedKnob      = _knob_;
     enabled         = _enabled_;
-    hasEnabled      = _hasEnabled_;
-    linkEnabled     = _linkEnabled_;
-    hasValue        = _hasValue_;
     linkValue       = _linkValue_;
     oscillator      = _oscillator_;
   }
@@ -64,14 +56,22 @@
   return self;
 }
 
-- (NSString *)name {
-  return name;
-}
+@synthesize name;
+
+@dynamic xmlType;
 
 - (NSString *)xmlType {
   [self doesNotRecognizeSelector:_cmd];
   return nil;
 }
+
+@dynamic typeName;
+
+- (NSString *)typeName {
+  return @"unknown";
+}
+
+@dynamic stringValue;
 
 - (NSString *)stringValue {
   [self doesNotRecognizeSelector:_cmd];
@@ -82,99 +82,45 @@
   [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)clearValue {
-  hasValue = NO;
-}
-
-- (NSString *)typeName {
-  return @"unknown";
-}
-
 - (BOOL)encodesType:(char *)_type_ {
   return NO;
 }
 
+@dynamic enabled;
+
 - (BOOL)enabled {
-  NSAssert( hasEnabled || linkEnabled, @"Enabled must be either defined or linked!" );
-  
-  if( hasEnabled ) {
-    return enabled;
-  } else if( linkEnabled ) {
+  if( linkValue ) {
     return [linkedKnob enabled];
   } else {
-    abort();
+    return enabled;
   }
 }
 
 - (void)setEnabled:(BOOL)_enabled_ {
-  hasEnabled = YES;
   enabled    = _enabled_;
 }
 
-- (BOOL)linkEnabled {
-  return linkEnabled;
-}
+@synthesize linkedKnob;
 
-- (void)setLinkEnabled:(BOOL)_linkEnabled_ {
-  linkEnabled = _linkEnabled_;
-}
+@synthesize linkValue;
 
-- (ELKnob *)linkedKnob {
-  return linkedKnob;
-}
+@synthesize p;
 
-- (void)setLinkedKnob:(ELKnob *)_linkedKnob_ {
-  linkedKnob = _linkedKnob_;
-}
-
-- (BOOL)linkValue {
-  return linkValue;
-}
-
-- (void)setLinkValue:(BOOL)_linkValue_ {
-  [self willChangeValueForKey:@"value"];
-  linkValue = _linkValue_;
-  [self didChangeValueForKey:@"value"];
-}
-
-- (ELOscillator *)oscillator {
-  return oscillator;
-}
-
-- (void)setOscillator:(ELOscillator *)_oscillator_ {
-  oscillator = _oscillator_;
-}
+@synthesize oscillator;
 
 // ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
+  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+
   NSXMLElement *knobElement = [NSXMLNode elementWithName:@"knob"];
-  
-  NSMutableDictionary *attributes = nil;
-  
-  attributes = [NSMutableDictionary dictionary];
   [attributes setObject:[self xmlType] forKey:@"type"];
   [attributes setObject:name forKey:@"name"];
+  [attributes setObject:[[NSNumber numberWithBool:enabled] stringValue] forKey:@"enabled"];
+  [attributes setObject:[[NSNumber numberWithBool:linkValue] stringValue] forKey:@"inherit"];
+  [attributes setObject:[self stringValue] forKey:@"value"];
+  [attributes setObject:[[NSNumber numberWithFloat:p] stringValue] forKey:@"p"];
   [knobElement setAttributesAsDictionary:attributes];
-  
-  NSXMLElement *valueElement = [NSXMLNode elementWithName:@"value"];
-  attributes = [NSMutableDictionary dictionary];
-  if( hasValue ) {
-    [attributes setObject:[self stringValue] forKey:@"current"];
-  }
-  [attributes setObject:(linkValue ? @"YES" : @"NO") forKey:@"linked"];
-  [valueElement setAttributesAsDictionary:attributes];
-  [knobElement addChild:valueElement];
-  
-  NSXMLElement *enabledElement = [NSXMLNode elementWithName:@"enabled"];
-  attributes = [NSMutableDictionary dictionary];
-  if( hasEnabled ) {
-    [attributes setObject:(enabled ? @"YES" : @"NO") forKey:@"current"];
-  }
-  [attributes setObject:(linkEnabled ? @"YES" : @"NO") forKey:@"linked"];
-  [enabledElement setAttributesAsDictionary:attributes];
-  [knobElement addChild:enabledElement];
-
   if( oscillator ) {
     [knobElement addChild:[oscillator xmlRepresentation]];
   }
@@ -188,36 +134,38 @@
     NSXMLElement *element;
     NSXMLNode *attrNode;
     
-    [self setLinkedKnob:_parent_];  
-    
-    // Decode value
-    
-    nodes = [_representation_ nodesForXPath:@"value" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    
-    attrNode = [element attributeForName:@"current"];
-    if( attrNode ) {
+    attrNode = [_representation_ attributeForName:@"value"];
+    if( !attrNode ) {
+      *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_KNOB_MISSING_VALUE userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Missing value for knob %@",[self name]],NSLocalizedDescriptionKey,nil]];
+      return nil;
+    } else {
       [self setValueWithString:[attrNode stringValue]];
     }
     
-    attrNode = [element attributeForName:@"linked"];
-    [self setLinkValue:[[attrNode stringValue] boolValue]];
+    [self setLinkedKnob:_parent_];
     
-    // Decode enabled
-    
-    nodes = [_representation_ nodesForXPath:@"enabled" error:nil];
-    element = (NSXMLElement *)[nodes objectAtIndex:0];
-    
-    attrNode = [element attributeForName:@"current"];
+    attrNode = [_representation_ attributeForName:@"enabled"];
     if( attrNode ) {
       [self setEnabled:[[attrNode stringValue] boolValue]];
+    } else {
+      [self setEnabled:YES];
     }
     
-    attrNode = [element attributeForName:@"linked"];
-    [self setLinkEnabled:[[attrNode stringValue] boolValue]];
+    attrNode = [_representation_ attributeForName:@"inherit"];
+    if( attrNode ) {
+      [self setLinkValue:[[attrNode stringValue] boolValue]];
+    } else {
+      [self setLinkValue:NO];
+    }
+    
+    attrNode = [_representation_ attributeForName:@"p"];
+    if( attrNode ) {
+      [self setP:[[attrNode stringValue] floatValue]];
+    } else {
+      [self setP:1.0];
+    }
     
     // Decode oscillator
-    
     nodes = [_representation_ nodesForXPath:@"oscillator" error:nil];
     if( [nodes count] > 0 ) {
       element = (NSXMLElement *)[nodes objectAtIndex:0];

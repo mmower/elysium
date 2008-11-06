@@ -19,9 +19,6 @@
           stepping:(float)_stepping_
         linkedKnob:(ELKnob *)_knob_
            enabled:(BOOL)_enabled_
-        hasEnabled:(BOOL)_hasEnabled_
-       linkEnabled:(BOOL)_linkEnabled_
-          hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
         oscillator:(ELOscillator *)_oscillator_
 {
@@ -31,9 +28,6 @@
                          stepping:_stepping_
                        linkedKnob:_knob_
                           enabled:_enabled_
-                       hasEnabled:_hasEnabled_
-                      linkEnabled:_linkEnabled_
-                         hasValue:_hasValue_
                         linkValue:_linkValue_
                        oscillator:_oscillator_] ) )
   {
@@ -71,20 +65,16 @@
 - (float)value {
   if( linkValue ) {
     return [(ELFloatKnob *)linkedKnob value];
-  } else if( hasValue ) {
-    return value;
   } else {
-    @throw [NSException exceptionWithName:@"KnobException" reason:@"Value called on ELFloatKnob with no value or linkage." userInfo:[NSDictionary dictionaryWithObject:self forKey:@"knob"]];
+    return value;
   }
 }
 
 - (float)dynamicValue {
   if( linkValue ) {
     return [(ELFloatKnob *)linkedKnob dynamicValue];
-  } else if( hasValue ) {
-    return [self dynamicValue:value];
   } else {
-    @throw [NSException exceptionWithName:@"KnobException" reason:@"Value called on ELFloatKnob with no value or linkage." userInfo:[NSDictionary dictionaryWithObject:self forKey:@"knob"]];
+    return [self dynamicValue:value];
   }
 }
 
@@ -105,12 +95,7 @@
 }
 
 - (void)setValue:(float)_value_ {
-  hasValue = YES;
-  value    = _value_;
-}
-
-- (void)clearValue {
-  hasValue = NO;
+  value = _value_;
 }
 
 // NSMutableCopying protocol
@@ -123,9 +108,6 @@
                                                   stepping:stepping
                                                 linkedKnob:linkedKnob
                                                    enabled:enabled
-                                                hasEnabled:hasEnabled
-                                               linkEnabled:linkEnabled
-                                                  hasValue:hasValue
                                                  linkValue:linkValue
                                                 oscillator:oscillator];
 }

@@ -16,20 +16,14 @@
           stepping:(float)_stepping_
         linkedKnob:(ELKnob *)_linkedKnob_
            enabled:(BOOL)_enabled_
-        hasEnabled:(BOOL)_hasEnabled_
-       linkEnabled:(BOOL)_linkEnabled_
-          hasValue:(BOOL)_hasValue_
          linkValue:(BOOL)_linkValue_
         oscillator:(ELOscillator *)_oscillator_
 {
   if( ( self = [super initWithName:_name_
                         linkedKnob:_linkedKnob_
                            enabled:_enabled_
-                        hasEnabled:_hasEnabled_
-                       linkEnabled:_linkEnabled_
-                          hasValue:_hasValue_
                          linkValue:_linkValue_
-                            oscillator:_oscillator_] ) )
+                        oscillator:_oscillator_] ) )
   {
     [self setMinimum:_minimum_];
     [self setMaximum:_maximum_];
