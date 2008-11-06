@@ -32,7 +32,6 @@
     enabled    = YES;
     linkValue  = NO;
     oscillator = nil;
-    p          = 1.0;
   }
   
   return self;
@@ -104,8 +103,6 @@
 
 @synthesize linkValue;
 
-@synthesize p;
-
 @synthesize oscillator;
 
 // ELXmlData protocol
@@ -119,7 +116,6 @@
   [attributes setObject:[[NSNumber numberWithBool:enabled] stringValue] forKey:@"enabled"];
   [attributes setObject:[[NSNumber numberWithBool:linkValue] stringValue] forKey:@"inherit"];
   [attributes setObject:[self stringValue] forKey:@"value"];
-  [attributes setObject:[[NSNumber numberWithFloat:p] stringValue] forKey:@"p"];
   [knobElement setAttributesAsDictionary:attributes];
   if( oscillator ) {
     [knobElement addChild:[oscillator xmlRepresentation]];
@@ -156,13 +152,6 @@
       [self setLinkValue:[[attrNode stringValue] boolValue]];
     } else {
       [self setLinkValue:NO];
-    }
-    
-    attrNode = [_representation_ attributeForName:@"p"];
-    if( attrNode ) {
-      [self setP:[[attrNode stringValue] floatValue]];
-    } else {
-      [self setP:1.0];
     }
     
     // Decode oscillator

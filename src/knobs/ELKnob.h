@@ -23,8 +23,6 @@
   
   ELOscillator    *oscillator;          // an function that supplies a dynamic alpha value in real-time
   id              oscillatorController;
-  
-  float           p;
 }
 
 - (id)initWithName:(NSString *)name
@@ -42,7 +40,6 @@
 @property (readonly) NSString *stringValue;
 @property (assign) ELKnob *linkedKnob;
 @property BOOL linkValue;
-@property float p;
 @property (assign) ELOscillator *oscillator;
 @property id oscillatorController;
 
