@@ -21,8 +21,9 @@
            maximum:(float)maximum
           stepping:(float)stepping
         linkedKnob:(ELKnob *)knob
-           enabled:(BOOL)_enabled
-         linkValue:(BOOL)_linkValue
+           enabled:(BOOL)enabled
+         linkValue:(BOOL)linkValue
+                 p:(float)p
         oscillator:(ELOscillator *)oscillator;
 
 - (id)initWithName:(NSString *)name floatValue:(float)value minimum:(float)minimum maximum:(float)maximum stepping:(float)stepping;

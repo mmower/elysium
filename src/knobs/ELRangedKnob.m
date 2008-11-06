@@ -17,12 +17,14 @@
         linkedKnob:(ELKnob *)_linkedKnob_
            enabled:(BOOL)_enabled_
          linkValue:(BOOL)_linkValue_
+                 p:(float)_p_
         oscillator:(ELOscillator *)_oscillator_
 {
   if( ( self = [super initWithName:_name_
                         linkedKnob:_linkedKnob_
                            enabled:_enabled_
                          linkValue:_linkValue_
+                                 p:_p_
                         oscillator:_oscillator_] ) )
   {
     [self setMinimum:_minimum_];

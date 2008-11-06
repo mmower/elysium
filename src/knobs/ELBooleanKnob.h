@@ -12,14 +12,15 @@
 #import "Elysium.h"
 
 @interface ELBooleanKnob : ELKnob <NSMutableCopying> {
-  BOOL  value;
+  BOOL value;
 }
 
-- (id)initWithName:(NSString*)name
+- (id)initWithName:(NSString *)name
       booleanValue:(BOOL)value
         linkedKnob:(ELKnob *)knob
            enabled:(BOOL)_enabled
          linkValue:(BOOL)_linkValue
+                 p:(float)p
         oscillator:(ELOscillator *)oscillator;
          
 - (id)initWithName:(NSString *)name booleanValue:(BOOL)value;

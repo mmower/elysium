@@ -16,13 +16,14 @@
   float stepping;
 }
 
-- (id)initWithName:(NSString *)name
+- (id)initWithName:(NSString* )name
            minimum:(float)minimum
            maximum:(float)maximum
           stepping:(float)stepping
         linkedKnob:(ELKnob *)knob
            enabled:(BOOL)enabled
          linkValue:(BOOL)linkValue
+                 p:(float)p
         oscillator:(ELOscillator *)oscillator;
 
 - (id)initWithName:(NSString *)name minimum:(float)minimum maximum:(float)maximum stepping:(float)stepping;
