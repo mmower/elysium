@@ -93,6 +93,8 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 }
 
 - (id)init {
+  srandomdev();
+  
   if( ( self = [super init] ) ) {
   }
   

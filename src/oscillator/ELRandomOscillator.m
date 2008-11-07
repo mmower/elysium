@@ -10,10 +10,6 @@
 
 @implementation ELRandomOscillator
 
-+ (void)initialize {
-  srandomdev();
-}
-
 - (NSString *)type {
   return @"Random";
 }
