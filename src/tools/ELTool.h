@@ -22,14 +22,17 @@
   BOOL                enabled;
   ELLayer             *layer;
   ELHex               *hex;
-  int                 preferredOrder;
   NSMutableDictionary *scripts;
   BOOL                skip;
+  BOOL                fired;
+  
+  ELFloatKnob         *pKnob;
 }
 
 @property BOOL enabled;
+@property (readonly) ELFloatKnob *pKnob;
 @property BOOL skip;
-@property int preferredOrder;
+@property BOOL fired;
 @property (readonly) ELLayer *layer;
 @property (readonly) ELHex *hex;
 @property (readonly) NSMutableDictionary *scripts;
@@ -51,12 +54,9 @@
 
 - (NSXMLElement *)controlsXmlRepresentation;
 - (NSXMLElement *)scriptsXmlRepresentation;
-- (void)loadScripts:(NSXMLElement *)representation;
 
 - (void)runWillRunScript:(ELPlayhead *)playhead;
 - (void)runDidRunScript:(ELPlayhead *)playhead;
-
-- (void)loadIsEnabled:(NSXMLElement *)representation;
 
 - (RubyBlock *)script:(NSString *)scriptName;
 - (void)removeScript:(NSString *)scriptName;

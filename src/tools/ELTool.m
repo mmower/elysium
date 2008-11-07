@@ -25,6 +25,10 @@
 
 NSMutableDictionary *toolMapping = nil;
 
+double randval() {
+  return ((double)random()) / RAND_MAX;
+}
+
 @implementation ELTool
 
 + (ELTool *)toolAlloc:(NSString *)_key_ {
@@ -35,9 +39,9 @@ NSMutableDictionary *toolMapping = nil;
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    preferredOrder = 5;
-    enabled        = YES;
-    scripts        = [NSMutableDictionary dictionary];
+    enabled = YES;
+    pKnob   = [[ELFloatKnob alloc] initWithName:@"p" floatValue:1.0 minimum:0.0 maximum:1.0 stepping:0.01];
+    scripts = [NSMutableDictionary dictionary];
   }
   
   return self;
@@ -46,8 +50,9 @@ NSMutableDictionary *toolMapping = nil;
 // Properties
 
 @synthesize enabled;
+@synthesize pKnob;
 @synthesize skip;
-@synthesize preferredOrder;
+@synthesize fired;
 @synthesize layer;
 @synthesize hex;
 @synthesize scripts;
@@ -58,7 +63,7 @@ NSMutableDictionary *toolMapping = nil;
 }
 
 - (NSArray *)observableValues {
-  return [NSArray arrayWithObject:@"enabled"];
+  return [NSArray arrayWithObjects:@"enabled",@"pKnob.value",nil];
 }
 
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
@@ -76,8 +81,12 @@ NSMutableDictionary *toolMapping = nil;
 - (void)run:(ELPlayhead *)_playhead_ {
   if( enabled ) {
     [self performSelectorOnMainThread:@selector(runWillRunScript:) withObject:_playhead_ waitUntilDone:YES];
+    fired = NO;
     if( !skip ) {
-      [self runTool:_playhead_];
+      if( randval() <= [pKnob value] ) {
+        [self runTool:_playhead_];
+        fired = YES;
+      }
     }
     skip = NO;
     [self performSelectorOnMainThread:@selector(runDidRunScript:) withObject:_playhead_ waitUntilDone:YES];
@@ -119,7 +128,7 @@ NSMutableDictionary *toolMapping = nil;
   NSXMLElement *toolElement = [NSXMLNode elementWithName:[self toolType]];
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:([self enabled] ? @"YES" : @"NO") forKey:@"enabled"];
+  [attributes setObject:[[NSNumber numberWithBool:enabled] stringValue] forKey:@"enabled"];
   [toolElement setAttributesAsDictionary:attributes];
   
   [toolElement addChild:[self controlsXmlRepresentation]];
@@ -128,7 +137,9 @@ NSMutableDictionary *toolMapping = nil;
 }
 
 - (NSXMLElement *)controlsXmlRepresentation {
-  return [NSXMLNode elementWithName:@"controls"];
+  NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
+  [controlsElement addChild:[pKnob xmlRepresentation]];
+  return controlsElement;
 }
 
 - (NSXMLElement *)scriptsXmlRepresentation {
@@ -153,21 +164,35 @@ NSMutableDictionary *toolMapping = nil;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  [self doesNotRecognizeSelector:_cmd];
-  return nil;
-}
-
-- (void)loadIsEnabled:(NSXMLElement *)_representation_ {
-  [self setEnabled:([[[_representation_ attributeForName:@"enabled"] stringValue] boolValue])];
-}
-
-- (void)loadScripts:(NSXMLElement *)_representation_ {
-  NSArray *nodes = [_representation_ nodesForXPath:@"scripts/script" error:nil];
-  for( NSXMLNode *node in nodes ) {
-    NSXMLElement *element = (NSXMLElement *)node;
-    [scripts setObject:[[element stringValue] asRubyBlock]
-                forKey:[[element attributeForName:@"name"] stringValue]];
+  if( ( self = [self init] ) ) {
+    [self setEnabled:([[[_representation_ attributeForName:@"enabled"] stringValue] boolValue])];
+    
+    NSArray *nodes;
+    NSXMLElement *element;
+    
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='p']" error:_error_] ) ) {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        pKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+      } else {
+        pKnob = [[ELFloatKnob alloc] initWithName:@"p" floatValue:1.0 minimum:0.0 maximum:1.0 stepping:0.01];
+      }
+      
+      if( pKnob == nil ) {
+        return nil;
+      }
+    } else {
+      return nil;
+    }
+    
+    for( NSXMLNode *node in [_representation_ nodesForXPath:@"scripts/script" error:nil] ) {
+      NSXMLElement *element = (NSXMLElement *)node;
+      [scripts setObject:[[element stringValue] asRubyBlock]
+                  forKey:[[element attributeForName:@"name"] stringValue]];
+    }
+    
   }
+  
+  return self;
 }
 
 - (RubyBlock *)script:(NSString *)_scriptName_ {

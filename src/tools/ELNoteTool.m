@@ -133,46 +133,65 @@ static NSString * const toolType = @"note";
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [self initWithVelocityKnob:nil emphasisKnob:nil durationKnob:nil triadKnob:nil] ) ) {
+  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
     NSXMLElement *element;
     NSArray *nodes;
     
-    [self loadIsEnabled:_representation_];
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_ error:_error_];
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:_error_] ) ) {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_ error:_error_];
+      } else {
+        velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
+      }
+      
+      if( velocityKnob == nil ) {
+        return nil;
+      }
     } else {
-      velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
+      return nil;
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_ error:_error_];
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:_error_] ) ) {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_ error:_error_];
+      } else {
+        emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis"];
+      }
+      
+      if( emphasisKnob == nil ) {
+        return nil;
+      }
     } else {
-      emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis"];
+      return nil;
     }
     
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_ error:_error_];
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:_error_] ) ) {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_ error:_error_];
+      } else {
+        durationKnob = [[ELFloatKnob alloc] initWithName:@"duration"];
+      }
+      
+      if( durationKnob == nil ) {
+        return nil;
+      }
     } else {
-      durationKnob = [[ELFloatKnob alloc] initWithName:@"duration"];
+      return nil;
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='triad']" error:nil];
-    if( [nodes count] > 0 ) {
-      element = (NSXMLElement *)[nodes objectAtIndex:0];
-      triadKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='triad']" error:_error_] ) ) {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        triadKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+      } else {
+        triadKnob = [[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1];
+      }
+      
+      if( triadKnob == nil ) {
+        return nil;
+      }
     } else {
-      triadKnob = [[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1];
+      return nil;
     }
-    
-    [self loadScripts:_representation_];
   }
   
   return self;

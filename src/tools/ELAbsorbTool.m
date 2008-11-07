@@ -47,12 +47,7 @@ static NSString * const toolType = @"absorb";
 // Implement the ELXmlData protocol
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [self init] ) ) {
-    [self loadIsEnabled:_representation_];
-    [self loadScripts:_representation_];
-  }
-  
-  return self;
+  return [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_];
 }
 
 @end

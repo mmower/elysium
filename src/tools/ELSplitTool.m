@@ -92,18 +92,23 @@ static NSString * const toolType = @"split";
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [self init] ) ) {
-    [self loadIsEnabled:_representation_];
+  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_player_ player:_player_ error:_error_] ) ) {
+    NSXMLElement *element;
+    NSArray *nodes;
     
-    NSArray *nodes = [_representation_ nodesForXPath:@"controls/knob[@name='bounceBack']" error:nil];
-    if( [nodes count] > 0 ) {
-      NSXMLElement *element = (NSXMLElement *)[nodes objectAtIndex:0];
-      bounceBackKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='bounceBack']" error:_error_] ) ) {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        bounceBackKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+      } else {
+        bounceBackKnob = [[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO];
+      }
+      
+      if( bounceBackKnob == nil ) {
+        return nil;
+      }
     } else {
-      bounceBackKnob = [[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO];
+      return nil;
     }
-    
-    [self loadScripts:_representation_];
   }
   
   return self;
