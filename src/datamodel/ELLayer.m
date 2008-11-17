@@ -140,28 +140,26 @@ NSPredicate *deadPlayheadFilter;
 
 - (void)run {
   if( [enabledKnob value] ) {
+    
+    // Cleanup & delete dead playheads
+    [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
+    for( ELPlayhead *playhead in playheads ) {
+      if( ![playhead isDead] ) {
+        [playhead advance];
+      } else {
+        [playhead cleanup];
+      }
+    }
+    
     // On the first and every pulseCount beats, generate new playheads
-    // NSLog( @"beatCount = %d, pulseCount = %d", beatCount, [self pulseCount] );
     [self pulse];
     
     // Run all current playheads
-    for( ELPlayhead *playhead in [playheads copy] ) {
+    for( ELPlayhead *playhead in playheads ) {
       if( ![playhead isDead] ) {
         [[playhead position] run:playhead];
       }
-      
-      if( ![playhead isDead] ) {
-        [playhead advance];
-      }
     }
-    
-    // Cleanup & delete dead playheads
-    for( ELPlayhead *playhead in playheads ) {
-      [playhead cleanup];
-    }
-    
-    [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
-    
     [delegate setNeedsDisplay:YES];
   }
   
