@@ -510,6 +510,7 @@ struct RClass {
 # define RCLASS_IS_ARRAY_SUBCLASS     0x20000 /* class is a subclass of NSCFArray */
 # define RCLASS_IS_HASH_SUBCLASS      0x40000 /* class is a subclass of NSCFDictionary */
 # define RCLASS_IS_INCLUDED           0x80000 /* module is included */
+# define RCLASS_IS_SET_SUBCLASS       0x100000 /* class is a subclass of NSCFSet */
 # if defined(__LP64__)
 #  define RCLASS_VERSION(m) (class_getVersion((Class)m))
 #  define RCLASS_SET_VERSION(m,f) (class_setVersion((Class)m, f))
@@ -517,6 +518,7 @@ struct RClass {
 #  define RCLASS_SUPER(m) (*(VALUE *)((void *)m + (sizeof(void *) * 1)))
 #  define RCLASS_SET_SUPER(m, s) (class_setSuperclass((Class)m, (Class)s))
 #  define RCLASS_META(m) (class_isMetaClass((Class)m))
+#  define RCLASS_RC_FLAGS(m) (*(uint32_t *) ((void *)(m) + sizeof(uintptr_t) + (sizeof(uint8_t) * 4)))
 # else
 #  define RCLASS_VERSION(m) (*(long *)((void *)m + (sizeof(void *) * 3)))
 #  define RCLASS_SET_VERSION(m,f) do { RCLASS_VERSION(m) = f; } while (0)
@@ -1039,6 +1041,7 @@ RUBY_EXTERN VALUE rb_cRange;
 RUBY_EXTERN VALUE rb_cRational;
 RUBY_EXTERN VALUE rb_cComplex;
 RUBY_EXTERN VALUE rb_cRegexp;
+RUBY_EXTERN VALUE rb_cSet;
 RUBY_EXTERN VALUE rb_cStat;
 RUBY_EXTERN VALUE rb_cString;
 RUBY_EXTERN VALUE rb_cStruct;
@@ -1061,6 +1064,9 @@ RUBY_EXTERN VALUE rb_cNSMutableArray;
 RUBY_EXTERN VALUE rb_cCFHash;
 RUBY_EXTERN VALUE rb_cNSHash;
 RUBY_EXTERN VALUE rb_cNSMutableHash;
+RUBY_EXTERN VALUE rb_cCFSet;
+RUBY_EXTERN VALUE rb_cNSSet;
+RUBY_EXTERN VALUE rb_cNSMutableSet;
 RUBY_EXTERN VALUE rb_cCFNumber;
 #endif
 
