@@ -25,9 +25,13 @@
 
 NSMutableDictionary *toolMapping = nil;
 
-double randval() {
-  return ((double)random()) / RAND_MAX;
+int randval() {
+  return ( random() % 100 ) + 1;
 }
+
+// double randval() {
+//   return ((double)random()) / RAND_MAX;
+// }
 
 @implementation ELTool
 
@@ -40,7 +44,7 @@ double randval() {
 - (id)init {
   if( ( self = [super init] ) ) {
     enabled = YES;
-    pKnob   = [[ELFloatKnob alloc] initWithName:@"p" floatValue:1.0 minimum:0.0 maximum:1.0 stepping:0.01];
+    pKnob   = [[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1];
     scripts = [NSMutableDictionary dictionary];
   }
   
@@ -172,9 +176,9 @@ double randval() {
     
     if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='p']" error:_error_] ) ) {
       if( ( element = [nodes firstXMLElement] ) ) {
-        pKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+        pKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
       } else {
-        pKnob = [[ELFloatKnob alloc] initWithName:@"p" floatValue:1.0 minimum:0.0 maximum:1.0 stepping:0.01];
+        pKnob = [[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1];
       }
       
       if( pKnob == nil ) {

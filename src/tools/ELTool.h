@@ -26,11 +26,11 @@
   BOOL                skip;
   BOOL                fired;
   
-  ELFloatKnob         *pKnob;
+  ELIntegerKnob       *pKnob;
 }
 
 @property BOOL enabled;
-@property (readonly) ELFloatKnob *pKnob;
+@property (readonly) ELIntegerKnob *pKnob;
 @property BOOL skip;
 @property BOOL fired;
 @property (readonly) ELLayer *layer;
