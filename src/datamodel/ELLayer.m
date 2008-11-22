@@ -35,22 +35,23 @@ NSPredicate *deadPlayheadFilter;
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    hexes       = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-    playheads   = [[NSMutableArray alloc] init];
-    generators  = [[NSMutableArray alloc] init];
-    beatCount   = 0;
-    timeBase    = 0;
-    isRunning   = 0;
-    selectedHex = nil;
+    hexes         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    playheads     = [[NSMutableArray alloc] init];
+    playheadQueue = [[NSMutableArray alloc] init];
+    generators    = [[NSMutableArray alloc] init];
+    beatCount     = 0;
+    timeBase      = 0;
+    isRunning     = 0;
+    selectedHex   = nil;
     
-    scripts     = [NSMutableDictionary dictionary];
+    scripts       = [NSMutableDictionary dictionary];
     
-    key         = [ELKey noKey];
+    key           = [ELKey noKey];
     
     [self addObserver:self forKeyPath:@"key" options:0 context:nil];
     
-    enabledKnob = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
-    channelKnob = [[ELIntegerKnob alloc] initWithName:@"channel"];
+    enabledKnob   = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
+    channelKnob   = [[ELIntegerKnob alloc] initWithName:@"channel"];
   }
   
   return self;
@@ -140,7 +141,6 @@ NSPredicate *deadPlayheadFilter;
 
 - (void)run {
   if( [enabledKnob value] ) {
-    
     // Advance existing playheads, offer dead playheads a chance to clean up
     for( ELPlayhead *playhead in playheads ) {
       [playhead advance];
@@ -153,10 +153,13 @@ NSPredicate *deadPlayheadFilter;
     // On the first and every pulseCount beats, generate new playheads
     [self pulse];
     
-    // Run all current playheads (we use a copy because split tools can generate new playheads)
-    for( ELPlayhead *playhead in [playheads copy] ) {
+    // Run all current playheads
+    for( ELPlayhead *playhead in playheads ) {
       [[playhead position] run:playhead];
     }
+    
+    [self addQueuedPlayheads];
+    
     [delegate setNeedsDisplay:YES];
   }
   
@@ -180,9 +183,9 @@ NSPredicate *deadPlayheadFilter;
       delay = 1;
     }
     
-    // NSLog( @"Elapsed usec = %d", elapsed );
-    // NSLog( @"Delay usec   = %d", delay );
-    // NSLog( @"----" );
+    if( delay < 25 ) {
+      NSLog( @"Warning: timer resolution %d is less than safe margin. Clock drift will result.", delay );
+    }
     
     usleep( delay );
   }
@@ -211,10 +214,24 @@ NSPredicate *deadPlayheadFilter;
 - (void)reset {
   beatCount = 0;
   [self removeAllPlayheads];
+  [self needsDisplay];
 }
 
 - (void)clear {
   [hexes makeObjectsPerformSelector:@selector(removeAllTools)];
+}
+
+- (void)queuePlayhead:(ELPlayhead *)_playhead_ {
+  [playheadQueue addObject:_playhead_];
+}
+
+- (void)addQueuedPlayheads {
+  if( [playheadQueue count] > 0 ) {
+    for( ELPlayhead *playhead in playheadQueue ) {
+      [self addPlayhead:playhead];
+    }
+    [playheadQueue removeAllObjects];
+  }
 }
 
 - (void)addPlayhead:(ELPlayhead *)_playhead_ {

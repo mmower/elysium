@@ -52,9 +52,9 @@ static NSString * const toolType = @"split";
       continue;
     }
     
-    [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
-                                                  direction:direction
-                                                        TTL:[_playhead_ TTL]]];
+    [layer queuePlayhead:[[ELPlayhead alloc] initWithPosition:hex
+                                                    direction:direction
+                                                          TTL:[_playhead_ TTL]]];
   }
 }
 

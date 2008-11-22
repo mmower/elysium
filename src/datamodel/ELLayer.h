@@ -20,20 +20,21 @@
 @class ELGenerateTool;
 
 @interface ELLayer : NSObject <LMHoneycombMatrix,ELXmlData> {
-  id                  delegate;     // This will be the view representing us in the UI
-  ELPlayer            *player;      // The player we belong to
-  NSMutableArray      *hexes;       // The hexes representing the playing surface
-  NSMutableArray      *playheads;   // Array of playheads active on our surface
-  NSMutableArray      *generators;  // Array of playhead generators (start tools)
-  int                 beatCount;    // Current beat number
-  BOOL                visible;      // Whether or not we are visible (not config, so not persistent)
-  
-  UInt64              timeBase;     // Our MIDI timebase, time of next beat can be calculated
-                                    // from this, the tempo, and the beatcount. This should be
-                                    // reset if the tempo is ever reset.
+  id                  delegate;       // This will be the view representing us in the UI
+  ELPlayer            *player;        // The player we belong to
+  NSMutableArray      *hexes;         // The hexes representing the playing surface
+  NSMutableArray      *playheads;     // Array of playheads active on our surface
+  NSMutableArray      *playheadQueue; // Array of playheads to be queued onto the layer in the next beat
+  NSMutableArray      *generators;    // Array of playhead generators (start tools)
+  int                 beatCount;      // Current beat number
+  BOOL                visible;        // Whether or not we are visible (not config, so not persistent)
                                     
-  NSThread            *runner;      // The thread that runs this layer
-  BOOL                isRunning;    // Whether or not this layer is running
+  UInt64              timeBase;       // Our MIDI timebase, time of next beat can be calculated
+                                      // from this, the tempo, and the beatcount. This should be
+                                      // reset if the tempo is ever reset.
+                                    
+  NSThread            *runner;        // The thread that runs this layer
+  BOOL                isRunning;      // Whether or not this layer is running
   
   NSMutableDictionary *scripts;
   
@@ -100,6 +101,8 @@
 - (BOOL)firstBeatInBar;
 
 - (void)removeAllPlayheads;
+- (void)queuePlayhead:(ELPlayhead *)playhead;
+- (void)addQueuedPlayheads;
 - (void)addPlayhead:(ELPlayhead *)playhead;
 - (void)pulse;
 
