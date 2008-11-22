@@ -94,6 +94,7 @@
 }
 
 - (void)setupOscillators {
+  NSLog( @"setupOscillators" );
   if( [knob oscillator] ) {
     selectedTag = [[knob oscillator] type];
   } else {
@@ -112,7 +113,7 @@
     [self setSawOscillator:[[ELSawOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000]];
   }
   
-  if( [selectedTag isKindOfClass:@"Sine"] ) {
+  if( [selectedTag isEqualToString:@"Sine"] ) {
     [self setSineOscillator:[[knob oscillator] mutableCopy]];
   } else {
     [self setSineOscillator:[[ELSineOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000]];
