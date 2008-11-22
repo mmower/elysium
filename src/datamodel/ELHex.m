@@ -507,7 +507,14 @@ NSString* elementDescription( NSBezierPathElement elt ) {
       }
     }
     CGFloat fader = 0.5 + ( 0.5 * ((float)minTTL/5) );
-    [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
+    
+    if( selected ) {
+      [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewSelectedColor];
+    } else {
+      [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
+    }
+    
+    
   } else {
     if( [[layer player] showKey] ) {
       BOOL isTonic;
