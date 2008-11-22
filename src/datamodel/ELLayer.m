@@ -25,11 +25,11 @@ NSPredicate *deadPlayheadFilter;
 
 @implementation ELLayer
 
++ (void)initialize {
+  deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
+}
+
 + (NSPredicate *)deadPlayheadFilter {
-  if( !deadPlayheadFilter ) {
-    deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
-  }
-  
   return deadPlayheadFilter;
 }
 
@@ -141,24 +141,21 @@ NSPredicate *deadPlayheadFilter;
 - (void)run {
   if( [enabledKnob value] ) {
     
-    // Cleanup & delete dead playheads
-    [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
+    // Advance existing playheads, offer dead playheads a chance to clean up
     for( ELPlayhead *playhead in playheads ) {
-      if( ![playhead isDead] ) {
-        [playhead advance];
-      } else {
-        [playhead cleanup];
-      }
+      [playhead advance];
+      [playhead cleanup];
     }
+    
+    // Remove dead playheads
+    [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
     
     // On the first and every pulseCount beats, generate new playheads
     [self pulse];
     
-    // Run all current playheads
-    for( ELPlayhead *playhead in playheads ) {
-      if( ![playhead isDead] ) {
-        [[playhead position] run:playhead];
-      }
+    // Run all current playheads (we use a copy because split tools can generate new playheads)
+    for( ELPlayhead *playhead in [playheads copy] ) {
+      [[playhead position] run:playhead];
     }
     [delegate setNeedsDisplay:YES];
   }
