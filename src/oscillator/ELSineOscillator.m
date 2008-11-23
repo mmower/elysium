@@ -29,7 +29,7 @@
     UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 1000000;
     int t = time % period;
     
-    NSLog( @"time = %llu, period = %d, t = %d", time, period, t );
+    // NSLog( @"time = %llu, period = %d, t = %d", time, period, t );
     
     return [self generateWithT:t];
 }
