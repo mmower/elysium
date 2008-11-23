@@ -1112,8 +1112,10 @@
 			files = (
 			);
 			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(TARGET_NAME).app",
 			);
 			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(TARGET_NAME).tgz",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/ruby;
