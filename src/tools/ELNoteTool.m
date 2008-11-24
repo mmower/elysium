@@ -12,20 +12,39 @@
 #import "ELNoteTool.h"
 
 #import "ELHex.h"
+#import "ELNote.h"
 #import "ELLayer.h"
 #import "ELPlayable.h"
+#import "ELNoteGroup.h"
 #import "ELPlayhead.h"
 
 static NSString * const toolType = @"note";
 
 @implementation ELNoteTool
 
-- (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_ emphasisKnob:(ELIntegerKnob *)_emphasisKnob_ durationKnob:(ELFloatKnob *)_durationKnob_ triadKnob:(ELIntegerKnob *)_triadKnob_ {
+NSDictionary *defaultChannelSends( void ) {
+  NSMutableDictionary *sends = [NSMutableDictionary dictionary];
+  for( int i = 1; i <= 16; i++ ) {
+    ELBooleanKnob *knob = [[ELBooleanKnob alloc] initWithName:[NSString stringWithFormat:@"send%d",i] booleanValue:NO];
+    [knob setTag:i];
+    [sends setObject:knob forKey:[[NSNumber numberWithInteger:[knob tag]] stringValue]];
+  }
+  return sends;
+}
+
+- (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_
+              emphasisKnob:(ELIntegerKnob *)_emphasisKnob_
+              durationKnob:(ELFloatKnob *)_durationKnob_
+                 triadKnob:(ELIntegerKnob *)_triadKnob_
+              overrideKnob:(ELBooleanKnob *)_overrideKnob_
+              channelSends:(NSDictionary *)_channelSends_ {
   if( ( self = [super init] ) ) {
     velocityKnob = _velocityKnob_;
     emphasisKnob = _emphasisKnob_;
     durationKnob = _durationKnob_;
     triadKnob    = _triadKnob_;
+    overrideKnob = _overrideKnob_;
+    channelSends = _channelSends_;
   }
   
   return self;
@@ -35,7 +54,9 @@ static NSString * const toolType = @"note";
   return [self initWithVelocityKnob:[[ELIntegerKnob alloc] initWithName:@"velocity"]
                        emphasisKnob:[[ELIntegerKnob alloc] initWithName:@"emphasis"]
                        durationKnob:[[ELFloatKnob alloc] initWithName:@"duration"]
-                          triadKnob:[[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1]];
+                          triadKnob:[[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1]
+                       overrideKnob:[[ELBooleanKnob alloc] initWithName:@"override" booleanValue:NO]
+                       channelSends:defaultChannelSends()];
 }
 
 - (NSString *)toolType {
@@ -46,6 +67,8 @@ static NSString * const toolType = @"note";
 @synthesize emphasisKnob;
 @synthesize durationKnob;
 @synthesize triadKnob;
+@synthesize overrideKnob;
+@synthesize channelSends;
 
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
@@ -89,11 +112,26 @@ static NSString * const toolType = @"note";
     velocity = [velocityKnob dynamicValue];
   }
   
+  ELHex *position = [_playhead_ position];
   int triad = [triadKnob value];
+  ELPlayable *playable;
+  
   if( triad == 0 ) {
-    [[[_playhead_ position] note] playOnChannel:[[layer channelKnob] value] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue]];
+    playable = [position note];
   } else {
-    [[[_playhead_ position] triad:triad] playOnChannel:[[layer channelKnob] value] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue]];
+    playable = [position triad:triad];
+  }
+  
+  if( [overrideKnob value] ) {
+    int channel;
+    for( channel = 1; channel <= 16; channel++ ) {
+      ELBooleanKnob *send = [channelSends objectForKey:[[NSNumber numberWithInt:channel] stringValue]];
+      if( [send value] ) {
+        [playable playOnChannel:[send tag] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue]];
+      }
+    }
+  } else {
+    [playable playOnChannel:[[layer channelKnob] value] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue]];
   }
 }
 
@@ -118,7 +156,12 @@ static NSString * const toolType = @"note";
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy] emphasisKnob:[emphasisKnob mutableCopy] durationKnob:[durationKnob mutableCopy] triadKnob:[triadKnob mutableCopy]];
+  NSMutableDictionary *copySends = [NSMutableDictionary dictionary];
+  for( NSString *key in [channelSends allKeys] ) {
+    [copySends setObject:[[channelSends objectForKey:key] mutableCopy] forKey:key];
+  }
+  
+  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy] emphasisKnob:[emphasisKnob mutableCopy] durationKnob:[durationKnob mutableCopy] triadKnob:[triadKnob mutableCopy] overrideKnob:[overrideKnob mutableCopy] channelSends:copySends];
 }
 
 // Implement the ELXmlData protocol
@@ -129,6 +172,11 @@ static NSString * const toolType = @"note";
   [controlsElement addChild:[emphasisKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
   [controlsElement addChild:[triadKnob xmlRepresentation]];
+  [controlsElement addChild:[overrideKnob xmlRepresentation]];
+  for( ELBooleanKnob *knob in [channelSends allValues] ) {
+    [controlsElement addChild:[knob xmlRepresentation]];
+  }
+  
   return controlsElement;
 }
 
@@ -189,6 +237,31 @@ static NSString * const toolType = @"note";
       if( triadKnob == nil ) {
         return nil;
       }
+    } else {
+      return nil;
+    }
+    
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='override']" error:_error_] ) ) {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        overrideKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+      } else {
+        overrideKnob = [[ELBooleanKnob alloc] initWithName:@"override" booleanValue:NO];
+      }
+      
+      if( overrideKnob == nil ) {
+        return nil;
+      }
+    } else {
+      return nil;
+    }
+    
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[starts-with(@name,'send')]" error:_error_] ) ) {
+      NSMutableDictionary *sends = [NSMutableDictionary dictionary];
+      for( NSXMLNode *node in nodes ) {
+        ELBooleanKnob *knob = [[ELBooleanKnob alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:_player_ error:_error_];
+        [sends setObject:knob forKey:[[NSNumber numberWithInteger:[knob tag]] stringValue]];
+      }
+      channelSends = sends;
     } else {
       return nil;
     }
