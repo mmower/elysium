@@ -101,15 +101,17 @@
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithName:name
-                                                floatValue:value
-                                                   minimum:minimum
-                                                   maximum:maximum
-                                                  stepping:stepping
-                                                linkedKnob:linkedKnob
-                                                   enabled:enabled
-                                                 linkValue:linkValue
-                                                oscillator:oscillator];
+  ELFloatKnob *copiedKnob = [[[self class] allocWithZone:_zone_] initWithName:name
+                                                                   floatValue:value
+                                                                      minimum:minimum
+                                                                      maximum:maximum
+                                                                     stepping:stepping
+                                                                   linkedKnob:linkedKnob
+                                                                      enabled:enabled
+                                                                    linkValue:linkValue
+                                                                   oscillator:oscillator];
+  [copiedKnob setTag:tag];
+  return copiedKnob;
 }
 
 @end

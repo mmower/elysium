@@ -29,6 +29,7 @@
 - (id)initWithName:(NSString *)_name_ {
   if( ( self = [super init] ) ) {
     name       = _name_;
+    tag        = -1;
     enabled    = YES;
     linkValue  = NO;
     oscillator = nil;
@@ -46,16 +47,17 @@
         oscillator:(ELOscillator *)_oscillator_
 {
   if( ( self = [self initWithName:_name_] ) ) {
-    linkedKnob      = _knob_;
-    enabled         = _enabled_;
-    linkValue       = _linkValue_;
-    oscillator      = _oscillator_;
+    linkedKnob = _knob_;
+    enabled    = _enabled_;
+    linkValue  = _linkValue_;
+    oscillator = _oscillator_;
   }
   
   return self;
 }
 
 @synthesize name;
+@synthesize tag;
 
 @dynamic xmlType;
 
@@ -113,6 +115,9 @@
   NSXMLElement *knobElement = [NSXMLNode elementWithName:@"knob"];
   [attributes setObject:[self xmlType] forKey:@"type"];
   [attributes setObject:name forKey:@"name"];
+  if( tag != -1 ) {
+    [attributes setObject:[NSNumber numberWithInteger:tag] forKey:@"tag"];
+  }
   [attributes setObject:[[NSNumber numberWithBool:enabled] stringValue] forKey:@"enabled"];
   [attributes setObject:[[NSNumber numberWithBool:linkValue] stringValue] forKey:@"inherit"];
   [attributes setObject:[self stringValue] forKey:@"value"];
@@ -129,6 +134,11 @@
     NSArray *nodes;
     NSXMLElement *element;
     NSXMLNode *attrNode;
+
+    attrNode = [_representation_ attributeForName:@"tag"];
+    if( attrNode ) {
+      [self setTag:[[attrNode stringValue] integerValue]];
+    }
     
     attrNode = [_representation_ attributeForName:@"value"];
     if( !attrNode ) {

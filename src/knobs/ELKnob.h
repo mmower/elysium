@@ -14,6 +14,7 @@
 
 @interface ELKnob : NSObject <ELXmlData> {
   NSString        *name;            // name assigned to the knob
+  int             tag;              // an object that is associated with this knob
   
   ELKnob          *linkedKnob;      // a "parent" knob that may
   
@@ -35,6 +36,7 @@
 
 @property BOOL enabled;
 @property (readonly) NSString *name;
+@property int tag;
 @property (readonly) NSString *xmlType;
 @property (readonly) NSString *typeName;
 @property (readonly) NSString *stringValue;

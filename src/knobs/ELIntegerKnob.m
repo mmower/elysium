@@ -105,17 +105,18 @@
   return [self mutableCopyWithZone:_zone_];
 }
 
-// FIXME: Name is being passed but not arriving
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithName:name
-                                              integerValue:value
-                                                   minimum:minimum
-                                                   maximum:maximum
-                                                  stepping:stepping
-                                                linkedKnob:linkedKnob
-                                                   enabled:enabled
-                                                 linkValue:linkValue
-                                                oscillator:oscillator];
+  ELIntegerKnob *copiedKnob = [[[self class] allocWithZone:_zone_] initWithName:name
+                                                                   integerValue:value
+                                                                        minimum:minimum
+                                                                        maximum:maximum
+                                                                       stepping:stepping
+                                                                     linkedKnob:linkedKnob
+                                                                        enabled:enabled
+                                                                      linkValue:linkValue
+                                                                     oscillator:oscillator];
+  [copiedKnob setTag:tag];
+  return copiedKnob;
 }
 
 @end
