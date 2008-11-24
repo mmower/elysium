@@ -106,6 +106,14 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   [self initMacRuby];
 }
 
+// NSApp delegate methods
+
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)_sender_ {
+  return NO;
+}
+
+// General initialization
+
 - (void)initMacRuby {
   [[NSGarbageCollector defaultCollector] disable];
   MacRuby *runtime = [MacRuby sharedRuntime];
