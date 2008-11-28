@@ -1,0 +1,301 @@
+# Elysium scripting guide
+
+This is a quick guide I've hacked together to help you get started scripting Elysium 0.8. Please note that this information is in flux and some of these elements will very likely change, maybe quite radically.
+
+## Scriptable Elements
+
+The scriptable elements represent the "moving parts" of Elysium that are responsible for generating music. Elysium has a hierarchical structure rooted at the Player level descending into multiple layers, cells, and finally tokens. Each level has many properties some of which may be (and, by default, will be) inherited from the level above. For example the duration of a note played is set at the player level and inherited by each layer and, in turn, by each note token on a cell on each layer. However in all cases a property can be disinherited so a layer may set it's own default duration that will be inherited by cells and any note token can be given it's own specific value.
+
+### Knobs
+
+The first thing to understand is the concept of a knob. In Elysium a knob groups together settings for a control. Any property expressed as a knob will have the following set of properties.
+
+* name
+
+A string containing the name of the knob, e.g. 'duration'.
+
+* linkedKnob
+
+A pointer to a knob from which this knob may inherit its value.
+
+* linkValue
+
+A boolean representing whether this knob determines its own value or inherits it from its linkedKnob.
+
+* oscillator
+
+A pointer to an oscillator that can dynamically supply the value of this knob.
+
+* value
+
+A Boolean, Integer, or Float depending upon the type of knob.
+
+* dynamicValue
+
+If an oscillator is installed the next value from the oscillator.
+
+### Player
+
+Each Elysium document has one player responsible for grouping all the scriptable elements. The player is composed of one or more layers and a scripting package.
+
+Properties:
+
+1. tempoKnob [integer]
+
+  The tempoKnob value is represented in BPM.
+
+* barLengthKnob [integer]
+
+  How many beats in a "bar". The Elysium concept of a 'bar' is pretty woolly. Essentially Elysium will play any note corresponding to the first beat of a bar usnig the emphasis velocity rather than the default velocity.
+
+* timeToLiveKnob [integer]
+
+  For generators in this player, how many beats each emitted playhead should live.
+
+* pulseCountKnob [integer]
+
+  For generators in this player, how many beats between playheads being emitted.
+
+* velocityKnob [integer]
+
+  For notes in this player, the default MIDI velocity when a note is played.
+
+* emphasisKnob [integer]
+
+  For notes in this player, the emphasis MIDI velocity when a note is played. (See barLengthKnob for more info).
+
+* durationKnob [float]
+
+  For notes in this player, the number of seconds a note is played (i.e. the time between MIDI note-on and note-off messages)
+
+* transposeKnob [integer]
+
+  For notes in this player, the number of notes by which played notes are transposed up or down.
+
+* layers
+
+  An array containing the layer objects this player is running. I suggest treating this as read-only right now. There is more information about layers later in this guide.
+
+* triggers
+
+  An array containing the MIDI triggers. I suggest treating this as read-only right now. There is more information about MIDI triggers later in this guide.
+
+* pkg
+
+  A pointer to the script package for this player. There is more information about the scripting package later in this guide.
+
+### Layer
+
+A layer is a surface composed of 204 hexagonal cells arranged in 17 columns of 12 rows each. The cells form a harmonic table where each cell represents one note (in octaves 1-7). The bottom left note is A#1 whilst the top right note is B7. For more information see: http://www.c-thru-music.com/cgi/?page=layout_notemap
+
+Each layer also represents, generally, one MIDI channel. Although this is completely configurable as new layers are created they will be assigned MIDI channels 2, 3, 4, etc. However multiple layers can be safely assigned the same MIDI channel and any note can be overriden to send to any of the MIDI channels.
+
+Each cell may contain any of a number of tokens that determine what happens when a playhead enters the cell. The exception is the generator token which emits new playheads at specific intervals, rather than when playheads arrive (by comparison see the split token).
+
+#### Properties
+
+1. enabledKnob [boolean]
+
+  Determines whether the layer runs or not.
+
+* channelKnob [integer]
+
+  Controls which MIDI channel notes on the layer send to. Value can range from 1 to 16.
+
+* tempoKnob [integer,inherited]
+
+  See Player#tempoKnob.
+
+* barLengthKnob [integer,inherited]
+
+  See Player#barLengthKnob.
+
+* timeToLiveKnob [integer,inherited]
+
+  See Player#timeToLiveKnob.
+
+* pulseCountKnob [integer,inherited]
+
+  See Player#pulseCountKnob.
+
+* velocityKnob [integer,inherited]
+
+  See Player#velocityKnob.
+
+* emphasisKnob [integer,inherited]
+
+  See Player#emphasisKnob.
+
+* durationKnob [float,inherited]
+
+  See Player#durationKnob.
+
+* tranposeKnob [integer,inherited]
+
+  See Player#transposeKnob.
+
+### Tokens
+
+Different tokens can be stacked on every cell to create different effects. So it is quite legal to put a generator, note, rebound, and, absorb token on the same cell and Elysium will try (within the limit of its bugs) to do the right thing. For example the absorb should only affect playheads entering the cell and not those created by the generator.
+
+### Generator Token
+
+Generator tokens are polled, on each beat, to see if they should emit a new playhead.
+
+#### Properties
+
+1. enabled
+
+* pKnob [integer,not inherited,default=100]
+
+  The probability that this generator will emit a new playhead when the beat count reaches its pulseCount.
+
+* directionKnob [integer,not inherited,default=0]
+
+  The value of this knob indicates the compass direction in which new playheads will begin. These are:
+
+  0: N
+1: NE
+2: SE
+3: S
+4: SW
+5: NW
+
+* timeToLiveKnob [integer,inherited]
+
+  See Layer#timeToLiveKnob
+
+* pulseCountKnob [integer,inherited]
+
+  See Layer#pulseCountKnob
+
+* offsetKnob [integer,not inherited,default=0]
+
+  The offet represents the number of beats before or after the pulseCount beat that this generator will emit a new playhead. That is a generator will offsetKnob value set to 1 will emit a playhead one beat later than one with the default of 0.
+
+### Note Token
+
+Note tokens are the heart of Elysium since it is these that generate the MIDI on and MIDI off messages that actually make your instruments play! Whenever a playhead passes over an enabled note token it will generate MIDI to play the note corresponding to it's cell in the harmonic table. To see which cells correspond to which notes turn on display of notes in the Layer menu.
+
+As well as controls 
+
+1. enabled
+
+* pKnob [integer,not inherited,default=100]
+
+* velocityKnob [inherited]
+
+  See Layer#velocityKnob.
+
+* emphasisKnob [inherited]
+
+  See Layer#emphasisKnob.
+
+* durationKnob [inherited]
+
+  See Layer#durationKnob.
+
+* triadKnob [integner,not inherited,default=0]
+
+  The value of this knob indicates, when a note is played, whether a triad is played. 0 means no triad is played, other values correspond to the triad groups: [insert groups here]
+
+* overrideKnob [boolean,not inherited,default=false]
+
+  When the value of this knob is set to `true` the MIDI channel information from the layer is ignored and note information is sent for every channel that is enabled in the `channelSends` array.
+
+* channelSends [not inherited]
+
+  An array of boolean knobs, one for each channel, that indicate whether MIDI information should be sent to that channel or not.
+
+### Rebound Token
+
+Rebound tokens change the direction of playheads that pass over them.
+
+1. enabled
+
+* pKnob [integer,not inherited,default=100]
+
+* directionKnob [integer,not inherited,default=0]
+
+  The value of this knob indicates the compass direction to which entering playheads will be redirected. These are:
+
+  0: N
+1: NE
+2: SE
+3: S
+4: SW
+5: NW
+
+### Absorb Token
+
+Absorb tokens destructively consume playheads that pass over them. This is, typically, the last token to be processed so an entering playhead will trigger notes and splits. Newly generated playheads will not be absorbed.
+
+1. enabled
+
+* pKnob [integer,not inherited,default=100]
+
+### Split Token
+
+A split token consumes the entering playhead and emits new playheads in all directions except the direction of the entering playhead (although see the bounceBackKnob). These _cloned_ playheads keep the remaiinng time to live of the original playhead.
+
+1. enabled
+
+* pKnob [integer,not inherited,default=100]
+
+* bounceBackKnob [boolean,not inherited,default=false]
+
+  When `true` a clone playhead is sent back in the direction the entering playhead came from (i.e. a playhead will be emitted in all 6 compass directions).
+
+### Spin Token
+
+Unlike the previous token the spin token operates on generate and rebound tokens on the same cell. When the a playhead crosses the spin token the direction of any generator or rebound tokens on the same cell is altered.
+
+1. enabled
+
+* pKnob [integer,not inherited,default=100]
+
+* clockwiseKnob [boolean,not inherited,default=true]
+
+  If the `value` is `true` then the direction will be stepped clockwise, otherwise anti-clockwise.
+  
+* steppingKnob [integer,not inherited,default=1]
+
+  The `value` determines the number of steps (compass points) by which the direction is changed.
+
+### Tripwire Token
+
+The tripwire token exists soley for the purpose of firing callbacks when a playhead passes over. Tripwire tokens are not implemented in Elysium 0.8
+
+## Oscillators
+
+Oscillators can be attached to any integer or float knob and generate dynamic values within the range of acceptable values for the knob. There are a number of different types of oscillator.
+
+1. Square
+2. Saw
+3. Sine
+4. Sequence
+5. Random
+
+The API for the oscillators will be described in a future version of this document.
+
+## The Script Package
+
+The script package is a means to expose variables, that can be used by script authors, to the UI of the application.
+
+The current script package contains 8 flags, 8 sliders, and 4 timers. The user can display the script package using the View menu's `Show Script Package` command.
+
+### Flags
+
+The flags are boolean properties labelled `f1` ... `f8`
+
+### Variables
+
+The variables are float properties labelled `v1` ... `v8`. For each variable there are corresponding properties to specify the minimum and maximum values, e.g. `v1min` and `v1max`.
+
+### Timers
+
+The timers are pointers to timer callback objects, labelled `timer1` ... `timer4` that have their own associated delay and scripts. Whenever a timer fires its associated ruby script is invoked with a reference to the player (through which it can access the script package, layers, and the rest of Elysium), and the timer that has expired. The timer API will be described in a later version of this guide.
+
+## MIDI Scripting
+
+Elysium can process incoming MIDI CC messages and route them to callback scripts called MIDI triggers. To see the MIDI configuration use the View menu | Show MIDI Configuration. Whenever a MIDI trigger is called it is called with a reference to the player (through which it can access the script package, layers, and the rest of Elysium), the MIDI CC number and the CC value. The MIDI trigger API will be described in a later version of this guide.
