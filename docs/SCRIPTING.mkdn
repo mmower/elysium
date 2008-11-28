@@ -1,44 +1,128 @@
 # Elysium scripting guide
 
+* Version 1
+* by Matt Mower <self@mattmower.com>
+* 28/11/08
+
+## Introduction
+
 This is a quick guide I've hacked together to help you get started scripting Elysium 0.8. Please note that this information is in flux and some of these elements will very likely change, maybe quite radically.
+
+Elsyium is implemented primarily in Objective-C which is a compiled language however it also embeds the [MacRuby virtual machine](http://www.macruby.org/trac/wiki/MacRuby) which is a full version of Ruby 1.9 designed for interoperability with Objective-C/Cocoa applications. Scripting Elsyium consists of writing Ruby-based callbacks (in the form of procs) in specific areas. There are 3 general types of callback.
+
+1. willRun/didRun callbacks
+
+  These are attached to scriptable elements such as the player, layers, and tokens and are invoked automatically before & after certain events.For example a note token can use it's willRun callback to decide if it should skip playing on this beat.
+  
+  <code>
+    <pre>
+      do |noteTool,playhead|
+        # Don't play on even beats
+        noteTool.skip = true if noteTool.layer.beatCount % 2 == 0
+      end
+    </pre>
+  </code>
+  
+2. timer callbacks
+
+  These live in the script package and are invoked whenever a timer runs out, e.g. every 30s. You might use this to bring in a layer at a certain point in a composition.
+
+  <code>
+    <pre>
+      do |player,timer|
+        # Every time the timer fires toggle the first & second layers enabled state
+        player.layers[0].enabled = !player.layers[0].enabled
+        player.layers[1].enabled = !player.layers[1].enabled
+      end
+    </pre>
+  </code>
+  
+3. MIDI triggers
+
+  These run in response to external MIDI CC events arriving in Elysium. You could use them to implement "poor man's MIDI learn" by controlling Elysium knob values using MIDI CC values. Or, really, do anything in response to MIDI CC info like triggering layers when you push buttons and so on.
+
+  <code>
+    <pre>
+      do |player,message|
+        # Connect MIDI CC to player tempo
+        player.tempoKnob.value = message.value
+      end
+    </pre>
+  </code>
+
+## How Elysium works
+
+Elysium generates music by sending MIDI note-on and note-off messages to various MIDI channels. The process by which is does this is somewhat as follows:
+
+Each Elysium document contains a `player` that has at least one `layer`. Each `layer` is composed of `cells`, arranged in a honeycomb like structure, upon which tokens can be placed. When the player (and hence its layers) are running `generator` tokens emit `playheads` at regular intervals in a particular direction. On each beat each playhead moves one cell in its given direction and, as it enters a new cell, will trigger tokens stacked on that cell, e.g. a note. The tokens, in turn, can interact with the playhead by, for example, changing it's direction or absorbing it.
+
+Each of these things: player, layer, token, playhead are a scriptable element and scripts get to interact with the system as it works to create subtle or gross changes of behaviour.
 
 ## Scriptable Elements
 
-The scriptable elements represent the "moving parts" of Elysium that are responsible for generating music. Elysium has a hierarchical structure rooted at the Player level descending into multiple layers, cells, and finally tokens. Each level has many properties some of which may be (and, by default, will be) inherited from the level above. For example the duration of a note played is set at the player level and inherited by each layer and, in turn, by each note token on a cell on each layer. However in all cases a property can be disinherited so a layer may set it's own default duration that will be inherited by cells and any note token can be given it's own specific value.
+The scriptable elements represent the "moving parts" of Elysium that are responsible for generating music: player, layers, cells, tokens, and playheads.
 
-### Knobs
+Elysium has a hierarchical structure composed as follows:
 
-The first thing to understand is the concept of a knob. In Elysium a knob groups together settings for a control. Any property expressed as a knob will have the following set of properties.
+<ul>
+  <li>
+    player
+    <ul>
+      <li>
+        layer
+        <ul>
+          <li>
+            cell
+            <ul>
+              <li>token</li>
+              <li>playhead</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+At each level there are properties that may be inherited from the level above. For example the duration of a note played has a setting at the player level that is inherited by each layer and, in turn, by each note token on a cell on each layer.
+
+However a layer may override the inherited value with its own default duration that will be inherited by its cells. Further a note on any particular cell can be given it's own specific value separate from other notes on cells of the same layer.
+
+## Properties
+
+In many cases a property will not be a simple variable but will be represented by a `knob`. Many properties in Elysium can have dynamic values (for example you can attach an oscillator to player tempo to vary the speed of a performance over time) and the knob concept encapsulates the information required to have both manually assigned and dynamic values.
+
+Each knob has it's own set of properties:
 
 * name
 
-A string containing the name of the knob, e.g. 'duration'.
+  A string containing the name of the knob, e.g. 'duration'.
 
 * linkedKnob
 
-A pointer to a knob from which this knob may inherit its value.
+  A pointer to a knob, in the parent element, from which this knob may inherit its value.
 
 * linkValue
 
-A boolean representing whether this knob determines its own value or inherits it from its linkedKnob.
+  A boolean representing whether this knob determines its own value or inherits it from its linkedKnob.
 
 * oscillator
 
-A pointer to an oscillator that can dynamically supply the value of this knob.
+  A pointer to an oscillator that can dynamically supply the value of this knob.
 
 * value
 
-A Boolean, Integer, or Float depending upon the type of knob.
+  A Boolean, Integer, or Float depending upon the type of knob.
 
 * dynamicValue
 
-If an oscillator is installed the next value from the oscillator.
+  If an oscillator is installed the next value from the oscillator.
 
-### Player
+## Player
 
 Each Elysium document has one player responsible for grouping all the scriptable elements. The player is composed of one or more layers and a scripting package.
 
-Properties:
+### Player Properties
 
 1. tempoKnob [integer]
 
@@ -84,7 +168,7 @@ Properties:
 
   A pointer to the script package for this player. There is more information about the scripting package later in this guide.
 
-### Layer
+## Layer
 
 A layer is a surface composed of 204 hexagonal cells arranged in 17 columns of 12 rows each. The cells form a harmonic table where each cell represents one note (in octaves 1-7). The bottom left note is A#1 whilst the top right note is B7. For more information see: http://www.c-thru-music.com/cgi/?page=layout_notemap
 
@@ -92,7 +176,7 @@ Each layer also represents, generally, one MIDI channel. Although this is comple
 
 Each cell may contain any of a number of tokens that determine what happens when a playhead enters the cell. The exception is the generator token which emits new playheads at specific intervals, rather than when playheads arrive (by comparison see the split token).
 
-#### Properties
+### Layer Properties
 
 1. enabledKnob [boolean]
 
@@ -134,15 +218,31 @@ Each cell may contain any of a number of tokens that determine what happens when
 
   See Player#transposeKnob.
 
-### Tokens
+## Cells
 
-Different tokens can be stacked on every cell to create different effects. So it is quite legal to put a generator, note, rebound, and, absorb token on the same cell and Elysium will try (within the limit of its bugs) to do the right thing. For example the absorb should only affect playheads entering the cell and not those created by the generator.
+The cell API will be described in a future version of this guide.
 
-### Generator Token
+## Tokens
+
+A token is placed on a cell and (with one exception) creates an effect as a playhead enters cell. Each cell can have multiple tokens stacked on it to create different combinations of effect. It is legal, for example, to combine a generator, note, rebound, and, absorb token on the same cell. Within reason Elysium will try to do the right thing so, in the given example, the absorb and rebound tokens will only affect playheads entering the cell and not those emitted by the generator.
+
+Note that the terminology in the app is that _tokens_ are called _tools_. This is legacy terminology that will be eliminated before 1.0 where you will refer to `noteToken` and not `noteTool`.
+
+### Token Properties
+
+1. enabled
+  
+  A boolean property (not a knob) that indicates whether the token is enabled. A disabled token does not run at all so you cannot use it's own callbacks to re-enable it.
+
+* hex (will be renamed 'cell')
+
+  A reference to the cell this token sits on. 
+
+## Generator Token
 
 Generator tokens are polled, on each beat, to see if they should emit a new playhead.
 
-#### Properties
+### Generator Token Properties
 
 1. enabled
 
@@ -173,11 +273,11 @@ Generator tokens are polled, on each beat, to see if they should emit a new play
 
   The offet represents the number of beats before or after the pulseCount beat that this generator will emit a new playhead. That is a generator will offsetKnob value set to 1 will emit a playhead one beat later than one with the default of 0.
 
-### Note Token
+## Note Token
 
 Note tokens are the heart of Elysium since it is these that generate the MIDI on and MIDI off messages that actually make your instruments play! Whenever a playhead passes over an enabled note token it will generate MIDI to play the note corresponding to it's cell in the harmonic table. To see which cells correspond to which notes turn on display of notes in the Layer menu.
 
-As well as controls 
+### Note Token Properties
 
 1. enabled
 
@@ -207,9 +307,11 @@ As well as controls
 
   An array of boolean knobs, one for each channel, that indicate whether MIDI information should be sent to that channel or not.
 
-### Rebound Token
+## Rebound Token
 
 Rebound tokens change the direction of playheads that pass over them.
+
+### Rebound Token Properties
 
 1. enabled
 
@@ -234,9 +336,11 @@ Absorb tokens destructively consume playheads that pass over them. This is, typi
 
 * pKnob [integer,not inherited,default=100]
 
-### Split Token
+## Split Token
 
 A split token consumes the entering playhead and emits new playheads in all directions except the direction of the entering playhead (although see the bounceBackKnob). These _cloned_ playheads keep the remaiinng time to live of the original playhead.
+
+### Split Token Properties
 
 1. enabled
 
@@ -246,9 +350,11 @@ A split token consumes the entering playhead and emits new playheads in all dire
 
   When `true` a clone playhead is sent back in the direction the entering playhead came from (i.e. a playhead will be emitted in all 6 compass directions).
 
-### Spin Token
+## Spin Token
 
-Unlike the previous token the spin token operates on generate and rebound tokens on the same cell. When the a playhead crosses the spin token the direction of any generator or rebound tokens on the same cell is altered.
+Unlike the other tokens the spin token operates on generate and rebound tokens on the same cell. When the a playhead crosses the spin token the direction of any generator or rebound tokens on the same cell is altered.
+
+### Spin Token properties
 
 1. enabled
 
@@ -262,9 +368,11 @@ Unlike the previous token the spin token operates on generate and rebound tokens
 
   The `value` determines the number of steps (compass points) by which the direction is changed.
 
-### Tripwire Token
+## Tripwire Token
 
-The tripwire token exists soley for the purpose of firing callbacks when a playhead passes over. Tripwire tokens are not implemented in Elysium 0.8
+The tripwire token exists soley for the purpose of firing callbacks when a playhead passes over.
+
+Tripwire tokens are not implemented in Elysium 0.8
 
 ## Oscillators
 
