@@ -1,0 +1,64 @@
+# Getting Started with Elysium
+
+# Version 1
+# by Matt Mower <self@mattmower.com>
+# 29/11/08
+
+## Introduction
+
+Elysium is a generative MIDI sequencer. Okay so what does that mean?
+
+Let's take that in reverse:
+
+1. Elysium is a sequencer, that means it's designed to produce sequences of notes that can be layered to form music.
+
+2. Elysium uses MIDI which means that it doesn't make sounds itself but can drive MIDI based synthesizers, samplers, and other instruments. It also means that Elysium's output can be recorded, and manipulated, in a DAW such as Logic or Ableton Live.
+
+3. Elysium is generative which relates to the way the music is created by building up a "system" composed of layers, cells, tokens, and playheads that combined, when "played", to produce a sequence of notes.
+
+Still not with me? That's okay. Once you've played with it a bit it will all become clear.
+
+## Some things Elysium is not
+
+The first thing people usually wonder is "Why doesn't it make any noise?" There's a good reason for that, Elysium generates [MIDI](http://en.wikipedia.org/wiki/MIDI) which is an industry standard protocol for talking to things like synthesizers, samplers, and drum machines. And there are a lot of great synths out there. All you have to do is install one.
+
+If you already have something like Logic, Ableton Live, Komplete, Kore, or, Reason then you already have some great tools for making noises. Elysium will route its MIDI into any of those and can play their instruments as if it were a regular keyboard.
+
+If you don't have anything that makes cool noises then I suggest you start with the free [Kore Player from Native Instruments](http://www.native-instruments.com/index.php?id=koreplayer). This comes with a 300MB library of great sounds but, 
+beware, try it and you won't want to stop there and, believe me, Native Instruments can supply the goods if you can afford them :)
+
+Elysium is also not a VST, RTAS, or AU plugin. It is a standalone Mac application. Whilst it doesn't plug into a DAW it will work with any of them. It's possible that, if I learned enough about how to create AU's, an Audio Unit version might appear in the future but it's very low priority.
+
+Finally, something else Elysium is not is _finished_ which brings me neatly to...
+
+## Getting Help
+
+Elysium was started in August 2008 and, like all newborns, is liable to be a bit unpredictable at times, have hysterical fits, and leave a mess behind it. Generally you're also going to meet lots of dark corners in Elysium that have not been well thought out and your feedback, of all kinds, for improving the application is most welcome.
+
+If you want to let us know about a problem or request a feature why not drop by our [Get Satisfaction](http://getsatisfaction.com/lucidmac/products/lucidmac_elysium) page. There is an option for this under the help menu of Elysium itself.
+
+If you want to get more immediate help, or just chat about Elysium (or MIDI generally) come find me in #midi on [FreeNode IRC](http://freenode.net/). You will need an IRC client like [Limechat for Mac OS X](http://limechat.net/mac/) or [mIRC for Windows](http://www.mirc.com/).
+  
+## 0.8.0 BETA NOTE
+
+For version 0.8.0 you must, **must**, **MUST** install MacRuby on your computer at least once. If you don't Elysium will not run. You don't even need to keep it installed you just have to have run it's installer once. This requirement will be lifted in a forthcoming beta.
+
+## Okay let's get this show on the road
+
+Start Elysium. Nothing much happened? Right, by default Elsyium doesn't create an emtpy file for you so press Cmd+N (or use New from the File menu). Now you should be looking at something like this:
+
+![My first layer](layer1.jpg)
+
+This is a layer. It's composed of a honeycomb of cells arranged in 17 columns of 12 rows each. Each cell corresponds to a musical note which will sounds if you click it using your left mouse button (and assuming you have something ready to make noises in response to notes on MIDI channel 1). Let's take a close look, from the `Layer menu` select `Show Notes` and you should see this instead:
+
+![My first layer - now with notes!](layer2.jpg)
+
+The notes aren't spread out randomly but follow a pattern called a 'Harmonic Table'. For example, if you've played a keyboard, this group should look familiar:
+
+![I know this one](triad1.jpg)
+
+But if all you could do was click little hexes you'd be worse off than just using your keyboard so let's get a taste of what Elysium can do.
+
+
+
+
