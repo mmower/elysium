@@ -1,8 +1,7 @@
-# Getting Started with Elysium
+# Getting Started with Elysium 0.8
 
-# Version 1
-# by Matt Mower <self@mattmower.com>
-# 29/11/08
+* by Matt Mower <self@mattmower.com>
+* Draft 1 - 03/12/08
 
 ## Introduction
 
@@ -38,10 +37,6 @@ Elysium was started in August 2008 and, like all newborns, is liable to be a bit
 If you want to let us know about a problem or request a feature why not drop by our [Get Satisfaction](http://getsatisfaction.com/lucidmac/products/lucidmac_elysium) page. There is an option for this under the help menu of Elysium itself.
 
 If you want to get more immediate help, or just chat about Elysium (or MIDI generally) come find me in #midi on [FreeNode IRC](http://freenode.net/). You will need an IRC client like [Limechat for Mac OS X](http://limechat.net/mac/) or [mIRC for Windows](http://www.mirc.com/).
-  
-## 0.8.0 BETA NOTE
-
-For version 0.8.0 you must, **must**, **MUST** install MacRuby on your computer at least once. If you don't Elysium will not run. You don't even need to keep it installed you just have to have run it's installer once. This requirement will be lifted in a forthcoming beta.
 
 ## Okay let's get this show on the road
 
@@ -59,7 +54,6 @@ The notes aren't spread out randomly but follow a pattern called a 'Harmonic Tab
 
 But if all you could do was click little hexes you'd be worse off than just using your keyboard so let's get a taste of what Elysium can do!
 
-
 Right click (if you are using a laptop with a trackpad and ctrl+click doesn't work try using a two-finger click instead) one of the hexes, say a C4, and add a generator. Then add a note. Now do the same to add a note 2 or 3 hexes directly north of the hex you added the generator to. You should end up with something like this:
 
 ![Now we're cooking](myfirsthexes.jpg)
@@ -72,11 +66,15 @@ Now the player is running and the generate will generate a series of playheads. 
 
 ![Playheads ahoy!](awayfliestheplayhead.jpg)
 
-Note that it doesn't play each hexes it travels over, only the hexes with a note token assigned to them. Stop the player again. If the layer has focus you can do that with the `Enter` key otherwise try the transport control in the player inspector. That's this one:
+Note that it doesn't play a note for each hexes the playhead travels over, only the hexes with a note token specifically assigned to them by you. Stop the player again. If the layer has focus you can do that with the `Enter` key otherwise try the transport control in the player inspector. That's this one:
 
 ![First look at the player inspector](startandstoptheplayer.jpg)
 
-Which brings us to those inspectors. They're kind of scary looking and, in truth, they are not as well designed as they could be. But the good news is that once you have learned how to operate one control, pretty much all the other controls in all the inspectors work the same way. Also some of the controls are duplicated across the different inspectors so there really as much to learn as you might think.
+Which brings us to those inspectors.
+
+## Taking Control
+
+Elysiums inspectors are kind of scary looking and, in truth, they are not as well designed as they could be. But the good news is that once you have learned how to operate one control, pretty much all the other controls in all the inspectors work the same way. Also many of the controls are duplicated across the different inspectors so there really isn't as much to learn as you might, at first, think.
 
 Let's take a look at one of the controls, the tempo:
 
@@ -109,7 +107,15 @@ When the duration was inheriting its value, where was it inheriting it from?
 
 Congratulations!
 
-You see Elysium is multi-layered and each layer gets its own cells and can have its own pattern. It just happens that, in this case, we only have one layer. But if we bring the layer inspector up you can see the whole picture of how duration is inherited::
+You see Elysium is multi-layered and each layer gets its own cells and can have its own pattern. It just happens that, in our previous example, we only have one layer. But here is an example of two layers:
+
+![Layers upon Layers](morelayers.jpg)
+
+In this case you can see I have named the layers (by double clicking the layer name in the Layer Manager panel) to describe what instrument I want them to play.
+
+This naming process is entirely optional and there is no pre-determined structure for how things work. You can have one layer playing multiple instruments or multiple layers playing the same instrument, Elysium doesn't care.
+
+What's important here though is that you understand the relationship between the player, layers, and tokens placed on layer cells. If we bring up the layer inspector up you can see the whole picture of how duration is inherited::
 
 ![Yes, there are layers](inheritingduration.jpg)
 
@@ -119,33 +125,50 @@ So, by default, every note on layer 1 inherits its duration from the layer 1 dur
 
 At this point, whether you realize it or not, you've learned 80% of what there is to learn about these complex inspectors. The rest is familiarizing yourself with the tokens you can place on the layers, and the different knobs that determine what effect those tokens have.
 
-Lets go through them now. Starting with the generate token which you already know about:
+Lets go through them now.
+
+## Tokens
+
+We'll start with the generate token which you have already seen:
+
+### Start
 
 ![Generate this](generate1.jpg)
 
 A generate token creates playheads and sends them off with a direction. How often does it do it? That depends upon the `Pulse Every` setting. With a `Pulse Every` of 1 you'd get a new playhead on every beat, at 2 one every other beat, at 3 one every third beat, and so on. You'll notice that, a playhead doesn't keep going forever. There are two reasons why a playhead dies. The first is if it crosses the edge of the layer and the second is if it lives too long. A playheads "life" is measured in beats and can be controlled by the `Time to Live` knob. This becomes an important parameter when you start setting up cyclical patterns.
 
+### Note
+
 ![Take note](note1.jpg)
 
 The note token, you will be unsurprised to hear, plays a note. The note played is governed by which cell the token is placed on according to the harmonic table you saw earlier. The various knobs in the inspector allow you to control _how_ the note is played.
 
+### Rebound 
 ![Boing!!!](rebound1.jpg)
 
 A rebound token changes the direction of a moving playhead. In this example any playhead entering its hex would rebound to the south west. Confusingly the triangle is identical to direction triangle of the generate token (this will be fixed eventually) but the two are independent. If you stack a rebound on top of a generate the rebound _will not_ affect newly generated playheads. They will still get their direction from the generator.
+
+
+### Absorb
 
 ![Most absorbent](absorb1.jpg)
 
 An absorb token "absorbs" any playhead entering its hex. Like the rebound this won't affect newly generated playheads if you stack an absorb on top of a generator.
 
+### Split
+
 ![Let's split](split1.jpg)
 
 A split token splits one playhead into many. Each time a playhead enters its cell it a new playhead is sent out in every other direction. These playheads have the same `Time To Live` as the original playhead.
+
+### Spin
 
 ![Spin er round](spin1.jpg)
 
 A spin token can be placed anywhere but it only has an effect when placed on top of either a generator or rebound token. The effect is simple, each time a generate generates, or a rebound rebounds its direction will change. Effectively the token "spins round". It's simpler to see than describe. Try it!
 
-Okay, now you know about all the tokens, about layers, inspectors, knobs, inheritance, and a whole bunch more stuff. There is a **huge** amount of stuff left for you to discover but you know enough to be dangerous now so give it a try and make something cool! Have fun.
+Okay, now you know about all the tokens, about layers, inspectors, knobs, inheritance, and a whole bunch more stuff. There is a **huge** amount of stuff left for you to discover but you know enough to be dangerous now so give it a try and make something cool!
+
+Have fun.
 
 Matt
-
