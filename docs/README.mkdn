@@ -57,8 +57,95 @@ The notes aren't spread out randomly but follow a pattern called a 'Harmonic Tab
 
 ![I know this one](triad1.jpg)
 
-But if all you could do was click little hexes you'd be worse off than just using your keyboard so let's get a taste of what Elysium can do.
+But if all you could do was click little hexes you'd be worse off than just using your keyboard so let's get a taste of what Elysium can do!
 
 
+Right click (if you are using a laptop with a trackpad and ctrl+click doesn't work try using a two-finger click instead) one of the hexes, say a C4, and add a generator. Then add a note. Now do the same to add a note 2 or 3 hexes directly north of the hex you added the generator to. You should end up with something like this:
 
+![Now we're cooking](myfirsthexes.jpg)
+
+Now set it going using the start player option from the menu:
+
+![Away we go!](startplaying.jpg)
+
+Now the player is running and the generate will generate a series of playheads. The playhead is the red hex you can see here as it travels up the screen to hit the second note we layed down.
+
+![Playheads ahoy!](awayfliestheplayhead.jpg)
+
+Note that it doesn't play each hexes it travels over, only the hexes with a note token assigned to them. Stop the player again. If the layer has focus you can do that with the `Enter` key otherwise try the transport control in the player inspector. That's this one:
+
+![First look at the player inspector](startandstoptheplayer.jpg)
+
+Which brings us to those inspectors. They're kind of scary looking and, in truth, they are not as well designed as they could be. But the good news is that once you have learned how to operate one control, pretty much all the other controls in all the inspectors work the same way. Also some of the controls are duplicated across the different inspectors so there really as much to learn as you might think.
+
+Let's take a look at one of the controls, the tempo:
+
+![Tempo 1](tempocontrol1.jpg)
+
+Tempo is measured in Beats Per Minute (BPM). So with the tempo set at it's default of 120 there are 2 beats each second. In practical terms that means a playhead moves twice and can potentially play two notes per second.
+  
+The value of the tempo knob is set in the controls in the left hand green box. You can either type a value in to replace 120 or use the stepper controls to move the value up and down. Start the player again and try typing in a value of 300 (and pressing enter to confirm, you don't need to press enter when you use the steppers though) and see what happens.
+
+The two controls in the right hand green box allow you to assign an oscillator to the knob value. Using an oscillator gives the knob a dynamic value. We'll get to that later.
+
+Now that you know how this works, you know how nearly all of the inspector controls work. Let's take a look at another example, duration:
+
+![The mighty hex inspector!](hexinspector1.jpg)
+
+Do you notice how the hex with the upper note token is highlighted? That's the selected hex and you can see that I am now looking at the `Hex Inspector` which shows you what is on that hex. In this case just a note token. If we had the hex with the generator selected you'd see more information. If you click on a hex with no tokens the hex inspector is, predictably enough, empty.
+
+Something you should notice is that the note information on the hex inspector looks similar to a group of controls on the player inspector. But the duration control on the hex inspector isn't quite the same as it's counterpart in the player inspector:
+
+![We can override](durationcontrol1.jpg)
+
+Two things are different. The first is that we have a new _inherit_ control which is, by default, checked. The second is that the controls for setting the value of the duration are grayed out and you can't use them.
+
+Duration is, as you might have guessed, how long (in seconds) the note will be played for. And the player sets the value as half a second. When _inherit_ is checked this particular note will inherit its duration from somewhere else. Uncheck it and you will see that the controls for setting the value become enabled. This means that the note is now free to use its own duration. Change the duration value to be 1.0. If the player is started you should be able to hear that the first note played is half a second long and the second note played is a full second long.
+
+When the duration was inheriting its value, where was it inheriting it from?
+
+* If you answered "The player" then you're right.
+* If you answered "The layer" then you're right too.
+
+Congratulations!
+
+You see Elysium is multi-layered and each layer gets its own cells and can have its own pattern. It just happens that, in this case, we only have one layer. But if we bring the layer inspector up you can see the whole picture of how duration is inherited::
+
+![Yes, there are layers](inheritingduration.jpg)
+
+The arrows show how one duration knob inherits from another. The player knob doesn't have an inheritance control because it is "the master control".
+
+So, by default, every note on layer 1 inherits its duration from the layer 1 duration knob which, in turn, inherits its value from the player duration knob. If you were to add a second layer you could override the duration so that all notes on layer 2 had a duration of 2s. Any particular note can "disinherit" and set its own duration.
+
+At this point, whether you realize it or not, you've learned 80% of what there is to learn about these complex inspectors. The rest is familiarizing yourself with the tokens you can place on the layers, and the different knobs that determine what effect those tokens have.
+
+Lets go through them now. Starting with the generate token which you already know about:
+
+![Generate this](generate1.jpg)
+
+A generate token creates playheads and sends them off with a direction. How often does it do it? That depends upon the `Pulse Every` setting. With a `Pulse Every` of 1 you'd get a new playhead on every beat, at 2 one every other beat, at 3 one every third beat, and so on. You'll notice that, a playhead doesn't keep going forever. There are two reasons why a playhead dies. The first is if it crosses the edge of the layer and the second is if it lives too long. A playheads "life" is measured in beats and can be controlled by the `Time to Live` knob. This becomes an important parameter when you start setting up cyclical patterns.
+
+![Take note](note1.jpg)
+
+The note token, you will be unsurprised to hear, plays a note. The note played is governed by which cell the token is placed on according to the harmonic table you saw earlier. The various knobs in the inspector allow you to control _how_ the note is played.
+
+![Boing!!!](rebound1.jpg)
+
+A rebound token changes the direction of a moving playhead. In this example any playhead entering its hex would rebound to the south west. Confusingly the triangle is identical to direction triangle of the generate token (this will be fixed eventually) but the two are independent. If you stack a rebound on top of a generate the rebound _will not_ affect newly generated playheads. They will still get their direction from the generator.
+
+![Most absorbent](absorb1.jpg)
+
+An absorb token "absorbs" any playhead entering its hex. Like the rebound this won't affect newly generated playheads if you stack an absorb on top of a generator.
+
+![Let's split](split1.jpg)
+
+A split token splits one playhead into many. Each time a playhead enters its cell it a new playhead is sent out in every other direction. These playheads have the same `Time To Live` as the original playhead.
+
+![Spin er round](spin1.jpg)
+
+A spin token can be placed anywhere but it only has an effect when placed on top of either a generator or rebound token. The effect is simple, each time a generate generates, or a rebound rebounds its direction will change. Effectively the token "spins round". It's simpler to see than describe. Try it!
+
+Okay, now you know about all the tokens, about layers, inspectors, knobs, inheritance, and a whole bunch more stuff. There is a **huge** amount of stuff left for you to discover but you know enough to be dangerous now so give it a try and make something cool! Have fun.
+
+Matt
 
