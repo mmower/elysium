@@ -8,13 +8,13 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="483"/>
+			<integer value="484"/>
+			<integer value="481"/>
+			<integer value="482"/>
 			<integer value="480"/>
 			<integer value="485"/>
-			<integer value="483"/>
-			<integer value="481"/>
 			<integer value="649"/>
-			<integer value="482"/>
-			<integer value="484"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -52,7 +52,7 @@
 									<int key="NSCellFlags">-2080244224</int>
 									<int key="NSCellFlags2">0</int>
 									<string key="NSContents"/>
-									<object class="NSFont" key="NSSupport">
+									<object class="NSFont" key="NSSupport" id="961542003">
 										<string key="NSName">LucidaGrande</string>
 										<double key="NSSize">1.300000e+01</double>
 										<int key="NSfFlags">1044</int>
@@ -141,7 +141,7 @@
 					<object class="NSTextField" id="164695507">
 						<reference key="NSNextResponder" ref="997190930"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{18, 232}, {66, 11}}</string>
+						<string key="NSFrame">{{18, 232}, {47, 11}}</string>
 						<reference key="NSSuperview" ref="997190930"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="679048784">
@@ -157,14 +157,14 @@
 					<object class="NSSlider" id="490576214">
 						<reference key="NSNextResponder" ref="997190930"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{64, 221}, {26, 31}}</string>
+						<string key="NSFrame">{{70, 220}, {32, 34}}</string>
 						<reference key="NSSuperview" ref="997190930"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="815098274">
 							<int key="NSCellFlags">67239424</int>
-							<int key="NSCellFlags2">131072</int>
+							<int key="NSCellFlags2">0</int>
 							<string key="NSContents"/>
-							<reference key="NSSupport" ref="26"/>
+							<reference key="NSSupport" ref="961542003"/>
 							<reference key="NSControlView" ref="490576214"/>
 							<double key="NSMaxValue">6.000000e+00</double>
 							<double key="NSMinValue">0.000000e+00</double>
@@ -2036,7 +2036,7 @@
 					<object class="NSTextField" id="849948893">
 						<reference key="NSNextResponder" ref="197727678"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 113}, {66, 11}}</string>
+						<string key="NSFrame">{{17, 113}, {47, 11}}</string>
 						<reference key="NSSuperview" ref="197727678"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="284412017">
@@ -2052,14 +2052,14 @@
 					<object class="NSSlider" id="472484462">
 						<reference key="NSNextResponder" ref="197727678"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{62, 102}, {26, 31}}</string>
+						<string key="NSFrame">{{69, 101}, {32, 34}}</string>
 						<reference key="NSSuperview" ref="197727678"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="657339642">
 							<int key="NSCellFlags">67239424</int>
-							<int key="NSCellFlags2">131072</int>
+							<int key="NSCellFlags2">0</int>
 							<string key="NSContents"/>
-							<reference key="NSSupport" ref="26"/>
+							<reference key="NSSupport" ref="961542003"/>
 							<reference key="NSControlView" ref="472484462"/>
 							<double key="NSMaxValue">6.000000e+00</double>
 							<double key="NSMinValue">0.000000e+00</double>
@@ -8678,7 +8678,6 @@
 							<reference ref="1071038894"/>
 							<reference ref="450639729"/>
 							<reference ref="164695507"/>
-							<reference ref="490576214"/>
 							<reference ref="918600109"/>
 							<reference ref="476854511"/>
 							<reference ref="420027482"/>
@@ -8697,6 +8696,7 @@
 							<reference ref="962426753"/>
 							<reference ref="939304153"/>
 							<reference ref="819501725"/>
+							<reference ref="490576214"/>
 						</object>
 						<reference key="parent" ref="1002"/>
 						<string key="objectName">Generate</string>
@@ -9185,8 +9185,8 @@
 							<reference ref="780576497"/>
 							<reference ref="508778075"/>
 							<reference ref="849948893"/>
-							<reference ref="472484462"/>
 							<reference ref="673441618"/>
+							<reference ref="472484462"/>
 						</object>
 						<reference key="parent" ref="1002"/>
 						<string key="objectName">Rebound</string>
@@ -11355,7 +11355,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{640, 697}, {238, 159}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{421, 495}, {238, 179}}</string>
+					<string>{{1010, 821}, {238, 179}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{421, 149}, {238, 220}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
