@@ -269,7 +269,7 @@
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"Hex %d,%d - %@", col, row, note];
+  return [NSString stringWithFormat:@"Cell %d,%d - %@", col, row, note];
 }
 
 // Playheads
