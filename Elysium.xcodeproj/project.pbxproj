@@ -6,20 +6,6 @@
 	objectVersion = 45;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		C9037FED0EEC5668005D3443 /* Embed MacRuby */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = C9037FF40EEC567D005D3443 /* Build configuration list for PBXAggregateTarget "Embed MacRuby" */;
-			buildPhases = (
-				C9037FEC0EEC5668005D3443 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = "Embed MacRuby";
-			productName = "Embed MacRuby";
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		1DDD582C0DA1D0D100B32029 /* ElysiumDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* ElysiumDocument.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
@@ -171,13 +157,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C9037FF50EEC5778005D3443 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C9037FED0EEC5668005D3443 /* Embed MacRuby */;
-			remoteInfo = "Embed MacRuby";
-		};
 		C93D54D60E61F1970077C448 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -969,12 +948,12 @@
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				C9E43D630E33C29F00C4D343 /* CopyFiles */,
-				C905DF9F0E72FD5100C39302 /* ShellScript */,
+				C90380080EEC5FCC005D3443 /* Embed Bridge Support Metadata */,
+				C905DF9F0E72FD5100C39302 /* Package Binaries */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C9037FF60EEC5778005D3443 /* PBXTargetDependency */,
 				C96311700E50587A008BF9AB /* PBXTargetDependency */,
 				C9874C3D0E42A2460068E7BF /* PBXTargetDependency */,
 				C93D54D70E61F1970077C448 /* PBXTargetDependency */,
@@ -1055,7 +1034,6 @@
 				C9874BF90E429EF90068E7BF /* HoneycombView */,
 				C97FEC850E4F5FB2008F309B /* StackedListView */,
 				C93D54900E61F0E80077C448 /* PYMIDI */,
-				C9037FED0EEC5668005D3443 /* Embed MacRuby */,
 			);
 		};
 /* End PBXProject section */
@@ -1129,20 +1107,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C9037FEC0EEC5668005D3443 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "PATH=\"$PATH:/usr/local/bin\" /usr/bin/env macruby -r hotcocoa/application_builder -e \"HotCocoa::ApplicationBuilder.deploy(ARGV[0])\" $TARGET_BUILD_DIR/$PROJECT_NAME.app";
-		};
-		C905DF9F0E72FD5100C39302 /* ShellScript */ = {
+		C90380080EEC5FCC005D3443 /* Embed Bridge Support Metadata */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1150,6 +1115,23 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(TARGET_NAME).app",
 			);
+			name = "Embed Bridge Support Metadata";
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(TARGET_NAME).app/Contents/Resources/BridgeSupport/README",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir ${TARGET_BUILD_DIR}/${TARGET_NAME}.app/Contents/Resources/BridgeSupport\nfind /System/Library/Frameworks -regex \".*/BridgeSupport/.*dylib\" -exec cp {} ${TARGET_BUILD_DIR}/${TARGET_NAME}.app/Contents/Resources/BridgeSupport \\;\ntouch ${TARGET_BUILD_DIR}/${TARGET_NAME}.app/Contents/Resources/BridgeSupport/README\n";
+		};
+		C905DF9F0E72FD5100C39302 /* Package Binaries */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(TARGET_NAME).app",
+			);
+			name = "Package Binaries";
 			outputPaths = (
 				"$(TARGET_BUILD_DIR)/$(TARGET_NAME).tgz",
 			);
@@ -1266,11 +1248,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C9037FF60EEC5778005D3443 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C9037FED0EEC5668005D3443 /* Embed MacRuby */;
-			targetProxy = C9037FF50EEC5778005D3443 /* PBXContainerItemProxy */;
-		};
 		C93D54D70E61F1970077C448 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C93D54900E61F0E80077C448 /* PYMIDI */;
@@ -1472,27 +1449,6 @@
 			};
 			name = Release;
 		};
-		C9037FEE0EEC5668005D3443 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = "Embed MacRuby";
-			};
-			name = Debug;
-		};
-		C9037FEF0EEC5668005D3443 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PRODUCT_NAME = "Embed MacRuby";
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		C93D54930E61F0E90077C448 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1672,15 +1628,6 @@
 			buildConfigurations = (
 				C05733CC08A9546B00998B17 /* Debug */,
 				C05733CD08A9546B00998B17 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C9037FF40EEC567D005D3443 /* Build configuration list for PBXAggregateTarget "Embed MacRuby" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C9037FEE0EEC5668005D3443 /* Debug */,
-				C9037FEF0EEC5668005D3443 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
