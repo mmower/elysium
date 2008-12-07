@@ -1362,6 +1362,7 @@
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../XCode/Release/HoneycombView.framework/Versions/A/Headers\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Elysium;
 				SYMROOT = build;
 				WARNING_CFLAGS = "-Wall";
@@ -1390,6 +1391,7 @@
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../XCode/Release/HoneycombView.framework/Versions/A/Headers\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Elysium;
 				SYMROOT = build;
 				WARNING_CFLAGS = "-Wall";
