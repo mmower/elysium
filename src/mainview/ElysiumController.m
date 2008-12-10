@@ -122,11 +122,15 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   [runtime evaluateString:@"framework 'Cocoa'"];
 }
 
+- (ELPlayer *)activePlayer {
+  return [[[NSDocumentController sharedDocumentController] currentDocument] player];
+}
+
 // Actions
 
 - (IBAction)showOscillatorDesigner:(id)_sender_ {
   if( !oscillatorDesignerController ) {
-    oscillatorDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+    oscillatorDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[self activePlayer]];
   }
   
   [oscillatorDesignerController showWindow:self];
@@ -138,7 +142,7 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   }
   
   [hexInspectorController showWindow:self];
-  [hexInspectorController focus:[[[[[NSDocumentController sharedDocumentController] currentDocument] player] layer:0] selectedHex]];
+  [hexInspectorController focus:[[[self activePlayer] layer:0] selectedHex]];
 }
 
 - (IBAction)showLayerInspector:(id)_sender_ {
@@ -147,7 +151,7 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   }
   
   [layerInspectorController showWindow:self];
-  [layerInspectorController focus:[[[[NSDocumentController sharedDocumentController] currentDocument] player] layer:0]];
+  [layerInspectorController focus:[[self activePlayer] layer:0]];
 }
 
 - (IBAction)showPlayerInspector:(id)_sender_ {
@@ -156,7 +160,7 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   }
   
   [playerInspectorController showWindow:self];
-  [playerInspectorController focus:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+  [playerInspectorController focus:[self activePlayer]];
 }
 
 - (IBAction)showInspectorPanel:(id)_sender_ {
@@ -167,7 +171,7 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 - (IBAction)showMIDIConfigInspector:(id)_sender_ {
   if( !midiConfigController ) {
-    midiConfigController = [[ELMIDIConfigController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+    midiConfigController = [[ELMIDIConfigController alloc] initWithPlayer:[self activePlayer]];
   }
   
   [midiConfigController showWindow:self];
@@ -175,7 +179,7 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 - (IBAction)showScriptPackageInspector:(id)_sender_ {
   if( !scriptPackageController ) {
-    scriptPackageController = [[ELScriptPackageController alloc] initWithPlayer:[[[NSDocumentController sharedDocumentController] currentDocument] player]];
+    scriptPackageController = [[ELScriptPackageController alloc] initWithPlayer:[self activePlayer]];
   }
   
   [scriptPackageController showWindow:self];

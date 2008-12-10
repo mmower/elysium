@@ -35,6 +35,7 @@
   BOOL                showNotes;
   BOOL                showOctaves;
   BOOL                showKey;
+  BOOL                performanceMode;
   
   NSMutableDictionary *scripts;
   NSMutableArray      *triggers;        // ELMIDITrigger objects
@@ -58,6 +59,7 @@
 @property BOOL showNotes;
 @property BOOL showOctaves;
 @property BOOL showKey;
+@property BOOL performanceMode;
 
 @property ElysiumDocument *document;
 @property (readonly) NSMutableDictionary *scripts;

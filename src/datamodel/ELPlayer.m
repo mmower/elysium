@@ -57,6 +57,7 @@
     showNotes       = NO;
     showOctaves     = NO;
     showKey         = NO;
+    performanceMode = NO;
     
     // Note that we start this here, otherwise MIDI CC cannot be used to trigger the player itself
     if( USE_TRIGGER_THREAD ) {
@@ -98,6 +99,7 @@
 @synthesize showNotes;
 @synthesize showOctaves;
 @synthesize showKey;
+@synthesize performanceMode;
 
 @synthesize tempoKnob;
 @synthesize barLengthKnob;

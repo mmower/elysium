@@ -15,6 +15,8 @@
 @class ELMIDIConfigController;
 @class ELScriptPackageController;
 
+@class ELPlayer;
+
 @interface ElysiumController : NSObject {
   ELHexInspectorController        *hexInspectorController;
   ELLayerInspectorController      *layerInspectorController;
@@ -25,6 +27,8 @@
 }
 
 - (void)initMacRuby;
+
+- (ELPlayer *)activePlayer;
 
 - (IBAction)showOscillatorDesigner:(id)sender;
 - (IBAction)showHexInspector:(id)sender;
