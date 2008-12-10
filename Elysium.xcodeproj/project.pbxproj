@@ -948,7 +948,6 @@
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				C9E43D630E33C29F00C4D343 /* CopyFiles */,
-				C90380080EEC5FCC005D3443 /* Embed Bridge Support Metadata */,
 				C905DF9F0E72FD5100C39302 /* Package Binaries */,
 			);
 			buildRules = (
@@ -1107,22 +1106,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C90380080EEC5FCC005D3443 /* Embed Bridge Support Metadata */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(TARGET_NAME).app",
-			);
-			name = "Embed Bridge Support Metadata";
-			outputPaths = (
-				"$(TARGET_BUILD_DIR)/$(TARGET_NAME).app/Contents/Resources/BridgeSupport/README",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "mkdir ${TARGET_BUILD_DIR}/${TARGET_NAME}.app/Contents/Resources/BridgeSupport\nfind /System/Library/Frameworks -regex \".*/BridgeSupport/.*dylib\" -exec cp {} ${TARGET_BUILD_DIR}/${TARGET_NAME}.app/Contents/Resources/BridgeSupport \\;\ntouch ${TARGET_BUILD_DIR}/${TARGET_NAME}.app/Contents/Resources/BridgeSupport/README\n";
-		};
 		C905DF9F0E72FD5100C39302 /* Package Binaries */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
