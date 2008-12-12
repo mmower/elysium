@@ -208,6 +208,16 @@
   return [tools count] > 0;
 }
 
+- (void)start {
+  // Tell all the tools we're starting
+  [generateTool start];
+  [noteTool start];
+  [splitTool start];
+  [reboundTool start];
+  [absorbTool start];
+  [spinTool start];
+}
+
 - (void)run:(ELPlayhead *)_playhead_ {
   [noteTool run:_playhead_];
   [splitTool run:_playhead_];

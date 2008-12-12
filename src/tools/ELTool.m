@@ -43,9 +43,10 @@ int randval() {
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    enabled = YES;
-    pKnob   = [[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1];
-    scripts = [NSMutableDictionary dictionary];
+    enabled  = YES;
+    pKnob    = [[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1];
+    gateKnob = [[ELIntegerKnob alloc] initWithName:@"gate" integerValue:0 minimum:0 maximum:32 stepping:1];
+    scripts  = [NSMutableDictionary dictionary];
   }
   
   return self;
@@ -55,6 +56,7 @@ int randval() {
 
 @synthesize enabled;
 @synthesize pKnob;
+@synthesize gateKnob;
 @synthesize skip;
 @synthesize fired;
 @synthesize layer;
@@ -67,7 +69,7 @@ int randval() {
 }
 
 - (NSArray *)observableValues {
-  return [NSArray arrayWithObjects:@"enabled",@"pKnob.value",nil];
+  return [NSArray arrayWithObjects:@"enabled",@"pKnob.value",@"gateKnob.value",nil];
 }
 
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
@@ -80,19 +82,30 @@ int randval() {
   hex = nil;
 }
 
+- (void)start {
+  gateCount = [gateKnob dynamicValue];
+}
+
 // Tool-run protocol. The layer will call run and, as long as the tool is enabled,
 // the tool will invoke it's scripts and the subclass overriden runTool between them.
 - (void)run:(ELPlayhead *)_playhead_ {
   if( enabled ) {
     [self performSelectorOnMainThread:@selector(runWillRunScript:) withObject:_playhead_ waitUntilDone:YES];
-    fired = NO;
-    if( !skip ) {
-      if( randval() <= [pKnob value] ) {
-        [self runTool:_playhead_];
-        fired = YES;
+    if( gateCount > 0 ) {
+      gateCount--;
+    } else {
+      fired = NO;
+      if( !skip ) {
+        if( randval() <= [pKnob value] ) {
+          [self runTool:_playhead_];
+          fired = YES;
+        }
       }
+      skip = NO;
+      
+      gateCount = [gateKnob dynamicValue];
     }
-    skip = NO;
+    
     [self performSelectorOnMainThread:@selector(runDidRunScript:) withObject:_playhead_ waitUntilDone:YES];
   }
 }
@@ -143,6 +156,7 @@ int randval() {
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [controlsElement addChild:[pKnob xmlRepresentation]];
+  [controlsElement addChild:[gateKnob xmlRepresentation]];
   return controlsElement;
 }
 
@@ -179,6 +193,20 @@ int randval() {
         pKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
       } else {
         pKnob = [[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1];
+      }
+      
+      if( pKnob == nil ) {
+        return nil;
+      }
+    } else {
+      return nil;
+    }
+    
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='gate']" error:_error_] ) ) {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        pKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+      } else {
+        pKnob = [[ELIntegerKnob alloc] initWithName:@"gate" integerValue:0 minimum:0 maximum:32 stepping:1];
       }
       
       if( pKnob == nil ) {

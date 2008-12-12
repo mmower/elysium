@@ -203,6 +203,9 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)start {
+  // Tell all the cells we're starting
+  [hexes makeObjectsPerformSelector:@selector(start)];
+  
   runner = [[NSThread alloc] initWithTarget:self selector:@selector(runLayer) object:nil];
   [runner start];
 }

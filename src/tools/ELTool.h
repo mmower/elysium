@@ -25,12 +25,15 @@
   NSMutableDictionary *scripts;
   BOOL                skip;
   BOOL                fired;
+  int                 gateCount;
   
   ELIntegerKnob       *pKnob;
+  ELIntegerKnob       *gateKnob;
 }
 
 @property BOOL enabled;
 @property (readonly) ELIntegerKnob *pKnob;
+@property (readonly) ELIntegerKnob *gateKnob;
 @property BOOL skip;
 @property BOOL fired;
 @property (readonly) ELLayer *layer;
@@ -45,6 +48,8 @@
 
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;
 - (void)removedFromLayer:(ELLayer *)layer;
+
+- (void)start;
 
 - (void)run:(ELPlayhead *)playhead;
 - (void)runTool:(ELPlayhead *)playhead;
