@@ -203,6 +203,18 @@
   }
 }
 
+- (IBAction)clearSelectedLayer:(id)_sender_ {
+  NSAlert *alert = [[NSAlert alloc] init];
+  [alert setAlertStyle:NSWarningAlertStyle];
+  [alert addButtonWithTitle:@"Clear Layer"];
+  [alert addButtonWithTitle:@"Do Not Clear"];
+  [alert setInformativeText:@"Pressing 'Clear Layer' will clear all hexes on the selected layer."];
+  if( [alert runModal] == NSAlertFirstButtonReturn ) {
+    [[player selectedLayer] clear];
+    [self updateView:self];
+  }
+}
+
 - (IBAction)newLayer:(id)_sender_ {
   ELLayerWindowController *windowController = [[ELLayerWindowController alloc] initWithLayer:[player createLayer]];
   [self addWindowController:windowController];

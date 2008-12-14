@@ -30,6 +30,7 @@
 - (IBAction)startStop:(id)sender;
 - (IBAction)clearAll:(id)sender;
 - (IBAction)newLayer:(id)sender;
+- (IBAction)clearSelectedLayer:(id)sender;
 - (IBAction)closeDocument:(id)sender;
 - (IBAction)toggleNoteDisplay:(id)sender;
 - (IBAction)toggleKeyDisplay:(id)sender;
