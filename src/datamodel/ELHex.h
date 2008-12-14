@@ -67,24 +67,31 @@
 
 - (void)run:(ELPlayhead *)playhead;
 
+- (void)addToolWithTag:(int)toolTag;
 - (void)addTool:(ELTool *)tool;
 - (void)removeTool:(ELTool *)tool;
 - (void)removeAllTools;
 
 // Actions for tool management
-- (IBAction)clearTools;
-- (IBAction)addGenerateTool;
-- (IBAction)removeGenerateTool;
-- (IBAction)addNoteTool;
-- (IBAction)removeNoteTool;
-- (IBAction)addReboundTool;
-- (IBAction)removeReboundTool;
-- (IBAction)addAbsorbTool;
-- (IBAction)removeAbsorbTool;
-- (IBAction)addSplitTool;
-- (IBAction)removeSplitTool;
-- (IBAction)addSpinTool;
-- (IBAction)removeSpinTool;
+- (IBAction)clearTools:(id)sender;
+- (IBAction)toggleGenerateToken:(id)sender;
+- (IBAction)addGenerateTool:(id)sender;
+- (IBAction)removeGenerateTool:(id)sender;
+- (IBAction)toggleNoteToken:(id)sender;
+- (IBAction)addNoteTool:(id)sender;
+- (IBAction)removeNoteTool:(id)sender;
+- (IBAction)toggleReboundToken:(id)sender;
+- (IBAction)addReboundTool:(id)sender;
+- (IBAction)removeReboundTool:(id)sender;
+- (IBAction)toggleAbsorbToken:(id)sender;
+- (IBAction)addAbsorbTool:(id)sender;
+- (IBAction)removeAbsorbTool:(id)sender;
+- (IBAction)toggleSplitToken:(id)sender;
+- (IBAction)addSplitTool:(id)sender;
+- (IBAction)removeSplitTool:(id)sender;
+- (IBAction)toggleSpinToken:(id)sender;
+- (IBAction)addSpinTool:(id)sender;
+- (IBAction)removeSpinTool:(id)sender;
 
 - (NSArray *)tools;
 - (NSArray *)toolsExceptType:(NSString *)type;
@@ -102,7 +109,7 @@
 - (void)drawText:(NSString *)text  withAttributes:(NSMutableDictionary *)attributes;
 
 // Menu support
-- (NSMenuItem *)toolMenuItem:(NSString *)name present:(BOOL)present addSelector:(SEL)addSelector removeSelector:(SEL)removeSelector;
+- (NSMenuItem *)toolMenuItem:(NSString *)name present:(BOOL)present selector:(SEL)selector;
 - (void)makeCurrentSelection;
 
 @end

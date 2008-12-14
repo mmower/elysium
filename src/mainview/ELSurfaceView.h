@@ -31,7 +31,6 @@
 - (ELHex *)cellUnderMouseLocation:(NSPoint)point;
 - (ELHex *)selectedHex;
 
-- (void)addTool:(int)toolTag toCell:(ELHex *)cell;
 - (void)dragFromHex:(ELHex *)sourceHex to:(ELHex *)targetHex with:(NSDragOperation)modifiers;
 
 - (void)cellWasUpdated:(NSNotification*)notification;

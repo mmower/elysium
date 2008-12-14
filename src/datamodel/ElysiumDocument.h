@@ -35,4 +35,12 @@
 - (IBAction)toggleKeyDisplay:(id)sender;
 - (IBAction)toggleOctavesDisplay:(id)sender;
 
+- (IBAction)toggleGeneratorToken:(id)sender;
+- (IBAction)toggleNoteToken:(id)sender;
+- (IBAction)toggleReboundToken:(id)sender;
+- (IBAction)toggleAbsorbToken:(id)sender;
+- (IBAction)toggleSplitToken:(id)sender;
+- (IBAction)toggleSpinToken:(id)sender;
+- (IBAction)clearCell:(id)sender;
+
 @end

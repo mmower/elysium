@@ -209,6 +209,34 @@
   [windowController showWindow:self];
 }
 
+- (IBAction)toggleGeneratorToken:(id)_sender_ {
+  [[[player selectedLayer] selectedHex] toggleGenerateToken:_sender_];
+}
+
+- (IBAction)toggleNoteToken:(id)_sender_ {
+  [[[player selectedLayer] selectedHex] toggleNoteToken:_sender_];
+}
+
+- (IBAction)toggleReboundToken:(id)_sender_ {
+  [[[player selectedLayer] selectedHex] toggleReboundToken:_sender_];
+}
+
+- (IBAction)toggleAbsorbToken:(id)_sender_ {
+  [[[player selectedLayer] selectedHex] toggleAbsorbToken:_sender_];
+}
+
+- (IBAction)toggleSplitToken:(id)_sender_ {
+  [[[player selectedLayer] selectedHex] toggleSplitToken:_sender_];
+}
+
+- (IBAction)toggleSpinToken:(id)_sender_ {
+  [[[player selectedLayer] selectedHex] toggleSpinToken:_sender_];
+}
+
+- (IBAction)clearCell:(id)_sender_ {
+  [[[player selectedLayer] selectedHex] clearTools:_sender_];
+}
+
 - (void)document:(NSDocument *)_document_ shouldClose:(BOOL)_shouldClose_ contextInfo:(void*)_contextInfo_ {
   if( _shouldClose_ ) {
     [self close];

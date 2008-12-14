@@ -20,6 +20,7 @@
 #import "ELNoteGroup.h"
 #import "ELHarmonicTable.h"
 #import "ELSurfaceView.h"
+#import "ELToolView.h"
 
 #import "ELGenerateTool.h"
 #import "ELNoteTool.h"
@@ -304,33 +305,27 @@
   
   [menu addItem:[self toolMenuItem:@"Generate"
                            present:([self generateTool] != nil)
-                       addSelector:@selector(addGenerateTool)
-                    removeSelector:@selector(removeGenerateTool)]];
+                          selector:@selector(toggleGenerateToken:)]];
   
   [menu addItem:[self toolMenuItem:@"Note"
                            present:([self noteTool] != nil)
-                       addSelector:@selector(addNoteTool)
-                    removeSelector:@selector(removeNoteTool)]];
+                          selector:@selector(toggleNoteToken:)]];
   
   [menu addItem:[self toolMenuItem:@"Rebound"
                            present:([self reboundTool] != nil)
-                       addSelector:@selector(addReboundTool)
-                    removeSelector:@selector(removeReboundTool)]];
+                          selector:@selector(toggleReboundToken:)]];
   
   [menu addItem:[self toolMenuItem:@"Absorb"
                            present:([self absorbTool] != nil)
-                       addSelector:@selector(addAbsorbTool)
-                    removeSelector:@selector(removeAbsorbTool)]];
+                          selector:@selector(toggleAbsorbToken:)]];
   
   [menu addItem:[self toolMenuItem:@"Split"
                            present:([self splitTool] != nil)
-                       addSelector:@selector(addSplitTool)
-                    removeSelector:@selector(removeSplitTool)]];
+                          selector:@selector(toggleSplitToken:)]];
   
   [menu addItem:[self toolMenuItem:@"Spin"
                            present:([self spinTool] != nil)
-                       addSelector:@selector(addSpinTool)
-                    removeSelector:@selector(removeSpinTool)]];
+                          selector:@selector(toggleSpinToken:)]];
   
   [menu addItem:[NSMenuItem separatorItem]];
   
@@ -341,13 +336,13 @@
   return menu;
 }
 
-- (NSMenuItem *)toolMenuItem:(NSString *)_name_ present:(BOOL)_present_ addSelector:(SEL)_addSelector_ removeSelector:(SEL)_removeSelector_ {
+- (NSMenuItem *)toolMenuItem:(NSString *)_name_ present:(BOOL)_present_ selector:(SEL)_selector_ {
   NSMenuItem *item;
   
   if( _present_ ) {
-    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Remove %@",_name_] action:_removeSelector_ keyEquivalent:@""];
+    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Remove %@",_name_] action:_selector_ keyEquivalent:@""];
   } else {
-    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Add %@",_name_] action:_addSelector_ keyEquivalent:@""];
+    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Add %@",_name_] action:_selector_ keyEquivalent:@""];
   }
   [item setTarget:self];
   
@@ -356,67 +351,150 @@
 
 // Tool support
 
-- (IBAction)clearTools {
+- (void)addToolWithTag:(int)_toolTag_ {
+  switch( _toolTag_ ) {
+    case EL_TOOL_GENERATE:
+      [self setGenerateTool:[[ELGenerateTool alloc] init]];
+      break;
+      
+    case EL_TOOL_NOTE:
+      [self setNoteTool:[[ELNoteTool alloc] init]];
+      break;
+      
+    case EL_TOOL_REBOUND:
+      [self setReboundTool:[[ELReboundTool alloc] init]];
+      break;
+      
+    case EL_TOOL_ABSORB:
+      [self setAbsorbTool:[[ELAbsorbTool alloc] init]];
+      break;
+      
+    case EL_TOOL_SPLIT:
+      [self setSplitTool:[[ELSplitTool alloc] init]];
+      break;
+      
+    case EL_TOOL_SPIN:
+      [self setSpinTool:[[ELSpinTool alloc] init]];
+      break;
+      
+    case EL_TOOL_CLEAR:
+      [self removeAllTools];
+      break;
+      
+    default:
+      NSAssert1( NO, @"Unknown tool tag %d experienced!", _toolTag_ );
+  }
+}
+
+- (IBAction)clearTools:(id)_sender_ {
   [self removeAllTools];
   [self makeCurrentSelection];
 }
 
-- (IBAction)addGenerateTool {
+- (IBAction)toggleGenerateToken:(id)_sender_ {
+  if( [self generateTool] ) {
+    [self removeGenerateTool:_sender_];
+  } else {
+    [self addGenerateTool:_sender_];
+  }
+}
+
+- (IBAction)addGenerateTool:(id)_sender_ {
   [self setGenerateTool:[[ELGenerateTool alloc] init]];
   [self makeCurrentSelection];
 }
 
-- (IBAction)removeGenerateTool {
+- (IBAction)removeGenerateTool:(id)_sender_ {
   [self setGenerateTool:nil];
   [self makeCurrentSelection];
 }
 
-- (IBAction)addNoteTool {
+- (IBAction)toggleNoteToken:(id)_sender_ {
+  if( [self noteTool] ) {
+    [self removeNoteTool:_sender_];
+  } else {
+    [self addNoteTool:_sender_];
+  }
+}
+
+- (IBAction)addNoteTool:(id)_sender_ {
   [self setNoteTool:[[ELNoteTool alloc] init]];
   [self makeCurrentSelection];
 }
 
-- (IBAction)removeNoteTool {
+- (IBAction)removeNoteTool:(id)_sender_ {
   [self setNoteTool:nil];
   [self makeCurrentSelection];
 }
 
-- (IBAction)addReboundTool {
+- (IBAction)toggleReboundToken:(id)_sender_ {
+  if( [self reboundTool] ) {
+    [self removeReboundTool:_sender_];
+  } else {
+    [self addReboundTool:_sender_];
+  }
+}
+
+- (IBAction)addReboundTool:(id)_sender_ {
   [self setReboundTool:[[ELReboundTool alloc] init]];
   [self makeCurrentSelection];
 }
 
-- (IBAction)removeReboundTool {
+- (IBAction)removeReboundTool:(id)_sender_ {
   [self setReboundTool:nil];
   [self makeCurrentSelection];
 }
 
-- (IBAction)addAbsorbTool {
+- (IBAction)toggleAbsorbToken:(id)_sender_ {
+  if( [self absorbTool] ) {
+    [self removeAbsorbTool:_sender_];
+  } else {
+    [self addAbsorbTool:_sender_];
+  }
+}
+
+- (IBAction)addAbsorbTool:(id)_sender_ {
   [self setAbsorbTool:[[ELAbsorbTool alloc] init]];
   [self makeCurrentSelection];
 }
 
-- (IBAction)removeAbsorbTool {
+- (IBAction)removeAbsorbTool:(id)_sender_ {
   [self setAbsorbTool:nil];
   [self makeCurrentSelection];
 }
 
-- (IBAction)addSplitTool {
+- (IBAction)toggleSplitToken:(id)_sender_ {
+  if( [self splitTool] ) {
+    [self removeSplitTool:_sender_];
+  } else {
+    [self addSplitTool:_sender_];
+  }
+}
+
+- (IBAction)addSplitTool:(id)_sender_ {
   [self setSplitTool:[[ELSplitTool alloc] init]];
   [self makeCurrentSelection];
 }
 
-- (IBAction)removeSplitTool {
+- (IBAction)removeSplitTool:(id)_sender_ {
   [self setSplitTool:nil];
   [self makeCurrentSelection];
 }
 
-- (IBAction)addSpinTool {
+- (IBAction)toggleSpinToken:(id)_sender_ {
+  if( [self spinTool] ) {
+    [self removeSpinTool:_sender_];
+  } else {
+    [self addSpinTool:_sender_];
+  }
+}
+
+- (IBAction)addSpinTool:(id)_sender_ {
   [self setSpinTool:[[ELSpinTool alloc] init]];
   [self makeCurrentSelection];
 }
 
-- (IBAction)removeSpinTool {
+- (IBAction)removeSpinTool:(id)_sender_ {
   [self setSpinTool:nil];
   [self makeCurrentSelection];
 }

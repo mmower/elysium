@@ -120,44 +120,6 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
 
 // Tool management
 
-- (void)addTool:(int)_toolTag_ toCell:(ELHex *)_cell_ {
-  switch( _toolTag_ ) {
-    case EL_TOOL_GENERATE:
-      [_cell_ setGenerateTool:[[ELGenerateTool alloc] init]];
-      break;
-      
-    case EL_TOOL_NOTE:
-      [_cell_ setNoteTool:[[ELNoteTool alloc] init]];
-      break;
-      
-    case EL_TOOL_REBOUND:
-      [_cell_ setReboundTool:[[ELReboundTool alloc] init]];
-      break;
-      
-    case EL_TOOL_ABSORB:
-      [_cell_ setAbsorbTool:[[ELAbsorbTool alloc] init]];
-      break;
-      
-    case EL_TOOL_SPLIT:
-      [_cell_ setSplitTool:[[ELSplitTool alloc] init]];
-      break;
-      
-    case EL_TOOL_SPIN:
-      [_cell_ setSpinTool:[[ELSpinTool alloc] init]];
-      break;
-      
-    case EL_TOOL_CLEAR:
-      [_cell_ removeAllTools];
-      break;
-      
-    default:
-      NSAssert1( NO, @"Unknown tool tag %d experienced!", _toolTag_ );
-  }
-  
-  // Let's update the selected hex that was dropped on
-  [self setSelected:_cell_];
-}
-
 - (void)dragFromHex:(ELHex *)_sourceHex_ to:(ELHex *)_targetHex_ with:(NSDragOperation)_modifiers_ {
   [_targetHex_ removeAllTools];
   [_targetHex_ copyToolsFrom:_sourceHex_];
@@ -238,13 +200,15 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)_sender_ {
   NSPasteboard *pasteboard = [_sender_ draggingPasteboard];
   NSArray *types = [pasteboard types];
+  
+  ELHex *droppedCell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
+  
   if( [types containsObject:ToolPBoardType] ) {
-    int tag = [[pasteboard stringForType:ToolPBoardType] intValue];
-    [self addTool:tag toCell:[self cellUnderMouseLocation:[_sender_ draggingLocation]]];
+    [droppedCell addToolWithTag:[[pasteboard stringForType:ToolPBoardType] intValue]];
+    [self setSelected:droppedCell];
   } else if( [types containsObject:HexPBoardType] ) {
-    ELHex *dropHex = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
-    if( [self selectedHex] != dropHex ) {
-      [self dragFromHex:[self selectedHex] to:dropHex with:[_sender_ draggingSourceOperationMask]];
+    if( [self selectedHex] != droppedCell ) {
+      [self dragFromHex:[self selectedHex] to:droppedCell with:[_sender_ draggingSourceOperationMask]];
     }
   }
   

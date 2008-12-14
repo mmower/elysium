@@ -39,6 +39,7 @@
   if( ( self = [super init] ) ) {
     harmonicTable   = [[ELHarmonicTable alloc] init];
     layers          = [[NSMutableArray alloc] init];
+    selectedLayer   = nil;
     
     tempoKnob       = [self defaultTempoKnob];
     barLengthKnob   = [self defaultBarLengthKnob];
@@ -114,6 +115,7 @@
 @synthesize scripts;
 @synthesize triggers;
 @synthesize pkg;
+@synthesize selectedLayer;
 
 - (ELIntegerKnob *)defaultTempoKnob {
   return [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:120 minimum:30 maximum:900 stepping:1];

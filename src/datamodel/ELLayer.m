@@ -355,6 +355,7 @@ NSPredicate *deadPlayheadFilter;
 - (void)hexCellSelected:(LMHexCell *)_cell_ {
   ELHex *hex = (ELHex *)_cell_;
   [self setSelectedHex:hex];
+  [player setSelectedLayer:self];
   if( hex ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:hex];
     
