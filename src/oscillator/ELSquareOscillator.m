@@ -53,7 +53,7 @@
 
 - (float)generate {
     // Get time in milliseconds
-    UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 1000000;
+    UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() - [self timeBase] ) / 1000000;
     int t = time % period;
     return [self generateWithT:t];
 }

@@ -44,6 +44,12 @@ static NSString * const toolType = @"rebound";
   return keys;
 }
 
+- (void)start {
+  [super start];
+  
+  [directionKnob start];
+}
+
 // Tool runner
 
 - (void)runTool:(ELPlayhead *)_playhead_ {

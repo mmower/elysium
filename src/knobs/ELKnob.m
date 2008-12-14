@@ -107,6 +107,10 @@
 
 @synthesize oscillator;
 
+- (void)start {
+  [oscillator resetTimeBase];
+}
+
 // ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {

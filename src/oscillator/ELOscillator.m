@@ -28,12 +28,18 @@
 - (id)initEnabled:(BOOL)_enabled_ {
   if( ( self = [super init] ) ) {
     [self setEnabled:_enabled_];
+    [self resetTimeBase];
   }
   
   return self;
 }
 
 @synthesize enabled;
+@synthesize timeBase;
+
+- (void)resetTimeBase {
+  [self setTimeBase:AudioGetCurrentHostTime()];
+}
 
 - (NSString *)type {
   return @"oscillator";

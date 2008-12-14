@@ -45,6 +45,8 @@
 @property (assign) ELOscillator *oscillator;
 @property id oscillatorController;
 
+- (void)start;
+
 - (BOOL)encodesType:(char *)type;
 - (void)setValueWithString:(NSString *)stringValue;
 

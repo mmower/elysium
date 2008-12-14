@@ -26,7 +26,7 @@
 
 - (float)generate {
     // Get time in milliseconds
-    UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) / 1000000;
+    UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() - [self timeBase] ) / 1000000;
     int t = time % period;
     
     // NSLog( @"time = %llu, period = %d, t = %d", time, period, t );

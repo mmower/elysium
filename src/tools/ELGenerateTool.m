@@ -87,6 +87,15 @@ static NSString * const toolType = @"generate";
   }
 }
 
+- (void)start {
+  [super start];
+  
+  [directionKnob start];
+  [timeToLiveKnob start];
+  [pulseCountKnob start];
+  [offsetKnob start];
+}
+
 - (void)runTool:(ELPlayhead *)_playhead_ {
     [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
                                                   direction:[directionKnob value]

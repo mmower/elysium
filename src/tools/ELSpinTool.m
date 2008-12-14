@@ -45,6 +45,13 @@ static NSString * const toolType = @"spin";
   return keys;
 }
 
+- (void)start {
+  [super start];
+  
+  [clockwiseKnob start];
+  [steppingKnob start];
+}
+
 // What happens when a playhead arrives
 
 - (void)runTool:(ELPlayhead *)_playhead_ {

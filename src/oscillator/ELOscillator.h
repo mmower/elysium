@@ -12,11 +12,13 @@
 
 @interface ELOscillator : NSObject <ELXmlData> {
   BOOL    enabled;
+  UInt64  timeBase;
 }
 
 + (ELOscillator *)loadFromXml:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error;
 
-@property BOOL enabled;
+@property BOOL    enabled;
+@property UInt64  timeBase;
 
 - (id)initEnabled:(BOOL)enabled;
 
@@ -25,5 +27,7 @@
 - (float)generate;
 
 - (void)storeAttributes:(NSMutableDictionary *)attributes;
+
+- (void)resetTimeBase;
 
 @end

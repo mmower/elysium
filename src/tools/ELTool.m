@@ -83,6 +83,7 @@ int randval() {
 }
 
 - (void)start {
+  [gateKnob start];
   gateCount = [gateKnob dynamicValue];
 }
 

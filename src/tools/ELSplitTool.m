@@ -41,6 +41,12 @@ static NSString * const toolType = @"split";
   return toolType;
 }
 
+- (void)start {
+  [super start];
+  
+  [bounceBackKnob start];
+}
+
 - (void)runTool:(ELPlayhead *)_playhead_ {
   [_playhead_ setPosition:nil];
   

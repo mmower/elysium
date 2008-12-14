@@ -101,6 +101,16 @@ NSDictionary *defaultChannelSends( void ) {
   return keys;
 }
 
+- (void)start {
+  [super start];
+  
+  [velocityKnob start];
+  [emphasisKnob start];
+  [durationKnob start];
+  [triadKnob start];
+  [overrideKnob start];
+}
+
 // Tool runner
 
 - (void)runTool:(ELPlayhead *)_playhead_ {
