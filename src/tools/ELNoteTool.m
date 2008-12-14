@@ -36,6 +36,7 @@ NSDictionary *defaultChannelSends( void ) {
               emphasisKnob:(ELIntegerKnob *)_emphasisKnob_
               durationKnob:(ELFloatKnob *)_durationKnob_
                  triadKnob:(ELIntegerKnob *)_triadKnob_
+                ghostsKnob:(ELIntegerKnob *)_ghostsKnob_
               overrideKnob:(ELBooleanKnob *)_overrideKnob_
               channelSends:(NSDictionary *)_channelSends_ {
   if( ( self = [super init] ) ) {
@@ -43,6 +44,7 @@ NSDictionary *defaultChannelSends( void ) {
     emphasisKnob = _emphasisKnob_;
     durationKnob = _durationKnob_;
     triadKnob    = _triadKnob_;
+    ghostsKnob   = _ghostsKnob_;
     overrideKnob = _overrideKnob_;
     channelSends = _channelSends_;
   }
@@ -55,6 +57,7 @@ NSDictionary *defaultChannelSends( void ) {
                        emphasisKnob:[[ELIntegerKnob alloc] initWithName:@"emphasis"]
                        durationKnob:[[ELFloatKnob alloc] initWithName:@"duration"]
                           triadKnob:[[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1]
+                         ghostsKnob:[[ELIntegerKnob alloc] initWithName:@"ghosts" integerValue:0 minimum:0 maximum:16 stepping:1]
                        overrideKnob:[[ELBooleanKnob alloc] initWithName:@"override" booleanValue:NO]
                        channelSends:defaultChannelSends()];
 }
@@ -67,6 +70,7 @@ NSDictionary *defaultChannelSends( void ) {
 @synthesize emphasisKnob;
 @synthesize durationKnob;
 @synthesize triadKnob;
+@synthesize ghostsKnob;
 @synthesize overrideKnob;
 @synthesize channelSends;
 
@@ -97,7 +101,7 @@ NSDictionary *defaultChannelSends( void ) {
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityKnob.value",@"emphasisKnob.value",@"durationKnob.value",@"triadKnob.value",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityKnob.value",@"emphasisKnob.value",@"durationKnob.value",@"triadKnob.value",@"ghostsKnob.value",nil]];
   return keys;
 }
 
@@ -108,6 +112,7 @@ NSDictionary *defaultChannelSends( void ) {
   [emphasisKnob start];
   [durationKnob start];
   [triadKnob start];
+  [ghostsKnob start];
   [overrideKnob start];
 }
 
@@ -132,16 +137,22 @@ NSDictionary *defaultChannelSends( void ) {
     playable = [position triad:triad];
   }
   
-  if( [overrideKnob value] ) {
-    int channel;
-    for( channel = 1; channel <= 16; channel++ ) {
-      ELBooleanKnob *send = [channelSends objectForKey:[[NSNumber numberWithInt:channel] stringValue]];
-      if( [send value] ) {
-        [playable playOnChannel:[send tag] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue]];
+  int beats = 1 + [ghostsKnob dynamicValue];
+  int offset = 0;
+  for( int b = 0; b < beats; b++ ) {
+    if( [overrideKnob value] ) {
+      int channel;
+      for( channel = 1; channel <= 16; channel++ ) {
+        ELBooleanKnob *send = [channelSends objectForKey:[[NSNumber numberWithInt:channel] stringValue]];
+        if( [send value] ) {
+          [playable playOnChannel:[send tag] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue] offset:offset];
+        }
       }
+    } else {
+      [playable playOnChannel:[[layer channelKnob] value] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue] offset:offset];
     }
-  } else {
-    [playable playOnChannel:[[layer channelKnob] value] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue]];
+    
+    offset += [[hex layer] timerResolution];
   }
 }
 
@@ -171,7 +182,13 @@ NSDictionary *defaultChannelSends( void ) {
     [copySends setObject:[[channelSends objectForKey:key] mutableCopy] forKey:key];
   }
   
-  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy] emphasisKnob:[emphasisKnob mutableCopy] durationKnob:[durationKnob mutableCopy] triadKnob:[triadKnob mutableCopy] overrideKnob:[overrideKnob mutableCopy] channelSends:copySends];
+  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy]
+                                                      emphasisKnob:[emphasisKnob mutableCopy]
+                                                      durationKnob:[durationKnob mutableCopy]
+                                                         triadKnob:[triadKnob mutableCopy]
+                                                        ghostsKnob:[ghostsKnob mutableCopy]
+                                                      overrideKnob:[overrideKnob mutableCopy]
+                                                      channelSends:copySends];
 }
 
 // Implement the ELXmlData protocol
@@ -182,6 +199,7 @@ NSDictionary *defaultChannelSends( void ) {
   [controlsElement addChild:[emphasisKnob xmlRepresentation]];
   [controlsElement addChild:[durationKnob xmlRepresentation]];
   [controlsElement addChild:[triadKnob xmlRepresentation]];
+  [controlsElement addChild:[ghostsKnob xmlRepresentation]];
   [controlsElement addChild:[overrideKnob xmlRepresentation]];
   for( ELBooleanKnob *knob in [channelSends allValues] ) {
     [controlsElement addChild:[knob xmlRepresentation]];
@@ -245,6 +263,20 @@ NSDictionary *defaultChannelSends( void ) {
       }
       
       if( triadKnob == nil ) {
+        return nil;
+      }
+    } else {
+      return nil;
+    }
+    
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='ghosts']" error:_error_] ) ) {
+      if( ( element = [nodes firstXMLElement] ) ) {
+        ghostsKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+      } else {
+        ghostsKnob = [[ELIntegerKnob alloc] initWithName:@"ghost" integerValue:0 minimum:0 maximum:16 stepping:1];
+      }
+      
+      if( ghostsKnob == nil ) {
         return nil;
       }
     } else {

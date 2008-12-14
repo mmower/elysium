@@ -15,6 +15,7 @@
   ELIntegerKnob *emphasisKnob;
   ELFloatKnob   *durationKnob;
   ELIntegerKnob *triadKnob;
+  ELIntegerKnob *ghostsKnob;
   
   ELBooleanKnob *overrideKnob;
   NSDictionary  *channelSends;
@@ -24,6 +25,7 @@
               emphasisKnob:(ELIntegerKnob *)emphasisKnob
               durationKnob:(ELFloatKnob *)durationKnob
                  triadKnob:(ELIntegerKnob *)triadKnob
+                ghostsKnob:(ELIntegerKnob *)ghostsKnob
               overrideKnob:(ELBooleanKnob *)overrideKnob
               channelSends:(NSDictionary *)channelSends;
 
@@ -31,6 +33,7 @@
 @property (readonly) ELIntegerKnob *emphasisKnob;
 @property (readonly) ELFloatKnob *durationKnob;
 @property (readonly) ELIntegerKnob *triadKnob;
+@property (readonly) ELIntegerKnob *ghostsKnob;
 @property (readonly) ELBooleanKnob *overrideKnob;
 @property (readonly) NSDictionary *channelSends;
 
