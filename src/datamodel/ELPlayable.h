@@ -17,6 +17,12 @@
              duration:(float)duration
              velocity:(int)velocity
             transpose:(int)transpose;
+            
+- (void)playOnChannel:(int)channel
+             duration:(float)duration
+             velocity:(int)velocity
+            transpose:(int)transpose
+               offset:(int)offset;
 
 - (void)prepareMIDIMessage:(ELMIDIMessage*)message
                    channel:(int)channel
