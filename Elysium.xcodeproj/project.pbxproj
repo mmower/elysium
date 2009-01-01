@@ -148,7 +148,6 @@
 		C9E8D93D0E68B8AF005AD9B7 /* sink.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9390E68B8AF005AD9B7 /* sink.pdf */; };
 		C9E8D93F0E68B95D005AD9B7 /* splitter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */; };
 		C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D95F0E693A88005AD9B7 /* README.markdown */; };
-		C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */; };
 		C9F450630EBDD1B7002C3637 /* ELScriptPackageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */; };
 		C9F450650EBDD1BF002C3637 /* ScriptPackageInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */; };
 		C9F4506C0EBDE3F3002C3637 /* ELScriptPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F4506B0EBDE3F3002C3637 /* ELScriptPackage.m */; };
@@ -290,7 +289,6 @@
 		C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMRegularPolygon.h; path = ../Honeycomb/view/LMRegularPolygon.h; sourceTree = SOURCE_ROOT; };
 		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
-		C99B91830E6C7DB3004BE67A /* TODO.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.markdown; sourceTree = "<group>"; };
 		C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MacRuby.framework; sourceTree = "<group>"; };
 		C99FA9E00EB8F69E002305EF /* ELMIDIConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIConfigController.h; sourceTree = "<group>"; };
 		C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIConfigController.m; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 		C9E8D9390E68B8AF005AD9B7 /* sink.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sink.pdf; sourceTree = "<group>"; };
 		C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = splitter.pdf; sourceTree = "<group>"; };
 		C9E8D95F0E693A88005AD9B7 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
-		C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = INSTALL.markdown; sourceTree = "<group>"; };
 		C9F450610EBDD1B7002C3637 /* ELScriptPackageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELScriptPackageController.h; sourceTree = "<group>"; };
 		C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScriptPackageController.m; sourceTree = "<group>"; };
 		C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScriptPackageInspector.xib; path = English.lproj/ScriptPackageInspector.xib; sourceTree = "<group>"; };
@@ -500,8 +497,6 @@
 				C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */,
 				C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */,
 				C9E8D95F0E693A88005AD9B7 /* README.markdown */,
-				C9E8D9610E693BA5005AD9B7 /* INSTALL.markdown */,
-				C99B91830E6C7DB3004BE67A /* TODO.markdown */,
 			);
 			name = Elysium;
 			sourceTree = "<group>";
@@ -1053,7 +1048,6 @@
 				C9E8D93D0E68B8AF005AD9B7 /* sink.pdf in Resources */,
 				C9E8D93F0E68B95D005AD9B7 /* splitter.pdf in Resources */,
 				C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */,
-				C9E8D9620E693BA5005AD9B7 /* INSTALL.markdown in Resources */,
 				C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */,
 				C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */,
 				C9A9F16F0E8A41DC009A06A3 /* OscillatorDesigner.xib in Resources */,
