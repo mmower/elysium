@@ -3,7 +3,8 @@
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
-//  Copyright LucidMac Software 2008 . All rights reserved.
+//  Copyright 2008 Matthew Mower.
+//  See MIT-LICENSE for more information.
 //
 
 #import "Elysium.h"

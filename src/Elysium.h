@@ -1,11 +1,11 @@
-/*
- *  Elysium.h
- *  Elysium
- *
- *  Created by Matt Mower on 20/07/2008.
- *  Copyright 2008 LucidMac Software. All rights reserved.
- *
- */
+//
+//  Elysium.h
+//  Elysium
+//
+//  Created by Matt Mower on 20/07/2008.
+//  Copyright 2008 Matthew Mower.
+//  See MIT-LICENSE for more information.
+//
 
 #import <CoreAudio/CoreAudio.h>
 

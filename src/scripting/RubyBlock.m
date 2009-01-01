@@ -3,7 +3,8 @@
 //  Elysium
 //
 //  Created by Matt Mower on 07/10/2008.
-//  Copyright 2008 LucidMac Software. All rights reserved.
+//  Copyright 2008 Matthew Mower.
+//  See MIT-LICENSE for more information.
 //
 
 #import "RubyBlock.h"
