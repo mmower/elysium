@@ -36,6 +36,10 @@ The included Xcode project may not, however, build for you. I use a few framewor
 
 Please let me know as I would like to get the project to the point where building Elysium is as simple as checking out and clicking build.
 
+## License
+
+Elysium is released under the MIT License. Please see the MIT-LICENSE file that comes with the distribution. It is unmodified save for the copyright notice.
+
 ## Acknowledgements
 
 * Mark Burtons reacTogon
