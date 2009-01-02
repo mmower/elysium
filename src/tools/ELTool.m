@@ -43,25 +43,44 @@ int randval() {
 }
 
 - (id)init {
+  return [self initEnabled:YES
+                     pKnob:[[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1]
+                  gateKnob:[[ELIntegerKnob alloc] initWithName:@"gate" integerValue:0 minimum:0 maximum:32 stepping:1]
+                   scripts:[NSMutableDictionary dictionary]];
+}
+
+- (id)initEnabled:(BOOL)_enabled_ pKnob:(ELIntegerKnob *)_pKnob_ gateKnob:(ELIntegerKnob *)_gateKnob_ scripts:(NSMutableDictionary *)_scripts_ {
   if( ( self = [super init] ) ) {
-    enabled  = YES;
-    pKnob    = [[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1];
-    gateKnob = [[ELIntegerKnob alloc] initWithName:@"gate" integerValue:0 minimum:0 maximum:32 stepping:1];
-    scripts  = [NSMutableDictionary dictionary];
+    enabled  = _enabled_;
+    pKnob    = _pKnob_;
+    gateKnob = _gateKnob_;
+    scripts  = _scripts_;
   }
   
   return self;
 }
 
+// NSMutableCopying protocol
+
+- (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
+                                                    pKnob:[[self pKnob] mutableCopy]
+                                                 gateKnob:[[self gateKnob] mutableCopy]
+                                                  scripts:[[self scripts] mutableCopy]];
+}
+
 // Properties
 
+@synthesize hex;
+@synthesize layer;
+
 @synthesize enabled;
-@synthesize pKnob;
-@synthesize gateKnob;
 @synthesize skip;
 @synthesize fired;
-@synthesize layer;
-@synthesize hex;
+
+@synthesize pKnob;
+@synthesize gateKnob;
+
 @synthesize scripts;
 
 - (NSString *)toolType {

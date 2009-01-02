@@ -39,12 +39,6 @@ static NSString * const toolType = @"absorb";
   [symbolPath stroke];
 }
 
-// NSMutableCopying protocol
-
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] init];
-}
-
 // Implement the ELXmlData protocol
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {

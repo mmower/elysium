@@ -13,10 +13,10 @@
 
 #import "ELTool.h"
 
-@interface ELReboundTool : ELTool <NSMutableCopying,DirectedTool> {
+@interface ELReboundTool : ELTool <DirectedTool> {
   ELIntegerKnob *directionKnob;
 }
 
-@property (readonly) ELIntegerKnob *directionKnob;
+@property ELIntegerKnob *directionKnob;
 
 @end

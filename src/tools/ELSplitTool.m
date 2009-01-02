@@ -87,7 +87,9 @@ static NSString * const toolType = @"split";
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithBounceBackKnob:[[self bounceBackKnob] mutableCopy]];
+  id copy = [super mutableCopyWithZone:_zone_];
+  [copy setBounceBackKnob:[[self bounceBackKnob] mutableCopy]];
+  return copy;
 }
 
 // Implement the ELXmlData protocol

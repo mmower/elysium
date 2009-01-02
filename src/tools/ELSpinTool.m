@@ -108,7 +108,10 @@ static NSString * const toolType = @"spin";
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithClockwiseKnob:[clockwiseKnob mutableCopy] steppingKnob:[steppingKnob mutableCopy]];
+  id copy = [super mutableCopyWithZone:_zone_];
+  [copy setClockwiseKnob:[[self clockwiseKnob] mutableCopy]];
+  [copy setSteppingKnob:[[self steppingKnob] mutableCopy]];
+  return copy;
 }
 
 // Implement the ELXmlData protocol

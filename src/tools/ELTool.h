@@ -19,7 +19,7 @@
 @property (readonly) ELIntegerKnob *directionKnob;
 @end
 
-@interface ELTool : NSObject <ELXmlData> {
+@interface ELTool : NSObject <ELXmlData,NSMutableCopying> {
   BOOL                enabled;
   ELLayer             *layer;
   ELHex               *hex;
@@ -32,14 +32,19 @@
   ELIntegerKnob       *gateKnob;
 }
 
+- (id)initEnabled:(BOOL)enabled pKnob:(ELIntegerKnob *)pKnob gateKnob:(ELIntegerKnob *)gateKnob scripts:(NSMutableDictionary *)scripts;
+
+@property ELHex *hex;
+@property ELLayer *layer;
+
 @property BOOL enabled;
-@property (readonly) ELIntegerKnob *pKnob;
-@property (readonly) ELIntegerKnob *gateKnob;
 @property BOOL skip;
 @property BOOL fired;
-@property (readonly) ELLayer *layer;
-@property (readonly) ELHex *hex;
-@property (readonly) NSMutableDictionary *scripts;
+
+@property ELIntegerKnob *pKnob;
+@property ELIntegerKnob *gateKnob;
+
+@property (assign) NSMutableDictionary *scripts;
 
 + (ELTool *)toolAlloc:(NSString *)key;
 

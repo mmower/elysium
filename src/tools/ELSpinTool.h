@@ -20,7 +20,7 @@
 
 - (id)initWithClockwiseKnob:(ELBooleanKnob *)clockwiseKnob steppingKnob:(ELIntegerKnob *)steppingKnob;
 
-@property (readonly) ELBooleanKnob *clockwiseKnob;
-@property (readonly) ELIntegerKnob *steppingKnob;
+@property ELBooleanKnob *clockwiseKnob;
+@property ELIntegerKnob *steppingKnob;
 
 @end

@@ -178,18 +178,21 @@ NSDictionary *defaultChannelSends( void ) {
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
+  id copy = [super mutableCopyWithZone:_zone_];
+  [copy setVelocityKnob:[[self velocityKnob] mutableCopy]];
+  [copy setEmphasisKnob:[[self emphasisKnob] mutableCopy]];
+  [copy setDurationKnob:[[self durationKnob] mutableCopy]];
+  [copy setTriadKnob:[[self triadKnob] mutableCopy]];
+  [copy setGhostsKnob:[[self ghostsKnob] mutableCopy]];
+  [copy setOverrideKnob:[[self overrideKnob] mutableCopy]];
+  
   NSMutableDictionary *copySends = [NSMutableDictionary dictionary];
   for( NSString *key in [channelSends allKeys] ) {
     [copySends setObject:[[channelSends objectForKey:key] mutableCopy] forKey:key];
   }
+  [copy setChannelSends:copySends];
   
-  return [[[self class] allocWithZone:_zone_] initWithVelocityKnob:[velocityKnob mutableCopy]
-                                                      emphasisKnob:[emphasisKnob mutableCopy]
-                                                      durationKnob:[durationKnob mutableCopy]
-                                                         triadKnob:[triadKnob mutableCopy]
-                                                        ghostsKnob:[ghostsKnob mutableCopy]
-                                                      overrideKnob:[overrideKnob mutableCopy]
-                                                      channelSends:copySends];
+  return copy;
 }
 
 // Implement the ELXmlData protocol

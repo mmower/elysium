@@ -11,7 +11,7 @@
 
 #import "ELTool.h"
 
-@interface ELNoteTool : ELTool <NSMutableCopying> {
+@interface ELNoteTool : ELTool {
   ELIntegerKnob *velocityKnob;
   ELIntegerKnob *emphasisKnob;
   ELFloatKnob   *durationKnob;
@@ -30,12 +30,12 @@
               overrideKnob:(ELBooleanKnob *)overrideKnob
               channelSends:(NSDictionary *)channelSends;
 
-@property (readonly) ELIntegerKnob *velocityKnob;
-@property (readonly) ELIntegerKnob *emphasisKnob;
-@property (readonly) ELFloatKnob *durationKnob;
-@property (readonly) ELIntegerKnob *triadKnob;
-@property (readonly) ELIntegerKnob *ghostsKnob;
-@property (readonly) ELBooleanKnob *overrideKnob;
-@property (readonly) NSDictionary *channelSends;
+@property ELIntegerKnob *velocityKnob;
+@property ELIntegerKnob *emphasisKnob;
+@property ELFloatKnob *durationKnob;
+@property ELIntegerKnob *triadKnob;
+@property ELIntegerKnob *ghostsKnob;
+@property ELBooleanKnob *overrideKnob;
+@property (assign) NSDictionary *channelSends;
 
 @end

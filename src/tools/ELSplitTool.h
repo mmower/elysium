@@ -13,12 +13,12 @@
 
 #import "ELTool.h"
 
-@interface ELSplitTool : ELTool <NSMutableCopying> {
+@interface ELSplitTool : ELTool {
   ELBooleanKnob *bounceBackKnob;
 }
 
 - (id)initWithBounceBackKnob:(ELBooleanKnob *)bounceBackKnob;
 
-@property (readonly) ELBooleanKnob *bounceBackKnob;
+@property ELBooleanKnob *bounceBackKnob;
 
 @end

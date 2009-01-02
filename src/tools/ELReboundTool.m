@@ -67,7 +67,9 @@ static NSString * const toolType = @"rebound";
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithDirectionKnob:[directionKnob mutableCopy]];
+  id copy = [super mutableCopyWithZone:_zone_];
+  [copy setDirectionKnob:[[self directionKnob] mutableCopy]];
+  return copy;
 }
 
 // Implement the ELXmlData protocol

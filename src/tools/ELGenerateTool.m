@@ -198,10 +198,12 @@ static NSString * const toolType = @"generate";
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithDirectionKnob:[directionKnob mutableCopy]
-                                                     timeToLiveKnob:[timeToLiveKnob mutableCopy]
-                                                     pulseCountKnob:[pulseCountKnob mutableCopy]
-                                                         offsetKnob:[offsetKnob mutableCopy]];
+  id copy = [super mutableCopyWithZone:_zone_];
+  [copy setDirectionKnob:[[self directionKnob] mutableCopy]];
+  [copy setTimeToLiveKnob:[[self timeToLiveKnob] mutableCopy]];
+  [copy setPulseCountKnob:[[self pulseCountKnob] mutableCopy]];
+  [copy setOffsetKnob:[[self offsetKnob] mutableCopy]];
+  return copy;
 }
 
 @end

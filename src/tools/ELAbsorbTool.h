@@ -11,7 +11,7 @@
 
 #import "ELTool.h"
 
-@interface ELAbsorbTool : ELTool <NSMutableCopying> {
+@interface ELAbsorbTool : ELTool {
 }
 
 @end

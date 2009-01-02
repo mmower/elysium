@@ -13,17 +13,17 @@
 
 #import "ELTool.h"
 
-@interface ELGenerateTool : ELTool <NSMutableCopying,DirectedTool> {
+@interface ELGenerateTool : ELTool <DirectedTool> {
   ELIntegerKnob *directionKnob;
   ELIntegerKnob *timeToLiveKnob;
   ELIntegerKnob *pulseCountKnob;
   ELIntegerKnob *offsetKnob;
 }
 
-@property (readonly) ELIntegerKnob *directionKnob;
-@property (readonly) ELIntegerKnob *timeToLiveKnob;
-@property (readonly) ELIntegerKnob *pulseCountKnob;
-@property (readonly) ELIntegerKnob *offsetKnob;
+@property ELIntegerKnob *directionKnob;
+@property ELIntegerKnob *timeToLiveKnob;
+@property ELIntegerKnob *pulseCountKnob;
+@property ELIntegerKnob *offsetKnob;
 
 - (BOOL)shouldPulseOnBeat:(int)beat;
 
