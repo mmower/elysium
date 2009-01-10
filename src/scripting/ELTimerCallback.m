@@ -13,8 +13,6 @@
 
 #import "ELPlayer.h"
 
-#import "RubyBlock.h"
-
 @implementation ELTimerCallback
 
 - (id)initWithPlayer:(ELPlayer *)_player_ {
@@ -23,7 +21,7 @@
     active = NO;
     interval = 30.0;
     timer = nil;
-    callback = [[RubyBlock alloc] initWithSource:@"do |player,timer|\n\t#Write your callback here\nend\n"];
+    callback = [@"function(player,timer) {\n\t// Write your callback here\n}\n" asJavascriptFunction];
     
     [self addObserver:self forKeyPath:@"active" options:0 context:nil];
   }

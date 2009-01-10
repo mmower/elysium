@@ -18,8 +18,6 @@
 #import "ELPlayer.h"
 #import "ELMIDIController.h"
 
-#import "RubyBlock.h"
-
 @implementation ELMIDIConfigController
 
 - (id)initWithPlayer:(ELPlayer *)_player_ {

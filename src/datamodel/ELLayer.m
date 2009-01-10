@@ -20,8 +20,6 @@
 #import "ELGenerateTool.h"
 #import "ELHarmonicTable.h"
 
-#import "RubyBlock.h"
-
 NSPredicate *deadPlayheadFilter;
 
 @implementation ELLayer
@@ -643,7 +641,7 @@ NSPredicate *deadPlayheadFilter;
     } else {
       for( NSXMLNode *node in nodes ) {
         NSXMLElement *element = (NSXMLElement *)node;
-        [scripts setObject:[[element stringValue] asRubyBlock]
+        [scripts setObject:[[element stringValue] asJavascriptFunction]
                     forKey:[[element attributeForName:@"name"] stringValue]];
       }
     }

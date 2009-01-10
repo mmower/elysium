@@ -32,8 +32,6 @@
 
 #import "ELOscillator.h"
 
-#import "RubyBlock.h"
-
 @implementation ELPlayer
 
 - (id)init {
@@ -529,7 +527,7 @@
     } else {
       for( NSXMLNode *node in nodes ) {
         NSXMLElement *element = (NSXMLElement *)node;
-        [scripts setObject:[[element stringValue] asRubyBlock]
+        [scripts setObject:[[element stringValue] asJavascriptFunction]
                     forKey:[element attributeAsString:@"name"]];
       }
     }

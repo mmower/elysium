@@ -14,8 +14,6 @@
 
 #import "ELOscillatorDesignerController.h"
 
-#import "RubyBlock.h"
-
 @implementation ELHexInspectorController
 
 @synthesize hex;

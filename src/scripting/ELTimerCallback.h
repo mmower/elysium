@@ -12,13 +12,12 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELPlayer;
-@class RubyBlock;
 
 @interface ELTimerCallback : NSObject <ELXmlData> {
   BOOL            active;
   NSTimeInterval  interval;
   NSTimer         *timer;
-  RubyBlock       *callback;
+  ELScript        *callback;
   ELPlayer        *player;
 }
 
@@ -26,7 +25,7 @@
 
 @property BOOL active;
 @property NSTimeInterval interval;
-@property (readonly) RubyBlock *callback;
+@property (readonly) ELScript *callback;
 @property (assign) ELPlayer *player;
 
 - (void)runCallback:(NSTimer *)_timer_;

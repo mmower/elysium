@@ -22,8 +22,6 @@
 #import "ELSplitTool.h"
 #import "ELSpinTool.h"
 
-#import "RubyBlock.h"
-
 NSMutableDictionary *toolMapping = nil;
 
 int randval() {
@@ -239,7 +237,7 @@ int randval() {
     
     for( NSXMLNode *node in [_representation_ nodesForXPath:@"scripts/script" error:nil] ) {
       NSXMLElement *element = (NSXMLElement *)node;
-      [scripts setObject:[[element stringValue] asRubyBlock]
+      [scripts setObject:[[element stringValue] asJavascriptFunction]
                   forKey:[[element attributeForName:@"name"] stringValue]];
     }
     
@@ -252,7 +250,6 @@ int randval() {
   ELScript *script = [scripts objectForKey:_scriptName_];
   if( script == nil ) {
     script = [[NSString stringWithFormat:@"function(player,token,playhead) {\n\t# write your callback code here\n}\n"] asJavascriptFunction];
-    // script = [[NSString stringWithFormat:@"do |%@Tool,playhead|\n\t# write your callback code here\nend\n", [self toolType]] asRubyBlock];
     [scripts setObject:script forKey:_scriptName_];
   }
   return script;

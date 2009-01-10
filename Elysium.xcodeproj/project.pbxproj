@@ -131,8 +131,6 @@
 		C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */; };
 		C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */; };
 		C9A9F20F0E8A43F7009A06A3 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */; };
-		C9B1F3700E9BF8000017092F /* RubyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F36F0E9BF8000017092F /* RubyBlock.m */; };
-		C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */; };
 		C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */; };
 		C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */; };
 		C9B641FF0EAD1495006AA089 /* ELSineOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B641FE0EAD1495006AA089 /* ELSineOscillator.m */; };
@@ -397,10 +395,6 @@
 		C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
 		C9A9F20D0E8A43F7009A06A3 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
 		C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
-		C9B1F36E0E9BF8000017092F /* RubyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RubyBlock.h; sourceTree = "<group>"; };
-		C9B1F36F0E9BF8000017092F /* RubyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubyBlock.m; sourceTree = "<group>"; };
-		C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+AsRubyBlock.h"; sourceTree = "<group>"; };
-		C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "String+AsRubyBlock.m"; sourceTree = "<group>"; };
 		C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScriptInspector.xib; path = src/scripting/ScriptInspector.xib; sourceTree = "<group>"; };
 		C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptInspectorController.h; sourceTree = "<group>"; };
 		C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptInspectorController.m; sourceTree = "<group>"; };
@@ -877,12 +871,8 @@
 		C9B1F36B0E9BF6BF0017092F /* scripting */ = {
 			isa = PBXGroup;
 			children = (
-				C9B1F36E0E9BF8000017092F /* RubyBlock.h */,
-				C9B1F36F0E9BF8000017092F /* RubyBlock.m */,
 				C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */,
 				C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */,
-				C9B1F3710E9BFBBF0017092F /* String+AsRubyBlock.h */,
-				C9B1F3720E9BFBBF0017092F /* String+AsRubyBlock.m */,
 				C9F450610EBDD1B7002C3637 /* ELScriptPackageController.h */,
 				C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */,
 				C9F4506A0EBDE3F3002C3637 /* ELScriptPackage.h */,
@@ -1222,8 +1212,6 @@
 				C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */,
 				C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */,
 				C9A9F20F0E8A43F7009A06A3 /* ELOscillator.m in Sources */,
-				C9B1F3700E9BF8000017092F /* RubyBlock.m in Sources */,
-				C9B1F3730E9BFBBF0017092F /* String+AsRubyBlock.m in Sources */,
 				C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */,
 				C94F55760EA6A73900320BF5 /* ELKey.m in Sources */,
 				C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */,

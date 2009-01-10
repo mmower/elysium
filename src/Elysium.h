@@ -10,7 +10,6 @@
 #import <CoreAudio/CoreAudio.h>
 
 #import <MacRuby/MacRuby.h>
-#import "String+AsRubyBlock.h"
 #import "String+AsJavascriptFunction.h"
 
 #import "NSXML+Helpers.h"

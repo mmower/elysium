@@ -11,8 +11,6 @@
 
 #import "ELXmlData.h"
 
-@class RubyBlock;
-
 @class ELPlayer;
 @class ELMIDIControlMessage;
 
@@ -20,15 +18,15 @@
   ELPlayer  *player;
   int       channelMask;
   int       controller;
-  RubyBlock *callback;
+  ELScript  *callback;
 }
 
-- (id)initWithPlayer:(ELPlayer *)player channelMask:(Byte)channelMask controller:(Byte)controller callback:(RubyBlock *)callback;
+- (id)initWithPlayer:(ELPlayer *)player channelMask:(Byte)channelMask controller:(Byte)controller callback:(ELScript *)callback;
 
 @property ELPlayer *player;
 @property int channelMask;
 @property int controller;
-@property (assign) RubyBlock *callback;
+@property (assign) ELScript *callback;
 
 - (BOOL)handleMIDIControlMessage:(ELMIDIControlMessage *)controlMessage;
 

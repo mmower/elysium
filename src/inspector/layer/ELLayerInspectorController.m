@@ -15,8 +15,6 @@
 
 #import "ELOscillatorDesignerController.h"
 
-#import "RubyBlock.h"
-
 @implementation ELLayerInspectorController
 
 @synthesize layer;
@@ -64,7 +62,6 @@
   
   if( !( block = [[layer scripts] objectForKey:callback] ) ) {
     block = [@"function(player,layer) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
-    // block = [@"do |layer|\n\t# write your callback code here\nend\n" asRubyBlock];
     [[layer scripts] setObject:block forKey:callback];
   }
   

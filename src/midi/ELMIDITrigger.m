@@ -18,22 +18,20 @@
 
 #import "ELMIDIControlMessage.h"
 
-#import "RubyBlock.h"
-
 @implementation ELMIDITrigger
 
 - (id)init {
   if( ( self = [super init] ) ) {
     [self setChannelMask:0x0F];
     [self setController:0x00];
-    [self setCallback:[@"do |player,message|\n\t# write your callback code here\nend\n" asRubyBlock]];
+    [self setCallback:[@"function(player,message) {\n\t// write your callback code here\n}\n" asJavascriptFunction]];
     [self setPlayer:nil];
   }
   
   return self;
 }
 
-- (id)initWithPlayer:(ELPlayer *)_player_ channelMask:(Byte)_channelMask_ controller:(Byte)_controller_ callback:(RubyBlock *)_callback_ {
+- (id)initWithPlayer:(ELPlayer *)_player_ channelMask:(Byte)_channelMask_ controller:(Byte)_controller_ callback:(ELScript *)_callback_ {
   if( ( self = [self init] ) ) {
     [self setPlayer:_player_];
     [self setChannelMask:_channelMask_];
@@ -107,7 +105,7 @@
     NSArray *nodes = [_representation_ nodesForXPath:@"callback" error:nil];
     if( [nodes count] > 0 ) {
       NSXMLElement *element = (NSXMLElement *)[nodes objectAtIndex:0];
-      [self setCallback:[[element stringValue] asRubyBlock]];
+      [self setCallback:[[element stringValue] asJavascriptFunction]];
     } else {
       NSLog( @"Trigger found without callback" );
       return nil;
