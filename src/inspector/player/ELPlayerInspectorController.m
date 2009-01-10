@@ -85,7 +85,6 @@
   
   if( !( block = [[player scripts] objectForKey:callback] ) ) {
     block = [@"function(player) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
-    // block = [@"do |player|\n\t# write your callback code here\nend\n" asRubyBlock];
     [[player scripts] setObject:block forKey:callback];
   }
   

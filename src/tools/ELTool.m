@@ -139,11 +139,11 @@ int randval() {
 // Scripting
 
 - (void)runWillRunScript:(ELPlayhead *)_playhead_ {
-  [[scripts objectForKey:@"willRun"] evalWithArg:self arg:_playhead_];
+  [[scripts objectForKey:@"willRun"] evalWithArg:[layer player] arg:self arg:_playhead_];
 }
 
 - (void)runDidRunScript:(ELPlayhead *)_playhead_ {
-  [[scripts objectForKey:@"didRun"] evalWithArg:self arg:_playhead_];
+  [[scripts objectForKey:@"didRun"] evalWithArg:[layer player] arg:self arg:_playhead_];
 }
 
 // Drawing
@@ -248,10 +248,11 @@ int randval() {
   return self;
 }
 
-- (RubyBlock *)script:(NSString *)_scriptName_ {
-  RubyBlock *script = [scripts objectForKey:_scriptName_];
+- (ELScript *)script:(NSString *)_scriptName_ {
+  ELScript *script = [scripts objectForKey:_scriptName_];
   if( script == nil ) {
-    script = [[NSString stringWithFormat:@"do |%@Tool,playhead|\n\t# write your callback code here\nend\n", [self toolType]] asRubyBlock];
+    script = [[NSString stringWithFormat:@"function(player,token,playhead) {\n\t# write your callback code here\n}\n"] asJavascriptFunction];
+    // script = [[NSString stringWithFormat:@"do |%@Tool,playhead|\n\t# write your callback code here\nend\n", [self toolType]] asRubyBlock];
     [scripts setObject:script forKey:_scriptName_];
   }
   return script;

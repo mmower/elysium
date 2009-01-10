@@ -197,11 +197,11 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)runWillRunScript {
-  [[scripts objectForKey:@"willRun"] evalWithArg:self];
+  [[scripts objectForKey:@"willRun"] evalWithArg:player arg:self];
 }
 
 - (void)runDidRunScript {
-  [[scripts objectForKey:@"didRun"] evalWithArg:self];
+  [[scripts objectForKey:@"didRun"] evalWithArg:player arg:self];
 }
 
 - (void)start {

@@ -69,7 +69,7 @@
 - (void)runWillRunScript:(ELPlayhead *)playhead;
 - (void)runDidRunScript:(ELPlayhead *)playhead;
 
-- (RubyBlock *)script:(NSString *)scriptName;
+- (ELScript *)script:(NSString *)scriptName;
 - (void)removeScript:(NSString *)scriptName;
 
 @end

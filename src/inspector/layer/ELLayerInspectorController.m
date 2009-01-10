@@ -50,7 +50,7 @@
 }
 
 - (IBAction)editScript:(id)sender {
-  RubyBlock *block;
+  ELScript *block;
   NSString *callback = @"unknown";
   
   switch( [sender tag] ) {
@@ -63,7 +63,8 @@
   }
   
   if( !( block = [[layer scripts] objectForKey:callback] ) ) {
-    block = [@"do |layer|\n\t# write your callback code here\nend\n" asRubyBlock];
+    block = [@"function(player,layer) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
+    // block = [@"do |layer|\n\t# write your callback code here\nend\n" asRubyBlock];
     [[layer scripts] setObject:block forKey:callback];
   }
   
