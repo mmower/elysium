@@ -249,7 +249,7 @@ int randval() {
 - (ELScript *)script:(NSString *)_scriptName_ {
   ELScript *script = [scripts objectForKey:_scriptName_];
   if( script == nil ) {
-    script = [[NSString stringWithFormat:@"function(player,token,playhead) {\n\t# write your callback code here\n}\n"] asJavascriptFunction];
+    script = [[NSString stringWithFormat:@"function(player,token,playhead) {\n\t// write your callback code here\n}\n"] asJavascriptFunction];
     [scripts setObject:script forKey:_scriptName_];
   }
   return script;
