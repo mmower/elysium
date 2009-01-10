@@ -13,7 +13,7 @@
 @implementation JavascriptCallback
 
 - (void)compileSource {
-  JSValueRefAndContextRef fdef = [[JSCocoa sharedController] evalJSString:[self source]];
+  JSValueRefAndContextRef fdef = [[JSCocoa sharedController] evalJSString:[NSString stringWithFormat:@"var f = %@; f;",[self source]]];
   ctx = fdef.ctx;
   function = JSValueToObject( ctx, fdef.value, NULL );
   JSValueProtect( ctx, function );
