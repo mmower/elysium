@@ -59,11 +59,11 @@
 		C94A2EC00F1578B5001E7B75 /* JSCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */; };
 		C94A2EE00F1579BB001E7B75 /* JSCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */; };
 		C94F55760EA6A73900320BF5 /* ELKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C94F55750EA6A73900320BF5 /* ELKey.m */; };
+		C957DDE60F1905A900798819 /* String+AsJavascriptFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C957DDE50F1905A900798819 /* String+AsJavascriptFunction.m */; };
 		C9599AE80EAE5D9000310D3D /* ELRandomOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AE70EAE5D9000310D3D /* ELRandomOscillator.m */; };
 		C9599AEB0EAE5DA500310D3D /* ELSequenceOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */; };
 		C9599AEF0EAE7C1E00310D3D /* ELRangedOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
-		C97580C80F180EA200DB8E93 /* ELTaggable.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580C70F180EA200DB8E93 /* ELTaggable.m */; };
 		C97580CC0F18174D00DB8E93 /* JavascriptCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */; };
 		C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580E70F181F5D00DB8E93 /* ELScript.m */; };
 		C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */; };
@@ -283,6 +283,8 @@
 		C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */ = {isa = PBXFileReference; explicitFileType = "wrapper.pb-project"; name = "JSCocoa (embed).xcodeproj"; path = "jscocoa/JSCocoa/JSCocoa (embed).xcodeproj"; sourceTree = "<group>"; };
 		C94F55740EA6A73900320BF5 /* ELKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKey.h; sourceTree = "<group>"; };
 		C94F55750EA6A73900320BF5 /* ELKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKey.m; sourceTree = "<group>"; };
+		C957DDE40F1905A900798819 /* String+AsJavascriptFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+AsJavascriptFunction.h"; sourceTree = "<group>"; };
+		C957DDE50F1905A900798819 /* String+AsJavascriptFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "String+AsJavascriptFunction.m"; sourceTree = "<group>"; };
 		C9599AE60EAE5D9000310D3D /* ELRandomOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRandomOscillator.h; sourceTree = "<group>"; };
 		C9599AE70EAE5D9000310D3D /* ELRandomOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRandomOscillator.m; sourceTree = "<group>"; };
 		C9599AE90EAE5DA500310D3D /* ELSequenceOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSequenceOscillator.h; sourceTree = "<group>"; };
@@ -290,7 +292,6 @@
 		C9599AED0EAE7C1E00310D3D /* ELRangedOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedOscillator.h; sourceTree = "<group>"; };
 		C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedOscillator.m; sourceTree = "<group>"; };
 		C97580C60F180EA200DB8E93 /* ELTaggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTaggable.h; sourceTree = "<group>"; };
-		C97580C70F180EA200DB8E93 /* ELTaggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTaggable.m; sourceTree = "<group>"; };
 		C97580CA0F18174D00DB8E93 /* JavascriptCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptCallback.h; sourceTree = "<group>"; };
 		C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptCallback.m; sourceTree = "<group>"; };
 		C97580E60F181F5D00DB8E93 /* ELScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELScript.h; sourceTree = "<group>"; };
@@ -889,11 +890,12 @@
 				C94957C90EBE365D00AC42AD /* ELTimerCallback.h */,
 				C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */,
 				C97580C60F180EA200DB8E93 /* ELTaggable.h */,
-				C97580C70F180EA200DB8E93 /* ELTaggable.m */,
 				C97580CA0F18174D00DB8E93 /* JavascriptCallback.h */,
 				C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */,
 				C97580E60F181F5D00DB8E93 /* ELScript.h */,
 				C97580E70F181F5D00DB8E93 /* ELScript.m */,
+				C957DDE40F1905A900798819 /* String+AsJavascriptFunction.h */,
+				C957DDE50F1905A900798819 /* String+AsJavascriptFunction.m */,
 			);
 			name = scripting;
 			path = src/scripting;
@@ -1244,9 +1246,9 @@
 				C9F4506C0EBDE3F3002C3637 /* ELScriptPackage.m in Sources */,
 				C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */,
 				C90BDFC20EC072040003B0CD /* NSXML+Helpers.m in Sources */,
-				C97580C80F180EA200DB8E93 /* ELTaggable.m in Sources */,
 				C97580CC0F18174D00DB8E93 /* JavascriptCallback.m in Sources */,
 				C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */,
+				C957DDE60F1905A900798819 /* String+AsJavascriptFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
