@@ -88,8 +88,6 @@
 		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
 		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
 		C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8370E8907B6009C699E /* sectionheader.gif */; };
-		C99F7BAA0E9AAC1100AA61A8 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */; };
-		C99F7BAE0E9AAC1700AA61A8 /* MacRuby.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */; };
 		C99FA9E20EB8F69E002305EF /* ELMIDIConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */; };
 		C99FA9E40EB8F6A9002305EF /* MIDIConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */; };
 		C9A9F16F0E8A41DC009A06A3 /* OscillatorDesigner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1610E8A41DC009A06A3 /* OscillatorDesigner.xib */; };
@@ -205,7 +203,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				C94A2EE00F1579BB001E7B75 /* JSCocoa.framework in CopyFiles */,
-				C99F7BAE0E9AAC1700AA61A8 /* MacRuby.framework in CopyFiles */,
 				C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */,
 				C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */,
 				C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */,
@@ -317,7 +314,6 @@
 		C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMRegularPolygon.h; path = ../Honeycomb/view/LMRegularPolygon.h; sourceTree = SOURCE_ROOT; };
 		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
-		C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MacRuby.framework; sourceTree = "<group>"; };
 		C99FA9E00EB8F69E002305EF /* ELMIDIConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIConfigController.h; sourceTree = "<group>"; };
 		C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIConfigController.m; sourceTree = "<group>"; };
 		C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MIDIConfig.xib; path = English.lproj/MIDIConfig.xib; sourceTree = "<group>"; };
@@ -444,7 +440,6 @@
 				C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */,
 				C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */,
 				C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */,
-				C99F7BAA0E9AAC1100AA61A8 /* MacRuby.framework in Frameworks */,
 				C94A2EC00F1578B5001E7B75 /* JSCocoa.framework in Frameworks */,
 				C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */,
 			);
@@ -479,7 +474,6 @@
 			isa = PBXGroup;
 			children = (
 				C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */,
-				C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */,
 				C93D54910E61F0E80077C448 /* PYMIDI.framework */,
 				C92EDDB50E353EDD00017DFE /* CoreAudio.framework */,
 				C9E43D5E0E33C27100C4D343 /* Sparkle.framework */,

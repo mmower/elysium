@@ -27,7 +27,7 @@
   ELScriptPackageController       *scriptPackageController;
 }
 
-- (void)initMacRuby;
+- (BOOL)initScriptingEngine;
 
 - (ELPlayer *)activePlayer;
 

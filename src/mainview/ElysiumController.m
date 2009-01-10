@@ -104,7 +104,9 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 - (void)awakeFromNib {
   [ELMIDIController sharedInstance];
-  [self initMacRuby];
+  if( ![self initScriptingEngine] ) {
+    NSLog( @"Initialization of script engine failed." );
+  }
 }
 
 // NSApp delegate methods
@@ -115,12 +117,9 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 // General initialization
 
-- (void)initMacRuby {
-  [[NSGarbageCollector defaultCollector] disable];
-  MacRuby *runtime = [MacRuby sharedRuntime];
-  [[NSGarbageCollector defaultCollector] enable];
-  [runtime loadBridgeSupportFileAtPath:[[NSBundle mainBundle] pathForResource:@"Elysium" ofType:@"bridgesupport"]];
-  [runtime evaluateString:@"framework 'Cocoa'"];
+- (BOOL)initScriptingEngine {
+  [[BridgeSupportController sharedController] loadBridgeSupport:[[NSBundle mainBundle] pathForResource:@"Elysium" ofType:@"bridgesupport"]];
+  return YES;
 }
 
 - (ELPlayer *)activePlayer {
