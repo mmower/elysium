@@ -9,7 +9,7 @@
 
 #import "ScriptInspectorController.h"
 
-#import "RubyBlock.h"
+#import "ELScript.h"
 
 #import "NoodleLineNumberView.h"
 
@@ -18,7 +18,7 @@
 @synthesize block;
 @synthesize editableSource;
 
-- (id)initWithBlock:(RubyBlock *)_block_ {
+- (id)initWithBlock:(ELScript *)_block_ {
   if( ( self = [super initWithWindowNibName:@"ScriptInspector"] ) ) {
     [self setBlock:_block_];
     editableSource = [[NSMutableAttributedString alloc] initWithString:[_block_ source]];

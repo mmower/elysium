@@ -9,19 +9,19 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class RubyBlock;
+@class ELScript;
 
 @interface ScriptInspectorController : NSWindowController {
   NSMutableAttributedString *editableSource;
-  RubyBlock                 *block;
+  ELScript                  *block;
   IBOutlet NSTextView       *sourceEditor;
   IBOutlet NSScrollView     *scrollView;
 }
 
-@property RubyBlock *block;
+@property ELScript *block;
 @property (readonly) NSMutableAttributedString *editableSource;
 
-- (id)initWithBlock:(RubyBlock *)block;
+- (id)initWithBlock:(ELScript *)block;
 
 - (IBAction)close:(id)sender;
 - (IBAction)saveScript:(id)sender;

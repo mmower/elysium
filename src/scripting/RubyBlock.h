@@ -11,25 +11,12 @@
 
 #import <MacRuby/MacRuby.h>
 
+#import "ELScript.h"
+
 @class ScriptInspectorController;
 
-@interface RubyBlock : NSObject <NSMutableCopying> {
-  NSString                  *source;
-  id                        proc;
-  ScriptInspectorController *inspector;
+@interface RubyBlock : ELScript {
+  id proc;
 }
-
-- (id)initWithSource:(NSString *)source;
-
-- (NSString *)source;
-- (void)setSource:(NSString *)source;
-
-- (id)eval;
-- (id)evalWithArg:(id)arg;
-- (id)evalWithArg:(id)arg1 arg:(id)arg2;
-- (id)evalWithArg:(id)arg1 arg:(id)arg2 arg:(id)arg3;
-
-- (IBAction)closeInspector:(id)sender;
-- (IBAction)inspect:(id)sender;
 
 @end

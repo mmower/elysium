@@ -56,11 +56,17 @@
 		C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
 		C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */; };
+		C94A2EC00F1578B5001E7B75 /* JSCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */; };
+		C94A2EE00F1579BB001E7B75 /* JSCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */; };
 		C94F55760EA6A73900320BF5 /* ELKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C94F55750EA6A73900320BF5 /* ELKey.m */; };
 		C9599AE80EAE5D9000310D3D /* ELRandomOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AE70EAE5D9000310D3D /* ELRandomOscillator.m */; };
 		C9599AEB0EAE5DA500310D3D /* ELSequenceOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */; };
 		C9599AEF0EAE7C1E00310D3D /* ELRangedOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */; };
 		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
+		C97580C80F180EA200DB8E93 /* ELTaggable.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580C70F180EA200DB8E93 /* ELTaggable.m */; };
+		C97580CC0F18174D00DB8E93 /* JavascriptCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */; };
+		C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580E70F181F5D00DB8E93 /* ELScript.m */; };
+		C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */; };
 		C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC8C0E4F6042008F309B /* sectionheader.gif */; };
 		C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C97FEC970E4F6042008F309B /* PACollapsibleSectionBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC8E0E4F6042008F309B /* PACollapsibleSectionBox.m */; };
@@ -163,6 +169,20 @@
 			remoteGlobalIDString = C93D54900E61F0E80077C448;
 			remoteInfo = PYMIDI;
 		};
+		C94A2E9B0F1571FE001E7B75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = JSCocoa;
+		};
+		C94A2ED40F15792E001E7B75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = JSCocoa;
+		};
 		C963116F0E50587A008BF9AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -186,6 +206,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C94A2EE00F1579BB001E7B75 /* JSCocoa.framework in CopyFiles */,
 				C99F7BAE0E9AAC1700AA61A8 /* MacRuby.framework in CopyFiles */,
 				C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */,
 				C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */,
@@ -259,6 +280,7 @@
 		C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
 		C94957C90EBE365D00AC42AD /* ELTimerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTimerCallback.h; sourceTree = "<group>"; };
 		C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimerCallback.m; sourceTree = "<group>"; };
+		C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */ = {isa = PBXFileReference; explicitFileType = "wrapper.pb-project"; name = "JSCocoa (embed).xcodeproj"; path = "jscocoa/JSCocoa/JSCocoa (embed).xcodeproj"; sourceTree = "<group>"; };
 		C94F55740EA6A73900320BF5 /* ELKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKey.h; sourceTree = "<group>"; };
 		C94F55750EA6A73900320BF5 /* ELKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKey.m; sourceTree = "<group>"; };
 		C9599AE60EAE5D9000310D3D /* ELRandomOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRandomOscillator.h; sourceTree = "<group>"; };
@@ -267,6 +289,13 @@
 		C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSequenceOscillator.m; sourceTree = "<group>"; };
 		C9599AED0EAE7C1E00310D3D /* ELRangedOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedOscillator.h; sourceTree = "<group>"; };
 		C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedOscillator.m; sourceTree = "<group>"; };
+		C97580C60F180EA200DB8E93 /* ELTaggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTaggable.h; sourceTree = "<group>"; };
+		C97580C70F180EA200DB8E93 /* ELTaggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTaggable.m; sourceTree = "<group>"; };
+		C97580CA0F18174D00DB8E93 /* JavascriptCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptCallback.h; sourceTree = "<group>"; };
+		C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptCallback.m; sourceTree = "<group>"; };
+		C97580E60F181F5D00DB8E93 /* ELScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELScript.h; sourceTree = "<group>"; };
+		C97580E70F181F5D00DB8E93 /* ELScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScript.m; sourceTree = "<group>"; };
+		C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
 		C97FEC860E4F5FB2008F309B /* StackedListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackedListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StackedListView-Info.plist"; sourceTree = "<group>"; };
 		C97FEC8C0E4F6042008F309B /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
@@ -421,6 +450,8 @@
 				C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */,
 				C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */,
 				C99F7BAA0E9AAC1100AA61A8 /* MacRuby.framework in Frameworks */,
+				C94A2EC00F1578B5001E7B75 /* JSCocoa.framework in Frameworks */,
+				C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +483,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */,
 				C99F7BA90E9AAC1100AA61A8 /* MacRuby.framework */,
 				C93D54910E61F0E80077C448 /* PYMIDI.framework */,
 				C92EDDB50E353EDD00017DFE /* CoreAudio.framework */,
@@ -485,6 +517,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* Elysium */ = {
 			isa = PBXGroup;
 			children = (
+				C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */,
 				C9A9F1900E8A42D0009A06A3 /* Sources */,
 				C93D54960E61F1250077C448 /* PYMIDI */,
 				C97FEC800E4F5F2F008F309B /* StackedListView */,
@@ -586,6 +619,14 @@
 			name = PYMIDI;
 			path = ../../Cocoa/3rdParty/Yandell/pymidi/trunk/Source;
 			sourceTree = SOURCE_ROOT;
+		};
+		C94A2E980F1571FE001E7B75 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
 		};
 		C97FEC800E4F5F2F008F309B /* StackedListView */ = {
 			isa = PBXGroup;
@@ -847,6 +888,12 @@
 				C9F4506B0EBDE3F3002C3637 /* ELScriptPackage.m */,
 				C94957C90EBE365D00AC42AD /* ELTimerCallback.h */,
 				C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */,
+				C97580C60F180EA200DB8E93 /* ELTaggable.h */,
+				C97580C70F180EA200DB8E93 /* ELTaggable.m */,
+				C97580CA0F18174D00DB8E93 /* JavascriptCallback.h */,
+				C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */,
+				C97580E60F181F5D00DB8E93 /* ELScript.h */,
+				C97580E70F181F5D00DB8E93 /* ELScript.m */,
 			);
 			name = scripting;
 			path = src/scripting;
@@ -951,6 +998,7 @@
 				C96311700E50587A008BF9AB /* PBXTargetDependency */,
 				C9874C3D0E42A2460068E7BF /* PBXTargetDependency */,
 				C93D54D70E61F1970077C448 /* PBXTargetDependency */,
+				C94A2ED50F15792E001E7B75 /* PBXTargetDependency */,
 			);
 			name = Elysium;
 			productInstallPath = "$(HOME)/Applications";
@@ -1022,6 +1070,12 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Elysium */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C94A2E980F1571FE001E7B75 /* Products */;
+					ProjectRef = C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Elysium */,
@@ -1031,6 +1085,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JSCocoa.framework;
+			remoteRef = C94A2E9B0F1571FE001E7B75 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D15AC2B0486D014006FF6A4 /* Resources */ = {
@@ -1180,6 +1244,9 @@
 				C9F4506C0EBDE3F3002C3637 /* ELScriptPackage.m in Sources */,
 				C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */,
 				C90BDFC20EC072040003B0CD /* NSXML+Helpers.m in Sources */,
+				C97580C80F180EA200DB8E93 /* ELTaggable.m in Sources */,
+				C97580CC0F18174D00DB8E93 /* JavascriptCallback.m in Sources */,
+				C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,6 +1296,11 @@
 			isa = PBXTargetDependency;
 			target = C93D54900E61F0E80077C448 /* PYMIDI */;
 			targetProxy = C93D54D60E61F1970077C448 /* PBXContainerItemProxy */;
+		};
+		C94A2ED50F15792E001E7B75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JSCocoa;
+			targetProxy = C94A2ED40F15792E001E7B75 /* PBXContainerItemProxy */;
 		};
 		C96311700E50587A008BF9AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
