@@ -20,8 +20,9 @@
 @class ELPlayhead;
 @class ELGenerateTool;
 
-@interface ELLayer : NSObject <LMHoneycombMatrix,ELXmlData> {
+@interface ELLayer : NSObject <LMHoneycombMatrix,ELXmlData,ELTaggable> {
   id                  delegate;       // This will be the view representing us in the UI
+  
   ELPlayer            *player;        // The player we belong to
   NSMutableArray      *hexes;         // The hexes representing the playing surface
   NSMutableArray      *playheads;     // Array of playheads active on our surface
@@ -38,6 +39,7 @@
   BOOL                isRunning;      // Whether or not this layer is running
   
   NSMutableDictionary *scripts;
+  NSString            *scriptingTag;
   
   NSString            *layerId;
   

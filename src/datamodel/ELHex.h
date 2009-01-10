@@ -27,12 +27,14 @@
 @class ELSplitTool;
 @class ELSpinTool;
 
-@interface ELHex : LMHexCell <ELXmlData> {
+@interface ELHex : LMHexCell <ELXmlData,ELTaggable> {
   ELLayer             *layer;
   ELNote              *note;
   ELHex               *neighbours[6];
   NSMutableArray      *tools;
   NSMutableArray      *playheads;
+  
+  NSString            *scriptingTag;
   
   ELGenerateTool      *generateTool;
   ELNoteTool          *noteTool;

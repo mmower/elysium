@@ -51,6 +51,7 @@
     durationKnob    = [self defaultDurationKnob];
     transposeKnob   = [self defaultTransposeKnob];
     
+    scriptingTag    = @"player";
     scripts         = [NSMutableDictionary dictionary];
     triggers        = [[NSMutableArray alloc] init];
     pkg             = [[ELScriptPackage alloc] initWithPlayer:self];
@@ -114,6 +115,7 @@
 
 @synthesize document;
 @synthesize scripts;
+@synthesize scriptingTag;
 @synthesize triggers;
 @synthesize pkg;
 @synthesize selectedLayer;

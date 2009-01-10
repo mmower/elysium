@@ -11,6 +11,7 @@
 
 #import <MacRuby/MacRuby.h>
 #import "String+AsRubyBlock.h"
+#import "String+AsJavascriptFunction.h"
 
 #import "NSXML+Helpers.h"
 
@@ -76,6 +77,7 @@ extern NSString * const ELTonicNoteColor;
 extern NSString * const ELScaleNoteColor;
 
 #import "ELXmlData.h"
+#import "ELTaggable.h"
 
 #import "ELKnob.h"
 #import "ELIntegerKnob.h"

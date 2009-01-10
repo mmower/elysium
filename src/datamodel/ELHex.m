@@ -34,10 +34,11 @@
 
 - (id)initWithLayer:(ELLayer *)_layer_ note:(ELNote *)_note_ column:(int)_col_ row:(int)_row_ {
   if( ( self = [super initWithColumn:_col_ row:_row_] ) ) {
-    layer     = _layer_;
-    note      = _note_;
-    tools     = [[NSMutableArray alloc] init];
-    playheads = [[NSMutableArray alloc] init];
+    layer        = _layer_;
+    note         = _note_;
+    tools        = [[NSMutableArray alloc] init];
+    playheads    = [[NSMutableArray alloc] init];
+    scriptingTag = [NSString stringWithFormat:@"cell%d:%d",_col_,_row_];
     
     [self connectNeighbour:nil direction:N];
     [self connectNeighbour:nil direction:NE];
@@ -54,6 +55,7 @@
 
 @synthesize layer;
 @synthesize note;
+@synthesize scriptingTag;
 
 @dynamic generateTool;
 

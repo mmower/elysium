@@ -104,6 +104,7 @@ NSPredicate *deadPlayheadFilter;
 @synthesize transposeKnob;
 
 @synthesize scripts;
+@synthesize scriptingTag = layerId;
 
 - (int)timerResolution {
   int tempo = [tempoKnob dynamicValue];

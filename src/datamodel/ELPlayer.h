@@ -23,7 +23,7 @@
 @class ELScriptPackage;
 @class ELEnvelopeProbabilityGenerator;
 
-@interface ELPlayer : NSObject <ELXmlData> {
+@interface ELPlayer : NSObject <ELXmlData,ELTaggable> {
   ElysiumDocument     *document;        // Cocoa NSDocument subclass hosting this player
   ELHarmonicTable     *harmonicTable;   // Represents the structure of notes to be played
   NSMutableArray      *layers;          // Each layer is an "instrument"
@@ -39,6 +39,7 @@
   BOOL                showKey;
   BOOL                performanceMode;
   
+  NSString            *scriptingTag;
   NSMutableDictionary *scripts;
   NSMutableArray      *triggers;        // ELMIDITrigger objects
   NSThread            *triggerThread;
