@@ -119,6 +119,27 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 - (BOOL)initScriptingEngine {
   [[BridgeSupportController sharedController] loadBridgeSupport:[[NSBundle mainBundle] pathForResource:@"Elysium" ofType:@"bridgesupport"]];
+  
+  NSArray *searchPathes = NSSearchPathForDirectoriesInDomains( NSApplicationSupportDirectory, NSUserDomainMask, YES );
+  NSString *appSupportPath = [searchPathes objectAtIndex:0];
+  NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
+  NSString *elysiumAppSupportPath = [appSupportPath stringByAppendingPathComponent:appName];
+  
+  if( ![[NSFileManager defaultManager] fileExistsAtPath:elysiumAppSupportPath] ) {
+    [[NSFileManager defaultManager] createDirectoryAtPath:elysiumAppSupportPath attributes:nil];
+    NSLog( @"Created Elysium app support path" );
+  }
+  
+  NSString *userLibPath = [elysiumAppSupportPath stringByAppendingPathComponent:@"userlib.js"];
+  if( ![[NSFileManager defaultManager] fileExistsAtPath:userLibPath] ) {
+    [@"// Elysium user library" writeToFile:userLibPath atomically:NO encoding:NSASCIIStringEncoding error:nil];
+    NSLog( @"Written new user library" );
+  } else {
+    NSLog( @"Using existing user library: %@", userLibPath );
+  }
+  
+  [[JSCocoa sharedController] evalJSFile:userLibPath];
+  
   return YES;
 }
 
