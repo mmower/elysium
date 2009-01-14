@@ -201,6 +201,7 @@ int randval() {
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
+  NSLog( @"In ELTool -initWithXmlRepresentation: for %@", [self className] );
   if( ( self = [self init] ) ) {
     [self setEnabled:([[[_representation_ attributeForName:@"enabled"] stringValue] boolValue])];
     
@@ -210,6 +211,7 @@ int randval() {
     if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='p']" error:_error_] ) ) {
       if( ( element = [nodes firstXMLElement] ) ) {
         pKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+        [pKnob setMinimum:0 maximum:100 stepping:1];
       } else {
         pKnob = [[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1];
       }
@@ -223,9 +225,10 @@ int randval() {
     
     if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='gate']" error:_error_] ) ) {
       if( ( element = [nodes firstXMLElement] ) ) {
-        pKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+        gateKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
+        [gateKnob setMinimum:0 maximum:32 stepping:1];
       } else {
-        pKnob = [[ELIntegerKnob alloc] initWithName:@"gate" integerValue:0 minimum:0 maximum:32 stepping:1];
+        gateKnob = [[ELIntegerKnob alloc] initWithName:@"gate" integerValue:0 minimum:0 maximum:32 stepping:1];
       }
       
       if( pKnob == nil ) {

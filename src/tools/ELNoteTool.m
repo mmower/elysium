@@ -223,6 +223,7 @@ NSDictionary *defaultChannelSends( void ) {
       } else {
         velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
       }
+      [velocityKnob setMinimum:0 maximum:127 stepping:1];
       
       if( velocityKnob == nil ) {
         return nil;
@@ -237,6 +238,7 @@ NSDictionary *defaultChannelSends( void ) {
       } else {
         emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis"];
       }
+      [emphasisKnob setMinimum:0 maximum:127 stepping:1];
       
       if( emphasisKnob == nil ) {
         return nil;
@@ -251,6 +253,7 @@ NSDictionary *defaultChannelSends( void ) {
       } else {
         durationKnob = [[ELFloatKnob alloc] initWithName:@"duration"];
       }
+      [durationKnob setMinimum:0.1 maximum:5.0 stepping:0.1];
       
       if( durationKnob == nil ) {
         return nil;
@@ -265,6 +268,7 @@ NSDictionary *defaultChannelSends( void ) {
       } else {
         triadKnob = [[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1];
       }
+      [triadKnob setMinimum:0 maximum:6 stepping:1];
       
       if( triadKnob == nil ) {
         return nil;
@@ -279,6 +283,7 @@ NSDictionary *defaultChannelSends( void ) {
       } else {
         ghostsKnob = [[ELIntegerKnob alloc] initWithName:@"ghost" integerValue:0 minimum:0 maximum:16 stepping:1];
       }
+      [ghostsKnob setMinimum:0 maximum:16 stepping:1];
       
       if( ghostsKnob == nil ) {
         return nil;

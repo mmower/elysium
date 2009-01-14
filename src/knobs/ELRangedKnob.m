@@ -48,4 +48,10 @@
 @synthesize maximum;
 @synthesize stepping;
 
+- (void)setMinimum:(float)_minimum_ maximum:(float)_maximum_ stepping:(float)_stepping_ {
+  [self setMinimum:_minimum_];
+  [self setMaximum:_maximum_];
+  [self setStepping:_stepping_];
+}
+
 @end

@@ -32,4 +32,6 @@
 @property float maximum;
 @property float stepping;
 
+- (void)setMinimum:(float)minimum maximum:(float)maximum stepping:(float)stepping;
+
 @end

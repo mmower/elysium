@@ -91,6 +91,7 @@ static NSString * const toolType = @"rebound";
       } else {
         directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N minimum:0 maximum:5 stepping:1];
       }
+      [directionKnob setMinimum:0 maximum:5 stepping:1];
       
       if( directionKnob == nil ) {
         return nil;

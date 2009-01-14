@@ -148,6 +148,7 @@ static NSString * const toolType = @"spin";
       } else {
         steppingKnob = [[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1 minimum:0 maximum:5 stepping:1];
       }
+      [steppingKnob setMinimum:0 maximum:5 stepping:1];
       
       if( steppingKnob == nil ) {
         return nil;
