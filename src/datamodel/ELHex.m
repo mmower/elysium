@@ -236,7 +236,7 @@
     [_tool_ addedToLayer:layer atPosition:self];
 
     for( NSString *keyPath in [_tool_ observableValues] ) {
-      [_tool_ addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil]; //)
+      [_tool_ addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     }
   }
 }
