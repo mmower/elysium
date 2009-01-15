@@ -67,6 +67,7 @@
 		C97580CC0F18174D00DB8E93 /* JavascriptCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */; };
 		C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580E70F181F5D00DB8E93 /* ELScript.m */; };
 		C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */; };
+		C978717F0F1FF76B00C4160A /* output in Resources */ = {isa = PBXBuildFile; fileRef = C97871380F1FF76B00C4160A /* output */; };
 		C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC8C0E4F6042008F309B /* sectionheader.gif */; };
 		C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C97FEC970E4F6042008F309B /* PACollapsibleSectionBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC8E0E4F6042008F309B /* PACollapsibleSectionBox.m */; };
@@ -149,7 +150,6 @@
 		C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */; };
 		C9E8D93D0E68B8AF005AD9B7 /* sink.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9390E68B8AF005AD9B7 /* sink.pdf */; };
 		C9E8D93F0E68B95D005AD9B7 /* splitter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */; };
-		C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D95F0E693A88005AD9B7 /* README.markdown */; };
 		C9F450630EBDD1B7002C3637 /* ELScriptPackageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */; };
 		C9F450650EBDD1BF002C3637 /* ScriptPackageInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */; };
 		C9F4506C0EBDE3F3002C3637 /* ELScriptPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F4506B0EBDE3F3002C3637 /* ELScriptPackage.m */; };
@@ -292,6 +292,7 @@
 		C97580E60F181F5D00DB8E93 /* ELScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELScript.h; sourceTree = "<group>"; };
 		C97580E70F181F5D00DB8E93 /* ELScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScript.m; sourceTree = "<group>"; };
 		C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
+		C97871380F1FF76B00C4160A /* output */ = {isa = PBXFileReference; lastKnownFileType = folder; name = output; path = help/output; sourceTree = "<group>"; };
 		C97FEC860E4F5FB2008F309B /* StackedListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackedListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StackedListView-Info.plist"; sourceTree = "<group>"; };
 		C97FEC8C0E4F6042008F309B /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
@@ -416,7 +417,6 @@
 		C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = rotor.pdf; sourceTree = "<group>"; };
 		C9E8D9390E68B8AF005AD9B7 /* sink.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sink.pdf; sourceTree = "<group>"; };
 		C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = splitter.pdf; sourceTree = "<group>"; };
-		C9E8D95F0E693A88005AD9B7 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		C9F450610EBDD1B7002C3637 /* ELScriptPackageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELScriptPackageController.h; sourceTree = "<group>"; };
 		C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScriptPackageController.m; sourceTree = "<group>"; };
 		C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScriptPackageInspector.xib; path = English.lproj/ScriptPackageInspector.xib; sourceTree = "<group>"; };
@@ -518,7 +518,6 @@
 				C9874BFB0E429EF90068E7BF /* HoneycombView-Info.plist */,
 				C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */,
 				C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */,
-				C9E8D95F0E693A88005AD9B7 /* README.markdown */,
 			);
 			name = Elysium;
 			sourceTree = "<group>";
@@ -535,6 +534,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C97871380F1FF76B00C4160A /* output */,
 				C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */,
 				C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */,
 				C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */,
@@ -1097,7 +1097,6 @@
 				C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */,
 				C9E8D93D0E68B8AF005AD9B7 /* sink.pdf in Resources */,
 				C9E8D93F0E68B95D005AD9B7 /* splitter.pdf in Resources */,
-				C9E8D9600E693A88005AD9B7 /* README.markdown in Resources */,
 				C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */,
 				C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */,
 				C9A9F16F0E8A41DC009A06A3 /* OscillatorDesigner.xib in Resources */,
@@ -1122,6 +1121,7 @@
 				C9D6B15A0EBCE83300CA98DC /* control_play_blue.png in Resources */,
 				C9D6B15C0EBCE83D00CA98DC /* control_stop_blue.png in Resources */,
 				C9F450650EBDD1BF002C3637 /* ScriptPackageInspector.xib in Resources */,
+				C978717F0F1FF76B00C4160A /* output in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

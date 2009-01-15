@@ -210,4 +210,13 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getsatisfaction.com/lucidmac/products/lucidmac_elysium"]];
 }
 
+- (IBAction)showHelp:(id)_sender_ {
+  NSString *helpPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"output"];
+  NSLog( @"path = %@", helpPath );
+  NSString *helpURL = [NSString stringWithFormat:@"file://%@", helpPath];
+  NSLog( @"url = %@", helpURL );
+  
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:helpURL]];
+}
+
 @end

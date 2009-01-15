@@ -39,5 +39,6 @@
 - (IBAction)showMIDIConfigInspector:(id)sender;
 - (IBAction)showScriptPackageInspector:(id)sender;
 - (IBAction)satisfyMe:(id)sender;
+- (IBAction)showHelp:(id)sender;
 
 @end
