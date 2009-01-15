@@ -150,7 +150,7 @@ NSPredicate *deadPlayheadFilter;
     // Remove dead playheads
     [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
     
-    // On the first and every pulseCount beats, generate new playheads
+    // Generate any new playheads for this beat
     [self pulse];
     
     // Run all current playheads
@@ -653,7 +653,6 @@ NSPredicate *deadPlayheadFilter;
 // Drawing notification from the hex
 
 - (void)needsDisplay {
-  // NSLog( @"layer%@#needsDisplay", self );
   if( [delegate respondsToSelector:@selector(setNeedsDisplay:)] ) {
     [delegate setNeedsDisplay:YES];
   }
