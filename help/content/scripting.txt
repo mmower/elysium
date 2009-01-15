@@ -78,9 +78,37 @@ The player, layers, and tokens are all directly scriptable elements. Cells and p
 
 Scripting in Elysium is about writing callbacks. A callback is an anonymous Javascript function that accepts certain contextual parameters. All callbacks receive a reference to the root `player` object for the current composition. From there the rest of the hierarchy can, if necessary, be accessed and modified.
 
-Elysium provides for 4 different types of callback, essentially contexts in which callbacks are invoked:
+### Editing callbacks
 
-### Will Run
+You write callbacks using the popup code editor. To create a callback look for the relevant button in the part of the interface you want to script. They will all look something like this:
+
+![Callbacks Panel](callbackspanel.jpg)
+
+The button with the gear symbol invokes the script inspector where you can edit the Javascript code for your callback.
+
+![Script Inspector](scriptinspector.jpg)
+
+The button with the '-' will delete an associated callback.
+
+Note that callbacks **should not** be edited during a performance but only while the player is stopped.
+
+Note also that the script inspector is both small and basic. Please treat this as an encouragement to keep your callbacks short.
+
+### The User Library
+
+Each time Elysium starts it will load any Javascript code defined in:
+
+    ~/Application Support/Elysium/userlib.js
+
+The file will be created if it does not already exist.
+
+You can use the user library to define functions, global variables, and classes that you want to make available for use in callbacks.
+
+### Callback contexts
+
+Elysium provides for 4 different types of callback, essentially contexts in which callbacks are invoked.
+
+#### Will Run
 
 Each of the scriptable elements: player, layer, and token can have a `will run` callback attached. Any attached callback is invoked before the the element takes its action. For example a note token's `will run` callback is fired before the note plays and could cause the note to be skipped:
 
@@ -90,7 +118,7 @@ Each of the scriptable elements: player, layer, and token can have a `will run` 
       }
     }
 
-### Did Run
+#### Did Run
 
 After a scriptable element has had a chance to run any corresponding `did run` callback will be invoked. An example might be to determine if a note token fired or not. The `did run` callback could respond to the note not firing by raising the probability that it fires next time by 5%:
 
@@ -100,7 +128,7 @@ After a scriptable element has had a chance to run any corresponding `did run` c
       }
     }
 
-### Timers
+#### Timers
 
 Timers live in the script package and are callbacks that are invoked periodically, e.g. every 30s. You might use this to bring in a layer at a certain point in a composition:
 
@@ -111,7 +139,7 @@ Timers live in the script package and are callbacks that are invoked periodicall
       player.layers[1].enabled = !player.layers[1].enabled;
     }
 
-### MIDI Triggers
+#### MIDI Triggers
 
 A MIDI trigger is a callback that is run in response to a MIDI CC event arriving in Elysium. Typically MIDI CC information is generated when using buttons, faders, or pots on external hardware such as keyboards or controllers. An example use might be to turn specific layers on or off in response to a hardware button:
 
@@ -151,6 +179,10 @@ The layer runloop looks like this:
       sleep until next beat
 
 We have already seen how running a token offers opportunities for `will run` and `did run` callbacks.
+
+Note that there is quite a lot of work going on when a layer runs. If there are 20 live playheads each cell must be checked to see which tools it has and then each tool must be run. If you are running at 145BPM that means each beat lasts approximate 0.4s. If a layer takes longer than 0.4s to run you will begin to get clock drift.
+
+This means that you should endeavor to keep the use of callbacks to a minimum and keep callbacks as short as possible. Judege for yourself but the use of long-running or intensive code in callbacks is highly discouraged.
 
 ## Properties and Methods
 
