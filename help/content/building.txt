@@ -1,0 +1,33 @@
+---
+title:       Elysium Build Guide
+created_at:  2008-08-02 14:06:40.000000 -06:00
+filter:
+  - erb
+  - markdown
+---
+## Clone the project
+
+Clone the GitHub project. The Elysium source code & Xcode project are available from:
+
+  https://github.com/mmower/elysium/tree/master
+  
+  git@github.com:mmower/elysium.git
+
+## How to build Elysium
+
+Elysium depends upon the following external components:
+
+1. LMHoneycombView
+2. PAStackedListView
+3. PYMIDI
+4. Sparkle
+5. JSCocoa
+
+## Xcode
+
+Elysium contains an Xcode project setup to build the Cocoa application including the JSCocoa scripting engine. You will need Xcode 3 and Interface Builder 3 in order to work with the Elysium project.
+
+## Off you go
+
+Almost certainly you will not be able to succeed in building Elysium. Please ask for help when you get stuck.
+
