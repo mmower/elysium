@@ -50,13 +50,15 @@ static NSString * const toolType = @"generate";
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
   
-  [timeToLiveKnob setValue:[[_layer_ timeToLiveKnob] value]];
-  [timeToLiveKnob setLinkedKnob:[_layer_ timeToLiveKnob]];
-  [timeToLiveKnob setLinkValue:YES];
-  
-  [pulseCountKnob setValue:[[_layer_ pulseCountKnob] value]];
-  [pulseCountKnob setLinkedKnob:[_layer_ pulseCountKnob]];
-  [pulseCountKnob setLinkValue:YES];
+  if( !loaded ) {
+    [timeToLiveKnob setValue:[[_layer_ timeToLiveKnob] value]];
+    [timeToLiveKnob setLinkedKnob:[_layer_ timeToLiveKnob]];
+    [timeToLiveKnob setLinkValue:YES];
+    
+    [pulseCountKnob setValue:[[_layer_ pulseCountKnob] value]];
+    [pulseCountKnob setLinkedKnob:[_layer_ pulseCountKnob]];
+    [pulseCountKnob setLinkValue:YES];
+  }
   
   [_layer_ addGenerator:self];
 }

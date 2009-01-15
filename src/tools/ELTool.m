@@ -201,8 +201,9 @@ int randval() {
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  NSLog( @"In ELTool -initWithXmlRepresentation: for %@", [self className] );
   if( ( self = [self init] ) ) {
+    loaded = YES;
+    
     [self setEnabled:([[[_representation_ attributeForName:@"enabled"] stringValue] boolValue])];
     
     NSArray *nodes;

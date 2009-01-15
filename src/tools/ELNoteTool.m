@@ -78,17 +78,19 @@ NSDictionary *defaultChannelSends( void ) {
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
   
-  [velocityKnob setValue:[[_layer_ velocityKnob] value]];
-  [velocityKnob setLinkedKnob:[_layer_ velocityKnob]];
-  [velocityKnob setLinkValue:YES];
+  if( !loaded ) {
+    [velocityKnob setValue:[[_layer_ velocityKnob] value]];
+    [velocityKnob setLinkedKnob:[_layer_ velocityKnob]];
+    [velocityKnob setLinkValue:YES];
   
-  [emphasisKnob setValue:[[_layer_ emphasisKnob] value]];
-  [emphasisKnob setLinkedKnob:[_layer_ emphasisKnob]];
-  [emphasisKnob setLinkValue:YES];
+    [emphasisKnob setValue:[[_layer_ emphasisKnob] value]];
+    [emphasisKnob setLinkedKnob:[_layer_ emphasisKnob]];
+    [emphasisKnob setLinkValue:YES];
   
-  [durationKnob setValue:[[_layer_ durationKnob] value]];
-  [durationKnob setLinkedKnob:[_layer_ durationKnob]];
-  [durationKnob setLinkValue:YES];
+    [durationKnob setValue:[[_layer_ durationKnob] value]];
+    [durationKnob setLinkedKnob:[_layer_ durationKnob]];
+    [durationKnob setLinkValue:YES];
+  }
 }
 
 - (void)removedFromLayer:(ELLayer *)_layer_ {

@@ -95,7 +95,6 @@
 }
 
 - (void)setupOscillators {
-  NSLog( @"setupOscillators" );
   if( [knob oscillator] ) {
     selectedTag = [[knob oscillator] type];
   } else {
