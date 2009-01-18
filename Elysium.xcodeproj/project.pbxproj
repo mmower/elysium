@@ -29,65 +29,26 @@
 		C930CA000EBBC3A000DE0817 /* Elysium.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = C930C9FF0EBBC3A000DE0817 /* Elysium.bridgesupport */; };
 		C930CA190EBBD54300DE0817 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = C930CA180EBBD54300DE0817 /* NoodleLineNumberView.m */; };
 		C930CA230EBBD66D00DE0817 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = C930CA220EBBD66D00DE0817 /* NoodleLineNumberMarker.m */; };
-		C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54970E61F1250077C448 /* PYMIDI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54AF0E61F1250077C448 /* PYMIDIEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54B00E61F1250077C448 /* PYMIDIEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54990E61F1250077C448 /* PYMIDIEndpoint.m */; };
-		C93D54B10E61F1250077C448 /* PYMIDIEndpointDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D549A0E61F1250077C448 /* PYMIDIEndpointDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54B20E61F1250077C448 /* PYMIDIEndpointDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D549B0E61F1250077C448 /* PYMIDIEndpointDescriptor.m */; };
-		C93D54B30E61F1250077C448 /* PYMIDIEndpointSet.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D549C0E61F1250077C448 /* PYMIDIEndpointSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54B40E61F1250077C448 /* PYMIDIEndpointSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D549D0E61F1250077C448 /* PYMIDIEndpointSet.m */; };
-		C93D54B50E61F1250077C448 /* PYMIDIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D549E0E61F1250077C448 /* PYMIDIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54B60E61F1250077C448 /* PYMIDIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D549F0E61F1250077C448 /* PYMIDIManager.m */; };
-		C93D54B70E61F1250077C448 /* PYMIDIRealDestination.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A00E61F1250077C448 /* PYMIDIRealDestination.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54B80E61F1250077C448 /* PYMIDIRealDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A10E61F1250077C448 /* PYMIDIRealDestination.m */; };
-		C93D54B90E61F1250077C448 /* PYMIDIRealEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A20E61F1250077C448 /* PYMIDIRealEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54BA0E61F1250077C448 /* PYMIDIRealEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A30E61F1250077C448 /* PYMIDIRealEndpoint.m */; };
-		C93D54BB0E61F1250077C448 /* PYMIDIRealSource.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A40E61F1250077C448 /* PYMIDIRealSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54BC0E61F1250077C448 /* PYMIDIRealSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A50E61F1250077C448 /* PYMIDIRealSource.m */; };
-		C93D54BD0E61F1250077C448 /* PYMIDIUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A60E61F1250077C448 /* PYMIDIUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54BE0E61F1250077C448 /* PYMIDIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A70E61F1250077C448 /* PYMIDIUtils.m */; };
-		C93D54BF0E61F1250077C448 /* PYMIDIVirtualDestination.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54A80E61F1250077C448 /* PYMIDIVirtualDestination.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54C00E61F1250077C448 /* PYMIDIVirtualDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54A90E61F1250077C448 /* PYMIDIVirtualDestination.m */; };
-		C93D54C10E61F1250077C448 /* PYMIDIVirtualEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54AA0E61F1250077C448 /* PYMIDIVirtualEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54C20E61F1250077C448 /* PYMIDIVirtualEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54AB0E61F1250077C448 /* PYMIDIVirtualEndpoint.m */; };
-		C93D54C30E61F1250077C448 /* PYMIDIVirtualSource.h in Headers */ = {isa = PBXBuildFile; fileRef = C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93D54C40E61F1250077C448 /* PYMIDIVirtualSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */; };
-		C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
-		C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
-		C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93D54910E61F0E80077C448 /* PYMIDI.framework */; };
 		C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */; };
-		C94A2EC00F1578B5001E7B75 /* JSCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */; };
-		C94A2EE00F1579BB001E7B75 /* JSCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */; };
 		C94F55760EA6A73900320BF5 /* ELKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C94F55750EA6A73900320BF5 /* ELKey.m */; };
 		C957DDE60F1905A900798819 /* String+AsJavascriptFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C957DDE50F1905A900798819 /* String+AsJavascriptFunction.m */; };
 		C9599AE80EAE5D9000310D3D /* ELRandomOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AE70EAE5D9000310D3D /* ELRandomOscillator.m */; };
 		C9599AEB0EAE5DA500310D3D /* ELSequenceOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */; };
 		C9599AEF0EAE7C1E00310D3D /* ELRangedOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */; };
-		C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
+		C970F0F90F23948900ABAC2E /* HoneycombView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F0F50F23948900ABAC2E /* HoneycombView.framework */; };
+		C970F0FB0F23948900ABAC2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F0F70F23948900ABAC2E /* Sparkle.framework */; };
+		C970F0FC0F23948900ABAC2E /* StackedListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F0F80F23948900ABAC2E /* StackedListView.framework */; };
+		C970F1090F23949400ABAC2E /* HoneycombView.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F0F50F23948900ABAC2E /* HoneycombView.framework */; };
+		C970F10B0F23949400ABAC2E /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F0F70F23948900ABAC2E /* Sparkle.framework */; };
+		C970F10C0F23949400ABAC2E /* StackedListView.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F0F80F23948900ABAC2E /* StackedListView.framework */; };
+		C970F11E0F23955900ABAC2E /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F11D0F23955900ABAC2E /* PYMIDI.framework */; };
+		C970F1770F23976500ABAC2E /* JSCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1760F23976500ABAC2E /* JSCocoa.framework */; };
+		C970F17A0F23976A00ABAC2E /* JSCocoa.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1760F23976500ABAC2E /* JSCocoa.framework */; };
+		C970F17C0F23977C00ABAC2E /* PYMIDI.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F11D0F23955900ABAC2E /* PYMIDI.framework */; };
 		C97580CC0F18174D00DB8E93 /* JavascriptCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */; };
 		C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580E70F181F5D00DB8E93 /* ELScript.m */; };
 		C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */; };
 		C978717F0F1FF76B00C4160A /* output in Resources */ = {isa = PBXBuildFile; fileRef = C97871380F1FF76B00C4160A /* output */; };
-		C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C97FEC8C0E4F6042008F309B /* sectionheader.gif */; };
-		C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C97FEC970E4F6042008F309B /* PACollapsibleSectionBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC8E0E4F6042008F309B /* PACollapsibleSectionBox.m */; };
-		C97FEC980E4F6042008F309B /* PAFunkyBox.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC8F0E4F6042008F309B /* PAFunkyBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C97FEC990E4F6042008F309B /* PAFunkyBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC900E4F6042008F309B /* PAFunkyBox.m */; };
-		C97FEC9A0E4F6042008F309B /* PASectionHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC910E4F6042008F309B /* PASectionHeaderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C97FEC9B0E4F6042008F309B /* PASectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC920E4F6042008F309B /* PASectionHeaderView.m */; };
-		C97FEC9C0E4F6042008F309B /* PAStackedListView.h in Headers */ = {isa = PBXBuildFile; fileRef = C97FEC930E4F6042008F309B /* PAStackedListView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C97FEC9D0E4F6042008F309B /* PAStackedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FEC940E4F6042008F309B /* PAStackedListView.m */; };
-		C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97FEC860E4F5FB2008F309B /* StackedListView.framework */; };
-		C9874C0A0E429F6B0068E7BF /* HoneycombView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
-		C9874C280E42A1A10068E7BF /* HoneycombView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C200E42A1A10068E7BF /* HoneycombView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C9874C290E42A1A10068E7BF /* LMHexCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C210E42A1A10068E7BF /* LMHexCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C9874C2A0E42A1A10068E7BF /* LMHexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C220E42A1A10068E7BF /* LMHexCell.m */; };
-		C9874C2B0E42A1A10068E7BF /* LMHoneycombMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C230E42A1A10068E7BF /* LMHoneycombMatrix.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C9874C2C0E42A1A10068E7BF /* LMHoneycombView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C240E42A1A10068E7BF /* LMHoneycombView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C9874C2D0E42A1A10068E7BF /* LMHoneycombView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C250E42A1A10068E7BF /* LMHoneycombView.m */; };
-		C9874C2E0E42A1A10068E7BF /* LMRegularPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */; settings = {ATTRIBUTES = (); }; };
-		C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */; };
-		C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */; };
 		C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8370E8907B6009C699E /* sectionheader.gif */; };
 		C99FA9E20EB8F69E002305EF /* ELMIDIConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */; };
 		C99FA9E40EB8F6A9002305EF /* MIDIConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */; };
@@ -143,8 +104,6 @@
 		C9DA150E0EA7F05D0087EDD3 /* ActivityViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */; };
 		C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DA15110EA7F14A0087EDD3 /* ELActivityViewerController.m */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
-		C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
-		C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9E43D5E0E33C27100C4D343 /* Sparkle.framework */; };
 		C9E8D93A0E68B8AF005AD9B7 /* play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9360E68B8AF005AD9B7 /* play.pdf */; };
 		C9E8D93B0E68B8AF005AD9B7 /* ricochet.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */; };
 		C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */; };
@@ -157,57 +116,20 @@
 		C9FE0E4D0EBA6B9400A59130 /* ELMIDITriggerArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE0E4C0EBA6B9400A59130 /* ELMIDITriggerArrayController.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C93D54D60E61F1970077C448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C93D54900E61F0E80077C448;
-			remoteInfo = PYMIDI;
-		};
-		C94A2E9B0F1571FE001E7B75 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = JSCocoa;
-		};
-		C94A2ED40F15792E001E7B75 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = JSCocoa;
-		};
-		C963116F0E50587A008BF9AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C97FEC850E4F5FB2008F309B;
-			remoteInfo = StackedListView;
-		};
-		C9874C3C0E42A2460068E7BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C9874BF90E429EF90068E7BF;
-			remoteInfo = HoneycombView;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		C9E43D630E33C29F00C4D343 /* CopyFiles */ = {
+		C9E43D630E33C29F00C4D343 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C94A2EE00F1579BB001E7B75 /* JSCocoa.framework in CopyFiles */,
-				C93D54D40E61F1880077C448 /* PYMIDI.framework in CopyFiles */,
-				C96311610E5057CD008BF9AB /* StackedListView.framework in CopyFiles */,
-				C9874C3B0E42A2280068E7BF /* HoneycombView.framework in CopyFiles */,
-				C9E43D660E33C2C300C4D343 /* Sparkle.framework in CopyFiles */,
+				C970F1090F23949400ABAC2E /* HoneycombView.framework in Copy Frameworks */,
+				C970F17C0F23977C00ABAC2E /* PYMIDI.framework in Copy Frameworks */,
+				C970F17A0F23976A00ABAC2E /* JSCocoa.framework in Copy Frameworks */,
+				C970F10B0F23949400ABAC2E /* Sparkle.framework in Copy Frameworks */,
+				C970F10C0F23949400ABAC2E /* StackedListView.framework in Copy Frameworks */,
 			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -248,34 +170,8 @@
 		C930CA180EBBD54300DE0817 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
 		C930CA210EBBD66D00DE0817 /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
 		C930CA220EBBD66D00DE0817 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
-		C93D54910E61F0E80077C448 /* PYMIDI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PYMIDI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PYMIDI-Info.plist"; sourceTree = "<group>"; };
-		C93D54970E61F1250077C448 /* PYMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDI.h; sourceTree = "<group>"; };
-		C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpoint.h; sourceTree = "<group>"; };
-		C93D54990E61F1250077C448 /* PYMIDIEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIEndpoint.m; sourceTree = "<group>"; };
-		C93D549A0E61F1250077C448 /* PYMIDIEndpointDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpointDescriptor.h; sourceTree = "<group>"; };
-		C93D549B0E61F1250077C448 /* PYMIDIEndpointDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIEndpointDescriptor.m; sourceTree = "<group>"; };
-		C93D549C0E61F1250077C448 /* PYMIDIEndpointSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpointSet.h; sourceTree = "<group>"; };
-		C93D549D0E61F1250077C448 /* PYMIDIEndpointSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIEndpointSet.m; sourceTree = "<group>"; };
-		C93D549E0E61F1250077C448 /* PYMIDIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIManager.h; sourceTree = "<group>"; };
-		C93D549F0E61F1250077C448 /* PYMIDIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIManager.m; sourceTree = "<group>"; };
-		C93D54A00E61F1250077C448 /* PYMIDIRealDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIRealDestination.h; sourceTree = "<group>"; };
-		C93D54A10E61F1250077C448 /* PYMIDIRealDestination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIRealDestination.m; sourceTree = "<group>"; };
-		C93D54A20E61F1250077C448 /* PYMIDIRealEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIRealEndpoint.h; sourceTree = "<group>"; };
-		C93D54A30E61F1250077C448 /* PYMIDIRealEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIRealEndpoint.m; sourceTree = "<group>"; };
-		C93D54A40E61F1250077C448 /* PYMIDIRealSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIRealSource.h; sourceTree = "<group>"; };
-		C93D54A50E61F1250077C448 /* PYMIDIRealSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIRealSource.m; sourceTree = "<group>"; };
-		C93D54A60E61F1250077C448 /* PYMIDIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIUtils.h; sourceTree = "<group>"; };
-		C93D54A70E61F1250077C448 /* PYMIDIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIUtils.m; sourceTree = "<group>"; };
-		C93D54A80E61F1250077C448 /* PYMIDIVirtualDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualDestination.h; sourceTree = "<group>"; };
-		C93D54A90E61F1250077C448 /* PYMIDIVirtualDestination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualDestination.m; sourceTree = "<group>"; };
-		C93D54AA0E61F1250077C448 /* PYMIDIVirtualEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualEndpoint.h; sourceTree = "<group>"; };
-		C93D54AB0E61F1250077C448 /* PYMIDIVirtualEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualEndpoint.m; sourceTree = "<group>"; };
-		C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualSource.h; sourceTree = "<group>"; };
-		C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
 		C94957C90EBE365D00AC42AD /* ELTimerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTimerCallback.h; sourceTree = "<group>"; };
 		C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimerCallback.m; sourceTree = "<group>"; };
-		C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */ = {isa = PBXFileReference; explicitFileType = "wrapper.pb-project"; name = "JSCocoa (embed).xcodeproj"; path = "jscocoa/JSCocoa/JSCocoa (embed).xcodeproj"; sourceTree = "<group>"; };
 		C94F55740EA6A73900320BF5 /* ELKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKey.h; sourceTree = "<group>"; };
 		C94F55750EA6A73900320BF5 /* ELKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKey.m; sourceTree = "<group>"; };
 		C957DDE40F1905A900798819 /* String+AsJavascriptFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+AsJavascriptFunction.h"; sourceTree = "<group>"; };
@@ -286,6 +182,11 @@
 		C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSequenceOscillator.m; sourceTree = "<group>"; };
 		C9599AED0EAE7C1E00310D3D /* ELRangedOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedOscillator.h; sourceTree = "<group>"; };
 		C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedOscillator.m; sourceTree = "<group>"; };
+		C970F0F50F23948900ABAC2E /* HoneycombView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HoneycombView.framework; path = frameworks/HoneycombView.framework; sourceTree = "<group>"; };
+		C970F0F70F23948900ABAC2E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		C970F0F80F23948900ABAC2E /* StackedListView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StackedListView.framework; path = frameworks/StackedListView.framework; sourceTree = "<group>"; };
+		C970F11D0F23955900ABAC2E /* PYMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PYMIDI.framework; path = frameworks/PYMIDI.framework; sourceTree = "<group>"; };
+		C970F1760F23976500ABAC2E /* JSCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSCocoa.framework; path = frameworks/JSCocoa.framework; sourceTree = "<group>"; };
 		C97580C60F180EA200DB8E93 /* ELTaggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTaggable.h; sourceTree = "<group>"; };
 		C97580CA0F18174D00DB8E93 /* JavascriptCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptCallback.h; sourceTree = "<group>"; };
 		C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptCallback.m; sourceTree = "<group>"; };
@@ -293,27 +194,6 @@
 		C97580E70F181F5D00DB8E93 /* ELScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScript.m; sourceTree = "<group>"; };
 		C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
 		C97871380F1FF76B00C4160A /* output */ = {isa = PBXFileReference; lastKnownFileType = folder; name = output; path = help/output; sourceTree = "<group>"; };
-		C97FEC860E4F5FB2008F309B /* StackedListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackedListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StackedListView-Info.plist"; sourceTree = "<group>"; };
-		C97FEC8C0E4F6042008F309B /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
-		C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACollapsibleSectionBox.h; sourceTree = "<group>"; };
-		C97FEC8E0E4F6042008F309B /* PACollapsibleSectionBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACollapsibleSectionBox.m; sourceTree = "<group>"; };
-		C97FEC8F0E4F6042008F309B /* PAFunkyBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAFunkyBox.h; sourceTree = "<group>"; };
-		C97FEC900E4F6042008F309B /* PAFunkyBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAFunkyBox.m; sourceTree = "<group>"; };
-		C97FEC910E4F6042008F309B /* PASectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PASectionHeaderView.h; sourceTree = "<group>"; };
-		C97FEC920E4F6042008F309B /* PASectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PASectionHeaderView.m; sourceTree = "<group>"; };
-		C97FEC930E4F6042008F309B /* PAStackedListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAStackedListView.h; sourceTree = "<group>"; };
-		C97FEC940E4F6042008F309B /* PAStackedListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAStackedListView.m; sourceTree = "<group>"; };
-		C9874BFA0E429EF90068E7BF /* HoneycombView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HoneycombView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9874BFB0E429EF90068E7BF /* HoneycombView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HoneycombView-Info.plist"; sourceTree = "<group>"; };
-		C9874C200E42A1A10068E7BF /* HoneycombView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoneycombView.h; path = ../Honeycomb/view/HoneycombView.h; sourceTree = SOURCE_ROOT; };
-		C9874C210E42A1A10068E7BF /* LMHexCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMHexCell.h; path = ../Honeycomb/view/LMHexCell.h; sourceTree = SOURCE_ROOT; };
-		C9874C220E42A1A10068E7BF /* LMHexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMHexCell.m; path = ../Honeycomb/view/LMHexCell.m; sourceTree = SOURCE_ROOT; };
-		C9874C230E42A1A10068E7BF /* LMHoneycombMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMHoneycombMatrix.h; path = ../Honeycomb/view/LMHoneycombMatrix.h; sourceTree = SOURCE_ROOT; };
-		C9874C240E42A1A10068E7BF /* LMHoneycombView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMHoneycombView.h; path = ../Honeycomb/view/LMHoneycombView.h; sourceTree = SOURCE_ROOT; };
-		C9874C250E42A1A10068E7BF /* LMHoneycombView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMHoneycombView.m; path = ../Honeycomb/view/LMHoneycombView.m; sourceTree = SOURCE_ROOT; };
-		C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMRegularPolygon.h; path = ../Honeycomb/view/LMRegularPolygon.h; sourceTree = SOURCE_ROOT; };
-		C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMRegularPolygon.m; path = ../Honeycomb/view/LMRegularPolygon.m; sourceTree = SOURCE_ROOT; };
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
 		C99FA9E00EB8F69E002305EF /* ELMIDIConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIConfigController.h; sourceTree = "<group>"; };
 		C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIConfigController.m; sourceTree = "<group>"; };
@@ -411,7 +291,6 @@
 		C9DA15100EA7F14A0087EDD3 /* ELActivityViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELActivityViewerController.h; sourceTree = "<group>"; };
 		C9DA15110EA7F14A0087EDD3 /* ELActivityViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELActivityViewerController.m; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
-		C9E43D5E0E33C27100C4D343 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		C9E8D9360E68B8AF005AD9B7 /* play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = play.pdf; sourceTree = "<group>"; };
 		C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ricochet.pdf; sourceTree = "<group>"; };
 		C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = rotor.pdf; sourceTree = "<group>"; };
@@ -433,37 +312,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C93D55010E6212D00077C448 /* PYMIDI.framework in Frameworks */,
-				C9874C0A0E429F6B0068E7BF /* HoneycombView.framework in Frameworks */,
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */,
-				C9E43D5F0E33C27100C4D343 /* Sparkle.framework in Frameworks */,
 				C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */,
-				C97FEC9F0E4F6060008F309B /* StackedListView.framework in Frameworks */,
-				C94A2EC00F1578B5001E7B75 /* JSCocoa.framework in Frameworks */,
 				C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C93D548F0E61F0E80077C448 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C93D54EF0E620AFF0077C448 /* CoreMIDI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C97FEC840E4F5FB2008F309B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9874BF80E429EF90068E7BF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				C970F0F90F23948900ABAC2E /* HoneycombView.framework in Frameworks */,
+				C970F0FB0F23948900ABAC2E /* Sparkle.framework in Frameworks */,
+				C970F0FC0F23948900ABAC2E /* StackedListView.framework in Frameworks */,
+				C970F11E0F23955900ABAC2E /* PYMIDI.framework in Frameworks */,
+				C970F1770F23976500ABAC2E /* JSCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,10 +330,13 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C970F1760F23976500ABAC2E /* JSCocoa.framework */,
+				C970F11D0F23955900ABAC2E /* PYMIDI.framework */,
+				C970F0F50F23948900ABAC2E /* HoneycombView.framework */,
+				C970F0F70F23948900ABAC2E /* Sparkle.framework */,
+				C970F0F80F23948900ABAC2E /* StackedListView.framework */,
 				C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */,
-				C93D54910E61F0E80077C448 /* PYMIDI.framework */,
 				C92EDDB50E353EDD00017DFE /* CoreAudio.framework */,
-				C9E43D5E0E33C27100C4D343 /* Sparkle.framework */,
 				C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */,
 				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
 			);
@@ -497,8 +357,6 @@
 			isa = PBXGroup;
 			children = (
 				8D15AC370486D014006FF6A4 /* Elysium.app */,
-				C9874BFA0E429EF90068E7BF /* HoneycombView.framework */,
-				C97FEC860E4F5FB2008F309B /* StackedListView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -506,18 +364,11 @@
 		2A37F4AAFDCFA73011CA2CEA /* Elysium */ = {
 			isa = PBXGroup;
 			children = (
-				C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */,
 				C9A9F1900E8A42D0009A06A3 /* Sources */,
-				C93D54960E61F1250077C448 /* PYMIDI */,
-				C97FEC800E4F5F2F008F309B /* StackedListView */,
-				C9874C1F0E42A1860068E7BF /* honeycombview */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
-				C9874BFB0E429EF90068E7BF /* HoneycombView-Info.plist */,
-				C97FEC870E4F5FB2008F309B /* StackedListView-Info.plist */,
-				C93D54920E61F0E80077C448 /* PYMIDI-Info.plist */,
 			);
 			name = Elysium;
 			sourceTree = "<group>";
@@ -576,77 +427,6 @@
 			);
 			name = line_number_view;
 			path = src/line_number_view;
-			sourceTree = "<group>";
-		};
-		C93D54960E61F1250077C448 /* PYMIDI */ = {
-			isa = PBXGroup;
-			children = (
-				C93D54970E61F1250077C448 /* PYMIDI.h */,
-				C93D54980E61F1250077C448 /* PYMIDIEndpoint.h */,
-				C93D54990E61F1250077C448 /* PYMIDIEndpoint.m */,
-				C93D549A0E61F1250077C448 /* PYMIDIEndpointDescriptor.h */,
-				C93D549B0E61F1250077C448 /* PYMIDIEndpointDescriptor.m */,
-				C93D549C0E61F1250077C448 /* PYMIDIEndpointSet.h */,
-				C93D549D0E61F1250077C448 /* PYMIDIEndpointSet.m */,
-				C93D549E0E61F1250077C448 /* PYMIDIManager.h */,
-				C93D549F0E61F1250077C448 /* PYMIDIManager.m */,
-				C93D54A00E61F1250077C448 /* PYMIDIRealDestination.h */,
-				C93D54A10E61F1250077C448 /* PYMIDIRealDestination.m */,
-				C93D54A20E61F1250077C448 /* PYMIDIRealEndpoint.h */,
-				C93D54A30E61F1250077C448 /* PYMIDIRealEndpoint.m */,
-				C93D54A40E61F1250077C448 /* PYMIDIRealSource.h */,
-				C93D54A50E61F1250077C448 /* PYMIDIRealSource.m */,
-				C93D54A60E61F1250077C448 /* PYMIDIUtils.h */,
-				C93D54A70E61F1250077C448 /* PYMIDIUtils.m */,
-				C93D54A80E61F1250077C448 /* PYMIDIVirtualDestination.h */,
-				C93D54A90E61F1250077C448 /* PYMIDIVirtualDestination.m */,
-				C93D54AA0E61F1250077C448 /* PYMIDIVirtualEndpoint.h */,
-				C93D54AB0E61F1250077C448 /* PYMIDIVirtualEndpoint.m */,
-				C93D54AC0E61F1250077C448 /* PYMIDIVirtualSource.h */,
-				C93D54AD0E61F1250077C448 /* PYMIDIVirtualSource.m */,
-			);
-			name = PYMIDI;
-			path = ../../Cocoa/3rdParty/Yandell/pymidi/trunk/Source;
-			sourceTree = SOURCE_ROOT;
-		};
-		C94A2E980F1571FE001E7B75 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C97FEC800E4F5F2F008F309B /* StackedListView */ = {
-			isa = PBXGroup;
-			children = (
-				C97FEC8C0E4F6042008F309B /* sectionheader.gif */,
-				C97FEC8D0E4F6042008F309B /* PACollapsibleSectionBox.h */,
-				C97FEC8E0E4F6042008F309B /* PACollapsibleSectionBox.m */,
-				C97FEC8F0E4F6042008F309B /* PAFunkyBox.h */,
-				C97FEC900E4F6042008F309B /* PAFunkyBox.m */,
-				C97FEC910E4F6042008F309B /* PASectionHeaderView.h */,
-				C97FEC920E4F6042008F309B /* PASectionHeaderView.m */,
-				C97FEC930E4F6042008F309B /* PAStackedListView.h */,
-				C97FEC940E4F6042008F309B /* PAStackedListView.m */,
-			);
-			name = StackedListView;
-			path = /Users/matt/Projects/Cocoa/3rdParty/StackedListView;
-			sourceTree = "<absolute>";
-		};
-		C9874C1F0E42A1860068E7BF /* honeycombview */ = {
-			isa = PBXGroup;
-			children = (
-				C9874C200E42A1A10068E7BF /* HoneycombView.h */,
-				C9874C210E42A1A10068E7BF /* LMHexCell.h */,
-				C9874C220E42A1A10068E7BF /* LMHexCell.m */,
-				C9874C230E42A1A10068E7BF /* LMHoneycombMatrix.h */,
-				C9874C240E42A1A10068E7BF /* LMHoneycombView.h */,
-				C9874C250E42A1A10068E7BF /* LMHoneycombView.m */,
-				C9874C260E42A1A10068E7BF /* LMRegularPolygon.h */,
-				C9874C270E42A1A10068E7BF /* LMRegularPolygon.m */,
-			);
-			name = honeycombview;
 			sourceTree = "<group>";
 		};
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
@@ -922,51 +702,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		C93D548C0E61F0E80077C448 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C93D54AE0E61F1250077C448 /* PYMIDI.h in Headers */,
-				C93D54AF0E61F1250077C448 /* PYMIDIEndpoint.h in Headers */,
-				C93D54B10E61F1250077C448 /* PYMIDIEndpointDescriptor.h in Headers */,
-				C93D54B30E61F1250077C448 /* PYMIDIEndpointSet.h in Headers */,
-				C93D54B50E61F1250077C448 /* PYMIDIManager.h in Headers */,
-				C93D54B70E61F1250077C448 /* PYMIDIRealDestination.h in Headers */,
-				C93D54B90E61F1250077C448 /* PYMIDIRealEndpoint.h in Headers */,
-				C93D54BB0E61F1250077C448 /* PYMIDIRealSource.h in Headers */,
-				C93D54BD0E61F1250077C448 /* PYMIDIUtils.h in Headers */,
-				C93D54BF0E61F1250077C448 /* PYMIDIVirtualDestination.h in Headers */,
-				C93D54C10E61F1250077C448 /* PYMIDIVirtualEndpoint.h in Headers */,
-				C93D54C30E61F1250077C448 /* PYMIDIVirtualSource.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C97FEC810E4F5FB2008F309B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C97FEC960E4F6042008F309B /* PACollapsibleSectionBox.h in Headers */,
-				C97FEC980E4F6042008F309B /* PAFunkyBox.h in Headers */,
-				C97FEC9A0E4F6042008F309B /* PASectionHeaderView.h in Headers */,
-				C97FEC9C0E4F6042008F309B /* PAStackedListView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9874BF50E429EF90068E7BF /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C9874C280E42A1A10068E7BF /* HoneycombView.h in Headers */,
-				C9874C290E42A1A10068E7BF /* LMHexCell.h in Headers */,
-				C9874C2B0E42A1A10068E7BF /* LMHoneycombMatrix.h in Headers */,
-				C9874C2C0E42A1A10068E7BF /* LMHoneycombView.h in Headers */,
-				C9874C2E0E42A1A10068E7BF /* LMRegularPolygon.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		8D15AC270486D014006FF6A4 /* Elysium */ = {
 			isa = PBXNativeTarget;
@@ -975,76 +710,18 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-				C9E43D630E33C29F00C4D343 /* CopyFiles */,
+				C9E43D630E33C29F00C4D343 /* Copy Frameworks */,
 				C905DF9F0E72FD5100C39302 /* Package Binaries */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C96311700E50587A008BF9AB /* PBXTargetDependency */,
-				C9874C3D0E42A2460068E7BF /* PBXTargetDependency */,
-				C93D54D70E61F1970077C448 /* PBXTargetDependency */,
-				C94A2ED50F15792E001E7B75 /* PBXTargetDependency */,
 			);
 			name = Elysium;
 			productInstallPath = "$(HOME)/Applications";
 			productName = Elysium;
 			productReference = 8D15AC370486D014006FF6A4 /* Elysium.app */;
 			productType = "com.apple.product-type.application";
-		};
-		C93D54900E61F0E80077C448 /* PYMIDI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C93D54950E61F0E90077C448 /* Build configuration list for PBXNativeTarget "PYMIDI" */;
-			buildPhases = (
-				C93D548C0E61F0E80077C448 /* Headers */,
-				C93D548D0E61F0E80077C448 /* Resources */,
-				C93D548E0E61F0E80077C448 /* Sources */,
-				C93D548F0E61F0E80077C448 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PYMIDI;
-			productName = PYMIDI;
-			productReference = C93D54910E61F0E80077C448 /* PYMIDI.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		C97FEC850E4F5FB2008F309B /* StackedListView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C97FEC8A0E4F5FB3008F309B /* Build configuration list for PBXNativeTarget "StackedListView" */;
-			buildPhases = (
-				C97FEC810E4F5FB2008F309B /* Headers */,
-				C97FEC820E4F5FB2008F309B /* Resources */,
-				C97FEC830E4F5FB2008F309B /* Sources */,
-				C97FEC840E4F5FB2008F309B /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = StackedListView;
-			productName = StackedListView;
-			productReference = C97FEC860E4F5FB2008F309B /* StackedListView.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		C9874BF90E429EF90068E7BF /* HoneycombView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C9874BFE0E429EFA0068E7BF /* Build configuration list for PBXNativeTarget "HoneycombView" */;
-			buildPhases = (
-				C9874BF50E429EF90068E7BF /* Headers */,
-				C9874BF60E429EF90068E7BF /* Resources */,
-				C9874BF70E429EF90068E7BF /* Sources */,
-				C9874BF80E429EF90068E7BF /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HoneycombView;
-			productName = HoneycombView;
-			productReference = C9874BFA0E429EF90068E7BF /* HoneycombView.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -1056,31 +733,12 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Elysium */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C94A2E980F1571FE001E7B75 /* Products */;
-					ProjectRef = C94A2E970F1571FE001E7B75 /* JSCocoa (embed).xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Elysium */,
-				C9874BF90E429EF90068E7BF /* HoneycombView */,
-				C97FEC850E4F5FB2008F309B /* StackedListView */,
-				C93D54900E61F0E80077C448 /* PYMIDI */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		C94A2E9C0F1571FE001E7B75 /* JSCocoa.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = JSCocoa.framework;
-			remoteRef = C94A2E9B0F1571FE001E7B75 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D15AC2B0486D014006FF6A4 /* Resources */ = {
@@ -1122,28 +780,6 @@
 				C9D6B15C0EBCE83D00CA98DC /* control_stop_blue.png in Resources */,
 				C9F450650EBDD1BF002C3637 /* ScriptPackageInspector.xib in Resources */,
 				C978717F0F1FF76B00C4160A /* output in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C93D548D0E61F0E80077C448 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C97FEC820E4F5FB2008F309B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C97FEC950E4F6042008F309B /* sectionheader.gif in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9874BF60E429EF90068E7BF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1234,69 +870,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C93D548E0E61F0E80077C448 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C93D54B00E61F1250077C448 /* PYMIDIEndpoint.m in Sources */,
-				C93D54B20E61F1250077C448 /* PYMIDIEndpointDescriptor.m in Sources */,
-				C93D54B40E61F1250077C448 /* PYMIDIEndpointSet.m in Sources */,
-				C93D54B60E61F1250077C448 /* PYMIDIManager.m in Sources */,
-				C93D54B80E61F1250077C448 /* PYMIDIRealDestination.m in Sources */,
-				C93D54BA0E61F1250077C448 /* PYMIDIRealEndpoint.m in Sources */,
-				C93D54BC0E61F1250077C448 /* PYMIDIRealSource.m in Sources */,
-				C93D54BE0E61F1250077C448 /* PYMIDIUtils.m in Sources */,
-				C93D54C00E61F1250077C448 /* PYMIDIVirtualDestination.m in Sources */,
-				C93D54C20E61F1250077C448 /* PYMIDIVirtualEndpoint.m in Sources */,
-				C93D54C40E61F1250077C448 /* PYMIDIVirtualSource.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C97FEC830E4F5FB2008F309B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C97FEC970E4F6042008F309B /* PACollapsibleSectionBox.m in Sources */,
-				C97FEC990E4F6042008F309B /* PAFunkyBox.m in Sources */,
-				C97FEC9B0E4F6042008F309B /* PASectionHeaderView.m in Sources */,
-				C97FEC9D0E4F6042008F309B /* PAStackedListView.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9874BF70E429EF90068E7BF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C9874C2A0E42A1A10068E7BF /* LMHexCell.m in Sources */,
-				C9874C2D0E42A1A10068E7BF /* LMHoneycombView.m in Sources */,
-				C9874C2F0E42A1A10068E7BF /* LMRegularPolygon.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C93D54D70E61F1970077C448 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C93D54900E61F0E80077C448 /* PYMIDI */;
-			targetProxy = C93D54D60E61F1970077C448 /* PBXContainerItemProxy */;
-		};
-		C94A2ED50F15792E001E7B75 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JSCocoa;
-			targetProxy = C94A2ED40F15792E001E7B75 /* PBXContainerItemProxy */;
-		};
-		C96311700E50587A008BF9AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C97FEC850E4F5FB2008F309B /* StackedListView */;
-			targetProxy = C963116F0E50587A008BF9AB /* PBXContainerItemProxy */;
-		};
-		C9874C3D0E42A2460068E7BF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C9874BF90E429EF90068E7BF /* HoneycombView */;
-			targetProxy = C9874C3C0E42A2460068E7BF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
@@ -1398,11 +972,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../Honeycomb/build/Release\"",
-					"\"$(SRCROOT)/build/Debug\"",
-					"\"$(SRCROOT)/../../Cocoa/3rdParty/WebKit/JavaScriptCore/build/Release\"",
-					"\"$(SRCROOT)/../../Cocoa/frameworks/FScriptBin-20080516\"",
-					"\"$(SRCROOT)/../../Cocoa/frameworks/FScript_2_0_alpha/Binaries\"",
+					"\"$(SRCROOT)/frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1410,7 +980,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Elysium_Prefix.pch;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../XCode/Release/HoneycombView.framework/Versions/A/Headers\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				ONLY_ACTIVE_ARCH = YES;
@@ -1428,18 +997,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../Honeycomb/build/Release\"",
-					"\"$(SRCROOT)/build/Debug\"",
-					"\"$(SRCROOT)/../../Cocoa/3rdParty/WebKit/JavaScriptCore/build/Release\"",
-					"\"$(SRCROOT)/../../Cocoa/frameworks/FScriptBin-20080516\"",
-					"\"$(SRCROOT)/../../Cocoa/frameworks/FScript_2_0_alpha/Binaries\"",
+					"\"$(SRCROOT)/frameworks\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Elysium_Prefix.pch;
 				GCC_UNROLL_LOOPS = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../XCode/Release/HoneycombView.framework/Versions/A/Headers\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				ONLY_ACTIVE_ARCH = NO;
@@ -1482,171 +1046,6 @@
 			};
 			name = Release;
 		};
-		C93D54930E61F0E90077C448 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "PYMIDI-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = PYMIDI;
-			};
-			name = Debug;
-		};
-		C93D54940E61F0E90077C448 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "PYMIDI-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = PYMIDI;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		C97FEC880E4F5FB3008F309B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "StackedListView-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = StackedListView;
-			};
-			name = Debug;
-		};
-		C97FEC890E4F5FB3008F309B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "StackedListView-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = StackedListView;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		C9874BFC0E429EFA0068E7BF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "HoneycombView-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = HoneycombView;
-			};
-			name = Debug;
-		};
-		C9874BFD0E429EFA0068E7BF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "HoneycombView-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = HoneycombView;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1664,33 +1063,6 @@
 			buildConfigurations = (
 				C05733CC08A9546B00998B17 /* Debug */,
 				C05733CD08A9546B00998B17 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C93D54950E61F0E90077C448 /* Build configuration list for PBXNativeTarget "PYMIDI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C93D54930E61F0E90077C448 /* Debug */,
-				C93D54940E61F0E90077C448 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C97FEC8A0E4F5FB3008F309B /* Build configuration list for PBXNativeTarget "StackedListView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C97FEC880E4F5FB3008F309B /* Debug */,
-				C97FEC890E4F5FB3008F309B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C9874BFE0E429EFA0068E7BF /* Build configuration list for PBXNativeTarget "HoneycombView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C9874BFC0E429EFA0068E7BF /* Debug */,
-				C9874BFD0E429EFA0068E7BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

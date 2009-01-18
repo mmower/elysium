@@ -1,0 +1,18 @@
+//
+//  PAFunkyBox.h
+//  StackedListView
+//
+//  Created by Tomas Franzén on 2008-07-16.
+//  Copyright 2008 Lighthead Software. All rights reserved.
+//
+
+#import <Cocoa/Cocoa.h>
+
+
+@interface PAFunkyBox : NSBox {
+	NSViewAnimation *animation;
+}
+
+- (IBAction)toggleSize:(id)sender;
+
+@end
