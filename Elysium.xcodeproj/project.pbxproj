@@ -45,6 +45,8 @@
 		C970F1770F23976500ABAC2E /* JSCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1760F23976500ABAC2E /* JSCocoa.framework */; };
 		C970F17A0F23976A00ABAC2E /* JSCocoa.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1760F23976500ABAC2E /* JSCocoa.framework */; };
 		C970F17C0F23977C00ABAC2E /* PYMIDI.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F11D0F23955900ABAC2E /* PYMIDI.framework */; };
+		C970F1CD0F23B42800ABAC2E /* LMDial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1CC0F23B42800ABAC2E /* LMDial.framework */; };
+		C970F1D00F23B43100ABAC2E /* LMDial.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1CC0F23B42800ABAC2E /* LMDial.framework */; };
 		C97580CC0F18174D00DB8E93 /* JavascriptCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */; };
 		C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580E70F181F5D00DB8E93 /* ELScript.m */; };
 		C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */; };
@@ -123,6 +125,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C970F1D00F23B43100ABAC2E /* LMDial.framework in Copy Frameworks */,
 				C970F1090F23949400ABAC2E /* HoneycombView.framework in Copy Frameworks */,
 				C970F17C0F23977C00ABAC2E /* PYMIDI.framework in Copy Frameworks */,
 				C970F17A0F23976A00ABAC2E /* JSCocoa.framework in Copy Frameworks */,
@@ -187,6 +190,7 @@
 		C970F0F80F23948900ABAC2E /* StackedListView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StackedListView.framework; path = frameworks/StackedListView.framework; sourceTree = "<group>"; };
 		C970F11D0F23955900ABAC2E /* PYMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PYMIDI.framework; path = frameworks/PYMIDI.framework; sourceTree = "<group>"; };
 		C970F1760F23976500ABAC2E /* JSCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSCocoa.framework; path = frameworks/JSCocoa.framework; sourceTree = "<group>"; };
+		C970F1CC0F23B42800ABAC2E /* LMDial.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LMDial.framework; path = frameworks/LMDial.framework; sourceTree = "<group>"; };
 		C97580C60F180EA200DB8E93 /* ELTaggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTaggable.h; sourceTree = "<group>"; };
 		C97580CA0F18174D00DB8E93 /* JavascriptCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptCallback.h; sourceTree = "<group>"; };
 		C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptCallback.m; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 				C970F0FC0F23948900ABAC2E /* StackedListView.framework in Frameworks */,
 				C970F11E0F23955900ABAC2E /* PYMIDI.framework in Frameworks */,
 				C970F1770F23976500ABAC2E /* JSCocoa.framework in Frameworks */,
+				C970F1CD0F23B42800ABAC2E /* LMDial.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +335,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C970F1CC0F23B42800ABAC2E /* LMDial.framework */,
 				C970F1760F23976500ABAC2E /* JSCocoa.framework */,
 				C970F11D0F23955900ABAC2E /* PYMIDI.framework */,
 				C970F0F50F23948900ABAC2E /* HoneycombView.framework */,
