@@ -14,7 +14,7 @@
 @interface ELNoteTool : ELTool {
   ELIntegerKnob *velocityKnob;
   ELIntegerKnob *emphasisKnob;
-  ELFloatKnob   *durationKnob;
+  ELIntegerKnob *durationKnob;
   ELIntegerKnob *triadKnob;
   ELIntegerKnob *ghostsKnob;
   
@@ -24,7 +24,7 @@
 
 - (id)initWithVelocityKnob:(ELIntegerKnob *)velocityKnob
               emphasisKnob:(ELIntegerKnob *)emphasisKnob
-              durationKnob:(ELFloatKnob *)durationKnob
+              durationKnob:(ELIntegerKnob *)durationKnob
                  triadKnob:(ELIntegerKnob *)triadKnob
                 ghostsKnob:(ELIntegerKnob *)ghostsKnob
               overrideKnob:(ELBooleanKnob *)overrideKnob
@@ -32,7 +32,7 @@
 
 @property ELIntegerKnob *velocityKnob;
 @property ELIntegerKnob *emphasisKnob;
-@property ELFloatKnob *durationKnob;
+@property ELIntegerKnob *durationKnob;
 @property ELIntegerKnob *triadKnob;
 @property ELIntegerKnob *ghostsKnob;
 @property ELBooleanKnob *overrideKnob;

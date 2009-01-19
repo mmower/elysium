@@ -142,15 +142,13 @@
   return [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
 }
 
-- (ELFloatKnob *)defaultDurationKnob {
-  return [[ELFloatKnob alloc] initWithName:@"duration" floatValue:0.5 minimum:0.1 maximum:5.0 stepping:0.1];
+- (ELIntegerKnob *)defaultDurationKnob {
+  return [[ELIntegerKnob alloc] initWithName:@"duration" integerValue:500 minimum:100 maximum:5000 stepping:100];
 }
 
 - (ELIntegerKnob *)defaultTransposeKnob {
   return [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
 }
-
-
 
 // Player status & control
 
@@ -473,7 +471,7 @@
     if( nodes == nil ) {
       return nil;
     } else {
-      durationKnob = [self loadFloatKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player durationKnob" orCreateVia:@selector(defaultDurationKnob)];
+      durationKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player durationKnob" orCreateVia:@selector(defaultDurationKnob)];
       if( durationKnob == nil ) {
         return nil;
       }

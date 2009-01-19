@@ -35,7 +35,7 @@ NSDictionary *defaultChannelSends( void ) {
 
 - (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_
               emphasisKnob:(ELIntegerKnob *)_emphasisKnob_
-              durationKnob:(ELFloatKnob *)_durationKnob_
+              durationKnob:(ELIntegerKnob *)_durationKnob_
                  triadKnob:(ELIntegerKnob *)_triadKnob_
                 ghostsKnob:(ELIntegerKnob *)_ghostsKnob_
               overrideKnob:(ELBooleanKnob *)_overrideKnob_
@@ -56,7 +56,7 @@ NSDictionary *defaultChannelSends( void ) {
 - (id)init {
   return [self initWithVelocityKnob:[[ELIntegerKnob alloc] initWithName:@"velocity"]
                        emphasisKnob:[[ELIntegerKnob alloc] initWithName:@"emphasis"]
-                       durationKnob:[[ELFloatKnob alloc] initWithName:@"duration"]
+                       durationKnob:[[ELIntegerKnob alloc] initWithName:@"duration"]
                           triadKnob:[[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1]
                          ghostsKnob:[[ELIntegerKnob alloc] initWithName:@"ghosts" integerValue:0 minimum:0 maximum:16 stepping:1]
                        overrideKnob:[[ELBooleanKnob alloc] initWithName:@"override" booleanValue:NO]
@@ -251,11 +251,11 @@ NSDictionary *defaultChannelSends( void ) {
     
     if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:_error_] ) ) {
       if( ( element = [nodes firstXMLElement] ) ) {
-        durationKnob = [[ELFloatKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_ error:_error_];
+        durationKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_ error:_error_];
       } else {
-        durationKnob = [[ELFloatKnob alloc] initWithName:@"duration"];
+        durationKnob = [[ELIntegerKnob alloc] initWithName:@"duration"];
       }
-      [durationKnob setMinimum:0.1 maximum:5.0 stepping:0.1];
+      [durationKnob setMinimum:100 maximum:5000 stepping:100];
       
       if( durationKnob == nil ) {
         return nil;

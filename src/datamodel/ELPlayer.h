@@ -52,7 +52,7 @@
   ELIntegerKnob       *pulseCountKnob;
   ELIntegerKnob       *velocityKnob;
   ELIntegerKnob       *emphasisKnob;
-  ELFloatKnob         *durationKnob;
+  ELIntegerKnob       *durationKnob;
   ELIntegerKnob       *transposeKnob;
 }
 
@@ -77,7 +77,7 @@
 @property (readonly) ELIntegerKnob *pulseCountKnob;
 @property (readonly) ELIntegerKnob *velocityKnob;
 @property (readonly) ELIntegerKnob *emphasisKnob;
-@property (readonly) ELFloatKnob   *durationKnob;
+@property (readonly) ELIntegerKnob *durationKnob;
 @property (readonly) ELIntegerKnob *transposeKnob;
 
 - (id)initWithDocument:(ElysiumDocument *)document;
@@ -89,7 +89,7 @@
 - (ELIntegerKnob *)defaultPulseCountKnob;
 - (ELIntegerKnob *)defaultVelocityKnob;
 - (ELIntegerKnob *)defaultEmphasisKnob;
-- (ELFloatKnob *)defaultDurationKnob;
+- (ELIntegerKnob *)defaultDurationKnob;
 - (ELIntegerKnob *)defaultTransposeKnob;
 
 - (void)toggleNoteDisplay;

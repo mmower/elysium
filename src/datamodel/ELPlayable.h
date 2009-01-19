@@ -15,12 +15,12 @@
 }
 
 - (void)playOnChannel:(int)channel
-             duration:(float)duration
+             duration:(int)duration
              velocity:(int)velocity
             transpose:(int)transpose;
             
 - (void)playOnChannel:(int)channel
-             duration:(float)duration
+             duration:(int)duration
              velocity:(int)velocity
             transpose:(int)transpose
                offset:(int)offset;
