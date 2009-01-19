@@ -14,6 +14,7 @@ typedef enum tagLMDialStyle {
 } LMDialStyle;
 
 @interface LMDialView : NSView {
+    BOOL        enabled;
     LMDialStyle style;
     int         minimum;
     int         maximum;
@@ -22,7 +23,6 @@ typedef enum tagLMDialStyle {
     
     BOOL        showValue;
 
-    NSColor     *backgroundColor;
     NSColor     *onBorderColor;
     NSColor     *onFillColor;
     NSColor     *offBorderColor;
@@ -32,6 +32,7 @@ typedef enum tagLMDialStyle {
     CGFloat     fontSize;
 }
 
+@property BOOL enabled;
 @property LMDialStyle style;
 @property int minimum;
 @property int maximum;
@@ -41,7 +42,6 @@ typedef enum tagLMDialStyle {
 @property BOOL showValue;
 @property CGFloat fontSize;
 
-@property (assign) NSColor *backgroundColor;
 @property (assign) NSColor *onBorderColor;
 @property (assign) NSColor *onFillColor;
 @property (assign) NSColor *offBorderColor;
