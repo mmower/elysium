@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -60,8 +60,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>0D5950D1-D4A8-44C6-9DBC-251CFEF852E2</string>
 							<string>7E6A9228-C9F3-4F21-8054-E4BF3F2F6BA8</string>
-							<string>7ECC0489-6EC7-423A-A4F0-EB26A45193E0</string>
-							<string>CE72C84A-FB66-447C-AEBB-C6E30C3A95F1</string>
+							<string>BWToolbarShowColorsItem</string>
+							<string>BWToolbarShowFontsItem</string>
 							<string>NSToolbarFlexibleSpaceItem</string>
 							<string>NSToolbarSeparatorItem</string>
 							<string>NSToolbarSpaceItem</string>
@@ -351,8 +351,7 @@ AAAEuVhZWiAAAAAAAABW+AAArC8AAB0DWFlaIAAAAAAAACYiAAASfwAAsXA</bytes>
 					</object>
 					<object class="NSMutableArray" key="NSToolbarIBDefaultItems">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<reference ref="689359696"/>
-						<reference ref="699926372"/>
+						<reference ref="512000903"/>
 						<reference ref="923670150"/>
 					</object>
 					<object class="NSMutableArray" key="NSToolbarIBSelectableItems">
@@ -727,7 +726,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<reference key="NSSupport" ref="25680339"/>
 											</object>
 										</object>
-										<reference key="NSSelectedCell" ref="907960526"/>
+										<int key="NSSelectedRow">-1</int>
+										<int key="NSSelectedCol">-1</int>
 										<reference key="NSBackgroundColor" ref="29828769"/>
 										<reference key="NSCellBackgroundColor" ref="793415868"/>
 										<reference key="NSFont" ref="25680339"/>
@@ -758,17 +758,12 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moGFAYH+AIaGA</bytes>
 						</object>
 					</object>
 				</object>
+				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<reference key="NSWindowView" ref="1012384846"/>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
 			<object class="NSUserDefaultsController" id="472862421">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>composer.name</string>
-					<string>composer.email</string>
-					<string>BehaviourAtOpen</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
@@ -1081,7 +1076,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moGFAYH+AIaGA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{451, 816}, {616, 0}}</string>
+					<string>{{405, 816}, {617, 0}}</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -1132,7 +1127,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moGFAYH+AIaGA</bytes>
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">Elysium.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../Elysium.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>
