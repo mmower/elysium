@@ -13,6 +13,8 @@
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		C904104C0F2660A5009CD2B9 /* ELPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C904104B0F2660A5009CD2B9 /* ELPreferencesController.m */; };
+		C90410660F268AB9009CD2B9 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C90410640F268AB9009CD2B9 /* PreferencesWindow.xib */; };
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
 		C90A940E0EB9FEDB004AA5BE /* ELMIDITrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = C90A940D0EB9FEDB004AA5BE /* ELMIDITrigger.m */; };
 		C90BDFC20EC072040003B0CD /* NSXML+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BDFC10EC072040003B0CD /* NSXML+Helpers.m */; };
@@ -30,6 +32,8 @@
 		C930CA190EBBD54300DE0817 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = C930CA180EBBD54300DE0817 /* NoodleLineNumberView.m */; };
 		C930CA230EBBD66D00DE0817 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = C930CA220EBBD66D00DE0817 /* NoodleLineNumberMarker.m */; };
 		C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */; };
+		C94BAE680F263F0300CCC933 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */; };
+		C94BAE6B0F263F0A00CCC933 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */; };
 		C94F55760EA6A73900320BF5 /* ELKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C94F55750EA6A73900320BF5 /* ELKey.m */; };
 		C957DDE60F1905A900798819 /* String+AsJavascriptFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C957DDE50F1905A900798819 /* String+AsJavascriptFunction.m */; };
 		C9599AE80EAE5D9000310D3D /* ELRandomOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9599AE70EAE5D9000310D3D /* ELRandomOscillator.m */; };
@@ -125,6 +129,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C94BAE6B0F263F0A00CCC933 /* BWToolkitFramework.framework in Copy Frameworks */,
 				C970F1D00F23B43100ABAC2E /* LMDial.framework in Copy Frameworks */,
 				C970F1090F23949400ABAC2E /* HoneycombView.framework in Copy Frameworks */,
 				C970F17C0F23977C00ABAC2E /* PYMIDI.framework in Copy Frameworks */,
@@ -150,6 +155,9 @@
 		32DBCF750370BD2300C91783 /* Elysium_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elysium_Prefix.pch; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C904104A0F2660A5009CD2B9 /* ELPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPreferencesController.h; sourceTree = "<group>"; };
+		C904104B0F2660A5009CD2B9 /* ELPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPreferencesController.m; sourceTree = "<group>"; };
+		C90410650F268AB9009CD2B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
 		C90A940C0EB9FEDB004AA5BE /* ELMIDITrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDITrigger.h; sourceTree = "<group>"; };
 		C90A940D0EB9FEDB004AA5BE /* ELMIDITrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDITrigger.m; sourceTree = "<group>"; };
@@ -175,6 +183,7 @@
 		C930CA220EBBD66D00DE0817 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
 		C94957C90EBE365D00AC42AD /* ELTimerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTimerCallback.h; sourceTree = "<group>"; };
 		C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimerCallback.m; sourceTree = "<group>"; };
+		C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		C94F55740EA6A73900320BF5 /* ELKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELKey.h; sourceTree = "<group>"; };
 		C94F55750EA6A73900320BF5 /* ELKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELKey.m; sourceTree = "<group>"; };
 		C957DDE40F1905A900798819 /* String+AsJavascriptFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+AsJavascriptFunction.h"; sourceTree = "<group>"; };
@@ -326,6 +335,7 @@
 				C970F11E0F23955900ABAC2E /* PYMIDI.framework in Frameworks */,
 				C970F1770F23976500ABAC2E /* JSCocoa.framework in Frameworks */,
 				C970F1CD0F23B42800ABAC2E /* LMDial.framework in Frameworks */,
+				C94BAE680F263F0300CCC933 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +345,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */,
 				C970F1CC0F23B42800ABAC2E /* LMDial.framework */,
 				C970F1760F23976500ABAC2E /* JSCocoa.framework */,
 				C970F11D0F23955900ABAC2E /* PYMIDI.framework */,
@@ -391,6 +402,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C90410640F268AB9009CD2B9 /* PreferencesWindow.xib */,
 				C97871380F1FF76B00C4160A /* output */,
 				C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */,
 				C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */,
@@ -423,6 +435,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C90410430F266057009CD2B9 /* preferences */ = {
+			isa = PBXGroup;
+			children = (
+				C904104A0F2660A5009CD2B9 /* ELPreferencesController.h */,
+				C904104B0F2660A5009CD2B9 /* ELPreferencesController.m */,
+			);
+			name = preferences;
+			path = src/preferences;
+			sourceTree = "<group>";
+		};
 		C930CA150EBBD4F800DE0817 /* line_number_view */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +460,7 @@
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C90410430F266057009CD2B9 /* preferences */,
 				C930CA150EBBD4F800DE0817 /* line_number_view */,
 				C9DA150C0EA7F02C0087EDD3 /* activity_viewer */,
 				C9B1F36B0E9BF6BF0017092F /* scripting */,
@@ -786,6 +809,7 @@
 				C9D6B15C0EBCE83D00CA98DC /* control_stop_blue.png in Resources */,
 				C9F450650EBDD1BF002C3637 /* ScriptPackageInspector.xib in Resources */,
 				C978717F0F1FF76B00C4160A /* output in Resources */,
+				C90410660F268AB9009CD2B9 /* PreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,6 +897,7 @@
 				C97580CC0F18174D00DB8E93 /* JavascriptCallback.m in Sources */,
 				C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */,
 				C957DDE60F1905A900798819 /* String+AsJavascriptFunction.m in Sources */,
+				C904104C0F2660A5009CD2B9 /* ELPreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +934,14 @@
 				2A37F4BAFDCFA73011CA2CEA /* English */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		C90410640F268AB9009CD2B9 /* PreferencesWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C90410650F268AB9009CD2B9 /* English */,
+			);
+			name = PreferencesWindow.xib;
 			sourceTree = "<group>";
 		};
 		C9A9F1610E8A41DC009A06A3 /* OscillatorDesigner.xib */ = {

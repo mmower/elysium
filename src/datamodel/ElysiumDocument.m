@@ -74,11 +74,20 @@
   }
 }
 
+- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)typeName {
+  NSError *error;
+  BOOL result = [self readFromData:data ofType:typeName error:&error];
+  
+  if( error != nil ) {
+    NSLog( @"Error loading last document: %@", [error localizedDescription] );
+  }
+  
+  return result;
+}
+
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-  NSLog( @"readFromData:" );
   assert( outError != nil );
-  NSLog( @"assertion passed" );
   
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithData:data options:0 error:outError];
   if( document == nil ) {

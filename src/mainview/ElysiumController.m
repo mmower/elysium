@@ -19,6 +19,7 @@
 #import "ELOscillatorDesignerController.h"
 #import "ELMIDIConfigController.h"
 #import "ELScriptPackageController.h"
+#import "ELPreferencesController.h"
 
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
@@ -35,6 +36,9 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 + (void)initialize {
   NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+  
+  [defaultValues setObject:[NSNumber numberWithInt:2]
+                    forKey:ELBehaviourAtOpenKey];
   
   [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(173.0/255)
                                                                                         green:(195.0/255)
@@ -112,7 +116,16 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 // NSApp delegate methods
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)_sender_ {
-  return NO;
+  return [[NSUserDefaults standardUserDefaults] integerForKey:ELBehaviourAtOpenKey] == EL_OPEN_EMPTY;
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)_notification_ {
+  if( [[NSUserDefaults standardUserDefaults] integerForKey:ELBehaviourAtOpenKey] == EL_OPEN_LAST ) {
+    NSArray *recentDocuments = [[NSDocumentController sharedDocumentController] recentDocumentURLs];
+    if( [recentDocuments count] > 0 ) {
+      [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:[recentDocuments objectAtIndex:0] display:YES];
+    }
+  }
 }
 
 // General initialization
@@ -208,6 +221,14 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 - (IBAction)satisfyMe:(id)_sender_ {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getsatisfaction.com/lucidmac/products/lucidmac_elysium"]];
+}
+
+- (IBAction)showPreferences:(id)_sender_ {
+  if( !preferencesController ) {
+    preferencesController = [[ELPreferencesController alloc] init];
+  }
+  
+  [preferencesController showWindow:self];
 }
 
 - (IBAction)showHelp:(id)_sender_ {

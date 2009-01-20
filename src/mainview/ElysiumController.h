@@ -15,6 +15,7 @@
 @class ELOscillatorDesignerController;
 @class ELMIDIConfigController;
 @class ELScriptPackageController;
+@class ELPreferencesController;
 
 @class ELPlayer;
 
@@ -25,6 +26,7 @@
   ELOscillatorDesignerController  *oscillatorDesignerController;
   ELMIDIConfigController          *midiConfigController;
   ELScriptPackageController       *scriptPackageController;
+  ELPreferencesController         *preferencesController;
 }
 
 - (BOOL)initScriptingEngine;
@@ -38,6 +40,7 @@
 - (IBAction)showInspectorPanel:(id)sender;
 - (IBAction)showMIDIConfigInspector:(id)sender;
 - (IBAction)showScriptPackageInspector:(id)sender;
+- (IBAction)showPreferences:(id)sender;
 - (IBAction)satisfyMe:(id)sender;
 - (IBAction)showHelp:(id)sender;
 
