@@ -123,7 +123,7 @@
 }
 
 - (ELIntegerKnob *)defaultBarLengthKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:100 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:24 stepping:1];
 }
 
 - (ELIntegerKnob *)defaultTimeToLiveKnob {
