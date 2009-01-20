@@ -158,7 +158,7 @@ static NSString * const toolType = @"generate";
       } else {
         timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive"];
       }
-      [timeToLiveKnob setMinimum:1 maximum:999 stepping:1];
+      [timeToLiveKnob setMinimum:1 maximum:64 stepping:1];
       
       if( timeToLiveKnob == nil ) {
         return nil;
@@ -173,7 +173,7 @@ static NSString * const toolType = @"generate";
       } else {
         pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount"];
       }
-      [pulseCountKnob setMinimum:1 maximum:999 stepping:1];
+      [pulseCountKnob setMinimum:1 maximum:64 stepping:1];
       
       if( pulseCountKnob == nil ) {
         return nil;
@@ -188,7 +188,7 @@ static NSString * const toolType = @"generate";
       } else {
         offsetKnob = [[ELIntegerKnob alloc] initWithName:@"offset" integerValue:0 minimum:0 maximum:64 stepping:1];
       }
-      [offsetKnob setMinimum:0 maximum:64 stepping:1];
+      [offsetKnob setMinimum:0 maximum:16 stepping:1];
       
       if( offsetKnob == nil ) {
         return nil;

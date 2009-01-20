@@ -119,7 +119,7 @@
 @synthesize selectedLayer;
 
 - (ELIntegerKnob *)defaultTempoKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:120 minimum:30 maximum:900 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:120 minimum:15 maximum:600 stepping:1];
 }
 
 - (ELIntegerKnob *)defaultBarLengthKnob {
@@ -127,11 +127,11 @@
 }
 
 - (ELIntegerKnob *)defaultTimeToLiveKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:999 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:64 stepping:1];
 }
 
 - (ELIntegerKnob *)defaultPulseCountKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:999 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:64 stepping:1];
 }
 
 - (ELIntegerKnob *)defaultVelocityKnob {
@@ -147,7 +147,7 @@
 }
 
 - (ELIntegerKnob *)defaultTransposeKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-36 maximum:36 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-24 maximum:24 stepping:1];
 }
 
 // Player status & control
