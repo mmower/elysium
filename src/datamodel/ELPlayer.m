@@ -414,6 +414,8 @@
       tempoKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player tempoKnob" orCreateVia:@selector(defaultTempoKnob)];
       if( tempoKnob == nil ) {
         return nil;
+      } else {
+        [tempoKnob setMinimum:15 maximum:600 stepping:1];
       }
     }
     
@@ -424,6 +426,8 @@
       barLengthKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player barLengthKnob" orCreateVia:@selector(defaultBarLengthKnob)];
       if( barLengthKnob == nil ) {
         return nil;
+      } else {
+        [barLengthKnob setMinimum:1 maximum:24 stepping:1];
       }
     }
     
@@ -434,6 +438,8 @@
       timeToLiveKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player timeToLiveKnob" orCreateVia:@selector(defaultTimeToLiveKnob)];
       if( timeToLiveKnob == nil ) {
         return nil;
+      } else {
+        [timeToLiveKnob setMinimum:1 maximum:64 stepping:1];
       }
     }
     
@@ -444,6 +450,8 @@
       pulseCountKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player pulseCountKnob" orCreateVia:@selector(defaultPulseCountKnob)];
       if( pulseCountKnob == nil ) {
         return nil;
+      } else {
+        [pulseCountKnob setMinimum:1 maximum:64 stepping:1];
       }
     }
     
@@ -454,6 +462,8 @@
       velocityKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player velocityKnob" orCreateVia:@selector(defaultVelocityKnob)];
       if( velocityKnob == nil ) {
         return nil;
+      } else {
+        [velocityKnob setMinimum:1 maximum:127 stepping:1];
       }
     }
     
@@ -464,6 +474,8 @@
       emphasisKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player emphasisKnob" orCreateVia:@selector(defaultEmphasisKnob)];
       if( emphasisKnob == nil ) {
         return nil;
+      } else {
+        [emphasisKnob setMinimum:1 maximum:127 stepping:1];
       }
     }
     
@@ -474,6 +486,8 @@
       durationKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player durationKnob" orCreateVia:@selector(defaultDurationKnob)];
       if( durationKnob == nil ) {
         return nil;
+      } else {
+        [durationKnob setMinimum:100 maximum:5000 stepping:100];
       }
     }
     
@@ -484,6 +498,8 @@
       transposeKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player tranposeKnob" orCreateVia:@selector(defaultTransposeKnob)];
       if( transposeKnob == nil ) {
         return nil;
+      } else {
+        [transposeKnob setMinimum:-24 maximum:24 stepping:1];
       }
     }
     
