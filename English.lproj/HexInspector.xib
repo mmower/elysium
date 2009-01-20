@@ -2,19 +2,19 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9F33</string>
+		<string key="IBDocument.SystemVersion">9G55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">672</string>
-		<string key="IBDocument.AppKitVersion">949.34</string>
-		<string key="IBDocument.HIToolboxVersion">352.00</string>
+		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="485"/>
-			<integer value="649"/>
-			<integer value="484"/>
 			<integer value="481"/>
 			<integer value="483"/>
-			<integer value="482"/>
 			<integer value="480"/>
+			<integer value="649"/>
+			<integer value="482"/>
+			<integer value="484"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -932,7 +932,7 @@
 										<reference ref="9"/>
 										<reference ref="626624950"/>
 										<reference ref="9"/>
-										<real value="1.000000e-01" id="73568755"/>
+										<real value="1.000000e-01" id="648164938"/>
 										<reference ref="9"/>
 										<integer value="4" id="12"/>
 									</object>
@@ -951,7 +951,7 @@
 									<string key="NSString">NaN</string>
 									<reference key="NSAttributes" ref="919743283"/>
 								</object>
-								<reference key="NS.min" ref="73568755"/>
+								<reference key="NS.min" ref="648164938"/>
 								<object class="NSDecimalNumberPlaceholder" key="NS.max" id="238777058">
 									<int key="NS.exponent">0</int>
 									<int key="NS.length">0</int>
@@ -1592,9 +1592,9 @@
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<reference ref="9"/>
 										<reference ref="9"/>
-										<integer value="1040"/>
+										<reference ref="626624950"/>
 										<reference ref="9"/>
-										<real value="1.000000e-01" id="648164938"/>
+										<reference ref="648164938"/>
 										<reference ref="9"/>
 										<reference ref="12"/>
 									</object>
@@ -13422,9 +13422,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{895, 384}, {240, 472}}</string>
+					<string>{{819, 384}, {240, 472}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{895, 384}, {240, 472}}</string>
+					<string>{{819, 384}, {240, 472}}</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -13618,59 +13618,7 @@
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../Honeycomb/view/LMHoneycombView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">src/midi/ELTimer.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PACollapsibleSectionBox</string>
-					<string key="superclassName">NSView</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">toggleState:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>disclosureTriangle</string>
-							<string>sectionHeaderView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>NSButton</string>
-							<string>NSView</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../../Cocoa/3rdParty/StackedListView/PACollapsibleSectionBox.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PASectionHeaderView</string>
-					<string key="superclassName">NSButton</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">box</string>
-						<string key="NS.object.0">PACollapsibleSectionBox</string>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../../Cocoa/3rdParty/StackedListView/PASectionHeaderView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PAStackedListView</string>
-					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../../Cocoa/3rdParty/StackedListView/PAStackedListView.h</string>
 					</object>
 				</object>
 			</object>
