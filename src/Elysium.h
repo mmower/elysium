@@ -13,6 +13,8 @@
 
 #import "NSXML+Helpers.h"
 
+#import "ELPreferencesController.h"
+
 // Type to represent compass directions (for a hex)
 typedef enum tagDirection {
   N = 0,

@@ -37,8 +37,15 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 + (void)initialize {
   NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
   
-  [defaultValues setObject:[NSNumber numberWithInt:2]
-                    forKey:ELBehaviourAtOpenKey];
+  [defaultValues setObject:[NSNumber numberWithInt:2] forKey:ELBehaviourAtOpenKey];
+  [defaultValues setObject:[NSNumber numberWithFloat:0.5] forKey:ELLayerThreadPriorityKey];
+  
+  [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultTempoKey];
+  [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultTTLKey];
+  [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultPulseCountKey];
+  [defaultValues setObject:[NSNumber numberWithInt:90] forKey:ELDefaultVelocityKey];
+  [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultEmphasisKey];
+  [defaultValues setObject:[NSNumber numberWithInt:500] forKey:ELDefaultDurationKey];
   
   [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(173.0/255)
                                                                                         green:(195.0/255)

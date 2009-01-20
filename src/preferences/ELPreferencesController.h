@@ -15,9 +15,17 @@ typedef enum tagBehaviourAtOpen {
 } ELBehaviourAtOpen;
 
 extern NSString * const ELBehaviourAtOpenKey;
-extern NSString * const ELLastCompositionFileKey;
+extern NSString * const ELLayerThreadPriorityKey;
+
 extern NSString * const ELComposerNameKey;
 extern NSString * const ELComposerEmailKey;
+
+extern NSString * const ELDefaultTempoKey;
+extern NSString * const ELDefaultTTLKey;
+extern NSString * const ELDefaultPulseCountKey;
+extern NSString * const ELDefaultVelocityKey;
+extern NSString * const ELDefaultEmphasisKey;
+extern NSString * const ELDefaultDurationKey;
 
 @interface ELPreferencesController : NSWindowController {
 }

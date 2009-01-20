@@ -119,35 +119,67 @@
 @synthesize selectedLayer;
 
 - (ELIntegerKnob *)defaultTempoKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"tempo" integerValue:120 minimum:15 maximum:600 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"tempo"
+                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultTempoKey]
+                                     minimum:15
+                                     maximum:600
+                                    stepping:1];
 }
 
 - (ELIntegerKnob *)defaultBarLengthKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"barLength" integerValue:4 minimum:1 maximum:24 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"barLength"
+                                integerValue:4
+                                     minimum:1
+                                     maximum:24
+                                    stepping:1];
 }
 
 - (ELIntegerKnob *)defaultTimeToLiveKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"timeToLive" integerValue:16 minimum:1 maximum:64 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"timeToLive"
+                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultTTLKey]
+                                     minimum:1
+                                     maximum:64
+                                    stepping:1];
 }
 
 - (ELIntegerKnob *)defaultPulseCountKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"pulseCount" integerValue:16 minimum:1 maximum:64 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"pulseCount"
+                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultPulseCountKey]
+                                     minimum:1
+                                     maximum:64
+                                    stepping:1];
 }
 
 - (ELIntegerKnob *)defaultVelocityKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"velocity" integerValue:90 minimum:1 maximum:127 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"velocity"
+                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultVelocityKey]
+                                     minimum:1
+                                     maximum:127
+                                    stepping:1];
 }
 
 - (ELIntegerKnob *)defaultEmphasisKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"emphasis" integerValue:120 minimum:1 maximum:127 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"emphasis"
+                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultEmphasisKey]
+                                     minimum:1
+                                     maximum:127
+                                    stepping:1];
 }
 
 - (ELIntegerKnob *)defaultDurationKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"duration" integerValue:500 minimum:100 maximum:5000 stepping:100];
+  return [[ELIntegerKnob alloc] initWithName:@"duration"
+                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultDurationKey]
+                                     minimum:100
+                                     maximum:5000
+                                    stepping:100];
 }
 
 - (ELIntegerKnob *)defaultTransposeKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"transpose" integerValue:0 minimum:-24 maximum:24 stepping:1];
+  return [[ELIntegerKnob alloc] initWithName:@"transpose"
+                                integerValue:0
+                                     minimum:-24
+                                     maximum:24
+                                    stepping:1];
 }
 
 // Player status & control

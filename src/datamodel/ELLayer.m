@@ -168,6 +168,10 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)runLayer {
+  double priority = [[NSUserDefaults standardUserDefaults] floatForKey:ELLayerThreadPriorityKey];
+  BOOL prioritySet = [NSThread setThreadPriority:priority];
+  NSLog( @"Set priority to %f: %@", priority, prioritySet ? @"YES" : @"NO" );
+  
   timeBase  = AudioGetCurrentHostTime();
   isRunning = YES;
   while( ![runner isCancelled] ) {
