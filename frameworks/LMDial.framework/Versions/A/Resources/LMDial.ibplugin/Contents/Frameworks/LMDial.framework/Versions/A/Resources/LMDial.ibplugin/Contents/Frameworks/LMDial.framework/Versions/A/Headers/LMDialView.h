@@ -10,27 +10,41 @@
 
 typedef enum tagLMDialStyle {
   abletonLive,
-  logicPro
+  logicPro,
+  logicPan
 } LMDialStyle;
 
-@interface LMDialView : NSView {
-    BOOL        enabled;
-    LMDialStyle style;
-    int         minimum;
-    int         maximum;
-    int         stepping;
-    int         value;
-    
-    BOOL        showValue;
+@class LMDialEditWindow;
 
-    NSColor     *backgroundColor;
-    NSColor     *onBorderColor;
-    NSColor     *onFillColor;
-    NSColor     *offBorderColor;
-    NSColor     *offFillColor;
-    NSColor     *valueColor;
+@interface LMDialView : NSView {
+    BOOL              enabled;
+    LMDialStyle       style;
+    int               minimum;
+    int               maximum;
+    int               stepping;
+    int               value;
     
-    CGFloat     fontSize;
+    BOOL              showValue;
+
+    NSColor           *onBorderColor;
+    NSColor           *localOnBorderColor;
+    NSColor           *onFillColor;
+    NSColor           *localOnFillColor;
+    NSColor           *offBorderColor;
+    NSColor           *localOffBorderColor;
+    NSColor           *offFillColor;
+    NSColor           *localOffFillColor;
+    NSColor           *valueColor;
+    
+    int               divisor;
+    NSString          *formatter;
+    NSString          *valueText;
+    
+    CGFloat           fontSize;
+    
+    NSTextField       *valueEditor;
+    
+    float             alpha;
 }
 
 @property BOOL enabled;
@@ -39,22 +53,17 @@ typedef enum tagLMDialStyle {
 @property int maximum;
 @property int stepping;
 @property int value;
+@property int divisor;
+@property (copy) NSString *formatter;
 
 @property BOOL showValue;
 @property CGFloat fontSize;
 
-@property (assign) NSColor *backgroundColor;
 @property (assign) NSColor *onBorderColor;
 @property (assign) NSColor *onFillColor;
 @property (assign) NSColor *offBorderColor;
 @property (assign) NSColor *offFillColor;
 @property (assign) NSColor *valueColor;
 
-- (void)drawAbletonLiveStyleDial:(NSRect)bounds;
-- (void)drawLogicProStyleDial:(NSRect)bounds;
-- (void)drawValue:(NSRect)bounds;
-- (void)drawText:(NSString *)text boundedBy:(NSRect)bounds;
-
-- (void)updateBoundValue;
 
 @end
