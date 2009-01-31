@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">9G55</string>
-		<string key="IBDocument.InterfaceBuilderVersion">672</string>
+		<string key="IBDocument.InterfaceBuilderVersion">677</string>
 		<string key="IBDocument.AppKitVersion">949.43</string>
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="163"/>
+			<integer value="288"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilderKit</string>
 			<string>com.lucidmac.LMDial</string>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -492,7 +501,7 @@
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{67, 52}, {40, 40}}</string>
 											<reference key="NSSuperview" ref="374623902"/>
-											<integer value="1" key="lmdial.enabled" id="5"/>
+											<boolean value="YES" key="lmdial.enabled" id="5"/>
 											<integer value="1" key="lmdial.style" id="9"/>
 											<integer value="0" key="lmdial.value" id="8"/>
 											<reference key="lmdial.minimum" ref="8"/>
@@ -514,6 +523,8 @@
 											<reference key="lmdial.valueColor" ref="813195475"/>
 											<real value="6.000000e+00" key="lmdial.fontSize"/>
 											<reference key="lmdial.showValue" ref="9"/>
+											<string key="lmdial.formatter">%+d</string>
+											<reference key="lmdial.divisor" ref="8"/>
 										</object>
 										<object class="LMDialView" id="463587641">
 											<reference key="NSNextResponder" ref="374623902"/>
@@ -533,6 +544,8 @@
 											<reference key="lmdial.valueColor" ref="813195475"/>
 											<real value="6.000000e+00" key="lmdial.fontSize"/>
 											<reference key="lmdial.showValue" ref="9"/>
+											<string key="lmdial.formatter">%+d</string>
+											<reference key="lmdial.divisor" ref="8"/>
 										</object>
 									</object>
 									<string key="NSFrame">{{1, 1}, {162, 102}}</string>
@@ -935,6 +948,8 @@
 											<reference key="lmdial.valueColor" ref="813195475"/>
 											<real value="6.000000e+00" key="lmdial.fontSize"/>
 											<reference key="lmdial.showValue" ref="9"/>
+											<string key="lmdial.formatter">%+d</string>
+											<reference key="lmdial.divisor" ref="9"/>
 										</object>
 										<object class="LMDialView" id="290860460">
 											<reference key="NSNextResponder" ref="896845143"/>
@@ -954,6 +969,8 @@
 											<reference key="lmdial.valueColor" ref="813195475"/>
 											<real value="6.000000e+00" key="lmdial.fontSize"/>
 											<reference key="lmdial.showValue" ref="9"/>
+											<string key="lmdial.formatter">%+d</string>
+											<reference key="lmdial.divisor" ref="9"/>
 										</object>
 										<object class="LMDialView" id="761291657">
 											<reference key="NSNextResponder" ref="896845143"/>
@@ -973,6 +990,8 @@
 											<reference key="lmdial.valueColor" ref="813195475"/>
 											<real value="6.000000e+00" key="lmdial.fontSize"/>
 											<reference key="lmdial.showValue" ref="9"/>
+											<string key="lmdial.formatter">%+d</string>
+											<reference key="lmdial.divisor" ref="9"/>
 										</object>
 										<object class="LMDialView" id="728732727">
 											<reference key="NSNextResponder" ref="896845143"/>
@@ -980,7 +999,7 @@
 											<string key="NSFrame">{{67, 254}, {40, 40}}</string>
 											<reference key="NSSuperview" ref="896845143"/>
 											<reference key="lmdial.enabled" ref="5"/>
-											<reference key="lmdial.style" ref="9"/>
+											<integer value="2" key="lmdial.style"/>
 											<reference key="lmdial.value" ref="8"/>
 											<reference key="lmdial.minimum" ref="8"/>
 											<integer value="100" key="lmdial.maximum"/>
@@ -992,6 +1011,8 @@
 											<reference key="lmdial.valueColor" ref="813195475"/>
 											<real value="6.000000e+00" key="lmdial.fontSize"/>
 											<reference key="lmdial.showValue" ref="9"/>
+											<string key="lmdial.formatter">%+d</string>
+											<reference key="lmdial.divisor" ref="9"/>
 										</object>
 										<object class="LMDialView" id="793246910">
 											<reference key="NSNextResponder" ref="896845143"/>
@@ -1011,6 +1032,8 @@
 											<reference key="lmdial.valueColor" ref="813195475"/>
 											<real value="6.000000e+00" key="lmdial.fontSize"/>
 											<reference key="lmdial.showValue" ref="9"/>
+											<string key="lmdial.formatter">%+d</string>
+											<reference key="lmdial.divisor" ref="9"/>
 										</object>
 										<object class="LMDialView" id="410084104">
 											<reference key="NSNextResponder" ref="896845143"/>
@@ -1030,6 +1053,8 @@
 											<reference key="lmdial.valueColor" ref="813195475"/>
 											<real value="6.000000e+00" key="lmdial.fontSize"/>
 											<reference key="lmdial.showValue" ref="9"/>
+											<string key="lmdial.formatter">%1.1f</string>
+											<integer value="1000" key="lmdial.divisor"/>
 										</object>
 									</object>
 									<string key="NSFrame">{{1, 1}, {162, 304}}</string>
