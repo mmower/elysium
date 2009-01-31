@@ -8,10 +8,11 @@
 
 #import "ELXmlData.h"
 
+#import "ELOscillator.h"
+
 #import <Cocoa/Cocoa.h>
 
 typedef enum tagELDialMode {
-  dialDisabled,
   dialFree,
   dialDynamic,
   dialInherited
@@ -57,16 +58,16 @@ typedef enum tagELDialMode {
                max:(int)max
               step:(int)step;
 
-@property ELDialMode    mode;
-@property NSString      *name;
-@property int           tag;
-@property ELDial        *parent;
-@property ELOscillator  *oscillator;
-@property int           assigned;
-@property int           last;
-@property int           value;
-@property int           min;
-@property int           max;
-@property int           step;
+@property           ELDialMode    mode;
+@property (assign)  NSString      *name;
+@property           int           tag;
+@property           ELDial        *parent;
+@property           ELOscillator  *oscillator;
+@property           int           assigned;
+@property           int           last;
+@property           int           value;
+@property           int           min;
+@property           int           max;
+@property           int           step;
 
 @end
