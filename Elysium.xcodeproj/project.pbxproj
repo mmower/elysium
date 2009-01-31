@@ -103,6 +103,7 @@
 		C9B642020EAD1504006AA089 /* ELSquareOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642010EAD1504006AA089 /* ELSquareOscillator.m */; };
 		C9B642050EAD153B006AA089 /* ELSawOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642040EAD153B006AA089 /* ELSawOscillator.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
+		C9BC51B60F346FF300317049 /* ELDial.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC51B50F346FF300317049 /* ELDial.m */; };
 		C9C931620EB12DA1009528C6 /* ELRangedKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C931610EB12DA1009528C6 /* ELRangedKnob.m */; };
 		C9D6B15A0EBCE83300CA98DC /* control_play_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D6B1590EBCE83300CA98DC /* control_play_blue.png */; };
 		C9D6B15C0EBCE83D00CA98DC /* control_stop_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D6B15B0EBCE83D00CA98DC /* control_stop_blue.png */; };
@@ -295,6 +296,8 @@
 		C9B642030EAD153B006AA089 /* ELSawOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSawOscillator.h; sourceTree = "<group>"; };
 		C9B642040EAD153B006AA089 /* ELSawOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSawOscillator.m; sourceTree = "<group>"; };
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
+		C9BC51B40F346FF300317049 /* ELDial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELDial.h; sourceTree = "<group>"; };
+		C9BC51B50F346FF300317049 /* ELDial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELDial.m; sourceTree = "<group>"; };
 		C9C931600EB12DA1009528C6 /* ELRangedKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRangedKnob.h; sourceTree = "<group>"; };
 		C9C931610EB12DA1009528C6 /* ELRangedKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedKnob.m; sourceTree = "<group>"; };
 		C9D6B1590EBCE83300CA98DC /* control_play_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = control_play_blue.png; sourceTree = "<group>"; };
@@ -460,6 +463,7 @@
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C9BC51B30F346FF300317049 /* controls */,
 				C90410430F266057009CD2B9 /* preferences */,
 				C930CA150EBBD4F800DE0817 /* line_number_view */,
 				C9DA150C0EA7F02C0087EDD3 /* activity_viewer */,
@@ -719,6 +723,16 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		C9BC51B30F346FF300317049 /* controls */ = {
+			isa = PBXGroup;
+			children = (
+				C9BC51B40F346FF300317049 /* ELDial.h */,
+				C9BC51B50F346FF300317049 /* ELDial.m */,
+			);
+			name = controls;
+			path = src/controls;
+			sourceTree = "<group>";
+		};
 		C9DA150C0EA7F02C0087EDD3 /* activity_viewer */ = {
 			isa = PBXGroup;
 			children = (
@@ -898,6 +912,7 @@
 				C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */,
 				C957DDE60F1905A900798819 /* String+AsJavascriptFunction.m in Sources */,
 				C904104C0F2660A5009CD2B9 /* ELPreferencesController.m in Sources */,
+				C9BC51B60F346FF300317049 /* ELDial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

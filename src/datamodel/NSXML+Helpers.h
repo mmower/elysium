@@ -18,6 +18,7 @@
 @interface NSXMLElement (NSXML_Helpers)
 
 - (NSString *)attributeAsString:(NSString *)name;
+- (int)attributeAsInteger:(NSString *)name defaultValue:(int)defval;
 
 @end
 

@@ -34,6 +34,15 @@
   }
 }
 
+- (int)attributeAsInteger:(NSString *)name defaultValue:(int)defval {
+  NSString *attribute = [self attributeAsString:name];
+  if( attribute ) {
+    return [attribute intValue];
+  } else {
+    return defval;
+  }
+}
+
 @end
 
 @implementation NSError (NSXML_Helpers)
