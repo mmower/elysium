@@ -18,6 +18,10 @@ typedef enum tagELDialMode {
 
 @class ELOscillator;
 
+@interface NSObject (ELDialDelegation)
+- (void)dialDidChangeValue:(ELDial *)dial;
+@end
+
 @interface ELDial : NSObject <ELXmlData,NSMutableCopying> {
   id            delegate;
   

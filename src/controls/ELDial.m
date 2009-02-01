@@ -98,6 +98,7 @@
                        step:[parent step]];
 }
 
+
 @synthesize delegate;
 
 @dynamic mode;
@@ -105,6 +106,7 @@
 - (ELDialMode)mode {
   return mode;
 }
+
 
 - (void)setMode:(ELDialMode)newMode {
   if( newMode != mode ) {
@@ -135,6 +137,7 @@
   }
 }
 
+
 @synthesize name;
 @synthesize tag;
 @synthesize parent;
@@ -148,6 +151,7 @@
   return value;
 }
 
+
 - (void)setValue:(int)newValue {
   last = value;
   value = newValue;
@@ -155,6 +159,7 @@
     [delegate dialDidChangeValue:self];
   }
 }
+
 
 @synthesize min;
 @synthesize max;
@@ -164,9 +169,11 @@
   return [self value] != 0;
 }
 
+
 - (void)setBoolValue:(BOOL)boolValue {
   [self setValue:(boolValue ? 1 : 0)]
 }
+
 
 #pragma mark ELXmlData implementation
 
@@ -191,6 +198,7 @@
   
   return dialElement;
 }
+
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( _representation_ && ( self = [self init] ) ) {
@@ -222,11 +230,13 @@
   }
 }
 
+
 // NSMutableCopying protocol
 
 - (id)copyWithZone:(NSZone *)_zone_ {
   return [self mutableCopyWithZone:_zone_];
 }
+
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   return [[[self class] allocWithZone:_zone_] initWithMode:[self mode]
@@ -241,5 +251,6 @@
                                                        max:[self max]
                                                       step:[self step]];
 }
+
 
 @end
