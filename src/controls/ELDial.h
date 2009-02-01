@@ -8,8 +8,6 @@
 
 #import "ELXmlData.h"
 
-#import "ELOscillator.h"
-
 #import <Cocoa/Cocoa.h>
 
 typedef enum tagELDialMode {
@@ -18,7 +16,11 @@ typedef enum tagELDialMode {
   dialInherited
 } ELDialMode;
 
+@class ELOscillator;
+
 @interface ELDial : NSObject <ELXmlData,NSMutableCopying> {
+  id            delegate;
+  
   ELDialMode    mode;
   
   NSString      *name;
@@ -58,6 +60,9 @@ typedef enum tagELDialMode {
                max:(int)max
               step:(int)step;
 
+- (id)initWithParent:(ELDial *)parent;
+
+@property           id            delegate;
 @property           ELDialMode    mode;
 @property (assign)  NSString      *name;
 @property           int           tag;
@@ -69,5 +74,8 @@ typedef enum tagELDialMode {
 @property           int           min;
 @property           int           max;
 @property           int           step;
+
+- (BOOL)boolValue;
+- (void)setBoolValue:(BOOL)boolValue;
 
 @end

@@ -6,11 +6,11 @@
 //  Copyright 2009 LucidMac Software. All rights reserved.
 //
 
-#import "Elysium.h"
-
 #import "limits.h"
 
 #import "ELDial.h"
+
+#import "ELOscillator.h"
 
 @implementation ELDial
 
@@ -25,28 +25,6 @@
   [self exposeBinding:@"min"];
   [self exposeBinding:@"max"];
   [self exposeBinding:@"step"];
-}
-
-- (id)initWithMode:(ELDialMode)aMode
-              name:(NSString *)aName
-               tag:(int)aTag
-            parent:(ELDial *)aParent
-        oscillator:(ELOscillator *)aOscillator
-          assigned:(int)aAssigned
-              last:(int)aLast
-             value:(int)aValue
-{
-  return [self initWithMode:aMode
-                       name:aName
-                        tag:aTag
-                     parent:aParent
-                 oscillator:aOscillator
-                   assigned:aAssigned
-                       last:aLast
-                      value:aValue
-                        min:0
-                        max:1
-                       step:1];
 }
 
 
@@ -81,6 +59,46 @@
   
   return self;
 }
+
+
+- (id)initWithMode:(ELDialMode)aMode
+              name:(NSString *)aName
+               tag:(int)aTag
+            parent:(ELDial *)aParent
+        oscillator:(ELOscillator *)aOscillator
+          assigned:(int)aAssigned
+              last:(int)aLast
+             value:(int)aValue
+{
+  return [self initWithMode:aMode
+                       name:aName
+                        tag:aTag
+                     parent:aParent
+                 oscillator:aOscillator
+                   assigned:aAssigned
+                       last:aLast
+                      value:aValue
+                        min:0
+                        max:1
+                       step:1];
+}
+
+
+- (id)initWithParent:(ELDial *)parent {
+  return [self initWithMode:dialInherited
+                       name:[parent name]
+                        tag:[parent tag]
+                     parent:parent
+                 oscillator:nil
+                   assigned:[parent assigned]
+                       last:INT_MIN
+                      value:[parent value]
+                        min:[parent min]
+                        max:[parent max]
+                       step:[parent step]];
+}
+
+@synthesize delegate;
 
 @dynamic mode;
 
@@ -123,17 +141,38 @@
 @synthesize oscillator;
 @synthesize assigned;
 @synthesize last;
-@synthesize value;
-@synthesize value;
+
+@dynamic value;
+
+- (int)value {
+  return value;
+}
+
+- (void)setValue:(int)newValue {
+  last = value;
+  value = newValue;
+  if( [delegate respondsToSelector:@selector(dialDidChangeValue:)] ) {
+    [delegate dialDidChangeValue:self];
+  }
+}
+
 @synthesize min;
 @synthesize max;
 @synthesize step;
+
+- (BOOL)boolValue {
+  return [self value] != 0;
+}
+
+- (void)setBoolValue:(BOOL)boolValue {
+  [self setValue:(boolValue ? 1 : 0)]
+}
 
 #pragma mark ELXmlData implementation
 
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *dialElement = [NSXMLNode elementWithName:@"dial"];
-
+  
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
   [attributes setObject:[[NSNumber numberWithInteger:mode] stringValue] forKey:@"mode"];
   [attributes setObject:name forKey:@"name"];
@@ -154,7 +193,7 @@
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [self init] ) ) {
+  if( _representation_ && ( self = [self init] ) ) {
     [self setName:[_representation_ attributeAsString:@"name"]];
     [self setTag:[_representation_ attributeAsInteger:@"tag" defaultValue:INT_MIN]];
     
@@ -177,9 +216,10 @@
     // Mode is set last to ensure that parent/oscillator
     // are setup before attempting to switch mode
     [self setMode:[_representation_ attributeAsInteger:@"mode" defaultValue:dialFree]];
+    return self;
+  } else {
+    return nil;
   }
-  
-  return self;
 }
 
 // NSMutableCopying protocol
