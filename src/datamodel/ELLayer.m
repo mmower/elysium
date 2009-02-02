@@ -475,50 +475,17 @@ NSPredicate *deadPlayheadFilter;
       [self setKey:[ELKey keyNamed:keyAttribute]];
     }
     
-    enabledDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:_error_] firstXMLElement]
-                                                     parent:nil
-                                                     player:_player_
-                                                      error:_error_];
-    channelDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='channel']" error:_error_] firstXMLElement]
-                                                     parent:nil
-                                                     player:_player_
-                                                      error:_error_];
-    tempoDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:_error_] firstXMLElement]
-                                                   parent:nil
-                                                   player:_player_
-                                                    error:_error_];
-    barLengthDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:_error_] firstXMLElement]
-                                                       parent:nil
-                                                       player:_player_
-                                                        error:_error_];
-    timeToLiveDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:_error_] firstXMLElement]
-                                                         parent:nil
-                                                         player:_player_
-                                                          error:_error_];
-    pulseEveryDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='pulseEvery']" error:_error_] firstXMLElement]
-                                                        parent:nil
-                                                        player:_player_
-                                                         error:_error_];
-    velocityDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:_error_] firstXMLElement]
-                                                      parent:nil
-                                                      player:_player_
-                                                       error:_error_];
-    emphasisDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:_error_] firstXMLElement]
-                                                      parent:nil
-                                                      player:_player_
-                                                       error:_error_];
-    tempoSyncDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='tempoSync']" error:_error_] firstXMLElement]
-                                                       parent:nil
-                                                       player:_player_
-                                                        error:_error_];
-    noteLengthDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='noteLength']" error:_error_] firstXMLElement]
-                                                        parent:nil
-                                                        player:_player_
-                                                         error:_error_];
-    transposeDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:_error_] firstXMLElement]
-                                                       parent:nil
-                                                       player:_player_
-                                                        error:_error_];
+    [self setEnabledDial:[_representation_ loadDial:@"enabled" parent:nil player:_player_ error:_error_]];
+    [self setChannelDial:[_representation_ loadDial:@"channel" parent:nil player:_player_ error:_error_]];
+    [self setTempoDial:[_representation_ loadDial:@"tempo" parent:nil player:_player_ error:_error_]];
+    [self setBarLengthDial:[_representation_ loadDial:@"barLength" parent:nil player:_player_ error:_error_]];
+    [self setTimeToLiveDial:[_representation_ loadDial:@"timeToLive" parent:nil player:_player_ error:_error_]];
+    [self setPulseEveryDial:[_representation_ loadDial:@"pulseEvery" parent:nil player:_player_ error:_error_]];
+    [self setVelocityDial:[_representation_ loadDial:@"velocity" parent:nil player:_player_ error:_error_]];
+    [self setEmphasisDial:[_representation_ loadDial:@"emphasis" parent:nil player:_player_ error:_error_]];
+    [self setTempoSyncDial:[_representation_ loadDial:@"tempoSync" parent:nil player:_player_ error:_error_]];
+    [self setNoteLengthDial:[_representation_ loadDial:@"noteLength" parent:nil player:_player_ error:_error_]];
+    [self setTransposeDial:[_representation_ loadDial:@"transpose" parent:nil player:_player_ error:_error_]];
     
     nodes = [_representation_ nodesForXPath:@"cells/cell" error:_error_];
     if( nodes == nil ) {

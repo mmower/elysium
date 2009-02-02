@@ -72,15 +72,15 @@
 @property (readonly)  NSMutableArray      *triggers;
 @property (readonly)  ELScriptPackage     *pkg;
 
-@property (readonly)  ELDial              *tempoDial;
-@property (readonly)  ELDial              *barLengthDial;
-@property (readonly)  ELDial              *timeToLiveDial;
-@property (readonly)  ELDial              *pulseEveryDial;
-@property (readonly)  ELDial              *velocityDial;
-@property (readonly)  ELDial              *emphasisDial;
-@property (readonly)  ELDial              *tempoSyncDial;
-@property (readonly)  ELDial              *noteLengthDial;
-@property (readonly)  ELDial              *transposeDial;
+@property             ELDial              *tempoDial;
+@property             ELDial              *barLengthDial;
+@property             ELDial              *timeToLiveDial;
+@property             ELDial              *pulseEveryDial;
+@property             ELDial              *velocityDial;
+@property             ELDial              *emphasisDial;
+@property             ELDial              *tempoSyncDial;
+@property             ELDial              *noteLengthDial;
+@property             ELDial              *transposeDial;
 
 - (id)initWithDocument:(ElysiumDocument *)document;
 - (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)createDefaultLayer;
