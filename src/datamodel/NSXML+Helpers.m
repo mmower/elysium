@@ -29,7 +29,7 @@
 @implementation NSXMLElement (NSXML_Helpers)
 
 - (ELDial *)loadDial:(NSString *)name parent:(ELDial *)parent player:(ELPlayer *)player error:(NSError **)error {
-  return [[ELDial alloc] initWithXmlRepresentation:[[self nodesForXPath:[NSString stringWithFormat:@"controls/knob[@name='%@']",name] error:error] firstXMLElement]
+  return [[ELDial alloc] initWithXmlRepresentation:[[self nodesForXPath:[NSString stringWithFormat:@"controls/dial[@name='%@']",name] error:error] firstXMLElement]
                                             parent:parent
                                             player:player
                                              error:error];

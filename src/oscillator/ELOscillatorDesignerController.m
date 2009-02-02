@@ -9,8 +9,7 @@
 
 #import "ELOscillatorDesignerController.h"
 
-#import "ELRangedKnob.h"
-
+#import "ELDial.h"
 #import "ELSquareOscillator.h"
 #import "ELSawOscillator.h"
 #import "ELSineOscillator.h"

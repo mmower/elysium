@@ -10,7 +10,6 @@
 #import "ELPlayerInspectorController.h"
 
 #import "ELHex.h"
-#import "ELKnob.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 
