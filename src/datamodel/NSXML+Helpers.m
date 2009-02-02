@@ -11,6 +11,9 @@
 
 #import "NSXML+Helpers.h"
 
+#import "ELDial.h"
+#import "ELPlayer.h"
+
 @implementation NSArray (NSXML_Helpers)
 
 - (NSXMLElement *)firstXMLElement {
@@ -24,6 +27,13 @@
 @end
 
 @implementation NSXMLElement (NSXML_Helpers)
+
+- (ELDial *)loadDial:(NSString *)name parent:(ELDial *)parent player:(ELPlayer *)player error:(NSError **)error {
+  return [[ELDial alloc] initWithXmlRepresentation:[[self nodesForXPath:[NSString stringWithFormat:@"controls/knob[@name='%@']",name] error:error] firstXMLElement]
+                                            parent:parent
+                                            player:player
+                                             error:error];
+}
 
 - (NSString *)attributeAsString:(NSString *)_name_ {
   NSXMLNode *attributeNode = [self attributeForName:_name_];

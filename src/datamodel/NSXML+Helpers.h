@@ -9,6 +9,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELDial;
+@class ELPlayer;
+
 @interface NSArray (NSXML_Helpers)
 
 - (NSXMLElement *)firstXMLElement;
@@ -17,6 +20,7 @@
 
 @interface NSXMLElement (NSXML_Helpers)
 
+- (ELDial *)loadDial:(NSString *)name parent:(ELDial *)parent player:(ELPlayer *)player error:(NSError **)error;
 - (NSString *)attributeAsString:(NSString *)name;
 - (int)attributeAsInteger:(NSString *)name defaultValue:(int)defval;
 

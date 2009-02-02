@@ -18,39 +18,39 @@ static NSString * const toolType = @"spin";
 
 @implementation ELSpinTool
 
-- (id)initWithClockwiseKnob:(ELBooleanKnob *)_clockwiseKnob_ steppingKnob:(ELIntegerKnob *)_steppingKnob_ {
+- (id)initWithClockwiseDial:(ELDial *)newClockwiseDial steppingDial:(ELDial *)newSteppingDial {
   if( ( self = [super init] ) ) {
-    clockwiseKnob = _clockwiseKnob_;
-    steppingKnob  = _steppingKnob_;
+    clockwiseDial = newClockwiseDial;
+    steppingDial  = newSteppingDial;
   }
   
   return self;
 }
 
 - (id)init {
-  return [self initWithClockwiseKnob:[[ELBooleanKnob alloc] initWithName:@"clockwise" booleanValue:YES]
-                        steppingKnob:[[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1 minimum:0 maximum:5 stepping:1]];
+  return [self initWithClockwiseDial:[[ELDial alloc] initWithName:@"clockwise" tag:0 boolValue:YES]
+                        steppingDial:[[ELDial alloc] initWithName:@"stepping" tag:0 assigned:1 min:0 max:5 step:1]];
 }
 
 - (NSString *)toolType {
   return toolType;
 }
 
-@synthesize clockwiseKnob;
-@synthesize steppingKnob;
+@synthesize clockwiseDial;
+@synthesize steppingDial;
 
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwiseKnob.value",@"steppingKnob.value",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwiseDial.value",@"steppingDial.value",nil]];
   return keys;
 }
 
 - (void)start {
   [super start];
   
-  [clockwiseKnob start];
-  [steppingKnob start];
+  [clockwiseDial onStart];
+  [steppingDial onStart];
 }
 
 // What happens when a playhead arrives
@@ -66,10 +66,10 @@ static NSString * const toolType = @"spin";
     tool = nil;
   }
   
-  if( [clockwiseKnob value] ) {
-    [[tool directionKnob] setValue:(([[tool directionKnob] value]+[steppingKnob value]) % 6)];
+  if( [clockwiseDial value] ) {
+    [[tool directionDial] setValue:(([[tool directionDial] value]+[steppingDial value]) % 6)];
   } else {
-    [[tool directionKnob] setValue:(([[tool directionKnob] value]-[steppingKnob value]) % 6)];
+    [[tool directionDial] setValue:(([[tool directionDial] value]-[steppingDial value]) % 6)];
   }
 }
 
@@ -83,7 +83,7 @@ static NSString * const toolType = @"spin";
   
   NSBezierPath *symbolPath = [NSBezierPath bezierPath];
   
-  if( [clockwiseKnob value] ) {
+  if( [clockwiseDial value] ) {
     [symbolPath moveToPoint:NSMakePoint( centre.x - radius/3 - radius/10, centre.y - radius/8 )];
     [symbolPath lineToPoint:NSMakePoint( centre.x - radius/3, centre.y + radius/8 )];
     [symbolPath lineToPoint:NSMakePoint( centre.x - radius/3 + radius/10, centre.y - radius/8 )];
@@ -109,8 +109,8 @@ static NSString * const toolType = @"spin";
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   id copy = [super mutableCopyWithZone:_zone_];
-  [copy setClockwiseKnob:[[self clockwiseKnob] mutableCopy]];
-  [copy setSteppingKnob:[[self steppingKnob] mutableCopy]];
+  [copy setClockwiseDial:[[self clockwiseDial] mutableCopy]];
+  [copy setSteppingDial:[[self steppingDial] mutableCopy]];
   return copy;
 }
 
@@ -118,44 +118,15 @@ static NSString * const toolType = @"spin";
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
-  [controlsElement addChild:[clockwiseKnob xmlRepresentation]];
-  [controlsElement addChild:[steppingKnob xmlRepresentation]];
+  [controlsElement addChild:[clockwiseDial xmlRepresentation]];
+  [controlsElement addChild:[steppingDial xmlRepresentation]];
   return controlsElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
-    NSXMLElement *element;
-    NSArray *nodes;
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='clockwise']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        clockwiseKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-      } else {
-        clockwiseKnob = [[ELBooleanKnob alloc] initWithName:@"clockwise" booleanValue:YES];
-      }
-      
-      if( clockwiseKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='stepping']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        steppingKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-      } else {
-        steppingKnob = [[ELIntegerKnob alloc] initWithName:@"stepping" integerValue:1 minimum:0 maximum:5 stepping:1];
-      }
-      [steppingKnob setMinimum:0 maximum:5 stepping:1];
-      
-      if( steppingKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
+    [self setClockwiseDial:[_representation_ loadDial:@"clockwise" parent:nil player:_player_ error:_error_]];
+    [self setSteppingDial:[_representation_ loadDial:@"stepping" parent:nil player:_player_ error:_error_]];
   }
   
   return self;

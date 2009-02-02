@@ -46,51 +46,54 @@
   
   ELScriptPackage     *pkg;
   
-  ELIntegerKnob       *tempoKnob;
-  ELIntegerKnob       *barLengthKnob;
-  ELIntegerKnob       *timeToLiveKnob;
-  ELIntegerKnob       *pulseCountKnob;
-  ELIntegerKnob       *velocityKnob;
-  ELIntegerKnob       *emphasisKnob;
-  ELIntegerKnob       *durationKnob;
-  ELIntegerKnob       *transposeKnob;
+  ELDial              *tempoDial;
+  ELDial              *barLengthDial;
+  ELDial              *timeToLiveDial;
+  ELDial              *pulseEveryDial;
+  ELDial              *velocityDial;
+  ELDial              *emphasisDial;
+  ELDial              *tempoSyncDial;
+  ELDial              *noteLengthDial;
+  ELDial              *transposeDial;
 }
 
-@property (readonly) UInt64 startTime;
-@property (readonly) ELHarmonicTable *harmonicTable;
-@property BOOL running;
-@property BOOL showNotes;
-@property BOOL showOctaves;
-@property BOOL showKey;
-@property BOOL performanceMode;
+@property (readonly)  UInt64              startTime;
+@property (readonly)  ELHarmonicTable     *harmonicTable;
+@property             BOOL                running;
+@property             BOOL                showNotes;
+@property             BOOL                showOctaves;
+@property             BOOL                showKey;
+@property             BOOL                performanceMode;
 
-@property ELLayer *selectedLayer;
+@property             ELLayer             *selectedLayer;
 
-@property ElysiumDocument *document;
-@property (readonly) NSMutableDictionary *scripts;
-@property (readonly) NSMutableArray *triggers;
-@property (readonly) ELScriptPackage *pkg;
+@property             ElysiumDocument     *document;
+@property (readonly)  NSMutableDictionary *scripts;
+@property (readonly)  NSMutableArray      *triggers;
+@property (readonly)  ELScriptPackage     *pkg;
 
-@property (readonly) ELIntegerKnob *tempoKnob;
-@property (readonly) ELIntegerKnob *barLengthKnob;
-@property (readonly) ELIntegerKnob *timeToLiveKnob;
-@property (readonly) ELIntegerKnob *pulseCountKnob;
-@property (readonly) ELIntegerKnob *velocityKnob;
-@property (readonly) ELIntegerKnob *emphasisKnob;
-@property (readonly) ELIntegerKnob *durationKnob;
-@property (readonly) ELIntegerKnob *transposeKnob;
+@property (readonly)  ELDial              *tempoDial;
+@property (readonly)  ELDial              *barLengthDial;
+@property (readonly)  ELDial              *timeToLiveDial;
+@property (readonly)  ELDial              *pulseEveryDial;
+@property (readonly)  ELDial              *velocityDial;
+@property (readonly)  ELDial              *emphasisDial;
+@property (readonly)  ELDial              *tempoSyncDial;
+@property (readonly)  ELDial              *noteLengthDial;
+@property (readonly)  ELDial              *transposeDial;
 
 - (id)initWithDocument:(ElysiumDocument *)document;
 - (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)createDefaultLayer;
 
-- (ELIntegerKnob *)defaultTempoKnob;
-- (ELIntegerKnob *)defaultBarLengthKnob;
-- (ELIntegerKnob *)defaultTimeToLiveKnob;
-- (ELIntegerKnob *)defaultPulseCountKnob;
-- (ELIntegerKnob *)defaultVelocityKnob;
-- (ELIntegerKnob *)defaultEmphasisKnob;
-- (ELIntegerKnob *)defaultDurationKnob;
-- (ELIntegerKnob *)defaultTransposeKnob;
++ (ELDial *)defaultTempoDial;
++ (ELDial *)defaultBarLengthDial;
++ (ELDial *)defaultTimeToLiveDial;
++ (ELDial *)defaultPulseEveryDial;
++ (ELDial *)defaultVelocityDial;
++ (ELDial *)defaultEmphasisDial;
++ (ELDial *)defaultTempoSyncDial;
++ (ELDial *)defaultNoteLengthDial;
++ (ELDial *)defaultTransposeDial;
 
 - (void)toggleNoteDisplay;
 

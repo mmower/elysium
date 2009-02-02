@@ -18,10 +18,6 @@ typedef enum tagELDialMode {
 
 @class ELOscillator;
 
-@interface NSObject (ELDialDelegation)
-- (void)dialDidChangeValue:(ELDial *)dial;
-@end
-
 @interface ELDial : NSObject <ELXmlData,NSMutableCopying> {
   id            delegate;
   
@@ -64,6 +60,17 @@ typedef enum tagELDialMode {
                max:(int)max
               step:(int)step;
 
+- (id)initWithName:(NSString *)aName
+               tag:(int)aTag
+          assigned:(int)aAssigned
+               min:(int)aMin
+               max:(int)aMax
+              step:(int)aStep;
+
+- (id)initWithName:(NSString *)aName
+               tag:(int)tag
+         boolValue:(BOOL)value;
+
 - (id)initWithParent:(ELDial *)parent;
 
 @property           id            delegate;
@@ -82,4 +89,11 @@ typedef enum tagELDialMode {
 - (BOOL)boolValue;
 - (void)setBoolValue:(BOOL)boolValue;
 
+- (void)onStart;
+- (void)onBeat;
+
+@end
+
+@interface NSObject (ELDialDelegation)
+- (void)dialDidChangeValue:(ELDial *)dial;
 @end

@@ -15,6 +15,7 @@
 #import "ELHex.h"
 #import "ELNote.h"
 #import "ELLayer.h"
+#import "ELPlayer.h"
 #import "ELPlayable.h"
 #import "ELNoteGroup.h"
 #import "ELPlayhead.h"
@@ -33,33 +34,37 @@ NSDictionary *defaultChannelSends( void ) {
   return sends;
 }
 
-- (id)initWithVelocityKnob:(ELIntegerKnob *)_velocityKnob_
-              emphasisKnob:(ELIntegerKnob *)_emphasisKnob_
-              durationKnob:(ELIntegerKnob *)_durationKnob_
-                 triadKnob:(ELIntegerKnob *)_triadKnob_
-                ghostsKnob:(ELIntegerKnob *)_ghostsKnob_
-              overrideKnob:(ELBooleanKnob *)_overrideKnob_
-              channelSends:(NSDictionary *)_channelSends_ {
+- (id)initWithVelocityDial:(ELDial *)newVelocityDial
+              emphasisDial:(ELDial *)newEmphasisDial
+             tempoSyncDial:(ELDial *)newTempoSyncDial
+            noteLengthDial:(ELDial *)newNoteLengthDial
+                 triadDial:(ELDial *)newTriadDial
+                ghostsDial:(ELDial *)newGhostsDial
+              overrideDial:(ELDial *)newOverrideDial
+              channelSends:(NSDictionary *)newChannelSends
+{
   if( ( self = [super init] ) ) {
-    velocityKnob = _velocityKnob_;
-    emphasisKnob = _emphasisKnob_;
-    durationKnob = _durationKnob_;
-    triadKnob    = _triadKnob_;
-    ghostsKnob   = _ghostsKnob_;
-    overrideKnob = _overrideKnob_;
-    channelSends = _channelSends_;
+    [self setVelocityDial:newVelocityDial];
+    [self setEmphasisDial:newEmphasisDial];
+    [self setTempoSyncDial:newTempoSyncDial];
+    [self setNoteLengthDial:newNoteLengthDial];
+    [self setTriadDial:newTriadDial];
+    [self setGhostsDial:newGhostsDial];
+    [self setOverrideDial:newOverrideDial];
+    [self setChannelSends:newChannelSends];
   }
   
   return self;
 }
 
 - (id)init {
-  return [self initWithVelocityKnob:[[ELIntegerKnob alloc] initWithName:@"velocity"]
-                       emphasisKnob:[[ELIntegerKnob alloc] initWithName:@"emphasis"]
-                       durationKnob:[[ELIntegerKnob alloc] initWithName:@"duration"]
-                          triadKnob:[[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1]
-                         ghostsKnob:[[ELIntegerKnob alloc] initWithName:@"ghosts" integerValue:0 minimum:0 maximum:16 stepping:1]
-                       overrideKnob:[[ELBooleanKnob alloc] initWithName:@"override" booleanValue:NO]
+  return [self initWithVelocityDial:[ELPlayer defaultVelocityDial]
+                       emphasisDial:[ELPlayer defaultEmphasisDial]
+                      tempoSyncDial:[ELPlayer defaultTempoSyncDial]
+                     noteLengthDial:[ELPlayer defaultNoteLengthDial]
+                          triadDial:[[ELDial alloc] initWithName:@"triad" tag:0 assigned:0 min:0 max:6 step:1]
+                         ghostsDial:[[ELDial alloc] initWithName:@"ghosts" tag:0 assigned:0 min:0 max:16 step:1]
+                       overrideDial:[[ELDial alloc] initWithName:@"override" tag:0 boolValue:NO]
                        channelSends:defaultChannelSends()];
 }
 
@@ -67,56 +72,67 @@ NSDictionary *defaultChannelSends( void ) {
   return toolType;
 }
 
-@synthesize velocityKnob;
-@synthesize emphasisKnob;
-@synthesize durationKnob;
-@synthesize triadKnob;
-@synthesize ghostsKnob;
-@synthesize overrideKnob;
+@synthesize velocityDial;
+@synthesize emphasisDial;
+@synthesize tempoSyncDial;
+@synthesize noteLengthDial;
+@synthesize triadDial;
+@synthesize ghostsDial;
+@synthesize overrideDial;
 @synthesize channelSends;
 
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
   
   if( !loaded ) {
-    [velocityKnob setValue:[[_layer_ velocityKnob] value]];
-    [velocityKnob setLinkedKnob:[_layer_ velocityKnob]];
-    [velocityKnob setLinkValue:YES];
-  
-    [emphasisKnob setValue:[[_layer_ emphasisKnob] value]];
-    [emphasisKnob setLinkedKnob:[_layer_ emphasisKnob]];
-    [emphasisKnob setLinkValue:YES];
-  
-    [durationKnob setValue:[[_layer_ durationKnob] value]];
-    [durationKnob setLinkedKnob:[_layer_ durationKnob]];
-    [durationKnob setLinkValue:YES];
+    [velocityDial setParent:[_layer_ velocityDial]];
+    [velocityDial setMode:dialInherited];
+    // [velocityKnob setValue:[[_layer_ velocityKnob] value]];
+    // [velocityKnob setLinkedKnob:[_layer_ velocityKnob]];
+    // [velocityKnob setLinkValue:YES];
+    
+    [emphasisDial setParent:[_layer_ emphasisDial]];
+    [emphasisDial setMode:dialInherited];
+    // [emphasisKnob setValue:[[_layer_ emphasisKnob] value]];
+    // [emphasisKnob setLinkedKnob:[_layer_ emphasisKnob]];
+    // [emphasisKnob setLinkValue:YES]
+    
+    [tempoSyncDial setParent:[_layer_ tempoSyncDial]];
+    [tempoSyncDial setMode:dialInherited];
+    [noteLengthDial setParent:[_layer_ noteLengthDial]];
+    [noteLengthDial setMode:dialInherited];
+    // [durationKnob setValue:[[_layer_ durationKnob] value]];
+    // [durationKnob setLinkedKnob:[_layer_ durationKnob]];
+    // [durationKnob setLinkValue:YES];
   }
 }
 
 - (void)removedFromLayer:(ELLayer *)_layer_ {
   [super removedFromLayer:_layer_];
   
-  [velocityKnob setLinkedKnob:nil];
-  [emphasisKnob setLinkedKnob:nil];
-  [durationKnob setLinkedKnob:nil];
+  [velocityDial setParent:nil];
+  [emphasisDial setParent:nil];
+  [tempoSyncDial setParent:nil];
+  [noteLengthDial setParent:nil];
 }
 
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityKnob.value",@"emphasisKnob.value",@"durationKnob.value",@"triadKnob.value",@"ghostsKnob.value",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityDial.value",@"emphasisDial.value",@"tempoSyncDial.value",@"noteLengthDial.value",@"triadDial.value",@"ghostsDial.value",nil]];
   return keys;
 }
 
 - (void)start {
   [super start];
   
-  [velocityKnob start];
-  [emphasisKnob start];
-  [durationKnob start];
-  [triadKnob start];
-  [ghostsKnob start];
-  [overrideKnob start];
+  [velocityDial onStart];
+  [emphasisDial onStart];
+  [tempoSyncDial onStart];
+  [noteLengthDial onStart];
+  [triadDial onStart];
+  [ghostsDial onStart];
+  [overrideDial onStart];
 }
 
 // Tool runner
@@ -125,13 +141,13 @@ NSDictionary *defaultChannelSends( void ) {
   int velocity;
   
   if( [layer firstBeatInBar] ) {
-    velocity = [emphasisKnob dynamicValue];
+    velocity = [emphasisDial value];
   } else {
-    velocity = [velocityKnob dynamicValue];
+    velocity = [velocityDial value];
   }
   
   ELHex *position = [_playhead_ position];
-  int triad = [triadKnob value];
+  int triad = [triadDial value];
   ELPlayable *playable;
   
   if( triad == 0 ) {
@@ -140,19 +156,19 @@ NSDictionary *defaultChannelSends( void ) {
     playable = [position triad:triad];
   }
   
-  int beats = 1 + [ghostsKnob dynamicValue];
+  int beats = 1 + [ghostsDial value];
   int offset = 0;
   for( int b = 0; b < beats; b++ ) {
-    if( [overrideKnob value] ) {
+    if( [overrideDial value] ) {
       int channel;
       for( channel = 1; channel <= 16; channel++ ) {
-        ELBooleanKnob *send = [channelSends objectForKey:[[NSNumber numberWithInt:channel] stringValue]];
-        if( [send value] ) {
-          [playable playOnChannel:[send tag] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue] offset:offset];
+        ELDial *send = [channelSends objectForKey:[[NSNumber numberWithInt:channel] stringValue]];
+        if( [send boolValue] ) {
+          [playable playOnChannel:[send tag] duration:[noteLengthDial value] velocity:velocity transpose:[[layer transposeDial] value] offset:offset];
         }
       }
     } else {
-      [playable playOnChannel:[[layer channelKnob] value] duration:[durationKnob dynamicValue] velocity:velocity transpose:[[layer transposeKnob] dynamicValue] offset:offset];
+      [playable playOnChannel:[[layer channelDial] value] duration:[noteLengthDial value] velocity:velocity transpose:[[layer transposeDial] value] offset:offset];
     }
     
     offset += [[hex layer] timerResolution];
@@ -181,12 +197,13 @@ NSDictionary *defaultChannelSends( void ) {
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   id copy = [super mutableCopyWithZone:_zone_];
-  [copy setVelocityKnob:[[self velocityKnob] mutableCopy]];
-  [copy setEmphasisKnob:[[self emphasisKnob] mutableCopy]];
-  [copy setDurationKnob:[[self durationKnob] mutableCopy]];
-  [copy setTriadKnob:[[self triadKnob] mutableCopy]];
-  [copy setGhostsKnob:[[self ghostsKnob] mutableCopy]];
-  [copy setOverrideKnob:[[self overrideKnob] mutableCopy]];
+  [copy setVelocityDial:[[self velocityDial] mutableCopy]];
+  [copy setEmphasisDial:[[self emphasisDial] mutableCopy]];
+  [copy setTempoSyncDial:[[self tempoSyncDial] mutableCopy]];
+  [copy setNoteLengthDial:[[self noteLengthDial] mutableCopy]];
+  [copy setTriadDial:[[self triadDial] mutableCopy]];
+  [copy setGhostsDial:[[self ghostsDial] mutableCopy]];
+  [copy setOverrideDial:[[self overrideDial] mutableCopy]];
   
   NSMutableDictionary *copySends = [NSMutableDictionary dictionary];
   for( NSString *key in [channelSends allKeys] ) {
@@ -201,12 +218,13 @@ NSDictionary *defaultChannelSends( void ) {
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
-  [controlsElement addChild:[velocityKnob xmlRepresentation]];
-  [controlsElement addChild:[emphasisKnob xmlRepresentation]];
-  [controlsElement addChild:[durationKnob xmlRepresentation]];
-  [controlsElement addChild:[triadKnob xmlRepresentation]];
-  [controlsElement addChild:[ghostsKnob xmlRepresentation]];
-  [controlsElement addChild:[overrideKnob xmlRepresentation]];
+  [controlsElement addChild:[velocityDial xmlRepresentation]];
+  [controlsElement addChild:[emphasisDial xmlRepresentation]];
+  [controlsElement addChild:[tempoSyncDial xmlRepresentation]];
+  [controlsElement addChild:[noteLengthDial xmlRepresentation]];
+  [controlsElement addChild:[triadDial xmlRepresentation]];
+  [controlsElement addChild:[ghostsDial xmlRepresentation]];
+  [controlsElement addChild:[overrideDial xmlRepresentation]];
   for( ELBooleanKnob *knob in [channelSends allValues] ) {
     [controlsElement addChild:[knob xmlRepresentation]];
   }
@@ -216,103 +234,21 @@ NSDictionary *defaultChannelSends( void ) {
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
-    NSXMLElement *element;
     NSArray *nodes;
     
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_ error:_error_];
-      } else {
-        velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity"];
-      }
-      [velocityKnob setMinimum:0 maximum:127 stepping:1];
-      
-      if( velocityKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] velocityKnob] player:_player_ error:_error_];
-      } else {
-        emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis"];
-      }
-      [emphasisKnob setMinimum:0 maximum:127 stepping:1];
-      
-      if( emphasisKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        durationKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[[_parent_ layer] durationKnob] player:_player_ error:_error_];
-      } else {
-        durationKnob = [[ELIntegerKnob alloc] initWithName:@"duration"];
-      }
-      [durationKnob setMinimum:100 maximum:5000 stepping:100];
-      
-      if( durationKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='triad']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        triadKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-      } else {
-        triadKnob = [[ELIntegerKnob alloc] initWithName:@"triad" integerValue:0 minimum:0 maximum:6 stepping:1];
-      }
-      [triadKnob setMinimum:0 maximum:6 stepping:1];
-      
-      if( triadKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='ghosts']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        ghostsKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-      } else {
-        ghostsKnob = [[ELIntegerKnob alloc] initWithName:@"ghost" integerValue:0 minimum:0 maximum:16 stepping:1];
-      }
-      [ghostsKnob setMinimum:0 maximum:16 stepping:1];
-      
-      if( ghostsKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='override']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        overrideKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-      } else {
-        overrideKnob = [[ELBooleanKnob alloc] initWithName:@"override" booleanValue:NO];
-      }
-      
-      if( overrideKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
+    [self setVelocityDial:[_representation_ loadDial:@"velocity" parent:nil player:_player_ error:_error_]];
+    [self setEmphasisDial:[_representation_ loadDial:@"emphasis" parent:nil player:_player_ error:_error_]];
+    [self setTempoSyncDial:[_representation_ loadDial:@"tempoSync" parent:nil player:_player_ error:_error_]];
+    [self setNoteLengthDial:[_representation_ loadDial:@"noteLength" parent:nil player:_player_ error:_error_]];
+    [self setTriadDial:[_representation_ loadDial:@"triad" parent:nil player:_player_ error:_error_]];
+    [self setGhostsDial:[_representation_ loadDial:@"ghosts" parent:nil player:_player_ error:_error_]];
+    [self setOverrideDial:[_representation_ loadDial:@"override" parent:nil player:_player_ error:_error_]];
     
     if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[starts-with(@name,'send')]" error:_error_] ) ) {
       NSMutableDictionary *sends = [NSMutableDictionary dictionary];
       for( NSXMLNode *node in nodes ) {
-        ELBooleanKnob *knob = [[ELBooleanKnob alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:_player_ error:_error_];
-        [sends setObject:knob forKey:[[NSNumber numberWithInteger:[knob tag]] stringValue]];
+        ELDial *dial = [[ELDial alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:_player_ error:_error_];
+        [sends setObject:dial forKey:[[NSNumber numberWithInteger:[dial tag]] stringValue]];
       }
       channelSends = sends;
     } else {

@@ -84,18 +84,55 @@
 }
 
 
-- (id)initWithParent:(ELDial *)parent {
+- (id)initWithParent:(ELDial *)parentDial {
   return [self initWithMode:dialInherited
-                       name:[parent name]
-                        tag:[parent tag]
-                     parent:parent
+                       name:[parentDial name]
+                        tag:[parentDial tag]
+                     parent:parentDial
                  oscillator:nil
-                   assigned:[parent assigned]
+                   assigned:[parentDial assigned]
                        last:INT_MIN
-                      value:[parent value]
-                        min:[parent min]
-                        max:[parent max]
-                       step:[parent step]];
+                      value:[parentDial value]
+                        min:[parentDial min]
+                        max:[parentDial max]
+                       step:[parentDial step]];
+}
+
+- (id)initWithName:(NSString *)aName
+               tag:(int)aTag
+          assigned:(int)aAssigned
+               min:(int)aMin
+               max:(int)aMax
+              step:(int)aStep
+{
+  return [self initWithMode:dialFree
+                       name:aName
+                        tag:aTag
+                     parent:nil
+                 oscillator:nil
+                   assigned:aAssigned
+                       last:INT_MIN
+                      value:aAssigned
+                        min:aMin
+                        max:aMax
+                       step:aStep];
+}
+
+- (id)initWithName:(NSString *)aName
+               tag:(int)aTag
+         boolValue:(BOOL)aValue
+{
+  return [self initWithMode:dialFree
+                       name:aName
+                        tag:aTag
+                     parent:nil
+                 oscillator:nil
+                   assigned:aValue
+                       last:INT_MIN
+                      value:aValue
+                        min:NO
+                        max:YES
+                       step:1];
 }
 
 
@@ -140,7 +177,23 @@
 
 @synthesize name;
 @synthesize tag;
-@synthesize parent;
+
+@dynamic parent;
+
+- (ELDial *)parent {
+  return parent;
+}
+
+- (void)setParent:(ELDial *)newParent {
+  [self unbind:@"value"];
+  parent = newParent;
+  if( parent ) {
+    [self bind:@"value" toObject:parent withKeyPath:@"value" options:nil];
+  } else {
+    [self setMode:dialFree];
+  }
+}
+
 @synthesize oscillator;
 @synthesize assigned;
 @synthesize last;
@@ -171,7 +224,7 @@
 
 
 - (void)setBoolValue:(BOOL)boolValue {
-  [self setValue:(boolValue ? 1 : 0)]
+  [self setValue:(boolValue ? 1 : 0)];
 }
 
 
@@ -252,5 +305,14 @@
                                                       step:[self step]];
 }
 
+
+- (void)onStart {
+  [oscillator onStart];
+}
+
+
+- (void)onBeat {
+  [oscillator onBeat];
+}
 
 @end

@@ -14,13 +14,13 @@
 #import "ELTool.h"
 
 @interface ELSpinTool : ELTool <NSMutableCopying> {
-  ELBooleanKnob *clockwiseKnob;
-  ELIntegerKnob *steppingKnob;
+  ELDial *clockwiseDial;
+  ELDial *steppingDial;
 }
 
-- (id)initWithClockwiseKnob:(ELBooleanKnob *)clockwiseKnob steppingKnob:(ELIntegerKnob *)steppingKnob;
+- (id)initWithClockwiseDial:(ELDial *)clockwiseDial steppingDial:(ELDial *)steppingDial;
 
-@property ELBooleanKnob *clockwiseKnob;
-@property ELIntegerKnob *steppingKnob;
+@property ELDial *clockwiseDial;
+@property ELDial *steppingDial;
 
 @end

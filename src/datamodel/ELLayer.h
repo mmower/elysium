@@ -47,16 +47,17 @@
   
   ELHex               *selectedHex;
   
-  ELBooleanKnob       *enabledKnob;
-  ELIntegerKnob       *channelKnob;
-  ELIntegerKnob       *tempoKnob;
-  ELIntegerKnob       *barLengthKnob;
-  ELIntegerKnob       *timeToLiveKnob;
-  ELIntegerKnob       *pulseCountKnob;
-  ELIntegerKnob       *velocityKnob;
-  ELIntegerKnob       *emphasisKnob;
-  ELIntegerKnob       *durationKnob;
-  ELIntegerKnob       *transposeKnob;
+  ELDial              *enabledDial;
+  ELDial              *channelDial;
+  ELDial              *tempoDial;
+  ELDial              *barLengthDial;
+  ELDial              *timeToLiveDial;
+  ELDial              *pulseEveryDial;
+  ELDial              *velocityDial;
+  ELDial              *emphasisDial;
+  ELDial              *tempoSyncDial;
+  ELDial              *noteLengthDial;
+  ELDial              *transposeDial;
 }
 
 + (NSPredicate *)deadPlayheadFilter;
@@ -64,24 +65,36 @@
 - (id)initWithPlayer:(ELPlayer *)player;
 - (id)initWithPlayer:(ELPlayer *)player channel:(int)channel;
 
-@property ELPlayer *player;
-@property id delegate;
-@property BOOL visible;
-@property (assign) NSString *layerId;
-@property ELHex *selectedHex;
-@property int beatCount;
-@property ELKey *key;
+@property           ELPlayer  *player;
+@property           id        delegate;
+@property           BOOL      visible;
+@property (assign)  NSString  *layerId;
+@property           ELHex     *selectedHex;
+@property           int       beatCount;
+@property           ELKey     *key;
 
-@property (readonly) ELBooleanKnob *enabledKnob;
-@property (readonly) ELIntegerKnob *channelKnob;
-@property (readonly) ELIntegerKnob *tempoKnob;
-@property (readonly) ELIntegerKnob *barLengthKnob;
-@property (readonly) ELIntegerKnob *timeToLiveKnob;
-@property (readonly) ELIntegerKnob *pulseCountKnob;
-@property (readonly) ELIntegerKnob *velocityKnob;
-@property (readonly) ELIntegerKnob *emphasisKnob;
-@property (readonly) ELIntegerKnob *durationKnob;
-@property (readonly) ELIntegerKnob *transposeKnob;
+@property (assign)  ELDial    *enabledDial;
+@property (assign)  ELDial    *channelDial;
+@property (assign)  ELDial    *tempoDial;
+@property (assign)  ELDial    *barLengthDial;
+@property (assign)  ELDial    *timeToLiveDial;
+@property (assign)  ELDial    *pulseEveryDial;
+@property (assign)  ELDial    *velocityDial;
+@property (assign)  ELDial    *emphasisDial;
+@property (assign)  ELDial    *tempoSyncDial;
+@property (assign)  ELDial    *noteLengthDial;
+@property (assign)  ELDial    *transposeDial;
+
+// @property (readonly) ELBooleanKnob *enabledKnob;
+// @property (readonly) ELIntegerKnob *channelKnob;
+// @property (readonly) ELIntegerKnob *tempoKnob;
+// @property (readonly) ELIntegerKnob *barLengthKnob;
+// @property (readonly) ELIntegerKnob *timeToLiveKnob;
+// @property (readonly) ELIntegerKnob *pulseCountKnob;
+// @property (readonly) ELIntegerKnob *velocityKnob;
+// @property (readonly) ELIntegerKnob *emphasisKnob;
+// @property (readonly) ELIntegerKnob *durationKnob;
+// @property (readonly) ELIntegerKnob *transposeKnob;
 
 @property (readonly) NSMutableDictionary *scripts;
 

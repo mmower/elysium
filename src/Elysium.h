@@ -79,6 +79,7 @@ extern NSString * const ELScaleNoteColor;
 #import "ELXmlData.h"
 #import "ELTaggable.h"
 
+#import "ELDial.h"
 #import "ELKnob.h"
 #import "ELIntegerKnob.h"
 #import "ELFloatKnob.h"

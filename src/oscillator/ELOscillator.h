@@ -25,6 +25,9 @@
 
 - (NSString *)type;
 
+- (void)onStart;
+- (void)onBeat;
+
 - (float)generate;
 
 - (void)storeAttributes:(NSMutableDictionary *)attributes;

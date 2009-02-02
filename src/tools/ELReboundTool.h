@@ -14,9 +14,7 @@
 #import "ELTool.h"
 
 @interface ELReboundTool : ELTool <DirectedTool> {
-  ELIntegerKnob *directionKnob;
+  ELDial *directionDial;
 }
-
-@property ELIntegerKnob *directionKnob;
 
 @end

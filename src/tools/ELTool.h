@@ -16,7 +16,7 @@
 @class ELPlayhead;
 
 @protocol DirectedTool
-@property (readonly) ELIntegerKnob *directionKnob;
+@property ELDial *directionDial;
 @end
 
 @interface ELTool : NSObject <ELXmlData,NSMutableCopying> {
@@ -29,21 +29,22 @@
   BOOL                fired;
   int                 gateCount;
   
-  ELIntegerKnob       *pKnob;
-  ELIntegerKnob       *gateKnob;
+  ELDial              *enabledDial;
+  ELDial              *pDial;
+  ELDial              *gateDial;
 }
 
-- (id)initEnabled:(BOOL)enabled pKnob:(ELIntegerKnob *)pKnob gateKnob:(ELIntegerKnob *)gateKnob scripts:(NSMutableDictionary *)scripts;
+- (id)initEnabledDial:(ELDial *)enabledDial pDial:(ELDial *)pDial gateDial:(ELDial *)gateDial scripts:(NSMutableDictionary *)scripts;
 
 @property ELHex *hex;
 @property ELLayer *layer;
 
-@property BOOL enabled;
 @property BOOL skip;
 @property BOOL fired;
 
-@property ELIntegerKnob *pKnob;
-@property ELIntegerKnob *gateKnob;
+@property ELDial *enabledDial;
+@property ELDial *pDial;
+@property ELDial *gateDial;
 
 @property (assign) NSMutableDictionary *scripts;
 

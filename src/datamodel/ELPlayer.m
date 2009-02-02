@@ -40,14 +40,15 @@
     layers          = [[NSMutableArray alloc] init];
     selectedLayer   = nil;
     
-    tempoKnob       = [self defaultTempoKnob];
-    barLengthKnob   = [self defaultBarLengthKnob];
-    timeToLiveKnob  = [self defaultTimeToLiveKnob];
-    pulseCountKnob  = [self defaultPulseCountKnob];
-    velocityKnob    = [self defaultVelocityKnob];
-    emphasisKnob    = [self defaultEmphasisKnob];
-    durationKnob    = [self defaultDurationKnob];
-    transposeKnob   = [self defaultTransposeKnob];
+    tempoDial       = [ELPlayer defaultTempoDial];
+    barLengthDial   = [ELPlayer defaultBarLengthDial];
+    timeToLiveDial  = [ELPlayer defaultTimeToLiveDial];
+    pulseEveryDial  = [ELPlayer defaultPulseEveryDial];
+    velocityDial    = [ELPlayer defaultVelocityDial];
+    emphasisDial    = [ELPlayer defaultEmphasisDial];
+    tempoSyncDial   = [ELPlayer defaultTempoSyncDial];
+    noteLengthDial  = [ELPlayer defaultNoteLengthDial];
+    transposeDial   = [ELPlayer defaultTransposeDial];
     
     scriptingTag    = @"player";
     scripts         = [NSMutableDictionary dictionary];
@@ -102,14 +103,15 @@
 @synthesize showKey;
 @synthesize performanceMode;
 
-@synthesize tempoKnob;
-@synthesize barLengthKnob;
-@synthesize timeToLiveKnob;
-@synthesize pulseCountKnob;
-@synthesize velocityKnob;
-@synthesize emphasisKnob;
-@synthesize durationKnob;
-@synthesize transposeKnob;
+@synthesize tempoDial;
+@synthesize barLengthDial;
+@synthesize timeToLiveDial;
+@synthesize pulseEveryDial;
+@synthesize velocityDial;
+@synthesize emphasisDial;
+@synthesize tempoSyncDial;
+@synthesize noteLengthDial;
+@synthesize transposeDial;
 
 @synthesize document;
 @synthesize scripts;
@@ -118,68 +120,87 @@
 @synthesize pkg;
 @synthesize selectedLayer;
 
-- (ELIntegerKnob *)defaultTempoKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"tempo"
-                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultTempoKey]
-                                     minimum:15
-                                     maximum:600
-                                    stepping:1];
++ (ELDial *)defaultTempoDial {
+  return [[ELDial alloc] initWithName:@"tempo"
+                                  tag:0
+                             assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultTempoKey]
+                                  min:15
+                                  max:600
+                                 step:1];
 }
 
-- (ELIntegerKnob *)defaultBarLengthKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"barLength"
-                                integerValue:4
-                                     minimum:1
-                                     maximum:24
-                                    stepping:1];
++ (ELDial *)defaultBarLengthDial {
+  return [[ELDial alloc] initWithName:@"barLength"
+                                  tag:0
+                             assigned:4
+                                  min:1
+                                  max:24
+                                 step:1];
 }
 
-- (ELIntegerKnob *)defaultTimeToLiveKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"timeToLive"
-                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultTTLKey]
-                                     minimum:1
-                                     maximum:64
-                                    stepping:1];
++ (ELDial *)defaultTimeToLiveDial {
+  return [[ELDial alloc] initWithName:@"timeToLive"
+                                  tag:0
+                             assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultTTLKey]
+                                  min:1
+                                  max:64
+                                 step:1];
 }
 
-- (ELIntegerKnob *)defaultPulseCountKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"pulseCount"
-                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultPulseCountKey]
-                                     minimum:1
-                                     maximum:64
-                                    stepping:1];
++ (ELDial *)defaultPulseEveryDial {
+  return [[ELDial alloc] initWithName:@"pulseEvery"
+                                  tag:0
+                             assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultPulseCountKey]
+                                  min:1
+                                  max:64
+                                 step:1];
 }
 
-- (ELIntegerKnob *)defaultVelocityKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"velocity"
-                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultVelocityKey]
-                                     minimum:1
-                                     maximum:127
-                                    stepping:1];
++ (ELDial *)defaultVelocityDial {
+  return [[ELDial alloc] initWithName:@"velocity"
+                                  tag:0
+                             assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultVelocityKey]
+                                  min:1
+                                  max:127
+                                 step:1];
 }
 
-- (ELIntegerKnob *)defaultEmphasisKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"emphasis"
-                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultEmphasisKey]
-                                     minimum:1
-                                     maximum:127
-                                    stepping:1];
++ (ELDial *)defaultEmphasisDial {
+  return [[ELDial alloc] initWithName:@"emphasis"
+                                  tag:0
+                             assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultEmphasisKey]
+                                  min:1
+                                  max:127
+                                 step:1];
 }
 
-- (ELIntegerKnob *)defaultDurationKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"duration"
-                                integerValue:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultDurationKey]
-                                     minimum:100
-                                     maximum:5000
-                                    stepping:100];
++ (ELDial *)defaultTempoSyncDial {
+  assert( YES == 1);
+  assert( NO == 0 );
+  return [[ELDial alloc] initWithName:@"tempoSync"
+                                  tag:0
+                             assigned:NO
+                                  min:NO
+                                  max:YES
+                                 step:1];
 }
 
-- (ELIntegerKnob *)defaultTransposeKnob {
-  return [[ELIntegerKnob alloc] initWithName:@"transpose"
-                                integerValue:0
-                                     minimum:-24
-                                     maximum:24
-                                    stepping:1];
++ (ELDial *)defaultNoteLengthDial {
+  return [[ELDial alloc] initWithName:@"noteLength"
+                                  tag:0
+                             assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultDurationKey]
+                                  min:100
+                                  max:5000
+                                 step:100];
+}
+
++ (ELDial *)defaultTransposeDial {
+  return [[ELDial alloc] initWithName:@"transpose"
+                                  tag:0
+                             assigned:0
+                                  min:-24
+                                  max:24
+                                 step:1];
 }
 
 // Player status & control
@@ -278,14 +299,15 @@
   
   [layer setLayerId:[NSString stringWithFormat:@"Layer-%d", nextLayerNumber++]];
   
-  [[layer tempoKnob] setValue:[tempoKnob value]];
-  [[layer barLengthKnob] setValue:[barLengthKnob value]];
-  [[layer velocityKnob] setValue:[velocityKnob value]];
-  [[layer emphasisKnob] setValue:[emphasisKnob value]];
-  [[layer durationKnob] setValue:[durationKnob value]];
-  [[layer pulseCountKnob] setValue:[pulseCountKnob value]];
-  [[layer timeToLiveKnob] setValue:[timeToLiveKnob value]];
-  [[layer transposeKnob] setValue:[transposeKnob value]];
+  [[layer tempoDial] setMode:dialInherited];
+  [[layer barLengthDial] setMode:dialInherited];
+  [[layer velocityDial] setMode:dialInherited];
+  [[layer emphasisDial] setMode:dialInherited];
+  [[layer tempoSyncDial] setMode:dialInherited];
+  [[layer noteLengthDial] setMode:dialInherited];
+  [[layer pulseEveryDial] setMode:dialInherited];
+  [[layer timeToLiveDial] setMode:dialInherited];
+  [[layer transposeDial] setMode:dialInherited];
   
   [self addLayer:layer];
   return layer;
@@ -356,14 +378,15 @@
   [surfaceElement setAttributesAsDictionary:attributes];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
-  [controlsElement addChild:[tempoKnob xmlRepresentation]];
-  [controlsElement addChild:[barLengthKnob xmlRepresentation]];
-  [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
-  [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
-  [controlsElement addChild:[velocityKnob xmlRepresentation]];
-  [controlsElement addChild:[emphasisKnob xmlRepresentation]];
-  [controlsElement addChild:[durationKnob xmlRepresentation]];
-  [controlsElement addChild:[transposeKnob xmlRepresentation]];
+  [controlsElement addChild:[tempoDial xmlRepresentation]];
+  [controlsElement addChild:[barLengthDial xmlRepresentation]];
+  [controlsElement addChild:[timeToLiveDial xmlRepresentation]];
+  [controlsElement addChild:[pulseEveryDial xmlRepresentation]];
+  [controlsElement addChild:[velocityDial xmlRepresentation]];
+  [controlsElement addChild:[emphasisDial xmlRepresentation]];
+  [controlsElement addChild:[tempoSyncDial xmlRepresentation]];
+  [controlsElement addChild:[noteLengthDial xmlRepresentation]];
+  [controlsElement addChild:[transposeDial xmlRepresentation]];
   
   [surfaceElement addChild:controlsElement];
   
@@ -439,101 +462,50 @@
     // Controls for the player
     *_error_ = nil;
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      tempoKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player tempoKnob" orCreateVia:@selector(defaultTempoKnob)];
-      if( tempoKnob == nil ) {
-        return nil;
-      } else {
-        [tempoKnob setMinimum:15 maximum:600 stepping:1];
-      }
-    }
+    tempoDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:_error_] firstXMLElement]
+                                                   parent:nil
+                                                   player:_player_
+                                                    error:_error_];
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      barLengthKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player barLengthKnob" orCreateVia:@selector(defaultBarLengthKnob)];
-      if( barLengthKnob == nil ) {
-        return nil;
-      } else {
-        [barLengthKnob setMinimum:1 maximum:24 stepping:1];
-      }
-    }
+    barLengthDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:_error_] firstXMLElement]
+                                                       parent:nil
+                                                       player:_player_
+                                                        error:_error_];
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      timeToLiveKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player timeToLiveKnob" orCreateVia:@selector(defaultTimeToLiveKnob)];
-      if( timeToLiveKnob == nil ) {
-        return nil;
-      } else {
-        [timeToLiveKnob setMinimum:1 maximum:64 stepping:1];
-      }
-    }
+    timeToLiveDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:_error_] firstXMLElement]
+                                                        parent:nil
+                                                        player:_player_
+                                                         error:_error_];
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      pulseCountKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player pulseCountKnob" orCreateVia:@selector(defaultPulseCountKnob)];
-      if( pulseCountKnob == nil ) {
-        return nil;
-      } else {
-        [pulseCountKnob setMinimum:1 maximum:64 stepping:1];
-      }
-    }
+    pulseEveryDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='pulseEvery']" error:_error_] firstXMLElement]
+                                                        parent:nil
+                                                        player:_player_
+                                                         error:_error_];
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      velocityKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player velocityKnob" orCreateVia:@selector(defaultVelocityKnob)];
-      if( velocityKnob == nil ) {
-        return nil;
-      } else {
-        [velocityKnob setMinimum:1 maximum:127 stepping:1];
-      }
-    }
+    velocityDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:_error_] firstXMLElement]
+                                                      parent:nil
+                                                      player:_player_
+                                                       error:_error_];
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      emphasisKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player emphasisKnob" orCreateVia:@selector(defaultEmphasisKnob)];
-      if( emphasisKnob == nil ) {
-        return nil;
-      } else {
-        [emphasisKnob setMinimum:1 maximum:127 stepping:1];
-      }
-    }
+    emphasisDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:_error_] firstXMLElement]
+                                                      parent:nil
+                                                      player:_player_
+                                                       error:_error_];
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      durationKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player durationKnob" orCreateVia:@selector(defaultDurationKnob)];
-      if( durationKnob == nil ) {
-        return nil;
-      } else {
-        [durationKnob setMinimum:100 maximum:5000 stepping:100];
-      }
-    }
+    tempoSyncDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='tempoSync']" error:_error_] firstXMLElement]
+                                                       parent:nil
+                                                       player:_player_
+                                                        error:_error_];
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      transposeKnob = [self loadIntegerKnobFrom:[nodes firstXMLElement] withError:_error_ andMessage:@"Cannot load player tranposeKnob" orCreateVia:@selector(defaultTransposeKnob)];
-      if( transposeKnob == nil ) {
-        return nil;
-      } else {
-        [transposeKnob setMinimum:-24 maximum:24 stepping:1];
-      }
-    }
+    noteLengthDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='noteLength']" error:_error_] firstXMLElement]
+                                                        parent:nil
+                                                        player:_player_
+                                                         error:_error_];
+    
+    transposeDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:_error_] firstXMLElement]
+                                                       parent:nil
+                                                       player:_player_
+                                                        error:_error_];
     
     // Layers
     nodes = [_representation_ nodesForXPath:@"layers/layer" error:_error_];

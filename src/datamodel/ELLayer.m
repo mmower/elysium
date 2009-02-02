@@ -49,8 +49,20 @@ NSPredicate *deadPlayheadFilter;
     
     [self addObserver:self forKeyPath:@"key" options:0 context:nil];
     
-    enabledKnob   = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
-    channelKnob   = [[ELIntegerKnob alloc] initWithName:@"channel"];
+    enabledDial   = [[ELDial alloc] initWithName:@"enabled"
+                                             tag:0
+                                       boolValue:YES];
+    // enabledKnob   = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
+    
+    channelDial   = [[ELDial alloc] initWithMode:dialFree
+                                            name:@"channel"
+                                             tag:0
+                                          parent:nil
+                                      oscillator:nil
+                                        assigned:0
+                                            last:0
+                                           value:0];
+    // channelKnob   = [[ELIntegerKnob alloc] initWithName:@"channel"];
   }
   
   return self;
@@ -58,16 +70,17 @@ NSPredicate *deadPlayheadFilter;
 
 - (id)initWithPlayer:(ELPlayer *)_player_ {
   if( ( self = [self init] ) ) {
-    player = _player_;
+    player         = _player_;
     
-    tempoKnob      = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedToIntegerKnob:[player tempoKnob]];
-    barLengthKnob  = [[ELIntegerKnob alloc] initWithName:@"barLength" linkedToIntegerKnob:[player barLengthKnob]];
-    timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedToIntegerKnob:[player timeToLiveKnob]];
-    pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedToIntegerKnob:[player pulseCountKnob]];
-    velocityKnob   = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedToIntegerKnob:[player velocityKnob]];
-    emphasisKnob   = [[ELIntegerKnob alloc] initWithName:@"emphasis" linkedToIntegerKnob:[player emphasisKnob]];
-    durationKnob   = [[ELIntegerKnob alloc] initWithName:@"duration" linkedToIntegerKnob:[player durationKnob]];
-    transposeKnob  = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedToIntegerKnob:[player transposeKnob]];
+    tempoDial      = [[ELDial alloc] initWithParent:[player tempoDial]];
+    barLengthDial  = [[ELDial alloc] initWithParent:[player barLengthDial]];
+    timeToLiveDial = [[ELDial alloc] initWithParent:[player timeToLiveDial]];
+    pulseEveryDial = [[ELDial alloc] initWithParent:[player pulseEveryDial]];
+    velocityDial   = [[ELDial alloc] initWithParent:[player velocityDial]];
+    emphasisDial   = [[ELDial alloc] initWithParent:[player emphasisDial]];
+    tempoSyncDial  = [[ELDial alloc] initWithParent:[player tempoSyncDial]];
+    noteLengthDial = [[ELDial alloc] initWithParent:[player noteLengthDial]];
+    transposeDial  = [[ELDial alloc] initWithParent:[player transposeDial]];
     
     [self configureHexes];
   }
@@ -77,7 +90,7 @@ NSPredicate *deadPlayheadFilter;
 
 - (id)initWithPlayer:(ELPlayer *)_player_ channel:(int)_channel_ {
   if( ( self = [self initWithPlayer:_player_] ) ) {
-    [channelKnob setValue:_channel_];
+    [channelDial setValue:_channel_];
   }
   
   return self;
@@ -90,22 +103,23 @@ NSPredicate *deadPlayheadFilter;
 @synthesize beatCount;
 @synthesize key;
 
-@synthesize enabledKnob;
-@synthesize channelKnob;
-@synthesize tempoKnob;
-@synthesize barLengthKnob;
-@synthesize timeToLiveKnob;
-@synthesize pulseCountKnob;
-@synthesize velocityKnob;
-@synthesize emphasisKnob;
-@synthesize durationKnob;
-@synthesize transposeKnob;
+@synthesize enabledDial;
+@synthesize channelDial;
+@synthesize tempoDial;
+@synthesize barLengthDial;
+@synthesize timeToLiveDial;
+@synthesize pulseEveryDial;
+@synthesize velocityDial;
+@synthesize emphasisDial;
+@synthesize tempoSyncDial;
+@synthesize noteLengthDial;
+@synthesize transposeDial;
 
 @synthesize scripts;
 @synthesize scriptingTag = layerId;
 
 - (int)timerResolution {
-  int tempo = [tempoKnob dynamicValue];
+  int tempo = [tempoDial value];
   if( tempo < 1 ) {
     tempo = 1;
   }
@@ -136,11 +150,12 @@ NSPredicate *deadPlayheadFilter;
 // Manipulate layer
 
 - (BOOL)firstBeatInBar {
-  return (beatCount % [barLengthKnob dynamicValue]) == 0;
+  return ( beatCount % [barLengthDial value] ) == 0;
+  // return (beatCount % [barLengthKnob dynamicValue]) == 0;
 }
 
 - (void)run {
-  if( [enabledKnob value] ) {
+  if( [enabledDial boolValue] ) {
     // Advance existing playheads, offer dead playheads a chance to clean up
     for( ELPlayhead *playhead in playheads ) {
       [playhead advance];
@@ -364,7 +379,8 @@ NSPredicate *deadPlayheadFilter;
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:hex];
     
     if( ![player performanceMode] ) {
-      [[hex note] playOnChannel:[channelKnob value] duration:[durationKnob dynamicValue] velocity:[velocityKnob dynamicValue] transpose:0];
+      // [durationKnob dynamicValue]
+      [[hex note] playOnChannel:[channelDial value] duration:2.0 velocity:[velocityDial value] transpose:0];
     }
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
@@ -396,16 +412,17 @@ NSPredicate *deadPlayheadFilter;
   [layerElement setAttributesAsDictionary:attributes];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
-  [controlsElement addChild:[enabledKnob xmlRepresentation]];
-  [controlsElement addChild:[channelKnob xmlRepresentation]];
-  [controlsElement addChild:[tempoKnob xmlRepresentation]];
-  [controlsElement addChild:[barLengthKnob xmlRepresentation]];
-  [controlsElement addChild:[timeToLiveKnob xmlRepresentation]];
-  [controlsElement addChild:[pulseCountKnob xmlRepresentation]];
-  [controlsElement addChild:[velocityKnob xmlRepresentation]];
-  [controlsElement addChild:[emphasisKnob xmlRepresentation]];
-  [controlsElement addChild:[durationKnob xmlRepresentation]];
-  [controlsElement addChild:[transposeKnob xmlRepresentation]];
+  [controlsElement addChild:[enabledDial xmlRepresentation]];
+  [controlsElement addChild:[channelDial xmlRepresentation]];
+  [controlsElement addChild:[tempoDial xmlRepresentation]];
+  [controlsElement addChild:[barLengthDial xmlRepresentation]];
+  [controlsElement addChild:[timeToLiveDial xmlRepresentation]];
+  [controlsElement addChild:[pulseEveryDial xmlRepresentation]];
+  [controlsElement addChild:[velocityDial xmlRepresentation]];
+  [controlsElement addChild:[emphasisDial xmlRepresentation]];
+  [controlsElement addChild:[tempoSyncDial xmlRepresentation]];
+  [controlsElement addChild:[noteLengthDial xmlRepresentation]];
+  [controlsElement addChild:[transposeDial xmlRepresentation]];
   [layerElement addChild:controlsElement];
   
   NSXMLElement *cellsElement = [NSXMLNode elementWithName:@"cells"];
@@ -441,7 +458,6 @@ NSPredicate *deadPlayheadFilter;
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self initWithPlayer:_parent_] ) ) {
-    NSXMLElement *element;
     NSArray *nodes;
     
     NSString *idAttribute = [_representation_ attributeAsString:@"id"];
@@ -459,155 +475,50 @@ NSPredicate *deadPlayheadFilter;
       [self setKey:[ELKey keyNamed:keyAttribute]];
     }
     
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        enabledKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-      } else {
-        enabledKnob = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
-      }
-      
-      if( enabledKnob == nil ) {
-        return nil;
-      }
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='channel']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        channelKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-      } else {
-        channelKnob = [[ELIntegerKnob alloc] initWithName:@"channel" integerValue:1 minimum:1 maximum:16 stepping:1];
-      }
-      
-      if( channelKnob == nil ) {
-        return nil;
-      }
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        tempoKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ tempoKnob] player:_player_ error:_error_];
-      } else {
-        tempoKnob = [[ELIntegerKnob alloc] initWithName:@"tempo" linkedToIntegerKnob:[_player_ tempoKnob]];
-      }
-      
-      if( tempoKnob == nil ) {
-        return nil;
-      }
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        barLengthKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ barLengthKnob] player:_player_ error:_error_];
-      } else {
-        barLengthKnob = [[ELIntegerKnob alloc] initWithName:@"barLength" linkedToIntegerKnob:[_player_ barLengthKnob]];
-      }
-      
-      if( barLengthKnob == nil ) {
-        return nil;
-      }
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        timeToLiveKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ timeToLiveKnob] player:_player_ error:_error_];
-      } else {
-        timeToLiveKnob = [[ELIntegerKnob alloc] initWithName:@"timeToLive" linkedToIntegerKnob:[_player_ timeToLiveKnob]];
-      }
-      
-      if( timeToLiveKnob == nil ) {
-        return nil;
-      }
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='pulseCount']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        pulseCountKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ pulseCountKnob] player:_player_ error:_error_];
-      } else {
-        pulseCountKnob = [[ELIntegerKnob alloc] initWithName:@"pulseCount" linkedToIntegerKnob:[_player_ pulseCountKnob]];
-      }
-      
-      if( pulseCountKnob == nil ) {
-        return nil;
-      }
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        velocityKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ velocityKnob] player:_player_ error:_error_];
-      } else {
-        velocityKnob = [[ELIntegerKnob alloc] initWithName:@"velocity" linkedToIntegerKnob:[_player_ velocityKnob]];
-      }
-      
-      if( velocityKnob == nil ) {
-        return nil;
-      }
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        emphasisKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ emphasisKnob] player:_player_ error:_error_];
-      } else {
-        emphasisKnob = [[ELIntegerKnob alloc] initWithName:@"emphasis" linkedToIntegerKnob:[_player_ emphasisKnob]];
-      }
-      
-      if( emphasisKnob == nil ) {
-        return nil;
-      }
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='duration']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        durationKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ durationKnob] player:_player_ error:_error_];
-      } else {
-        durationKnob = [[ELIntegerKnob alloc] initWithName:@"duration" linkedToIntegerKnob:[_player_ durationKnob]];
-      }
-      
-      if( durationKnob == nil ) {
-        return nil;
-      }
-    }
-    
-    nodes = [_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:_error_];
-    if( nodes == nil ) {
-      return nil;
-    } else {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        transposeKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:[_parent_ transposeKnob] player:_player_ error:_error_];
-      } else {
-        transposeKnob = [[ELIntegerKnob alloc] initWithName:@"transpose" linkedToIntegerKnob:[_player_ transposeKnob]];
-      }
-      
-      if( transposeKnob == nil ) {
-        return nil;
-      }
-    }
+    enabledDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='enabled']" error:_error_] firstXMLElement]
+                                                     parent:nil
+                                                     player:_player_
+                                                      error:_error_];
+    channelDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='channel']" error:_error_] firstXMLElement]
+                                                     parent:nil
+                                                     player:_player_
+                                                      error:_error_];
+    tempoDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='tempo']" error:_error_] firstXMLElement]
+                                                   parent:nil
+                                                   player:_player_
+                                                    error:_error_];
+    barLengthDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='barLength']" error:_error_] firstXMLElement]
+                                                       parent:nil
+                                                       player:_player_
+                                                        error:_error_];
+    timeToLiveDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:_error_] firstXMLElement]
+                                                         parent:nil
+                                                         player:_player_
+                                                          error:_error_];
+    pulseEveryDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='pulseEvery']" error:_error_] firstXMLElement]
+                                                        parent:nil
+                                                        player:_player_
+                                                         error:_error_];
+    velocityDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='velocity']" error:_error_] firstXMLElement]
+                                                      parent:nil
+                                                      player:_player_
+                                                       error:_error_];
+    emphasisDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='emphasis']" error:_error_] firstXMLElement]
+                                                      parent:nil
+                                                      player:_player_
+                                                       error:_error_];
+    tempoSyncDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='tempoSync']" error:_error_] firstXMLElement]
+                                                       parent:nil
+                                                       player:_player_
+                                                        error:_error_];
+    noteLengthDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='noteLength']" error:_error_] firstXMLElement]
+                                                        parent:nil
+                                                        player:_player_
+                                                         error:_error_];
+    transposeDial = [[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='transpose']" error:_error_] firstXMLElement]
+                                                       parent:nil
+                                                       player:_player_
+                                                        error:_error_];
     
     nodes = [_representation_ nodesForXPath:@"cells/cell" error:_error_];
     if( nodes == nil ) {
@@ -616,21 +527,21 @@ NSPredicate *deadPlayheadFilter;
       for( NSXMLNode *node in nodes ) {
         NSXMLElement *element = (NSXMLElement *)node;
         NSXMLNode *attributeNode;
-
+        
         attributeNode = [element attributeForName:@"col"];
         if( attributeNode == nil ) {
           *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid column reference",NSLocalizedDescriptionKey,nil]];
           return nil;
         }
         int col = [[attributeNode stringValue] intValue];
-
+        
         attributeNode = [element attributeForName:@"row"];
         if( attributeNode == nil ) {
           *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid row reference",NSLocalizedDescriptionKey,nil]];
           return nil;
         }
         int row = [[attributeNode stringValue] intValue];
-
+        
         ELHex *hex = [[self hexAtColumn:col row:row] initWithXmlRepresentation:element parent:self player:_player_ error:_error_];
         if( hex == nil ) {
           return nil;

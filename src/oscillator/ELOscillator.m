@@ -38,6 +38,13 @@
 @synthesize enabled;
 @synthesize timeBase;
 
+- (void)onStart {
+}
+
+- (void)onBeat {
+  // TODO: Generate the next value using the timebase
+}
+
 - (void)resetTimeBase {
   [self setTimeBase:AudioGetCurrentHostTime()];
 }

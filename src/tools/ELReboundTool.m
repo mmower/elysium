@@ -16,59 +16,60 @@ static NSString * const toolType = @"rebound";
 
 @implementation ELReboundTool
 
-- (id)initWithDirectionKnob:(ELIntegerKnob *)_directionKnob_ {
+- (id)initWithDirectionDial:(ELDial *)newDirectionDial {
   if( ( self = [super init] ) ) {
-    directionKnob = _directionKnob_;
+    [self setDirectionDial:newDirectionDial];
   }
   
   return self;
 }
 
 - (id)init {
-  return [self initWithDirectionKnob:[[ELIntegerKnob alloc] initWithName:@"direction"
-                                                            integerValue:N
-                                                            minimum:0
-                                                            maximum:5
-                                                            stepping:1]];
+  return [self initWithDirectionDial:[[ELDial alloc] initWithName:@"direction"
+                                                              tag:0
+                                                         assigned:N
+                                                              min:0
+                                                              max:5
+                                                             step:1]];
 }
 
 - (NSString *)toolType {
   return toolType;
 }
 
-@synthesize directionKnob;
+@synthesize directionDial;
 
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionKnob.value",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionDial.value",nil]];
   return keys;
 }
 
 - (void)start {
   [super start];
   
-  [directionKnob start];
+  [directionDial onStart];
 }
 
 // Tool runner
 
 - (void)runTool:(ELPlayhead *)_playhead_ {
-  [_playhead_ setDirection:[directionKnob value]];
+  [_playhead_ setDirection:[directionDial value]];
 }
 
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
   [self setToolDrawColor:_attributes_];
-  [[self hex] drawTriangleInDirection:[directionKnob value] withAttributes:_attributes_];
+  [[self hex] drawTriangleInDirection:[directionDial value] withAttributes:_attributes_];
 }
 
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   id copy = [super mutableCopyWithZone:_zone_];
-  [copy setDirectionKnob:[[self directionKnob] mutableCopy]];
+  [copy setDirectionDial:[[self directionDial] mutableCopy]];
   return copy;
 }
 
@@ -76,29 +77,13 @@ static NSString * const toolType = @"rebound";
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
-  [controlsElement addChild:[directionKnob xmlRepresentation]];
+  [controlsElement addChild:[directionDial xmlRepresentation]];
   return controlsElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
-    NSXMLElement *element;
-    NSArray *nodes;
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        directionKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-      } else {
-        directionKnob = [[ELIntegerKnob alloc] initWithName:@"direction" integerValue:N minimum:0 maximum:5 stepping:1];
-      }
-      [directionKnob setMinimum:0 maximum:5 stepping:1];
-      
-      if( directionKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
+    [self setDirectionDial:[_representation_ loadDial:@"direction" parent:nil player:_player_ error:_error_]];
   }
   
   return self;

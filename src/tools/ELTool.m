@@ -41,18 +41,18 @@ int randval() {
 }
 
 - (id)init {
-  return [self initEnabled:YES
-                     pKnob:[[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1]
-                  gateKnob:[[ELIntegerKnob alloc] initWithName:@"gate" integerValue:0 minimum:0 maximum:32 stepping:1]
-                   scripts:[NSMutableDictionary dictionary]];
+  return [self initEnabledDial:[[ELDial alloc] initWithName:@"enabled" tag:0 boolValue:YES]
+                         pDial:[[ELDial alloc] initWithName:@"p" tag:0 assigned:100 min:0 max:100 step:1]
+                      gateDial:[[ELDial alloc] initWithName:@"gate" tag:0 assigned:0 min:0 max:32 step:1]
+                       scripts:[NSMutableDictionary dictionary]];
 }
 
-- (id)initEnabled:(BOOL)_enabled_ pKnob:(ELIntegerKnob *)_pKnob_ gateKnob:(ELIntegerKnob *)_gateKnob_ scripts:(NSMutableDictionary *)_scripts_ {
+- (id)initEnabledDial:(ELDial *)newEnabledDial pDial:(ELDial *)newPDial gateDial:(ELDial *)newGateDial scripts:(NSMutableDictionary *)newScripts {
   if( ( self = [super init] ) ) {
-    enabled  = _enabled_;
-    pKnob    = _pKnob_;
-    gateKnob = _gateKnob_;
-    scripts  = _scripts_;
+    [self setEnabledDial:newEnabledDial];
+    [self setPDial:newPDial];
+    [self setGateDial:newGateDial];
+    [self setScripts:newScripts];
   }
   
   return self;
@@ -61,10 +61,10 @@ int randval() {
 // NSMutableCopying protocol
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
-                                                    pKnob:[[self pKnob] mutableCopy]
-                                                 gateKnob:[[self gateKnob] mutableCopy]
-                                                  scripts:[[self scripts] mutableCopy]];
+  return [[[self class] allocWithZone:_zone_] initEnabledDial:[[self enabledDial] mutableCopy]
+                                                        pDial:[[self pDial] mutableCopy]
+                                                     gateDial:[[self gateDial] mutableCopy]
+                                                      scripts:[[self scripts] mutableCopy]];
 }
 
 // Properties
@@ -72,12 +72,12 @@ int randval() {
 @synthesize hex;
 @synthesize layer;
 
-@synthesize enabled;
 @synthesize skip;
 @synthesize fired;
 
-@synthesize pKnob;
-@synthesize gateKnob;
+@synthesize enabledDial;
+@synthesize pDial;
+@synthesize gateDial;
 
 @synthesize scripts;
 
@@ -87,42 +87,42 @@ int randval() {
 }
 
 - (NSArray *)observableValues {
-  return [NSArray arrayWithObjects:@"enabled",@"pKnob.value",@"gateKnob.value",nil];
+  return [NSArray arrayWithObjects:@"enabledDial.value",@"pDial.value",@"gateDial.value",nil];
 }
 
-- (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
-  layer = _layer_;
-  hex   = _hex_;
+- (void)addedToLayer:(ELLayer *)newLayer atPosition:(ELHex *)newCell {
+  layer = newLayer;
+  hex   = newCell;
 }
 
-- (void)removedFromLayer:(ELLayer *)_layer_ {
+- (void)removedFromLayer:(ELLayer *)aLayer {
   layer = nil;
   hex = nil;
 }
 
 - (void)start {
-  [gateKnob start];
-  gateCount = [gateKnob dynamicValue];
+  [gateDial onStart];
+  gateCount = [gateDial value];
 }
 
 // Tool-run protocol. The layer will call run and, as long as the tool is enabled,
 // the tool will invoke it's scripts and the subclass overriden runTool between them.
 - (void)run:(ELPlayhead *)_playhead_ {
-  if( enabled ) {
+  if( [[self enabledDial] value] ) {
     [self performSelectorOnMainThread:@selector(runWillRunScript:) withObject:_playhead_ waitUntilDone:YES];
     if( gateCount > 0 ) {
       gateCount--;
     } else {
       fired = NO;
       if( !skip ) {
-        if( randval() <= [pKnob value] ) {
+        if( randval() <= [pDial value] ) {
           [self runTool:_playhead_];
           fired = YES;
         }
       }
       skip = NO;
       
-      gateCount = [gateKnob dynamicValue];
+      gateCount = [gateDial value];
     }
     
     [self performSelectorOnMainThread:@selector(runDidRunScript:) withObject:_playhead_ waitUntilDone:YES];
@@ -162,11 +162,6 @@ int randval() {
 
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *toolElement = [NSXMLNode elementWithName:[self toolType]];
-  
-  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:[[NSNumber numberWithBool:enabled] stringValue] forKey:@"enabled"];
-  [toolElement setAttributesAsDictionary:attributes];
-  
   [toolElement addChild:[self controlsXmlRepresentation]];
   [toolElement addChild:[self scriptsXmlRepresentation]];
   return toolElement;
@@ -174,8 +169,9 @@ int randval() {
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
-  [controlsElement addChild:[pKnob xmlRepresentation]];
-  [controlsElement addChild:[gateKnob xmlRepresentation]];
+  [controlsElement addChild:[enabledDial xmlRepresentation]];
+  [controlsElement addChild:[pDial xmlRepresentation]];
+  [controlsElement addChild:[gateDial xmlRepresentation]];
   return controlsElement;
 }
 
@@ -204,40 +200,9 @@ int randval() {
   if( ( self = [self init] ) ) {
     loaded = YES;
     
-    [self setEnabled:([[[_representation_ attributeForName:@"enabled"] stringValue] boolValue])];
-    
-    NSArray *nodes;
-    NSXMLElement *element;
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='p']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        pKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-        [pKnob setMinimum:0 maximum:100 stepping:1];
-      } else {
-        pKnob = [[ELIntegerKnob alloc] initWithName:@"p" integerValue:100 minimum:0 maximum:100 stepping:1];
-      }
-      
-      if( pKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='gate']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        gateKnob = [[ELIntegerKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-        [gateKnob setMinimum:0 maximum:32 stepping:1];
-      } else {
-        gateKnob = [[ELIntegerKnob alloc] initWithName:@"gate" integerValue:0 minimum:0 maximum:32 stepping:1];
-      }
-      
-      if( pKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
+    [self setEnabledDial:[_representation_ loadDial:@"enabled" parent:nil player:_player_ error:_error_]];
+    [self setPDial:[_representation_ loadDial:@"p" parent:nil player:_player_ error:_error_]];
+    [self setGateDial:[_representation_ loadDial:@"gate" parent:nil player:_player_ error:_error_]];
     
     for( NSXMLNode *node in [_representation_ nodesForXPath:@"scripts/script" error:nil] ) {
       NSXMLElement *element = (NSXMLElement *)node;

@@ -14,16 +14,16 @@
 #import "ELTool.h"
 
 @interface ELGenerateTool : ELTool <DirectedTool> {
-  ELIntegerKnob *directionKnob;
-  ELIntegerKnob *timeToLiveKnob;
-  ELIntegerKnob *pulseCountKnob;
-  ELIntegerKnob *offsetKnob;
+  ELDial  *directionDial;
+  ELDial  *timeToLiveDial;
+  ELDial  *pulseEveryDial;
+  ELDial  *offsetDial;
 }
 
-@property ELIntegerKnob *directionKnob;
-@property ELIntegerKnob *timeToLiveKnob;
-@property ELIntegerKnob *pulseCountKnob;
-@property ELIntegerKnob *offsetKnob;
+@property ELDial *directionDial;
+@property ELDial *timeToLiveDial;
+@property ELDial *pulseEveryDial;
+@property ELDial *offsetDial;
 
 - (BOOL)shouldPulseOnBeat:(int)beat;
 

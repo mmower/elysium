@@ -12,30 +12,33 @@
 #import "ELTool.h"
 
 @interface ELNoteTool : ELTool {
-  ELIntegerKnob *velocityKnob;
-  ELIntegerKnob *emphasisKnob;
-  ELIntegerKnob *durationKnob;
-  ELIntegerKnob *triadKnob;
-  ELIntegerKnob *ghostsKnob;
+  ELDial *velocityDial;
+  ELDial *emphasisDial;
+  ELDial *tempoSyncDial;
+  ELDial *noteLengthDial;
+  ELDial *triadDial;
+  ELDial *ghostsDial;
   
-  ELBooleanKnob *overrideKnob;
+  ELDial *overrideDial;
   NSDictionary  *channelSends;
 }
 
-- (id)initWithVelocityKnob:(ELIntegerKnob *)velocityKnob
-              emphasisKnob:(ELIntegerKnob *)emphasisKnob
-              durationKnob:(ELIntegerKnob *)durationKnob
-                 triadKnob:(ELIntegerKnob *)triadKnob
-                ghostsKnob:(ELIntegerKnob *)ghostsKnob
-              overrideKnob:(ELBooleanKnob *)overrideKnob
+- (id)initWithVelocityDial:(ELDial *)velocityDial
+              emphasisDial:(ELDial *)emphasisDial
+             tempoSyncDial:(ELDial *)tempoSyncDial
+            noteLengthDial:(ELDial *)durationDial
+                 triadDial:(ELDial *)triadDial
+                ghostsDial:(ELDial *)ghostsDial
+              overrideDial:(ELDial *)overrideDial
               channelSends:(NSDictionary *)channelSends;
 
-@property ELIntegerKnob *velocityKnob;
-@property ELIntegerKnob *emphasisKnob;
-@property ELIntegerKnob *durationKnob;
-@property ELIntegerKnob *triadKnob;
-@property ELIntegerKnob *ghostsKnob;
-@property ELBooleanKnob *overrideKnob;
+@property ELDial *velocityDial;
+@property ELDial *emphasisDial;
+@property ELDial *tempoSyncDial;
+@property ELDial *noteLengthDial;
+@property ELDial *triadDial;
+@property ELDial *ghostsDial;
+@property ELDial *overrideDial;
 @property (assign) NSDictionary *channelSends;
 
 @end
