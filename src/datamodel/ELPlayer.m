@@ -423,37 +423,37 @@
   return surfaceElement;
 }
 
-- (ELIntegerKnob *)loadIntegerKnobFrom:(NSXMLElement *)_element_ withError:(NSError **)_error_ andMessage:(NSString *)_message_ orCreateVia:(SEL)_default_ {
-  ELIntegerKnob *knob;
-  
-  if( _element_ ) {
-    knob = [[ELIntegerKnob alloc] initWithXmlRepresentation:_element_ parent:self player:self error:_error_];
-  } else {
-    knob = [self performSelector:_default_];
-  }
-  
-  if( knob == nil ) {
-    *_error_ = [NSError errorForLoadFailure:_message_ code:EL_ERR_PLAYER_LOAD_FAILURE withError:_error_];
-  }
-  
-  return knob;
-}
-
-- (ELFloatKnob *)loadFloatKnobFrom:(NSXMLElement *)_element_ withError:(NSError **)_error_ andMessage:(NSString *)_message_ orCreateVia:(SEL)_default_ {
-  ELFloatKnob *knob;
-  
-  if( _element_ ) {
-    knob = [[ELFloatKnob alloc] initWithXmlRepresentation:_element_ parent:self player:self error:_error_];
-  } else {
-    knob = [self performSelector:_default_];
-  }
-  
-  if( knob == nil ) {
-    *_error_ = [NSError errorForLoadFailure:_message_ code:EL_ERR_PLAYER_LOAD_FAILURE withError:_error_];
-  }
-  
-  return knob;
-}
+// - (ELIntegerKnob *)loadIntegerKnobFrom:(NSXMLElement *)_element_ withError:(NSError **)_error_ andMessage:(NSString *)_message_ orCreateVia:(SEL)_default_ {
+//   ELIntegerKnob *knob;
+//   
+//   if( _element_ ) {
+//     knob = [[ELIntegerKnob alloc] initWithXmlRepresentation:_element_ parent:self player:self error:_error_];
+//   } else {
+//     knob = [self performSelector:_default_];
+//   }
+//   
+//   if( knob == nil ) {
+//     *_error_ = [NSError errorForLoadFailure:_message_ code:EL_ERR_PLAYER_LOAD_FAILURE withError:_error_];
+//   }
+//   
+//   return knob;
+// }
+// 
+// - (ELFloatKnob *)loadFloatKnobFrom:(NSXMLElement *)_element_ withError:(NSError **)_error_ andMessage:(NSString *)_message_ orCreateVia:(SEL)_default_ {
+//   ELFloatKnob *knob;
+//   
+//   if( _element_ ) {
+//     knob = [[ELFloatKnob alloc] initWithXmlRepresentation:_element_ parent:self player:self error:_error_];
+//   } else {
+//     knob = [self performSelector:_default_];
+//   }
+//   
+//   if( knob == nil ) {
+//     *_error_ = [NSError errorForLoadFailure:_message_ code:EL_ERR_PLAYER_LOAD_FAILURE withError:_error_];
+//   }
+//   
+//   return knob;
+// }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [self init] ) ) {

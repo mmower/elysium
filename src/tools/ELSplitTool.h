@@ -14,11 +14,11 @@
 #import "ELTool.h"
 
 @interface ELSplitTool : ELTool {
-  ELBooleanKnob *bounceBackKnob;
+  ELDial *bounceBackDial;
 }
 
-- (id)initWithBounceBackKnob:(ELBooleanKnob *)bounceBackKnob;
+- (id)initWithBounceBackDial:(ELDial *)bounceBackDial;
 
-@property ELBooleanKnob *bounceBackKnob;
+@property ELDial *bounceBackDial;
 
 @end

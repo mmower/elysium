@@ -9,7 +9,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ELRangedKnob;
+@class ELDial;
 @class ELSquareOscillator;
 @class ELSawOscillator;
 @class ELSineOscillator;
@@ -19,7 +19,7 @@
 @interface ELOscillatorDesignerController : NSWindowController {
   IBOutlet NSTabView    *tabView;
 
-  ELRangedKnob          *knob;
+  ELDial                *dial;
   ELSquareOscillator    *squareOscillator;
   ELSawOscillator       *sawOscillator;
   ELSineOscillator      *sineOscillator;
@@ -29,9 +29,9 @@
   NSString              *selectedTag;
 }
 
-- (id)initWithKnob:(ELRangedKnob *)knob;
+- (id)initWithDial:(ELDial *)dial;
 
-@property (readonly) ELRangedKnob *knob;
+@property (readonly) ELDial *dial;
 
 @property (assign) ELSquareOscillator *squareOscillator;
 @property (assign) ELSawOscillator *sawOscillator;

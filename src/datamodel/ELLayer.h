@@ -85,17 +85,6 @@
 @property (assign)  ELDial    *noteLengthDial;
 @property (assign)  ELDial    *transposeDial;
 
-// @property (readonly) ELBooleanKnob *enabledKnob;
-// @property (readonly) ELIntegerKnob *channelKnob;
-// @property (readonly) ELIntegerKnob *tempoKnob;
-// @property (readonly) ELIntegerKnob *barLengthKnob;
-// @property (readonly) ELIntegerKnob *timeToLiveKnob;
-// @property (readonly) ELIntegerKnob *pulseCountKnob;
-// @property (readonly) ELIntegerKnob *velocityKnob;
-// @property (readonly) ELIntegerKnob *emphasisKnob;
-// @property (readonly) ELIntegerKnob *durationKnob;
-// @property (readonly) ELIntegerKnob *transposeKnob;
-
 @property (readonly) NSMutableDictionary *scripts;
 
 - (ELPlayer *)player;

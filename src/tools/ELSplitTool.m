@@ -17,24 +17,24 @@ static NSString * const toolType = @"split";
 
 @implementation ELSplitTool
 
-- (id)initWithBounceBackKnob:(ELBooleanKnob *)_bounceBackKnob_ {
+- (id)initWithBounceBackDial:(ELDial *)newBounceBackDial {
   if( ( self = [super init] ) ) {
-    bounceBackKnob = _bounceBackKnob_;
+    [self setBounceBackDial:newBounceBackDial];
   }
   
   return self;
 }
 
 - (id)init {
-  return [self initWithBounceBackKnob:[[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO]];
+  return [self initWithBounceBackDial:[[ELDial alloc] initWithName:@"bounceBack" tag:0 boolValue:NO]];
 }
 
-@synthesize bounceBackKnob;
+@synthesize bounceBackDial;
 
 - (NSArray *)observableValues {
   NSMutableArray *keys = [[NSMutableArray alloc] init];
   [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"bounceBackKnob.value",nil]];
+  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"bounceBackDial.value",nil]];
   return keys;
 }
 
@@ -45,13 +45,13 @@ static NSString * const toolType = @"split";
 - (void)start {
   [super start];
   
-  [bounceBackKnob start];
+  [bounceBackDial onStart];
 }
 
 - (void)runTool:(ELPlayhead *)_playhead_ {
   [_playhead_ setPosition:nil];
   
-  BOOL bounceBack = ![bounceBackKnob value];
+  BOOL bounceBack = ![bounceBackDial value];
   int bounceBackDirection = INVERSE_DIRECTION( [_playhead_ direction] );
   
   for( int direction = N; direction <= NW; direction++ ) {
@@ -88,7 +88,7 @@ static NSString * const toolType = @"split";
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   id copy = [super mutableCopyWithZone:_zone_];
-  [copy setBounceBackKnob:[[self bounceBackKnob] mutableCopy]];
+  [copy setBounceBackDial:[[self bounceBackDial] mutableCopy]];
   return copy;
 }
 
@@ -96,28 +96,13 @@ static NSString * const toolType = @"split";
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
-  [controlsElement addChild:[bounceBackKnob xmlRepresentation]];
+  [controlsElement addChild:[bounceBackDial xmlRepresentation]];
   return controlsElement;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [super initWithXmlRepresentation:_representation_ parent:_player_ player:_player_ error:_error_] ) ) {
-    NSXMLElement *element;
-    NSArray *nodes;
-    
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[@name='bounceBack']" error:_error_] ) ) {
-      if( ( element = [nodes firstXMLElement] ) ) {
-        bounceBackKnob = [[ELBooleanKnob alloc] initWithXmlRepresentation:element parent:nil player:_player_ error:_error_];
-      } else {
-        bounceBackKnob = [[ELBooleanKnob alloc] initWithName:@"bounceBack" booleanValue:NO];
-      }
-      
-      if( bounceBackKnob == nil ) {
-        return nil;
-      }
-    } else {
-      return nil;
-    }
+    [self setBounceBackDial:[_representation_ loadDial:@"bounceBack" parent:nil player:_player_ error:_error_]];
   }
   
   return self;

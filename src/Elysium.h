@@ -80,7 +80,7 @@ extern NSString * const ELScaleNoteColor;
 #import "ELTaggable.h"
 
 #import "ELDial.h"
-#import "ELKnob.h"
-#import "ELIntegerKnob.h"
-#import "ELFloatKnob.h"
-#import "ELBooleanKnob.h"
+// #import "ELKnob.h"
+// #import "ELIntegerKnob.h"
+// #import "ELFloatKnob.h"
+// #import "ELBooleanKnob.h"

@@ -55,7 +55,7 @@
   ELOscillatorDesignerController *controller;
   
   if( !( controller = [_sender_ oscillatorController] ) ) {
-    controller = [[ELOscillatorDesignerController alloc] initWithKnob:_sender_];
+    controller = [[ELOscillatorDesignerController alloc] initWithDial:_sender_];
     [_sender_ setOscillatorController:controller];
   }
   

@@ -27,9 +27,8 @@ static NSString * const toolType = @"note";
 NSDictionary *defaultChannelSends( void ) {
   NSMutableDictionary *sends = [NSMutableDictionary dictionary];
   for( int i = 1; i <= 16; i++ ) {
-    ELBooleanKnob *knob = [[ELBooleanKnob alloc] initWithName:[NSString stringWithFormat:@"send%d",i] booleanValue:NO];
-    [knob setTag:i];
-    [sends setObject:knob forKey:[[NSNumber numberWithInteger:[knob tag]] stringValue]];
+    ELDial *dial = [[ELDial alloc] initWithName:[NSString stringWithFormat:@"send%d",i] tag:i boolValue:NO];
+    [sends setObject:dial forKey:[[NSNumber numberWithInteger:[dial tag]] stringValue]];
   }
   return sends;
 }
@@ -225,8 +224,8 @@ NSDictionary *defaultChannelSends( void ) {
   [controlsElement addChild:[triadDial xmlRepresentation]];
   [controlsElement addChild:[ghostsDial xmlRepresentation]];
   [controlsElement addChild:[overrideDial xmlRepresentation]];
-  for( ELBooleanKnob *knob in [channelSends allValues] ) {
-    [controlsElement addChild:[knob xmlRepresentation]];
+  for( ELDial *dial in [channelSends allValues] ) {
+    [controlsElement addChild:[dial xmlRepresentation]];
   }
   
   return controlsElement;

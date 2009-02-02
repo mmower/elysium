@@ -44,7 +44,7 @@
 }
 
 - (IBAction)editOscillator:(id)_sender_ {
-  [[[ELOscillatorDesignerController alloc] initWithKnob:_sender_] showWindow:self];
+  [[[ELOscillatorDesignerController alloc] initWithDial:_sender_] showWindow:self];
 }
 
 - (IBAction)editScript:(id)sender {

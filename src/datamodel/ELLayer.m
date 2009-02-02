@@ -52,7 +52,6 @@ NSPredicate *deadPlayheadFilter;
     enabledDial   = [[ELDial alloc] initWithName:@"enabled"
                                              tag:0
                                        boolValue:YES];
-    // enabledKnob   = [[ELBooleanKnob alloc] initWithName:@"enabled" booleanValue:YES];
     
     channelDial   = [[ELDial alloc] initWithMode:dialFree
                                             name:@"channel"
@@ -62,7 +61,6 @@ NSPredicate *deadPlayheadFilter;
                                         assigned:0
                                             last:0
                                            value:0];
-    // channelKnob   = [[ELIntegerKnob alloc] initWithName:@"channel"];
   }
   
   return self;

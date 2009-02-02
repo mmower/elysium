@@ -19,9 +19,9 @@
 
 @implementation ELOscillatorDesignerController
 
-- (id)initWithKnob:(ELRangedKnob *)_knob_ {
+- (id)initWithDial:(ELDial *)theDial {
   if( ( self = [self initWithWindowNibName:@"OscillatorDesigner"] ) ) {
-    knob = _knob_;
+    dial = theDial;
     [self setupOscillators];
   }
   
@@ -32,16 +32,16 @@
   
   // Determine whether the cell formatters for the fields should allow
   // decimals for float values or not
-  for( NSTabViewItem *item in [tabView tabViewItems] ) {
-    [self setView:[item view] cellsAllowFloats:[knob encodesType:@encode(float)]];
-  }
+  // for( NSTabViewItem *item in [tabView tabViewItems] ) {
+  //   [self setView:[item view] cellsAllowFloats:[knob encodesType:@encode(float)]];
+  // }
   
   if( selectedTag ) {
     [tabView selectTabViewItemWithIdentifier:selectedTag];
   }
 }
 
-@synthesize knob;
+@synthesize dial;
 
 @synthesize squareOscillator;
 @synthesize sawOscillator;
@@ -50,9 +50,9 @@
 @synthesize randomOscillator;
 
 - (void)setView:(NSView *)_view_ cellsAllowFloats:(BOOL)_allowFloats_ {
-  for( NSView *view in [_view_ subviews] ) {
-    [self setView:view cellsAllowFloats:_allowFloats_];
-  }
+  // for( NSView *view in [_view_ subviews] ) {
+  //   [self setView:view cellsAllowFloats:_allowFloats_];
+  // }
   
   id cell, formatter;
   if( [_view_ isKindOfClass:[NSControl class]] ) {
@@ -69,66 +69,66 @@
 - (IBAction)saveOscillator:(id)_sender_ {
   NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
   if( [tabId isEqualToString:@"Square"] ) {
-    [knob setOscillator:squareOscillator];
+    [dial setOscillator:squareOscillator];
   } else if( [tabId isEqualToString:@"Saw"] ) {
-    [knob setOscillator:sawOscillator];
+    [dial setOscillator:sawOscillator];
   } else if( [tabId isEqualToString:@"Sine"] ) {
-    [knob setOscillator:sineOscillator];
+    [dial setOscillator:sineOscillator];
   } else if( [tabId isEqualToString:@"Sequence"] ) {
-    [knob setOscillator:sequenceOscillator];
+    [dial setOscillator:sequenceOscillator];
   } else if( [tabId isEqualToString:@"Random"] ) {
-    [knob setOscillator:randomOscillator];
+    [dial setOscillator:randomOscillator];
   }
   
-  [knob setOscillatorController:nil];
+  [dial setOscillatorController:nil];
   [self close];
 }
 
 - (IBAction)cancelOscillator:(id)_sender_ {
-  [knob setOscillatorController:nil];
+  [dial setOscillatorController:nil];
   [self close];
 }
 
 - (IBAction)removeOscillator:(id)_sender_ {
-  [knob setOscillator:nil];
+  [dial setOscillator:nil];
   [self close];
 }
 
 - (void)setupOscillators {
-  if( [knob oscillator] ) {
-    selectedTag = [[knob oscillator] type];
+  if( [dial oscillator] ) {
+    selectedTag = [[dial oscillator] type];
   } else {
     selectedTag = nil;
   }
   
   if( [selectedTag isEqualToString:@"Square"] ) {
-    [self setSquareOscillator:[[knob oscillator] mutableCopy]];
+    [self setSquareOscillator:[[dial oscillator] mutableCopy]];
   } else {
-    [self setSquareOscillator:[[ELSquareOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 sustain:30000]];
+    [self setSquareOscillator:[[ELSquareOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max] rest:30000 sustain:30000]];
   }
   
   if( [selectedTag isEqualToString:@"Saw"] ) {
-    [self setSawOscillator:[[knob oscillator] mutableCopy]];
+    [self setSawOscillator:[[dial oscillator] mutableCopy]];
   } else {
-    [self setSawOscillator:[[ELSawOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] rest:30000 attack:30000 sustain:30000 decay:30000]];
+    [self setSawOscillator:[[ELSawOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max] rest:30000 attack:30000 sustain:30000 decay:30000]];
   }
   
   if( [selectedTag isEqualToString:@"Sine"] ) {
-    [self setSineOscillator:[[knob oscillator] mutableCopy]];
+    [self setSineOscillator:[[dial oscillator] mutableCopy]];
   } else {
-    [self setSineOscillator:[[ELSineOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum] period:30000]];
+    [self setSineOscillator:[[ELSineOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max] period:30000]];
   }
   
   if( [selectedTag isEqualToString:@"Sequence"] ) {
-    [self setSequenceOscillator:[[knob oscillator] mutableCopy]];
+    [self setSequenceOscillator:[[dial oscillator] mutableCopy]];
   } else {
     [self setSequenceOscillator:[[ELSequenceOscillator alloc] initEnabled:YES values:[NSArray array]]];
   }
   
   if( [selectedTag isEqualToString:@"Random"] ) {
-    [self setRandomOscillator:[[knob oscillator] mutableCopy]];
+    [self setRandomOscillator:[[dial oscillator] mutableCopy]];
   } else {
-    [self setRandomOscillator:[[ELRandomOscillator alloc] initEnabled:YES minimum:[knob minimum] maximum:[knob maximum]]];
+    [self setRandomOscillator:[[ELRandomOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max]]];
   }
 }
 
