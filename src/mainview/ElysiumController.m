@@ -13,6 +13,7 @@
 
 #import "ELMIDIController.h"
 
+#import "ELInspectorController.h"
 #import "ELHexInspectorController.h"
 #import "ELLayerInspectorController.h"
 #import "ELPlayerInspectorController.h"
@@ -205,9 +206,15 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 }
 
 - (IBAction)showInspectorPanel:(id)_sender_ {
-  [self showPlayerInspector:self];
-  [self showLayerInspector:self];
-  [self showHexInspector:self];
+  if( !inspectorController ) {
+    inspectorController = [[ELInspectorController alloc] init];
+  }
+  
+  [inspectorController showWindow:self];
+  
+  // [self showPlayerInspector:self];
+  // [self showLayerInspector:self];
+  // [self showHexInspector:self];
 }
 
 - (IBAction)showMIDIConfigInspector:(id)_sender_ {

@@ -31,6 +31,9 @@
 		C930CA000EBBC3A000DE0817 /* Elysium.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = C930C9FF0EBBC3A000DE0817 /* Elysium.bridgesupport */; };
 		C930CA190EBBD54300DE0817 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = C930CA180EBBD54300DE0817 /* NoodleLineNumberView.m */; };
 		C930CA230EBBD66D00DE0817 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = C930CA220EBBD66D00DE0817 /* NoodleLineNumberMarker.m */; };
+		C94120DA0F37B9E800ADDF3E /* ELInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94120D90F37B9E800ADDF3E /* ELInspectorController.m */; };
+		C94120DD0F37B9FC00ADDF3E /* ELInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C94120DC0F37B9FC00ADDF3E /* ELInspector.xib */; };
+		C94120E20F384D4B00ADDF3E /* ELInspectorModeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C94120E10F384D4B00ADDF3E /* ELInspectorModeView.m */; };
 		C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */; };
 		C94BAE680F263F0300CCC933 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */; };
 		C94BAE6B0F263F0A00CCC933 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */; };
@@ -177,6 +180,11 @@
 		C930CA180EBBD54300DE0817 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
 		C930CA210EBBD66D00DE0817 /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
 		C930CA220EBBD66D00DE0817 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
+		C94120D80F37B9E800ADDF3E /* ELInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELInspectorController.h; sourceTree = "<group>"; };
+		C94120D90F37B9E800ADDF3E /* ELInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELInspectorController.m; sourceTree = "<group>"; };
+		C94120DC0F37B9FC00ADDF3E /* ELInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ELInspector.xib; sourceTree = "<group>"; };
+		C94120E00F384D4B00ADDF3E /* ELInspectorModeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELInspectorModeView.h; sourceTree = "<group>"; };
+		C94120E10F384D4B00ADDF3E /* ELInspectorModeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELInspectorModeView.m; sourceTree = "<group>"; };
 		C94957C90EBE365D00AC42AD /* ELTimerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTimerCallback.h; sourceTree = "<group>"; };
 		C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimerCallback.m; sourceTree = "<group>"; };
 		C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
@@ -529,6 +537,11 @@
 				C9A9F1A90E8A42DF009A06A3 /* hex */,
 				C9A9F1AC0E8A42DF009A06A3 /* layer */,
 				C9A9F1AF0E8A42DF009A06A3 /* player */,
+				C94120D80F37B9E800ADDF3E /* ELInspectorController.h */,
+				C94120D90F37B9E800ADDF3E /* ELInspectorController.m */,
+				C94120DC0F37B9FC00ADDF3E /* ELInspector.xib */,
+				C94120E00F384D4B00ADDF3E /* ELInspectorModeView.h */,
+				C94120E10F384D4B00ADDF3E /* ELInspectorModeView.m */,
 			);
 			name = inspector;
 			path = src/inspector;
@@ -790,6 +803,7 @@
 				C9F450650EBDD1BF002C3637 /* ScriptPackageInspector.xib in Resources */,
 				C978717F0F1FF76B00C4160A /* output in Resources */,
 				C90410660F268AB9009CD2B9 /* PreferencesWindow.xib in Resources */,
+				C94120DD0F37B9FC00ADDF3E /* ELInspector.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,6 +888,8 @@
 				C957DDE60F1905A900798819 /* String+AsJavascriptFunction.m in Sources */,
 				C904104C0F2660A5009CD2B9 /* ELPreferencesController.m in Sources */,
 				C9BC51B60F346FF300317049 /* ELDial.m in Sources */,
+				C94120DA0F37B9E800ADDF3E /* ELInspectorController.m in Sources */,
+				C94120E20F384D4B00ADDF3E /* ELInspectorModeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

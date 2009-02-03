@@ -9,6 +9,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELInspectorController;
 @class ELHexInspectorController;
 @class ELLayerInspectorController;
 @class ELPlayerInspectorController;
@@ -20,6 +21,7 @@
 @class ELPlayer;
 
 @interface ElysiumController : NSObject {
+  ELInspectorController           *inspectorController;
   ELHexInspectorController        *hexInspectorController;
   ELLayerInspectorController      *layerInspectorController;
   ELPlayerInspectorController     *playerInspectorController;
