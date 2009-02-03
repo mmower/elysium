@@ -14,9 +14,6 @@
 #import "ELMIDIController.h"
 
 #import "ELInspectorController.h"
-#import "ELHexInspectorController.h"
-#import "ELLayerInspectorController.h"
-#import "ELPlayerInspectorController.h"
 #import "ELOscillatorDesignerController.h"
 #import "ELMIDIConfigController.h"
 #import "ELScriptPackageController.h"
@@ -178,43 +175,12 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   [oscillatorDesignerController showWindow:self];
 }
 
-- (IBAction)showHexInspector:(id)_sender_ {
-  if( !hexInspectorController ) {
-    hexInspectorController = [[ELHexInspectorController alloc] init];
-  }
-  
-  [hexInspectorController showWindow:self];
-  [hexInspectorController focus:[[[self activePlayer] layer:0] selectedHex]];
-}
-
-- (IBAction)showLayerInspector:(id)_sender_ {
-  if( !layerInspectorController ) {
-    layerInspectorController = [[ELLayerInspectorController alloc] init];
-  }
-  
-  [layerInspectorController showWindow:self];
-  [layerInspectorController focus:[[self activePlayer] layer:0]];
-}
-
-- (IBAction)showPlayerInspector:(id)_sender_ {
-  if( !playerInspectorController ) {
-    playerInspectorController = [[ELPlayerInspectorController alloc] init];
-  }
-  
-  [playerInspectorController showWindow:self];
-  [playerInspectorController focus:[self activePlayer]];
-}
-
 - (IBAction)showInspectorPanel:(id)_sender_ {
   if( !inspectorController ) {
     inspectorController = [[ELInspectorController alloc] init];
   }
   
   [inspectorController showWindow:self];
-  
-  // [self showPlayerInspector:self];
-  // [self showLayerInspector:self];
-  // [self showHexInspector:self];
 }
 
 - (IBAction)showMIDIConfigInspector:(id)_sender_ {

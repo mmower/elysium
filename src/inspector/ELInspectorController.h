@@ -28,14 +28,18 @@
             ELPlayer            *player;
             ELLayer             *layer;
             ELHex               *cell;
+            
+            NSString            *title;
 }
 
-@property NSSegmentedControl  *modeView;
-@property NSTabView           *tabView;
+@property           NSSegmentedControl  *modeView;
+@property           NSTabView           *tabView;
 
-@property ELPlayer            *player;
-@property ELLayer             *layer;
-@property ELHex               *cell;
+@property           ELPlayer            *player;
+@property           ELLayer             *layer;
+@property           ELHex               *cell;
+
+@property (assign)  NSString            *title;
 
 - (IBAction)selectTab:(id)sender;
 

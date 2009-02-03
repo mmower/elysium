@@ -10,9 +10,6 @@
 #import <Cocoa/Cocoa.h>
 
 @class ELInspectorController;
-@class ELHexInspectorController;
-@class ELLayerInspectorController;
-@class ELPlayerInspectorController;
 @class ELOscillatorDesignerController;
 @class ELMIDIConfigController;
 @class ELScriptPackageController;
@@ -22,9 +19,6 @@
 
 @interface ElysiumController : NSObject {
   ELInspectorController           *inspectorController;
-  ELHexInspectorController        *hexInspectorController;
-  ELLayerInspectorController      *layerInspectorController;
-  ELPlayerInspectorController     *playerInspectorController;
   ELOscillatorDesignerController  *oscillatorDesignerController;
   ELMIDIConfigController          *midiConfigController;
   ELScriptPackageController       *scriptPackageController;
@@ -36,9 +30,6 @@
 - (ELPlayer *)activePlayer;
 
 - (IBAction)showOscillatorDesigner:(id)sender;
-- (IBAction)showHexInspector:(id)sender;
-- (IBAction)showLayerInspector:(id)sender;
-- (IBAction)showPlayerInspector:(id)sender;
 - (IBAction)showInspectorPanel:(id)sender;
 - (IBAction)showMIDIConfigInspector:(id)sender;
 - (IBAction)showScriptPackageInspector:(id)sender;

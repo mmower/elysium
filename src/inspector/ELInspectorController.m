@@ -30,17 +30,9 @@
 @synthesize layer;
 @synthesize cell;
 
+@synthesize title;
+
 - (void)awakeFromNib {
-  
-  [[tabView tabViewItemAtIndex:0] setView:playerView];
-  [[tabView tabViewItemAtIndex:1] setView:layerView];
-  [[tabView tabViewItemAtIndex:2] setView:generatorView];
-  [[tabView tabViewItemAtIndex:3] setView:noteView];
-  [[tabView tabViewItemAtIndex:4] setView:reboundView];
-  [[tabView tabViewItemAtIndex:5] setView:absorbView];
-  [[tabView tabViewItemAtIndex:6] setView:splitView];
-  [[tabView tabViewItemAtIndex:7] setView:spinView];
-  
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(selectionChanged:)
                                                name:ELNotifyObjectSelectionDidChange
@@ -57,26 +49,35 @@
   }
 }
 
-- (void)playerSelected:(ELPlayer *)thePlayer {
-  [self setPlayer:thePlayer];
+- (void)playerSelected:(ELPlayer *)newPlayer {
+  [self setPlayer:newPlayer];
   [self setLayer:nil];
   [self setCell:nil];
+  
+  [modeView setSelectedSegment:0];
+  [tabView selectTabViewItemAtIndex:0];
 }
 
-- (void)layerSelected:(ELLayer *)theLayer {
-  [self setPlayer:[theLayer player]];
-  [self setLayer:theLayer];
+- (void)layerSelected:(ELLayer *)newLayer {
+  [self setPlayer:[newLayer player]];
+  [self setLayer:newLayer];
   [self setCell:nil];
+  
+  [modeView setSelectedSegment:1];
+  [tabView selectTabViewItemAtIndex:1];
 }
 
-- (void)cellSelected:(ELHex *)theCell {
-  [self setPlayer:[[theCell layer] player]];
-  [self setLayer:[theCell layer]];
-  [self setCell:theCell];
+- (void)cellSelected:(ELHex *)newCell {
+  [self setPlayer:[[newCell layer] player]];
+  [self setLayer:[newCell layer]];
+  [self setCell:newCell];
 }
 
 - (IBAction)selectTab:(id)sender {
-  [tabView selectTabViewItemAtIndex:[sender selectedSegment]];
+  int tab = [sender selectedSegment];
+  
+  [self setTitle:[[tabView tabViewItemAtIndex:tab] label]];
+  [tabView selectTabViewItemAtIndex:tab];
 }
 
 @end
