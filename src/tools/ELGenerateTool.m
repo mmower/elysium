@@ -14,9 +14,11 @@
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"generate";
-
 @implementation ELGenerateTool
+
++ (NSString *)tokenType {
+  return @"generate";
+}
 
 - (id)initWithDirectionDial:(ELDial *)newDirectionDial
              timeToLiveDial:(ELDial *)newTimeToLiveDial
@@ -40,14 +42,51 @@ static NSString * const toolType = @"generate";
                           offsetDial:[[ELDial alloc] initWithName:@"offset" tag:0 assigned:0 min:0 max:64 step:1]];
 }
 
-- (NSString *)toolType {
-  return toolType;
+@dynamic directionDial;
+
+- (ELDial *)directionDial {
+  return directionDial;
 }
 
-@synthesize directionDial;
-@synthesize timeToLiveDial;
-@synthesize pulseEveryDial;
-@synthesize offsetDial;
+- (void)setDirectionDial:(ELDial *)newDirectionDial {
+  directionDial = newDirectionDial;
+  [directionDial setDelegate:self];
+}
+
+@dynamic timeToLiveDial;
+
+- (ELDial *)timeToLiveDial {
+  return timeToLiveDial;
+}
+
+- (void)setTimeToLiveDial:(ELDial *)newTimeToLiveDial {
+  timeToLiveDial = newTimeToLiveDial;
+  [timeToLiveDial setDelegate:self];
+}
+
+@dynamic pulseEveryDial;
+
+- (ELDial *)pulseEveryDial {
+  return pulseEveryDial;
+}
+
+- (void)setPpulseEveryDial:(ELDial *)newPpulseEveryDial {
+  pulseEveryDial = newPpulseEveryDial;
+  [pulseEveryDial setDelegate:self];
+}
+
+@dynamic offsetDial;
+
+- (ELDial *)offsetDial {
+  return offsetDial;
+}
+
+- (void)setOffsetDial:(ELDial *)newOffsetDial {
+  offsetDial = newOffsetDial;
+  [offsetDial setDelegate:self];
+}
+
+#pragma mark Layer support
 
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
@@ -55,15 +94,9 @@ static NSString * const toolType = @"generate";
   if( !loaded ) {
     [timeToLiveDial setParent:[_layer_ timeToLiveDial]];
     [timeToLiveDial setMode:dialInherited];
-    // [timeToLiveKnob setValue:[[_layer_ timeToLiveKnob] value]];
-    // [timeToLiveKnob setLinkedKnob:[_layer_ timeToLiveKnob]];
-    // [timeToLiveKnob setLinkValue:YES];
     
     [pulseEveryDial setParent:[_layer_ pulseEveryDial]];
     [pulseEveryDial setMode:dialInherited];
-    // [pulseCountKnob setValue:[[_layer_ pulseCountKnob] value]];
-    // [pulseCountKnob setLinkedKnob:[_layer_ pulseCountKnob]];
-    // [pulseCountKnob setLinkValue:YES];
   }
   
   [_layer_ addGenerator:self];
@@ -81,12 +114,12 @@ static NSString * const toolType = @"generate";
   [super removedFromLayer:_layer_];
 }
 
-- (NSArray *)observableValues {
-  NSMutableArray *keys = [[NSMutableArray alloc] init];
-  [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionDial.value",@"timeToLiveDial.value",@"pulseEveryDial.value",@"offsetDial.value",nil]];
-  return keys;
-}
+// - (NSArray *)observableValues {
+//   NSMutableArray *keys = [[NSMutableArray alloc] init];
+//   [keys addObjectsFromArray:[super observableValues]];
+//   [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionDial.value",@"timeToLiveDial.value",@"pulseEveryDial.value",@"offsetDial.value",nil]];
+//   return keys;
+// }
 
 // Tool runner
 

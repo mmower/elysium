@@ -31,11 +31,11 @@
   ELLayer             *layer;
   ELNote              *note;
   ELHex               *neighbours[6];
-  NSMutableArray      *tools;
   NSMutableArray      *playheads;
   
   NSString            *scriptingTag;
   
+  NSMutableDictionary *tokens;
   ELGenerateTool      *generateTool;
   ELNoteTool          *noteTool;
   ELReboundTool       *reboundTool;
@@ -47,12 +47,14 @@
 @property (readonly) ELLayer *layer;
 @property (readonly) ELNote *note;
 
-@property ELGenerateTool  *generateTool;
-@property ELNoteTool      *noteTool;
-@property ELReboundTool   *reboundTool;
-@property ELAbsorbTool    *absorbTool;
-@property ELSplitTool     *splitTool;
-@property ELSpinTool      *spinTool;
+@property (readonly)  NSMutableDictionary *tokens;
+
+@property             ELGenerateTool      *generateTool;
+@property             ELNoteTool          *noteTool;
+@property             ELReboundTool       *reboundTool;
+@property             ELAbsorbTool        *absorbTool;
+@property             ELSplitTool         *splitTool;
+@property             ELSpinTool          *spinTool;
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 
@@ -63,6 +65,8 @@
 - (ELNoteGroup *)triad:(int)triad;
 
 // Tool management
+
+- (void)needsDisplay;
 
 - (BOOL)shouldBeSaved;
 
@@ -96,8 +100,7 @@
 - (IBAction)addSpinTool:(id)sender;
 - (IBAction)removeSpinTool:(id)sender;
 
-- (NSArray *)tools;
-- (NSArray *)toolsExceptType:(NSString *)type;
+// - (NSArray *)toolsExceptType:(NSString *)type;
 
 - (void)copyToolsFrom:(ELHex *)hex;
 

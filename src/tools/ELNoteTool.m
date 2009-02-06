@@ -20,10 +20,6 @@
 #import "ELNoteGroup.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"note";
-
-@implementation ELNoteTool
-
 NSDictionary *defaultChannelSends( void ) {
   NSMutableDictionary *sends = [NSMutableDictionary dictionary];
   for( int i = 1; i <= 16; i++ ) {
@@ -31,6 +27,12 @@ NSDictionary *defaultChannelSends( void ) {
     [sends setObject:dial forKey:[[NSNumber numberWithInteger:[dial tag]] stringValue]];
   }
   return sends;
+}
+
+@implementation ELNoteTool
+
++ (NSString *)tokenType {
+  return @"note";
 }
 
 - (id)initWithVelocityDial:(ELDial *)newVelocityDial
@@ -67,18 +69,88 @@ NSDictionary *defaultChannelSends( void ) {
                        channelSends:defaultChannelSends()];
 }
 
-- (NSString *)toolType {
-  return toolType;
+#pragma mark Dials
+
+@dynamic velocityDial;
+
+- (ELDial *)velocityDial {
+  return velocityDial;
 }
 
-@synthesize velocityDial;
-@synthesize emphasisDial;
-@synthesize tempoSyncDial;
-@synthesize noteLengthDial;
-@synthesize triadDial;
-@synthesize ghostsDial;
-@synthesize overrideDial;
+- (void)setVelocityDial:(ELDial *)newVelocityDial {
+  velocityDial = newVelocityDial;
+  [velocityDial setDelegate:self];
+}
+
+@dynamic emphasisDial;
+
+- (ELDial *)emphasisDial {
+  return emphasisDial;
+}
+
+- (void)setEmphasisDial:(ELDial *)newEmphasisDial {
+  emphasisDial = newEmphasisDial;
+  [emphasisDial setDelegate:self];
+}
+
+@dynamic tempoSyncDial;
+
+- (ELDial *)tempoSyncDial {
+  return tempoSyncDial;
+}
+
+- (void)setTempoSyncDial:(ELDial *)newTempoSyncDial {
+  tempoSyncDial = newTempoSyncDial;
+  [tempoSyncDial setDelegate:self];
+}
+
+@dynamic noteLengthDial;
+
+- (ELDial *)noteLengthDial {
+  return noteLengthDial;
+}
+
+- (void)setNoteLengthDial:(ELDial *)newNoteLengthDial {
+  noteLengthDial = newNoteLengthDial;
+  [noteLengthDial setDelegate:self];
+}
+
+@dynamic triadDial;
+
+- (ELDial *)triadDial {
+  return triadDial;
+}
+
+- (void)setTriadDial:(ELDial *)newTriadDial {
+  triadDial = newTriadDial;
+  [triadDial setDelegate:self];
+}
+
+@dynamic ghostsDial;
+
+- (ELDial *)ghostsDial {
+  return ghostsDial;
+}
+
+- (void)setGhostsDial:(ELDial *)newGhostsDial {
+  ghostsDial = newGhostsDial;
+  [ghostsDial setDelegate:self];
+}
+
+@dynamic overrideDial;
+
+- (ELDial *)overrideDial {
+  return overrideDial;
+}
+
+- (void)setOverrideDial:(ELDial *)newOverrideDial {
+  overrideDial = newOverrideDial;
+  [overrideDial setDelegate:self];
+}
+
 @synthesize channelSends;
+
+#pragma mark Layer support
 
 - (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
   [super addedToLayer:_layer_ atPosition:_hex_];
@@ -86,23 +158,14 @@ NSDictionary *defaultChannelSends( void ) {
   if( !loaded ) {
     [velocityDial setParent:[_layer_ velocityDial]];
     [velocityDial setMode:dialInherited];
-    // [velocityKnob setValue:[[_layer_ velocityKnob] value]];
-    // [velocityKnob setLinkedKnob:[_layer_ velocityKnob]];
-    // [velocityKnob setLinkValue:YES];
     
     [emphasisDial setParent:[_layer_ emphasisDial]];
     [emphasisDial setMode:dialInherited];
-    // [emphasisKnob setValue:[[_layer_ emphasisKnob] value]];
-    // [emphasisKnob setLinkedKnob:[_layer_ emphasisKnob]];
-    // [emphasisKnob setLinkValue:YES]
     
     [tempoSyncDial setParent:[_layer_ tempoSyncDial]];
     [tempoSyncDial setMode:dialInherited];
     [noteLengthDial setParent:[_layer_ noteLengthDial]];
     [noteLengthDial setMode:dialInherited];
-    // [durationKnob setValue:[[_layer_ durationKnob] value]];
-    // [durationKnob setLinkedKnob:[_layer_ durationKnob]];
-    // [durationKnob setLinkValue:YES];
   }
 }
 
@@ -115,12 +178,12 @@ NSDictionary *defaultChannelSends( void ) {
   [noteLengthDial setParent:nil];
 }
 
-- (NSArray *)observableValues {
-  NSMutableArray *keys = [[NSMutableArray alloc] init];
-  [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityDial.value",@"emphasisDial.value",@"tempoSyncDial.value",@"noteLengthDial.value",@"triadDial.value",@"ghostsDial.value",nil]];
-  return keys;
-}
+// - (NSArray *)observableValues {
+//   NSMutableArray *keys = [[NSMutableArray alloc] init];
+//   [keys addObjectsFromArray:[super observableValues]];
+//   [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityDial.value",@"emphasisDial.value",@"tempoSyncDial.value",@"noteLengthDial.value",@"triadDial.value",@"ghostsDial.value",nil]];
+//   return keys;
+// }
 
 - (void)start {
   [super start];

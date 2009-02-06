@@ -14,9 +14,11 @@
 #import "ELGenerateTool.h"
 #import "ELReboundTool.h"
 
-static NSString * const toolType = @"spin";
-
 @implementation ELSpinTool
+
++ (NSString *)tokenType {
+  return @"spin";
+}
 
 - (id)initWithClockwiseDial:(ELDial *)newClockwiseDial steppingDial:(ELDial *)newSteppingDial {
   if( ( self = [super init] ) ) {
@@ -32,19 +34,34 @@ static NSString * const toolType = @"spin";
                         steppingDial:[[ELDial alloc] initWithName:@"stepping" tag:0 assigned:1 min:0 max:5 step:1]];
 }
 
-- (NSString *)toolType {
-  return toolType;
+@dynamic clockwiseDial;
+
+- (ELDial *)clockwiseDial {
+  return clockwiseDial;
 }
 
-@synthesize clockwiseDial;
-@synthesize steppingDial;
-
-- (NSArray *)observableValues {
-  NSMutableArray *keys = [[NSMutableArray alloc] init];
-  [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwiseDial.value",@"steppingDial.value",nil]];
-  return keys;
+- (void)setClockwiseDial:(ELDial *)newClockwiseDial {
+  clockwiseDial = newClockwiseDial;
+  [clockwiseDial setDelegate:self];
 }
+
+@dynamic steppingDial;
+
+- (ELDial *)steppingDial {
+  return steppingDial;
+}
+
+- (void)setSteppingDial:(ELDial *)newSteppingDial {
+  steppingDial = newSteppingDial;
+  [steppingDial setDelegate:self];
+}
+
+// - (NSArray *)observableValues {
+//   NSMutableArray *keys = [[NSMutableArray alloc] init];
+//   [keys addObjectsFromArray:[super observableValues]];
+//   [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwiseDial.value",@"steppingDial.value",nil]];
+//   return keys;
+// }
 
 - (void)start {
   [super start];

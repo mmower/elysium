@@ -12,9 +12,11 @@
 #import "ELHex.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"rebound";
-
 @implementation ELReboundTool
+
++ (NSString *)tokenType {
+  return @"rebound";
+}
 
 - (id)initWithDirectionDial:(ELDial *)newDirectionDial {
   if( ( self = [super init] ) ) {
@@ -33,18 +35,23 @@ static NSString * const toolType = @"rebound";
                                                              step:1]];
 }
 
-- (NSString *)toolType {
-  return toolType;
+@dynamic directionDial;
+
+- (ELDial *)directionDial {
+  return directionDial;
 }
 
-@synthesize directionDial;
-
-- (NSArray *)observableValues {
-  NSMutableArray *keys = [[NSMutableArray alloc] init];
-  [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionDial.value",nil]];
-  return keys;
+- (void)setDirectionDial:(ELDial *)newDirectionDial {
+  directionDial = newDirectionDial;
+  [directionDial setDelegate:self];
 }
+
+// - (NSArray *)observableValues {
+//   NSMutableArray *keys = [[NSMutableArray alloc] init];
+//   [keys addObjectsFromArray:[super observableValues]];
+//   [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionDial.value",nil]];
+//   return keys;
+// }
 
 - (void)start {
   [super start];

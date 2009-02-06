@@ -12,12 +12,10 @@
 #import "ELHex.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"absorb";
-
 @implementation ELAbsorbTool
 
-- (NSString *)toolType {
-  return toolType;
++ (NSString *)tokenType {
+  return @"absorb";
 }
 
 - (void)runTool:(ELPlayhead *)_playhead_ {

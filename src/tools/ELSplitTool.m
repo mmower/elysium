@@ -13,9 +13,11 @@
 #import "ELLayer.h"
 #import "ELPlayhead.h"
 
-static NSString * const toolType = @"split";
-
 @implementation ELSplitTool
+
++ (NSString *)tokenType {
+  return @"split";
+}
 
 - (id)initWithBounceBackDial:(ELDial *)newBounceBackDial {
   if( ( self = [super init] ) ) {
@@ -29,18 +31,23 @@ static NSString * const toolType = @"split";
   return [self initWithBounceBackDial:[[ELDial alloc] initWithName:@"bounceBack" tag:0 boolValue:NO]];
 }
 
-@synthesize bounceBackDial;
+@dynamic bounceBackDial;
 
-- (NSArray *)observableValues {
-  NSMutableArray *keys = [[NSMutableArray alloc] init];
-  [keys addObjectsFromArray:[super observableValues]];
-  [keys addObjectsFromArray:[NSArray arrayWithObjects:@"bounceBackDial.value",nil]];
-  return keys;
+- (ELDial *)bounceBackDial {
+  return bounceBackDial;
 }
 
-- (NSString *)toolType {
-  return toolType;
+- (void)setBounceBackDial:(ELDial *)newBounceBackDial {
+  bounceBackDial = newBounceBackDial;
+  [bounceBackDial setDelegate:self];
 }
+
+// - (NSArray *)observableValues {
+//   NSMutableArray *keys = [[NSMutableArray alloc] init];
+//   [keys addObjectsFromArray:[super observableValues]];
+//   [keys addObjectsFromArray:[NSArray arrayWithObjects:@"bounceBackDial.value",nil]];
+//   return keys;
+// }
 
 - (void)start {
   [super start];

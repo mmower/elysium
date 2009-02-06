@@ -48,11 +48,13 @@
 
 @property (assign) NSMutableDictionary *scripts;
 
++ (NSString *)tokenType;
+
 + (ELTool *)toolAlloc:(NSString *)key;
 
-- (NSString *)toolType;
+- (NSString *)tokenType;
 
-- (NSArray *)observableValues;
+// - (NSArray *)observableValues;
 
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;
 - (void)removedFromLayer:(ELLayer *)layer;

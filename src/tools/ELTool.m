@@ -34,6 +34,10 @@ int randval() {
 
 @implementation ELTool
 
++ (NSString *)tokenType {
+  @throw @"Token subtype has not defined tokenType!";
+}
+
 + (ELTool *)toolAlloc:(NSString *)_key_ {
   Class toolClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Tool", [_key_ capitalizedString]] );
   ELTool *tool = [toolClass alloc];
@@ -75,20 +79,53 @@ int randval() {
 @synthesize skip;
 @synthesize fired;
 
-@synthesize enabledDial;
-@synthesize pDial;
-@synthesize gateDial;
+@dynamic enabledDial;
+
+- (ELDial *)enabledDial {
+  return enabledDial;
+}
+
+- (void)setEnabledDial:(ELDial *)newEnabledDial {
+  enabledDial = newEnabledDial;
+  [enabledDial setDelegate:self];
+}
+
+@dynamic pDial;
+
+- (ELDial *)pDial {
+  return pDial;
+}
+
+- (void)setPDial:(ELDial *)newPDial {
+  pDial = newPDial;
+  [pDial setDelegate:self];
+}
+
+
+@dynamic gateDial;
+
+- (ELDial *)gateDial {
+  return gateDial;
+}
+
+- (void)setGateDial:(ELDial *)newGateDial {
+  gateDial = newGateDial;
+  [gateDial setDelegate:self];
+}
+
+- (void)dialDidChangeValue:(ELDial *)dial {
+  [hex needsDisplay];
+}
 
 @synthesize scripts;
 
-- (NSString *)toolType {
-  [self doesNotRecognizeSelector:_cmd];
-  return @"unknown";
+- (NSString *)tokenType {
+  return [[self class] tokenType];
 }
 
-- (NSArray *)observableValues {
-  return [NSArray arrayWithObjects:@"enabledDial.value",@"pDial.value",@"gateDial.value",nil];
-}
+// - (NSArray *)observableValues {
+//   return [NSArray arrayWithObjects:@"enabledDial.value",@"pDial.value",@"gateDial.value",nil];
+// }
 
 - (void)addedToLayer:(ELLayer *)newLayer atPosition:(ELHex *)newCell {
   layer = newLayer;
@@ -161,7 +198,7 @@ int randval() {
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *toolElement = [NSXMLNode elementWithName:[self toolType]];
+  NSXMLElement *toolElement = [NSXMLNode elementWithName:[self tokenType]];
   [toolElement addChild:[self controlsXmlRepresentation]];
   [toolElement addChild:[self scriptsXmlRepresentation]];
   return toolElement;

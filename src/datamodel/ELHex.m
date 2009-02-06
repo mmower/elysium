@@ -36,7 +36,7 @@
   if( ( self = [super initWithColumn:_col_ row:_row_] ) ) {
     layer        = _layer_;
     note         = _note_;
-    tools        = [[NSMutableArray alloc] init];
+    tokens       = [[NSMutableDictionary alloc] init];
     playheads    = [[NSMutableArray alloc] init];
     scriptingTag = [NSString stringWithFormat:@"cell%d:%d",_col_,_row_];
     
@@ -56,6 +56,8 @@
 @synthesize layer;
 @synthesize note;
 @synthesize scriptingTag;
+
+@synthesize tokens;
 
 @dynamic generateTool;
 
@@ -208,8 +210,12 @@
 
 // Tool support
 
+- (void)needsDisplay {
+  [layer needsDisplay];
+}
+
 - (BOOL)shouldBeSaved {
-  return [tools count] > 0;
+  return [tokens count] > 0;
 }
 
 - (void)start {
@@ -230,30 +236,31 @@
   [spinTool run:_playhead_];
 }
 
-- (void)addTool:(ELTool *)_tool_ {
-  if( _tool_ ) {
-    [tools addObject:_tool_];
-    [_tool_ addedToLayer:layer atPosition:self];
+- (void)addTool:(ELTool *)newToken {
+  if( newToken ) {
+    [tokens setObject:newToken forKey:[newToken tokenType]];
+    // [tools addObject:_tool_];
+    [newToken addedToLayer:layer atPosition:self];
 
-    for( NSString *keyPath in [_tool_ observableValues] ) {
-      [_tool_ addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    }
+    // for( NSString *keyPath in [_tool_ observableValues] ) {
+    //   [_tool_ addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    // }
   }
 }
 
-- (void)removeTool:(ELTool *)_tool_ {
-  if( _tool_ ) {
-    for( NSString *keyPath in [_tool_ observableValues] ) {
-      [_tool_ removeObserver:self forKeyPath:keyPath];
-    }
-    [_tool_ removedFromLayer:layer];
-    [tools removeObject:_tool_];
+- (void)removeTool:(ELTool *)token {
+  if( token ) {
+    // for( NSString *keyPath in [_tool_ observableValues] ) {
+    //   [_tool_ removeObserver:self forKeyPath:keyPath];
+    // }
+    [token removedFromLayer:layer];
+    [tokens removeObjectForKey:[token tokenType]];
   }
 }
 
-- (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_changes_ context:(id)_context_ {
-  [layer needsDisplay];
-}
+// - (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_changes_ context:(id)_context_ {
+//   [layer needsDisplay];
+// }
 
 - (void)removeAllTools {
   [self setGenerateTool:nil];
@@ -264,14 +271,14 @@
   [self setSpinTool:nil];
 }
 
-- (NSArray *)tools {
-  return [tools copy];
-}
+// - (NSMutableDictionary *)tokens {
+//   return [tokens mutableCopy];
+// }
 
-- (NSArray *)toolsExceptType:(NSString *)_type_ {
-  NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"toolType != %@",_type_];
-  return [tools filteredArrayUsingPredicate:typePredicate];
-}
+// - (NSArray *)toolsExceptType:(NSString *)_type_ {
+//   NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"toolType != %@",_type_];
+//   return [tools filteredArrayUsingPredicate:typePredicate];
+// }
 
 - (void)copyToolsFrom:(ELHex *)_hex_ {
   [self setGenerateTool:[[_hex_ generateTool] mutableCopy]];
@@ -632,7 +639,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     
   }
   
-  [[self tools] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];
+  [[[self tokens] allValues] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];
 }
 
 // Implement the ELXmlData protocol
@@ -644,7 +651,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [attributes setObject:[NSNumber numberWithInt:row] forKey:@"row"];
   [cellElement setAttributesAsDictionary:attributes];
   
-  for( ELTool *tool in [self tools] ) {
+  for( ELTool *tool in [[self tokens] allValues] ) {
     [cellElement addChild:[tool xmlRepresentation]];
   }
   
