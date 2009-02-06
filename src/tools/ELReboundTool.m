@@ -10,6 +10,7 @@
 #import "ELReboundTool.h"
 
 #import "ELHex.h"
+#import "ELPlayer.h"
 #import "ELPlayhead.h"
 
 @implementation ELReboundTool
@@ -27,12 +28,7 @@
 }
 
 - (id)init {
-  return [self initWithDirectionDial:[[ELDial alloc] initWithName:@"direction"
-                                                              tag:0
-                                                         assigned:N
-                                                              min:0
-                                                              max:5
-                                                             step:1]];
+  return [self initWithDirectionDial:[ELPlayer defaultDirectionDial]];
 }
 
 @dynamic directionDial;

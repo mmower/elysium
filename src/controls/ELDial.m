@@ -30,6 +30,7 @@
 
 - (id)initWithMode:(ELDialMode)aMode
               name:(NSString *)aName
+           toolTip:(NSString *)aToolTip
                tag:(int)aTag
             parent:(ELDial *)aParent
         oscillator:(ELOscillator *)aOscillator
@@ -42,6 +43,7 @@
 {
   if( ( self = [super init] ) ) {
     [self setName:aName];
+    [self setToolTip:aToolTip];
     [self setTag:aTag];
     [self setParent:aParent];
     [self setOscillator:aOscillator];
@@ -63,6 +65,7 @@
 
 - (id)initWithMode:(ELDialMode)aMode
               name:(NSString *)aName
+           toolTip:(NSString *)aToolTip
                tag:(int)aTag
             parent:(ELDial *)aParent
         oscillator:(ELOscillator *)aOscillator
@@ -72,6 +75,7 @@
 {
   return [self initWithMode:aMode
                        name:aName
+                    toolTip:aToolTip
                         tag:aTag
                      parent:aParent
                  oscillator:aOscillator
@@ -87,6 +91,7 @@
 - (id)initWithParent:(ELDial *)parentDial {
   return [self initWithMode:dialInherited
                        name:[parentDial name]
+                    toolTip:[parentDial toolTip]
                         tag:[parentDial tag]
                      parent:parentDial
                  oscillator:nil
@@ -99,6 +104,7 @@
 }
 
 - (id)initWithName:(NSString *)aName
+           toolTip:(NSString *)aToolTip
                tag:(int)aTag
           assigned:(int)aAssigned
                min:(int)aMin
@@ -107,6 +113,7 @@
 {
   return [self initWithMode:dialFree
                        name:aName
+                    toolTip:aToolTip
                         tag:aTag
                      parent:nil
                  oscillator:nil
@@ -119,11 +126,13 @@
 }
 
 - (id)initWithName:(NSString *)aName
+           toolTip:(NSString *)aToolTip
                tag:(int)aTag
          boolValue:(BOOL)aValue
 {
   return [self initWithMode:dialFree
                        name:aName
+                    toolTip:aToolTip
                         tag:aTag
                      parent:nil
                  oscillator:nil
@@ -176,6 +185,7 @@
 
 
 @synthesize name;
+@synthesize toolTip;
 @synthesize tag;
 
 @dynamic parent;
@@ -295,6 +305,7 @@
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   return [[[self class] allocWithZone:_zone_] initWithMode:[self mode]
                                                       name:[self name]
+                                                   toolTip:[self toolTip]
                                                        tag:[self tag]
                                                     parent:[self parent]
                                                 oscillator:[self oscillator]

@@ -23,7 +23,10 @@
 NSDictionary *defaultChannelSends( void ) {
   NSMutableDictionary *sends = [NSMutableDictionary dictionary];
   for( int i = 1; i <= 16; i++ ) {
-    ELDial *dial = [[ELDial alloc] initWithName:[NSString stringWithFormat:@"send%d",i] tag:i boolValue:NO];
+    ELDial *dial = [[ELDial alloc] initWithName:[NSString stringWithFormat:@"send%d",i]
+                                        toolTip:[NSString stringWithFormat:@"Controls whether MIDI is always sent on channel %d for this note.",i]
+                                            tag:i
+                                      boolValue:NO];
     [sends setObject:dial forKey:[[NSNumber numberWithInteger:[dial tag]] stringValue]];
   }
   return sends;
@@ -63,9 +66,9 @@ NSDictionary *defaultChannelSends( void ) {
                        emphasisDial:[ELPlayer defaultEmphasisDial]
                       tempoSyncDial:[ELPlayer defaultTempoSyncDial]
                      noteLengthDial:[ELPlayer defaultNoteLengthDial]
-                          triadDial:[[ELDial alloc] initWithName:@"triad" tag:0 assigned:0 min:0 max:6 step:1]
-                         ghostsDial:[[ELDial alloc] initWithName:@"ghosts" tag:0 assigned:0 min:0 max:16 step:1]
-                       overrideDial:[[ELDial alloc] initWithName:@"override" tag:0 boolValue:NO]
+                          triadDial:[ELPlayer defaultTriadDial]
+                         ghostsDial:[ELPlayer defaultGhostsDial]
+                       overrideDial:[ELPlayer defaultOverrideDial]
                        channelSends:defaultChannelSends()];
 }
 

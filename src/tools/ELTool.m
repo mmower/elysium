@@ -13,6 +13,7 @@
 
 #import "ELHex.h"
 #import "ELLayer.h"
+#import "ELPlayer.h"
 #import "ELPlayhead.h"
 
 #import "ELNoteTool.h"
@@ -45,9 +46,9 @@ int randval() {
 }
 
 - (id)init {
-  return [self initEnabledDial:[[ELDial alloc] initWithName:@"enabled" tag:0 boolValue:YES]
-                         pDial:[[ELDial alloc] initWithName:@"p" tag:0 assigned:100 min:0 max:100 step:1]
-                      gateDial:[[ELDial alloc] initWithName:@"gate" tag:0 assigned:0 min:0 max:32 step:1]
+  return [self initEnabledDial:[ELPlayer defaultEnabledDial]
+                         pDial:[ELPlayer defaultPDial]
+                      gateDial:[ELPlayer defaultGateDial]
                        scripts:[NSMutableDictionary dictionary]];
 }
 

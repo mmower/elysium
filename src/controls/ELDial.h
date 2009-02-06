@@ -24,6 +24,7 @@ typedef enum tagELDialMode {
   ELDialMode    mode;
   
   NSString      *name;
+  NSString      *toolTip;
   int           tag;
   
   ELDial        *parent;
@@ -42,6 +43,7 @@ typedef enum tagELDialMode {
 
 - (id)initWithMode:(ELDialMode)mode
               name:(NSString *)name
+           toolTip:(NSString *)toolTip
                tag:(int)tag
             parent:(ELDial *)parent
         oscillator:(ELOscillator *)oscillator
@@ -51,6 +53,7 @@ typedef enum tagELDialMode {
 
 - (id)initWithMode:(ELDialMode)mode
               name:(NSString *)name
+           toolTip:(NSString *)toolTip
                tag:(int)tag
             parent:(ELDial *)parent
         oscillator:(ELOscillator *)oscillator
@@ -62,6 +65,7 @@ typedef enum tagELDialMode {
               step:(int)step;
 
 - (id)initWithName:(NSString *)aName
+           toolTip:(NSString *)aToolTip
                tag:(int)aTag
           assigned:(int)aAssigned
                min:(int)aMin
@@ -69,6 +73,7 @@ typedef enum tagELDialMode {
               step:(int)aStep;
 
 - (id)initWithName:(NSString *)aName
+           toolTip:(NSString *)aToolTip
                tag:(int)tag
          boolValue:(BOOL)value;
 
@@ -77,6 +82,7 @@ typedef enum tagELDialMode {
 @property           id            delegate;
 @property           ELDialMode    mode;
 @property (assign)  NSString      *name;
+@property (assign)  NSString      *toolTip;
 @property           int           tag;
 @property           ELDial        *parent;
 @property           ELOscillator  *oscillator;

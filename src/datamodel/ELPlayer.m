@@ -71,33 +71,25 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop:) name:ELNotifyPlayerShouldStop object:nil];
   }
   
-  NSLog( @"init %@", tempoDial );
-  
   return self;
 }
 
 
 // There is an issue here!
 - (id)initWithDocument:(ElysiumDocument *)theDocument {
-  NSLog( @"initWithDocument:");
   if( ( self = [self init] ) ) {
     [self setDocument:theDocument];
   }
-  
-  NSLog( @"initWithDocument:%@", tempoDial );
   
   return self;
 }
 
 - (id)initWithDocument:(ElysiumDocument *)theDocument createDefaultLayer:(BOOL)shouldCreateDefaultLayer {
-  NSLog( @"initWithDoucment:createDefaultLayer:");
   if( ( self = [self initWithDocument:theDocument] ) ) {
     if( shouldCreateDefaultLayer ) {
       [self createLayer];
     }
   }
-  
-  NSLog( @"initWithDoucment:createDefaultLayer:%@", tempoDial );
   
   return self;
 }
@@ -130,6 +122,7 @@
 
 + (ELDial *)defaultTempoDial {
   return [[ELDial alloc] initWithName:@"tempo"
+                              toolTip:@"Controls tempo in Beats Per Minute (BPM)"
                                   tag:0
                              assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultTempoKey]
                                   min:15
@@ -139,6 +132,7 @@
 
 + (ELDial *)defaultBarLengthDial {
   return [[ELDial alloc] initWithName:@"barLength"
+                              toolTip:@"Controls how many beats there are to a bar."
                                   tag:0
                              assigned:4
                                   min:1
@@ -148,6 +142,7 @@
 
 + (ELDial *)defaultTimeToLiveDial {
   return [[ELDial alloc] initWithName:@"timeToLive"
+                              toolTip:@"Controls how many beat a playhead lives for."
                                   tag:0
                              assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultTTLKey]
                                   min:1
@@ -157,6 +152,7 @@
 
 + (ELDial *)defaultPulseEveryDial {
   return [[ELDial alloc] initWithName:@"pulseEvery"
+                              toolTip:@"Controls the beat on which generators create new playheads."
                                   tag:0
                              assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultPulseCountKey]
                                   min:1
@@ -166,6 +162,7 @@
 
 + (ELDial *)defaultVelocityDial {
   return [[ELDial alloc] initWithName:@"velocity"
+                              toolTip:@"Controls the MIDI velocity for notes except the first in each bar."
                                   tag:0
                              assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultVelocityKey]
                                   min:1
@@ -175,6 +172,7 @@
 
 + (ELDial *)defaultEmphasisDial {
   return [[ELDial alloc] initWithName:@"emphasis"
+                              toolTip:@"Controls the MIDI velocity of the first note in each bar."
                                   tag:0
                              assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultEmphasisKey]
                                   min:1
@@ -186,6 +184,7 @@
   assert( YES == 1);
   assert( NO == 0 );
   return [[ELDial alloc] initWithName:@"tempoSync"
+                              toolTip:@"Controls whether note length is sync'd to tempo or freely assigned."
                                   tag:0
                              assigned:NO
                                   min:NO
@@ -195,6 +194,7 @@
 
 + (ELDial *)defaultNoteLengthDial {
   return [[ELDial alloc] initWithName:@"noteLength"
+                              toolTip:@"Controls the length of time over which a note is held."
                                   tag:0
                              assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultDurationKey]
                                   min:100
@@ -204,10 +204,109 @@
 
 + (ELDial *)defaultTransposeDial {
   return [[ELDial alloc] initWithName:@"transpose"
+                              toolTip:@"Controls note transposition from 2 octaves down to 2 octaves up."
                                   tag:0
                              assigned:0
                                   min:-24
                                   max:24
+                                 step:1];
+}
+
++ (ELDial *)defaultEnabledDial {
+  return [[ELDial alloc] initWithName:@"enabled"
+                              toolTip:@"Controls whether this object is enabled or not."
+                                  tag:0
+                            boolValue:YES];
+}
+
++ (ELDial *)defaultPDial {
+  return [[ELDial alloc] initWithName:@"p"
+                              toolTip:@"Controls the probability that this object will be triggered."
+                                  tag:0
+                             assigned:100
+                                  min:0
+                                  max:100
+                                 step:1];
+}
+
++ (ELDial *)defaultGateDial {
+  return [[ELDial alloc] initWithName:@"gate"
+                              toolTip:@"Controls the number of playheads that must enter to trigger this object."
+                                  tag:0
+                             assigned:0
+                                  min:0
+                                  max:32
+                                 step:1];
+}
+
++ (ELDial *)defaultDirectionDial {
+  return [[ELDial alloc] initWithName:@"direction"
+                              toolTip:@"Controls which direction playheads are generated in."
+                                  tag:0
+                             assigned:N
+                                  min:0
+                                  max:5
+                                 step:1];
+}
+
++ (ELDial *)defaultOffsetDial {
+  return [[ELDial alloc] initWithName:@"offset"
+                              toolTip:@"Controls how many beats playhead generation is offset by."
+                                  tag:0
+                             assigned:0
+                                  min:0
+                                  max:64
+                                 step:1];
+}
+
++ (ELDial *)defaultTriadDial {
+  return [[ELDial alloc] initWithName:@"triad"
+                              toolTip:@"Controls whether (and which) triad will be played on this note."
+                                  tag:0
+                             assigned:0
+                                  min:0
+                                  max:6
+                                 step:1];
+}
+
++ (ELDial *)defaultGhostsDial {
+  return [[ELDial alloc] initWithName:@"ghosts"
+                              toolTip:@"Controls the number of ghost notes that will play on subsequent beats."
+                                  tag:0
+                             assigned:0
+                                  min:0
+                                  max:16
+                                 step:1];
+}
+
++ (ELDial *)defaultOverrideDial {
+  return [[ELDial alloc] initWithName:@"override"
+                              toolTip:@"Controls whether MIDI channel send overrides are in effect."
+                                  tag:0
+                            boolValue:NO];
+}
+
++ (ELDial *)defaultBounceBackDial {
+  return [[ELDial alloc] initWithName:@"bounceBack"
+                              toolTip:@"Controls whether this split token will also send a playhead back along the original direction."
+                                  tag:0
+                            boolValue:NO];
+}
+
++ (ELDial *)defaultClockWiseDial {
+  return [[ELDial alloc] initWithName:@"clockwise"
+                              toolTip:@"Controls whether this spinner rotates clockwise or anticlockwise."
+                                  tag:0
+                            boolValue:YES];
+}
+
++ (ELDial *)defaultSteppingDial {
+  return [[ELDial alloc] initWithName:@"stepping"
+                              toolTip:@"Controls how many compass points this spinner rotates at a time."
+                                  tag:0
+                             assigned:1
+                                  min:0
+                                  max:5
                                  step:1];
 }
 

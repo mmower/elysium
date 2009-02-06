@@ -94,6 +94,17 @@
 + (ELDial *)defaultTempoSyncDial;
 + (ELDial *)defaultNoteLengthDial;
 + (ELDial *)defaultTransposeDial;
++ (ELDial *)defaultEnabledDial;
++ (ELDial *)defaultPDial;
++ (ELDial *)defaultGateDial;
++ (ELDial *)defaultDirectionDial;
++ (ELDial *)defaultOffsetDial;
++ (ELDial *)defaultTriadDial;
++ (ELDial *)defaultGhostsDial;
++ (ELDial *)defaultOverrideDial;
++ (ELDial *)defaultBounceBackDial;
++ (ELDial *)defaultClockWiseDial;
++ (ELDial *)defaultSteppingDial;
 
 - (void)toggleNoteDisplay;
 

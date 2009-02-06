@@ -36,10 +36,10 @@
 }
 
 - (id)init {
-  return [self initWithDirectionDial:[[ELDial alloc] initWithName:@"direction" tag:0 assigned:N min:0 max:5 step:1]
+  return [self initWithDirectionDial:[ELPlayer defaultDirectionDial]
                       timeToLiveDial:[ELPlayer defaultTimeToLiveDial]
                       pulseEveryDial:[ELPlayer defaultPulseEveryDial]
-                          offsetDial:[[ELDial alloc] initWithName:@"offset" tag:0 assigned:0 min:0 max:64 step:1]];
+                          offsetDial:[ELPlayer defaultOffsetDial]];
 }
 
 @dynamic directionDial;

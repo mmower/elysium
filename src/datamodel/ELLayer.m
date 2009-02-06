@@ -50,11 +50,13 @@ NSPredicate *deadPlayheadFilter;
     [self addObserver:self forKeyPath:@"key" options:0 context:nil];
     
     enabledDial   = [[ELDial alloc] initWithName:@"enabled"
+                                         toolTip:@"Controls whether this layer should play or not."
                                              tag:0
                                        boolValue:YES];
     
     channelDial   = [[ELDial alloc] initWithMode:dialFree
                                             name:@"channel"
+                                         toolTip:@"The MIDI channel this layer will, by default, send notes on."
                                              tag:0
                                           parent:nil
                                       oscillator:nil

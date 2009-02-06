@@ -10,6 +10,7 @@
 #import "ELSpinTool.h"
 
 #import "ELHex.h"
+#import "ELPlayer.h"
 #import "ELPlayhead.h"
 #import "ELGenerateTool.h"
 #import "ELReboundTool.h"
@@ -30,8 +31,8 @@
 }
 
 - (id)init {
-  return [self initWithClockwiseDial:[[ELDial alloc] initWithName:@"clockwise" tag:0 boolValue:YES]
-                        steppingDial:[[ELDial alloc] initWithName:@"stepping" tag:0 assigned:1 min:0 max:5 step:1]];
+  return [self initWithClockwiseDial:[ELPlayer defaultClockWiseDial]
+                        steppingDial:[ELPlayer defaultSteppingDial]];
 }
 
 @dynamic clockwiseDial;

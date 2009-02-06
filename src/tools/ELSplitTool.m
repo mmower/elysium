@@ -11,6 +11,7 @@
 
 #import "ELHex.h"
 #import "ELLayer.h"
+#import "ELPlayer.h"
 #import "ELPlayhead.h"
 
 @implementation ELSplitTool
@@ -28,7 +29,7 @@
 }
 
 - (id)init {
-  return [self initWithBounceBackDial:[[ELDial alloc] initWithName:@"bounceBack" tag:0 boolValue:NO]];
+  return [self initWithBounceBackDial:[ELPlayer defaultBounceBackDial]];
 }
 
 @dynamic bounceBackDial;
