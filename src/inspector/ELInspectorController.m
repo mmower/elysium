@@ -10,9 +10,10 @@
 
 #import "ELInspectorController.h"
 
-#import "ELPlayer.h"
-#import "ELLayer.h"
+#import "ELKey.h"
 #import "ELHex.h"
+#import "ELLayer.h"
+#import "ELPlayer.h"
 
 @implementation ELInspectorController
 
@@ -21,6 +22,10 @@
   }
   
   return self;
+}
+
+- (void)windowDidLoad {
+  
 }
 
 @synthesize modeView;
@@ -37,7 +42,6 @@
     [playerController unbind:@"contentObject"];
     player = newPlayer;
     if( player ) {
-      NSLog( @"tempoDial = %@:%d", [player tempoDial], [[player tempoDial] value] );
       [playerController bind:@"contentObject" toObject:self withKeyPath:@"player" options:nil];
     }
   }
@@ -123,6 +127,10 @@
   
   [self setTitle:[[tabView tabViewItemAtIndex:tab] label]];
   [tabView selectTabViewItemAtIndex:tab];
+}
+
+- (NSArray *)keySignatures {
+  return [ELKey allKeys];
 }
 
 @end

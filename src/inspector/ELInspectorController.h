@@ -52,4 +52,6 @@
 - (void)layerSelected:(ELLayer *)layer;
 - (void)cellSelected:(ELHex *)cell;
 
+- (NSArray *)keySignatures;
+
 @end
