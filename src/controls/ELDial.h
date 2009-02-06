@@ -97,6 +97,8 @@ typedef enum tagELDialMode {
 - (BOOL)boolValue;
 - (void)setBoolValue:(BOOL)boolValue;
 
+- (BOOL)isFree;
+
 - (void)onStart;
 - (void)onBeat;
 

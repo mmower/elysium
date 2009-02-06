@@ -327,4 +327,8 @@
   [oscillator onBeat];
 }
 
+- (BOOL)isFree {
+  return mode == dialFree;
+}
+
 @end
