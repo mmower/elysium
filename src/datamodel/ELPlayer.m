@@ -40,15 +40,15 @@
     layers          = [[NSMutableArray alloc] init];
     selectedLayer   = nil;
     
-    tempoDial       = [ELPlayer defaultTempoDial];
-    barLengthDial   = [ELPlayer defaultBarLengthDial];
-    timeToLiveDial  = [ELPlayer defaultTimeToLiveDial];
-    pulseEveryDial  = [ELPlayer defaultPulseEveryDial];
-    velocityDial    = [ELPlayer defaultVelocityDial];
-    emphasisDial    = [ELPlayer defaultEmphasisDial];
-    tempoSyncDial   = [ELPlayer defaultTempoSyncDial];
-    noteLengthDial  = [ELPlayer defaultNoteLengthDial];
-    transposeDial   = [ELPlayer defaultTransposeDial];
+    [self setTempoDial:[ELPlayer defaultTempoDial]];
+    [self setBarLengthDial:[ELPlayer defaultBarLengthDial]];
+    [self setTimeToLiveDial:[ELPlayer defaultTimeToLiveDial]];
+    [self setPulseEveryDial:[ELPlayer defaultPulseEveryDial]];
+    [self setVelocityDial:[ELPlayer defaultVelocityDial]];
+    [self setEmphasisDial:[ELPlayer defaultEmphasisDial]];
+    [self setTempoSyncDial:[ELPlayer defaultTempoSyncDial]];
+    [self setNoteLengthDial:[ELPlayer defaultNoteLengthDial]];
+    [self setTransposeDial:[ELPlayer defaultTransposeDial]];
     
     scriptingTag    = @"player";
     scripts         = [NSMutableDictionary dictionary];
@@ -71,25 +71,33 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop:) name:ELNotifyPlayerShouldStop object:nil];
   }
   
+  NSLog( @"init %@", tempoDial );
+  
   return self;
 }
 
 
 // There is an issue here!
-- (id)initWithDocument:(ElysiumDocument *)_document_ {
+- (id)initWithDocument:(ElysiumDocument *)theDocument {
+  NSLog( @"initWithDocument:");
   if( ( self = [self init] ) ) {
-    [self setDocument:_document_];
+    [self setDocument:theDocument];
   }
+  
+  NSLog( @"initWithDocument:%@", tempoDial );
   
   return self;
 }
 
-- (id)initWithDocument:(ElysiumDocument *)_document_ createDefaultLayer:(BOOL)_createDefaultLayer_ {
-  if( ( self = [self initWithDocument:_document_] ) ) {
-    if( _createDefaultLayer_ ) {
+- (id)initWithDocument:(ElysiumDocument *)theDocument createDefaultLayer:(BOOL)shouldCreateDefaultLayer {
+  NSLog( @"initWithDoucment:createDefaultLayer:");
+  if( ( self = [self initWithDocument:theDocument] ) ) {
+    if( shouldCreateDefaultLayer ) {
       [self createLayer];
     }
   }
+  
+  NSLog( @"initWithDoucment:createDefaultLayer:%@", tempoDial );
   
   return self;
 }

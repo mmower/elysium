@@ -26,9 +26,54 @@
 @synthesize modeView;
 @synthesize tabView;
 
-@synthesize player;
-@synthesize layer;
+@dynamic player;
+
+- (ELPlayer *)player {
+  return player;
+}
+
+- (void)setPlayer:(ELPlayer *)newPlayer {
+  if( newPlayer != player ) {
+    [playerController unbind:@"contentObject"];
+    player = newPlayer;
+    if( player ) {
+      NSLog( @"tempoDial = %@:%d", [player tempoDial], [[player tempoDial] value] );
+      [playerController bind:@"contentObject" toObject:self withKeyPath:@"player" options:nil];
+    }
+  }
+}
+
+@dynamic layer;
+
+- (ELLayer *)layer {
+  return layer;
+}
+
+- (void)setLayer:(ELLayer *)newLayer {
+  if( newLayer != layer ) {
+    [layerController unbind:@"contentObject"];
+    layer = newLayer;
+    if( layer ) {
+      [layerController bind:@"contentObject" toObject:self withKeyPath:@"layer" options:nil];
+    }
+  }
+}
+
 @synthesize cell;
+
+- (ELHex *)cell {
+  return cell;
+}
+
+- (void)setCell:(ELHex *)newCell {
+  if( newCell != cell ) {
+    [cellController unbind:@"contentObject"];
+    cell = newCell;
+    if( cell ) {
+      [cellController bind:@"contentObject" toObject:self withKeyPath:@"cell" options:nil];
+    }
+  }
+}
 
 @synthesize title;
 

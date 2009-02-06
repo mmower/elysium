@@ -30,6 +30,10 @@
             ELHex               *cell;
             
             NSString            *title;
+  
+  IBOutlet NSObjectController   *playerController;
+  IBOutlet NSObjectController   *layerController;
+  IBOutlet NSObjectController   *cellController;
 }
 
 @property           NSSegmentedControl  *modeView;

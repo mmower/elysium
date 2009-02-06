@@ -83,7 +83,7 @@
 @property             ELDial              *transposeDial;
 
 - (id)initWithDocument:(ElysiumDocument *)document;
-- (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)createDefaultLayer;
+- (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)shouldCreateDefaultLayer;
 
 + (ELDial *)defaultTempoDial;
 + (ELDial *)defaultBarLengthDial;

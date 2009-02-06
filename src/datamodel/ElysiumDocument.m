@@ -35,6 +35,8 @@
     player = [[ELPlayer alloc] initWithDocument:self createDefaultLayer:YES];
   }
   
+  NSLog( @"New player = %@:%@:%d:%@", player, [player tempoDial], [[player tempoDial] value], [player scriptingTag] );
+  
   [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument" owner:self]];
   
   for( ELLayer *layer in [player layers] ) {
