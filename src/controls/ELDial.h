@@ -97,7 +97,9 @@ typedef enum tagELDialMode {
 - (BOOL)boolValue;
 - (void)setBoolValue:(BOOL)boolValue;
 
-- (BOOL)isFree;
+// Fake properties to make it easier to work with bindings
+- (BOOL)isInherited;
+- (void)setIsInherited:(BOOL)shouldInherit;
 
 - (void)onStart;
 - (void)onBeat;

@@ -155,32 +155,33 @@
 
 
 - (void)setMode:(ELDialMode)newMode {
-  if( newMode != mode ) {
-    switch( newMode ) {
-      case dialFree:
-        [self unbind:@"value"];
-        [self bind:@"value" toObject:self withKeyPath:@"assigned" options:nil];
-        break;
-        
-      case dialDynamic:
-        if( oscillator ) {
-          [self unbind:@"value"];
-          // Note that we expect all current oscillators to have generated a new value
-          // at the start of each beat of their layer
-          [self bind:@"value" toObject:oscillator withKeyPath:@"value" options:nil];
-          mode = newMode;
-        }
-        break;
+  switch( newMode ) {
+    case dialFree:
+      [self unbind:@"assigned"];
+      [self unbind:@"value"];
+      [self bind:@"value" toObject:self withKeyPath:@"assigned" options:nil];
+      [self bind:@"assigned" toObject:self withKeyPath:@"value" options:nil];
+      break;
       
-      case dialInherited:
-        if( parent ) {
-          [self unbind:@"value"];
-          [self bind:@"value" toObject:parent withKeyPath:@"value" options:nil];
-          mode = newMode;
-        }
-        break;
-    }
+    case dialDynamic:
+      if( oscillator ) {
+        [self unbind:@"assigned"];
+        [self unbind:@"value"];
+        // Note that we expect all current oscillators to have generated a new value
+        // at the start of each beat of their layer
+        [self bind:@"value" toObject:oscillator withKeyPath:@"value" options:nil];
+      }
+      break;
+    
+    case dialInherited:
+      if( parent ) {
+        [self unbind:@"assigned"];
+        [self unbind:@"value"];
+        [self bind:@"value" toObject:parent withKeyPath:@"value" options:nil];
+      }
+      break;
   }
+  mode = newMode;
 }
 
 
@@ -195,12 +196,16 @@
 }
 
 - (void)setParent:(ELDial *)newParent {
-  [self unbind:@"value"];
+  if( [self mode] == dialInherited ) {
+    [self unbind:@"value"];
+  }
   parent = newParent;
-  if( parent ) {
-    [self bind:@"value" toObject:parent withKeyPath:@"value" options:nil];
-  } else {
-    [self setMode:dialFree];
+  if( [self mode] == dialInherited ) {
+    if( parent ) {
+      [self bind:@"value" toObject:parent withKeyPath:@"value" options:nil];
+    } else {
+      [self setMode:dialFree];
+    }
   }
 }
 
@@ -224,7 +229,6 @@
   }
 }
 
-
 @synthesize min;
 @synthesize max;
 @synthesize step;
@@ -237,7 +241,6 @@
 - (void)setBoolValue:(BOOL)boolValue {
   [self setValue:(boolValue ? 1 : 0)];
 }
-
 
 #pragma mark ELXmlData implementation
 
@@ -327,8 +330,16 @@
   [oscillator onBeat];
 }
 
-- (BOOL)isFree {
-  return mode == dialFree;
+- (BOOL)isInherited {
+  return mode == dialInherited;
+}
+
+- (void)setIsInherited:(BOOL)shouldInherit {
+  if( shouldInherit ) {
+    [self setMode:dialInherited];
+  } else {
+    [self setMode:dialFree];
+  }
 }
 
 @end
