@@ -26,10 +26,10 @@
                  offsetDial:(ELDial *)newOffsetDial
 {
   if( ( self = [super init] ) ) {
-    directionDial  = newDirectionDial;
-    timeToLiveDial = newTimeToLiveDial;
-    pulseEveryDial = newPulseEveryDial;
-    offsetDial     = newOffsetDial;
+    [self setDirectionDial:newDirectionDial];
+    [self setTimeToLiveDial:newTimeToLiveDial];
+    [self setPulseEveryDial:newPulseEveryDial];
+    [self setOffsetDial:newOffsetDial];
   }
   
   return self;
@@ -70,8 +70,8 @@
   return pulseEveryDial;
 }
 
-- (void)setPpulseEveryDial:(ELDial *)newPpulseEveryDial {
-  pulseEveryDial = newPpulseEveryDial;
+- (void)setPulseEveryDial:(ELDial *)newPulseEveryDial {
+  pulseEveryDial = newPulseEveryDial;
   [pulseEveryDial setDelegate:self];
 }
 

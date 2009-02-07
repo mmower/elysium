@@ -23,8 +23,8 @@
 
 - (id)initWithClockwiseDial:(ELDial *)newClockwiseDial steppingDial:(ELDial *)newSteppingDial {
   if( ( self = [super init] ) ) {
-    clockwiseDial = newClockwiseDial;
-    steppingDial  = newSteppingDial;
+    [self setClockwiseDial:newClockwiseDial];
+    [self setSteppingDial:newSteppingDial];
   }
   
   return self;
