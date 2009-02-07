@@ -245,7 +245,7 @@
                                   tag:0
                              assigned:N
                                   min:0
-                                  max:5
+                                  max:6
                                  step:1];
 }
 
