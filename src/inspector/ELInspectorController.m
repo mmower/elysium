@@ -25,7 +25,9 @@
 }
 
 - (void)windowDidLoad {
-  
+  NSLog( @"windowDidLoad -> %@", panel );
+  [panel setFloatingPanel:YES];
+  // [panel setBecomesKeyOnlyIfNeeded:YES];
 }
 
 @synthesize modeView;

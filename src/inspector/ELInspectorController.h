@@ -13,6 +13,7 @@
 @class ELHex;
 
 @interface ELInspectorController : NSWindowController {
+  IBOutlet  NSPanel             *panel;
   IBOutlet  NSSegmentedControl  *modeView;
   IBOutlet  NSTabView           *tabView;
   
