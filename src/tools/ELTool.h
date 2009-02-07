@@ -21,7 +21,6 @@
 
 @interface ELTool : NSObject <ELXmlData,NSMutableCopying> {
   BOOL                loaded;
-  BOOL                enabled;
   ELLayer             *layer;
   ELHex               *hex;
   NSMutableDictionary *scripts;

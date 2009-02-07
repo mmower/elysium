@@ -189,7 +189,7 @@ int randval() {
 }
 
 - (void)setToolDrawColor:(NSDictionary *)_attributes_ {
-  if( enabled ) {
+  if( [enabledDial boolValue] ) {
     [[_attributes_ objectForKey:ELDefaultToolColor] set];
   } else {
     [[_attributes_ objectForKey:ELDisabledToolColor] set];
