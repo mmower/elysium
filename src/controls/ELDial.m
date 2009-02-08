@@ -210,7 +210,6 @@
 }
 
 @synthesize oscillator;
-@synthesize oscillatorController;
 @synthesize assigned;
 @synthesize last;
 

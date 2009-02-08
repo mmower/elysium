@@ -29,7 +29,6 @@ typedef enum tagELDialMode {
   
   ELDial        *parent;
   ELOscillator  *oscillator;
-  id            oscillatorController;
   
   int           assigned;
   int           last;
@@ -86,7 +85,6 @@ typedef enum tagELDialMode {
 @property           int           tag;
 @property           ELDial        *parent;
 @property           ELOscillator  *oscillator;
-@property           id            oscillatorController;
 @property           int           assigned;
 @property           int           last;
 @property           int           value;
