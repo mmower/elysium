@@ -16,11 +16,14 @@
 #import "ELSequenceOscillator.h"
 #import "ELRandomOscillator.h"
 
+#import "ELInspectorController.h"
+
 @implementation ELOscillatorDesignerController
 
-- (id)initWithDial:(ELDial *)theDial {
+- (id)initWithDial:(ELDial *)theDial controller:(ELInspectorController *)theController {
   if( ( self = [self initWithWindowNibName:@"OscillatorDesigner"] ) ) {
-    dial = theDial;
+    [self setDial:theDial];
+    [self setController:theController];
     [self setupOscillators];
   }
   
@@ -39,6 +42,12 @@
     [tabView selectTabViewItemWithIdentifier:selectedTag];
   }
 }
+
+- (void)windowWillClose:(NSNotification *)notification {
+  [[self controller] finishedEditingOscillatorForDial:[self dial]];
+}
+
+@synthesize controller;
 
 @synthesize dial;
 
@@ -79,12 +88,14 @@
     [dial setOscillator:randomOscillator];
   }
   
-  [dial setOscillatorController:nil];
+  if( [dial oscillator] ) {
+    [dial setMode:dialDynamic];
+  }
+  
   [self close];
 }
 
 - (IBAction)cancelOscillator:(id)_sender_ {
-  [dial setOscillatorController:nil];
   [self close];
 }
 

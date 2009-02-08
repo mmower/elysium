@@ -15,8 +15,10 @@
 @class ELSineOscillator;
 @class ELSequenceOscillator;
 @class ELRandomOscillator;
+@class ELInspectorController;
 
 @interface ELOscillatorDesignerController : NSWindowController {
+  ELInspectorController *controller;
   IBOutlet NSTabView    *tabView;
 
   ELDial                *dial;
@@ -29,15 +31,16 @@
   NSString              *selectedTag;
 }
 
-- (id)initWithDial:(ELDial *)dial;
+- (id)initWithDial:(ELDial *)dial controller:(ELInspectorController *)controller;
 
-@property (readonly) ELDial *dial;
+@property             ELInspectorController *controller;
+@property             ELDial *dial;
 
-@property (assign) ELSquareOscillator *squareOscillator;
-@property (assign) ELSawOscillator *sawOscillator;
-@property (assign) ELSineOscillator *sineOscillator;
-@property (assign) ELSequenceOscillator *sequenceOscillator;
-@property (assign) ELRandomOscillator *randomOscillator;
+@property (assign)    ELSquareOscillator *squareOscillator;
+@property (assign)    ELSawOscillator *sawOscillator;
+@property (assign)    ELSineOscillator *sineOscillator;
+@property (assign)    ELSequenceOscillator *sequenceOscillator;
+@property (assign)    ELRandomOscillator *randomOscillator;
 
 - (void)setView:(NSView *)view cellsAllowFloats:(BOOL)allowFloat;
 
