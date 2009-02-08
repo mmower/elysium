@@ -114,13 +114,6 @@
   [super removedFromLayer:_layer_];
 }
 
-// - (NSArray *)observableValues {
-//   NSMutableArray *keys = [[NSMutableArray alloc] init];
-//   [keys addObjectsFromArray:[super observableValues]];
-//   [keys addObjectsFromArray:[NSArray arrayWithObjects:@"directionDial.value",@"timeToLiveDial.value",@"pulseEveryDial.value",@"offsetDial.value",nil]];
-//   return keys;
-// }
-
 // Tool runner
 
 - (BOOL)shouldPulseOnBeat:(int)_beat_ {

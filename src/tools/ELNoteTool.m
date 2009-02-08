@@ -181,13 +181,6 @@ NSDictionary *defaultChannelSends( void ) {
   [noteLengthDial setParent:nil];
 }
 
-// - (NSArray *)observableValues {
-//   NSMutableArray *keys = [[NSMutableArray alloc] init];
-//   [keys addObjectsFromArray:[super observableValues]];
-//   [keys addObjectsFromArray:[NSArray arrayWithObjects:@"velocityDial.value",@"emphasisDial.value",@"tempoSyncDial.value",@"noteLengthDial.value",@"triadDial.value",@"ghostsDial.value",nil]];
-//   return keys;
-// }
-
 - (void)start {
   [super start];
   

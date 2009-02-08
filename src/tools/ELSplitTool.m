@@ -43,13 +43,6 @@
   [bounceBackDial setDelegate:self];
 }
 
-// - (NSArray *)observableValues {
-//   NSMutableArray *keys = [[NSMutableArray alloc] init];
-//   [keys addObjectsFromArray:[super observableValues]];
-//   [keys addObjectsFromArray:[NSArray arrayWithObjects:@"bounceBackDial.value",nil]];
-//   return keys;
-// }
-
 - (void)start {
   [super start];
   

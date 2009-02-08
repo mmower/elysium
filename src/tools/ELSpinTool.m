@@ -57,13 +57,6 @@
   [steppingDial setDelegate:self];
 }
 
-// - (NSArray *)observableValues {
-//   NSMutableArray *keys = [[NSMutableArray alloc] init];
-//   [keys addObjectsFromArray:[super observableValues]];
-//   [keys addObjectsFromArray:[NSArray arrayWithObjects:@"clockwiseDial.value",@"steppingDial.value",nil]];
-//   return keys;
-// }
-
 - (void)start {
   [super start];
   

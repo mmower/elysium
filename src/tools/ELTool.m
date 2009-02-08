@@ -29,10 +29,6 @@ int randval() {
   return ( random() % 100 ) + 1;
 }
 
-// double randval() {
-//   return ((double)random()) / RAND_MAX;
-// }
-
 @implementation ELTool
 
 + (NSString *)tokenType {
@@ -124,18 +120,14 @@ int randval() {
   return [[self class] tokenType];
 }
 
-// - (NSArray *)observableValues {
-//   return [NSArray arrayWithObjects:@"enabledDial.value",@"pDial.value",@"gateDial.value",nil];
-// }
-
 - (void)addedToLayer:(ELLayer *)newLayer atPosition:(ELHex *)newCell {
-  layer = newLayer;
-  hex   = newCell;
+  [self setLayer:newLayer];
+  [self setHex:newCell];
 }
 
 - (void)removedFromLayer:(ELLayer *)aLayer {
-  layer = nil;
-  hex = nil;
+  [self setLayer:nil];
+  [self setHex:nil];
 }
 
 - (void)start {
