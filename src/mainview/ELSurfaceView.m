@@ -203,11 +203,7 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
   NSArray *types = [pasteboard types];
   
   ELHex *droppedCell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
-  
-  if( [types containsObject:ToolPBoardType] ) {
-    [droppedCell addToolWithTag:[[pasteboard stringForType:ToolPBoardType] intValue]];
-    [self setSelected:droppedCell];
-  } else if( [types containsObject:HexPBoardType] ) {
+  if( [types containsObject:HexPBoardType] ) {
     if( [self selectedHex] != droppedCell ) {
       [self dragFromHex:[self selectedHex] to:droppedCell with:[_sender_ draggingSourceOperationMask]];
     }
