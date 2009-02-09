@@ -59,6 +59,7 @@
 - (void)removedFromLayer:(ELLayer *)layer;
 
 - (void)start;
+- (void)stop;
 
 - (void)run:(ELPlayhead *)playhead;
 - (void)runTool:(ELPlayhead *)playhead;

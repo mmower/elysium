@@ -45,7 +45,13 @@
 - (void)start {
   [super start];
   
-  [directionDial onStart];
+  [directionDial start];
+}
+
+- (void)stop {
+  [super stop];
+  
+  [directionDial stop];
 }
 
 // Tool runner

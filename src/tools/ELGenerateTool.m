@@ -127,10 +127,19 @@
 - (void)start {
   [super start];
   
-  [directionDial onStart];
-  [timeToLiveDial onStart];
-  [pulseEveryDial onStart];
-  [offsetDial onStart];
+  [directionDial start];
+  [timeToLiveDial start];
+  [pulseEveryDial start];
+  [offsetDial start];
+}
+
+- (void)stop {
+  [super stop];
+  
+  [directionDial stop];
+  [timeToLiveDial stop];
+  [pulseEveryDial stop];
+  [offsetDial stop];
 }
 
 - (void)runTool:(ELPlayhead *)_playhead_ {

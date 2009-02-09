@@ -60,8 +60,15 @@
 - (void)start {
   [super start];
   
-  [clockwiseDial onStart];
-  [steppingDial onStart];
+  [clockwiseDial start];
+  [steppingDial start];
+}
+
+- (void)stop {
+  [super stop];
+  
+  [clockwiseDial stop];
+  [steppingDial stop];
 }
 
 // What happens when a playhead arrives

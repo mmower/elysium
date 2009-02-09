@@ -46,7 +46,13 @@
 - (void)start {
   [super start];
   
-  [bounceBackDial onStart];
+  [bounceBackDial start];
+}
+
+- (void)stop {
+  [super stop];
+  
+  [bounceBackDial stop];
 }
 
 - (void)runTool:(ELPlayhead *)_playhead_ {

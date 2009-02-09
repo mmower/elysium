@@ -114,6 +114,14 @@ int randval() {
   [hex needsDisplay];
 }
 
+- (void)dialDidUnsetOscillator:(ELDial *)dial {
+  [[[hex layer] player] dialDidUnsetOscillator:dial];
+}
+
+- (void)dialDidSetOscillator:(ELDial *)dial {
+  [[[hex layer] player] dialDidSetOscillator:dial];
+}
+
 @synthesize scripts;
 
 - (NSString *)tokenType {
@@ -131,8 +139,14 @@ int randval() {
 }
 
 - (void)start {
-  [gateDial onStart];
+  [pDial start];
+  [gateDial start];
   gateCount = [gateDial value];
+}
+
+- (void)stop {
+  [gateDial stop];
+  [pDial stop];
 }
 
 // Tool-run protocol. The layer will call run and, as long as the tool is enabled,

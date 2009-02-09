@@ -184,13 +184,25 @@ NSDictionary *defaultChannelSends( void ) {
 - (void)start {
   [super start];
   
-  [velocityDial onStart];
-  [emphasisDial onStart];
-  [tempoSyncDial onStart];
-  [noteLengthDial onStart];
-  [triadDial onStart];
-  [ghostsDial onStart];
-  [overrideDial onStart];
+  [velocityDial start];
+  [emphasisDial start];
+  [tempoSyncDial start];
+  [noteLengthDial start];
+  [triadDial start];
+  [ghostsDial start];
+  [overrideDial start];
+}
+
+- (void)stop {
+  [super stop];
+  
+  [velocityDial stop];
+  [emphasisDial stop];
+  [tempoSyncDial stop];
+  [noteLengthDial stop];
+  [triadDial stop];
+  [ghostsDial stop];
+  [overrideDial stop];
 }
 
 // Tool runner
