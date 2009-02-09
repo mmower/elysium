@@ -209,7 +209,24 @@
   }
 }
 
-@synthesize oscillator;
+@dynamic oscillator;
+
+- (ELOscillator *)oscillator {
+  return oscillator;
+}
+
+- (void)setOscillator:(ELOscillator *)newOscillator {
+  if( oscillator && [delegate respondsToSelector:@selector(dialDidUnsetOscillator:)] ) {
+    [delegate dialDidUnsetOscillator:self];
+  }
+  
+  oscillator = newOscillator;
+  
+  if( oscillator && [delegate respondsToSelector:@selector(dialDidSetOscillator:)] ) {
+    [delegate dialDidSetOscillator:self];
+  }
+}
+
 @synthesize assigned;
 @synthesize last;
 
@@ -239,6 +256,14 @@
 
 - (void)setBoolValue:(BOOL)boolValue {
   [self setValue:(boolValue ? 1 : 0)];
+}
+
+- (void)start {
+  [oscillator start];
+}
+
+- (void)stop {
+  [oscillator stop];
 }
 
 #pragma mark ELXmlData implementation
@@ -320,15 +345,6 @@
 }
 
 
-- (void)onStart {
-  [oscillator onStart];
-}
-
-
-- (void)onBeat {
-  [oscillator onBeat];
-}
-
 - (BOOL)isInherited {
   return mode == dialInherited;
 }
@@ -336,6 +352,18 @@
 - (void)setIsInherited:(BOOL)shouldInherit {
   if( shouldInherit ) {
     [self setMode:dialInherited];
+  } else {
+    [self setMode:dialFree];
+  }
+}
+
+- (BOOL)isDynamic {
+  return mode == dialDynamic;
+}
+
+- (void)setIsDynamic:(BOOL)shouldBeDynamic {
+  if( shouldBeDynamic ) {
+    [self setMode:dialDynamic];
   } else {
     [self setMode:dialFree];
   }

@@ -99,11 +99,13 @@ typedef enum tagELDialMode {
 - (BOOL)isInherited;
 - (void)setIsInherited:(BOOL)shouldInherit;
 
-- (void)onStart;
-- (void)onBeat;
+- (void)start;
+- (void)stop;
 
 @end
 
 @interface NSObject (ELDialDelegation)
 - (void)dialDidChangeValue:(ELDial *)dial;
+- (void)dialDidUnsetOscillator:(ELDial *)dial;
+- (void)dialDidSetOscillator:(ELDial *)dial;
 @end
