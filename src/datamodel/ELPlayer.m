@@ -32,7 +32,15 @@
 
 #import "ELOscillator.h"
 
+static SEL updateSelector;
+
 @implementation ELPlayer
+
++ (void)initialize {
+  if( !updateSelector ) {
+    updateSelector = @selector(update);
+  }
+}
 
 - (id)init {
   if( ( self = [super init] ) ) {
@@ -49,6 +57,8 @@
     [self setTempoSyncDial:[ELPlayer defaultTempoSyncDial]];
     [self setNoteLengthDial:[ELPlayer defaultNoteLengthDial]];
     [self setTransposeDial:[ELPlayer defaultTransposeDial]];
+    
+    activeOscillators = [[NSMutableArray alloc] init];
     
     scriptingTag    = @"player";
     scripts         = [NSMutableDictionary dictionary];
@@ -103,15 +113,104 @@
 @synthesize showKey;
 @synthesize performanceMode;
 
-@synthesize tempoDial;
-@synthesize barLengthDial;
-@synthesize timeToLiveDial;
-@synthesize pulseEveryDial;
-@synthesize velocityDial;
-@synthesize emphasisDial;
-@synthesize tempoSyncDial;
-@synthesize noteLengthDial;
-@synthesize transposeDial;
+@dynamic tempoDial;
+
+- (ELDial *)tempoDial {
+  return tempoDial;
+}
+
+- (void)setTempoDial:(ELDial *)newTempoDial {
+  tempoDial = newTempoDial;
+  [tempoDial setDelegate:self];
+}
+
+@dynamic barLengthDial;
+
+- (ELDial *)barLengthDial {
+  return barLengthDial;
+}
+
+- (void)setBarLengthDial:(ELDial *)newBarLengthDial {
+  barLengthDial = newBarLengthDial;
+  [barLengthDial setDelegate:self];
+}
+
+@dynamic timeToLiveDial;
+
+- (ELDial *)timeToLiveDial {
+  return timeToLiveDial;
+}
+
+- (void)setTimeToLiveDial:(ELDial *)newTimeToLiveDial {
+  timeToLiveDial = newTimeToLiveDial;
+  [timeToLiveDial setDelegate:self];
+}
+
+@dynamic pulseEveryDial;
+
+- (ELDial *)pulseEveryDial {
+  return pulseEveryDial;
+}
+
+- (void)setPulseEveryDial:(ELDial *)newPulseEveryDial {
+  pulseEveryDial = newPulseEveryDial;
+  [pulseEveryDial setDelegate:self];
+}
+
+@dynamic velocityDial;
+
+- (ELDial *)velocityDial {
+  return velocityDial;
+}
+
+- (void)setVelocityDial:(ELDial *)newVelocityDial {
+  velocityDial = newVelocityDial;
+  [velocityDial setDelegate:self];
+}
+
+@dynamic emphasisDial;
+
+- (ELDial *)emphasisDial {
+  return emphasisDial;
+}
+
+- (void)setEmphasisDial:(ELDial *)newEmphasisDial {
+  emphasisDial = newEmphasisDial;
+  [emphasisDial setDelegate:self];
+}
+
+@dynamic tempoSyncDial;
+
+- (ELDial *)tempoSyncDial {
+  return tempoSyncDial;
+}
+
+- (void)setTempoSyncDial:(ELDial *)newTempoSyncDial {
+  tempoSyncDial = newTempoSyncDial;
+  [tempoSyncDial setDelegate:self];
+}
+
+@dynamic noteLengthDial;
+
+- (ELDial *)noteLengthDial {
+  return noteLengthDial;
+}
+
+- (void)setNoteLengthDial:(ELDial *)newNoteLengthDial {
+  noteLengthDial = newNoteLengthDial;
+  [noteLengthDial setDelegate:self];
+}
+
+@dynamic transposeDial;
+
+- (ELDial *)transposeDial {
+  return transposeDial;
+}
+
+- (void)setTransposeDial:(ELDial *)newTransposeDial {
+  transposeDial = newTransposeDial;
+  [transposeDial setDelegate:self];
+}
 
 @synthesize document;
 @synthesize scripts;
@@ -119,6 +218,7 @@
 @synthesize triggers;
 @synthesize pkg;
 @synthesize selectedLayer;
+@synthesize activeOscillators;
 
 + (ELDial *)defaultTempoDial {
   return [[ELDial alloc] initWithName:@"tempo"
@@ -310,45 +410,32 @@
                                  step:1];
 }
 
+- (void)dialDidUnsetOscillator:(ELDial *)dial {
+  [activeOscillators removeObject:[dial oscillator]];
+}
+
+- (void)dialDidSetOscillator:(ELDial *)dial {
+  [activeOscillators addObject:[dial oscillator]];
+}
+
 // Player status & control
 
-@dynamic running;
+@synthesize running;
 
-- (BOOL)running {
-  return running;
-}
-
-- (void)setRunning:(BOOL)_running_ {
-  if( _running_ ) {
-    if( ![self running] ) {
-      [self start];
-    }
-  } else {
-    if( [self running] ) {
-      [self stop];
-    }
-  }
-}
-
-- (void)start:(id)_sender_ {
-  [self setRunning:YES];
-}
-
-- (void)start {
+- (void)start:(id)sender {
   [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
+  oscillatorThread = [[NSThread alloc] initWithTarget:self selector:@selector(runOscillators) object:nil];
+  [oscillatorThread start];
   [layers makeObjectsPerformSelector:@selector(start)];
-  running = YES;
+  [self setRunning:YES];
   [self performSelectorOnMainThread:@selector(runDidStartScript) withObject:nil waitUntilDone:YES];
 }
 
-- (void)stop:(id)_sender_ {
-  [self setRunning:NO];
-}
-
-- (void)stop {
+- (void)stop:(id)sender {
   [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
+  [oscillatorThread cancel];
   [layers makeObjectsPerformSelector:@selector(stop)];
-  running = NO;
+  [self setRunning:NO];
   [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
 }
 
@@ -358,6 +445,21 @@
 
 - (void)clearAll {
   [layers makeObjectsPerformSelector:@selector(clear)];
+}
+
+- (void)runOscillators {
+  UInt64 startNanos, elapsedNanos, delayMicros;
+  
+  while( ![oscillatorThread isCancelled] ) {
+    startNanos = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() );
+    [activeOscillators makeObjectsPerformSelector:updateSelector];
+    elapsedNanos = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) - startNanos;
+    delayMicros = 100000 - ( elapsedNanos / 1000 );
+    if( delayMicros < 50000 ) {
+      NSLog( @"Warning: oscillator thread interval below 50ms!" );
+    }
+    usleep( delayMicros );
+  }
 }
 
 - (void)triggerMain {

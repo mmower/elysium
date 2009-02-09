@@ -44,6 +44,9 @@
   NSMutableArray      *triggers;        // ELMIDITrigger objects
   NSThread            *triggerThread;
   
+  NSThread            *oscillatorThread;
+  NSMutableArray      *activeOscillators;
+  
   ELScriptPackage     *pkg;
   
   ELDial              *tempoDial;
@@ -71,6 +74,8 @@
 @property (readonly)  NSMutableDictionary *scripts;
 @property (readonly)  NSMutableArray      *triggers;
 @property (readonly)  ELScriptPackage     *pkg;
+
+@property (readonly)  NSMutableArray      *activeOscillators;
 
 @property             ELDial              *tempoDial;
 @property             ELDial              *barLengthDial;
@@ -108,10 +113,8 @@
 
 - (void)toggleNoteDisplay;
 
-- (void)start:(id)_sender_;
-- (void)start;
-- (void)stop:(id)_sender_;
-- (void)stop;
+- (void)start:(id)sender;
+- (void)stop:(id)sender;
 - (void)reset;
 
 - (void)clearAll;

@@ -68,19 +68,19 @@ NSPredicate *deadPlayheadFilter;
   return self;
 }
 
-- (id)initWithPlayer:(ELPlayer *)_player_ {
+- (id)initWithPlayer:(ELPlayer *)thePlayer {
   if( ( self = [self init] ) ) {
-    player         = _player_;
+    [self setPlayer:thePlayer];
     
-    tempoDial      = [[ELDial alloc] initWithParent:[player tempoDial]];
-    barLengthDial  = [[ELDial alloc] initWithParent:[player barLengthDial]];
-    timeToLiveDial = [[ELDial alloc] initWithParent:[player timeToLiveDial]];
-    pulseEveryDial = [[ELDial alloc] initWithParent:[player pulseEveryDial]];
-    velocityDial   = [[ELDial alloc] initWithParent:[player velocityDial]];
-    emphasisDial   = [[ELDial alloc] initWithParent:[player emphasisDial]];
-    tempoSyncDial  = [[ELDial alloc] initWithParent:[player tempoSyncDial]];
-    noteLengthDial = [[ELDial alloc] initWithParent:[player noteLengthDial]];
-    transposeDial  = [[ELDial alloc] initWithParent:[player transposeDial]];
+    [self setTempoDial:[[ELDial alloc] initWithParent:[player tempoDial]]];
+    [self setBarLengthDial:[[ELDial alloc] initWithParent:[player barLengthDial]]];
+    [self setTimeToLiveDial:[[ELDial alloc] initWithParent:[player timeToLiveDial]]];
+    [self setPulseEveryDial:[[ELDial alloc] initWithParent:[player pulseEveryDial]]];
+    [self setVelocityDial:[[ELDial alloc] initWithParent:[player velocityDial]]];
+    [self setEmphasisDial:[[ELDial alloc] initWithParent:[player emphasisDial]]];
+    [self setTempoSyncDial:[[ELDial alloc] initWithParent:[player tempoSyncDial]]];
+    [self setNoteLengthDial:[[ELDial alloc] initWithParent:[player noteLengthDial]]];
+    [self setTransposeDial:[[ELDial alloc] initWithParent:[player transposeDial]]];
     
     [self configureHexes];
   }
@@ -103,17 +103,134 @@ NSPredicate *deadPlayheadFilter;
 @synthesize beatCount;
 @synthesize key;
 
-@synthesize enabledDial;
-@synthesize channelDial;
-@synthesize tempoDial;
-@synthesize barLengthDial;
-@synthesize timeToLiveDial;
-@synthesize pulseEveryDial;
-@synthesize velocityDial;
-@synthesize emphasisDial;
-@synthesize tempoSyncDial;
-@synthesize noteLengthDial;
-@synthesize transposeDial;
+@dynamic enabledDial;
+
+- (ELDial *)enabledDial {
+  return enabledDial;
+}
+
+- (void)setEnabledDial:(ELDial *)newEnabledDial {
+  enabledDial = newEnabledDial;
+  [enabledDial setDelegate:self];
+}
+
+@dynamic channelDial;
+
+- (ELDial *)channelDial {
+  return channelDial;
+}
+
+- (void)setChannelDial:(ELDial *)newChannelDial {
+  channelDial = newChannelDial;
+  [channelDial setDelegate:self];
+}
+
+@dynamic tempoDial;
+
+- (ELDial *)tempoDial {
+  return tempoDial;
+}
+
+- (void)setTempoDial:(ELDial *)newTempoDial {
+  tempoDial = newTempoDial;
+  [tempoDial setDelegate:self];
+}
+
+@dynamic barLengthDial;
+
+- (ELDial *)barLengthDial {
+  return barLengthDial;
+}
+
+- (void)setBarLengthDial:(ELDial *)newBarLengthDial {
+  barLengthDial = newBarLengthDial;
+  [barLengthDial setDelegate:self];
+}
+
+@dynamic timeToLiveDial;
+
+- (ELDial *)timeToLiveDial {
+  return timeToLiveDial;
+}
+
+- (void)setTimeToLiveDial:(ELDial *)newTimeToLiveDial {
+  timeToLiveDial = newTimeToLiveDial;
+  [timeToLiveDial setDelegate:self];
+}
+
+@dynamic pulseEveryDial;
+
+- (ELDial *)pulseEveryDial {
+  return pulseEveryDial;
+}
+
+- (void)setPulseEveryDial:(ELDial *)newPulseEveryDial {
+  pulseEveryDial = newPulseEveryDial;
+  [pulseEveryDial setDelegate:self];
+}
+
+@dynamic velocityDial;
+
+- (ELDial *)velocityDial {
+  return velocityDial;
+}
+
+- (void)setVelocityDial:(ELDial *)newVelocityDial {
+  velocityDial = newVelocityDial;
+  [velocityDial setDelegate:self];
+}
+
+@dynamic emphasisDial;
+
+- (ELDial *)emphasisDial {
+  return emphasisDial;
+}
+
+- (void)setEmphasisDial:(ELDial *)newEmphasisDial {
+  emphasisDial = newEmphasisDial;
+  [emphasisDial setDelegate:self];
+}
+
+@dynamic tempoSyncDial;
+
+- (ELDial *)tempoSyncDial {
+  return tempoSyncDial;
+}
+
+- (void)setTempoSyncDial:(ELDial *)newTempoSyncDial {
+  tempoSyncDial = newTempoSyncDial;
+  [tempoSyncDial setDelegate:self];
+}
+
+@dynamic noteLengthDial;
+
+- (ELDial *)noteLengthDial {
+  return noteLengthDial;
+}
+
+- (void)setNoteLengthDial:(ELDial *)newNoteLengthDial {
+  noteLengthDial = newNoteLengthDial;
+  [noteLengthDial setDelegate:self];
+}
+
+@dynamic transposeDial;
+
+- (ELDial *)transposeDial {
+  return transposeDial;
+}
+
+- (void)setTransposeDial:(ELDial *)newTransposeDial {
+  transposeDial = newTransposeDial;
+  [transposeDial setDelegate:self];
+}
+
+- (void)dialDidUnsetOscillator:(ELDial *)dial {
+  [player dialDidUnsetOscillator:dial];
+}
+
+- (void)dialDidSetOscillator:(ELDial *)dial {
+  [player dialDidSetOscillator:dial];
+}
 
 @synthesize scripts;
 @synthesize scriptingTag = layerId;
@@ -230,6 +347,7 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)stop {
+  [hexes makeObjectsPerformSelector:@selector(stop)];
   [runner cancel];
 }
 
