@@ -53,10 +53,10 @@
 - (IBAction)editOscillator:(id)_sender_ {
   ELOscillatorDesignerController *controller;
   
-  if( !( controller = [_sender_ oscillatorController] ) ) {
-    controller = [[ELOscillatorDesignerController alloc] initWithDial:_sender_];
-    [_sender_ setOscillatorController:controller];
-  }
+  // if( !( controller = [_sender_ oscillatorController] ) ) {
+    // controller = [[ELOscillatorDesignerController alloc] initWithDial:_sender_];
+    // [_sender_ setOscillatorController:controller];
+  // }
   
   [controller edit];
 }

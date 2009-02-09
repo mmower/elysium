@@ -10,29 +10,50 @@
 
 #import "ELInspectorController.h"
 
+#import "ELInspectorViewController.h"
+#import "ELPlayerInspectorViewController.h"
+#import "ELLayerInspectorViewController.h"
+#import "ELGenerateInspectorViewController.h"
+#import "ELNoteInspectorViewController.h"
+#import "ELReboundInspectorViewController.h"
+#import "ELAbsorbInspectorViewController.h"
+#import "ELSplitInspectorViewController.h"
+#import "ELSpinInspectorViewController.h"
+
+#import "ELDial.h"
+
 #import "ELKey.h"
 #import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 
+#import "ELOscillatorDesignerController.h"
+
 @implementation ELInspectorController
 
 - (id)init {
   if( ( self = [super initWithWindowNibName:@"ELInspector"] ) ) {
+    playerController       = [[NSObjectController alloc] initWithContent:nil];
+    layerController        = [[NSObjectController alloc] initWithContent:nil];
+    cellController         = [[NSObjectController alloc] initWithContent:nil];
+    
+    playerViewController   = [[ELPlayerInspectorViewController alloc] initWithInspectorController:self];
+    layerViewController    = [[ELLayerInspectorViewController alloc] initWithInspectorController:self];
+    generateViewController = [[ELGenerateInspectorViewController alloc] initWithInspectorController:self];
+    noteViewController     = [[ELNoteInspectorViewController alloc] initWithInspectorController:self];
+    reboundViewController  = [[ELReboundInspectorViewController alloc] initWithInspectorController:self];
+    absorbViewController   = [[ELAbsorbInspectorViewController alloc] initWithInspectorController:self];
+    splitViewController    = [[ELSplitInspectorViewController alloc] initWithInspectorController:self];
+    spinViewController     = [[ELSpinInspectorViewController alloc] initWithInspectorController:self];
   }
   
   return self;
 }
 
-- (void)windowDidLoad {
-  NSLog( @"windowDidLoad -> %@", panel );
-  [panel setFloatingPanel:YES];
-  // [panel setBecomesKeyOnlyIfNeeded:YES];
-}
-
 @synthesize modeView;
 @synthesize tabView;
 
+@synthesize playerController;
 @dynamic player;
 
 - (ELPlayer *)player {
@@ -49,6 +70,7 @@
   }
 }
 
+@synthesize layerController;
 @dynamic layer;
 
 - (ELLayer *)layer {
@@ -65,7 +87,8 @@
   }
 }
 
-@synthesize cell;
+@synthesize cellController;
+@dynamic cell;
 
 - (ELHex *)cell {
   return cell;
@@ -83,7 +106,21 @@
 
 @synthesize title;
 
+- (void)windowDidLoad {
+  [panel setFloatingPanel:YES];
+  // [panel setBecomesKeyOnlyIfNeeded:YES];
+}
+
 - (void)awakeFromNib {
+  [[tabView tabViewItemAtIndex:0] setView:[playerViewController view]];
+  [[tabView tabViewItemAtIndex:1] setView:[layerViewController view]];
+  [[tabView tabViewItemAtIndex:2] setView:[generateViewController view]];
+  [[tabView tabViewItemAtIndex:3] setView:[noteViewController view]];
+  [[tabView tabViewItemAtIndex:4] setView:[reboundViewController view]];
+  [[tabView tabViewItemAtIndex:5] setView:[absorbViewController view]];
+  [[tabView tabViewItemAtIndex:6] setView:[splitViewController view]];
+  [[tabView tabViewItemAtIndex:7] setView:[spinViewController view]];
+  
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(selectionChanged:)
                                                name:ELNotifyObjectSelectionDidChange
@@ -133,6 +170,22 @@
 
 - (NSArray *)keySignatures {
   return [ELKey allKeys];
+}
+
+- (IBAction)editOscillator:(ELDial *)dial {
+  ELOscillatorDesignerController *controller;
+  
+  controller = [oscillatorEditors objectForKey:dial];
+  if( controller == nil ) {
+    controller = [[ELOscillatorDesignerController alloc] initWithDial:dial controller:self];
+    [oscillatorEditors setObject:controller forKey:dial];
+  }
+  
+  [controller edit];
+}
+
+- (void)finishedEditingOscillatorForDial:(ELDial *)dial {
+  [oscillatorEditors removeObjectForKey:dial];
 }
 
 @end

@@ -57,7 +57,7 @@
 }
 
 - (IBAction)editOscillator:(id)_sender_ {
-  [[[ELOscillatorDesignerController alloc] initWithDial:_sender_] showWindow:self];
+  // [[[ELOscillatorDesignerController alloc] initWithDial:_sender_] showWindow:self];
 }
 
 - (void)editDidRunScript:(ELTool *)_tool_ {

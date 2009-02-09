@@ -8,9 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ELDial;
 @class ELPlayer;
 @class ELLayer;
 @class ELHex;
+
+@class ELInspectorViewController;
 
 @interface ELInspectorController : NSWindowController {
   IBOutlet  NSPanel             *panel;
@@ -32,17 +35,31 @@
             
             NSString            *title;
   
-  IBOutlet NSObjectController   *playerController;
-  IBOutlet NSObjectController   *layerController;
-  IBOutlet NSObjectController   *cellController;
+  IBOutlet  NSObjectController  *playerController;
+  IBOutlet  NSObjectController  *layerController;
+  IBOutlet  NSObjectController  *cellController;
+  
+            ELInspectorViewController *playerViewController;
+            ELInspectorViewController *layerViewController;
+            ELInspectorViewController *generateViewController;
+            ELInspectorViewController *noteViewController;
+            ELInspectorViewController *reboundViewController;
+            ELInspectorViewController *absorbViewController;
+            ELInspectorViewController *splitViewController;
+            ELInspectorViewController *spinViewController;
+  
+            NSMutableDictionary *oscillatorEditors;
 }
 
 @property           NSSegmentedControl  *modeView;
 @property           NSTabView           *tabView;
 
 @property           ELPlayer            *player;
+@property           NSObjectController  *playerController;
 @property           ELLayer             *layer;
+@property           NSObjectController  *layerController;
 @property           ELHex               *cell;
+@property           NSObjectController  *cellController;
 
 @property (assign)  NSString            *title;
 
@@ -54,5 +71,8 @@
 - (void)cellSelected:(ELHex *)cell;
 
 - (NSArray *)keySignatures;
+
+- (IBAction)editOscillator:(ELDial *)dial;
+- (void)finishedEditingOscillatorForDial:(ELDial *)dial;
 
 @end
