@@ -15,10 +15,10 @@
   int period;
 }
 
-- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum period:(int)period;
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum period:(int)period;
 
 @property int period;
 
-- (float)generateWithT:(int)t;
+- (int)generateWithT:(int)t;
 
 @end

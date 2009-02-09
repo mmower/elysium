@@ -26,14 +26,14 @@
   int period;
 }
 
-- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum rest:(int)rest attack:(int)attack sustain:(int)sustain decay:(int)decay;
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum rest:(int)rest attack:(int)attack sustain:(int)sustain decay:(int)decay;
 
 @property int rest;
 @property int attack;
 @property int sustain;
 @property int decay;
 
-- (float)generateWithT:(int)t;
+- (int)generateWithT:(int)t;
 - (void)updateBasesAndDeltas;
 
 @end

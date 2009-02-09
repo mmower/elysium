@@ -11,10 +11,10 @@
 
 @implementation ELRangedOscillator
 
-- (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ {
-  if( ( self = [super initEnabled:_enabled_] ) ) {
-    [self setMinimum:_minimum_];
-    [self setMaximum:_maximum_];
+- (id)initEnabled:(BOOL)aEnabled minimum:(int)aMin maximum:(int)aMax {
+  if( ( self = [super initEnabled:aEnabled] ) ) {
+    [self setMinimum:aMin];
+    [self setMaximum:aMax];
   }
   
   return self;
@@ -22,23 +22,23 @@
 
 @dynamic minimum;
 
-- (float)minimum {
+- (int)minimum {
   return minimum;
 }
 
-- (void)setMinimum:(float)_minimum_ {
-  minimum = _minimum_;
+- (void)setMinimum:(int)newMinimum {
+  minimum = newMinimum;
   range = maximum - minimum;
 }
 
 @dynamic maximum;
 
-- (float)maximum {
+- (int)maximum {
   return maximum;
 }
 
-- (void)setMaximum:(float)_maximum_ {
-  maximum = _maximum_;
+- (void)setMaximum:(int)newMaximum {
+  maximum = newMaximum;
   range = maximum - minimum;
 }
 
@@ -53,7 +53,7 @@
       *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_OSCILLATOR_INVALID_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Ranged oscillator has no or invalid minimum",NSLocalizedDescriptionKey,nil]];
       return nil;
     } else {
-      [self setMinimum:[[attributeNode stringValue] floatValue]];
+      [self setMinimum:[[attributeNode stringValue] intValue]];
     }
     
     attributeNode = [_representation_ attributeForName:@"maximum"];
@@ -61,7 +61,7 @@
       *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_OSCILLATOR_INVALID_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Ranged oscillator has no or invalid maximum",NSLocalizedDescriptionKey,nil]];
       return nil;
     } else {
-      [self setMaximum:[[attributeNode stringValue] floatValue]];
+      [self setMaximum:[[attributeNode stringValue] intValue]];
     }
   }
   
@@ -71,8 +71,8 @@
 - (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
   [super storeAttributes:_attributes_];
   
-  [_attributes_ setObject:[NSNumber numberWithFloat:[self minimum]] forKey:@"minimum"];
-  [_attributes_ setObject:[NSNumber numberWithFloat:[self maximum]] forKey:@"maximum"];
+  [_attributes_ setObject:[NSNumber numberWithInteger:[self minimum]] forKey:@"minimum"];
+  [_attributes_ setObject:[NSNumber numberWithInteger:[self maximum]] forKey:@"maximum"];
 }
 
 @end

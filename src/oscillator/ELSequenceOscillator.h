@@ -12,13 +12,13 @@
 #import "ELOscillator.h"
 
 @interface ELSequenceValue : NSObject {
-  float     floatValue;
+  int       intValue;
   NSString  *stringValue;
 }
 
 - (id)initWithStringValue:(NSString *)stringValue;
 
-@property float floatValue;
+@property int intValue;
 @property (assign) NSString *stringValue;
 
 @end

@@ -19,15 +19,15 @@
   return self;
 }
 
-@dynamic floatValue;
+@dynamic intValue;
 
-- (float)floatValue {
-  return floatValue;
+- (int)intValue {
+  return intValue;
 }
 
-- (void)setFloatValue:(float)_floatValue_ {
-  floatValue = _floatValue_;
-  stringValue = [[NSNumber numberWithFloat:floatValue] stringValue];
+- (void)setIntValue:(int)newIntValue {
+  intValue = newIntValue;
+  stringValue = [[NSNumber numberWithInteger:intValue] stringValue];
 }
 
 @dynamic stringValue;
@@ -36,9 +36,9 @@
   return stringValue;
 }
 
-- (void)setStringValue:(NSString *)_stringValue_ {
-  stringValue = _stringValue_;
-  floatValue = [stringValue floatValue];
+- (void)setStringValue:(NSString *)newStringValue {
+  stringValue = newStringValue;
+  intValue = [stringValue intValue];
 }
 
 @end
@@ -60,17 +60,17 @@
   return @"Sequence";
 }
 
-- (float)generate {
+- (int)generate {
   if( [values count] < 1 ) {
     @throw [NSException exceptionWithName:@"OscillatorException" reason:@"SequenceOscillator has no values" userInfo:[NSDictionary dictionaryWithObject:self forKey:@"oscillator"]];
   }
   
-  float value = [[values objectAtIndex:index] floatValue];
+  int generatedValue = [[values objectAtIndex:index] intValue];
   index += 1;
   if( index == [values count] ) {
     index = 0;
   }
-  return value;
+  return generatedValue;
 }
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {

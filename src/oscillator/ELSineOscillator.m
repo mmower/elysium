@@ -11,9 +11,9 @@
 
 @implementation ELSineOscillator
 
-- (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ period:(int)_period_ {
-  if( ( self = [super initEnabled:_enabled_ minimum:_minimum_ maximum:_maximum_] ) ) {
-    period = _period_;
+- (id)initEnabled:(BOOL)aEnabled minimum:(int)aMin maximum:(int)aMax period:(int)aPeriod {
+  if( ( self = [super initEnabled:aEnabled minimum:aMin maximum:aMax] ) ) {
+    [self setPeriod:aPeriod];
   }
   
   return self;
@@ -25,7 +25,7 @@
 
 @synthesize period;
 
-- (float)generate {
+- (int)generate {
     // Get time in milliseconds
     UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() - [self timeBase] ) / 1000000;
     int t = time % period;
@@ -35,7 +35,7 @@
     return [self generateWithT:t];
 }
 
-- (float)generateWithT:(int)_t_ {
+- (int)generateWithT:(int)_t_ {
   // Convert to angular form and use as a proportion of the range
   float angle = ((float)_t_ / period) * M_PI;
   return minimum + ( range * sin( angle ) );
@@ -50,7 +50,7 @@
       NSLog( @"No or invalid 'period' attribute node for oscillator!" );
       return nil;
     } else {
-      [self setPeriod:[[attributeNode stringValue] floatValue]];
+      [self setPeriod:[[attributeNode stringValue] intValue]];
     }
   }
   
@@ -60,7 +60,7 @@
 - (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
   [super storeAttributes:_attributes_];
   
-  [_attributes_ setObject:[NSNumber numberWithFloat:[self period]] forKey:@"period"];
+  [_attributes_ setObject:[NSNumber numberWithInteger:[self period]] forKey:@"period"];
 }
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {

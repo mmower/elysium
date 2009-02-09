@@ -13,12 +13,12 @@
 
 @implementation ELSawOscillator
 
-- (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ rest:(int)_rest_ attack:(int)_attack_ sustain:(int)_sustain_ decay:(int)_decay_ {
-  if( ( self = [super initEnabled:_enabled_ minimum:_minimum_ maximum:_maximum_] ) ) {
-    [self setRest:_rest_];
-    [self setAttack:_attack_];
-    [self setSustain:_sustain_];
-    [self setDecay:_decay_];
+- (id)initEnabled:(BOOL)aEnabled minimum:(int)aMin maximum:(int)aMax rest:(int)aRest attack:(int)aAttack sustain:(int)aSustain decay:(int)aDecay {
+  if( ( self = [super initEnabled:aEnabled minimum:aMin maximum:aMax] ) ) {
+    [self setAttack:aAttack];
+    [self setDecay:aDecay];
+    [self setRest:aRest];
+    [self setSustain:aSustain];
   }
   
   return self;
@@ -34,8 +34,8 @@
   return rest;
 }
 
-- (void)setRest:(int)_rest_ {
-  rest = _rest_;
+- (void)setRest:(int)newRest {
+  rest = newRest;
   [self updateBasesAndDeltas];
 }
 
@@ -45,8 +45,8 @@
   return attack;
 }
 
-- (void)setAttack:(int)_attack_ {
-  attack = _attack_;
+- (void)setAttack:(int)newAttack {
+  attack = newAttack;
   [self updateBasesAndDeltas];
 }
 
@@ -56,8 +56,8 @@
   return sustain;
 }
 
-- (void)setSustain:(int)_sustain_ {
-  sustain = _sustain_;
+- (void)setSustain:(int)newSustain {
+  sustain = newSustain;
   [self updateBasesAndDeltas];
 }
 
@@ -67,21 +67,26 @@
   return decay;
 }
 
-- (void)setDecay:(int)_decay_ {
-  decay = _decay_;
+- (void)setDecay:(int)newDecay {
+  decay = newDecay;
   [self updateBasesAndDeltas];
 }
 
 - (void)updateBasesAndDeltas {
+  NSLog( @"%@#updateBasesAndDeltas<%d,%d,%d,%d>", self, rest, attack, sustain, decay );
   attackBase = rest + attack;
   decayBase = rest + attack + sustain;
   period = rest + attack + sustain + decay;
   
-  attackDelta = ( maximum - minimum ) / attack;
-  decayDelta = ( maximum - minimum ) / decay;
+  if( attack > 0 ) {
+    attackDelta = ( maximum - minimum ) / attack;
+  }
+  if( decay > 0 ) {
+    decayDelta = ( maximum - minimum ) / decay;
+  }
 }
 
-- (float)generate {
+- (int)generate {
     // Get time in milliseconds
     UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() - [self timeBase] ) / 1000000;
     int t = time % period;
@@ -89,15 +94,19 @@
 }
 
 
-- (float)generateWithT:(int)_t_ {
-  if( _t_ <= rest ) {
+- (int)generateWithT:(int)t {
+  if( t <= rest ) {
+    NSLog( @"%d <= %d : %d", t, rest, minimum );
     return minimum;
-  } else if( _t_ <= attackBase ) {
-    return ( attackDelta * ( _t_ - attackBase ) ) + minimum;
-  } else if( _t_ <= decayBase ) {
+  } else if( t <= attackBase ) {
+    NSLog( @"%d <= %d : %d", t, attackBase, ( attackDelta * ( t - attackBase ) ) + minimum );
+    return ( attackDelta * ( t - attackBase ) ) + minimum;
+  } else if( t <= decayBase ) {
+    NSLog( @"%d <= %d : %d", t, decayBase, maximum );
     return maximum;
   } else {
-    return ( decayDelta * ( _t_ - decayBase ) ) + minimum;
+    NSLog( @"%d", ( decayDelta * ( t - decayBase ) ) + minimum );
+    return ( decayDelta * ( t - decayBase ) ) + minimum;
   }
 }
 
@@ -110,7 +119,7 @@
       NSLog( @"No or invalid 'rest' attribute node for oscillator!" );
       return nil;
     } else {
-      [self setRest:[[attributeNode stringValue] floatValue]];
+      [self setRest:[[attributeNode stringValue] intValue]];
     }
 
     attributeNode = [_representation_ attributeForName:@"attack"];
@@ -118,7 +127,7 @@
       NSLog( @"No or invalid 'attack' attribute node for oscillator" );
       return nil;
     } else {
-      [self setAttack:[[attributeNode stringValue] floatValue]];
+      [self setAttack:[[attributeNode stringValue] intValue]];
     }
     
     attributeNode = [_representation_ attributeForName:@"sustain"];
@@ -126,7 +135,7 @@
       NSLog( @"No or invalid 'sustain' attribute node for oscillator" );
       return nil;
     } else {
-      [self setAttack:[[attributeNode stringValue] floatValue]];
+      [self setAttack:[[attributeNode stringValue] intValue]];
     }
     
     attributeNode = [_representation_ attributeForName:@"decay"];
@@ -134,7 +143,7 @@
       NSLog( @"No or invalid 'decay' attribute node for oscillator" );
       return nil;
     } else {
-      [self setDecay:[[attributeNode stringValue] floatValue]];
+      [self setDecay:[[attributeNode stringValue] intValue]];
     }
   }
   
@@ -144,10 +153,10 @@
 - (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
   [super storeAttributes:_attributes_];
   
-  [_attributes_ setObject:[NSNumber numberWithFloat:[self rest]] forKey:@"rest"];
-  [_attributes_ setObject:[NSNumber numberWithFloat:[self attack]] forKey:@"attack"];
-  [_attributes_ setObject:[NSNumber numberWithFloat:[self sustain]] forKey:@"sustain"];
-  [_attributes_ setObject:[NSNumber numberWithFloat:[self decay]] forKey:@"decay"];
+  [_attributes_ setObject:[NSNumber numberWithInteger:[self rest]] forKey:@"rest"];
+  [_attributes_ setObject:[NSNumber numberWithInteger:[self attack]] forKey:@"attack"];
+  [_attributes_ setObject:[NSNumber numberWithInteger:[self sustain]] forKey:@"sustain"];
+  [_attributes_ setObject:[NSNumber numberWithInteger:[self decay]] forKey:@"decay"];
 }
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {

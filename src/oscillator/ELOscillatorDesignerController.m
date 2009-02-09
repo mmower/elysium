@@ -18,6 +18,8 @@
 
 #import "ELInspectorController.h"
 
+#import "ELPlayer.h"
+
 @implementation ELOscillatorDesignerController
 
 - (id)initWithDial:(ELDial *)theDial controller:(ELInspectorController *)theController {
@@ -57,17 +59,13 @@
 @synthesize sequenceOscillator;
 @synthesize randomOscillator;
 
-- (void)setView:(NSView *)_view_ cellsAllowFloats:(BOOL)_allowFloats_ {
-  // for( NSView *view in [_view_ subviews] ) {
-  //   [self setView:view cellsAllowFloats:_allowFloats_];
-  // }
-  
+- (void)setView:(NSView *)view cellsAllowFloats:(BOOL)allowFloats {
   id cell, formatter;
-  if( [_view_ isKindOfClass:[NSControl class]] ) {
-    if( ( cell = [(NSControl *)_view_ cell] ) ) {
+  if( [view isKindOfClass:[NSControl class]] ) {
+    if( ( cell = [(NSControl *)view cell] ) ) {
       if( ( formatter = [cell formatter] )   ) {
         if( [formatter isKindOfClass:[NSNumberFormatter class]] ) {
-          [formatter setAllowsFloats:_allowFloats_];
+          [formatter setAllowsFloats:allowFloats];
         }
       }
     }
@@ -89,17 +87,19 @@
   }
   
   if( [dial oscillator] ) {
+    [[dial oscillator] start];
     [dial setMode:dialDynamic];
   }
   
   [self close];
 }
 
-- (IBAction)cancelOscillator:(id)_sender_ {
+- (IBAction)cancelOscillator:(id)sender {
   [self close];
 }
 
-- (IBAction)removeOscillator:(id)_sender_ {
+- (IBAction)removeOscillator:(id)sender {
+  [[dial oscillator] stop];
   [dial setOscillator:nil];
   [self close];
 }

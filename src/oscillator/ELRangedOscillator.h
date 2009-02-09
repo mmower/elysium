@@ -12,16 +12,16 @@
 #import "ELOscillator.h"
 
 @interface ELRangedOscillator : ELOscillator {
-  float minimum;
-  float maximum;
+  int minimum;
+  int maximum;
   
-  float range;
+  int range;
 }
 
-- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum;
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum;
 
-@property float minimum;
-@property float maximum;
-@property (readonly) float range;
+@property int minimum;
+@property int maximum;
+@property (readonly) int range;
 
 @end

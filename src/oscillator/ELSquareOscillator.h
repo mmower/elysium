@@ -18,12 +18,12 @@
   int period;
 }
 
-- (id)initEnabled:(BOOL)enabled minimum:(float)minimum maximum:(float)maximum rest:(int)rest sustain:(int)sustain;
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum rest:(int)rest sustain:(int)sustain;
 
 @property int rest;
 @property int sustain;
 
 - (void)updatePeriod;
-- (float)generateWithT:(int)t;
+- (int)generateWithT:(int)t;
 
 @end

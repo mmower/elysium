@@ -13,7 +13,7 @@
 
 @implementation ELSquareOscillator
 
-- (id)initEnabled:(BOOL)_enabled_ minimum:(float)_minimum_ maximum:(float)_maximum_ rest:(int)_rest_ sustain:(int)_sustain_ {
+- (id)initEnabled:(BOOL)_enabled_ minimum:(int)_minimum_ maximum:(int)_maximum_ rest:(int)_rest_ sustain:(int)_sustain_ {
   if( ( self = [super initEnabled:_enabled_ minimum:_minimum_ maximum:_maximum_] ) ) {
     [self setRest:_rest_];
     [self setSustain:_sustain_];
@@ -52,14 +52,14 @@
   period = rest + sustain;
 }
 
-- (float)generate {
+- (int)generate {
     // Get time in milliseconds
     UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() - [self timeBase] ) / 1000000;
     int t = time % period;
     return [self generateWithT:t];
 }
 
-- (float)generateWithT:(int)_t_ {
+- (int)generateWithT:(int)_t_ {
   if( _t_ < sustain ) {
     return minimum;
   } else {
@@ -76,7 +76,7 @@
       NSLog( @"No or invalid 'rest' attribute node for oscillator!" );
       return nil;
     } else {
-      [self setRest:[[attributeNode stringValue] floatValue]];
+      [self setRest:[[attributeNode stringValue] intValue]];
     }
     
     attributeNode = [_representation_ attributeForName:@"sustain"];
@@ -84,7 +84,7 @@
       NSLog( @"No or invalid 'sustain' attribute node for oscillator" );
       return nil;
     } else {
-      [self setSustain:[[attributeNode stringValue] floatValue]];
+      [self setSustain:[[attributeNode stringValue] intValue]];
     }
   }
   

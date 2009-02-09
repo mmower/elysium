@@ -37,12 +37,19 @@
 
 @synthesize enabled;
 @synthesize timeBase;
+@synthesize value;
 
-- (void)onStart {
+- (void)start {
+  [self resetTimeBase];
 }
 
-- (void)onBeat {
-  // TODO: Generate the next value using the timebase
+- (void)stop {
+  
+}
+
+- (void)update {
+  [self setValue:[self generate]];
+  NSLog( @"Updating oscillator %@ %d", self, [self value] );
 }
 
 - (void)resetTimeBase {
@@ -53,7 +60,7 @@
   return @"oscillator";
 }
 
-- (float)generate {
+- (int)generate {
   @throw [NSException exceptionWithName:@"OscillatorException"
                                  reason:@"Oscillator#generate should never be called"
                                userInfo:[NSDictionary dictionaryWithObject:self forKey:@"oscillator"]];

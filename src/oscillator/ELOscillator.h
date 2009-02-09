@@ -12,23 +12,26 @@
 #import "Elysium.h"
 
 @interface ELOscillator : NSObject <ELXmlData> {
-  BOOL    enabled;
-  UInt64  timeBase;
+  BOOL      enabled;
+  UInt64    timeBase;
+  
+  int       value;
 }
 
 + (ELOscillator *)loadFromXml:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error;
 
 @property BOOL    enabled;
 @property UInt64  timeBase;
+@property int     value;
 
 - (id)initEnabled:(BOOL)enabled;
 
 - (NSString *)type;
 
-- (void)onStart;
-- (void)onBeat;
-
-- (float)generate;
+- (void)start;
+- (void)stop;
+- (void)update;
+- (int)generate;
 
 - (void)storeAttributes:(NSMutableDictionary *)attributes;
 
