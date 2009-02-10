@@ -15,8 +15,8 @@
 - (id)initWithInspectorController:(ELInspectorController *)controller {
   return [super initWithInspectorController:controller
                                     nibName:@"ELSpinInspectorPane"
-                                     target:[controller cellController]
-                                       path:@"selection.tokens.spin"];
+                                     target:controller
+                                       path:@"cell.tokens.spin"];
 }
 
 - (void)awakeFromNib {

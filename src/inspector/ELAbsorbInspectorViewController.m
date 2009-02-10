@@ -15,8 +15,8 @@
 - (id)initWithInspectorController:(ELInspectorController *)controller {
   return [super initWithInspectorController:controller
                                     nibName:@"ELAbsorbInspectorPane"
-                                     target:[controller cellController]
-                                       path:@"selection.tokens.absorb"];
+                                     target:controller
+                                       path:@"cell.tokens.absorb"];
 }
 
 - (void)awakeFromNib {

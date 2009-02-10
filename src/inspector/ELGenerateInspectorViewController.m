@@ -15,8 +15,8 @@
 - (id)initWithInspectorController:(ELInspectorController *)controller {
   return [super initWithInspectorController:controller
                                     nibName:@"ELGenerateInspectorPane"
-                                     target:[controller cellController]
-                                       path:@"selection.tokens.generate"];
+                                     target:controller
+                                       path:@"cell.tokens.generate"];
 }
 
 - (void)awakeFromNib {

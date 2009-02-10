@@ -15,8 +15,8 @@
 - (id)initWithInspectorController:(ELInspectorController *)controller {
   return [super initWithInspectorController:controller
                                     nibName:@"ELLayerInspectorPane"
-                                     target:[controller layerController]
-                                       path:@"selection"];
+                                     target:controller
+                                       path:@"layer"];
 }
 
 - (void)awakeFromNib {

@@ -15,8 +15,8 @@
 - (id)initWithInspectorController:(ELInspectorController *)controller {
   return [super initWithInspectorController:controller
                                     nibName:@"ELPlayerInspectorPane"
-                                     target:[controller playerController]
-                                       path:@"selection"];
+                                     target:controller
+                                       path:@"player"];
 }
 
 - (void)awakeFromNib {

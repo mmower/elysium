@@ -17,7 +17,7 @@
     [self setInspectorController:aController];
     
     NSObjectController *objController = [[NSObjectController alloc] init];
-    [objController bind:@"content" toObject:target withKeyPath:path options:nil];
+    [objController bind:@"contentObject" toObject:target withKeyPath:path options:nil];
     [self setObjectController:objController];
   }
   
@@ -31,6 +31,8 @@
   id control = [self valueForKey:[NSString stringWithFormat:@"%@Control",dialName]];
   
   NSArray *bindings = [control exposedBindings];
+  
+  NSLog( @"bindControl:%@ => %@ [%@]", dialName, control, bindings );
   
   if( [bindings containsObject:@"minimum"] ) {
     [control bind:@"minimum" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.min",dialName] options:nil];

@@ -15,8 +15,8 @@
 - (id)initWithInspectorController:(ELInspectorController *)controller {
   return [super initWithInspectorController:controller
                                     nibName:@"ELNoteInspectorPane"
-                                     target:[controller cellController]
-                                       path:@"selection.tokens.note"];
+                                     target:controller
+                                       path:@"cell.tokens.note"];
 }
 
 - (void)awakeFromNib {

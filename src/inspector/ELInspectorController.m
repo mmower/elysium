@@ -33,10 +33,6 @@
 
 - (id)init {
   if( ( self = [super initWithWindowNibName:@"ELInspector"] ) ) {
-    playerController       = [[NSObjectController alloc] initWithContent:nil];
-    layerController        = [[NSObjectController alloc] initWithContent:nil];
-    cellController         = [[NSObjectController alloc] initWithContent:nil];
-    
     playerViewController   = [[ELPlayerInspectorViewController alloc] initWithInspectorController:self];
     layerViewController    = [[ELLayerInspectorViewController alloc] initWithInspectorController:self];
     generateViewController = [[ELGenerateInspectorViewController alloc] initWithInspectorController:self];
@@ -53,56 +49,23 @@
 @synthesize modeView;
 @synthesize tabView;
 
-@synthesize playerController;
-@dynamic player;
+@synthesize player;
+@synthesize layer;
+@synthesize cell;
 
-- (ELPlayer *)player {
-  return player;
-}
-
-- (void)setPlayer:(ELPlayer *)newPlayer {
-  if( newPlayer != player ) {
-    [playerController unbind:@"contentObject"];
-    player = newPlayer;
-    if( player ) {
-      [playerController bind:@"contentObject" toObject:self withKeyPath:@"player" options:nil];
-    }
-  }
-}
-
-@synthesize layerController;
-@dynamic layer;
-
-- (ELLayer *)layer {
-  return layer;
-}
-
-- (void)setLayer:(ELLayer *)newLayer {
-  if( newLayer != layer ) {
-    [layerController unbind:@"contentObject"];
-    layer = newLayer;
-    if( layer ) {
-      [layerController bind:@"contentObject" toObject:self withKeyPath:@"layer" options:nil];
-    }
-  }
-}
-
-@synthesize cellController;
-@dynamic cell;
-
-- (ELHex *)cell {
-  return cell;
-}
-
-- (void)setCell:(ELHex *)newCell {
-  if( newCell != cell ) {
-    [cellController unbind:@"contentObject"];
-    cell = newCell;
-    if( cell ) {
-      [cellController bind:@"contentObject" toObject:self withKeyPath:@"cell" options:nil];
-    }
-  }
-}
+// - (ELHex *)cell {
+//   return cell;
+// }
+// 
+// - (void)setCell:(ELHex *)newCell {
+//   if( newCell != cell ) {
+//     [cellController unbind:@"contentObject"];
+//     cell = newCell;
+//     if( cell ) {
+//       [cellController bind:@"contentObject" toObject:self withKeyPath:@"cell" options:nil];
+//     }
+//   }
+// }
 
 @synthesize title;
 

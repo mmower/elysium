@@ -15,8 +15,8 @@
 - (id)initWithInspectorController:(ELInspectorController *)controller {
   return [super initWithInspectorController:controller
                                     nibName:@"ELReboundInspectorPane"
-                                     target:[controller cellController]
-                                       path:@"selection.tokens.rebound"];
+                                     target:controller
+                                       path:@"cell.tokens.rebound"];
 }
 
 - (void)awakeFromNib {

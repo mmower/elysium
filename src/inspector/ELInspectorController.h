@@ -35,9 +35,7 @@
             
             NSString            *title;
   
-  IBOutlet  NSObjectController  *playerController;
-  IBOutlet  NSObjectController  *layerController;
-  IBOutlet  NSObjectController  *cellController;
+  // IBOutlet  NSObjectController  *cellController;
   
             ELInspectorViewController *playerViewController;
             ELInspectorViewController *layerViewController;
@@ -55,11 +53,9 @@
 @property           NSTabView           *tabView;
 
 @property           ELPlayer            *player;
-@property           NSObjectController  *playerController;
 @property           ELLayer             *layer;
-@property           NSObjectController  *layerController;
 @property           ELHex               *cell;
-@property           NSObjectController  *cellController;
+// @property           NSObjectController  *cellController;
 
 @property (assign)  NSString            *title;
 

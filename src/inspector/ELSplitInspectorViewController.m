@@ -15,8 +15,8 @@
 - (id)initWithInspectorController:(ELInspectorController *)controller {
   return [super initWithInspectorController:controller
                                     nibName:@"ELSplitInspectorPane"
-                                     target:[controller cellController]
-                                       path:@"selection.tokens.split"];
+                                     target:controller
+                                       path:@"cell.tokens.split"];
 }
 
 - (void)awakeFromNib {
