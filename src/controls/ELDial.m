@@ -228,8 +228,12 @@
   
   oscillator = newOscillator;
   
-  if( oscillator && [delegate respondsToSelector:@selector(dialDidSetOscillator:)] ) {
-    [delegate dialDidSetOscillator:self];
+  if( oscillator ) {
+    if( [delegate respondsToSelector:@selector(dialDidSetOscillator:)] ) {
+      [delegate dialDidSetOscillator:self];
+    }
+  } else if( [self mode] == dialDynamic ) {
+    [self setMode:dialFree];
   }
 }
 
