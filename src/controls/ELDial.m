@@ -12,6 +12,9 @@
 
 #import "ELOscillator.h"
 
+#import "ELDialModeValueTransformer.h"
+#import "ELDialHasOscillatorValueTransformer.h"
+
 @implementation ELDial
 
 + (void)initialize {
@@ -25,6 +28,9 @@
   [self exposeBinding:@"min"];
   [self exposeBinding:@"max"];
   [self exposeBinding:@"step"];
+  
+  [NSValueTransformer setValueTransformer:[[ELDialModeValueTransformer alloc] init] forName:dialModeValueTransformer];
+  [NSValueTransformer setValueTransformer:[[ELDialHasOscillatorValueTransformer alloc] init] forName:dialHasOscillatorValueTransformer];
 }
 
 

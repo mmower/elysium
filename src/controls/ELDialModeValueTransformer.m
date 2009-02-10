@@ -10,6 +10,8 @@
 
 #import "ELDial.h"
 
+NSString * const dialModeValueTransformer = @"ELDialModeValueTransformer";
+
 @implementation ELDialModeValueTransformer
 
 + (Class)transformedValueClass {

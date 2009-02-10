@@ -8,6 +8,8 @@
 
 #import "ELInspectorViewController.h"
 
+#import "ELDial.h"
+
 #import "ELInspectorController.h"
 
 @implementation ELInspectorViewController
@@ -32,38 +34,81 @@
   
   NSArray *bindings = [control exposedBindings];
   
+  [control unbind:@"enabled"];
+  [control unbind:@"minimum"];
+  [control unbind:@"maximum"];
+  [control unbind:@"stepping"];
+  [control unbind:@"toolTip"];
+  [control unbind:@"value"];
+  
+  if( [bindings containsObject:@"enabled"] ) {
+    [control bind:@"enabled"
+         toObject:[self objectController]
+      withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.mode",dialName]
+          options:[NSDictionary dictionaryWithObject:dialModeValueTransformer forKey:NSValueTransformerNameBindingOption]];
+  }
   if( [bindings containsObject:@"minimum"] ) {
-    [control bind:@"minimum" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.min",dialName] options:nil];
+    [control bind:@"minimum"
+         toObject:[self objectController]
+      withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.min",dialName]
+          options:nil];
   }
-  
+
   if( [bindings containsObject:@"maximum"] ) {
-    [control bind:@"maximum" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.max",dialName] options:nil];
+    [control bind:@"maximum"
+         toObject:[self objectController]
+      withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.max",dialName]
+          options:nil];
   }
-  
+
   if( [bindings containsObject:@"stepping"] ) {
-    [control bind:@"stepping" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.step",dialName] options:nil];
+    [control bind:@"stepping"
+         toObject:[self objectController]
+      withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.step",dialName]
+          options:nil];
   }
-  
+
   if( [bindings containsObject:@"toolTip"] ) {
-    [control bind:@"toolTip" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.toolTip",dialName] options:nil];
+    [control bind:@"toolTip"
+         toObject:[self objectController]
+      withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.toolTip",dialName]
+          options:nil];
   }
-  
+
   if( [bindings containsObject:@"value"] ) {
-    [control bind:@"value" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.value",dialName] options:nil];
+    [control bind:@"value"
+         toObject:[self objectController]
+      withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.value",dialName]
+          options:nil];
   }
 }
 
 - (void)bindMode:(NSString *)dialName {
   id control = [self valueForKey:[NSString stringWithFormat:@"%@ModeControl",dialName]];
   
-  [control bind:@"selectedIndex" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.mode",dialName] options:nil];
+  [control bind:@"selectedIndex"
+       toObject:[self objectController]
+    withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.mode",dialName]
+        options:nil];
 }
 
 - (void)bindOsc:(NSString *)dialName {
   id control = [self valueForKey:[NSString stringWithFormat:@"%@OscControl",dialName]];
   
-  [control bind:@"target" toObject:[self inspectorController] withKeyPath:@"self" options:[NSDictionary dictionaryWithObject:@"editOscillator:" forKey:NSSelectorNameBindingOption]];
-  [control bind:@"argument" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial",dialName] options:nil];
+  [control bind:@"target"
+       toObject:[self inspectorController]
+    withKeyPath:@"self"
+        options:[NSDictionary dictionaryWithObject:@"editOscillator:" forKey:NSSelectorNameBindingOption]];
+  
+  [control bind:@"argument"
+       toObject:[self objectController]
+    withKeyPath:[NSString stringWithFormat:@"selection.%@Dial",dialName]
+        options:nil];
+        
+  [control bind:@"image"
+       toObject:[self objectController]
+    withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.oscillator",dialName]
+        options:[NSDictionary dictionaryWithObject:dialHasOscillatorValueTransformer forKey:NSValueTransformerNameBindingOption]];
 }
 
 @end

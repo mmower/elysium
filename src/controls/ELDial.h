@@ -10,6 +10,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+extern NSString * const dialModeValueTransformer;
+extern NSString * const dialHasOscillatorValueTransformer;
+
 typedef enum tagELDialMode {
   dialFree,
   dialDynamic,
