@@ -35,8 +35,6 @@
             
             NSString            *title;
   
-  // IBOutlet  NSObjectController  *cellController;
-  
             ELInspectorViewController *playerViewController;
             ELInspectorViewController *layerViewController;
             ELInspectorViewController *generateViewController;
@@ -55,7 +53,6 @@
 @property           ELPlayer            *player;
 @property           ELLayer             *layer;
 @property           ELHex               *cell;
-// @property           NSObjectController  *cellController;
 
 @property (assign)  NSString            *title;
 

@@ -53,20 +53,6 @@
 @synthesize layer;
 @synthesize cell;
 
-// - (ELHex *)cell {
-//   return cell;
-// }
-// 
-// - (void)setCell:(ELHex *)newCell {
-//   if( newCell != cell ) {
-//     [cellController unbind:@"contentObject"];
-//     cell = newCell;
-//     if( cell ) {
-//       [cellController bind:@"contentObject" toObject:self withKeyPath:@"cell" options:nil];
-//     }
-//   }
-// }
-
 @synthesize title;
 
 - (void)windowDidLoad {

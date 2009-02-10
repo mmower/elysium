@@ -32,8 +32,6 @@
   
   NSArray *bindings = [control exposedBindings];
   
-  NSLog( @"bindControl:%@ => %@ [%@]", dialName, control, bindings );
-  
   if( [bindings containsObject:@"minimum"] ) {
     [control bind:@"minimum" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.min",dialName] options:nil];
   }
@@ -64,8 +62,8 @@
 - (void)bindOsc:(NSString *)dialName {
   id control = [self valueForKey:[NSString stringWithFormat:@"%@OscControl",dialName]];
   
-  [control bind:@"target" toObject:[self inspectorController] withKeyPath:@"self" options:nil];
-  [control bind:@"argument" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial"] options:nil];
+  [control bind:@"target" toObject:[self inspectorController] withKeyPath:@"self" options:[NSDictionary dictionaryWithObject:@"editOscillator:" forKey:NSSelectorNameBindingOption]];
+  [control bind:@"argument" toObject:[self objectController] withKeyPath:[NSString stringWithFormat:@"selection.%@Dial",dialName] options:nil];
 }
 
 @end
