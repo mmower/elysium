@@ -12,41 +12,42 @@
 
 @class ELPlayer;
 @class LMDialView;
+@class ELSegmentedControl;
 
 @interface ELPlayerInspectorViewController : ELInspectorViewController {
             ELPlayer            *player;
             
-  IBOutlet  NSSegmentedControl  *transposeModeControl;
+  IBOutlet  ELSegmentedControl  *transposeModeControl;
   IBOutlet  LMDialView          *transposeControl;
   IBOutlet  NSButton            *transposeOscControl;
   
-  IBOutlet  NSSegmentedControl  *tempoModeControl;
+  IBOutlet  ELSegmentedControl  *tempoModeControl;
   IBOutlet  LMDialView          *tempoControl;
   IBOutlet  NSButton            *tempoOscControl;
   
-  IBOutlet  NSSegmentedControl  *barLengthModeControl;
+  IBOutlet  ELSegmentedControl  *barLengthModeControl;
   IBOutlet  LMDialView          *barLengthControl;
   IBOutlet  NSButton            *barLengthOscControl;
   
-  IBOutlet  NSSegmentedControl  *velocityModeControl;
+  IBOutlet  ELSegmentedControl  *velocityModeControl;
   IBOutlet  LMDialView          *velocityControl;
   IBOutlet  NSButton            *velocityOscControl;
   
-  IBOutlet  NSSegmentedControl  *emphasisModeControl;
+  IBOutlet  ELSegmentedControl  *emphasisModeControl;
   IBOutlet  LMDialView          *emphasisControl;
   IBOutlet  NSButton            *emphasisOscControl;
   
   IBOutlet  NSButton            *tempoSyncControl;
   
-  IBOutlet  NSSegmentedControl  *noteLengthModeControl;
+  IBOutlet  ELSegmentedControl  *noteLengthModeControl;
   IBOutlet  LMDialView          *noteLengthControl;
   IBOutlet  NSButton            *noteLengthOscControl;
   
-  IBOutlet  NSSegmentedControl  *timeToLiveModeControl;
+  IBOutlet  ELSegmentedControl  *timeToLiveModeControl;
   IBOutlet  LMDialView          *timeToLiveControl;
   IBOutlet  NSButton            *timeToLiveOscControl;
   
-  IBOutlet  NSSegmentedControl  *pulseEveryModeControl;
+  IBOutlet  ELSegmentedControl  *pulseEveryModeControl;
   IBOutlet  LMDialView          *pulseEveryControl;
   IBOutlet  NSButton            *pulseEveryOscControl;
 }

@@ -11,35 +11,36 @@
 #import "ELInspectorViewController.h"
 
 @class LMDialView;
+@class ELSegmentedControl;
 
 @interface ELNoteInspectorViewController : ELInspectorViewController {
   IBOutlet  NSButton            *enabledControl;
   
-  IBOutlet  NSSegmentedControl  *pModeControl;
+  IBOutlet  ELSegmentedControl  *pModeControl;
   IBOutlet  LMDialView          *pControl;
   IBOutlet  NSButton            *pOscControl;
   
-  IBOutlet  NSSegmentedControl  *gateModeControl;
+  IBOutlet  ELSegmentedControl  *gateModeControl;
   IBOutlet  LMDialView          *gateControl;
   IBOutlet  NSButton            *gateOscControl;
   
-  IBOutlet  NSSegmentedControl  *velocityModeControl;
+  IBOutlet  ELSegmentedControl  *velocityModeControl;
   IBOutlet  LMDialView          *velocityControl;
   IBOutlet  NSButton            *velocityOscControl;
   
-  IBOutlet  NSSegmentedControl  *emphasisModeControl;
+  IBOutlet  ELSegmentedControl  *emphasisModeControl;
   IBOutlet  LMDialView          *emphasisControl;
   IBOutlet  NSButton            *emphasisOscControl;
   
-  IBOutlet  NSSegmentedControl  *tempoSyncModeControl;
+  IBOutlet  ELSegmentedControl  *tempoSyncModeControl;
   IBOutlet  NSButton            *tempoSyncControl;
   IBOutlet  NSButton            *tempoSyncOscControl;
   
-  IBOutlet  NSSegmentedControl  *noteLengthModeControl;
+  IBOutlet  ELSegmentedControl  *noteLengthModeControl;
   IBOutlet  LMDialView          *noteLengthControl;
   IBOutlet  NSButton            *noteLengthOscControl;
   
-  IBOutlet  NSSegmentedControl  *ghostsModeControl;
+  IBOutlet  ELSegmentedControl  *ghostsModeControl;
   IBOutlet  LMDialView          *ghostsControl;
   IBOutlet  NSButton            *ghostsOscControl;
 }

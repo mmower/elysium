@@ -11,15 +11,16 @@
 #import "ELInspectorViewController.h"
 
 @class LMDialView;
+@class ELSegmentedControl;
 
 @interface ELSplitInspectorViewController : ELInspectorViewController {
   IBOutlet  NSButton            *enabledControl;
   
-  IBOutlet  NSSegmentedControl  *pModeControl;
+  IBOutlet  ELSegmentedControl  *pModeControl;
   IBOutlet  LMDialView          *pControl;
   IBOutlet  NSButton            *pOscControl;
   
-  IBOutlet  NSSegmentedControl  *gateModeControl;
+  IBOutlet  ELSegmentedControl  *gateModeControl;
   IBOutlet  LMDialView          *gateControl;
   IBOutlet  NSButton            *gateOscControl;
   

@@ -11,27 +11,28 @@
 #import "ELInspectorViewController.h"
 
 @class LMDialView;
+@class ELSegmentedControl;
 
 @interface ELGenerateInspectorViewController : ELInspectorViewController {
   IBOutlet  NSButton            *enabledControl;
   
-  IBOutlet  NSSegmentedControl  *pModeControl;
+  IBOutlet  ELSegmentedControl  *pModeControl;
   IBOutlet  LMDialView          *pControl;
   IBOutlet  NSButton            *pOscControl;
   
-  IBOutlet  NSSegmentedControl  *directionModeControl;
+  IBOutlet  ELSegmentedControl  *directionModeControl;
   IBOutlet  NSSlider            *directionControl;
   IBOutlet  NSButton            *directionOscControl;
   
-  IBOutlet  NSSegmentedControl  *timeToLiveModeControl;
+  IBOutlet  ELSegmentedControl  *timeToLiveModeControl;
   IBOutlet  LMDialView          *timeToLiveControl;
   IBOutlet  NSButton            *timeToLiveOscControl;
   
-  IBOutlet  NSSegmentedControl  *pulseEveryModeControl;
+  IBOutlet  ELSegmentedControl  *pulseEveryModeControl;
   IBOutlet  LMDialView          *pulseEveryControl;
   IBOutlet  NSButton            *pulseEveryOscControl;
   
-  IBOutlet  NSSegmentedControl  *offsetModeControl;
+  IBOutlet  ELSegmentedControl  *offsetModeControl;
   IBOutlet  LMDialView          *offsetControl;
   IBOutlet  NSButton            *offsetOscControl;
 }

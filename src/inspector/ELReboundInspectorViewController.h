@@ -11,19 +11,20 @@
 #import "ELInspectorViewController.h"
 
 @class LMDialView;
+@class ELSegmentedControl;
 
 @interface ELReboundInspectorViewController : ELInspectorViewController {
   IBOutlet  NSButton            *enabledControl;
   
-  IBOutlet  NSSegmentedControl  *pModeControl;
+  IBOutlet  ELSegmentedControl  *pModeControl;
   IBOutlet  LMDialView          *pControl;
   IBOutlet  NSButton            *pOscControl;
   
-  IBOutlet  NSSegmentedControl  *gateModeControl;
+  IBOutlet  ELSegmentedControl  *gateModeControl;
   IBOutlet  LMDialView          *gateControl;
   IBOutlet  NSButton            *gateOscControl;
   
-  IBOutlet  NSSegmentedControl  *directionModeControl;
+  IBOutlet  ELSegmentedControl  *directionModeControl;
   IBOutlet  NSSlider            *directionControl;
   IBOutlet  NSButton            *directionOscControl;
 }

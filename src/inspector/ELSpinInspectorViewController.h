@@ -11,19 +11,20 @@
 #import "ELInspectorViewController.h"
 
 @class LMDialView;
+@class ELSegmentedControl;
 
 @interface ELSpinInspectorViewController : ELInspectorViewController {
   IBOutlet  NSButton            *enabledControl;
 
-  IBOutlet  NSSegmentedControl  *pModeControl;
+  IBOutlet  ELSegmentedControl  *pModeControl;
   IBOutlet  LMDialView          *pControl;
   IBOutlet  NSButton            *pOscControl;
 
-  IBOutlet  NSSegmentedControl  *gateModeControl;
+  IBOutlet  ELSegmentedControl  *gateModeControl;
   IBOutlet  LMDialView          *gateControl;
   IBOutlet  NSButton            *gateOscControl;
   
-  IBOutlet  NSSegmentedControl  *steppingModeControl;
+  IBOutlet  ELSegmentedControl  *steppingModeControl;
   IBOutlet  LMDialView          *steppingControl;
   IBOutlet  NSButton            *steppingOscControl;
   

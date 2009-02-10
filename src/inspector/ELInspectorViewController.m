@@ -90,6 +90,11 @@
        toObject:[self objectController]
     withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.mode",dialName]
         options:nil];
+  
+  [control bind:@"segment1enabled"
+       toObject:[self objectController]
+    withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.oscillator",dialName]
+        options:[NSDictionary dictionaryWithObject:@"NSIsNotNil" forKey:NSValueTransformerNameBindingOption]];
 }
 
 - (void)bindOsc:(NSString *)dialName {
