@@ -29,7 +29,6 @@ static NSImage *onImage;
 }
 
 - (id)transformedValue:(id)value {
-  NSLog( @"transform: %@", value );
   if( value ) {
     return onImage;
   } else {
