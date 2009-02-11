@@ -33,6 +33,9 @@
   [self bindControl:@"direction"];
   [self bindMode:@"direction"];
   [self bindOsc:@"direction"];
+  
+  [self bindScript:@"willRun"];
+  [self bindScript:@"didRun"];
 }
 
 @end

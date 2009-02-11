@@ -27,6 +27,11 @@
   IBOutlet  ELSegmentedControl  *directionModeControl;
   IBOutlet  NSSlider            *directionControl;
   IBOutlet  NSButton            *directionOscControl;
+  
+  IBOutlet  NSButton            *editWillRunControl;
+  IBOutlet  NSButton            *removeWillRunControl;
+  IBOutlet  NSButton            *editDidRunControl;
+  IBOutlet  NSButton            *removeDidRunControl;
 }
 
 @end
