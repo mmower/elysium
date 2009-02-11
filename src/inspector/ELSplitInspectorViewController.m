@@ -31,6 +31,9 @@
   [self bindOsc:@"gate"];
   
   [self bindControl:@"bounceBack"];
+  
+  [self bindScript:@"willRun"];
+  [self bindScript:@"didRun"];
 }
 
 @end

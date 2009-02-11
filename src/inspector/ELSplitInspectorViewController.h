@@ -25,6 +25,11 @@
   IBOutlet  NSButton            *gateOscControl;
   
   IBOutlet  NSButton            *bounceBackControl;
+  
+  IBOutlet  NSButton            *editWillRunControl;
+  IBOutlet  NSButton            *removeWillRunControl;
+  IBOutlet  NSButton            *editDidRunControl;
+  IBOutlet  NSButton            *removeDidRunControl;
 }
 
 @end
