@@ -23,5 +23,6 @@
 - (void)bindControl:(NSString *)dialName;
 - (void)bindMode:(NSString *)dialName;
 - (void)bindOsc:(NSString *)dialName;
+- (void)bindScript:(NSString *)scriptName;
 
 @end

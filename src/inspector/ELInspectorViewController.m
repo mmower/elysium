@@ -12,6 +12,8 @@
 
 #import "ELInspectorController.h"
 
+#import "NSString+ELHelpers.h"
+
 @implementation ELInspectorViewController
 
 - (id)initWithInspectorController:(ELInspectorController *)aController nibName:(NSString *)aNibName target:(id)target path:(NSString *)path {
@@ -114,6 +116,49 @@
        toObject:[self objectController]
     withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.oscillator",dialName]
         options:[NSDictionary dictionaryWithObject:dialHasOscillatorValueTransformer forKey:NSValueTransformerNameBindingOption]];
+}
+
+- (void)bindScript:(NSString *)scriptName {
+  id control = [self valueForKey:[NSString stringWithFormat:@"edit%@Control",[scriptName initialCapitalString]]];
+  
+  [control bind:@"target"
+       toObject:[self inspectorController]
+    withKeyPath:@"self"
+        options:[NSDictionary dictionaryWithObject:@"editCallback:tag:" forKey:NSSelectorNameBindingOption]];
+  
+  [control bind:@"argument"
+       toObject:[self objectController]
+    withKeyPath:@"content"
+        options:nil];
+  
+  [control bind:@"argument2"
+       toObject:control
+    withKeyPath:@"tag"
+        options:nil];
+  
+  // bind image
+  
+  control = [self valueForKey:[NSString stringWithFormat:@"remove%@Control",[scriptName initialCapitalString]]];
+  
+  [control bind:@"target"
+       toObject:[self inspectorController]
+    withKeyPath:@"self"
+        options:[NSDictionary dictionaryWithObject:@"removeCallback:tag:" forKey:NSSelectorNameBindingOption]];
+  
+  [control bind:@"argument"
+       toObject:[self objectController]
+    withKeyPath:@"content"
+        options:nil];
+  
+  [control bind:@"argument2"
+       toObject:control
+    withKeyPath:@"tag"
+        options:nil];
+  
+  [control bind:@"hidden"
+       toObject:[self objectController]
+    withKeyPath:[NSString stringWithFormat:@"selection.scripts.%@",scriptName]
+        options:[NSDictionary dictionaryWithObject:@"NSIsNil" forKey:NSValueTransformerNameBindingOption]];
 }
 
 @end
