@@ -117,5 +117,6 @@
 
 - (void)runWillRunScript;
 - (void)runDidRunScript;
+- (ELScript *)callbackTemplate;
 
 @end

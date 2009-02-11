@@ -338,6 +338,10 @@ NSPredicate *deadPlayheadFilter;
   [[scripts objectForKey:@"didRun"] evalWithArg:player arg:self];
 }
 
+- (ELScript *)callbackTemplate {
+  return [@"function(player,layer) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
+}
+
 - (void)start {
   // Tell all the cells we're starting
   [hexes makeObjectsPerformSelector:@selector(start)];
