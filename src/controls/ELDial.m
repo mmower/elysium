@@ -286,12 +286,12 @@
   [attributes setObject:name forKey:@"name"];
   [attributes setObject:[NSNumber numberWithInteger:tag] forKey:@"tag"];
   
-  [attributes setObject:[NSNumber numberWithInteger:tag] forKey:@"assigned"];
-  [attributes setObject:[NSNumber numberWithInteger:tag] forKey:@"last"];
-  [attributes setObject:[NSNumber numberWithInteger:tag] forKey:@"value"];
-  [attributes setObject:[NSNumber numberWithInteger:tag] forKey:@"min"];
-  [attributes setObject:[NSNumber numberWithInteger:tag] forKey:@"max"];
-  [attributes setObject:[NSNumber numberWithInteger:tag] forKey:@"step"];
+  [attributes setObject:[NSNumber numberWithInteger:assigned] forKey:@"assigned"];
+  [attributes setObject:[NSNumber numberWithInteger:last] forKey:@"last"];
+  [attributes setObject:[NSNumber numberWithInteger:value] forKey:@"value"];
+  [attributes setObject:[NSNumber numberWithInteger:min] forKey:@"min"];
+  [attributes setObject:[NSNumber numberWithInteger:max] forKey:@"max"];
+  [attributes setObject:[NSNumber numberWithInteger:step] forKey:@"step"];
   [dialElement setAttributesAsDictionary:attributes];
   if( oscillator ) {
     [dialElement addChild:[oscillator xmlRepresentation]];
