@@ -53,6 +53,11 @@
   [self bindControl:@"pulseEvery"];
   [self bindMode:@"pulseEvery"];
   [self bindOsc:@"pulseEvery"];
+  
+  [self bindScript:@"willStart"];
+  [self bindScript:@"didStart"];
+  [self bindScript:@"willStop"];
+  [self bindScript:@"didStop"];
 }
 
 @end
