@@ -259,6 +259,10 @@ int randval() {
   return self;
 }
 
+- (ELScript *)callbackTemplate {
+  return [@"function(player,token,playhead) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
+}
+
 - (ELScript *)script:(NSString *)_scriptName_ {
   ELScript *script = [scripts objectForKey:_scriptName_];
   if( script == nil ) {

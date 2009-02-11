@@ -73,6 +73,8 @@
 - (void)runWillRunScript:(ELPlayhead *)playhead;
 - (void)runDidRunScript:(ELPlayhead *)playhead;
 
+- (ELScript *)callbackTemplate;
+
 - (ELScript *)script:(NSString *)scriptName;
 - (void)removeScript:(NSString *)scriptName;
 
