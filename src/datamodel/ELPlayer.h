@@ -141,4 +141,6 @@
 - (void)runWillStopScript;
 - (void)runDidStopScript;
 
+- (ELScript *)callbackTemplate;
+
 @end

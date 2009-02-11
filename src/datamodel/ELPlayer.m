@@ -491,6 +491,10 @@ static SEL updateSelector;
   [[scripts objectForKey:@"didStop"] evalWithArg:self];
 }
 
+- (ELScript *)callbackTemplate {
+  return [@"function(player) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
+}
+
 // Drawing Support
 
 - (void)toggleNoteDisplay {
