@@ -12,6 +12,7 @@
 #import "String+AsJavascriptFunction.h"
 
 #import "NSXML+Helpers.h"
+#import "NSString+ELHelpers.h"
 
 #import "ELPreferencesController.h"
 
