@@ -68,4 +68,7 @@
 - (IBAction)editOscillator:(ELDial *)dial;
 - (void)finishedEditingOscillatorForDial:(ELDial *)dial;
 
+- (void)editCallback:(id)scriptable tag:(NSNumber *)tag;
+- (void)removeCallback:(id)scriptable tag:(NSNumber *)tag;
+
 @end

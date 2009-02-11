@@ -137,4 +137,73 @@
   [oscillatorEditors removeObjectForKey:dial];
 }
 
+// Script editing options
+
+- (void)editCallback:(id)scriptable tag:(NSNumber *)tag {
+  NSString *callbackName;
+  
+  switch( [tag intValue] ) {
+    case 0:
+      callbackName = @"willStart";
+      break;
+    case 1:
+      callbackName = @"didStart";
+      break;
+    case 2:
+      callbackName = @"willStop";
+      break;
+    case 3:
+      callbackName = @"didStop";
+      break;
+    case 4:
+      callbackName = @"willRun";
+      break;
+    case 5:
+      callbackName = @"didRun";
+      break;
+    default:
+      NSLog( @"Unknown callback tag: %d for scriptable: %@", [tag intValue], scriptable );
+      return;
+  }
+  
+  ELScript *callback;
+  
+  if( !( callback = [[scriptable scripts] objectForKey:callbackName] ) ) {
+    callback = [scriptable callbackTemplate];
+    [[scriptable scripts] setObject:callback forKey:callbackName];
+  }
+  
+  [callback inspect:self];
+}
+
+- (void)removeCallback:(id)scriptable tag:(NSNumber *)tag {
+  NSString *callbackName;
+  
+  switch( [tag intValue] ) {
+    case 0:
+      callbackName = @"willStart";
+      break;
+    case 1:
+      callbackName = @"didStart";
+      break;
+    case 2:
+      callbackName = @"willStop";
+      break;
+    case 3:
+      callbackName = @"didStop";
+      break;
+    case 4:
+      callbackName = @"willRun";
+      break;
+    case 5:
+      callbackName = @"didRun";
+      break;
+    default:
+      NSLog( @"Unknown callback tag: %d for scriptable: %@", [tag intValue], scriptable );
+      return;
+  }
+  
+  [[scriptable scripts] removeObjectForKey:callbackName];
+}
+
 @end
