@@ -53,6 +53,11 @@
   IBOutlet  ELSegmentedControl  *pulseEveryModeControl;
   IBOutlet  LMDialView          *pulseEveryControl;
   IBOutlet  NSButton            *pulseEveryOscControl;
+  
+  IBOutlet  NSButton            *editWillRunControl;
+  IBOutlet  NSButton            *removeWillRunControl;
+  IBOutlet  NSButton            *editDidRunControl;
+  IBOutlet  NSButton            *removeDidRunControl;
 }
 
 - (id)initWithInspectorController:(ELInspectorController *)controller;

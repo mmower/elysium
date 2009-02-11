@@ -20,6 +20,14 @@
 }
 
 - (void)awakeFromNib {
+  
+  [enabledControl bind:@"value" toObject:[self objectController] withKeyPath:@"selection.enabledDial.value" options:nil];
+  
+  [midiChannelPopup bind:@"selectedValue" toObject:[self objectController] withKeyPath:@"selection.channelDial.value" options:nil];
+  
+  [keyPopup bind:@"content" toObject:[self objectController] withKeyPath:@"selection.key.allKeys" options:nil];
+  [keyPopup bind:@"selectedObject" toObject:[self objectController] withKeyPath:@"selection.key" options:nil];
+  
   [self bindControl:@"transpose"];
   [self bindMode:@"transpose"];
   [self bindOsc:@"transpose"];
@@ -53,7 +61,10 @@
   
   [self bindControl:@"pulseEvery"];
   [self bindMode:@"pulseEvery"];
-  [self bindOsc:@"pulseEvery"];  
+  [self bindOsc:@"pulseEvery"];
+  
+  [self bindScript:@"willRun"];
+  [self bindScript:@"didRun"];
 }
 
 @end
