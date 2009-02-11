@@ -29,6 +29,11 @@
   IBOutlet  NSButton            *steppingOscControl;
   
   IBOutlet  NSButton            *clockwiseControl;
+  
+  IBOutlet  NSButton            *editWillRunControl;
+  IBOutlet  NSButton            *removeWillRunControl;
+  IBOutlet  NSButton            *editDidRunControl;
+  IBOutlet  NSButton            *removeDidRunControl;
 }
 
 @end

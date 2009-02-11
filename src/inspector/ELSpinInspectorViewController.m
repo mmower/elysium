@@ -35,6 +35,9 @@
   [self bindOsc:@"stepping"];
   
   [self bindControl:@"clockwise"];
+  
+  [self bindScript:@"willRun"];
+  [self bindScript:@"didRun"];
 }
 
 @end
