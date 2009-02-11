@@ -25,6 +25,8 @@
 + (ELKey *)keyNamed:(NSString *)name;
 + (ELKey *)noKey;
 
+- (NSArray *)allKeys;
+
 - (id)initWithName:(NSString *)name scale:(NSArray *)scale;
 
 - (BOOL)containsNote:(ELNote *)note isTonic:(BOOL *)isTonic;

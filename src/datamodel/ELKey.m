@@ -72,6 +72,10 @@ static NSMutableDictionary *keyLookup = nil;
   return allKeys;
 }
 
+- (NSArray *)allKeys {
+  return [[self class] allKeys];
+}
+
 + (ELKey *)keyNamed:(NSString *)_name_ {
   return [keyLookup objectForKey:_name_];
 }

@@ -122,8 +122,6 @@
 		C9A9F20F0E8A43F7009A06A3 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */; };
 		C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */; };
 		C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */; };
-		C9B1FB9D0F3CA51E00C248F6 /* ELDialView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1FB9C0F3CA51E00C248F6 /* ELDialView.m */; };
-		C9B1FB9F0F3CA86B00C248F6 /* ELDial.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1FB9E0F3CA86B00C248F6 /* ELDial.xib */; };
 		C9B1FBB50F3CF82500C248F6 /* ELDialModeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1FBB40F3CF82500C248F6 /* ELDialModeValueTransformer.m */; };
 		C9B641FF0EAD1495006AA089 /* ELSineOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B641FE0EAD1495006AA089 /* ELSineOscillator.m */; };
 		C9B642020EAD1504006AA089 /* ELSquareOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642010EAD1504006AA089 /* ELSquareOscillator.m */; };
@@ -346,9 +344,6 @@
 		C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScriptInspector.xib; path = src/scripting/ScriptInspector.xib; sourceTree = "<group>"; };
 		C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptInspectorController.h; sourceTree = "<group>"; };
 		C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptInspectorController.m; sourceTree = "<group>"; };
-		C9B1FB9B0F3CA51E00C248F6 /* ELDialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELDialView.h; sourceTree = "<group>"; };
-		C9B1FB9C0F3CA51E00C248F6 /* ELDialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELDialView.m; sourceTree = "<group>"; };
-		C9B1FB9E0F3CA86B00C248F6 /* ELDial.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ELDial.xib; sourceTree = "<group>"; };
 		C9B1FBB30F3CF82500C248F6 /* ELDialModeValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELDialModeValueTransformer.h; sourceTree = "<group>"; };
 		C9B1FBB40F3CF82500C248F6 /* ELDialModeValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELDialModeValueTransformer.m; sourceTree = "<group>"; };
 		C9B641FD0EAD1495006AA089 /* ELSineOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSineOscillator.h; sourceTree = "<group>"; };
@@ -808,9 +803,6 @@
 			children = (
 				C9BC51B40F346FF300317049 /* ELDial.h */,
 				C9BC51B50F346FF300317049 /* ELDial.m */,
-				C9B1FB9B0F3CA51E00C248F6 /* ELDialView.h */,
-				C9B1FB9C0F3CA51E00C248F6 /* ELDialView.m */,
-				C9B1FB9E0F3CA86B00C248F6 /* ELDial.xib */,
 				C9B1FBB30F3CF82500C248F6 /* ELDialModeValueTransformer.h */,
 				C9B1FBB40F3CF82500C248F6 /* ELDialModeValueTransformer.m */,
 				C94BAF420F41D9EA00F1A0F8 /* ELDialHasOscillatorValueTransformer.h */,
@@ -916,7 +908,6 @@
 				C94120DD0F37B9FC00ADDF3E /* ELInspector.xib in Resources */,
 				C941213B0F38EAC600ADDF3E /* table.png in Resources */,
 				C941213C0F38EAC600ADDF3E /* table_multiple.png in Resources */,
-				C9B1FB9F0F3CA86B00C248F6 /* ELDial.xib in Resources */,
 				C94BAE800F4056BC00F1A0F8 /* red_dot.tif in Resources */,
 				C94BAEB20F40923000F1A0F8 /* ELPlayerInspectorPane.xib in Resources */,
 				C94BAEB40F40924300F1A0F8 /* ELLayerInspectorPane.xib in Resources */,
@@ -1014,7 +1005,6 @@
 				C904104C0F2660A5009CD2B9 /* ELPreferencesController.m in Sources */,
 				C9BC51B60F346FF300317049 /* ELDial.m in Sources */,
 				C94120DA0F37B9E800ADDF3E /* ELInspectorController.m in Sources */,
-				C9B1FB9D0F3CA51E00C248F6 /* ELDialView.m in Sources */,
 				C9B1FBB50F3CF82500C248F6 /* ELDialModeValueTransformer.m in Sources */,
 				C94BAE8E0F40773C00F1A0F8 /* ELPlayerInspectorViewController.m in Sources */,
 				C94BAE910F40798F00F1A0F8 /* ELLayerInspectorViewController.m in Sources */,
