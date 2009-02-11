@@ -29,6 +29,9 @@
   [self bindControl:@"gate"];
   [self bindMode:@"gate"];
   [self bindOsc:@"gate"];
+  
+  [self bindScript:@"willRun"];
+  [self bindScript:@"didRun"];
 }
 
 @end
