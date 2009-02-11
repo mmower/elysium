@@ -35,6 +35,11 @@
   IBOutlet  ELSegmentedControl  *offsetModeControl;
   IBOutlet  LMDialView          *offsetControl;
   IBOutlet  NSButton            *offsetOscControl;
+  
+  IBOutlet  NSButton            *editWillRunControl;
+  IBOutlet  NSButton            *removeWillRunControl;
+  IBOutlet  NSButton            *editDidRunControl;
+  IBOutlet  NSButton            *removeDidRunControl;
 }
 
 - (id)initWithInspectorController:(ELInspectorController *)controller;

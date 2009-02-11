@@ -41,6 +41,9 @@
   [self bindControl:@"offset"];
   [self bindMode:@"offset"];
   [self bindOsc:@"offset"];
+  
+  [self bindScript:@"willRun"];
+  [self bindScript:@"didRun"];
 }
 
 @end
