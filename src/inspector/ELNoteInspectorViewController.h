@@ -43,8 +43,20 @@
   IBOutlet  ELSegmentedControl  *ghostsModeControl;
   IBOutlet  LMDialView          *ghostsControl;
   IBOutlet  NSButton            *ghostsOscControl;
+  
+  IBOutlet  NSSegmentedControl  *triadControl;
+  
+  IBOutlet  NSButton            *overrideControl;
+  IBOutlet  ELSegmentedControl  *channelOverrideSelectControl;
+  
+  IBOutlet  NSButton            *editWillRunControl;
+  IBOutlet  NSButton            *removeWillRunControl;
+  IBOutlet  NSButton            *editDidRunControl;
+  IBOutlet  NSButton            *removeDidRunControl;
 }
 
 - (id)initWithInspectorController:(ELInspectorController *)controller;
+
+- (void)bindOverrideControls;
 
 @end

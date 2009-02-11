@@ -47,6 +47,23 @@
   [self bindControl:@"ghosts"];
   [self bindMode:@"ghosts"];
   [self bindOsc:@"ghosts"];
+  
+  [self bindControl:@"override"];
+  
+  [self bindOverrideControls];
+  
+  [self bindScript:@"willRun"];
+  [self bindScript:@"didRun"];
+}
+
+- (void)bindOverrideControls {
+  [channelOverrideSelectControl bind:@"enabled" toObject:[self objectController] withKeyPath:@"selection.overrideDial.value" options:nil];
+  for( int i = 0; i < 16; i++ ) {
+    [channelOverrideSelectControl bind:[NSString stringWithFormat:@"segment%dselected",i]
+                              toObject:[self objectController]
+                           withKeyPath:[NSString stringWithFormat:@"selection.channelSends.%d.value",i]
+                               options:nil];
+  }
 }
 
 @end
