@@ -345,7 +345,7 @@ static SEL updateSelector;
                                   tag:0
                              assigned:N
                                   min:0
-                                  max:6
+                                  max:5
                                  step:1];
 }
 
