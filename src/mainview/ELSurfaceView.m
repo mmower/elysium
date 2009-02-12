@@ -10,7 +10,6 @@
 #import "ELSurfaceView.h"
 
 #import "ELHex.h"
-#import "ELToolView.h"
 
 #import "ELNoteTool.h"
 #import "ELAbsorbTool.h"
@@ -56,7 +55,7 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
     [self setTonicNoteColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELTonicNoteColor]]];
     [self setScaleNoteColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELScaleNoteColor]]];
     
-    [self registerForDraggedTypes:[NSArray arrayWithObjects:ToolPBoardType,HexPBoardType,nil]];
+    [self registerForDraggedTypes:[NSArray arrayWithObjects:HexPBoardType,nil]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cellWasUpdated:)

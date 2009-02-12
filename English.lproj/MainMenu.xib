@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="562"/>
+			<integer value="57"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1921,14 +1921,6 @@
 					<int key="connectionID">448</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">checkForUpdates:</string>
-						<reference key="source" ref="572713496"/>
-						<reference key="destination" ref="829384527"/>
-					</object>
-					<int key="connectionID">459</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="1050"/>
@@ -2127,6 +2119,14 @@
 						<reference key="destination" ref="609285721"/>
 					</object>
 					<int key="connectionID">586</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="572713496"/>
+						<reference key="destination" ref="829384527"/>
+					</object>
+					<int key="connectionID">588</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3787,7 +3787,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">587</int>
+			<int key="maxID">588</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3799,19 +3799,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>addAbsorbTool:</string>
-							<string>addGenerateTool:</string>
-							<string>addNoteTool:</string>
-							<string>addReboundTool:</string>
-							<string>addSpinTool:</string>
-							<string>addSplitTool:</string>
 							<string>clearTools:</string>
-							<string>removeAbsorbTool:</string>
-							<string>removeGenerateTool:</string>
-							<string>removeNoteTool:</string>
-							<string>removeReboundTool:</string>
-							<string>removeSpinTool:</string>
-							<string>removeSplitTool:</string>
 							<string>toggleAbsorbToken:</string>
 							<string>toggleGenerateToken:</string>
 							<string>toggleNoteToken:</string>
@@ -3821,18 +3809,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -3856,20 +3832,14 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>satisfyMe:</string>
 							<string>showHelp:</string>
-							<string>showHexInspector:</string>
 							<string>showInspectorPanel:</string>
-							<string>showLayerInspector:</string>
 							<string>showMIDIConfigInspector:</string>
 							<string>showOscillatorDesigner:</string>
-							<string>showPlayerInspector:</string>
 							<string>showPreferences:</string>
 							<string>showScriptPackageInspector:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -3937,8 +3907,38 @@
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">src/controls/ELDial.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">src/midi/ELTimer.h</string>
 					</object>
+				</object>
+			</object>
+			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="652721498">
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../frameworks/Sparkle.framework/Versions/A/Headers/SUUpdater.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SUUpdater</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">delegate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<reference key="sourceIdentifier" ref="652721498"/>
 				</object>
 			</object>
 		</object>

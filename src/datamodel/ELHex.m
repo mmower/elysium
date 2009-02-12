@@ -21,7 +21,6 @@
 #import "ELNoteGroup.h"
 #import "ELHarmonicTable.h"
 #import "ELSurfaceView.h"
-#import "ELToolView.h"
 
 #import "ELGenerateTool.h"
 #import "ELNoteTool.h"
