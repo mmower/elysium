@@ -31,6 +31,12 @@
 @synthesize inspectorController;
 @synthesize objectController;
 
+- (void)bindDial:(NSString *)dialName {
+  [self bindControl:dialName];
+  [self bindMode:dialName];
+  [self bindOsc:dialName];
+}
+
 - (void)bindControl:(NSString *)dialName {
   id control = [self valueForKey:[NSString stringWithFormat:@"%@Control",dialName]];
   

@@ -44,16 +44,16 @@
 					<object class="NSTextField" id="126677521">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 173}, {58, 11}}</string>
+						<string key="NSFrame">{{32, 173}, {58, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="252311470">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Pulse Every</string>
-							<object class="NSFont" key="NSSupport" id="912651327">
-								<string key="NSName">LucidaGrande-Bold</string>
-								<double key="NSSize">9.000000e+00</double>
+							<object class="NSFont" key="NSSupport" id="24">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">1.000000e+01</double>
 								<int key="NSfFlags">16</int>
 							</object>
 							<reference key="NSControlView" ref="126677521"/>
@@ -80,14 +80,14 @@
 					<object class="NSTextField" id="548996463">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 229}, {62, 11}}</string>
+						<string key="NSFrame">{{32, 229}, {64, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="766977923">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Time to Live</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="548996463"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -118,7 +118,7 @@
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
 						<reference key="lmdial.valueColor" ref="854745775"/>
-						<real value="7.000000e+00" key="lmdial.fontSize"/>
+						<real value="8.000000e+00" key="lmdial.fontSize"/>
 						<reference key="lmdial.showValue" ref="9"/>
 						<string key="lmdial.formatter">%+d</string>
 						<reference key="lmdial.divisor" ref="8"/>
@@ -139,7 +139,7 @@
 						<reference key="lmdial.offBorderColor" ref="854745775"/>
 						<reference key="lmdial.offFillColor" ref="183966544"/>
 						<reference key="lmdial.valueColor" ref="854745775"/>
-						<real value="7.000000e+00" key="lmdial.fontSize"/>
+						<real value="8.000000e+00" key="lmdial.fontSize"/>
 						<reference key="lmdial.showValue" ref="9"/>
 						<string key="lmdial.formatter">%+d</string>
 						<reference key="lmdial.divisor" ref="8"/>
@@ -147,14 +147,14 @@
 					<object class="NSTextField" id="691108269">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 117}, {46, 11}}</string>
+						<string key="NSFrame">{{32, 116}, {47, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="338573749">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Will Start</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="691108269"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -163,14 +163,14 @@
 					<object class="NSTextField" id="823930424">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 94}, {45, 11}}</string>
+						<string key="NSFrame">{{32, 93}, {47, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="618491670">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Did Start</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="823930424"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -179,14 +179,14 @@
 					<object class="NSTextField" id="294213583">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 71}, {45, 11}}</string>
+						<string key="NSFrame">{{32, 70}, {46, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="5860507">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Will Stop</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="294213583"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -195,14 +195,14 @@
 					<object class="NSTextField" id="325111261">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 48}, {44, 11}}</string>
+						<string key="NSFrame">{{32, 47}, {46, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="1033734436">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Did Stop</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="325111261"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -211,14 +211,14 @@
 					<object class="NSTextField" id="733333630">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 585}, {36, 11}}</string>
+						<string key="NSFrame">{{32, 585}, {38, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="602542629">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Tempo</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="733333630"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -227,14 +227,14 @@
 					<object class="NSTextField" id="109702284">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 529}, {54, 11}}</string>
+						<string key="NSFrame">{{32, 529}, {56, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="858258895">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Bar Length</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="109702284"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -243,14 +243,14 @@
 					<object class="NSTextField" id="452146546">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 642}, {53, 11}}</string>
+						<string key="NSFrame">{{32, 642}, {55, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="166929095">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Transpose</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="452146546"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -272,7 +272,7 @@
 						<reference key="lmdial.offBorderColor" ref="854745775"/>
 						<reference key="lmdial.offFillColor" ref="183966544"/>
 						<reference key="lmdial.valueColor" ref="854745775"/>
-						<real value="7.000000e+00" key="lmdial.fontSize"/>
+						<real value="8.000000e+00" key="lmdial.fontSize"/>
 						<reference key="lmdial.showValue" ref="9"/>
 						<string key="lmdial.formatter">%d</string>
 						<reference key="lmdial.divisor" ref="9"/>
@@ -293,7 +293,7 @@
 						<reference key="lmdial.offBorderColor" ref="854745775"/>
 						<reference key="lmdial.offFillColor" ref="183966544"/>
 						<reference key="lmdial.valueColor" ref="854745775"/>
-						<real value="7.000000e+00" key="lmdial.fontSize"/>
+						<real value="8.000000e+00" key="lmdial.fontSize"/>
 						<reference key="lmdial.showValue" ref="9"/>
 						<string key="lmdial.formatter">%+d</string>
 						<reference key="lmdial.divisor" ref="9"/>
@@ -314,7 +314,7 @@
 						<reference key="lmdial.offBorderColor" ref="854745775"/>
 						<reference key="lmdial.offFillColor" ref="183966544"/>
 						<reference key="lmdial.valueColor" ref="854745775"/>
-						<real value="7.000000e+00" key="lmdial.fontSize"/>
+						<real value="8.000000e+00" key="lmdial.fontSize"/>
 						<reference key="lmdial.showValue" ref="9"/>
 						<string key="lmdial.formatter">%d</string>
 						<reference key="lmdial.divisor" ref="9"/>
@@ -322,14 +322,14 @@
 					<object class="NSTextField" id="721925203">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 366}, {60, 11}}</string>
+						<string key="NSFrame">{{32, 364}, {63, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="544853124">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Tempo Sync</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="721925203"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -338,14 +338,14 @@
 					<object class="NSTextField" id="923909572">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 308}, {61, 11}}</string>
+						<string key="NSFrame">{{32, 306}, {64, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="387101061">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Note Length</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="923909572"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -354,14 +354,14 @@
 					<object class="NSTextField" id="189718800">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 473}, {41, 11}}</string>
+						<string key="NSFrame">{{32, 473}, {43, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="668077162">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Velocity</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="189718800"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -370,14 +370,14 @@
 					<object class="NSTextField" id="981767493">
 						<reference key="NSNextResponder" ref="844726028"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{32, 417}, {49, 11}}</string>
+						<string key="NSFrame">{{32, 417}, {50, 13}}</string>
 						<reference key="NSSuperview" ref="844726028"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="812273880">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272892928</int>
 							<string key="NSContents">Emphasis</string>
-							<reference key="NSSupport" ref="912651327"/>
+							<reference key="NSSupport" ref="24"/>
 							<reference key="NSControlView" ref="981767493"/>
 							<reference key="NSBackgroundColor" ref="298651998"/>
 							<reference key="NSTextColor" ref="376886486"/>
@@ -399,7 +399,7 @@
 						<reference key="lmdial.offBorderColor" ref="854745775"/>
 						<reference key="lmdial.offFillColor" ref="183966544"/>
 						<reference key="lmdial.valueColor" ref="854745775"/>
-						<real value="7.000000e+00" key="lmdial.fontSize"/>
+						<real value="8.000000e+00" key="lmdial.fontSize"/>
 						<reference key="lmdial.showValue" ref="9"/>
 						<string key="lmdial.formatter">%d</string>
 						<reference key="lmdial.divisor" ref="9"/>
@@ -420,7 +420,7 @@
 						<reference key="lmdial.offBorderColor" ref="854745775"/>
 						<reference key="lmdial.offFillColor" ref="183966544"/>
 						<reference key="lmdial.valueColor" ref="854745775"/>
-						<real value="7.000000e+00" key="lmdial.fontSize"/>
+						<real value="8.000000e+00" key="lmdial.fontSize"/>
 						<reference key="lmdial.showValue" ref="9"/>
 						<string key="lmdial.formatter">%d</string>
 						<reference key="lmdial.divisor" ref="9"/>
@@ -441,7 +441,7 @@
 						<reference key="lmdial.offBorderColor" ref="854745775"/>
 						<reference key="lmdial.offFillColor" ref="183966544"/>
 						<reference key="lmdial.valueColor" ref="854745775"/>
-						<real value="7.000000e+00" key="lmdial.fontSize"/>
+						<real value="8.000000e+00" key="lmdial.fontSize"/>
 						<reference key="lmdial.showValue" ref="9"/>
 						<string key="lmdial.formatter">%1.1fs</string>
 						<integer value="1000" key="lmdial.divisor"/>

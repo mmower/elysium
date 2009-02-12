@@ -20,6 +20,7 @@
 
 - (id)initWithInspectorController:(ELInspectorController *)controller nibName:(NSString *)nibName target:(id)target path:(NSString *)path;
 
+- (void)bindDial:(NSString *)dialName;
 - (void)bindControl:(NSString *)dialName;
 - (void)bindMode:(NSString *)dialName;
 - (void)bindOsc:(NSString *)dialName;
