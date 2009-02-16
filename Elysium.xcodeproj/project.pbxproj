@@ -496,7 +496,7 @@
 				C9A9F1BB0E8A42DF009A06A3 /* layer_manager */,
 				C9A9F1BE0E8A42DF009A06A3 /* mainview */,
 				C9A9F1C50E8A42DF009A06A3 /* midi */,
-				C9A9F1D10E8A42DF009A06A3 /* tools */,
+				C9A9F1D10E8A42DF009A06A3 /* tokens */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -642,7 +642,7 @@
 			path = src/midi;
 			sourceTree = "<group>";
 		};
-		C9A9F1D10E8A42DF009A06A3 /* tools */ = {
+		C9A9F1D10E8A42DF009A06A3 /* tokens */ = {
 			isa = PBXGroup;
 			children = (
 				C9A9F1D20E8A42DF009A06A3 /* ELAbsorbTool.h */,
@@ -660,8 +660,8 @@
 				C9A9F1DE0E8A42DF009A06A3 /* ELTool.h */,
 				C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */,
 			);
-			name = tools;
-			path = src/tools;
+			name = tokens;
+			path = src/tokens;
 			sourceTree = "<group>";
 		};
 		C9B1F36B0E9BF6BF0017092F /* scripting */ = {
