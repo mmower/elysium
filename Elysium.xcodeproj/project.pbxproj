@@ -99,13 +99,13 @@
 		C9A9F1F40E8A42DF009A06A3 /* ELMIDIController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1C70E8A42DF009A06A3 /* ELMIDIController.m */; };
 		C9A9F1F50E8A42DF009A06A3 /* ELMIDIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1C90E8A42DF009A06A3 /* ELMIDIMessage.m */; };
 		C9A9F1F60E8A42DF009A06A3 /* ELTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1CB0E8A42DF009A06A3 /* ELTimer.m */; };
-		C9A9F1F90E8A42DF009A06A3 /* ELAbsorbTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D30E8A42DF009A06A3 /* ELAbsorbTool.m */; };
-		C9A9F1FA0E8A42DF009A06A3 /* ELGenerateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D50E8A42DF009A06A3 /* ELGenerateTool.m */; };
-		C9A9F1FB0E8A42DF009A06A3 /* ELNoteTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D70E8A42DF009A06A3 /* ELNoteTool.m */; };
-		C9A9F1FC0E8A42DF009A06A3 /* ELReboundTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D90E8A42DF009A06A3 /* ELReboundTool.m */; };
-		C9A9F1FD0E8A42DF009A06A3 /* ELSpinTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DB0E8A42DF009A06A3 /* ELSpinTool.m */; };
-		C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */; };
-		C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */; };
+		C9A9F1F90E8A42DF009A06A3 /* ELAbsorbToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D30E8A42DF009A06A3 /* ELAbsorbToken.m */; };
+		C9A9F1FA0E8A42DF009A06A3 /* ELGenerateToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D50E8A42DF009A06A3 /* ELGenerateToken.m */; };
+		C9A9F1FB0E8A42DF009A06A3 /* ELNoteToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D70E8A42DF009A06A3 /* ELNoteToken.m */; };
+		C9A9F1FC0E8A42DF009A06A3 /* ELReboundToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1D90E8A42DF009A06A3 /* ELReboundToken.m */; };
+		C9A9F1FD0E8A42DF009A06A3 /* ELSpinToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DB0E8A42DF009A06A3 /* ELSpinToken.m */; };
+		C9A9F1FE0E8A42DF009A06A3 /* ELSplitToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DD0E8A42DF009A06A3 /* ELSplitToken.m */; };
+		C9A9F1FF0E8A42DF009A06A3 /* ELToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DF0E8A42DF009A06A3 /* ELToken.m */; };
 		C9A9F20F0E8A43F7009A06A3 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */; };
 		C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */; };
 		C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */; };
@@ -294,20 +294,20 @@
 		C9A9F1C90E8A42DF009A06A3 /* ELMIDIMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIMessage.m; sourceTree = "<group>"; };
 		C9A9F1CA0E8A42DF009A06A3 /* ELTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTimer.h; sourceTree = "<group>"; };
 		C9A9F1CB0E8A42DF009A06A3 /* ELTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimer.m; sourceTree = "<group>"; };
-		C9A9F1D20E8A42DF009A06A3 /* ELAbsorbTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAbsorbTool.h; sourceTree = "<group>"; };
-		C9A9F1D30E8A42DF009A06A3 /* ELAbsorbTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAbsorbTool.m; sourceTree = "<group>"; };
-		C9A9F1D40E8A42DF009A06A3 /* ELGenerateTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELGenerateTool.h; sourceTree = "<group>"; };
-		C9A9F1D50E8A42DF009A06A3 /* ELGenerateTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELGenerateTool.m; sourceTree = "<group>"; };
-		C9A9F1D60E8A42DF009A06A3 /* ELNoteTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNoteTool.h; sourceTree = "<group>"; };
-		C9A9F1D70E8A42DF009A06A3 /* ELNoteTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNoteTool.m; sourceTree = "<group>"; };
-		C9A9F1D80E8A42DF009A06A3 /* ELReboundTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELReboundTool.h; sourceTree = "<group>"; };
-		C9A9F1D90E8A42DF009A06A3 /* ELReboundTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELReboundTool.m; sourceTree = "<group>"; };
-		C9A9F1DA0E8A42DF009A06A3 /* ELSpinTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSpinTool.h; sourceTree = "<group>"; };
-		C9A9F1DB0E8A42DF009A06A3 /* ELSpinTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSpinTool.m; sourceTree = "<group>"; };
-		C9A9F1DC0E8A42DF009A06A3 /* ELSplitTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSplitTool.h; sourceTree = "<group>"; };
-		C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSplitTool.m; sourceTree = "<group>"; };
-		C9A9F1DE0E8A42DF009A06A3 /* ELTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTool.h; sourceTree = "<group>"; };
-		C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTool.m; sourceTree = "<group>"; };
+		C9A9F1D20E8A42DF009A06A3 /* ELAbsorbToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAbsorbToken.h; sourceTree = "<group>"; };
+		C9A9F1D30E8A42DF009A06A3 /* ELAbsorbToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAbsorbToken.m; sourceTree = "<group>"; };
+		C9A9F1D40E8A42DF009A06A3 /* ELGenerateToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELGenerateToken.h; sourceTree = "<group>"; };
+		C9A9F1D50E8A42DF009A06A3 /* ELGenerateToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELGenerateToken.m; sourceTree = "<group>"; };
+		C9A9F1D60E8A42DF009A06A3 /* ELNoteToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNoteToken.h; sourceTree = "<group>"; };
+		C9A9F1D70E8A42DF009A06A3 /* ELNoteToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELNoteToken.m; sourceTree = "<group>"; };
+		C9A9F1D80E8A42DF009A06A3 /* ELReboundToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELReboundToken.h; sourceTree = "<group>"; };
+		C9A9F1D90E8A42DF009A06A3 /* ELReboundToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELReboundToken.m; sourceTree = "<group>"; };
+		C9A9F1DA0E8A42DF009A06A3 /* ELSpinToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSpinToken.h; sourceTree = "<group>"; };
+		C9A9F1DB0E8A42DF009A06A3 /* ELSpinToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSpinToken.m; sourceTree = "<group>"; };
+		C9A9F1DC0E8A42DF009A06A3 /* ELSplitToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSplitToken.h; sourceTree = "<group>"; };
+		C9A9F1DD0E8A42DF009A06A3 /* ELSplitToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSplitToken.m; sourceTree = "<group>"; };
+		C9A9F1DE0E8A42DF009A06A3 /* ELToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELToken.h; sourceTree = "<group>"; };
+		C9A9F1DF0E8A42DF009A06A3 /* ELToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELToken.m; sourceTree = "<group>"; };
 		C9A9F20D0E8A43F7009A06A3 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
 		C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
 		C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScriptInspector.xib; path = src/scripting/ScriptInspector.xib; sourceTree = "<group>"; };
@@ -645,20 +645,20 @@
 		C9A9F1D10E8A42DF009A06A3 /* tokens */ = {
 			isa = PBXGroup;
 			children = (
-				C9A9F1D20E8A42DF009A06A3 /* ELAbsorbTool.h */,
-				C9A9F1D30E8A42DF009A06A3 /* ELAbsorbTool.m */,
-				C9A9F1D40E8A42DF009A06A3 /* ELGenerateTool.h */,
-				C9A9F1D50E8A42DF009A06A3 /* ELGenerateTool.m */,
-				C9A9F1D60E8A42DF009A06A3 /* ELNoteTool.h */,
-				C9A9F1D70E8A42DF009A06A3 /* ELNoteTool.m */,
-				C9A9F1D80E8A42DF009A06A3 /* ELReboundTool.h */,
-				C9A9F1D90E8A42DF009A06A3 /* ELReboundTool.m */,
-				C9A9F1DA0E8A42DF009A06A3 /* ELSpinTool.h */,
-				C9A9F1DB0E8A42DF009A06A3 /* ELSpinTool.m */,
-				C9A9F1DC0E8A42DF009A06A3 /* ELSplitTool.h */,
-				C9A9F1DD0E8A42DF009A06A3 /* ELSplitTool.m */,
-				C9A9F1DE0E8A42DF009A06A3 /* ELTool.h */,
-				C9A9F1DF0E8A42DF009A06A3 /* ELTool.m */,
+				C9A9F1D20E8A42DF009A06A3 /* ELAbsorbToken.h */,
+				C9A9F1D30E8A42DF009A06A3 /* ELAbsorbToken.m */,
+				C9A9F1D40E8A42DF009A06A3 /* ELGenerateToken.h */,
+				C9A9F1D50E8A42DF009A06A3 /* ELGenerateToken.m */,
+				C9A9F1D60E8A42DF009A06A3 /* ELNoteToken.h */,
+				C9A9F1D70E8A42DF009A06A3 /* ELNoteToken.m */,
+				C9A9F1D80E8A42DF009A06A3 /* ELReboundToken.h */,
+				C9A9F1D90E8A42DF009A06A3 /* ELReboundToken.m */,
+				C9A9F1DA0E8A42DF009A06A3 /* ELSpinToken.h */,
+				C9A9F1DB0E8A42DF009A06A3 /* ELSpinToken.m */,
+				C9A9F1DC0E8A42DF009A06A3 /* ELSplitToken.h */,
+				C9A9F1DD0E8A42DF009A06A3 /* ELSplitToken.m */,
+				C9A9F1DE0E8A42DF009A06A3 /* ELToken.h */,
+				C9A9F1DF0E8A42DF009A06A3 /* ELToken.m */,
 			);
 			name = tokens;
 			path = src/tokens;
@@ -877,13 +877,13 @@
 				C9A9F1F40E8A42DF009A06A3 /* ELMIDIController.m in Sources */,
 				C9A9F1F50E8A42DF009A06A3 /* ELMIDIMessage.m in Sources */,
 				C9A9F1F60E8A42DF009A06A3 /* ELTimer.m in Sources */,
-				C9A9F1F90E8A42DF009A06A3 /* ELAbsorbTool.m in Sources */,
-				C9A9F1FA0E8A42DF009A06A3 /* ELGenerateTool.m in Sources */,
-				C9A9F1FB0E8A42DF009A06A3 /* ELNoteTool.m in Sources */,
-				C9A9F1FC0E8A42DF009A06A3 /* ELReboundTool.m in Sources */,
-				C9A9F1FD0E8A42DF009A06A3 /* ELSpinTool.m in Sources */,
-				C9A9F1FE0E8A42DF009A06A3 /* ELSplitTool.m in Sources */,
-				C9A9F1FF0E8A42DF009A06A3 /* ELTool.m in Sources */,
+				C9A9F1F90E8A42DF009A06A3 /* ELAbsorbToken.m in Sources */,
+				C9A9F1FA0E8A42DF009A06A3 /* ELGenerateToken.m in Sources */,
+				C9A9F1FB0E8A42DF009A06A3 /* ELNoteToken.m in Sources */,
+				C9A9F1FC0E8A42DF009A06A3 /* ELReboundToken.m in Sources */,
+				C9A9F1FD0E8A42DF009A06A3 /* ELSpinToken.m in Sources */,
+				C9A9F1FE0E8A42DF009A06A3 /* ELSplitToken.m in Sources */,
+				C9A9F1FF0E8A42DF009A06A3 /* ELToken.m in Sources */,
 				C9A9F20F0E8A43F7009A06A3 /* ELOscillator.m in Sources */,
 				C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */,
 				C94F55760EA6A73900320BF5 /* ELKey.m in Sources */,
