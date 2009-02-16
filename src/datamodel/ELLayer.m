@@ -9,16 +9,17 @@
 
 #import "Elysium.h"
 
-#import "ELLayer.h"
-
 #import "ELHex.h"
-#import "ELKey.h"
-#import "ELNote.h"
-#import "ELTool.h"
+#import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
-#import "ELGenerateTool.h"
+
+#import "ELKey.h"
+#import "ELNote.h"
 #import "ELHarmonicTable.h"
+
+#import "ELToken.h"
+#import "ELGenerateToken.h"
 
 NSPredicate *deadPlayheadFilter;
 
@@ -362,7 +363,7 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)clear {
-  [hexes makeObjectsPerformSelector:@selector(removeAllTools)];
+  [hexes makeObjectsPerformSelector:@selector(removeAllTokens)];
 }
 
 - (void)queuePlayhead:(ELPlayhead *)_playhead_ {
@@ -389,16 +390,16 @@ NSPredicate *deadPlayheadFilter;
   [playheads removeAllObjects];
 }
 
-- (void)addGenerator:(ELGenerateTool *)_generator_ {
+- (void)addGenerator:(ELGenerateToken *)_generator_ {
   [generators addObject:_generator_];
 }
 
-- (void)removeGenerator:(ELGenerateTool *)_generator_ {
+- (void)removeGenerator:(ELGenerateToken *)_generator_ {
   [generators removeObject:_generator_];
 }
 
 - (void)pulse {
-  for( ELGenerateTool *generator in generators ) {
+  for( ELGenerateToken *generator in generators ) {
     if( [generator shouldPulseOnBeat:beatCount] ) {
       [generator run:nil];
     }

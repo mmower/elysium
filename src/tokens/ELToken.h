@@ -1,5 +1,5 @@
 //
-//  ELTool.h
+//  ELToken.h
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -15,11 +15,11 @@
 @class ELLayer;
 @class ELPlayhead;
 
-@protocol DirectedTool
+@protocol DirectedToken
 @property ELDial *directionDial;
 @end
 
-@interface ELTool : NSObject <ELXmlData,NSMutableCopying> {
+@interface ELToken : NSObject <ELXmlData,NSMutableCopying> {
   BOOL                loaded;
   ELLayer             *layer;
   ELHex               *hex;
@@ -49,7 +49,7 @@
 
 + (NSString *)tokenType;
 
-+ (ELTool *)toolAlloc:(NSString *)key;
++ (ELToken *)tokenAlloc:(NSString *)key;
 
 - (NSString *)tokenType;
 
@@ -62,10 +62,10 @@
 - (void)stop;
 
 - (void)run:(ELPlayhead *)playhead;
-- (void)runTool:(ELPlayhead *)playhead;
+- (void)runToken:(ELPlayhead *)playhead;
 
 - (void)drawWithAttributes:(NSDictionary *)attributes;
-- (void)setToolDrawColor:(NSDictionary *)attributes;
+- (void)setTokenDrawColor:(NSDictionary *)attributes;
 
 - (NSXMLElement *)controlsXmlRepresentation;
 - (NSXMLElement *)scriptsXmlRepresentation;

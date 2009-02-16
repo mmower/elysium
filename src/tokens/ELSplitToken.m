@@ -1,5 +1,5 @@
 //
-//  ELSplitTool.m
+//  ELSplitToken.m
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
@@ -7,14 +7,14 @@
 //  See MIT-LICENSE for more information.
 //
 
-#import "ELSplitTool.h"
+#import "ELSplitToken.h"
 
 #import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
-@implementation ELSplitTool
+@implementation ELSplitToken
 
 + (NSString *)tokenType {
   return @"split";
@@ -55,7 +55,7 @@
   [bounceBackDial stop];
 }
 
-- (void)runTool:(ELPlayhead *)_playhead_ {
+- (void)runToken:(ELPlayhead *)_playhead_ {
   [_playhead_ setPosition:nil];
   
   BOOL bounceBack = ![bounceBackDial value];
@@ -86,7 +86,7 @@
   [symbolPath moveToPoint:centre];
   [symbolPath lineToPoint:NSMakePoint( centre.x + radius/3, centre.y - radius/4 )];
   
-  [self setToolDrawColor:_attributes_];
+  [self setTokenDrawColor:_attributes_];
   [symbolPath setLineWidth:2.0];
   [symbolPath stroke];
 }

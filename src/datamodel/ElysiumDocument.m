@@ -23,8 +23,8 @@
 #import "ELLayerWindowController.h"
 #import "ELLayerManagerWindowController.h"
 
-#import "ELGenerateTool.h"
-#import "ELNoteTool.h"
+// #import "ELGenerateToken.h"
+// #import "ELNoteToken.h"
 
 @implementation ElysiumDocument
 
@@ -256,7 +256,7 @@
 }
 
 - (IBAction)clearCell:(id)_sender_ {
-  [[[player selectedLayer] selectedHex] clearTools:_sender_];
+  [[[player selectedLayer] selectedHex] clearTokens:_sender_];
 }
 
 - (void)document:(NSDocument *)_document_ shouldClose:(BOOL)_shouldClose_ contextInfo:(void*)_contextInfo_ {

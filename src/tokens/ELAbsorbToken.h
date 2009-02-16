@@ -1,5 +1,5 @@
 //
-//  ELAbsorbTool.h
+//  ELAbsorbToken.h
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
@@ -9,9 +9,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELTool.h"
+#import "ELToken.h"
 
-@interface ELAbsorbTool : ELTool {
+@interface ELAbsorbToken : ELToken {
 }
 
 @end

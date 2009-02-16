@@ -1,5 +1,5 @@
 //
-//  ELSinkTool.m
+//  ELSinkToken.m
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
@@ -7,18 +7,18 @@
 //  See MIT-LICENSE for more information.
 //
 
-#import "ELAbsorbTool.h"
+#import "ELAbsorbToken.h"
 
 #import "ELHex.h"
 #import "ELPlayhead.h"
 
-@implementation ELAbsorbTool
+@implementation ELAbsorbToken
 
 + (NSString *)tokenType {
   return @"absorb";
 }
 
-- (void)runTool:(ELPlayhead *)_playhead_ {
+- (void)runToken:(ELPlayhead *)_playhead_ {
   if( ![_playhead_ isNew] ) {
     [_playhead_ kill];
   }
@@ -31,7 +31,7 @@
   float radius = [[self hex] radius];
   
   NSBezierPath *symbolPath;
-  [self setToolDrawColor:_attributes_];
+  [self setTokenDrawColor:_attributes_];
   symbolPath = [NSBezierPath bezierPathWithRect:NSMakeRect( centre.x - radius/3, centre.y - radius/3, 2*radius/3, 2*radius/3 )];
   [symbolPath setLineWidth:2.0];
   [symbolPath stroke];

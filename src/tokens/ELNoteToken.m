@@ -1,5 +1,5 @@
 //
-//  ELNoteTool.m
+//  ELNoteToken.m
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -9,8 +9,8 @@
 
 #import "Elysium.h"
 
-#import "ELTool.h"
-#import "ELNoteTool.h"
+#import "ELToken.h"
+#import "ELNoteToken.h"
 
 #import "ELHex.h"
 #import "ELNote.h"
@@ -32,7 +32,7 @@ NSDictionary *defaultChannelSends( void ) {
   return sends;
 }
 
-@implementation ELNoteTool
+@implementation ELNoteToken
 
 + (NSString *)tokenType {
   return @"note";
@@ -205,9 +205,9 @@ NSDictionary *defaultChannelSends( void ) {
   [overrideDial stop];
 }
 
-// Tool runner
+// Token runner
 
-- (void)runTool:(ELPlayhead *)_playhead_ {
+- (void)runToken:(ELPlayhead *)_playhead_ {
   int velocity;
   
   if( [layer firstBeatInBar] ) {
@@ -258,7 +258,7 @@ NSDictionary *defaultChannelSends( void ) {
   [symbolPath closePath];
   [symbolPath setLineWidth:2.0];
   
-  [self setToolDrawColor:_attributes_];
+  [self setTokenDrawColor:_attributes_];
   
   [symbolPath stroke];
 }

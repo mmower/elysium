@@ -16,18 +16,18 @@
 #import "ELNote.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
-#import "ELTool.h"
 #import "ELPlayhead.h"
 #import "ELNoteGroup.h"
 #import "ELHarmonicTable.h"
 #import "ELSurfaceView.h"
 
-#import "ELGenerateTool.h"
-#import "ELNoteTool.h"
-#import "ELReboundTool.h"
-#import "ELAbsorbTool.h"
-#import "ELSplitTool.h"
-#import "ELSpinTool.h"
+#import "ELToken.h"
+#import "ELGenerateToken.h"
+#import "ELNoteToken.h"
+#import "ELReboundToken.h"
+#import "ELAbsorbToken.h"
+#import "ELSplitToken.h"
+#import "ELSpinToken.h"
 
 @implementation ELHex
 
@@ -58,76 +58,76 @@
 
 @synthesize tokens;
 
-@dynamic generateTool;
+@dynamic generateToken;
 
-- (ELGenerateTool *)generateTool {
-  return generateTool;
+- (ELGenerateToken *)generateToken {
+  return generateToken;
 }
 
-- (void)setGenerateTool:(ELGenerateTool *)_generateTool_ {
-  [self removeTool:generateTool];
-  generateTool = _generateTool_;
-  [self addTool:generateTool];
+- (void)setGenerateToken:(ELGenerateToken *)_generateToken_ {
+  [self removeToken:generateToken];
+  generateToken = _generateToken_;
+  [self addToken:generateToken];
 }
 
-@dynamic noteTool;
+@dynamic noteToken;
 
-- (ELNoteTool *)noteTool {
-  return noteTool;
+- (ELNoteToken *)noteToken {
+  return noteToken;
 }
 
-- (void)setNoteTool:(ELNoteTool *)_noteTool_ {
-  [self removeTool:noteTool];
-  noteTool = _noteTool_;
-  [self addTool:noteTool];
+- (void)setNoteToken:(ELNoteToken *)_noteToken_ {
+  [self removeToken:noteToken];
+  noteToken = _noteToken_;
+  [self addToken:noteToken];
 }
 
-@dynamic reboundTool;
+@dynamic reboundToken;
 
-- (ELReboundTool *)reboundTool {
-  return reboundTool;
+- (ELReboundToken *)reboundToken {
+  return reboundToken;
 }
 
-- (void)setReboundTool:(ELReboundTool *)_reboundTool_ {
-  [self removeTool:reboundTool];
-  reboundTool = _reboundTool_;
-  [self addTool:reboundTool];
+- (void)setReboundToken:(ELReboundToken *)_reboundToken_ {
+  [self removeToken:reboundToken];
+  reboundToken = _reboundToken_;
+  [self addToken:reboundToken];
 }
 
-@dynamic absorbTool;
+@dynamic absorbToken;
 
-- (ELAbsorbTool *)absorbTool {
-  return absorbTool;
+- (ELAbsorbToken *)absorbToken {
+  return absorbToken;
 }
 
-- (void)setAbsorbTool:(ELAbsorbTool *)_absorbTool_ {
-  [self removeTool:absorbTool];
-  absorbTool = _absorbTool_;
-  [self addTool:absorbTool];
+- (void)setAbsorbToken:(ELAbsorbToken *)_absorbToken_ {
+  [self removeToken:absorbToken];
+  absorbToken = _absorbToken_;
+  [self addToken:absorbToken];
 }
 
-@dynamic splitTool;
+@dynamic splitToken;
 
-- (ELSplitTool *)splitTool {
-  return splitTool;
+- (ELSplitToken *)splitToken {
+  return splitToken;
 }
 
-- (void)setSplitTool:(ELSplitTool *)_splitTool_ {
-  [self removeTool:splitTool];
-  splitTool = _splitTool_;
-  [self addTool:splitTool];
+- (void)setSplitToken:(ELSplitToken *)_splitToken_ {
+  [self removeToken:splitToken];
+  splitToken = _splitToken_;
+  [self addToken:splitToken];
 }
 
-@dynamic spinTool;
+@dynamic spinToken;
 
-- (ELSpinTool *)spinTool {
-  return spinTool;
+- (ELSpinToken *)spinToken {
+  return spinToken;
 }
 
-- (void)setSpinTool:(ELSpinTool *)_spinTool_ {
-  [self removeTool:spinTool];
-  spinTool = _spinTool_;
-  [self addTool:spinTool];
+- (void)setSpinToken:(ELSpinToken *)_spinToken_ {
+  [self removeToken:spinToken];
+  spinToken = _spinToken_;
+  [self addToken:spinToken];
 }
 
 // Hexes form a grid
@@ -207,7 +207,7 @@
   return triad;
 }
 
-// Tool support
+// Token support
 
 - (void)needsDisplay {
   [layer needsDisplay];
@@ -226,43 +226,43 @@
 }
 
 - (void)run:(ELPlayhead *)_playhead_ {
-  [noteTool run:_playhead_];
-  [splitTool run:_playhead_];
-  [reboundTool run:_playhead_];
-  [absorbTool run:_playhead_];
-  [spinTool run:_playhead_];
+  [noteToken run:_playhead_];
+  [splitToken run:_playhead_];
+  [reboundToken run:_playhead_];
+  [absorbToken run:_playhead_];
+  [spinToken run:_playhead_];
 }
 
-- (void)addTool:(ELTool *)newToken {
+- (void)addToken:(ELToken *)newToken {
   if( newToken ) {
     [tokens setObject:newToken forKey:[newToken tokenType]];
     [newToken addedToLayer:layer atPosition:self];
   }
 }
 
-- (void)removeTool:(ELTool *)token {
+- (void)removeToken:(ELToken *)token {
   if( token ) {
     [token removedFromLayer:layer];
     [tokens removeObjectForKey:[token tokenType]];
   }
 }
 
-- (void)removeAllTools {
-  [self setGenerateTool:nil];
-  [self setNoteTool:nil];
-  [self setReboundTool:nil];
-  [self setAbsorbTool:nil];
-  [self setSplitTool:nil];
-  [self setSpinTool:nil];
+- (void)removeAllTokens {
+  [self setGenerateToken:nil];
+  [self setNoteToken:nil];
+  [self setReboundToken:nil];
+  [self setAbsorbToken:nil];
+  [self setSplitToken:nil];
+  [self setSpinToken:nil];
 }
 
-- (void)copyToolsFrom:(ELHex *)_hex_ {
-  [self setGenerateTool:[[_hex_ generateTool] mutableCopy]];
-  [self setNoteTool:[[_hex_ noteTool] mutableCopy]];
-  [self setReboundTool:[[_hex_ reboundTool] mutableCopy]];
-  [self setAbsorbTool:[[_hex_ absorbTool] mutableCopy]];
-  [self setSplitTool:[[_hex_ splitTool] mutableCopy]];
-  [self setSpinTool:[[_hex_ spinTool] mutableCopy]];
+- (void)copyTokensFrom:(ELHex *)_hex_ {
+  [self setGenerateToken:[[_hex_ generateToken] mutableCopy]];
+  [self setNoteToken:[[_hex_ noteToken] mutableCopy]];
+  [self setReboundToken:[[_hex_ reboundToken] mutableCopy]];
+  [self setAbsorbToken:[[_hex_ absorbToken] mutableCopy]];
+  [self setSplitToken:[[_hex_ splitToken] mutableCopy]];
+  [self setSpinToken:[[_hex_ spinToken] mutableCopy]];
 }
 
 - (NSString *)description {
@@ -279,7 +279,7 @@
   [playheads removeObject:_playhead];
 }
 
-// Context menu
+// Token support
 
 - (NSMenu *)contextMenu {
   NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Context Menu"];
@@ -289,40 +289,40 @@
   
   NSMenuItem *item;
   
-  [menu addItem:[self toolMenuItem:@"Generate"
-                           present:([self generateTool] != nil)
+  [menu addItem:[self tokenMenuItem:@"Generate"
+                           present:([self generateToken] != nil)
                           selector:@selector(toggleGenerateToken:)]];
   
-  [menu addItem:[self toolMenuItem:@"Note"
-                           present:([self noteTool] != nil)
+  [menu addItem:[self tokenMenuItem:@"Note"
+                           present:([self noteToken] != nil)
                           selector:@selector(toggleNoteToken:)]];
   
-  [menu addItem:[self toolMenuItem:@"Rebound"
-                           present:([self reboundTool] != nil)
+  [menu addItem:[self tokenMenuItem:@"Rebound"
+                           present:([self reboundToken] != nil)
                           selector:@selector(toggleReboundToken:)]];
   
-  [menu addItem:[self toolMenuItem:@"Absorb"
-                           present:([self absorbTool] != nil)
+  [menu addItem:[self tokenMenuItem:@"Absorb"
+                           present:([self absorbToken] != nil)
                           selector:@selector(toggleAbsorbToken:)]];
   
-  [menu addItem:[self toolMenuItem:@"Split"
-                           present:([self splitTool] != nil)
+  [menu addItem:[self tokenMenuItem:@"Split"
+                           present:([self splitToken] != nil)
                           selector:@selector(toggleSplitToken:)]];
   
-  [menu addItem:[self toolMenuItem:@"Spin"
-                           present:([self spinTool] != nil)
+  [menu addItem:[self tokenMenuItem:@"Spin"
+                           present:([self spinToken] != nil)
                           selector:@selector(toggleSpinToken:)]];
   
   [menu addItem:[NSMenuItem separatorItem]];
   
-  item = [[NSMenuItem alloc] initWithTitle:@"Clear" action:@selector(clearTools) keyEquivalent:@""];
+  item = [[NSMenuItem alloc] initWithTitle:@"Clear" action:@selector(clearTokens) keyEquivalent:@""];
   [item setTarget:self];
   [menu addItem:item];
   
   return menu;
 }
 
-- (NSMenuItem *)toolMenuItem:(NSString *)_name_ present:(BOOL)_present_ selector:(SEL)_selector_ {
+- (NSMenuItem *)tokenMenuItem:(NSString *)_name_ present:(BOOL)_present_ selector:(SEL)_selector_ {
   NSMenuItem *item;
   
   if( _present_ ) {
@@ -335,99 +335,62 @@
   return item;
 }
 
-// Tool support
-
-// - (void)addToolWithTag:(int)_toolTag_ {
-//   switch( _toolTag_ ) {
-//     case EL_TOOL_GENERATE:
-//       [self setGenerateTool:[[ELGenerateTool alloc] init]];
-//       break;
-//       
-//     case EL_TOOL_NOTE:
-//       [self setNoteTool:[[ELNoteTool alloc] init]];
-//       break;
-//       
-//     case EL_TOOL_REBOUND:
-//       [self setReboundTool:[[ELReboundTool alloc] init]];
-//       break;
-//       
-//     case EL_TOOL_ABSORB:
-//       [self setAbsorbTool:[[ELAbsorbTool alloc] init]];
-//       break;
-//       
-//     case EL_TOOL_SPLIT:
-//       [self setSplitTool:[[ELSplitTool alloc] init]];
-//       break;
-//       
-//     case EL_TOOL_SPIN:
-//       [self setSpinTool:[[ELSpinTool alloc] init]];
-//       break;
-//       
-//     case EL_TOOL_CLEAR:
-//       [self removeAllTools];
-//       break;
-//       
-//     default:
-//       NSAssert1( NO, @"Unknown tool tag %d experienced!", _toolTag_ );
-//   }
-// }
-
-- (IBAction)clearTools:(id)_sender_ {
-  [self removeAllTools];
+- (IBAction)clearTokens:(id)_sender_ {
+  [self removeAllTokens];
   [self makeCurrentSelection];
 }
 
 - (IBAction)toggleGenerateToken:(id)_sender_ {
-  if( [self generateTool] ) {
-    [self setGenerateTool:nil];
+  if( [self generateToken] ) {
+    [self setGenerateToken:nil];
     // [self makeCurrentSelection];
   } else {
-    [self setGenerateTool:[[ELGenerateTool alloc] init]];
+    [self setGenerateToken:[[ELGenerateToken alloc] init]];
   }
   [self makeCurrentSelection];
 }
 
 - (IBAction)toggleNoteToken:(id)_sender_ {
-  if( [self noteTool] ) {
-    [self setNoteTool:nil];
+  if( [self noteToken] ) {
+    [self setNoteToken:nil];
   } else {
-    [self setNoteTool:[[ELNoteTool alloc] init]];
+    [self setNoteToken:[[ELNoteToken alloc] init]];
   }
   [self makeCurrentSelection];
 }
 
 - (IBAction)toggleReboundToken:(id)_sender_ {
-  if( [self reboundTool] ) {
-    [self setReboundTool:nil];
+  if( [self reboundToken] ) {
+    [self setReboundToken:nil];
   } else {
-    [self setReboundTool:[[ELReboundTool alloc] init]];
+    [self setReboundToken:[[ELReboundToken alloc] init]];
   }
   [self makeCurrentSelection];
 }
 
 - (IBAction)toggleAbsorbToken:(id)_sender_ {
-  if( [self absorbTool] ) {
-    [self setAbsorbTool:nil];
+  if( [self absorbToken] ) {
+    [self setAbsorbToken:nil];
   } else {
-    [self setAbsorbTool:[[ELAbsorbTool alloc] init]];
+    [self setAbsorbToken:[[ELAbsorbToken alloc] init]];
   }
   [self makeCurrentSelection];
 }
 
 - (IBAction)toggleSplitToken:(id)_sender_ {
-  if( [self splitTool] ) {
-    [self setSplitTool:nil];
+  if( [self splitToken] ) {
+    [self setSplitToken:nil];
   } else {
-    [self setSplitTool:[[ELSplitTool alloc] init]];
+    [self setSplitToken:[[ELSplitToken alloc] init]];
   }
   [self makeCurrentSelection];
 }
 
 - (IBAction)toggleSpinToken:(id)_sender_ {
-  if( [self spinTool] ) {
-    [self setSpinTool:nil];
+  if( [self spinToken] ) {
+    [self setSpinToken:nil];
   } else {
-    [self setSpinTool:[[ELSpinTool alloc] init]];
+    [self setSpinToken:[[ELSpinToken alloc] init]];
   }
   [self makeCurrentSelection];
 }
@@ -442,7 +405,7 @@
   NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] init];
   [textAttributes setObject:[NSFont fontWithName:@"Helvetica" size:9]
                  forKey:NSFontAttributeName];
-  [textAttributes setObject:[_attributes_ objectForKey:ELDefaultToolColor]
+  [textAttributes setObject:[_attributes_ objectForKey:ELDefaultTokenColor]
                  forKey:NSForegroundColorAttributeName];
   
   NSSize strSize = [_text_ sizeWithAttributes:textAttributes];
@@ -574,8 +537,8 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [attributes setObject:[NSNumber numberWithInt:row] forKey:@"row"];
   [cellElement setAttributesAsDictionary:attributes];
   
-  for( ELTool *tool in [[self tokens] allValues] ) {
-    [cellElement addChild:[tool xmlRepresentation]];
+  for( ELToken *token in [[self tokens] allValues] ) {
+    [cellElement addChild:[token xmlRepresentation]];
   }
   
   return cellElement;
@@ -588,32 +551,32 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   
   element = [[_representation_ nodesForXPath:@"generate" error:_error_] firstXMLElement];
   if( element ) {
-    [self setGenerateTool:[[ELTool toolAlloc:@"generate"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setGenerateToken:[[ELGenerateToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
   element = [[_representation_ nodesForXPath:@"note" error:_error_] firstXMLElement];
   if( element ) {
-    [self setNoteTool:[[ELTool toolAlloc:@"note"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setNoteToken:[[ELNoteToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
   element = [[_representation_ nodesForXPath:@"rebound" error:_error_] firstXMLElement];
   if( element ) {
-    [self setReboundTool:[[ELTool toolAlloc:@"rebound"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setReboundToken:[[ELReboundToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
   element = [[_representation_ nodesForXPath:@"absorb" error:_error_] firstXMLElement];
   if( element ) {
-    [self setAbsorbTool:[[ELTool toolAlloc:@"absorb"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setAbsorbToken:[[ELAbsorbToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
   element = [[_representation_ nodesForXPath:@"split" error:_error_] firstXMLElement];
   if( element ) {
-    [self setSplitTool:[[ELTool toolAlloc:@"split"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setSplitToken:[[ELSplitToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
   element = [[_representation_ nodesForXPath:@"spin" error:_error_] firstXMLElement];
   if( element ) {
-    [self setSpinTool:[[ELTool toolAlloc:@"spin"] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setSpinToken:[[ELSpinToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
   return self;

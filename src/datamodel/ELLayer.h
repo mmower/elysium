@@ -18,7 +18,7 @@
 @class ELNote;
 @class ELPlayer;
 @class ELPlayhead;
-@class ELGenerateTool;
+@class ELGenerateToken;
 
 @interface ELLayer : NSObject <LMHoneycombMatrix,ELXmlData,ELTaggable> {
   id                  delegate;       // This will be the view representing us in the UI
@@ -27,7 +27,7 @@
   NSMutableArray      *hexes;         // The hexes representing the playing surface
   NSMutableArray      *playheads;     // Array of playheads active on our surface
   NSMutableArray      *playheadQueue; // Array of playheads to be queued onto the layer in the next beat
-  NSMutableArray      *generators;    // Array of playhead generators (start tools)
+  NSMutableArray      *generators;    // Array of playhead generator tokens
   int                 beatCount;      // Current beat number
   BOOL                visible;        // Whether or not we are visible (not config, so not persistent)
                                     
@@ -94,8 +94,8 @@
 
 - (int)timerResolution;
 
-- (void)addGenerator:(ELGenerateTool *)generator;
-- (void)removeGenerator:(ELGenerateTool *)generator;
+- (void)addGenerator:(ELGenerateToken *)generator;
+- (void)removeGenerator:(ELGenerateToken *)generator;
 
 - (void)run;
 - (void)stop;

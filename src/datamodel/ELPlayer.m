@@ -26,9 +26,9 @@
 #import "ELMIDIMessage.h"
 #import "ELMIDIController.h"
 
-#import "ELTool.h"
-#import "ELNoteTool.h"
-#import "ELGenerateTool.h"
+#import "ELToken.h"
+#import "ELNoteToken.h"
+#import "ELGenerateToken.h"
 
 #import "ELOscillator.h"
 

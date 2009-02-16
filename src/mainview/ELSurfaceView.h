@@ -15,11 +15,11 @@
 
 @interface ELSurfaceView : LMHoneycombView {
   NSMutableArray  *octaveColors;
-  NSColor         *toolColor;
+  NSColor         *tokenColor;
   NSEvent         *savedEvent;
 }
 
-@property (assign) NSColor *toolColor;
+@property (assign) NSColor *tokenColor;
 
 - (void)setActivePlayheadColor:(NSColor *)color;
 - (NSColor *)activePlayheadColor;

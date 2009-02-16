@@ -1,5 +1,5 @@
 //
-//  ELTool.m
+//  ELToken.m
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -9,36 +9,36 @@
 
 #import "Elysium.h"
 
-#import "ELTool.h"
+#import "ELToken.h"
 
 #import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
-#import "ELNoteTool.h"
-#import "ELGenerateTool.h"
-#import "ELReboundTool.h"
-#import "ELAbsorbTool.h"
-#import "ELSplitTool.h"
-#import "ELSpinTool.h"
+#import "ELNoteToken.h"
+#import "ELGenerateToken.h"
+#import "ELReboundToken.h"
+#import "ELAbsorbToken.h"
+#import "ELSplitToken.h"
+#import "ELSpinToken.h"
 
-NSMutableDictionary *toolMapping = nil;
+NSMutableDictionary *tokenMapping = nil;
 
 int randval() {
   return ( random() % 100 ) + 1;
 }
 
-@implementation ELTool
+@implementation ELToken
 
 + (NSString *)tokenType {
   @throw @"Token subtype has not defined tokenType!";
 }
 
-+ (ELTool *)toolAlloc:(NSString *)_key_ {
-  Class toolClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Tool", [_key_ capitalizedString]] );
-  ELTool *tool = [toolClass alloc];
-  return tool;
++ (ELToken *)tokenAlloc:(NSString *)_key_ {
+  Class tokenClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Token", [_key_ capitalizedString]] );
+  ELToken *token = [tokenClass alloc];
+  return token;
 }
 
 - (id)init {
@@ -149,8 +149,8 @@ int randval() {
   [pDial stop];
 }
 
-// Tool-run protocol. The layer will call run and, as long as the tool is enabled,
-// the tool will invoke it's scripts and the subclass overriden runTool between them.
+// Token-run protocol. The layer will call run and, as long as the Token is enabled,
+// the Token will invoke it's scripts and the subclass overriden runToken between them.
 - (void)run:(ELPlayhead *)_playhead_ {
   if( [[self enabledDial] value] ) {
     [self performSelectorOnMainThread:@selector(runWillRunScript:) withObject:_playhead_ waitUntilDone:YES];
@@ -160,7 +160,7 @@ int randval() {
       fired = NO;
       if( !skip ) {
         if( randval() <= [pDial value] ) {
-          [self runTool:_playhead_];
+          [self runToken:_playhead_];
           fired = YES;
         }
       }
@@ -173,8 +173,8 @@ int randval() {
   }
 }
 
-// Should be overridden by tool subclasses
-- (void)runTool:(ELPlayhead *)_playhead_ {
+// Should be overridden by Token subclasses
+- (void)runToken:(ELPlayhead *)_playhead_ {
   [self doesNotRecognizeSelector:_cmd];
 }
 
@@ -191,24 +191,24 @@ int randval() {
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  NSLog( @"Drawing has not been defined for tool class %@", [self className] );
+  NSLog( @"Drawing has not been defined for Token class %@", [self className] );
 }
 
-- (void)setToolDrawColor:(NSDictionary *)_attributes_ {
+- (void)setTokenDrawColor:(NSDictionary *)_attributes_ {
   if( [enabledDial boolValue] ) {
-    [[_attributes_ objectForKey:ELDefaultToolColor] set];
+    [[_attributes_ objectForKey:ELDefaultTokenColor] set];
   } else {
-    [[_attributes_ objectForKey:ELDisabledToolColor] set];
+    [[_attributes_ objectForKey:ELDisabledTokenColor] set];
   }
 }
 
 // Implement the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *toolElement = [NSXMLNode elementWithName:[self tokenType]];
-  [toolElement addChild:[self controlsXmlRepresentation]];
-  [toolElement addChild:[self scriptsXmlRepresentation]];
-  return toolElement;
+  NSXMLElement *tokenElement = [NSXMLNode elementWithName:[self tokenType]];
+  [tokenElement addChild:[self controlsXmlRepresentation]];
+  [tokenElement addChild:[self scriptsXmlRepresentation]];
+  return tokenElement;
 }
 
 - (NSXMLElement *)controlsXmlRepresentation {

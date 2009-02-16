@@ -1,5 +1,5 @@
 //
-//  ELSpinTool.h
+//  ELSpinToken.h
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
@@ -11,9 +11,9 @@
 
 #import "Elysium.h"
 
-#import "ELTool.h"
+#import "ELToken.h"
 
-@interface ELSpinTool : ELTool <NSMutableCopying> {
+@interface ELSpinToken : ELToken {
   ELDial *clockwiseDial;
   ELDial *steppingDial;
 }

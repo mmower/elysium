@@ -1,5 +1,5 @@
 //
-//  ELSpinTool.m
+//  ELSpinToken.m
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
@@ -7,15 +7,15 @@
 //  See MIT-LICENSE for more information.
 //
 
-#import "ELSpinTool.h"
+#import "ELSpinToken.h"
 
 #import "ELHex.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
-#import "ELGenerateTool.h"
-#import "ELReboundTool.h"
+#import "ELGenerateToken.h"
+#import "ELReboundToken.h"
 
-@implementation ELSpinTool
+@implementation ELSpinToken
 
 + (NSString *)tokenType {
   return @"spin";
@@ -73,21 +73,21 @@
 
 // What happens when a playhead arrives
 
-- (void)runTool:(ELPlayhead *)_playhead_ {
-  ELTool<DirectedTool> *tool;
+- (void)runToken:(ELPlayhead *)_playhead_ {
+  ELToken<DirectedToken> *token;
   
-  if( [[_playhead_ position] reboundTool] ) {
-    tool = [[_playhead_ position] reboundTool];
-  } else if( [[_playhead_ position] generateTool] ) {
-    tool = [[_playhead_ position] generateTool];
+  if( [[_playhead_ position] reboundToken] ) {
+    token = [[_playhead_ position] reboundToken];
+  } else if( [[_playhead_ position] generateToken] ) {
+    token = [[_playhead_ position] generateToken];
   } else {
-    tool = nil;
+    token = nil;
   }
   
   if( [clockwiseDial value] ) {
-    [[tool directionDial] setValue:(([[tool directionDial] value]+[steppingDial value]) % 6)];
+    [[token directionDial] setValue:(([[token directionDial] value]+[steppingDial value]) % 6)];
   } else {
-    [[tool directionDial] setValue:(([[tool directionDial] value]-[steppingDial value]) % 6)];
+    [[token directionDial] setValue:(([[token directionDial] value]-[steppingDial value]) % 6)];
   }
 }
 
@@ -97,7 +97,7 @@
   NSPoint centre = [[self hex] centre];
   float radius = [[self hex] radius];
   
-  [self setToolDrawColor:_attributes_];
+  [self setTokenDrawColor:_attributes_];
   
   NSBezierPath *symbolPath = [NSBezierPath bezierPath];
   

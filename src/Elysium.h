@@ -70,8 +70,8 @@ extern NSString * const ELDefaultCellBackgroundColor;
 extern NSString * const ELDefaultCellBorderColor;
 extern NSString * const ELDefaultSelectedCellBackgroundColor;
 extern NSString * const ELDefaultSelectedCellBorderColor;
-extern NSString * const ELDefaultToolColor;
-extern NSString * const ELDisabledToolColor;
+extern NSString * const ELDefaultTokenColor;
+extern NSString * const ELDisabledTokenColor;
 extern NSString * const ELDefaultActivePlayheadColor;
 
 extern NSString * const ELTonicNoteColor;
@@ -81,7 +81,3 @@ extern NSString * const ELScaleNoteColor;
 #import "ELTaggable.h"
 
 #import "ELDial.h"
-// #import "ELKnob.h"
-// #import "ELIntegerKnob.h"
-// #import "ELFloatKnob.h"
-// #import "ELBooleanKnob.h"

@@ -11,9 +11,9 @@
 
 #import "Elysium.h"
 
-#import "ELTool.h"
+#import "ELToken.h"
 
-@interface ELSplitTool : ELTool {
+@interface ELSplitToken : ELToken {
   ELDial *bounceBackDial;
 }
 

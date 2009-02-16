@@ -11,12 +11,12 @@
 
 #import "ELHex.h"
 
-#import "ELNoteTool.h"
-#import "ELAbsorbTool.h"
-#import "ELSpinTool.h"
-#import "ELGenerateTool.h"
-#import "ELReboundTool.h"
-#import "ELSplitTool.h"
+#import "ELNoteToken.h"
+#import "ELAbsorbToken.h"
+#import "ELSpinToken.h"
+#import "ELGenerateToken.h"
+#import "ELReboundToken.h"
+#import "ELSplitToken.h"
 
 NSString *HexPBoardType = @"HexPBoardType";
 
@@ -24,8 +24,8 @@ NSString * const ELDefaultCellBackgroundColor = @"cell.background.color";
 NSString * const ELDefaultCellBorderColor = @"cell.border.color";
 NSString * const ELDefaultSelectedCellBackgroundColor = @"selected.cell.background.color";
 NSString * const ELDefaultSelectedCellBorderColor = @"selected.cell.border.color";
-NSString * const ELDefaultToolColor = @"tool.color";
-NSString * const ELDisabledToolColor = @"tool.disabled.color";
+NSString * const ELDefaultTokenColor = @"token.color";
+NSString * const ELDisabledTokenColor = @"token.disabled.color";
 NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
 NSString * const ELTonicNoteColor = @"tonic.note.color";
 NSString * const ELScaleNoteColor = @"scale.note.color";
@@ -50,7 +50,7 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
     [self setBorderColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultCellBorderColor]]];
     [self setSelectedColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultSelectedCellBackgroundColor]]];
     [self setSelectedBorderColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultSelectedCellBorderColor]]];
-    [self setToolColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultToolColor]]];
+    [self setTokenColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultTokenColor]]];
     [self setActivePlayheadColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELDefaultActivePlayheadColor]]];
     [self setTonicNoteColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELTonicNoteColor]]];
     [self setScaleNoteColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELScaleNoteColor]]];
@@ -66,14 +66,14 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
   return self;
 }
 
-@dynamic toolColor;
+@dynamic tokenColor;
 
-- (void)setToolColor:(NSColor *)_color_ {
-  [[self drawingAttributes] setObject:_color_ forKey:ELDefaultToolColor];
+- (void)setTokenColor:(NSColor *)_color_ {
+  [[self drawingAttributes] setObject:_color_ forKey:ELDefaultTokenColor];
 }
 
-- (NSColor *)toolColor {
-  return [[self drawingAttributes] objectForKey:ELDefaultToolColor];
+- (NSColor *)tokenColor {
+  return [[self drawingAttributes] objectForKey:ELDefaultTokenColor];
 }
 
 - (void)setActivePlayheadColor:(NSColor *)_color_ {
@@ -118,13 +118,13 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
   return (ELHex *)[self selected];
 }
 
-// Tool management
+// Token management
 
 - (void)dragFromHex:(ELHex *)_sourceHex_ to:(ELHex *)_targetHex_ with:(NSDragOperation)_modifiers_ {
-  [_targetHex_ removeAllTools];
-  [_targetHex_ copyToolsFrom:_sourceHex_];
+  [_targetHex_ removeAllTokens];
+  [_targetHex_ copyTokensFrom:_sourceHex_];
   if( !_modifiers_ & NSDragOperationCopy ) {
-    [_sourceHex_ removeAllTools];
+    [_sourceHex_ removeAllTokens];
   }
   [self setNeedsDisplay:YES];
 }
@@ -174,7 +174,7 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
         slideBack:YES];
 }
 
-// Drag & Drop tool adding support
+// Drag & Drop Token adding support
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)_sender_ {
   ELHex *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];

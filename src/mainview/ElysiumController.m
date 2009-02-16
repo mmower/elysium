@@ -73,13 +73,13 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
                                                                                              green:(17.0/255)
                                                                                               blue:(156.0/255)
                                                                                              alpha:0.8]]
-                    forKey:ELDefaultToolColor];
+                    forKey:ELDefaultTokenColor];
   
   [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(121.0/255)
                                                                                              green:(121.0/255)
                                                                                               blue:(152.0/255)
                                                                                              alpha:0.8]]
-                    forKey:ELDisabledToolColor];
+                    forKey:ELDisabledTokenColor];
   
   [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(156.0/255)
                                                                                              green:(16.0/255)

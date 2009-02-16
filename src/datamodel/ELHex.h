@@ -16,16 +16,16 @@
 
 @class ELLayer;
 @class ELNote;
-@class ELTool;
+@class ELToken;
 @class ELPlayhead;
 @class ELNoteGroup;
 
-@class ELGenerateTool;
-@class ELNoteTool;
-@class ELReboundTool;
-@class ELAbsorbTool;
-@class ELSplitTool;
-@class ELSpinTool;
+@class ELGenerateToken;
+@class ELNoteToken;
+@class ELReboundToken;
+@class ELAbsorbToken;
+@class ELSplitToken;
+@class ELSpinToken;
 
 @interface ELHex : LMHexCell <ELXmlData,ELTaggable> {
   ELLayer             *layer;
@@ -36,12 +36,12 @@
   NSString            *scriptingTag;
   
   NSMutableDictionary *tokens;
-  ELGenerateTool      *generateTool;
-  ELNoteTool          *noteTool;
-  ELReboundTool       *reboundTool;
-  ELAbsorbTool        *absorbTool;
-  ELSplitTool         *splitTool;
-  ELSpinTool          *spinTool;
+  ELGenerateToken     *generateToken;
+  ELNoteToken         *noteToken;
+  ELReboundToken      *reboundToken;
+  ELAbsorbToken       *absorbToken;
+  ELSplitToken        *splitToken;
+  ELSpinToken         *spinToken;
 }
 
 @property (readonly) ELLayer *layer;
@@ -49,12 +49,12 @@
 
 @property (readonly)  NSMutableDictionary *tokens;
 
-@property             ELGenerateTool      *generateTool;
-@property             ELNoteTool          *noteTool;
-@property             ELReboundTool       *reboundTool;
-@property             ELAbsorbTool        *absorbTool;
-@property             ELSplitTool         *splitTool;
-@property             ELSpinTool          *spinTool;
+@property             ELGenerateToken     *generateToken;
+@property             ELNoteToken         *noteToken;
+@property             ELReboundToken      *reboundToken;
+@property             ELAbsorbToken       *absorbToken;
+@property             ELSplitToken        *splitToken;
+@property             ELSpinToken         *spinToken;
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 
@@ -64,7 +64,7 @@
 - (void)connectNeighbour:(ELHex *)hex direction:(Direction)direction;
 - (ELNoteGroup *)triad:(int)triad;
 
-// Tool management
+// Token management
 
 - (void)needsDisplay;
 
@@ -74,35 +74,20 @@
 
 - (void)run:(ELPlayhead *)playhead;
 
-// - (void)addToolWithTag:(int)toolTag;
-- (void)addTool:(ELTool *)tool;
-- (void)removeTool:(ELTool *)tool;
-- (void)removeAllTools;
+- (void)addToken:(ELToken *)token;
+- (void)removeToken:(ELToken *)token;
+- (void)removeAllTokens;
 
-// Actions for tool management
-- (IBAction)clearTools:(id)sender;
+// Actions for Token management
+- (IBAction)clearTokens:(id)sender;
 - (IBAction)toggleGenerateToken:(id)sender;
-// - (IBAction)addGenerateTool:(id)sender;
-// - (IBAction)removeGenerateTool:(id)sender;
 - (IBAction)toggleNoteToken:(id)sender;
-// - (IBAction)addNoteTool:(id)sender;
-// - (IBAction)removeNoteTool:(id)sender;
 - (IBAction)toggleReboundToken:(id)sender;
-// - (IBAction)addReboundTool:(id)sender;
-// - (IBAction)removeReboundTool:(id)sender;
 - (IBAction)toggleAbsorbToken:(id)sender;
-// - (IBAction)addAbsorbTool:(id)sender;
-// - (IBAction)removeAbsorbTool:(id)sender;
 - (IBAction)toggleSplitToken:(id)sender;
-// - (IBAction)addSplitTool:(id)sender;
-// - (IBAction)removeSplitTool:(id)sender;
 - (IBAction)toggleSpinToken:(id)sender;
-// - (IBAction)addSpinTool:(id)sender;
-// - (IBAction)removeSpinTool:(id)sender;
 
-// - (NSArray *)toolsExceptType:(NSString *)type;
-
-- (void)copyToolsFrom:(ELHex *)hex;
+- (void)copyTokensFrom:(ELHex *)hex;
 
 // Playhead management
 
@@ -115,7 +100,7 @@
 - (void)drawText:(NSString *)text  withAttributes:(NSMutableDictionary *)attributes;
 
 // Menu support
-- (NSMenuItem *)toolMenuItem:(NSString *)name present:(BOOL)present selector:(SEL)selector;
+- (NSMenuItem *)tokenMenuItem:(NSString *)name present:(BOOL)present selector:(SEL)selector;
 - (void)makeCurrentSelection;
 
 @end

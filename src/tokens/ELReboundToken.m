@@ -1,5 +1,5 @@
 //
-//  ELReboundTool.m
+//  ELReboundToken.m
 //  Elysium
 //
 //  Created by Matt Mower on 09/08/2008.
@@ -7,13 +7,13 @@
 //  See MIT-LICENSE for more information.
 //
 
-#import "ELReboundTool.h"
+#import "ELReboundToken.h"
 
 #import "ELHex.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
-@implementation ELReboundTool
+@implementation ELReboundToken
 
 + (NSString *)tokenType {
   return @"rebound";
@@ -54,16 +54,16 @@
   [directionDial stop];
 }
 
-// Tool runner
+// Token runner
 
-- (void)runTool:(ELPlayhead *)_playhead_ {
+- (void)runToken:(ELPlayhead *)_playhead_ {
   [_playhead_ setDirection:[directionDial value]];
 }
 
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  [self setToolDrawColor:_attributes_];
+  [self setTokenDrawColor:_attributes_];
   [[self hex] drawTriangleInDirection:[directionDial value] withAttributes:_attributes_];
 }
 

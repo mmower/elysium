@@ -1,5 +1,5 @@
 //
-//  ELNoteTool.h
+//  ELNoteToken.h
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -9,9 +9,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ELTool.h"
+#import "ELToken.h"
 
-@interface ELNoteTool : ELTool {
+@interface ELNoteToken : ELToken {
   ELDial *velocityDial;
   ELDial *emphasisDial;
   ELDial *tempoSyncDial;

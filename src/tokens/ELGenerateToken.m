@@ -1,5 +1,5 @@
 //
-//  ELGenerateTool.m
+//  ELGenerateToken.m
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -7,14 +7,14 @@
 //  See MIT-LICENSE for more information.
 //
 
-#import "ELGenerateTool.h"
+#import "ELGenerateToken.h"
 
 #import "ELHex.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
-@implementation ELGenerateTool
+@implementation ELGenerateToken
 
 + (NSString *)tokenType {
   return @"generate";
@@ -114,7 +114,7 @@
   [super removedFromLayer:_layer_];
 }
 
-// Tool runner
+// Token runner
 
 - (BOOL)shouldPulseOnBeat:(int)_beat_ {
   if( [pulseEveryDial value] < 1 ) {
@@ -142,7 +142,7 @@
   [offsetDial stop];
 }
 
-- (void)runTool:(ELPlayhead *)_playhead_ {
+- (void)runToken:(ELPlayhead *)_playhead_ {
     [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
                                                   direction:[directionDial value]
                                                         TTL:[timeToLiveDial value]]];
@@ -158,7 +158,7 @@
   symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/3, centre.y - radius/3, 2*radius/3, 2*radius/3 )];
   [symbolPath setLineWidth:2.0];
 
-  [self setToolDrawColor:_attributes_];
+  [self setTokenDrawColor:_attributes_];
   [symbolPath stroke];
   
   [[self hex] drawTriangleInDirection:[directionDial value] withAttributes:_attributes_];

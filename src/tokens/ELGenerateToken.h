@@ -1,5 +1,5 @@
 //
-//  ELGenerateTool.h
+//  ELGenerateToken.h
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -11,9 +11,9 @@
 
 #import "Elysium.h"
 
-#import "ELTool.h"
+#import "ELToken.h"
 
-@interface ELGenerateTool : ELTool <DirectedTool> {
+@interface ELGenerateToken : ELToken <DirectedToken> {
   ELDial  *directionDial;
   ELDial  *timeToLiveDial;
   ELDial  *pulseEveryDial;
