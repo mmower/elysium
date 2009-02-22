@@ -53,11 +53,11 @@
     [self setTag:aTag];
     [self setParent:aParent];
     [self setOscillator:aOscillator];
-    [self setAssigned:aAssigned];
-    [self setLast:aLast];
-    [self setValue:aValue];
     [self setMin:aMin];
     [self setMax:aMax];
+    [self setLast:aLast];
+    [self setAssigned:aAssigned];
+    [self setValue:aValue];
     [self setStep:aStep];
     
     // Mode is set last to ensure that parent/oscillator
@@ -248,6 +248,14 @@
 
 
 - (void)setValue:(int)newValue {
+  if( newValue < min ) {
+    NSLog( @"Attempt to set value %d below minimum %d for dial: %@", newValue, min, self );
+    newValue = min;
+  } else if( newValue > max ) {
+    NSLog( @"Attempt to set value %d above maximum %d for dial: %@", newValue, max, self );
+    newValue = max;
+  }
+  
   last = value;
   value = newValue;
   if( [delegate respondsToSelector:@selector(dialDidChangeValue:)] ) {
@@ -274,6 +282,10 @@
 
 - (void)stop {
   [oscillator stop];
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"Dial<%@> min:%d max:%d value:%d step:%d", name, min, max, value, step];
 }
 
 #pragma mark ELXmlData implementation
