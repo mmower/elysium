@@ -50,10 +50,16 @@
   
   [self bindControl:@"override"];
   
+  [self bindTriadControl];
+  
   [self bindOverrideControls];
   
   [self bindScript:@"willRun"];
   [self bindScript:@"didRun"];
+}
+
+- (void)bindTriadControl {
+  [triadControl bind:@"selectedIndex" toObject:[self objectController] withKeyPath:@"selection.triadDial.value" options:nil];
 }
 
 - (void)bindOverrideControls {

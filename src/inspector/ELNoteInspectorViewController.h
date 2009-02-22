@@ -57,6 +57,7 @@
 
 - (id)initWithInspectorController:(ELInspectorController *)controller;
 
+- (void)bindTriadControl;
 - (void)bindOverrideControls;
 
 @end
