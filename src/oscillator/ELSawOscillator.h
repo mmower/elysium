@@ -18,10 +18,10 @@
   int decay;
   
   int attackBase;
-  int attackDelta;
+  float attackDelta;
   
   int decayBase;
-  int decayDelta;
+  float decayDelta;
   
   int period;
 }

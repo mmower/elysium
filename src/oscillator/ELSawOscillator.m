@@ -73,16 +73,13 @@
 }
 
 - (void)updateBasesAndDeltas {
-  NSLog( @"%@#updateBasesAndDeltas<%d,%d,%d,%d>", self, rest, attack, sustain, decay );
-  attackBase = rest + attack;
-  decayBase = rest + attack + sustain;
   period = rest + attack + sustain + decay;
   
   if( attack > 0 ) {
-    attackDelta = ( maximum - minimum ) / attack;
+    attackDelta = ( maximum - minimum ) / (float)attack;
   }
   if( decay > 0 ) {
-    decayDelta = ( maximum - minimum ) / decay;
+    decayDelta = ( maximum - minimum ) / (float)decay;
   }
 }
 
@@ -95,18 +92,14 @@
 
 
 - (int)generateWithT:(int)t {
-  if( t <= rest ) {
-    NSLog( @"%d <= %d : %d", t, rest, minimum );
-    return minimum;
-  } else if( t <= attackBase ) {
-    NSLog( @"%d <= %d : %d", t, attackBase, ( attackDelta * ( t - attackBase ) ) + minimum );
-    return ( attackDelta * ( t - attackBase ) ) + minimum;
-  } else if( t <= decayBase ) {
-    NSLog( @"%d <= %d : %d", t, decayBase, maximum );
+  if( t <= attack ) {
+    return ( attackDelta * t ) + minimum;
+  } else if( t <= ( attack + sustain ) ) {
     return maximum;
+  } else if( t <= ( attack + sustain + decay ) ) {
+    return maximum - ( decayDelta * ( t - ( attack + sustain ) ) );
   } else {
-    NSLog( @"%d", ( decayDelta * ( t - decayBase ) ) + minimum );
-    return ( decayDelta * ( t - decayBase ) ) + minimum;
+    return minimum;
   }
 }
 
