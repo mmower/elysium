@@ -110,6 +110,7 @@
 + (ELDial *)defaultBounceBackDial;
 + (ELDial *)defaultClockWiseDial;
 + (ELDial *)defaultSteppingDial;
++ (ELDial *)defaultSkipCountDial;
 
 - (void)toggleNoteDisplay;
 

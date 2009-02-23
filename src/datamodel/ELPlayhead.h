@@ -19,6 +19,7 @@
   ELHex     *parent;
   ELHex     *position;
   Direction direction;
+  int       skipCount;
   int       TTL;
   BOOL      isNew;
 }
@@ -28,6 +29,7 @@
 @property ELHex *position;
 @property ELHex *parent;
 @property Direction direction;
+@property int skipCount;
 @property (readonly) BOOL isDead;
 @property (readonly) int TTL;
 @property (readonly) BOOL isNew;

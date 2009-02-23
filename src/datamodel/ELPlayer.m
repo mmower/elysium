@@ -410,6 +410,16 @@ static SEL updateSelector;
                                  step:1];
 }
 
++ (ELDial *)defaultSkipCountDial {
+  return [[ELDial alloc] initWithName:@"skip"
+                              toolTip:@"Controls how many extra cells a playhead skips over when it moves."
+                                  tag:0
+                             assigned:0
+                                  min:0
+                                  max:8
+                                 step:1];
+}
+
 - (void)dialDidUnsetOscillator:(ELDial *)dial {
   [activeOscillators removeObject:[dial oscillator]];
 }

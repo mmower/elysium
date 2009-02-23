@@ -21,6 +21,7 @@
     
     direction = _direction_;
     TTL       = _TTL_;
+    skipCount = 0;
     isNew     = YES;
   }
   
@@ -28,6 +29,7 @@
 }
 
 @synthesize TTL;
+@synthesize skipCount;
 @dynamic position;
 @synthesize parent;
 @synthesize isNew;
@@ -36,12 +38,12 @@
   return position;
 }
 
-- (void)setPosition:(ELHex *)_position_ {
+- (void)setPosition:(ELHex *)newPosition {
   [position playheadLeaving:self];
 
-  if( _position_ ) {
-    NSAssert( [_position_ isKindOfClass:[ELHex class]], @"Class error <argument>" );
-    position = _position_;
+  if( newPosition ) {
+    NSAssert( [newPosition isKindOfClass:[ELHex class]], @"Class error <argument>" );
+    position = newPosition;
     [position playheadEntering:self];
   } else {
     position = nil;
@@ -51,7 +53,16 @@
 @synthesize direction;
 
 - (void)advance {
-  [self setPosition:[position neighbour:direction]];
+  ELHex *newPosition = position;
+  
+  while( skipCount ) {
+    newPosition = [newPosition neighbour:direction];
+    skipCount--;
+  }
+  
+  newPosition = [newPosition neighbour:direction];
+  
+  [self setPosition:newPosition];
   TTL--;
   isNew = NO;
 }

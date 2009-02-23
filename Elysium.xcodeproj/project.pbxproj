@@ -127,6 +127,7 @@
 		C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */; };
 		C9E8D93D0E68B8AF005AD9B7 /* sink.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9390E68B8AF005AD9B7 /* sink.pdf */; };
 		C9E8D93F0E68B95D005AD9B7 /* splitter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */; };
+		C9F233700F53682E00F036AD /* ELSkipToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F2336F0F53682E00F036AD /* ELSkipToken.m */; };
 		C9F450630EBDD1B7002C3637 /* ELScriptPackageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */; };
 		C9F450650EBDD1BF002C3637 /* ScriptPackageInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */; };
 		C9F4506C0EBDE3F3002C3637 /* ELScriptPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F4506B0EBDE3F3002C3637 /* ELScriptPackage.m */; };
@@ -338,6 +339,8 @@
 		C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = rotor.pdf; sourceTree = "<group>"; };
 		C9E8D9390E68B8AF005AD9B7 /* sink.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sink.pdf; sourceTree = "<group>"; };
 		C9E8D93E0E68B95D005AD9B7 /* splitter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = splitter.pdf; sourceTree = "<group>"; };
+		C9F2336E0F53682E00F036AD /* ELSkipToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSkipToken.h; sourceTree = "<group>"; };
+		C9F2336F0F53682E00F036AD /* ELSkipToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSkipToken.m; sourceTree = "<group>"; };
 		C9F450610EBDD1B7002C3637 /* ELScriptPackageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELScriptPackageController.h; sourceTree = "<group>"; };
 		C9F450620EBDD1B7002C3637 /* ELScriptPackageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScriptPackageController.m; sourceTree = "<group>"; };
 		C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScriptPackageInspector.xib; path = English.lproj/ScriptPackageInspector.xib; sourceTree = "<group>"; };
@@ -659,6 +662,8 @@
 				C9A9F1DD0E8A42DF009A06A3 /* ELSplitToken.m */,
 				C9A9F1DE0E8A42DF009A06A3 /* ELToken.h */,
 				C9A9F1DF0E8A42DF009A06A3 /* ELToken.m */,
+				C9F2336E0F53682E00F036AD /* ELSkipToken.h */,
+				C9F2336F0F53682E00F036AD /* ELSkipToken.m */,
 			);
 			name = tokens;
 			path = src/tokens;
@@ -925,6 +930,7 @@
 				C94BAF440F41D9EA00F1A0F8 /* ELDialHasOscillatorValueTransformer.m in Sources */,
 				C94BAF860F42232400F1A0F8 /* ELSegmentedControl.m in Sources */,
 				C9E1F7390F42E5500026A89E /* NSString+ELHelpers.m in Sources */,
+				C9F233700F53682E00F036AD /* ELSkipToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
