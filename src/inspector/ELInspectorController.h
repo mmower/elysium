@@ -43,6 +43,7 @@
             ELInspectorViewController *absorbViewController;
             ELInspectorViewController *splitViewController;
             ELInspectorViewController *spinViewController;
+            ELInspectorViewController *skipViewController;
   
             NSMutableDictionary *oscillatorEditors;
 }

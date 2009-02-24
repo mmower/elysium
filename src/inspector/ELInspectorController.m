@@ -19,6 +19,7 @@
 #import "ELAbsorbInspectorViewController.h"
 #import "ELSplitInspectorViewController.h"
 #import "ELSpinInspectorViewController.h"
+#import "ELSkipInspectorViewController.h"
 
 #import "ELDial.h"
 
@@ -41,6 +42,7 @@
     absorbViewController   = [[ELAbsorbInspectorViewController alloc] initWithInspectorController:self];
     splitViewController    = [[ELSplitInspectorViewController alloc] initWithInspectorController:self];
     spinViewController     = [[ELSpinInspectorViewController alloc] initWithInspectorController:self];
+    skipViewController     = [[ELSkipInspectorViewController alloc] initWithInspectorController:self];
   }
   
   return self;
@@ -69,6 +71,7 @@
   [[tabView tabViewItemAtIndex:5] setView:[absorbViewController view]];
   [[tabView tabViewItemAtIndex:6] setView:[splitViewController view]];
   [[tabView tabViewItemAtIndex:7] setView:[spinViewController view]];
+  [[tabView tabViewItemAtIndex:8] setView:[skipViewController view]];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(selectionChanged:)

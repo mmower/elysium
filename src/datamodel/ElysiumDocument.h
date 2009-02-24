@@ -43,6 +43,7 @@
 - (IBAction)toggleAbsorbToken:(id)sender;
 - (IBAction)toggleSplitToken:(id)sender;
 - (IBAction)toggleSpinToken:(id)sender;
+- (IBAction)toggleSkipToken:(id)sender;
 - (IBAction)clearCell:(id)sender;
 
 @end

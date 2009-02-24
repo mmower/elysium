@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="84"/>
+			<integer value="67"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -58,7 +58,7 @@
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSTabViewItem" id="455014191">
-									<string key="NSIdentifier">1</string>
+									<string key="NSIdentifier">player</string>
 									<object class="NSView" key="NSView" id="694574269">
 										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
@@ -77,7 +77,7 @@
 									<reference key="NSTabView" ref="1024953048"/>
 								</object>
 								<object class="NSTabViewItem" id="274047627">
-									<string key="NSIdentifier">2</string>
+									<string key="NSIdentifier">layer</string>
 									<object class="NSView" key="NSView" id="44859694">
 										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
@@ -88,18 +88,19 @@
 									<reference key="NSTabView" ref="1024953048"/>
 								</object>
 								<object class="NSTabViewItem" id="747149458">
-									<string key="NSIdentifier">Item 2</string>
+									<string key="NSIdentifier">generate</string>
 									<object class="NSView" key="NSView" id="50559459">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="1024953048"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrameSize">{302, 691}</string>
+										<reference key="NSSuperview" ref="1024953048"/>
 									</object>
 									<string key="NSLabel">Generate</string>
 									<reference key="NSColor" ref="787556465"/>
 									<reference key="NSTabView" ref="1024953048"/>
 								</object>
 								<object class="NSTabViewItem" id="32956298">
-									<string key="NSIdentifier">Item 3</string>
+									<string key="NSIdentifier">note</string>
 									<object class="NSView" key="NSView" id="589437889">
 										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
@@ -110,7 +111,7 @@
 									<reference key="NSTabView" ref="1024953048"/>
 								</object>
 								<object class="NSTabViewItem" id="335882774">
-									<string key="NSIdentifier">Item 4</string>
+									<string key="NSIdentifier">rebound</string>
 									<object class="NSView" key="NSView" id="722135251">
 										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
@@ -121,7 +122,7 @@
 									<reference key="NSTabView" ref="1024953048"/>
 								</object>
 								<object class="NSTabViewItem" id="160276482">
-									<string key="NSIdentifier">Item 5</string>
+									<string key="NSIdentifier">absorb</string>
 									<object class="NSView" key="NSView" id="762980998">
 										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
@@ -132,7 +133,7 @@
 									<reference key="NSTabView" ref="1024953048"/>
 								</object>
 								<object class="NSTabViewItem" id="785529914">
-									<string key="NSIdentifier">Item 6</string>
+									<string key="NSIdentifier">split</string>
 									<object class="NSView" key="NSView" id="642619764">
 										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
@@ -143,19 +144,29 @@
 									<reference key="NSTabView" ref="1024953048"/>
 								</object>
 								<object class="NSTabViewItem" id="119172957">
-									<string key="NSIdentifier">Item 7</string>
+									<string key="NSIdentifier">spin</string>
 									<object class="NSView" key="NSView" id="486870847">
-										<reference key="NSNextResponder" ref="1024953048"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrameSize">{302, 691}</string>
-										<reference key="NSSuperview" ref="1024953048"/>
 									</object>
 									<string key="NSLabel">Spin</string>
 									<reference key="NSColor" ref="787556465"/>
 									<reference key="NSTabView" ref="1024953048"/>
 								</object>
+								<object class="NSTabViewItem" id="208887599">
+									<string key="NSIdentifier">skip</string>
+									<object class="NSView" key="NSView" id="339092830">
+										<nil key="NSNextResponder"/>
+										<int key="NSvFlags">256</int>
+										<string key="NSFrameSize">{302, 691}</string>
+									</object>
+									<string key="NSLabel">Skip</string>
+									<reference key="NSColor" ref="787556465"/>
+									<reference key="NSTabView" ref="1024953048"/>
+								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="119172957"/>
+							<reference key="NSSelectedTabViewItem" ref="747149458"/>
 							<object class="NSFont" key="NSFont">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">1.100000e+01</double>
@@ -166,7 +177,7 @@
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="486870847"/>
+								<reference ref="50559459"/>
 							</object>
 						</object>
 						<object class="NSSegmentedControl" id="827705426">
@@ -187,52 +198,57 @@
 								<object class="NSMutableArray" key="NSSegmentImages">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="NSSegmentItem">
-										<double key="NSSegmentItemWidth">3.500000e+01</double>
+										<double key="NSSegmentItemWidth">3.100000e+01</double>
 										<string key="NSSegmentItemLabel">P</string>
 										<string key="NSSegmentItemTooltip">Player</string>
 										<bool key="NSSegmentItemSelected">YES</bool>
 										<int key="NSSegmentItemImageScaling">0</int>
 									</object>
 									<object class="NSSegmentItem">
-										<double key="NSSegmentItemWidth">3.500000e+01</double>
+										<double key="NSSegmentItemWidth">3.100000e+01</double>
 										<string key="NSSegmentItemLabel">L</string>
 										<string key="NSSegmentItemTooltip">Layer</string>
 										<int key="NSSegmentItemImageScaling">0</int>
 									</object>
 									<object class="NSSegmentItem">
-										<double key="NSSegmentItemWidth">3.500000e+01</double>
+										<double key="NSSegmentItemWidth">3.100000e+01</double>
 										<string key="NSSegmentItemLabel">G</string>
 										<string key="NSSegmentItemTooltip">Generate</string>
 										<int key="NSSegmentItemImageScaling">0</int>
 									</object>
 									<object class="NSSegmentItem">
-										<double key="NSSegmentItemWidth">3.500000e+01</double>
+										<double key="NSSegmentItemWidth">3.100000e+01</double>
 										<string key="NSSegmentItemLabel">N</string>
 										<string key="NSSegmentItemTooltip">Note</string>
 										<int key="NSSegmentItemImageScaling">0</int>
 									</object>
 									<object class="NSSegmentItem">
-										<double key="NSSegmentItemWidth">3.500000e+01</double>
+										<double key="NSSegmentItemWidth">3.100000e+01</double>
 										<string key="NSSegmentItemLabel">R</string>
 										<string key="NSSegmentItemTooltip">Rebound</string>
 										<int key="NSSegmentItemImageScaling">0</int>
 									</object>
 									<object class="NSSegmentItem">
-										<double key="NSSegmentItemWidth">3.500000e+01</double>
+										<double key="NSSegmentItemWidth">3.100000e+01</double>
 										<string key="NSSegmentItemLabel">A</string>
 										<string key="NSSegmentItemTooltip">Absorb</string>
 										<int key="NSSegmentItemImageScaling">0</int>
 									</object>
 									<object class="NSSegmentItem">
-										<double key="NSSegmentItemWidth">3.500000e+01</double>
+										<double key="NSSegmentItemWidth">3.100000e+01</double>
 										<string key="NSSegmentItemLabel">T</string>
 										<string key="NSSegmentItemTooltip">Split</string>
 										<int key="NSSegmentItemImageScaling">0</int>
 									</object>
 									<object class="NSSegmentItem">
-										<double key="NSSegmentItemWidth">3.500000e+01</double>
+										<double key="NSSegmentItemWidth">3.100000e+01</double>
 										<string key="NSSegmentItemLabel">S</string>
 										<string key="NSSegmentItemTooltip">Spin</string>
+										<int key="NSSegmentItemImageScaling">0</int>
+									</object>
+									<object class="NSSegmentItem">
+										<double key="NSSegmentItemWidth">3.100000e+01</double>
+										<string key="NSSegmentItemLabel">K</string>
 										<int key="NSSegmentItemImageScaling">0</int>
 									</object>
 								</object>
@@ -394,6 +410,7 @@
 							<reference ref="785529914"/>
 							<reference ref="119172957"/>
 							<reference ref="274047627"/>
+							<reference ref="208887599"/>
 						</object>
 						<reference key="parent" ref="772554810"/>
 					</object>
@@ -555,6 +572,20 @@
 						</object>
 						<reference key="parent" ref="274047627"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2481</int>
+						<reference key="object" ref="208887599"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="339092830"/>
+						</object>
+						<reference key="parent" ref="1024953048"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2482</int>
+						<reference key="object" ref="339092830"/>
+						<reference key="parent" ref="208887599"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -578,6 +609,7 @@
 					<string>3.windowTemplate.minSize</string>
 					<string>4.IBPluginDependency</string>
 					<string>4.IBUserGuides</string>
+					<string>67.IBAttributePlaceholdersKey</string>
 					<string>67.IBPluginDependency</string>
 					<string>68.IBPluginDependency</string>
 					<string>69.IBPluginDependency</string>
@@ -627,6 +659,15 @@
 							<int key="affinity">0</int>
 						</object>
 					</object>
+					<object class="NSMutableDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -660,7 +701,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2480</int>
+			<int key="maxID">2482</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -698,14 +739,11 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>absorbView</string>
-							<string>cellController</string>
 							<string>generatorView</string>
-							<string>layerController</string>
 							<string>layerView</string>
 							<string>modeView</string>
 							<string>noteView</string>
 							<string>panel</string>
-							<string>playerController</string>
 							<string>playerView</string>
 							<string>reboundView</string>
 							<string>spinView</string>
@@ -715,14 +753,11 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSView</string>
-							<string>NSObjectController</string>
 							<string>NSView</string>
-							<string>NSObjectController</string>
 							<string>NSView</string>
 							<string>NSSegmentedControl</string>
 							<string>NSView</string>
 							<string>NSPanel</string>
-							<string>NSObjectController</string>
 							<string>NSView</string>
 							<string>NSView</string>
 							<string>NSView</string>

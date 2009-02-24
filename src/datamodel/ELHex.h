@@ -26,6 +26,7 @@
 @class ELAbsorbToken;
 @class ELSplitToken;
 @class ELSpinToken;
+@class ELSkipToken;
 
 @interface ELHex : LMHexCell <ELXmlData,ELTaggable> {
   ELLayer             *layer;
@@ -42,6 +43,7 @@
   ELAbsorbToken       *absorbToken;
   ELSplitToken        *splitToken;
   ELSpinToken         *spinToken;
+  ELSkipToken         *skipToken;
 }
 
 @property (readonly) ELLayer *layer;
@@ -55,6 +57,7 @@
 @property             ELAbsorbToken       *absorbToken;
 @property             ELSplitToken        *splitToken;
 @property             ELSpinToken         *spinToken;
+@property             ELSkipToken         *skipToken;
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 
@@ -86,6 +89,7 @@
 - (IBAction)toggleAbsorbToken:(id)sender;
 - (IBAction)toggleSplitToken:(id)sender;
 - (IBAction)toggleSpinToken:(id)sender;
+- (IBAction)toggleSkipToken:(id)sender;
 
 - (void)copyTokensFrom:(ELHex *)hex;
 

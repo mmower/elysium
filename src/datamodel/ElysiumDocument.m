@@ -255,6 +255,10 @@
   [[[player selectedLayer] selectedHex] toggleSpinToken:_sender_];
 }
 
+- (IBAction)toggleSkipToken:(id)sender {
+  [[[player selectedLayer] selectedHex] toggleSkipToken:sender];
+}
+
 - (IBAction)clearCell:(id)_sender_ {
   [[[player selectedLayer] selectedHex] clearTokens:_sender_];
 }

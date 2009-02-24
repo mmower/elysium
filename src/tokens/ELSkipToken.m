@@ -45,6 +45,14 @@
 }
 
 
+#pragma mark ELTool implementation
+
+- (void)drawWithAttributes:(NSDictionary *)drawingAttributes {
+  [self setTokenDrawColor:drawingAttributes];
+  [[self hex] drawTriangleInDirection:[directionDial value] withAttributes:drawingAttributes];
+}
+
+
 - (void)runToken:(ELPlayhead *)playhead {
   [playhead setSkipCount:[skipCountDial value]];
 }

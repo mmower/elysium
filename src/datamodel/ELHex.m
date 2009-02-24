@@ -28,6 +28,7 @@
 #import "ELAbsorbToken.h"
 #import "ELSplitToken.h"
 #import "ELSpinToken.h"
+#import "ELSkipToken.h"
 
 @implementation ELHex
 
@@ -128,6 +129,18 @@
   [self removeToken:spinToken];
   spinToken = _spinToken_;
   [self addToken:spinToken];
+}
+
+@dynamic skipToken;
+
+- (ELSkipToken *)skipToken {
+  return skipToken;
+}
+
+- (void)setSkipToken:(ELSkipToken *)newSkipToken {
+  [self removeToken:skipToken];
+  skipToken = newSkipToken;
+  [self addToken:skipToken];
 }
 
 // Hexes form a grid
@@ -254,6 +267,7 @@
   [self setAbsorbToken:nil];
   [self setSplitToken:nil];
   [self setSpinToken:nil];
+  [self setSkipToken:nil];
 }
 
 - (void)copyTokensFrom:(ELHex *)_hex_ {
@@ -263,6 +277,7 @@
   [self setAbsorbToken:[[_hex_ absorbToken] mutableCopy]];
   [self setSplitToken:[[_hex_ splitToken] mutableCopy]];
   [self setSpinToken:[[_hex_ spinToken] mutableCopy]];
+  [self setSkipToken:[[_hex_ skipToken] mutableCopy]];
 }
 
 - (NSString *)description {
@@ -313,9 +328,13 @@
                            present:([self spinToken] != nil)
                           selector:@selector(toggleSpinToken:)]];
   
+  [menu addItem:[self tokenMenuItem:@"Skip"
+                           present:([self skipToken] != nil)
+                          selector:@selector(toggleSkipToken:)]];
+  
   [menu addItem:[NSMenuItem separatorItem]];
   
-  item = [[NSMenuItem alloc] initWithTitle:@"Clear" action:@selector(clearTokens) keyEquivalent:@""];
+  item = [[NSMenuItem alloc] initWithTitle:@"Clear" action:@selector(clearCell:) keyEquivalent:@""];
   [item setTarget:self];
   [menu addItem:item];
   
@@ -391,6 +410,15 @@
     [self setSpinToken:nil];
   } else {
     [self setSpinToken:[[ELSpinToken alloc] init]];
+  }
+  [self makeCurrentSelection];
+}
+
+- (IBAction)toggleSkipToken:(id)_sender_ {
+  if( [self skipToken] ) {
+    [self setSkipToken:nil];
+  } else {
+    [self setSkipToken:[[ELSkipToken alloc] init]];
   }
   [self makeCurrentSelection];
 }
@@ -577,6 +605,11 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   element = [[_representation_ nodesForXPath:@"spin" error:_error_] firstXMLElement];
   if( element ) {
     [self setSpinToken:[[ELSpinToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+  }
+  
+  element = [[_representation_ nodesForXPath:@"skip" error:_error_] firstXMLElement];
+  if( element ) {
+    [self setSkipToken:[[ELSkipToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
   }
   
   return self;
