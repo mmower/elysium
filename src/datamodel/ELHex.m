@@ -238,12 +238,13 @@
   [[tokens allValues] makeObjectsPerformSelector:@selector(stop)];
 }
 
-- (void)run:(ELPlayhead *)_playhead_ {
-  [noteToken run:_playhead_];
-  [splitToken run:_playhead_];
-  [reboundToken run:_playhead_];
-  [absorbToken run:_playhead_];
-  [spinToken run:_playhead_];
+- (void)run:(ELPlayhead *)playhead {
+  [noteToken run:playhead];
+  [splitToken run:playhead];
+  [reboundToken run:playhead];
+  [absorbToken run:playhead];
+  [spinToken run:playhead];
+  [skipToken run:playhead];
 }
 
 - (void)addToken:(ELToken *)newToken {
