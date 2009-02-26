@@ -8,6 +8,7 @@
 
 #import "ELSkipToken.h"
 
+#import "ELHex.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
@@ -49,13 +50,30 @@
 
 - (void)drawWithAttributes:(NSDictionary *)drawingAttributes {
   [self setTokenDrawColor:drawingAttributes];
-  [[self hex] drawTriangleInDirection:[directionDial value] withAttributes:drawingAttributes];
+  
+  NSPoint centre = [[self hex] centre];
+  float radius = [[self hex] radius];
+  
+  NSBezierPath *hopPath = [NSBezierPath bezierPath];
+  [hopPath moveToPoint:NSMakePoint( centre.x - radius / 1.8, centre.y - radius / 1.8 )];
+  [hopPath lineToPoint:NSMakePoint( centre.x - radius / 2.8, centre.y - radius / 2.8 )];
+  [hopPath lineToPoint:NSMakePoint( centre.x - radius / 2.8, centre.y + radius / 2.8 )];
+  [hopPath lineToPoint:NSMakePoint( centre.x - radius / 1.8, centre.y + radius / 1.8 )];
+  
+  [hopPath moveToPoint:NSMakePoint( centre.x + radius / 1.8, centre.y - radius / 1.8 )];
+  [hopPath lineToPoint:NSMakePoint( centre.x + radius / 2.8, centre.y - radius / 2.8 )];
+  [hopPath lineToPoint:NSMakePoint( centre.x + radius / 2.8, centre.y + radius / 2.8 )];
+  [hopPath lineToPoint:NSMakePoint( centre.x + radius / 1.8, centre.y + radius / 1.8 )];
+  
+  [hopPath setLineWidth:2.0];
+  [hopPath stroke];
 }
 
 
 - (void)runToken:(ELPlayhead *)playhead {
   [playhead setSkipCount:[skipCountDial value]];
 }
+
 
 #pragma mark NSMutableCopying protocol implementation
 
@@ -65,7 +83,8 @@
   return copy;
 }
 
-// Implement the ELXmlData protocol
+
+#pragma mark ELXmlData protocol implementation
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
