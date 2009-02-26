@@ -314,7 +314,7 @@ NSDictionary *defaultChannelSends( void ) {
     [self setGhostsDial:[_representation_ loadDial:@"ghosts" parent:nil player:_player_ error:_error_]];
     [self setOverrideDial:[_representation_ loadDial:@"override" parent:nil player:_player_ error:_error_]];
     
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/knob[starts-with(@name,'send')]" error:_error_] ) ) {
+    if( ( nodes = [_representation_ nodesForXPath:@"controls/dial[starts-with(@name,'send')]" error:_error_] ) ) {
       NSMutableDictionary *sends = [NSMutableDictionary dictionary];
       for( NSXMLNode *node in nodes ) {
         ELDial *dial = [[ELDial alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:_player_ error:_error_];

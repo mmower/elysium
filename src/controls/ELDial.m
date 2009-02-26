@@ -318,13 +318,13 @@
     [self setName:[_representation_ attributeAsString:@"name"]];
     [self setTag:[_representation_ attributeAsInteger:@"tag" defaultValue:INT_MIN]];
     
-    [self setAssigned:[_representation_ attributeAsInteger:@"assigned" defaultValue:INT_MIN]];
-    [self setLast:[_representation_ attributeAsInteger:@"last" defaultValue:INT_MIN]];
-    [self setValue:[_representation_ attributeAsInteger:@"value" defaultValue:INT_MIN]];
-    
     [self setMin:[_representation_ attributeAsInteger:@"min" defaultValue:INT_MIN]];
     [self setMax:[_representation_ attributeAsInteger:@"max" defaultValue:INT_MIN]];
     [self setStep:[_representation_ attributeAsInteger:@"step" defaultValue:INT_MIN]];
+    
+    [self setAssigned:[_representation_ attributeAsInteger:@"assigned" defaultValue:INT_MIN]];
+    [self setLast:[_representation_ attributeAsInteger:@"last" defaultValue:INT_MIN]];
+    [self setValue:[_representation_ attributeAsInteger:@"value" defaultValue:INT_MIN]];
     
     [self setParent:_parent_];
     

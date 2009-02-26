@@ -177,19 +177,19 @@
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
-    [self setDirectionDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='direction']" error:_error_] firstXMLElement]
+    [self setDirectionDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/dial[@name='direction']" error:_error_] firstXMLElement]
                                                               parent:nil
                                                               player:_player_
                                                                error:_error_]];
-    [self setTimeToLiveDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='timeToLive']" error:_error_] firstXMLElement]
+    [self setTimeToLiveDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/dial[@name='timeToLive']" error:_error_] firstXMLElement]
                                                                parent:nil
                                                                player:_player_
                                                                 error:_error_]];
-    [self setPulseEveryDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='pulseEvery']" error:_error_] firstXMLElement]
+    [self setPulseEveryDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/dial[@name='pulseEvery']" error:_error_] firstXMLElement]
                                                                parent:nil
                                                                player:_player_
                                                                 error:_error_]];
-    [self setOffsetDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/knob[@name='offset']" error:_error_] firstXMLElement]
+    [self setOffsetDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/dial[@name='offset']" error:_error_] firstXMLElement]
                                                            parent:nil
                                                            player:_player_
                                                             error:_error_]];
