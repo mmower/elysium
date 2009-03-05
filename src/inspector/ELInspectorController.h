@@ -44,8 +44,8 @@
             ELInspectorViewController *splitViewController;
             ELInspectorViewController *spinViewController;
             ELInspectorViewController *skipViewController;
-  
-            NSMutableDictionary *oscillatorEditors;
+            
+            NSMapTable          *oscillatorEditors;
 }
 
 @property           NSSegmentedControl  *modeView;
