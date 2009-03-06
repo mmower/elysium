@@ -13,7 +13,9 @@
 
 @interface ELRangedOscillator : ELOscillator {
   int minimum;
+  int hardMinimum;
   int maximum;
+  int hardMaximum;
   
   int range;
 }
@@ -21,7 +23,9 @@
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum;
 
 @property int minimum;
+@property int hardMinimum;
 @property int maximum;
+@property int hardMaximum;
 @property (readonly) int range;
 
 @end

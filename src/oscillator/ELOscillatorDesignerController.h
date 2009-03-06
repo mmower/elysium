@@ -9,6 +9,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class LMDialView;
+
 @class ELDial;
 @class ELSquareOscillator;
 @class ELSawOscillator;
@@ -27,6 +29,18 @@
   ELSineOscillator      *sineOscillator;
   ELSequenceOscillator  *sequenceOscillator;
   ELRandomOscillator    *randomOscillator;
+  
+  IBOutlet  LMDialView  *squareLFOMinDial;
+  IBOutlet  LMDialView  *squareLFOMaxDial;
+  
+  IBOutlet  LMDialView  *sawLFOMinDial;
+  IBOutlet  LMDialView  *sawLFOMaxDial;
+  
+  IBOutlet  LMDialView  *sineLFOMinDial;
+  IBOutlet  LMDialView  *sineLFOMaxDial;
+  
+  IBOutlet  LMDialView  *randomLFOMinDial;
+  IBOutlet  LMDialView  *randomLFOMaxDial;
   
   NSString              *selectedTag;
 }

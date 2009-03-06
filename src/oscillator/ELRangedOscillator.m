@@ -14,7 +14,9 @@
 - (id)initEnabled:(BOOL)aEnabled minimum:(int)aMin maximum:(int)aMax {
   if( ( self = [super initEnabled:aEnabled] ) ) {
     [self setMinimum:aMin];
+    [self setHardMinimum:aMin];
     [self setMaximum:aMax];
+    [self setHardMaximum:aMax];
   }
   
   return self;
@@ -31,6 +33,8 @@
   range = maximum - minimum;
 }
 
+@synthesize hardMinimum;
+
 @dynamic maximum;
 
 - (int)maximum {
@@ -41,6 +45,8 @@
   maximum = newMaximum;
   range = maximum - minimum;
 }
+
+@synthesize hardMaximum;
 
 @synthesize range;
 

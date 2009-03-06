@@ -43,6 +43,8 @@
     splitViewController    = [[ELSplitInspectorViewController alloc] initWithInspectorController:self];
     spinViewController     = [[ELSpinInspectorViewController alloc] initWithInspectorController:self];
     skipViewController     = [[ELSkipInspectorViewController alloc] initWithInspectorController:self];
+    
+    oscillatorEditors      = [NSMapTable mapTableWithStrongToStrongObjects];
   }
   
   return self;
