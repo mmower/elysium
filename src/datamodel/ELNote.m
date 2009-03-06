@@ -14,6 +14,7 @@
 
 static NSMutableDictionary *noteToNoteNames = nil;
 static NSMutableDictionary *namesToNoteNums = nil;
+static NSMutableDictionary *noteToAltNoteNames = nil;
 static NSArray *noteSequence = nil;
 static NSArray *alternateSequence = nil;
 
@@ -26,12 +27,15 @@ static NSArray *alternateSequence = nil;
     
     noteToNoteNames = [[NSMutableDictionary alloc] init];
     namesToNoteNums = [[NSMutableDictionary alloc] init];
+    noteToAltNoteNames = [[NSMutableDictionary alloc] init];
     
     for( int noteNum = 0; noteNum < 127; noteNum++ ) {
       NSString *noteName = [noteSequence objectAtIndex:(noteNum % 12)];
+      NSString *altNoteName = [alternateSequence objectAtIndex:(noteNum % 12)];
       int octave = floor( noteNum / 12 ) - 1;
 
       [noteToNoteNames setObject:[noteName stringByAppendingFormat:@"%d", octave]	forKey:[NSNumber numberWithInt:noteNum]];
+      [noteToAltNoteNames setObject:[altNoteName stringByAppendingFormat:@"%d", octave] forKey:[NSNumber numberWithInt:noteNum]];
       [namesToNoteNums setObject:[NSNumber numberWithInt:noteNum] forKey:[noteName stringByAppendingFormat:@"%d", octave]];
     }
   }
@@ -52,7 +56,7 @@ static NSArray *alternateSequence = nil;
     number        = [ELNote noteNumber:_name_];
     octave        = floor( number / 12 ) - 1;
     tone          = [noteSequence objectAtIndex:(number % 12)];
-    alternateTone = [alternateSequence objectAtIndex:(number % 12)];
+    alternateTone = [noteToAltNoteNames objectForKey:[NSNumber numberWithInt:(number)]];
   }
   return self;
 }
