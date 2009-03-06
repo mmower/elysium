@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="147"/>
+			<integer value="59"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -39,7 +39,7 @@
 			<object class="NSWindowTemplate" id="766614415">
 				<int key="NSWindowStyleMask">23</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 215}, {531, 295}}</string>
+				<string key="NSWindowRect">{{712, 531}, {531, 295}}</string>
 				<int key="NSWTFlags">-1543503872</int>
 				<string key="NSWindowTitle">Oscillator Designer</string>
 				<string key="NSWindowClass">NSPanel</string>
@@ -60,7 +60,7 @@
 								<object class="NSTabViewItem" id="537150947">
 									<string key="NSIdentifier">Square</string>
 									<object class="NSView" key="NSView" id="1007437888">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="257470903"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -243,6 +243,7 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 19}, {485, 224}}</string>
+										<reference key="NSSuperview" ref="257470903"/>
 									</object>
 									<string key="NSLabel">Square</string>
 									<reference key="NSColor" ref="392076252"/>
@@ -870,7 +871,7 @@
 								<object class="NSTabViewItem" id="905866313">
 									<string key="NSIdentifier">Random</string>
 									<object class="NSView" key="NSView" id="265967736">
-										<reference key="NSNextResponder" ref="257470903"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -950,21 +951,20 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 19}, {485, 224}}</string>
-										<reference key="NSSuperview" ref="257470903"/>
 									</object>
 									<string key="NSLabel">Random</string>
 									<reference key="NSColor" ref="392076252"/>
 									<reference key="NSTabView" ref="257470903"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="905866313"/>
+							<reference key="NSSelectedTabViewItem" ref="537150947"/>
 							<reference key="NSFont" ref="22"/>
 							<int key="NSTvFlags">268435456</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="265967736"/>
+								<reference ref="1007437888"/>
 							</object>
 						</object>
 						<object class="NSButton" id="1044477204">
@@ -2491,9 +2491,9 @@
 					<string>com.lucidmac.LMDial</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{659, 471}, {531, 295}}</string>
+					<string>{{712, 531}, {531, 295}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{659, 471}, {531, 295}}</string>
+					<string>{{712, 531}, {531, 295}}</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
