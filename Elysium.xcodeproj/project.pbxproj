@@ -120,6 +120,7 @@
 		C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DA148F0EA730780087EDD3 /* Elysium.icns */; };
 		C9DA150E0EA7F05D0087EDD3 /* ActivityViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */; };
 		C9DA15120EA7F14A0087EDD3 /* ELActivityViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DA15110EA7F14A0087EDD3 /* ELActivityViewerController.m */; };
+		C9E0A3420F62FA8A00F13A08 /* ELRampOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E0A3410F62FA8A00F13A08 /* ELRampOscillator.m */; };
 		C9E1F7390F42E5500026A89E /* NSString+ELHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1F7380F42E5500026A89E /* NSString+ELHelpers.m */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C9E8D93A0E68B8AF005AD9B7 /* play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9360E68B8AF005AD9B7 /* play.pdf */; };
@@ -333,6 +334,8 @@
 		C9DA150D0EA7F05D0087EDD3 /* ActivityViewer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ActivityViewer.xib; path = English.lproj/ActivityViewer.xib; sourceTree = "<group>"; };
 		C9DA15100EA7F14A0087EDD3 /* ELActivityViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELActivityViewerController.h; sourceTree = "<group>"; };
 		C9DA15110EA7F14A0087EDD3 /* ELActivityViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELActivityViewerController.m; sourceTree = "<group>"; };
+		C9E0A3400F62FA8A00F13A08 /* ELRampOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELRampOscillator.h; sourceTree = "<group>"; };
+		C9E0A3410F62FA8A00F13A08 /* ELRampOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRampOscillator.m; sourceTree = "<group>"; };
 		C9E1F7370F42E5500026A89E /* NSString+ELHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ELHelpers.h"; sourceTree = "<group>"; };
 		C9E1F7380F42E5500026A89E /* NSString+ELHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ELHelpers.m"; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
@@ -562,6 +565,8 @@
 				C9599AEA0EAE5DA500310D3D /* ELSequenceOscillator.m */,
 				C9599AED0EAE7C1E00310D3D /* ELRangedOscillator.h */,
 				C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */,
+				C9E0A3400F62FA8A00F13A08 /* ELRampOscillator.h */,
+				C9E0A3410F62FA8A00F13A08 /* ELRampOscillator.m */,
 			);
 			name = oscillator;
 			path = src/oscillator;
@@ -941,6 +946,7 @@
 				C9E1F7390F42E5500026A89E /* NSString+ELHelpers.m in Sources */,
 				C9F233700F53682E00F036AD /* ELSkipToken.m in Sources */,
 				C9F233870F536D6800F036AD /* ELSkipInspectorViewController.m in Sources */,
+				C9E0A3420F62FA8A00F13A08 /* ELRampOscillator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

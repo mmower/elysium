@@ -13,6 +13,7 @@
 #import "ELSquareOscillator.h"
 #import "ELSawOscillator.h"
 #import "ELSineOscillator.h"
+#import "ELRampOscillator.h"
 #import "ELSequenceOscillator.h"
 #import "ELRandomOscillator.h"
 
@@ -33,13 +34,6 @@
 }
 
 - (void)awakeFromNib {
-  
-  // Determine whether the cell formatters for the fields should allow
-  // decimals for float values or not
-  // for( NSTabViewItem *item in [tabView tabViewItems] ) {
-  //   [self setView:[item view] cellsAllowFloats:[knob encodesType:@encode(float)]];
-  // }
-  
   if( selectedTag ) {
     [tabView selectTabViewItemWithIdentifier:selectedTag];
   }
@@ -56,21 +50,9 @@
 @synthesize squareOscillator;
 @synthesize sawOscillator;
 @synthesize sineOscillator;
+@synthesize rampOscillator;
 @synthesize sequenceOscillator;
 @synthesize randomOscillator;
-
-- (void)setView:(NSView *)view cellsAllowFloats:(BOOL)allowFloats {
-  id cell, formatter;
-  if( [view isKindOfClass:[NSControl class]] ) {
-    if( ( cell = [(NSControl *)view cell] ) ) {
-      if( ( formatter = [cell formatter] )   ) {
-        if( [formatter isKindOfClass:[NSNumberFormatter class]] ) {
-          [formatter setAllowsFloats:allowFloats];
-        }
-      }
-    }
-  }
-}
 
 - (IBAction)saveOscillator:(id)_sender_ {
   NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
@@ -80,6 +62,8 @@
     [dial setOscillator:sawOscillator];
   } else if( [tabId isEqualToString:@"Sine"] ) {
     [dial setOscillator:sineOscillator];
+  } else if( [tabId isEqualToString:@"Ramp"] ) {
+    [dial setOscillator:rampOscillator];
   } else if( [tabId isEqualToString:@"Sequence"] ) {
     [dial setOscillator:sequenceOscillator];
   } else if( [tabId isEqualToString:@"Random"] ) {
@@ -127,6 +111,12 @@
     [self setSineOscillator:[[dial oscillator] mutableCopy]];
   } else {
     [self setSineOscillator:[[ELSineOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max] period:30000]];
+  }
+  
+  if( [selectedTag isEqualToString:@"Ramp"] ) {
+    [self setRampOscillator:[[dial oscillator] mutableCopy]];
+  } else {
+    [self setRampOscillator:[[ELRampOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max] period:30000 rising:YES]];
   }
   
   if( [selectedTag isEqualToString:@"Sequence"] ) {

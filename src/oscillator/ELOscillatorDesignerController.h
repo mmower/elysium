@@ -15,6 +15,7 @@
 @class ELSquareOscillator;
 @class ELSawOscillator;
 @class ELSineOscillator;
+@class ELRampOscillator;
 @class ELSequenceOscillator;
 @class ELRandomOscillator;
 @class ELInspectorController;
@@ -27,6 +28,7 @@
   ELSquareOscillator    *squareOscillator;
   ELSawOscillator       *sawOscillator;
   ELSineOscillator      *sineOscillator;
+  ELRampOscillator      *rampOscillator;
   ELSequenceOscillator  *sequenceOscillator;
   ELRandomOscillator    *randomOscillator;
   
@@ -39,6 +41,9 @@
   IBOutlet  LMDialView  *sineLFOMinDial;
   IBOutlet  LMDialView  *sineLFOMaxDial;
   
+  IBOutlet  LMDialView  *rampLFOMinDial;
+  IBOutlet  LMDialView  *rampLFOMaxDial;
+  
   IBOutlet  LMDialView  *randomLFOMinDial;
   IBOutlet  LMDialView  *randomLFOMaxDial;
   
@@ -50,13 +55,12 @@
 @property             ELInspectorController *controller;
 @property             ELDial *dial;
 
-@property (assign)    ELSquareOscillator *squareOscillator;
-@property (assign)    ELSawOscillator *sawOscillator;
-@property (assign)    ELSineOscillator *sineOscillator;
-@property (assign)    ELSequenceOscillator *sequenceOscillator;
-@property (assign)    ELRandomOscillator *randomOscillator;
-
-- (void)setView:(NSView *)view cellsAllowFloats:(BOOL)allowFloat;
+@property (assign)    ELSquareOscillator    *squareOscillator;
+@property (assign)    ELSawOscillator       *sawOscillator;
+@property (assign)    ELSineOscillator      *sineOscillator;
+@property (assign)    ELRampOscillator      *rampOscillator;
+@property (assign)    ELSequenceOscillator  *sequenceOscillator;
+@property (assign)    ELRandomOscillator    *randomOscillator;
 
 - (IBAction)saveOscillator:(id)sender;
 - (IBAction)cancelOscillator:(id)sender;
