@@ -199,8 +199,16 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   [scriptPackageController showWindow:self];
 }
 
-- (IBAction)satisfyMe:(id)_sender_ {
+- (IBAction)visitSupportPage:(id)sender {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getsatisfaction.com/lucidmac/products/lucidmac_elysium"]];
+}
+
+- (IBAction)visitHomePage:(id)sender {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://lucidmac.com/products/elysium"]];
+}
+
+- (IBAction)visitTwitterPage:(id)sender {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitter.com/elysiumapp"]];
 }
 
 - (IBAction)showPreferences:(id)_sender_ {

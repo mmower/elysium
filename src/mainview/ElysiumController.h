@@ -34,7 +34,11 @@
 - (IBAction)showMIDIConfigInspector:(id)sender;
 - (IBAction)showScriptPackageInspector:(id)sender;
 - (IBAction)showPreferences:(id)sender;
-- (IBAction)satisfyMe:(id)sender;
 - (IBAction)showHelp:(id)sender;
+
+- (IBAction)visitSupportPage:(id)sender;
+- (IBAction)visitHomePage:(id)sender;
+- (IBAction)visitTwitterPage:(id)sender;
+
 
 @end
