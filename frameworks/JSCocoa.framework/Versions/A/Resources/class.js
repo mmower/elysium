@@ -1,6 +1,9 @@
 
 	function	log(str)	{	JSCocoaController.log('' + str)	}
+	
+	function	dumpHash(o)	{	var str = ''; for (var i in o) str += i + '=' + o[i] + '\n'; return str }
 
+	// A global variable named __jsc__ set by JSCocoaController in each context
 //	var jsc = JSCocoaController.hasSharedController ? JSCocoaController.sharedController : null
 	var jsc = __jsc__
 
@@ -59,7 +62,20 @@
 		}
 		else
 		{
-			if (!(encoding in encodings))	throw	'invalid encoding : ' + encoding
+			if (!(encoding in encodings))	
+			{
+				// Pointer to an ObjC object ?
+				var match = encoding.match(/^(\w+)\s*\*$/)
+				if (match)
+				{
+					var className = match[1]
+					if (className in this && this[className]['class'] == this[className])	return '@'
+				}
+				// Structure ?
+				var structureEncoding = JSCocoaFFIArgument.structureFullTypeEncodingFromStructureName(encoding)
+				if (structureEncoding)	return	String(String(structureEncoding).replace(/"[^"]+"/gi, ""))
+				throw	'invalid encoding : "' + encoding + '"'
+			}
 			return encodings[encoding]
 		}
 	}
@@ -106,9 +122,6 @@
 
 	*/
 
-
-
-
 	function	defineClass(inherit, methods)
 	{
 		var s = inherit.split('<')
@@ -121,8 +134,7 @@
 		if (!parentClass)											throw 'Parent class ' + parentClassName + ' not found'
 //		JSCocoaController.log('parentclass=' + parentClass)
 
-//		var c = JSCocoaController.sharedController
-		var newClass = __jsc__.create({ 'class' : className, parentClass : parentClassName})
+		var newClass = JSCocoa.create({ 'class' : className, parentClass : parentClassName})
 		for (var method in methods)
 		{
 			var isInstanceMethod = parentClass.instancesRespondToSelector(method)
@@ -132,10 +144,10 @@
 			if (isOverload)
 			{
 				var fn = methods[method]
-				if (!fn || (typeof fn) != 'function')	throw 'Method ' + method + ' not a function'
+				if (!fn || (typeof fn) != 'function')	throw '(overloading) Method ' + method + ' not a function'
 
-				if (isInstanceMethod)	__jsc__.overload({ instanceMethod : method, 'class' : newClass, jsFunction : fn })
-				else					__jsc__.overload({ classMethod : method, 'class' : newClass, jsFunction : fn })
+				if (isInstanceMethod)	JSCocoa.overload({ instanceMethod : method, 'class' : newClass, jsFunction : fn })
+				else					JSCocoa.overload({ classMethod : method, 'class' : newClass, jsFunction : fn })
 			}
 			else
 			{
@@ -169,7 +181,7 @@
 					if (!fn || (typeof fn) != 'function')	throw 'New method ' + method + ' not a function'
 					
 					var encoding = objc_encoding.apply(null, encodings)
-					class_add_method(newClass, method, fn, encoding)
+					class_add_instance_method(newClass, method, fn, encoding)
 				}
 			}
 		}
@@ -183,9 +195,6 @@
 	// Shared class methods : call these at runtime to add outlets, methods, actions to an existing class
 	// 
 	// 
-	// Now set by JSCocoaController
-//	var __jsc__ = JSCocoaController.sharedController
-//	var __jsc__ = jsc
 	
 	//
 	// Outlets are set as properties starting with an underscore, to avoid recursive call in setProperty
@@ -201,12 +210,12 @@
 			if (typeof setter != 'function')	throw 'outlet setter not a function (' + setter + ')'
 			fn = setter
 		}
-		__jsc__.add({ instanceMethod : outletMethod, 'class' : newClass, jsFunction : fn, encoding : encoding })
+		JSCocoa.add({ instanceMethod : outletMethod, 'class' : newClass, jsFunction : fn, encoding : encoding })
 
 		var fn = new Function('return this.JSValueForJSName("_' + name + '")')
 		var encoding = objc_encoding('id')
 		
-		__jsc__.add({ instanceMethod : name, 'class' : newClass, jsFunction : fn, encoding : encoding })					
+		JSCocoa.add({ instanceMethod : name, 'class' : newClass, jsFunction : fn, encoding : encoding })					
 	}
 	
 	//
@@ -216,7 +225,7 @@
 	{
 		if (name.charAt(name.length-1) != ':')	name += ':'
 		var encoding = objc_encoding('void', 'id')
-		__jsc__.add({ instanceMethod : name, 'class' : newClass, jsFunction : fn, encoding : encoding })					
+		JSCocoa.add({ instanceMethod : name, 'class' : newClass, jsFunction : fn, encoding : encoding })					
 	}
 	
 	//
@@ -231,7 +240,7 @@
 			if (typeof getter != 'function')	throw 'key getter not a function (' + getter + ')'
 			fn = getter
 		}
-		__jsc__.add({ instanceMethod : name, 'class' : newClass, jsFunction : fn, encoding : objc_encoding('id') })
+		JSCocoa.add({ instanceMethod : name, 'class' : newClass, jsFunction : fn, encoding : objc_encoding('id') })
 
 		// Set
 		var setMethod = 'set' + name.substr(0, 1).toUpperCase() + name.substr(1) + ':'
@@ -241,15 +250,22 @@
 			if (typeof setter != 'function')	throw 'key setter not a function (' + setter + ')'
 			fn = setter
 		}
-		__jsc__.add({ instanceMethod : setMethod, 'class' : newClass, jsFunction : fn, encoding : objc_encoding('void', 'id') })
+		JSCocoa.add({ instanceMethod : setMethod, 'class' : newClass, jsFunction : fn, encoding : objc_encoding('void', 'id') })
 	}
 	
 	//
 	// Vanilla instance method add. Wrapper for JSCocoaController's addInstanceMethod
 	// 
-	function	class_add_method(newClass, name, fn, encoding)
+	function	class_add_instance_method(newClass, name, fn, encoding)
 	{
-		__jsc__.add({ instanceMethod : name, 'class' : newClass, jsFunction : fn, encoding : encoding })
+		JSCocoa.add({ instanceMethod : name, 'class' : newClass, jsFunction : fn, encoding : encoding })
+	}
+	//
+	// Vanilla class method add. Wrapper for JSCocoaController's addClassMethod
+	// 
+	function	class_add_class_method(newClass, name, fn, encoding)
+	{
+		JSCocoa.add({ classMethod : name, 'class' : newClass, jsFunction : fn, encoding : encoding })
 	}
 	
 	//
@@ -265,12 +281,13 @@
 
 	
 	
-	/*
-
-		Second kind of class definitions
-		http://code.google.com/p/jscocoa/issues/detail?id=19
-
-	*/
+	//
+	//
+	//	Second kind of class definitions
+	//	http://code.google.com/p/jscocoa/issues/detail?id=19
+	//
+	//
+	
 	// React on set
 	function	class_set_definition(definition)
 	{
@@ -294,13 +311,21 @@
 		// Get parent class
 		var parentClass = this[parentClassName]
 		if (!parentClass)											throw 'Parent class ' + parentClassName + ' not found'
-		var newClass = __jsc__.create({ 'class' : className, parentClass : parentClassName})
+		var newClass = JSCocoa.create({ 'class' : className, parentClass : parentClassName})
 
 		//
 		// Overloaded and new methods
 		//
 		for (var method in h.methods)
 		{
+/*		
+			if (h.methods[method].type == 'class method')
+			{
+				log('skipping class method ' + method)
+				continue
+			}
+*/			
+//			log('method.type=' + h.methods[method].type + ' ' + method)
 			var isInstanceMethod = parentClass.instancesRespondToSelector(method)
 			var isOverload = parentClass.respondsToSelector(method) || isInstanceMethod
 //			JSCocoaController.log('adding method *' + method + '* to ' + className + ' isOverload=' + isOverload + ' isInstanceMethod=' + isInstanceMethod)
@@ -310,18 +335,24 @@
 				var fn = h.methods[method].fn
 				if (!fn || (typeof fn) != 'function')	throw 'Method ' + method + ' not a function'
 
-				if (isInstanceMethod)	__jsc__.overload({ instanceMethod : method, 'class' : newClass, jsFunction : fn })
-				else					__jsc__.overload({ classMethod : method, 'class' : newClass, jsFunction : fn })
+				if (isInstanceMethod)	JSCocoa.overload({ instanceMethod : method, 'class' : newClass, jsFunction : fn })
+				else					JSCocoa.overload({ classMethod : method, 'class' : newClass, jsFunction : fn })
 			}
 			else
 			{
 				// Extract method
 				var fn = h.methods[method].fn
-				if (!fn || (typeof fn) != 'function')	throw 'New method ' + method + ' not a function'
+				if (!fn || (typeof fn) != 'function')	
+				{
+					throw 'New method ' + method + ' not a function'
+				}
+
+//				log('encoding='  + encoding + ' class=' + newClass + ' method=' + method)
 					
-				var encodings = h.methods[method].encoding.split(' ')
+				var encodings = h.methods[method].encodingArray || h.methods[method].encoding.split(' ')
 				var encoding = objc_encoding.apply(null, encodings)
-				class_add_method(newClass, method, fn, encoding)				
+				if (h.methods[method].type == 'class method')	class_add_class_method(newClass, method, fn, encoding)
+				else											class_add_instance_method(newClass, method, fn, encoding)
 			}
 		}
 		
@@ -352,6 +383,11 @@
 	function	class_set_encoding(encoding)
 	{
 		__classHelper__.methods[__classHelper__.name].encoding = encoding
+		return	__classHelper__
+	}
+	function	class_set_encoding_array(encodingArray)
+	{
+		__classHelper__.methods[__classHelper__.name].encodingArray = encodingArray
 		return	__classHelper__
 	}
 	function	class_set_function(fn)
@@ -386,7 +422,14 @@
 	{
 		__classHelper__.type 	= 'method'
 		__classHelper__.name	= name
-		__classHelper__.methods[__classHelper__.name] = {}
+		__classHelper__.methods[__classHelper__.name] = { type : 'method' }
+		return	__classHelper__
+	}
+	function	ClassMethod(name)
+	{
+		__classHelper__.type 	= 'method'
+		__classHelper__.name	= name
+		__classHelper__.methods[__classHelper__.name] = { type : 'class method' }
 		return	__classHelper__
 	}
 	function	JSFunction(name)
@@ -418,7 +461,7 @@
 
 
 	// Shadow object collecting class definition data
-	var __classHelper__ = { encoding : class_set_encoding }
+	var __classHelper__ = { encoding : class_set_encoding, encodingArray : class_set_encoding_array }
 	__classHelper__.__defineSetter__('definition',	class_set_definition)
 	__classHelper__.__defineSetter__('fn', 			class_set_function)
 	__classHelper__.__defineSetter__('getter',		class_set_getter)
@@ -432,5 +475,187 @@
 	
 	function	loadFramework(name)
 	{
-		jsc.loadFrameworkWithName(name)
+		__jsc__.loadFrameworkWithName(name)
 	}
+	
+	
+	//
+	// Describe struct
+	//
+	function	describeStruct(o, level)
+	{
+		if (level == undefined)	level = 0
+		// Bail if structure contains a cycle
+		if (level > 100)		return ''
+		
+		var str = ''
+		
+		if (typeof(o) == 'object' || typeof(o) == 'function')
+		{
+			str += '{'
+			var elements = []
+			for (var i in o)
+				elements.push(i + ':' + describeStruct(o[i], level+1))
+			str += elements.join(', ')
+			str += '}'
+		}
+		else
+			str += o
+
+		return	str
+	}
+	
+
+	//
+	// type o
+	//
+	function	outArgument()
+	{
+		var o = JSCocoaOutArgument.instance()
+		if (arguments.length == 2)	o.mateWith({ memoryBuffer : arguments[0], atIndex : arguments[1] })
+		return	o
+	}
+	
+	function	memoryBuffer(types)
+	{
+//		return	JSCocoaMemoryBuffer.instance()
+		return	JSCocoaMemoryBuffer.instance({ withTypes : types })
+	}
+
+
+	//
+	// Dump the call stack with arguments.calle.caller (Called from JSCocoa)
+	//	
+	//	Eric Wendelin's Javascript stacktrace in any browser
+	//	http://eriwen.com/javascript/js-stack-trace/
+	//
+	function	dumpCallStack()
+	{
+		var maxDumpDepth = 100
+		var dumpDepth = 0
+		var caller = arguments.callee.caller
+		// Skip ourselves
+		caller = caller.caller
+
+		// Build call stack
+		var stack = []
+		while (caller && dumpDepth < maxDumpDepth)
+		{
+			var fn = caller.toString()
+			var fname = fn.substring(fn.indexOf("function") + 9, fn.indexOf("(")) || "anonymous";
+			var str = fname
+			if (caller.arguments.length)
+			{
+				str += ' ('
+				for (var i=0; i<caller.arguments.length; i++)	
+				{
+					str += caller.arguments[i]
+					if (i < caller.arguments.length-1)
+						str += ', '
+				}
+				str += ')'
+			}
+//			if (caller.arguments.length) str += caller.arguments.join(',')
+			stack.push(str)
+			dumpDepth++
+			caller = caller.caller
+		}
+		
+		// Dump call stack
+		var str = ''
+		for (var i=0; i<stack.length; i++)
+			str += '(' + (stack.length-i) + ') ' + stack[i] + '\n'
+		return str
+	}
+	
+	
+	//
+	// expandJSMacros
+	//	convert ObjC-like class syntax to Javascript
+	//
+	function	expandJSMacros(script)
+	{
+		if (script.match(/^\s*class\s+\w+\s+<\s+\w+\s*$/m))
+		{
+			// Replace classes (m modifier to treat as multiple lines)
+			script = script.replace(/^\s*(class)\s+(\w+)\s+(<)\s+(\w+)\s*$/gm, 'Class(\'$2 < $4\').definition = function ()')
+			// Replace methods
+			script = script.replace(/^\s*(\-|\+)\s\(.*$/gm, expandJSMacros_ReplaceMethods)
+			
+			// Replace outlets
+			script = script.replace(/^\s*IBOutlet\s+(\w+)($|\s*)\(?(\w+)?\)?/gm, expandJSMacros_ReplaceOutlets)
+			
+			// Replace actions
+			script = script.replace(/^\s*IBAction\s+(\w+)($|\s*)\(?(\w+)?\)?/gm, expandJSMacros_ReplaceActions)
+			
+//			log('****************')
+//			log('\n' + script)
+//			log('****************')
+		}
+		return	script
+	}
+	function	expandJSMacros_ReplaceMethods(r)
+	{
+		var name
+		var type
+		var args = []
+		var names = []
+
+		// Parse method
+		var s = String(r)
+		// extract class or instance method marker
+		s = s.replace(/(\+|\-)/, function (r) { type = r == '-' ? 'Method' : 'ClassMethod'; return '' } )
+		// extract arguments
+		s = s.replace(/\([^)]+\)/g, function (r) { r = String(r); r= r.substr(1, r.length-2); args.push(r); return '' } )
+		// extract argument names
+		s = s.replace(/\w+(\s|$)/gm, function (r) { names.push(r.replace(/\s/g, '')); return '' } )
+		// extract method name
+		var name = s.replace(/\s/g, '')
+		
+		// fixup : if no name and one argument, we have a zero arg method
+		if (args.length == 1 && names.length == 1) name = names[0], names = []
+		
+		// Bail if no return value
+		if (args.length < 1)	throw 'Need at least one return value in ' + r
+
+		var encoding = args.map(function (r) { return "'" + r + "'" })
+		var str = type + "('" + name + "').encodingArray([" + encoding + "]).fn = function (" + names.join(', ') + ")"
+		return str
+	}
+	function	expandJSMacros_ReplaceOutlets(r, outletName, skippedParen, paramName)
+	{
+		var r = 'IBOutlet(\'' + outletName + '\')'
+		if (paramName) r += '.setter = function (' + paramName + ')'
+		return	r
+	}
+
+	function	expandJSMacros_ReplaceActions(r, actionName, skippedParen, paramName)
+	{
+		paramName = paramName || 'sender'
+		return	'IBAction(\'' + actionName + '\').fn = function (' + paramName + ')'
+	}
+	
+	//
+	// Localization
+	//
+	var			localizedStrings = {}
+	function	localizedString(stringName)
+	{
+		var r = localizedStrings[stringName]
+		if (!r)
+		{
+			var str = '*** Localization for \'' + stringName + '\' not found ***'
+			log(str)
+			return str
+		}
+		if (typeof r != 'function')	return	r
+
+		// Arguments are function arguments minus the first one (stringName)
+		var args = [];		for (var i=1; i<arguments.length; i++) /*log(i + '=' + arguments[i]),*/ args.push(arguments[i])
+		return	r.apply(null, args)
+	}
+	function	registerLocalizedStrings(strings)
+	{
+		for (var i in strings)	__localizedStrings[i] = strings[i]
+	}
+
