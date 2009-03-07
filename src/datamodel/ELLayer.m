@@ -63,7 +63,10 @@ NSPredicate *deadPlayheadFilter;
                                       oscillator:nil
                                         assigned:0
                                             last:0
-                                           value:0];
+                                           value:0
+                                             min:1
+                                             max:16
+                                            step:1];
   }
   
   return self;
