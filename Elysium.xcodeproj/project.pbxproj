@@ -85,7 +85,7 @@
 		C9A9F1720E8A41DC009A06A3 /* LayerManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1670E8A41DC009A06A3 /* LayerManager.xib */; };
 		C9A9F1730E8A41DC009A06A3 /* LayerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A9F1690E8A41DC009A06A3 /* LayerWindow.xib */; };
 		C9A9F1E00E8A42DF009A06A3 /* ELHarmonicTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1940E8A42DF009A06A3 /* ELHarmonicTable.m */; };
-		C9A9F1E10E8A42DF009A06A3 /* ELHex.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1960E8A42DF009A06A3 /* ELHex.m */; };
+		C9A9F1E10E8A42DF009A06A3 /* ELCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1960E8A42DF009A06A3 /* ELCell.m */; };
 		C9A9F1E20E8A42DF009A06A3 /* ELLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1980E8A42DF009A06A3 /* ELLayer.m */; };
 		C9A9F1E30E8A42DF009A06A3 /* ELNote.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F19A0E8A42DF009A06A3 /* ELNote.m */; };
 		C9A9F1E40E8A42DF009A06A3 /* ELPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F19C0E8A42DF009A06A3 /* ELPlayer.m */; };
@@ -268,8 +268,8 @@
 		C9A9F1920E8A42DF009A06A3 /* ELData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELData.h; sourceTree = "<group>"; };
 		C9A9F1930E8A42DF009A06A3 /* ELHarmonicTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHarmonicTable.h; sourceTree = "<group>"; };
 		C9A9F1940E8A42DF009A06A3 /* ELHarmonicTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHarmonicTable.m; sourceTree = "<group>"; };
-		C9A9F1950E8A42DF009A06A3 /* ELHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHex.h; sourceTree = "<group>"; };
-		C9A9F1960E8A42DF009A06A3 /* ELHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHex.m; sourceTree = "<group>"; };
+		C9A9F1950E8A42DF009A06A3 /* ELCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCell.h; sourceTree = "<group>"; };
+		C9A9F1960E8A42DF009A06A3 /* ELCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCell.m; sourceTree = "<group>"; };
 		C9A9F1970E8A42DF009A06A3 /* ELLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLayer.h; sourceTree = "<group>"; };
 		C9A9F1980E8A42DF009A06A3 /* ELLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLayer.m; sourceTree = "<group>"; };
 		C9A9F1990E8A42DF009A06A3 /* ELNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELNote.h; sourceTree = "<group>"; };
@@ -518,8 +518,8 @@
 				C9A9F1920E8A42DF009A06A3 /* ELData.h */,
 				C9A9F1930E8A42DF009A06A3 /* ELHarmonicTable.h */,
 				C9A9F1940E8A42DF009A06A3 /* ELHarmonicTable.m */,
-				C9A9F1950E8A42DF009A06A3 /* ELHex.h */,
-				C9A9F1960E8A42DF009A06A3 /* ELHex.m */,
+				C9A9F1950E8A42DF009A06A3 /* ELCell.h */,
+				C9A9F1960E8A42DF009A06A3 /* ELCell.m */,
 				C9A9F1970E8A42DF009A06A3 /* ELLayer.h */,
 				C9A9F1980E8A42DF009A06A3 /* ELLayer.m */,
 				C9A9F1990E8A42DF009A06A3 /* ELNote.h */,
@@ -882,7 +882,7 @@
 			files = (
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				C9A9F1E00E8A42DF009A06A3 /* ELHarmonicTable.m in Sources */,
-				C9A9F1E10E8A42DF009A06A3 /* ELHex.m in Sources */,
+				C9A9F1E10E8A42DF009A06A3 /* ELCell.m in Sources */,
 				C9A9F1E20E8A42DF009A06A3 /* ELLayer.m in Sources */,
 				C9A9F1E30E8A42DF009A06A3 /* ELNote.m in Sources */,
 				C9A9F1E40E8A42DF009A06A3 /* ELPlayer.m in Sources */,
