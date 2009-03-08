@@ -11,7 +11,7 @@
 
 #import "ELToken.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
@@ -70,7 +70,7 @@ int randval() {
 
 // Properties
 
-@synthesize hex;
+@synthesize cell;
 @synthesize layer;
 
 @synthesize skip;
@@ -111,15 +111,15 @@ int randval() {
 }
 
 - (void)dialDidChangeValue:(ELDial *)dial {
-  [hex needsDisplay];
+  [cell needsDisplay];
 }
 
 - (void)dialDidUnsetOscillator:(ELDial *)dial {
-  [[[hex layer] player] dialDidUnsetOscillator:dial];
+  [[[cell layer] player] dialDidUnsetOscillator:dial];
 }
 
 - (void)dialDidSetOscillator:(ELDial *)dial {
-  [[[hex layer] player] dialDidSetOscillator:dial];
+  [[[cell layer] player] dialDidSetOscillator:dial];
 }
 
 @synthesize scripts;
@@ -128,14 +128,14 @@ int randval() {
   return [[self class] tokenType];
 }
 
-- (void)addedToLayer:(ELLayer *)newLayer atPosition:(ELHex *)newCell {
+- (void)addedToLayer:(ELLayer *)newLayer atPosition:(ELCell *)newCell {
   [self setLayer:newLayer];
-  [self setHex:newCell];
+  [self setCell:newCell];
 }
 
 - (void)removedFromLayer:(ELLayer *)aLayer {
   [self setLayer:nil];
-  [self setHex:nil];
+  [self setCell:nil];
 }
 
 - (void)start {

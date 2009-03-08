@@ -13,7 +13,7 @@
 
 #import "ELMIDIConfigController.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELMIDIController.h"
@@ -40,14 +40,14 @@
 @synthesize player;
 @synthesize destinations;
 
-- (void)selectionChanged:(NSNotification*)_notification_
+- (void)selectionChanged:(NSNotification*)notification
 {
-  if( [[_notification_ object] isKindOfClass:[ELPlayer class]] ) {
-    [self setPlayer:[_notification_ object]];
-  } else if( [[_notification_ object] isKindOfClass:[ELLayer class]] ) {
-    [self setPlayer:(ELPlayer *)[[_notification_ object] player]];
-  } else if( [[_notification_ object] isKindOfClass:[ELHex class]] ) {
-    [self setPlayer:(ELPlayer *)[[[_notification_ object] layer] player]];
+  if( [[notification object] isKindOfClass:[ELPlayer class]] ) {
+    [self setPlayer:[notification object]];
+  } else if( [[notification object] isKindOfClass:[ELLayer class]] ) {
+    [self setPlayer:(ELPlayer *)[[notification object] player]];
+  } else if( [[notification object] isKindOfClass:[ELCell class]] ) {
+    [self setPlayer:(ELPlayer *)[[[notification object] layer] player]];
   }
   
   [triggerArrayController setPlayer:[self player]];

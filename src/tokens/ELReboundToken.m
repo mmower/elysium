@@ -9,7 +9,7 @@
 
 #import "ELReboundToken.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
@@ -64,7 +64,7 @@
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
   [self setTokenDrawColor:_attributes_];
-  [[self hex] drawTriangleInDirection:[directionDial value] withAttributes:_attributes_];
+  [[self cell] drawTriangleInDirection:[directionDial value] withAttributes:_attributes_];
 }
 
 // NSMutableCopying protocol

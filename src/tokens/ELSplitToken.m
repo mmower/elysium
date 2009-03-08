@@ -9,7 +9,7 @@
 
 #import "ELSplitToken.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
@@ -66,7 +66,7 @@
       continue;
     }
     
-    [layer queuePlayhead:[[ELPlayhead alloc] initWithPosition:hex
+    [layer queuePlayhead:[[ELPlayhead alloc] initWithPosition:cell
                                                     direction:direction
                                                           TTL:[_playhead_ TTL]]];
   }
@@ -75,8 +75,8 @@
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  NSPoint centre = [[self hex] centre];
-  float radius = [[self hex] radius];
+  NSPoint centre = [[self cell] centre];
+  float radius = [[self cell] radius];
 
   NSBezierPath *symbolPath = [NSBezierPath bezierPath];
   

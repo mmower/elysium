@@ -1,5 +1,5 @@
 //
-//  ELHex.m
+//  ELCell.m
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -11,7 +11,8 @@
 
 #import <HoneycombView/LMHoneycombView.h>
 
-#import "ELHex.h"
+#import "ELCell.h"
+
 #import "ELKey.h"
 #import "ELNote.h"
 #import "ELLayer.h"
@@ -30,7 +31,7 @@
 #import "ELSpinToken.h"
 #import "ELSkipToken.h"
 
-@implementation ELHex
+@implementation ELCell
 
 - (id)initWithLayer:(ELLayer *)_layer_ note:(ELNote *)_note_ column:(int)_col_ row:(int)_row_ {
   if( ( self = [super initWithColumn:_col_ row:_row_] ) ) {
@@ -143,20 +144,19 @@
   [self addToken:skipToken];
 }
 
-// Hexes form a grid
+// Cells form a lattice
 
-- (void)connectToHex:(ELHex *)_hex direction:(Direction)_direction {
-  neighbours[_direction] = _hex;
+- (void)connectToCell:(ELCell *)cell direction:(Direction)direction {
+  neighbours[direction] = cell;
 }
 
-- (void)connectNeighbour:(ELHex *)_hex direction:(Direction)_direction {
-  [self connectToHex:_hex direction:_direction];
-  // [_hex connectToHex:self direction:INVERSE_DIRECTION(_direction)];
+- (void)connectNeighbour:(ELCell *)cell direction:(Direction)direction {
+  [self connectToCell:cell direction:direction];
 }
 
-- (ELHex *)neighbour:(Direction)_direction_ {
-  ASSERT_VALID_DIRECTION( _direction_ );
-  return neighbours[_direction_];
+- (ELCell *)neighbour:(Direction)direction {
+  ASSERT_VALID_DIRECTION( direction );
+  return neighbours[direction];
 }
 
 - (ELNoteGroup *)triad:(int)_triad_ {
@@ -271,14 +271,14 @@
   [self setSkipToken:nil];
 }
 
-- (void)copyTokensFrom:(ELHex *)_hex_ {
-  [self setGenerateToken:[[_hex_ generateToken] mutableCopy]];
-  [self setNoteToken:[[_hex_ noteToken] mutableCopy]];
-  [self setReboundToken:[[_hex_ reboundToken] mutableCopy]];
-  [self setAbsorbToken:[[_hex_ absorbToken] mutableCopy]];
-  [self setSplitToken:[[_hex_ splitToken] mutableCopy]];
-  [self setSpinToken:[[_hex_ spinToken] mutableCopy]];
-  [self setSkipToken:[[_hex_ skipToken] mutableCopy]];
+- (void)copyTokensFrom:(ELCell *)cell {
+  [self setGenerateToken:[[cell generateToken] mutableCopy]];
+  [self setNoteToken:[[cell noteToken] mutableCopy]];
+  [self setReboundToken:[[cell reboundToken] mutableCopy]];
+  [self setAbsorbToken:[[cell absorbToken] mutableCopy]];
+  [self setSplitToken:[[cell splitToken] mutableCopy]];
+  [self setSpinToken:[[cell spinToken] mutableCopy]];
+  [self setSkipToken:[[cell skipToken] mutableCopy]];
 }
 
 - (NSString *)description {
@@ -482,7 +482,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   }
 }
 
-// Draw a triangle to represent the direction a playhead might leave a hex
+// Draw a triangle to represent the direction a playhead might leave a cell
 //
 // The strategy is to draw a triangle heading north, then rotate it
 // appropriately.

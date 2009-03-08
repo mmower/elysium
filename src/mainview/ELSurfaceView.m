@@ -9,7 +9,7 @@
 
 #import "ELSurfaceView.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 
 #import "ELNoteToken.h"
 #import "ELAbsorbToken.h"
@@ -18,7 +18,7 @@
 #import "ELReboundToken.h"
 #import "ELSplitToken.h"
 
-NSString *HexPBoardType = @"HexPBoardType";
+NSString *CellPBoardType = @"CellPBoardType";
 
 NSString * const ELDefaultCellBackgroundColor = @"cell.background.color";
 NSString * const ELDefaultCellBorderColor = @"cell.border.color";
@@ -55,7 +55,7 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
     [self setTonicNoteColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELTonicNoteColor]]];
     [self setScaleNoteColor:[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:ELScaleNoteColor]]];
     
-    [self registerForDraggedTypes:[NSArray arrayWithObjects:HexPBoardType,nil]];
+    [self registerForDraggedTypes:[NSArray arrayWithObjects:CellPBoardType,nil]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cellWasUpdated:)
@@ -110,29 +110,29 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
 
 // General view support
 
-- (ELHex *)cellUnderMouseLocation:(NSPoint)_point_ {
-  return (ELHex *)[self findCellAtPoint:[self convertPoint:_point_ fromView:nil]];
+- (ELCell *)cellUnderMouseLocation:(NSPoint)_point_ {
+  return (ELCell *)[self findCellAtPoint:[self convertPoint:_point_ fromView:nil]];
 }
 
-- (ELHex *)selectedHex {
-  return (ELHex *)[self selected];
+- (ELCell *)selectedCell {
+  return (ELCell *)[self selected];
 }
 
 // Token management
 
-- (void)dragFromHex:(ELHex *)_sourceHex_ to:(ELHex *)_targetHex_ with:(NSDragOperation)_modifiers_ {
-  [_targetHex_ removeAllTokens];
-  [_targetHex_ copyTokensFrom:_sourceHex_];
-  if( !_modifiers_ & NSDragOperationCopy ) {
-    [_sourceHex_ removeAllTokens];
+- (void)dragFromCell:(ELCell *)sourceCell to:(ELCell *)targetCell with:(NSDragOperation)modifiers {
+  [targetCell removeAllTokens];
+  [targetCell copyTokensFrom:sourceCell];
+  if( !modifiers & NSDragOperationCopy ) {
+    [sourceCell removeAllTokens];
   }
   [self setNeedsDisplay:YES];
 }
 
-// Hex-to-Hex drag support
+// Cell-to-Cell drag support
 
-- (NSDragOperation)draggingSourceOperationMaskForLocal:(BOOL)_isLocal_ {
-  if( _isLocal_ ) {
+- (NSDragOperation)draggingSourceOperationMaskForLocal:(BOOL)isLocal {
+  if( isLocal ) {
     return NSDragOperationCopy;
   } else {
     return NSDragOperationNone;
@@ -161,9 +161,9 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
   p.y = p.y - [image size].height / 2;
   
   NSPasteboard *pasteboard = [NSPasteboard pasteboardWithName:NSDragPboard];
-  [pasteboard declareTypes:[NSArray arrayWithObject:HexPBoardType] owner:self];
+  [pasteboard declareTypes:[NSArray arrayWithObject:CellPBoardType] owner:self];
   
-  [pasteboard setString:@"foo" forType:HexPBoardType]; // Dummy, we'll just work of [self selected] anyway
+  [pasteboard setString:@"SonOfCell" forType:CellPBoardType]; // Dummy, we'll just work of [self selected] anyway
   
   [self dragImage:image
                at:p
@@ -177,7 +177,7 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
 // Drag & Drop Token adding support
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)_sender_ {
-  ELHex *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
+  ELCell *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
   if( cell ) {
     return NSDragOperationCopy;
   } else {
@@ -186,7 +186,7 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
 }
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)_sender_ {
-  ELHex *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
+  ELCell *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
   if( cell ) {
     return NSDragOperationCopy;
   } else {
@@ -197,25 +197,24 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
 - (void)draggingExited:(id <NSDraggingInfo>)_sender_ {
 }
 
-- (BOOL)performDragOperation:(id <NSDraggingInfo>)_sender_ {
-  NSPasteboard *pasteboard = [_sender_ draggingPasteboard];
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
+  NSPasteboard *pasteboard = [sender draggingPasteboard];
   NSArray *types = [pasteboard types];
   
-  ELHex *droppedCell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
-  if( [types containsObject:HexPBoardType] ) {
-    if( [self selectedHex] != droppedCell ) {
-      [self dragFromHex:[self selectedHex] to:droppedCell with:[_sender_ draggingSourceOperationMask]];
+  ELCell *droppedCell = [self cellUnderMouseLocation:[sender draggingLocation]];
+  if( [types containsObject:CellPBoardType] ) {
+    if( [self selectedCell] != droppedCell ) {
+      [self dragFromCell:[self selectedCell] to:droppedCell with:[sender draggingSourceOperationMask]];
     }
   }
   
   return YES;
 }
 
-- (void)concludeDragOperation:(id <NSDraggingInfo>)_sender_ {
+- (void)concludeDragOperation:(id <NSDraggingInfo>)sender {
 }
 
-- (void)cellWasUpdated:(NSNotification*)_notification_
-{
+- (void)cellWasUpdated:(NSNotification*)notification {
   [self setNeedsDisplay:YES];
 }
 

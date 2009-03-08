@@ -12,8 +12,8 @@
 #import "ELToken.h"
 #import "ELNoteToken.h"
 
-#import "ELHex.h"
 #import "ELNote.h"
+#import "ELCell.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELPlayable.h"
@@ -155,25 +155,26 @@ NSDictionary *defaultChannelSends( void ) {
 
 #pragma mark Layer support
 
-- (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
-  [super addedToLayer:_layer_ atPosition:_hex_];
+- (void)addedToLayer:(ELLayer *)targetLayer atPosition:(ELCell *)targetCell {
+  [super addedToLayer:targetLayer atPosition:targetCell];
   
   if( !loaded ) {
-    [velocityDial setParent:[_layer_ velocityDial]];
+    [velocityDial setParent:[targetLayer velocityDial]];
     [velocityDial setMode:dialInherited];
     
-    [emphasisDial setParent:[_layer_ emphasisDial]];
+    [emphasisDial setParent:[targetLayer emphasisDial]];
     [emphasisDial setMode:dialInherited];
     
-    [tempoSyncDial setParent:[_layer_ tempoSyncDial]];
+    [tempoSyncDial setParent:[targetLayer tempoSyncDial]];
     [tempoSyncDial setMode:dialInherited];
-    [noteLengthDial setParent:[_layer_ noteLengthDial]];
+    
+    [noteLengthDial setParent:[targetLayer noteLengthDial]];
     [noteLengthDial setMode:dialInherited];
   }
 }
 
-- (void)removedFromLayer:(ELLayer *)_layer_ {
-  [super removedFromLayer:_layer_];
+- (void)removedFromLayer:(ELLayer *)targetLayer {
+  [super removedFromLayer:targetLayer];
   
   [velocityDial setParent:nil];
   [emphasisDial setParent:nil];
@@ -216,7 +217,7 @@ NSDictionary *defaultChannelSends( void ) {
     velocity = [velocityDial value];
   }
   
-  ELHex *position = [_playhead_ position];
+  ELCell *position = [_playhead_ position];
   int triad = [triadDial value];
   ELPlayable *playable;
   
@@ -241,15 +242,15 @@ NSDictionary *defaultChannelSends( void ) {
       [playable playOnChannel:[[layer channelDial] value] duration:[noteLengthDial value] velocity:velocity transpose:[[layer transposeDial] value] offset:offset];
     }
     
-    offset += [[hex layer] timerResolution];
+    offset += [[cell layer] timerResolution];
   }
 }
 
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  NSPoint centre = [[self hex] centre];
-  float radius = [[self hex] radius];
+  NSPoint centre = [[self cell] centre];
+  float radius = [[self cell] radius];
   
   NSBezierPath *symbolPath = [NSBezierPath bezierPath];
   [symbolPath moveToPoint:NSMakePoint( centre.x - radius / 6, centre.y + radius / 5 )];

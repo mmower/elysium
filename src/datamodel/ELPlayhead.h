@@ -11,23 +11,23 @@
 
 #import "Elysium.h"
 
+@class ELCell;
 @class ELLayer;
-@class ELHex;
 
 @interface ELPlayhead : NSObject {
   ELLayer   *layer;
-  ELHex     *parent;
-  ELHex     *position;
+  ELCell    *parent;
+  ELCell    *position;
   Direction direction;
   int       skipCount;
   int       TTL;
   BOOL      isNew;
 }
 
-- (id)initWithPosition:(ELHex *)position direction:(Direction)direction TTL:(int)TTL;
+- (id)initWithPosition:(ELCell *)position direction:(Direction)direction TTL:(int)TTL;
 
-@property ELHex *position;
-@property ELHex *parent;
+@property ELCell *position;
+@property ELCell *parent;
 @property Direction direction;
 @property int skipCount;
 @property (readonly) BOOL isDead;

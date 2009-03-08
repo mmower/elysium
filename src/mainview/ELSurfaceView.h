@@ -11,7 +11,7 @@
 
 #import <HoneycombView/LMHoneycombView.h>
 
-@class ELHex;
+@class ELCell;
 
 @interface ELSurfaceView : LMHoneycombView {
   NSMutableArray  *octaveColors;
@@ -29,10 +29,10 @@
 - (NSColor *)scaleNoteColor;
 - (NSColor *)octaveColor:(int)octave;
 
-- (ELHex *)cellUnderMouseLocation:(NSPoint)point;
-- (ELHex *)selectedHex;
+- (ELCell *)cellUnderMouseLocation:(NSPoint)point;
+- (ELCell *)selectedCell;
 
-- (void)dragFromHex:(ELHex *)sourceHex to:(ELHex *)targetHex with:(NSDragOperation)modifiers;
+- (void)dragFromCell:(ELCell *)sourceCell to:(ELCell *)targetCell with:(NSDragOperation)modifiers;
 
 - (void)cellWasUpdated:(NSNotification*)notification;
     

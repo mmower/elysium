@@ -13,8 +13,8 @@
 
 #import "Elysium.h"
 
-@class ELHex;
 @class ELKey;
+@class ELCell;
 @class ELNote;
 @class ELPlayer;
 @class ELPlayhead;
@@ -24,7 +24,7 @@
   id                  delegate;       // This will be the view representing us in the UI
   
   ELPlayer            *player;        // The player we belong to
-  NSMutableArray      *hexes;         // The hexes representing the playing surface
+  NSMutableArray      *cells;         // The cells that make up the lattice structure of the layer
   NSMutableArray      *playheads;     // Array of playheads active on our surface
   NSMutableArray      *playheadQueue; // Array of playheads to be queued onto the layer in the next beat
   NSMutableArray      *generators;    // Array of playhead generator tokens
@@ -45,7 +45,7 @@
   
   ELKey               *key;         // If this layer is in a musical key
   
-  ELHex               *selectedHex;
+  ELCell              *selectedCell;
   
   ELDial              *enabledDial;
   ELDial              *channelDial;
@@ -69,7 +69,7 @@
 @property           id        delegate;
 @property           BOOL      visible;
 @property (assign)  NSString  *layerId;
-@property           ELHex     *selectedHex;
+@property           ELCell    *selectedCell;
 @property           int       beatCount;
 @property           ELKey     *key;
 
@@ -88,7 +88,7 @@
 @property (readonly) NSMutableDictionary *scripts;
 
 - (ELPlayer *)player;
-- (ELHex *)hexAtColumn:(int)col row:(int)row;
+- (ELCell *)cellAtColumn:(int)col row:(int)row;
 
 // Dynamic Configuration
 
@@ -111,7 +111,7 @@
 - (void)addPlayhead:(ELPlayhead *)playhead;
 - (void)pulse;
 
-- (void)configureHexes;
+- (void)configureCells;
 
 - (void)needsDisplay;
 

@@ -1,5 +1,5 @@
 //
-//  ELHex.h
+//  ELCell.h
 //  Elysium
 //
 //  Created by Matt Mower on 20/07/2008.
@@ -28,10 +28,10 @@
 @class ELSpinToken;
 @class ELSkipToken;
 
-@interface ELHex : LMHexCell <ELXmlData,ELTaggable> {
+@interface ELCell : LMHexCell <ELXmlData,ELTaggable> {
   ELLayer             *layer;
   ELNote              *note;
-  ELHex               *neighbours[6];
+  ELCell              *neighbours[6];
   NSMutableArray      *playheads;
   
   NSString            *scriptingTag;
@@ -61,10 +61,10 @@
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 
-// Connections to other hexes
+// Connections to other cells
 
-- (ELHex *)neighbour:(Direction)direction;
-- (void)connectNeighbour:(ELHex *)hex direction:(Direction)direction;
+- (ELCell *)neighbour:(Direction)direction;
+- (void)connectNeighbour:(ELCell *)cell direction:(Direction)direction;
 - (ELNoteGroup *)triad:(int)triad;
 
 // Token management
@@ -91,14 +91,14 @@
 - (IBAction)toggleSpinToken:(id)sender;
 - (IBAction)toggleSkipToken:(id)sender;
 
-- (void)copyTokensFrom:(ELHex *)hex;
+- (void)copyTokensFrom:(ELCell *)cell;
 
 // Playhead management
 
 - (void)playheadEntering:(ELPlayhead *)playhead;
 - (void)playheadLeaving:(ELPlayhead *)playhead;
 
-// Custom drawing for hexes
+// Custom drawing for cells
 
 - (void)drawTriangleInDirection:(Direction)direction withAttributes:(NSDictionary *)attributes;
 - (void)drawText:(NSString *)text  withAttributes:(NSMutableDictionary *)attributes;

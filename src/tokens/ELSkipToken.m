@@ -8,7 +8,7 @@
 
 #import "ELSkipToken.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
@@ -51,8 +51,8 @@
 - (void)drawWithAttributes:(NSDictionary *)drawingAttributes {
   [self setTokenDrawColor:drawingAttributes];
   
-  NSPoint centre = [[self hex] centre];
-  float radius = [[self hex] radius];
+  NSPoint centre = [[self cell] centre];
+  float radius = [[self cell] radius];
   
   NSBezierPath *hopPath = [NSBezierPath bezierPath];
   [hopPath moveToPoint:NSMakePoint( centre.x - radius / 1.8, centre.y - radius / 1.8 )];

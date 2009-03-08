@@ -9,18 +9,18 @@
 
 #import "Elysium.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELPlayhead.h"
 
 @implementation ELPlayhead
 
-- (id)initWithPosition:(ELHex *)_position_ direction:(Direction)_direction_ TTL:(int)_TTL_ {
+- (id)initWithPosition:(ELCell *)aPosition direction:(Direction)aDirection TTL:(int)aTTL {
   if( ( self = [super init] ) ) {
-    [self setPosition:_position_];
-    [self setParent:_position_];
+    [self setPosition:aPosition];
+    [self setParent:aPosition];
     
-    direction = _direction_;
-    TTL       = _TTL_;
+    direction = aDirection;
+    TTL       = aTTL;
     skipCount = 0;
     isNew     = YES;
   }
@@ -34,15 +34,15 @@
 @synthesize parent;
 @synthesize isNew;
 
-- (ELHex *)position {
+- (ELCell *)position {
   return position;
 }
 
-- (void)setPosition:(ELHex *)newPosition {
+- (void)setPosition:(ELCell *)newPosition {
   [position playheadLeaving:self];
 
   if( newPosition ) {
-    NSAssert( [newPosition isKindOfClass:[ELHex class]], @"Class error <argument>" );
+    NSAssert( [newPosition isKindOfClass:[ELCell class]], @"Class error <argument>" );
     position = newPosition;
     [position playheadEntering:self];
   } else {
@@ -53,7 +53,7 @@
 @synthesize direction;
 
 - (void)advance {
-  ELHex *newPosition = position;
+  ELCell *newPosition = position;
   
   while( skipCount ) {
     newPosition = [newPosition neighbour:direction];

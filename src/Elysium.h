@@ -16,7 +16,7 @@
 
 #import "ELPreferencesController.h"
 
-// Type to represent compass directions (for a hex)
+// Type to represent compass directions (for a cell)
 typedef enum tagDirection {
   N = 0,
   NE,
@@ -39,7 +39,8 @@ typedef enum tagDirection {
 #define HTABLE_MAX_COL (HTABLE_COLS - 1)
 #define HTABLE_MAX_ROW (HTABLE_ROWS - 1)
 
-// Calculate an offset into a linear array representing a hex-table
+// Calculate an offset into a linear array representing a
+// lattice of cells where columns are stacked end to end
 #define COL_ROW_OFFSET(col,row) ((col * HTABLE_ROWS) + row)
 
 // Our error domain
@@ -51,7 +52,7 @@ extern NSString * const ELErrorDomain;
 #define EL_ERR_PLAYER_LOAD_FAILURE        0x0100
 #define EL_ERR_LAYER_MISSING_ID           0x0200
 #define EL_ERR_LAYER_CELL_REF_INVALID     0x0201
-#define EL_ERR_HEX_INVALID_ATTR           0x0300
+#define EL_ERR_CELL_INVALID_ATTR          0x0300
 #define EL_ERR_OSCILLATOR_INVALID_ATTR    0x0500
 #define EL_ERR_KNOB_MISSING_VALUE         0x0700
 

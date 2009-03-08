@@ -11,7 +11,7 @@
 @class ELDial;
 @class ELPlayer;
 @class ELLayer;
-@class ELHex;
+@class ELCell;
 
 @class ELInspectorViewController;
 
@@ -31,7 +31,7 @@
   
             ELPlayer            *player;
             ELLayer             *layer;
-            ELHex               *cell;
+            ELCell              *cell;
             
             NSString            *title;
   
@@ -53,7 +53,7 @@
 
 @property           ELPlayer            *player;
 @property           ELLayer             *layer;
-@property           ELHex               *cell;
+@property           ELCell              *cell;
 
 @property (assign)  NSString            *title;
 
@@ -62,7 +62,7 @@
 - (void)selectionChanged:(NSNotification *)notification;
 - (void)playerSelected:(ELPlayer *)player;
 - (void)layerSelected:(ELLayer *)layer;
-- (void)cellSelected:(ELHex *)cell;
+- (void)cellSelected:(ELCell *)cell;
 
 - (NSArray *)keySignatures;
 

@@ -9,7 +9,7 @@
 
 #import "ELGenerateToken.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
@@ -88,30 +88,27 @@
 
 #pragma mark Layer support
 
-- (void)addedToLayer:(ELLayer *)_layer_ atPosition:(ELHex *)_hex_ {
-  [super addedToLayer:_layer_ atPosition:_hex_];
+- (void)addedToLayer:(ELLayer *)targetLayer atPosition:(ELCell *)targetCell {
+  [super addedToLayer:targetLayer atPosition:targetCell];
   
   if( !loaded ) {
-    [timeToLiveDial setParent:[_layer_ timeToLiveDial]];
+    [timeToLiveDial setParent:[targetLayer timeToLiveDial]];
     [timeToLiveDial setMode:dialInherited];
     
-    [pulseEveryDial setParent:[_layer_ pulseEveryDial]];
+    [pulseEveryDial setParent:[targetLayer pulseEveryDial]];
     [pulseEveryDial setMode:dialInherited];
   }
   
-  [_layer_ addGenerator:self];
+  [targetLayer addGenerator:self];
 }
 
-- (void)removedFromLayer:(ELLayer *)_layer_ {
-  [_layer_ removeGenerator:self];
+- (void)removedFromLayer:(ELLayer *)targetLayer {
+  [targetLayer removeGenerator:self];
   
   [timeToLiveDial setParent:nil];
   [pulseEveryDial setParent:nil];
-  // 
-  // [timeToLiveKnob setLinkedKnob:nil];
-  // [pulseCountKnob setLinkedKnob:nil];
   
-  [super removedFromLayer:_layer_];
+  [super removedFromLayer:targetLayer];
 }
 
 // Token runner
@@ -143,7 +140,7 @@
 }
 
 - (void)runToken:(ELPlayhead *)_playhead_ {
-    [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:hex
+    [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:cell
                                                   direction:[directionDial value]
                                                         TTL:[timeToLiveDial value]]];
 }
@@ -151,8 +148,8 @@
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  NSPoint centre = [[self hex] centre];
-  float radius = [[self hex] radius];
+  NSPoint centre = [[self cell] centre];
+  float radius = [[self cell] radius];
   
   NSBezierPath *symbolPath;
   symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/3, centre.y - radius/3, 2*radius/3, 2*radius/3 )];
@@ -161,7 +158,7 @@
   [self setTokenDrawColor:_attributes_];
   [symbolPath stroke];
   
-  [[self hex] drawTriangleInDirection:[directionDial value] withAttributes:_attributes_];
+  [[self cell] drawTriangleInDirection:[directionDial value] withAttributes:_attributes_];
 }
 
 // Implement the ELXmlData protocol

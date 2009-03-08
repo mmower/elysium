@@ -15,7 +15,7 @@
 
 #import "ELPlayer.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELNote.h"
 #import "ELLayer.h"
 #import "ElysiumDocument.h"

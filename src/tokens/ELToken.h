@@ -11,7 +11,7 @@
 
 #import "Elysium.h"
 
-@class ELHex;
+@class ELCell;
 @class ELLayer;
 @class ELPlayhead;
 
@@ -22,7 +22,7 @@
 @interface ELToken : NSObject <ELXmlData,NSMutableCopying> {
   BOOL                loaded;
   ELLayer             *layer;
-  ELHex               *hex;
+  ELCell              *cell;
   NSMutableDictionary *scripts;
   BOOL                skip;
   BOOL                fired;
@@ -35,7 +35,7 @@
 
 - (id)initEnabledDial:(ELDial *)enabledDial pDial:(ELDial *)pDial gateDial:(ELDial *)gateDial scripts:(NSMutableDictionary *)scripts;
 
-@property ELHex *hex;
+@property ELCell *cell;
 @property ELLayer *layer;
 
 @property BOOL skip;
@@ -55,7 +55,7 @@
 
 // - (NSArray *)observableValues;
 
-- (void)addedToLayer:(ELLayer *)layer atPosition:(ELHex *)hex;
+- (void)addedToLayer:(ELLayer *)layer atPosition:(ELCell *)cell;
 - (void)removedFromLayer:(ELLayer *)layer;
 
 - (void)start;

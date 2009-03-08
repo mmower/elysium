@@ -9,7 +9,7 @@
 
 #import "Elysium.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
@@ -29,20 +29,22 @@ NSPredicate *deadPlayheadFilter;
   deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
 }
 
+
 + (NSPredicate *)deadPlayheadFilter {
   return deadPlayheadFilter;
 }
 
+
 - (id)init {
   if( ( self = [super init] ) ) {
-    hexes         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    cells         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
     playheads     = [[NSMutableArray alloc] init];
     playheadQueue = [[NSMutableArray alloc] init];
     generators    = [[NSMutableArray alloc] init];
     beatCount     = 0;
     timeBase      = 0;
     isRunning     = 0;
-    selectedHex   = nil;
+    selectedCell  = nil;
     
     scripts       = [NSMutableDictionary dictionary];
     
@@ -61,9 +63,9 @@ NSPredicate *deadPlayheadFilter;
                                              tag:0
                                           parent:nil
                                       oscillator:nil
-                                        assigned:0
-                                            last:0
-                                           value:0
+                                        assigned:1
+                                            last:1
+                                           value:1
                                              min:1
                                              max:16
                                             step:1];
@@ -86,7 +88,7 @@ NSPredicate *deadPlayheadFilter;
     [self setNoteLengthDial:[[ELDial alloc] initWithParent:[player noteLengthDial]]];
     [self setTransposeDial:[[ELDial alloc] initWithParent:[player transposeDial]]];
     
-    [self configureHexes];
+    [self configureCells];
   }
   
   return self;
@@ -103,7 +105,7 @@ NSPredicate *deadPlayheadFilter;
 @synthesize player;
 @synthesize delegate;
 @synthesize layerId;
-@synthesize selectedHex;
+@synthesize selectedCell;
 @synthesize beatCount;
 @synthesize key;
 
@@ -348,14 +350,14 @@ NSPredicate *deadPlayheadFilter;
 
 - (void)start {
   // Tell all the cells we're starting
-  [hexes makeObjectsPerformSelector:@selector(start)];
+  [cells makeObjectsPerformSelector:@selector(start)];
   
   runner = [[NSThread alloc] initWithTarget:self selector:@selector(runLayer) object:nil];
   [runner start];
 }
 
 - (void)stop {
-  [hexes makeObjectsPerformSelector:@selector(stop)];
+  [cells makeObjectsPerformSelector:@selector(stop)];
   [runner cancel];
 }
 
@@ -366,7 +368,7 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)clear {
-  [hexes makeObjectsPerformSelector:@selector(removeAllTokens)];
+  [cells makeObjectsPerformSelector:@selector(removeAllTokens)];
 }
 
 - (void)queuePlayhead:(ELPlayhead *)_playhead_ {
@@ -409,29 +411,29 @@ NSPredicate *deadPlayheadFilter;
   }
 }
 
-- (void)configureHexes {
+- (void)configureCells {
   ELHarmonicTable *harmonicTable = [player harmonicTable];
   NSAssert( harmonicTable != nil, @"Harmonic table should never be nil" );
   
-  NSAssert( hexes != nil, @"hexes have not been initialized!" );
+  NSAssert( cells != nil, @"cells have not been initialized!" );
   
-  // First build the hex table mapping
+  // First create an array of cells that will form the lattice
   for( int col = 0; col < HTABLE_COLS; col++ ) {
     for( int row = 0; row < HTABLE_ROWS; row++ ) {
       ELNote *note = [harmonicTable noteAtCol:col row:row];
       NSAssert( note != nil, @"Note should never be nil" );
       
-      ELHex *hex = [[ELHex alloc] initWithLayer:self
-                                           note:note
-                                         column:col
-                                            row:row];
-      NSAssert( hex != nil, @"Generated hexes should never be nil" );
+      ELCell *cell = [[ELCell alloc] initWithLayer:self
+                                              note:note
+                                            column:col
+                                               row:row];
+      NSAssert( cell != nil, @"Generated cells should never be nil" );
       
-      [hexes addObject:hex];
+      [cells addObject:cell];
     }
   }
 
-  // Now connect the hexes up graph style
+  // Now connect the cells into the lattice structure
   for( int col = 0; col < HTABLE_COLS; col++ ) {
     for( int row = 0; row < HTABLE_ROWS; row++ ) {
       
@@ -444,44 +446,44 @@ NSPredicate *deadPlayheadFilter;
       BOOL firstCol = ( col == 0 );
       BOOL lastCol = ( col == HTABLE_MAX_COL );
       
-      ELHex *hex = [self hexAtColumn:col row:row];
+      ELCell *cell = [self cellAtColumn:col row:row];
       
       // North
       if( !lastRow ) {
-        [hex connectNeighbour:[self hexAtColumn:col row:row+1] direction:N];
+        [cell connectNeighbour:[self cellAtColumn:col row:row+1] direction:N];
       }
       
       // North East
       if( evenCol && !lastCol ) {
-        [hex connectNeighbour:[self hexAtColumn:col+1 row:row] direction:NE];
+        [cell connectNeighbour:[self cellAtColumn:col+1 row:row] direction:NE];
       } else if( oddCol && !lastRow ) {
-        [hex connectNeighbour:[self hexAtColumn:col+1 row:row+1] direction:NE];
+        [cell connectNeighbour:[self cellAtColumn:col+1 row:row+1] direction:NE];
       }
       
       // South East
       if( evenCol && !lastCol && !firstRow ) {
-        [hex connectNeighbour:[self hexAtColumn:col+1 row:row-1] direction:SE];
+        [cell connectNeighbour:[self cellAtColumn:col+1 row:row-1] direction:SE];
       } else if( oddCol ) {
-        [hex connectNeighbour:[self hexAtColumn:col+1 row:row] direction:SE];
+        [cell connectNeighbour:[self cellAtColumn:col+1 row:row] direction:SE];
       }
       
-      // South Hex
+      // South
       if( !firstRow ) {
-        [hex connectNeighbour:[self hexAtColumn:col row:row-1] direction:S];
+        [cell connectNeighbour:[self cellAtColumn:col row:row-1] direction:S];
       }
       
       // South West
       if( evenCol && !firstCol && !firstRow ) {
-        [hex connectNeighbour:[self hexAtColumn:col-1 row:row-1] direction:SW];
+        [cell connectNeighbour:[self cellAtColumn:col-1 row:row-1] direction:SW];
       } else if( oddCol ) {
-        [hex connectNeighbour:[self hexAtColumn:col-1 row:row] direction:SW];
+        [cell connectNeighbour:[self cellAtColumn:col-1 row:row] direction:SW];
       }
       
       // North West
       if( evenCol && !firstCol ) {
-        [hex connectNeighbour:[self hexAtColumn:col-1 row:row] direction:NW];
+        [cell connectNeighbour:[self cellAtColumn:col-1 row:row] direction:NW];
       } else if( oddCol && !lastRow ) {
-        [hex connectNeighbour:[self hexAtColumn:col-1 row:row+1] direction:NW];
+        [cell connectNeighbour:[self cellAtColumn:col-1 row:row+1] direction:NW];
       }
     }
   }
@@ -497,31 +499,31 @@ NSPredicate *deadPlayheadFilter;
   return HTABLE_ROWS;
 }
 
-- (void)hexCellSelected:(LMHexCell *)_cell_ {
-  ELHex *hex = (ELHex *)_cell_;
-  [self setSelectedHex:hex];
+- (void)hexCellSelected:(LMHexCell *)newlySelectedCell {
+  ELCell *cell = (ELCell *)newlySelectedCell;
+  [self setSelectedCell:cell];
   [player setSelectedLayer:self];
-  if( hex ) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:hex];
+  if( cell ) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:cell];
     
     if( ![player performanceMode] ) {
       // [durationKnob dynamicValue]
-      [[hex note] playOnChannel:[channelDial value] duration:2.0 velocity:[velocityDial value] transpose:0];
+      [[cell note] playOnChannel:[channelDial value] duration:2.0 velocity:[velocityDial value] transpose:0];
     }
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
   }
 }
 
-- (ELHex *)hexAtColumn:(int)_col row:(int)_row {
-  return (ELHex *)[self hexCellAtColumn:_col row:_row];
+- (ELCell *)cellAtColumn:(int)col row:(int)row {
+  return (ELCell *)[self hexCellAtColumn:col row:row];
 }
 
-- (LMHexCell *)hexCellAtColumn:(int)_col_ row:(int)_row_ {
-  NSAssert4( COL_ROW_OFFSET( _col_, _row_ ) < HTABLE_SIZE, @"Offset %d (%d,%d) is of bounds (%d)!", COL_ROW_OFFSET(_col_,_row_), _col_, _row_, HTABLE_SIZE );
+- (LMHexCell *)hexCellAtColumn:(int)col row:(int)row {
+  NSAssert4( COL_ROW_OFFSET( col, row ) < HTABLE_SIZE, @"Offset %d (%d,%d) is of bounds (%d)!", COL_ROW_OFFSET(col,row), col, row, HTABLE_SIZE );
   
-  LMHexCell *cell = [hexes objectAtIndex:COL_ROW_OFFSET(_col_,_row_)];
-  NSAssert2( cell != nil, @"Requested nil hex at %d,%d", _col_, _row_ );
+  LMHexCell *cell = [cells objectAtIndex:COL_ROW_OFFSET(col,row)];
+  NSAssert2( cell != nil, @"Requested nil cell at %d,%d", col, row );
   return cell;
 }
 
@@ -555,10 +557,10 @@ NSPredicate *deadPlayheadFilter;
   
   for( int col = 0; col < HTABLE_COLS; col++ ) {
     for( int row = 0; row < HTABLE_ROWS; row++ ) {
-      ELHex *hex = [self hexAtColumn:col row:row];
+      ELCell *cell = [self cellAtColumn:col row:row];
       
-      if( [hex shouldBeSaved] ) {
-        [cellsElement addChild:[hex xmlRepresentation]];
+      if( [cell shouldBeSaved] ) {
+        [cellsElement addChild:[cell xmlRepresentation]];
       }
     }
   }
@@ -635,8 +637,8 @@ NSPredicate *deadPlayheadFilter;
         }
         int row = [[attributeNode stringValue] intValue];
         
-        ELHex *hex = [[self hexAtColumn:col row:row] initWithXmlRepresentation:element parent:self player:_player_ error:_error_];
-        if( hex == nil ) {
+        ELCell *cell = [[self cellAtColumn:col row:row] initWithXmlRepresentation:element parent:self player:_player_ error:_error_];
+        if( cell == nil ) {
           return nil;
         }
       }
@@ -658,7 +660,7 @@ NSPredicate *deadPlayheadFilter;
   return self;
 }
 
-// Drawing notification from the hex
+// Drawing notification from the cell
 
 - (void)needsDisplay {
   if( [delegate respondsToSelector:@selector(setNeedsDisplay:)] ) {

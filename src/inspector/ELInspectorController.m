@@ -24,7 +24,7 @@
 #import "ELDial.h"
 
 #import "ELKey.h"
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 
@@ -86,7 +86,7 @@
     [self playerSelected:[notification object]];
   } else if( [[notification object] isKindOfClass:[ELLayer class]] ) {
     [self layerSelected:[notification object]];
-  } else if( [[notification object] isKindOfClass:[ELHex class]] ) {
+  } else if( [[notification object] isKindOfClass:[ELCell class]] ) {
     [self cellSelected:[notification object]];
   }
 }
@@ -109,7 +109,7 @@
   [tabView selectTabViewItemAtIndex:1];
 }
 
-- (void)cellSelected:(ELHex *)newCell {
+- (void)cellSelected:(ELCell *)newCell {
   [self setPlayer:[[newCell layer] player]];
   [self setLayer:[newCell layer]];
   [self setCell:newCell];

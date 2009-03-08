@@ -9,7 +9,7 @@
 
 #import "ELAbsorbToken.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELPlayhead.h"
 
 @implementation ELAbsorbToken
@@ -27,8 +27,8 @@
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  NSPoint centre = [[self hex] centre];
-  float radius = [[self hex] radius];
+  NSPoint centre = [[self cell] centre];
+  float radius = [[self cell] radius];
   
   NSBezierPath *symbolPath;
   [self setTokenDrawColor:_attributes_];

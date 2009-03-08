@@ -15,7 +15,7 @@
 
 #import "ElysiumDocument.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
 #import "ELHarmonicTable.h"
@@ -46,9 +46,9 @@
   // Show the inspectors by default, and ensure something is selected from the right player/layer
   [[NSApp delegate] showInspectorPanel:self];
   [[NSApp delegate] showMIDIConfigInspector:self];
-  ELLayer *firstLayer = [player layer:0];
-  ELHex *selectionHex = [firstLayer hexAtColumn:8 row:6];
-  [firstLayer hexCellSelected:selectionHex];
+  
+  // Select a cell, any cell
+  [[player layer:0] hexCellSelected:[[player layer:0] cellAtColumn:8 row:6]];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -206,7 +206,7 @@
   [alert setAlertStyle:NSWarningAlertStyle];
   [alert addButtonWithTitle:@"Clear All"];
   [alert addButtonWithTitle:@"Do Not Clear"];
-  [alert setInformativeText:@"Pressing 'Clear All' will clear all hexes on all layers."];
+  [alert setInformativeText:@"Pressing 'Clear All' will clear all cells on all layers."];
   if( [alert runModal] == NSAlertFirstButtonReturn ) {
     [player clearAll];
     [self updateView:self];
@@ -218,7 +218,7 @@
   [alert setAlertStyle:NSWarningAlertStyle];
   [alert addButtonWithTitle:@"Clear Layer"];
   [alert addButtonWithTitle:@"Do Not Clear"];
-  [alert setInformativeText:@"Pressing 'Clear Layer' will clear all hexes on the selected layer."];
+  [alert setInformativeText:@"Pressing 'Clear Layer' will clear all cells on the selected layer."];
   if( [alert runModal] == NSAlertFirstButtonReturn ) {
     [[player selectedLayer] clear];
     [self updateView:self];
@@ -232,35 +232,35 @@
 }
 
 - (IBAction)toggleGeneratorToken:(id)_sender_ {
-  [[[player selectedLayer] selectedHex] toggleGenerateToken:_sender_];
+  [[[player selectedLayer] selectedCell] toggleGenerateToken:_sender_];
 }
 
 - (IBAction)toggleNoteToken:(id)_sender_ {
-  [[[player selectedLayer] selectedHex] toggleNoteToken:_sender_];
+  [[[player selectedLayer] selectedCell] toggleNoteToken:_sender_];
 }
 
 - (IBAction)toggleReboundToken:(id)_sender_ {
-  [[[player selectedLayer] selectedHex] toggleReboundToken:_sender_];
+  [[[player selectedLayer] selectedCell] toggleReboundToken:_sender_];
 }
 
 - (IBAction)toggleAbsorbToken:(id)_sender_ {
-  [[[player selectedLayer] selectedHex] toggleAbsorbToken:_sender_];
+  [[[player selectedLayer] selectedCell] toggleAbsorbToken:_sender_];
 }
 
 - (IBAction)toggleSplitToken:(id)_sender_ {
-  [[[player selectedLayer] selectedHex] toggleSplitToken:_sender_];
+  [[[player selectedLayer] selectedCell] toggleSplitToken:_sender_];
 }
 
 - (IBAction)toggleSpinToken:(id)_sender_ {
-  [[[player selectedLayer] selectedHex] toggleSpinToken:_sender_];
+  [[[player selectedLayer] selectedCell] toggleSpinToken:_sender_];
 }
 
 - (IBAction)toggleSkipToken:(id)sender {
-  [[[player selectedLayer] selectedHex] toggleSkipToken:sender];
+  [[[player selectedLayer] selectedCell] toggleSkipToken:sender];
 }
 
 - (IBAction)clearCell:(id)_sender_ {
-  [[[player selectedLayer] selectedHex] clearTokens:_sender_];
+  [[[player selectedLayer] selectedCell] clearTokens:_sender_];
 }
 
 - (void)document:(NSDocument *)_document_ shouldClose:(BOOL)_shouldClose_ contextInfo:(void*)_contextInfo_ {

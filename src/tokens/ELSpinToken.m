@@ -9,7 +9,7 @@
 
 #import "ELSpinToken.h"
 
-#import "ELHex.h"
+#import "ELCell.h"
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 #import "ELGenerateToken.h"
@@ -94,8 +94,8 @@
 // Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  NSPoint centre = [[self hex] centre];
-  float radius = [[self hex] radius];
+  NSPoint centre = [[self cell] centre];
+  float radius = [[self cell] radius];
   
   [self setTokenDrawColor:_attributes_];
   
