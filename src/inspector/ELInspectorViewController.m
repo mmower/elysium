@@ -28,6 +28,7 @@
   return self;
 }
 
+
 @synthesize inspectorController;
 @synthesize objectController;
 
@@ -36,6 +37,7 @@
   [self bindMode:dialName];
   [self bindOsc:dialName];
 }
+
 
 - (void)bindControl:(NSString *)dialName {
   id control = [self valueForKey:[NSString stringWithFormat:@"%@Control",dialName]];
@@ -91,6 +93,7 @@
   }
 }
 
+
 - (void)bindMode:(NSString *)dialName {
   id control = [self valueForKey:[NSString stringWithFormat:@"%@ModeControl",dialName]];
   
@@ -104,6 +107,7 @@
     withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.oscillator",dialName]
         options:[NSDictionary dictionaryWithObject:@"NSIsNotNil" forKey:NSValueTransformerNameBindingOption]];
 }
+
 
 - (void)bindOsc:(NSString *)dialName {
   id control = [self valueForKey:[NSString stringWithFormat:@"%@OscControl",dialName]];
@@ -123,6 +127,7 @@
     withKeyPath:[NSString stringWithFormat:@"selection.%@Dial.oscillator",dialName]
         options:[NSDictionary dictionaryWithObject:dialHasOscillatorValueTransformer forKey:NSValueTransformerNameBindingOption]];
 }
+
 
 - (void)bindScript:(NSString *)scriptName {
   id control = [self valueForKey:[NSString stringWithFormat:@"edit%@Control",[scriptName initialCapitalString]]];
@@ -166,5 +171,6 @@
     withKeyPath:[NSString stringWithFormat:@"selection.scripts.%@",scriptName]
         options:[NSDictionary dictionaryWithObject:@"NSIsNil" forKey:NSValueTransformerNameBindingOption]];
 }
+
 
 @end

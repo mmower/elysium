@@ -28,7 +28,15 @@
 #import "ELLayer.h"
 #import "ELPlayer.h"
 
+#import "ELInspectorOverlay.h"
 #import "ELOscillatorDesignerController.h"
+
+@interface ELInspectorController (PrivateMethods)
+
+- (NSView *)wrapWithOverlayView:(NSView *)view target:(NSString *)target;
+
+@end
+
 
 @implementation ELInspectorController
 
@@ -50,6 +58,7 @@
   return self;
 }
 
+
 @synthesize modeView;
 @synthesize tabView;
 
@@ -64,22 +73,41 @@
   // [panel setBecomesKeyOnlyIfNeeded:YES];
 }
 
+
 - (void)awakeFromNib {
+  //[self wrapWithOverlayView:[skipViewController view] target:@"cell.tokens.skip"]
   [[tabView tabViewItemAtIndex:0] setView:[playerViewController view]];
   [[tabView tabViewItemAtIndex:1] setView:[layerViewController view]];
-  [[tabView tabViewItemAtIndex:2] setView:[generateViewController view]];
-  [[tabView tabViewItemAtIndex:3] setView:[noteViewController view]];
-  [[tabView tabViewItemAtIndex:4] setView:[reboundViewController view]];
-  [[tabView tabViewItemAtIndex:5] setView:[absorbViewController view]];
-  [[tabView tabViewItemAtIndex:6] setView:[splitViewController view]];
-  [[tabView tabViewItemAtIndex:7] setView:[spinViewController view]];
-  [[tabView tabViewItemAtIndex:8] setView:[skipViewController view]];
+  [[tabView tabViewItemAtIndex:2] setView:[self wrapWithOverlayView:[generateViewController view] target:@"cell.tokens.generate"]];
+  [[tabView tabViewItemAtIndex:3] setView:[self wrapWithOverlayView:[noteViewController view] target:@"cell.tokens.note"]];
+  [[tabView tabViewItemAtIndex:4] setView:[self wrapWithOverlayView:[reboundViewController view] target:@"cell.tokens.rebound"]];
+  [[tabView tabViewItemAtIndex:5] setView:[self wrapWithOverlayView:[absorbViewController view] target:@"cell.tokens.absorb"]];
+  [[tabView tabViewItemAtIndex:6] setView:[self wrapWithOverlayView:[splitViewController view] target:@"cell.tokens.split"]];
+  [[tabView tabViewItemAtIndex:7] setView:[self wrapWithOverlayView:[spinViewController view] target:@"cell.tokens.spin"]];
+  [[tabView tabViewItemAtIndex:8] setView:[self wrapWithOverlayView:[skipViewController view] target:@"cell.tokens.skip"]];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(selectionChanged:)
                                                name:ELNotifyObjectSelectionDidChange
                                              object:nil];
 }
+
+
+- (NSView *)wrapWithOverlayView:(NSView *)aView target:(NSString *)aTarget {
+  NSView *parent = [[NSView alloc] initWithFrame:[aView frame]];
+  ELInspectorOverlay *overlay = [[ELInspectorOverlay alloc] initWithFrame:[aView frame]];
+  
+  [parent addSubview:aView];
+  [parent addSubview:overlay positioned:NSWindowAbove relativeTo:aView];
+  
+  [overlay bind:@"hidden"
+       toObject:self
+    withKeyPath:aTarget
+    options:[NSDictionary dictionaryWithObject:@"NSIsNotNil" forKey:NSValueTransformerNameBindingOption]];
+  
+  return parent;
+}
+
 
 - (void)selectionChanged:(NSNotification *)notification {
   if( [[notification object] isKindOfClass:[ELPlayer class]] ) {
@@ -91,6 +119,7 @@
   }
 }
 
+
 - (void)playerSelected:(ELPlayer *)newPlayer {
   [self setPlayer:newPlayer];
   [self setLayer:nil];
@@ -99,6 +128,7 @@
   [modeView setSelectedSegment:0];
   [tabView selectTabViewItemAtIndex:0];
 }
+
 
 - (void)layerSelected:(ELLayer *)newLayer {
   [self setPlayer:[newLayer player]];
@@ -109,11 +139,13 @@
   [tabView selectTabViewItemAtIndex:1];
 }
 
+
 - (void)cellSelected:(ELCell *)newCell {
   [self setPlayer:[[newCell layer] player]];
   [self setLayer:[newCell layer]];
   [self setCell:newCell];
 }
+
 
 - (IBAction)selectTab:(id)sender {
   int tab = [sender selectedSegment];
@@ -122,9 +154,11 @@
   [tabView selectTabViewItemAtIndex:tab];
 }
 
+
 - (NSArray *)keySignatures {
   return [ELKey allKeys];
 }
+
 
 - (IBAction)editOscillator:(ELDial *)dial {
   ELOscillatorDesignerController *controller;
@@ -138,9 +172,11 @@
   [controller edit];
 }
 
+
 - (void)finishedEditingOscillatorForDial:(ELDial *)dial {
   [oscillatorEditors removeObjectForKey:dial];
 }
+
 
 // Script editing options
 
@@ -181,6 +217,7 @@
   [callback inspect:self];
 }
 
+
 - (void)removeCallback:(id)scriptable tag:(NSNumber *)tag {
   NSString *callbackName;
   
@@ -210,5 +247,13 @@
   
   [[scriptable scripts] removeObjectForKey:callbackName];
 }
+
+
+#pragma mark NSTabView delegate implementation
+
+- (void)tabView:(NSTabView *)aTabView willSelectTabViewItem:(NSTabViewItem *)aTabViewItem {
+  NSLog( @"About to select: %@", aTabViewItem );
+}
+
 
 @end

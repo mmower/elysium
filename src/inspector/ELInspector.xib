@@ -60,9 +60,10 @@
 								<object class="NSTabViewItem" id="455014191">
 									<string key="NSIdentifier">player</string>
 									<object class="NSView" key="NSView" id="694574269">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="1024953048"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrameSize">{302, 691}</string>
+										<reference key="NSSuperview" ref="1024953048"/>
 									</object>
 									<string key="NSLabel">Player</string>
 									<object class="NSColor" key="NSColor" id="787556465">
@@ -90,10 +91,9 @@
 								<object class="NSTabViewItem" id="747149458">
 									<string key="NSIdentifier">generate</string>
 									<object class="NSView" key="NSView" id="50559459">
-										<reference key="NSNextResponder" ref="1024953048"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrameSize">{302, 691}</string>
-										<reference key="NSSuperview" ref="1024953048"/>
 									</object>
 									<string key="NSLabel">Generate</string>
 									<reference key="NSColor" ref="787556465"/>
@@ -166,7 +166,7 @@
 									<reference key="NSTabView" ref="1024953048"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="747149458"/>
+							<reference key="NSSelectedTabViewItem" ref="455014191"/>
 							<object class="NSFont" key="NSFont">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">1.100000e+01</double>
@@ -177,7 +177,7 @@
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="50559459"/>
+								<reference ref="694574269"/>
 							</object>
 						</object>
 						<object class="NSSegmentedControl" id="827705426">
@@ -276,14 +276,6 @@
 					<int key="connectionID">86</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">modeView</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="827705426"/>
-					</object>
-					<int key="connectionID">131</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedIndex: modeView.selectedSegment</string>
 						<reference key="source" ref="1024953048"/>
@@ -346,6 +338,22 @@
 						<reference key="destination" ref="632079788"/>
 					</object>
 					<int key="connectionID">2178</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="1024953048"/>
+						<reference key="destination" ref="1001"/>
+					</object>
+					<int key="connectionID">2483</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">modeView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="827705426"/>
+					</object>
+					<int key="connectionID">2484</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -627,9 +635,9 @@
 					<integer value="0" id="8"/>
 					<reference ref="8"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{527, 238}, {288, 720}}</string>
+					<string>{{636, 236}, {288, 720}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{527, 238}, {288, 720}}</string>
+					<string>{{636, 236}, {288, 720}}</string>
 					<boolean value="YES" id="5"/>
 					<reference ref="5"/>
 					<reference ref="5"/>
@@ -701,7 +709,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2482</int>
+			<int key="maxID">2484</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
