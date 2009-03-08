@@ -160,8 +160,8 @@
 }
 
 
-- (void)setMode:(ELDialMode)newMode {
-  switch( newMode ) {
+- (void)setMode:(ELDialMode)aMode {
+  switch( aMode ) {
     case dialFree:
       [self unbind:@"assigned"];
       [self unbind:@"value"];
@@ -187,7 +187,7 @@
       }
       break;
   }
-  mode = newMode;
+  mode = aMode;
 }
 
 
@@ -201,11 +201,12 @@
   return parent;
 }
 
-- (void)setParent:(ELDial *)newParent {
+
+- (void)setParent:(ELDial *)aParent {
   if( [self mode] == dialInherited ) {
     [self unbind:@"value"];
   }
-  parent = newParent;
+  parent = aParent;
   if( [self mode] == dialInherited ) {
     if( parent ) {
       [self bind:@"value" toObject:parent withKeyPath:@"value" options:nil];
@@ -215,18 +216,20 @@
   }
 }
 
+
 @dynamic oscillator;
 
 - (ELOscillator *)oscillator {
   return oscillator;
 }
 
-- (void)setOscillator:(ELOscillator *)newOscillator {
+
+- (void)setOscillator:(ELOscillator *)aOscillator {
   if( oscillator && [delegate respondsToSelector:@selector(dialDidUnsetOscillator:)] ) {
     [delegate dialDidUnsetOscillator:self];
   }
   
-  oscillator = newOscillator;
+  oscillator = aOscillator;
   
   if( oscillator ) {
     if( [delegate respondsToSelector:@selector(dialDidSetOscillator:)] ) {
@@ -236,6 +239,7 @@
     [self setMode:dialFree];
   }
 }
+
 
 @synthesize assigned;
 @synthesize last;
@@ -247,24 +251,27 @@
 }
 
 
-- (void)setValue:(int)newValue {
-  if( newValue < min ) {
-    NSLog( @"Attempt to set value %d below minimum %d for dial: %@", newValue, min, self );
-    newValue = min;
-  } else if( newValue > max ) {
-    NSLog( @"Attempt to set value %d above maximum %d for dial: %@", newValue, max, self );
-    newValue = max;
+- (void)setValue:(int)aValue {
+  if( aValue < min ) {
+    NSLog( @"Attempt to set value %d below minimum %d for dial: %@", aValue, min, self );
+    aValue = min;
+  } else if( aValue > max ) {
+    NSLog( @"Attempt to set value %d above maximum %d for dial: %@", aValue, max, self );
+    aValue = max;
   }
   
   last = value;
-  value = newValue;
+  value = aValue;
   if( [delegate respondsToSelector:@selector(dialDidChangeValue:)] ) {
     [delegate dialDidChangeValue:self];
   }
 }
 
+
 @synthesize min;
+
 @synthesize max;
+
 @synthesize step;
 
 - (BOOL)boolValue {
@@ -272,21 +279,25 @@
 }
 
 
-- (void)setBoolValue:(BOOL)boolValue {
-  [self setValue:(boolValue ? 1 : 0)];
+- (void)setBoolValue:(BOOL)newValue {
+  [self setValue:(newValue ? 1 : 0)];
 }
+
 
 - (void)start {
   [oscillator start];
 }
 
+
 - (void)stop {
   [oscillator stop];
 }
 
+
 - (NSString *)description {
   return [NSString stringWithFormat:@"Dial<%@> min:%d max:%d value:%d step:%d", name, min, max, value, step];
 }
+
 
 #pragma mark ELXmlData implementation
 
@@ -313,30 +324,30 @@
 }
 
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( _representation_ && ( self = [self init] ) ) {
-    [self setName:[_representation_ attributeAsString:@"name"]];
-    [self setTag:[_representation_ attributeAsInteger:@"tag" defaultValue:INT_MIN]];
+- (id)initWithXmlRepresentation:(NSXMLElement *)aRepresentation parent:(id)aParent player:(ELPlayer *)aPlayer error:(NSError **)aError {
+  if( aRepresentation && ( self = [self init] ) ) {
+    [self setName:[aRepresentation attributeAsString:@"name"]];
+    [self setTag:[aRepresentation attributeAsInteger:@"tag" defaultValue:INT_MIN]];
     
-    [self setMin:[_representation_ attributeAsInteger:@"min" defaultValue:INT_MIN]];
-    [self setMax:[_representation_ attributeAsInteger:@"max" defaultValue:INT_MIN]];
-    [self setStep:[_representation_ attributeAsInteger:@"step" defaultValue:INT_MIN]];
+    [self setMin:[aRepresentation attributeAsInteger:@"min" defaultValue:INT_MIN]];
+    [self setMax:[aRepresentation attributeAsInteger:@"max" defaultValue:INT_MIN]];
+    [self setStep:[aRepresentation attributeAsInteger:@"step" defaultValue:INT_MIN]];
     
-    [self setAssigned:[_representation_ attributeAsInteger:@"assigned" defaultValue:INT_MIN]];
-    [self setLast:[_representation_ attributeAsInteger:@"last" defaultValue:INT_MIN]];
-    [self setValue:[_representation_ attributeAsInteger:@"value" defaultValue:INT_MIN]];
+    [self setAssigned:[aRepresentation attributeAsInteger:@"assigned" defaultValue:INT_MIN]];
+    [self setLast:[aRepresentation attributeAsInteger:@"last" defaultValue:INT_MIN]];
+    [self setValue:[aRepresentation attributeAsInteger:@"value" defaultValue:INT_MIN]];
     
-    [self setParent:_parent_];
+    [self setParent:aParent];
     
     // Decode oscillator
-    NSXMLElement *oscillatorElement = [[_representation_ nodesForXPath:@"oscillator" error:_error_] firstXMLElement];
+    NSXMLElement *oscillatorElement = [[aRepresentation nodesForXPath:@"oscillator" error:aError] firstXMLElement];
     if( oscillatorElement ) {
-      [self setOscillator:[ELOscillator loadFromXml:oscillatorElement parent:self player:_player_ error:_error_]];
+      [self setOscillator:[ELOscillator loadFromXml:oscillatorElement parent:self player:aPlayer error:aError]];
     }
     
     // Mode is set last to ensure that parent/oscillator
     // are setup before attempting to switch mode
-    [self setMode:[_representation_ attributeAsInteger:@"mode" defaultValue:dialFree]];
+    [self setMode:[aRepresentation attributeAsInteger:@"mode" defaultValue:dialFree]];
     return self;
   } else {
     return nil;
@@ -346,24 +357,24 @@
 
 // NSMutableCopying protocol
 
-- (id)copyWithZone:(NSZone *)_zone_ {
-  return [self mutableCopyWithZone:_zone_];
+- (id)copyWithZone:(NSZone *)aZone {
+  return [self mutableCopyWithZone:aZone];
 }
 
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initWithMode:[self mode]
-                                                      name:[self name]
-                                                   toolTip:[self toolTip]
-                                                       tag:[self tag]
-                                                    parent:[self parent]
-                                                oscillator:[self oscillator]
-                                                  assigned:[self assigned]
-                                                      last:[self last]
-                                                     value:[self value]
-                                                       min:[self min]
-                                                       max:[self max]
-                                                      step:[self step]];
+- (id)mutableCopyWithZone:(NSZone *)aZone {
+  return [[[self class] allocWithZone:aZone] initWithMode:[self mode]
+                                                     name:[self name]
+                                                  toolTip:[self toolTip]
+                                                      tag:[self tag]
+                                                   parent:[self parent]
+                                               oscillator:[self oscillator]
+                                                 assigned:[self assigned]
+                                                     last:[self last]
+                                                    value:[self value]
+                                                      min:[self min]
+                                                      max:[self max]
+                                                     step:[self step]];
 }
 
 
@@ -371,20 +382,23 @@
   return mode == dialInherited;
 }
 
-- (void)setIsInherited:(BOOL)shouldInherit {
-  if( shouldInherit ) {
+
+- (void)setIsInherited:(BOOL)aInherit {
+  if( aInherit ) {
     [self setMode:dialInherited];
   } else {
     [self setMode:dialFree];
   }
 }
 
+
 - (BOOL)isDynamic {
   return mode == dialDynamic;
 }
 
-- (void)setIsDynamic:(BOOL)shouldBeDynamic {
-  if( shouldBeDynamic ) {
+
+- (void)setIsDynamic:(BOOL)aDynamic {
+  if( aDynamic ) {
     [self setMode:dialDynamic];
   } else {
     [self setMode:dialFree];
