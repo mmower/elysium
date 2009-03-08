@@ -94,8 +94,8 @@
 
 
 - (NSView *)wrapWithOverlayView:(NSView *)aView target:(NSString *)aTarget {
-  NSView *parent = [[NSView alloc] initWithFrame:[aView frame]];
-  ELInspectorOverlay *overlay = [[ELInspectorOverlay alloc] initWithFrame:[aView frame]];
+  NSView *parent = [[NSView alloc] initWithFrame:[tabView contentRect]];
+  ELInspectorOverlay *overlay = [[ELInspectorOverlay alloc] initWithFrame:[tabView contentRect]];
   
   [parent addSubview:aView];
   [parent addSubview:overlay positioned:NSWindowAbove relativeTo:aView];
