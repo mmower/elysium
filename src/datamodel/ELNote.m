@@ -32,11 +32,14 @@ static NSArray *alternateSequence = nil;
     for( int noteNum = 0; noteNum < 127; noteNum++ ) {
       NSString *noteName = [noteSequence objectAtIndex:(noteNum % 12)];
       NSString *altNoteName = [alternateSequence objectAtIndex:(noteNum % 12)];
-      int octave = floor( noteNum / 12 ) - 1;
+      int octaveNr = floor( noteNum / 12 ) - 1;
 
-      [noteToNoteNames setObject:[noteName stringByAppendingFormat:@"%d", octave]	forKey:[NSNumber numberWithInt:noteNum]];
-      [noteToAltNoteNames setObject:[altNoteName stringByAppendingFormat:@"%d", octave] forKey:[NSNumber numberWithInt:noteNum]];
-      [namesToNoteNums setObject:[NSNumber numberWithInt:noteNum] forKey:[noteName stringByAppendingFormat:@"%d", octave]];
+      [noteToNoteNames setObject:[noteName stringByAppendingFormat:@"%d", octaveNr]
+                          forKey:[NSNumber numberWithInt:noteNum]];
+      [noteToAltNoteNames setObject:[altNoteName stringByAppendingFormat:@"%d", octaveNr]
+                             forKey:[NSNumber numberWithInt:noteNum]];
+      [namesToNoteNums setObject:[NSNumber numberWithInt:noteNum]
+                          forKey:[noteName stringByAppendingFormat:@"%d", octaveNr]];
     }
   }
 }

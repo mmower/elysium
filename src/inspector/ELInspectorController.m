@@ -252,7 +252,6 @@
 #pragma mark NSTabView delegate implementation
 
 - (void)tabView:(NSTabView *)aTabView willSelectTabViewItem:(NSTabViewItem *)aTabViewItem {
-  NSLog( @"About to select: %@", aTabViewItem );
 }
 
 

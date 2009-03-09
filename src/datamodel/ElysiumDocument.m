@@ -75,7 +75,7 @@
 }
 
 - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)typeName {
-  NSError *error;
+  NSError *error = nil;
   BOOL result = [self readFromData:data ofType:typeName error:&error];
   
   if( error != nil ) {
