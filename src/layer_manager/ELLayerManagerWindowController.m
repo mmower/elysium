@@ -19,19 +19,22 @@
   return self;
 }
 
-- (void)windowDidLoad {
-  [[self window] setTitle:[NSString stringWithFormat:@"%@ - Layer Manager", [[self document] displayName]]];
-}
 
-- (void)tableViewSelectionDidChange:(NSNotification *)_notification_ {
-  int row = [[_notification_ object] selectedRow];
+// - (void)windowDidLoad {
+//   [[self window] setTitle:[NSString stringWithFormat:@"%@ - Layer Manager", [[self document] displayName]]];
+// }
+
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+  int row = [[notification object] selectedRow];
   if( row == -1 ) {
     return;
   }
 }
 
-- (NSString *)windowTitleForDocumentDisplayName:(NSString *)_displayName_ {
-  return [NSString stringWithFormat:@"%@ - Layer Manager", _displayName_];
-}
+
+// - (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName {
+//   return [NSString stringWithFormat:@"%@ - Layer Manager", displayName];
+// }
 
 @end

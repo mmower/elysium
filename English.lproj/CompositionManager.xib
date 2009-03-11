@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
+			<integer value="19"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -121,7 +121,7 @@
 						<object class="NSTextField" id="840680838">
 							<reference key="NSNextResponder" ref="413190838"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{64, 461}, {216, 19}}</string>
+							<string key="NSFrame">{{64, 466}, {216, 19}}</string>
 							<reference key="NSSuperview" ref="413190838"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="212330391">
@@ -151,7 +151,7 @@
 						<object class="NSTextField" id="417786849">
 							<reference key="NSNextResponder" ref="413190838"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{64, 407}, {216, 19}}</string>
+							<string key="NSFrame">{{64, 409}, {216, 19}}</string>
 							<reference key="NSSuperview" ref="413190838"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="291661992">
@@ -168,7 +168,7 @@
 						<object class="NSTextField" id="607539336">
 							<reference key="NSNextResponder" ref="413190838"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{64, 433}, {216, 19}}</string>
+							<string key="NSFrame">{{64, 436}, {216, 19}}</string>
 							<reference key="NSSuperview" ref="413190838"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="928965411">
@@ -523,16 +523,32 @@
 			<object class="NSMutableArray" key="connectionRecords">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: document.title</string>
-						<reference key="source" ref="840680838"/>
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">window</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="9884296"/>
+					</object>
+					<int key="connectionID">37</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="9884296"/>
 						<reference key="destination" ref="1001"/>
+					</object>
+					<int key="connectionID">38</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: mainWindow.document.title</string>
+						<reference key="source" ref="840680838"/>
+						<reference key="destination" ref="1004"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="840680838"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: document.title</string>
+							<reference key="NSDestination" ref="1004"/>
+							<string key="NSLabel">value: mainWindow.document.title</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">document.title</string>
+							<string key="NSKeyPath">mainWindow.document.title</string>
 							<object class="NSDictionary" key="NSOptions">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMutableArray" key="dict.sortedKeys">
@@ -549,19 +565,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">31</int>
+					<int key="connectionID">41</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: document.composerName</string>
+						<string key="label">value: mainWindow.document.composerName</string>
 						<reference key="source" ref="607539336"/>
-						<reference key="destination" ref="1001"/>
+						<reference key="destination" ref="1004"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="607539336"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: document.composerName</string>
+							<reference key="NSDestination" ref="1004"/>
+							<string key="NSLabel">value: mainWindow.document.composerName</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">document.composerName</string>
+							<string key="NSKeyPath">mainWindow.document.composerName</string>
 							<object class="NSDictionary" key="NSOptions">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMutableArray" key="dict.sortedKeys">
@@ -578,19 +594,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">32</int>
+					<int key="connectionID">43</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: document.composerEmail</string>
+						<string key="label">value: mainWindow.document.composerEmail</string>
 						<reference key="source" ref="417786849"/>
-						<reference key="destination" ref="1001"/>
+						<reference key="destination" ref="1004"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="417786849"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: document.composerEmail</string>
+							<reference key="NSDestination" ref="1004"/>
+							<string key="NSLabel">value: mainWindow.document.composerEmail</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">document.composerEmail</string>
+							<string key="NSKeyPath">mainWindow.document.composerEmail</string>
 							<object class="NSDictionary" key="NSOptions">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMutableArray" key="dict.sortedKeys">
@@ -607,43 +623,36 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">33</int>
+					<int key="connectionID">45</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: document.notes</string>
+						<string key="label">value: mainWindow.document.notes</string>
 						<reference key="source" ref="59707049"/>
-						<reference key="destination" ref="1001"/>
+						<reference key="destination" ref="1004"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="59707049"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: document.notes</string>
+							<reference key="NSDestination" ref="1004"/>
+							<string key="NSLabel">value: mainWindow.document.notes</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">document.notes</string>
+							<string key="NSKeyPath">mainWindow.document.notes</string>
 							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
-								<reference key="NS.object.0" ref="5"/>
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSContinuouslyUpdatesValue</string>
+									<string>NSNullPlaceholder</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<reference ref="5"/>
+									<string>A place for your project notes.</string>
+								</object>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">36</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">window</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="9884296"/>
-					</object>
-					<int key="connectionID">37</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="9884296"/>
-						<reference key="destination" ref="1001"/>
-					</object>
-					<int key="connectionID">38</int>
+					<int key="connectionID">47</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -692,9 +701,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="94367068"/>
 							<reference ref="448174152"/>
-							<reference ref="840680838"/>
 							<reference ref="922067925"/>
 							<reference ref="400988612"/>
+							<reference ref="840680838"/>
 							<reference ref="607539336"/>
 							<reference ref="417786849"/>
 						</object>
@@ -893,7 +902,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">38</int>
+			<int key="maxID">47</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

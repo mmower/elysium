@@ -20,13 +20,10 @@
 #import "ELPlayer.h"
 #import "ELHarmonicTable.h"
 #import "ElysiumController.h"
+
 #import "ELLayerWindowController.h"
 #import "ELLayerManagerWindowController.h"
-
-#import "ELCompositionManager.h"
-#import "ELInspectorController.h"
 #import "ELOscillatorDesignerController.h"
-#import "ELScriptPackageController.h"
 
 
 @implementation ElysiumDocument
@@ -48,19 +45,18 @@
 }
 
 - (void)makeWindowControllers {
-  [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument" owner:self]];
+  // [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument" owner:self]];
   
   for( ELLayer *layer in [player layers] ) {
     [self addWindowController:[[ELLayerWindowController alloc] initWithLayer:layer]];
   }
   
-  [self addWindowController:[[ELLayerManagerWindowController alloc] init]];
-  
   // Show the inspectors by default, and ensure something is selected from the right player/layer
-  [self showInspectorPanel:self];
+  [[NSApp delegate] showLayerManager:self];
+  [[NSApp delegate] showInspectorPanel:self];
   
   // Select a cell, any cell
-  [[player layer:0] hexCellSelected:[[player layer:0] cellAtColumn:8 row:6]];
+  // [[player layer:0] hexCellSelected:[[player layer:0] cellAtColumn:8 row:6]];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -312,45 +308,16 @@
   [[[player selectedLayer] selectedCell] clearTokens:_sender_];
 }
 
-
-- (IBAction)showInspectorPanel:(id)_sender_ {
-  if( !inspectorController ) {
-    inspectorController = [[ELInspectorController alloc] init];
-    [self addWindowController:inspectorController];
-  }
-  
-  [inspectorController showWindow:self];
-}
-
-
-- (IBAction)showCompositionManager:(id)sender {
-  if( !compositionManager ) {
-    compositionManager = [[ELCompositionManager alloc] init];
-    [self addWindowController:compositionManager];
-  }
-  
-  [compositionManager showWindow:self];
-}
-
-
-- (IBAction)showOscillatorDesigner:(id)_sender_ {
+- (IBAction)showOscillatorDesigner:(id)sender {
   if( !oscillatorDesignerController ) {
     oscillatorDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[self player]];
-    [self addWindowController:oscillatorDesignerController];
   }
   
-  [oscillatorDesignerController showWindow:self];
+  [oscillatorDesignerController showWindow:sender];
 }
 
 
-- (IBAction)showScriptPackageInspector:(id)_sender_ {
-  if( !scriptPackageController ) {
-    scriptPackageController = [[ELScriptPackageController alloc] initWithPlayer:[self player]];
-  }
-  
-  [scriptPackageController showWindow:self];
-}
-
+#pragma mark NSDocument implementation
 
 - (void)document:(NSDocument *)_document_ shouldClose:(BOOL)_shouldClose_ contextInfo:(void*)_contextInfo_ {
   if( _shouldClose_ ) {

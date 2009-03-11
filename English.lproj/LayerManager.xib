@@ -374,22 +374,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentArray: document.player.layers</string>
-						<reference key="source" ref="476763073"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="476763073"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">contentArray: document.player.layers</string>
-							<string key="NSBinding">contentArray</string>
-							<string key="NSKeyPath">document.player.layers</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">18</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">content: arrangedObjects</string>
 						<reference key="source" ref="243107628"/>
 						<reference key="destination" ref="476763073"/>
@@ -491,6 +475,42 @@
 						</object>
 					</object>
 					<int key="connectionID">47</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentArray: mainWindow.document.player.layers</string>
+						<reference key="source" ref="476763073"/>
+						<reference key="destination" ref="1004"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="476763073"/>
+							<reference key="NSDestination" ref="1004"/>
+							<string key="NSLabel">contentArray: mainWindow.document.player.layers</string>
+							<string key="NSBinding">contentArray</string>
+							<string key="NSKeyPath">mainWindow.document.player.layers</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">displayPatternTitle1: mainWindow.document.displayName</string>
+						<reference key="source" ref="611726784"/>
+						<reference key="destination" ref="1004"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="611726784"/>
+							<reference key="NSDestination" ref="1004"/>
+							<string key="NSLabel">displayPatternTitle1: mainWindow.document.displayName</string>
+							<string key="NSBinding">displayPatternTitle1</string>
+							<string key="NSKeyPath">mainWindow.document.displayName</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSDisplayPattern</string>
+								<string key="NS.object.0">Layers - %{title1}@</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">51</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -690,9 +710,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilderKit</string>
-					<string>{{117, 201}, {396, 190}}</string>
+					<string>{{117, 63}, {396, 190}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{117, 201}, {396, 190}}</string>
+					<string>{{117, 63}, {396, 190}}</string>
 					<integer value="1"/>
 					<string>{3.40282e+38, 3.40282e+38}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -732,7 +752,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">47</int>
+			<int key="maxID">51</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -757,6 +777,7 @@
 							<string>clearSelectedLayer:</string>
 							<string>closeDocument:</string>
 							<string>newLayer:</string>
+							<string>showOscillatorDesigner:</string>
 							<string>startStop:</string>
 							<string>toggleAbsorbToken:</string>
 							<string>toggleGeneratorToken:</string>
@@ -765,12 +786,15 @@
 							<string>toggleNoteToken:</string>
 							<string>toggleOctavesDisplay:</string>
 							<string>toggleReboundToken:</string>
+							<string>toggleSkipToken:</string>
 							<string>toggleSpinToken:</string>
 							<string>toggleSplitToken:</string>
 							<string>updateView:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

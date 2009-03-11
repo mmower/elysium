@@ -18,6 +18,10 @@
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
 
+#import "ELCompositionManager.h"
+#import "ELInspectorController.h"
+#import "ELScriptPackageController.h"
+#import "ELLayerManagerWindowController.h"
 
 NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
 
@@ -202,5 +206,42 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 - (IBAction)visitTwitterPage:(id)sender {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitter.com/elysiumapp"]];
 }
+
+
+- (IBAction)showInspectorPanel:(id)sender {
+  if( !inspectorController ) {
+    inspectorController = [[ELInspectorController alloc] init];
+  }
+  
+  [inspectorController showWindow:sender];
+}
+
+
+- (IBAction)showLayerManager:(id)sender {
+  if( !layerManager ) {
+    layerManager = [[ELLayerManagerWindowController alloc] init];
+  }
+  
+  [layerManager showWindow:sender];
+}
+
+
+- (IBAction)showCompositionManager:(id)sender {
+  if( !compositionManager ) {
+    compositionManager = [[ELCompositionManager alloc] init];
+  }
+  
+  [compositionManager showWindow:sender];
+}
+
+
+- (IBAction)showScriptPackageInspector:(id)sender {
+  if( !scriptPackageController ) {
+    scriptPackageController = [[ELScriptPackageController alloc] init];
+  }
+  
+  [scriptPackageController showWindow:sender];
+}
+
 
 @end

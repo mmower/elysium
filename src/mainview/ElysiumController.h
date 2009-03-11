@@ -14,9 +14,19 @@
 @class ELMIDIConfigController;
 @class ELPreferencesController;
 
+@class ELCompositionManager;
+@class ELInspectorController;
+@class ELLayerManagerWindowController;
+@class ELScriptPackageController;
+
 @interface ElysiumController : NSObject {
   ELMIDIConfigController          *midiConfigController;
   ELPreferencesController         *preferencesController;
+  
+  ELCompositionManager            *compositionManager;
+  ELInspectorController           *inspectorController;
+  ELLayerManagerWindowController  *layerManager;
+  ELScriptPackageController       *scriptPackageController;
 }
 
 - (BOOL)initScriptingEngine;
@@ -31,5 +41,9 @@
 - (IBAction)visitHomePage:(id)sender;
 - (IBAction)visitTwitterPage:(id)sender;
 
+- (IBAction)showCompositionManager:(id)sender;
+- (IBAction)showInspectorPanel:(id)sender;
+- (IBAction)showLayerManager:(id)sender;
+- (IBAction)showScriptPackageInspector:(id)sender;
 
 @end

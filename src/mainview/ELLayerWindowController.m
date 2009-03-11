@@ -39,6 +39,13 @@
 }
 
 
+// When a layer window becomes main, show it's gadgets and hide the
+// gadgets of all non-main windows
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+  
+}
+
+
 - (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName {
   return [NSString stringWithFormat:@"%@ - %@ (Channel %d)", displayName, [[self layer] layerId], [[[self layer] channelDial] value]];
 }

@@ -15,10 +15,7 @@
 @class ElysiumController;
 @class ELSurfaceView;
 
-@class ELCompositionManager;
-@class ELInspectorController;
 @class ELOscillatorDesignerController;
-@class ELScriptPackageController;
 
 @interface ElysiumDocument : NSDocument
 {
@@ -30,11 +27,7 @@
   NSString                        *title;
   NSString                        *notes;
   
-  ELCompositionManager            *compositionManager;
-  ELInspectorController           *inspectorController;
   ELOscillatorDesignerController  *oscillatorDesignerController;
-  ELScriptPackageController       *scriptPackageController;
-  
 }
 
 @property (readonly)  ELPlayer  *player;
@@ -67,9 +60,6 @@
 - (IBAction)toggleSkipToken:(id)sender;
 - (IBAction)clearCell:(id)sender;
 
-- (IBAction)showCompositionManager:(id)sender;
-- (IBAction)showInspectorPanel:(id)sender;
 - (IBAction)showOscillatorDesigner:(id)sender;
-- (IBAction)showScriptPackageInspector:(id)sender;
 
 @end

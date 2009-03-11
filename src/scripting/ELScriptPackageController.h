@@ -9,14 +9,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ELPlayer;
-
 @interface ELScriptPackageController : NSWindowController {
-  ELPlayer *player;
 }
-
-- (id)initWithPlayer:(ELPlayer *)player;
-
-@property (assign) ELPlayer *player;
 
 @end

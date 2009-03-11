@@ -68,11 +68,8 @@
 
 @synthesize title;
 
-- (void)windowDidLoad {
-  [panel setFloatingPanel:YES];
-  // [panel setBecomesKeyOnlyIfNeeded:YES];
-}
 
+#pragma mark NSNibAwakening protocol
 
 - (void)awakeFromNib {
   //[self wrapWithOverlayView:[skipViewController view] target:@"cell.tokens.skip"]
@@ -91,6 +88,17 @@
                                                name:ELNotifyObjectSelectionDidChange
                                              object:nil];
 }
+
+
+#pragma mark NSWindowController
+
+- (void)windowDidLoad {
+  [panel setFloatingPanel:YES];
+  // [panel setBecomesKeyOnlyIfNeeded:YES];
+}
+
+
+#pragma mark Inspector implementation
 
 
 - (NSView *)wrapWithOverlayView:(NSView *)aView target:(NSString *)aTarget {
