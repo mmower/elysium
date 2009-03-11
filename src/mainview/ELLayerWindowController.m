@@ -13,38 +13,52 @@
 
 @implementation ELLayerWindowController
 
-- (id)initWithLayer:(ELLayer *)_layer_ {
+- (id)initWithLayer:(ELLayer *)layer {
   if( ( self = [self initWithWindowNibName:@"LayerWindow"] ) ) {
-    layer = _layer_;
+    [self setShouldCloseDocument:YES];
+    [self setLayer:layer];
   }
   
   return self;
 }
+
+@synthesize mLayer;
+
+
+#pragma mark NSWindowController overrides
 
 - (void)windowDidLoad {
   // This is required because the HoneycombView doesn't resize very nicely right now
   [[self window] setAspectRatio:NSMakeSize(1.12,1.0)];
   
   [layerView setDelegate:self];
-  [layerView setDataSource:layer];
-  [layer setDelegate:layerView];
-  [layer addObserver:self forKeyPath:@"channelDial.value" options:0 context:nil];
-  [layer addObserver:self forKeyPath:@"layerId" options:0 context:nil];
+  [layerView setDataSource:[self layer]];
+  [[self layer] setDelegate:layerView];
+  [[self layer] addObserver:self forKeyPath:@"channelDial.value" options:0 context:nil];
+  [[self layer] addObserver:self forKeyPath:@"layerId" options:0 context:nil];
 }
 
-- (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(id)_context_ {
-  if( _object_ == layer && ( [_keyPath_ isEqualToString:@"channelDial.value"] || [_keyPath_ isEqualToString:@"layerId"] ) ) {
+
+- (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName {
+  return [NSString stringWithFormat:@"%@ - %@ (Channel %d)", displayName, [[self layer] layerId], [[[self layer] channelDial] value]];
+}
+
+
+#pragma mark NSKeyValueObserving protocol
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(id)context {
+  if( object == [self layer] && ( [keyPath isEqualToString:@"channelDial.value"] || [keyPath isEqualToString:@"layerId"] ) ) {
     [self updateWindowTitle];
   }
 }
 
-- (NSString *)windowTitleForDocumentDisplayName:(NSString *)_displayName_ {
-  return [NSString stringWithFormat:@"%@ - %@ (Channel %d)", _displayName_, [layer layerId], [[layer channelDial] value]];
-}
+
+#pragma mark Layer Window Control
 
 - (void)updateWindowTitle {
   [[self window] setTitle:[self windowTitleForDocumentDisplayName:[[self document] displayName]]];
 }
+
 
 - (void)updateView {
   [layerView setNeedsDisplay:YES];

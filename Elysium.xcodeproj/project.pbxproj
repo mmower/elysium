@@ -27,6 +27,8 @@
 		C91600A70E98FF3C0052DB9F /* triad4.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A30E98FF3C0052DB9F /* triad4.tif */; };
 		C91600A80E98FF3C0052DB9F /* triad5.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A40E98FF3C0052DB9F /* triad5.tif */; };
 		C91600A90E98FF3C0052DB9F /* triad6.tif in Resources */ = {isa = PBXBuildFile; fileRef = C91600A50E98FF3C0052DB9F /* triad6.tif */; };
+		C91D60EA0F67184E002A1A11 /* ELCompositionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D60E90F67184E002A1A11 /* ELCompositionManager.m */; };
+		C91D60EF0F67191B002A1A11 /* CompositionManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91D60ED0F67191B002A1A11 /* CompositionManager.xib */; };
 		C92EDDB60E353EDD00017DFE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EDDB50E353EDD00017DFE /* CoreAudio.framework */; };
 		C930CA000EBBC3A000DE0817 /* Elysium.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = C930C9FF0EBBC3A000DE0817 /* Elysium.bridgesupport */; };
 		C930CA190EBBD54300DE0817 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = C930CA180EBBD54300DE0817 /* NoodleLineNumberView.m */; };
@@ -191,6 +193,9 @@
 		C91600A30E98FF3C0052DB9F /* triad4.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad4.tif; sourceTree = "<group>"; };
 		C91600A40E98FF3C0052DB9F /* triad5.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad5.tif; sourceTree = "<group>"; };
 		C91600A50E98FF3C0052DB9F /* triad6.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = triad6.tif; sourceTree = "<group>"; };
+		C91D60E80F67184E002A1A11 /* ELCompositionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCompositionManager.h; sourceTree = "<group>"; };
+		C91D60E90F67184E002A1A11 /* ELCompositionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCompositionManager.m; sourceTree = "<group>"; };
+		C91D60EE0F67191B002A1A11 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CompositionManager.xib; sourceTree = "<group>"; };
 		C92EDDB50E353EDD00017DFE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		C930C9FF0EBBC3A000DE0817 /* Elysium.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Elysium.bridgesupport; sourceTree = "<group>"; };
 		C930CA170EBBD54300DE0817 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
@@ -443,6 +448,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C91D60ED0F67191B002A1A11 /* CompositionManager.xib */,
 				C90410640F268AB9009CD2B9 /* PreferencesWindow.xib */,
 				C97871380F1FF76B00C4160A /* output */,
 				C9F450640EBDD1BF002C3637 /* ScriptPackageInspector.xib */,
@@ -482,6 +488,16 @@
 			path = src/preferences;
 			sourceTree = "<group>";
 		};
+		C91D60E70F67183F002A1A11 /* composition_manager */ = {
+			isa = PBXGroup;
+			children = (
+				C91D60E80F67184E002A1A11 /* ELCompositionManager.h */,
+				C91D60E90F67184E002A1A11 /* ELCompositionManager.m */,
+			);
+			name = composition_manager;
+			path = src/composition_manager;
+			sourceTree = "<group>";
+		};
 		C930CA150EBBD4F800DE0817 /* line_number_view */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,6 +513,7 @@
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C91D60E70F67183F002A1A11 /* composition_manager */,
 				C9BC51B30F346FF300317049 /* controls */,
 				C90410430F266057009CD2B9 /* preferences */,
 				C930CA150EBBD4F800DE0817 /* line_number_view */,
@@ -856,6 +873,7 @@
 				C94BAFA00F42352100F1A0F8 /* dial_dynamic.tif in Resources */,
 				C94BAFAA0F4237BD00F1A0F8 /* dial_inherited.tif in Resources */,
 				C9F233840F536D5500F036AD /* ELSkipInspectorPane.xib in Resources */,
+				C91D60EF0F67191B002A1A11 /* CompositionManager.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -953,6 +971,7 @@
 				C9F233870F536D6800F036AD /* ELSkipInspectorViewController.m in Sources */,
 				C9E0A3420F62FA8A00F13A08 /* ELRampOscillator.m in Sources */,
 				C9E0A3A70F64721F00F13A08 /* ELInspectorOverlay.m in Sources */,
+				C91D60EA0F67184E002A1A11 /* ELCompositionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -997,6 +1016,14 @@
 				C90410650F268AB9009CD2B9 /* English */,
 			);
 			name = PreferencesWindow.xib;
+			sourceTree = "<group>";
+		};
+		C91D60ED0F67191B002A1A11 /* CompositionManager.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C91D60EE0F67191B002A1A11 /* English */,
+			);
+			name = CompositionManager.xib;
 			sourceTree = "<group>";
 		};
 		C9A9F1610E8A41DC009A06A3 /* OscillatorDesigner.xib */ = {

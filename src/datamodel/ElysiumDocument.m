@@ -23,18 +23,31 @@
 #import "ELLayerWindowController.h"
 #import "ELLayerManagerWindowController.h"
 
-// #import "ELGenerateToken.h"
-// #import "ELNoteToken.h"
+#import "ELCompositionManager.h"
+#import "ELInspectorController.h"
+#import "ELOscillatorDesignerController.h"
+#import "ELScriptPackageController.h"
+
 
 @implementation ElysiumDocument
 
 @synthesize player;
+@synthesize composerName;
+@synthesize composerEmail;
+@synthesize title;
+@synthesize notes;
 
-- (void)makeWindowControllers {
-  if( !player ) {
+- (id)init {
+  if( ( self = [super init] ) ) {
     player = [[ELPlayer alloc] initWithDocument:self createDefaultLayer:YES];
+    [self setComposerName:[[NSUserDefaults standardUserDefaults] stringForKey:ELComposerNameKey]];
+    [self setComposerEmail:[[NSUserDefaults standardUserDefaults] stringForKey:ELComposerEmailKey]];
   }
   
+  return self;
+}
+
+- (void)makeWindowControllers {
   [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument" owner:self]];
   
   for( ELLayer *layer in [player layers] ) {
@@ -44,8 +57,7 @@
   [self addWindowController:[[ELLayerManagerWindowController alloc] init]];
   
   // Show the inspectors by default, and ensure something is selected from the right player/layer
-  [[NSApp delegate] showInspectorPanel:self];
-  [[NSApp delegate] showMIDIConfigInspector:self];
+  [self showInspectorPanel:self];
   
   // Select a cell, any cell
   [[player layer:0] hexCellSelected:[[player layer:0] cellAtColumn:8 row:6]];
@@ -59,19 +71,36 @@
   [attributes setObject:[NSNumber numberWithInt:CURRENT_DOCUMENT_VERSION] forKey:@"version"];
   [rootElement setAttributesAsDictionary:attributes];
   
-  NSXMLDocument *document = [[NSXMLDocument alloc] initWithRootElement:rootElement];
-  [document setVersion:@"1.0"];
-  [document setCharacterEncoding:@"UTF-8"];
+  NSXMLElement *infoElement = [NSXMLNode elementWithName:@"info"];
+  
+  NSXMLElement *composerElement = [NSXMLNode elementWithName:@"composer"];
+  [attributes removeAllObjects];
+  [attributes setObject:[self composerName] forKey:@"name"];
+  [attributes setObject:[self composerEmail] forKey:@"email"];
+  [composerElement setAttributesAsDictionary:attributes];
+  [infoElement addChild:composerElement];
+  
+  NSXMLElement *titleElement = [NSXMLNode elementWithName:@"title"];
+  [titleElement setStringValue:[self title]];
+  [infoElement addChild:titleElement];
+  
+  NSXMLElement *notesElement = [NSXMLNode elementWithName:@"notes"];
+  [notesElement setStringValue:[self notes]];
+  [infoElement addChild:notesElement];
+  
+  [rootElement addChild:infoElement];
   
   NSXMLElement *playerElement = [player xmlRepresentation];
-  if( playerElement ) {
-    [rootElement addChild:playerElement];
-    NSData *xml = [document XMLDataWithOptions:NSXMLNodePrettyPrint|NSXMLNodeCompactEmptyElement];
-    return xml;
-  } else {
+  if( !playerElement ) {
     *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
     return nil;
   }
+  [rootElement addChild:playerElement];
+  
+  NSXMLDocument *document = [[NSXMLDocument alloc] initWithRootElement:rootElement];
+  [document setVersion:@"1.0"];
+  [document setCharacterEncoding:@"UTF-8"];
+  return [document XMLDataWithOptions:NSXMLNodePrettyPrint|NSXMLNodeCompactEmptyElement];
 }
 
 - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)typeName {
@@ -102,7 +131,7 @@
     return NO;
   }
   
-  int docVersion = [[[rootElement attributeForName:@"version"] stringValue] intValue];
+  int docVersion = [rootElement attributeAsInteger:@"version" defaultValue:-1];
   if( docVersion < CURRENT_DOCUMENT_VERSION ) {
     NSLog( @"Wrong document version." );
     *outError = [[NSError alloc] initWithDomain:ELErrorDomain
@@ -111,17 +140,37 @@
     return NO;
   }
   
-  NSArray *nodes = [rootElement nodesForXPath:@"surface" error:nil];
-  NSXMLElement *surfaceElement = (NSXMLElement *)[nodes objectAtIndex:0];
-  if( ( player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil error:outError] ) ) {
-    [player setDocument:self];
-    return YES;
-  } else {
+  NSXMLElement *titleElement = [[rootElement nodesForXPath:@"info/title" error:outError] firstXMLElement];
+  if( titleElement ) {
+    [self setTitle:[titleElement stringValue]];
+  }
+  
+  NSXMLElement *notesElement = [[rootElement nodesForXPath:@"info/notes" error:outError] firstXMLElement];
+  if( notesElement ) {
+    [self setNotes:[notesElement stringValue]];
+  }
+  
+  NSXMLElement *composerElement = [[rootElement nodesForXPath:@"info/composer" error:outError] firstXMLElement];
+  if( composerElement ) {
+    [self setComposerName:[composerElement attributeAsString:@"name"]];
+    [self setComposerEmail:[composerElement attributeAsString:@"email"]];
+  }
+  
+  NSXMLElement *surfaceElement = [[rootElement nodesForXPath:@"surface" error:nil] firstXMLElement];
+  if( surfaceElement ) {
+    player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil error:outError];
+  }
+  
+  if( !surfaceElement || !player ) {
     *outError = [[NSError alloc] initWithDomain:ELErrorDomain
                                            code:EL_ERR_DOCUMENT_LOAD_FAILURE
                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cannot load document, reason unknown.", NSLocalizedDescriptionKey, nil]];
     return NO;
   }
+  
+  [player setDocument:self];
+  
+  return YES;
 }
 
 - (ElysiumController *)appController {
@@ -262,6 +311,46 @@
 - (IBAction)clearCell:(id)_sender_ {
   [[[player selectedLayer] selectedCell] clearTokens:_sender_];
 }
+
+
+- (IBAction)showInspectorPanel:(id)_sender_ {
+  if( !inspectorController ) {
+    inspectorController = [[ELInspectorController alloc] init];
+    [self addWindowController:inspectorController];
+  }
+  
+  [inspectorController showWindow:self];
+}
+
+
+- (IBAction)showCompositionManager:(id)sender {
+  if( !compositionManager ) {
+    compositionManager = [[ELCompositionManager alloc] init];
+    [self addWindowController:compositionManager];
+  }
+  
+  [compositionManager showWindow:self];
+}
+
+
+- (IBAction)showOscillatorDesigner:(id)_sender_ {
+  if( !oscillatorDesignerController ) {
+    oscillatorDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[self player]];
+    [self addWindowController:oscillatorDesignerController];
+  }
+  
+  [oscillatorDesignerController showWindow:self];
+}
+
+
+- (IBAction)showScriptPackageInspector:(id)_sender_ {
+  if( !scriptPackageController ) {
+    scriptPackageController = [[ELScriptPackageController alloc] initWithPlayer:[self player]];
+  }
+  
+  [scriptPackageController showWindow:self];
+}
+
 
 - (void)document:(NSDocument *)_document_ shouldClose:(BOOL)_shouldClose_ contextInfo:(void*)_contextInfo_ {
   if( _shouldClose_ ) {

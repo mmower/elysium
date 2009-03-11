@@ -16,8 +16,10 @@
   IBOutlet  ELSurfaceView     *layerView;
   IBOutlet  NSSlider          *transposeSlider;
   
-  ELLayer                     *layer;
+  ELLayer                     *mLayer;
 }
+
+@property (assign,getter=layer,setter=setLayer:) ELLayer *mLayer;
 
 - (id)initWithLayer:(ELLayer *)layer;
 

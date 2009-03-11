@@ -12,15 +12,12 @@
 #import "ElysiumController.h"
 
 #import "ELMIDIController.h"
-
-#import "ELInspectorController.h"
-#import "ELOscillatorDesignerController.h"
 #import "ELMIDIConfigController.h"
-#import "ELScriptPackageController.h"
 #import "ELPreferencesController.h"
 
 #import "ElysiumDocument.h"
 #import "ELLayer.h"
+
 
 NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
 
@@ -29,6 +26,7 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 
 NSString * const ELNotifyPlayerShouldStart = @"elysium.playerShouldStart";
 NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
+
 
 @implementation ElysiumController
 
@@ -167,21 +165,14 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 // Actions
 
-- (IBAction)showOscillatorDesigner:(id)_sender_ {
-  if( !oscillatorDesignerController ) {
-    oscillatorDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[self activePlayer]];
+- (IBAction)showPreferences:(id)_sender_ {
+  if( !preferencesController ) {
+    preferencesController = [[ELPreferencesController alloc] init];
   }
   
-  [oscillatorDesignerController showWindow:self];
+  [preferencesController showWindow:self];
 }
 
-- (IBAction)showInspectorPanel:(id)_sender_ {
-  if( !inspectorController ) {
-    inspectorController = [[ELInspectorController alloc] init];
-  }
-  
-  [inspectorController showWindow:self];
-}
 
 - (IBAction)showMIDIConfigInspector:(id)_sender_ {
   if( !midiConfigController ) {
@@ -191,41 +182,25 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   [midiConfigController showWindow:self];
 }
 
-- (IBAction)showScriptPackageInspector:(id)_sender_ {
-  if( !scriptPackageController ) {
-    scriptPackageController = [[ELScriptPackageController alloc] initWithPlayer:[self activePlayer]];
-  }
-  
-  [scriptPackageController showWindow:self];
+
+- (IBAction)showHelp:(id)_sender_ {
+  NSString *helpPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"output"];
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@", helpPath]]];
 }
+
 
 - (IBAction)visitSupportPage:(id)sender {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getsatisfaction.com/lucidmac/products/lucidmac_elysium"]];
 }
 
+
 - (IBAction)visitHomePage:(id)sender {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://lucidmac.com/products/elysium"]];
 }
 
+
 - (IBAction)visitTwitterPage:(id)sender {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitter.com/elysiumapp"]];
-}
-
-- (IBAction)showPreferences:(id)_sender_ {
-  if( !preferencesController ) {
-    preferencesController = [[ELPreferencesController alloc] init];
-  }
-  
-  [preferencesController showWindow:self];
-}
-
-- (IBAction)showHelp:(id)_sender_ {
-  NSString *helpPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"output"];
-  NSLog( @"path = %@", helpPath );
-  NSString *helpURL = [NSString stringWithFormat:@"file://%@", helpPath];
-  NSLog( @"url = %@", helpURL );
-  
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:helpURL]];
 }
 
 @end

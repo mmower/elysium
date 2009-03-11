@@ -9,19 +9,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ELInspectorController;
-@class ELOscillatorDesignerController;
-@class ELMIDIConfigController;
-@class ELScriptPackageController;
-@class ELPreferencesController;
-
 @class ELPlayer;
 
+@class ELMIDIConfigController;
+@class ELPreferencesController;
+
 @interface ElysiumController : NSObject {
-  ELInspectorController           *inspectorController;
-  ELOscillatorDesignerController  *oscillatorDesignerController;
   ELMIDIConfigController          *midiConfigController;
-  ELScriptPackageController       *scriptPackageController;
   ELPreferencesController         *preferencesController;
 }
 
@@ -29,13 +23,10 @@
 
 - (ELPlayer *)activePlayer;
 
-- (IBAction)showOscillatorDesigner:(id)sender;
-- (IBAction)showInspectorPanel:(id)sender;
 - (IBAction)showMIDIConfigInspector:(id)sender;
-- (IBAction)showScriptPackageInspector:(id)sender;
 - (IBAction)showPreferences:(id)sender;
-- (IBAction)showHelp:(id)sender;
 
+- (IBAction)showHelp:(id)sender;
 - (IBAction)visitSupportPage:(id)sender;
 - (IBAction)visitHomePage:(id)sender;
 - (IBAction)visitTwitterPage:(id)sender;
