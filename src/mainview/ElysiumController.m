@@ -34,6 +34,8 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 @implementation ElysiumController
 
+#pragma mark Initializers
+
 + (void)initialize {
   NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
   
@@ -104,6 +106,7 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   [[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 }
 
+
 - (id)init {
   srandomdev();
   
@@ -113,6 +116,14 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   return self;
 }
 
+
+#pragma mark Properties
+
+@synthesize inspectorController;
+
+
+#pragma mark NSNibAwakening protocol
+
 - (void)awakeFromNib {
   [ELMIDIController sharedInstance];
   if( ![self initScriptingEngine] ) {
@@ -120,7 +131,8 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   }
 }
 
-// NSApp delegate methods
+
+#pragma mark NSApp delegates
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)_sender_ {
   return [[NSUserDefaults standardUserDefaults] integerForKey:ELBehaviourAtOpenKey] == EL_OPEN_EMPTY;
@@ -214,6 +226,18 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   }
   
   [inspectorController showWindow:sender];
+}
+
+
+- (IBAction)inspectPlayer:(id)sender {
+  [self showInspectorPanel:sender];
+  [inspectorController inspect:@"player"];
+}
+
+
+- (IBAction)inspectLayer:(id)sender {
+  [self showInspectorPanel:sender];
+  [inspectorController inspect:@"layer"];
 }
 
 

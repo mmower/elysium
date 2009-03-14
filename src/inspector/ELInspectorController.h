@@ -59,6 +59,8 @@
 
 - (IBAction)selectTab:(id)sender;
 
+- (void)inspect:(NSString *)identifier;
+
 - (void)selectionChanged:(NSNotification *)notification;
 - (void)playerSelected:(ELPlayer *)player;
 - (void)layerSelected:(ELLayer *)layer;

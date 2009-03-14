@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="596"/>
+			<integer value="296"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1291,6 +1291,32 @@
 									<reference key="NSOnImage" ref="1033313550"/>
 									<reference key="NSMixedImage" ref="310636482"/>
 								</object>
+								<object class="NSMenuItem" id="961600946">
+									<reference key="NSMenu" ref="466310130"/>
+									<string key="NSTitle">Inspect Player</string>
+									<string key="NSKeyEquiv">p</string>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="1033313550"/>
+									<reference key="NSMixedImage" ref="310636482"/>
+								</object>
+								<object class="NSMenuItem" id="523635486">
+									<reference key="NSMenu" ref="466310130"/>
+									<string key="NSTitle">Inspect Layer</string>
+									<string key="NSKeyEquiv">l</string>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="1033313550"/>
+									<reference key="NSMixedImage" ref="310636482"/>
+								</object>
+								<object class="NSMenuItem" id="1016241572">
+									<reference key="NSMenu" ref="466310130"/>
+									<bool key="NSIsDisabled">YES</bool>
+									<bool key="NSIsSeparator">YES</bool>
+									<string key="NSTitle"/>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="1033313550"/>
+									<reference key="NSMixedImage" ref="310636482"/>
+								</object>
 								<object class="NSMenuItem" id="102151532">
 									<reference key="NSMenu" ref="466310130"/>
 									<string key="NSTitle">Show Toolbar</string>
@@ -2192,6 +2218,22 @@
 					</object>
 					<int key="connectionID">597</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">inspectPlayer:</string>
+						<reference key="source" ref="1014"/>
+						<reference key="destination" ref="961600946"/>
+					</object>
+					<int key="connectionID">601</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">inspectLayer:</string>
+						<reference key="source" ref="1014"/>
+						<reference key="destination" ref="523635486"/>
+					</object>
+					<int key="connectionID">602</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2696,6 +2738,9 @@
 							<reference ref="1062603378"/>
 							<reference ref="429369712"/>
 							<reference ref="35329945"/>
+							<reference ref="961600946"/>
+							<reference ref="523635486"/>
+							<reference ref="1016241572"/>
 						</object>
 						<reference key="parent" ref="586577488"/>
 					</object>
@@ -3324,6 +3369,21 @@
 						<reference key="object" ref="35329945"/>
 						<reference key="parent" ref="466310130"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">598</int>
+						<reference key="object" ref="961600946"/>
+						<reference key="parent" ref="466310130"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">599</int>
+						<reference key="object" ref="523635486"/>
+						<reference key="parent" ref="466310130"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">600</int>
+						<reference key="object" ref="1016241572"/>
+						<reference key="parent" ref="466310130"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -3568,6 +3628,9 @@
 					<string>591.IBPluginDependency</string>
 					<string>592.IBPluginDependency</string>
 					<string>596.IBPluginDependency</string>
+					<string>598.IBPluginDependency</string>
+					<string>599.IBPluginDependency</string>
+					<string>600.IBPluginDependency</string>
 					<string>72.IBPluginDependency</string>
 					<string>72.ImportedFromIB2</string>
 					<string>73.IBPluginDependency</string>
@@ -3716,7 +3779,7 @@
 					<string>{74, 862}</string>
 					<string>{{11, 977}, {478, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{783, 825}, {238, 153}}</string>
+					<string>{{783, 775}, {238, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{475, 832}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3836,6 +3899,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
@@ -3883,7 +3949,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">597</int>
+			<int key="maxID">602</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3928,11 +3994,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>inspectLayer:</string>
+							<string>inspectPlayer:</string>
 							<string>showCompositionManager:</string>
 							<string>showHelp:</string>
 							<string>showInspectorPanel:</string>
+							<string>showLayerManager:</string>
 							<string>showMIDIConfigInspector:</string>
-							<string>showOscillatorDesigner:</string>
 							<string>showPreferences:</string>
 							<string>showScriptPackageInspector:</string>
 							<string>visitHomePage:</string>
@@ -3941,6 +4009,8 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -3970,6 +4040,7 @@
 							<string>clearSelectedLayer:</string>
 							<string>closeDocument:</string>
 							<string>newLayer:</string>
+							<string>showOscillatorDesigner:</string>
 							<string>startStop:</string>
 							<string>toggleAbsorbToken:</string>
 							<string>toggleGeneratorToken:</string>
@@ -3985,6 +4056,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

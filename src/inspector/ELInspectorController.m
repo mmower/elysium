@@ -87,6 +87,8 @@
                                            selector:@selector(selectionChanged:)
                                                name:ELNotifyObjectSelectionDidChange
                                              object:nil];
+  
+  
 }
 
 
@@ -117,6 +119,15 @@
 }
 
 
+- (void)inspect:(NSString *)identifier {
+  int index = [tabView indexOfTabViewItemWithIdentifier:identifier];
+  if( index != NSNotFound ) {
+    [tabView selectTabViewItemAtIndex:index];
+    [modeView setSelectedSegment:index];
+  }
+}
+
+
 - (void)selectionChanged:(NSNotification *)notification {
   if( [[notification object] isKindOfClass:[ELPlayer class]] ) {
     [self playerSelected:[notification object]];
@@ -125,6 +136,8 @@
   } else if( [[notification object] isKindOfClass:[ELCell class]] ) {
     [self cellSelected:[notification object]];
   }
+  
+  [self tabView:tabView willSelectTabViewItem:[tabView tabViewItemAtIndex:0]];
 }
 
 
@@ -157,8 +170,8 @@
 
 - (IBAction)selectTab:(id)sender {
   int tab = [sender selectedSegment];
-  
-  [self setTitle:[[tabView tabViewItemAtIndex:tab] label]];
+  // 
+  // [self setTitle:[[tabView tabViewItemAtIndex:tab] label]];
   [tabView selectTabViewItemAtIndex:tab];
 }
 
@@ -260,6 +273,14 @@
 #pragma mark NSTabView delegate implementation
 
 - (void)tabView:(NSTabView *)aTabView willSelectTabViewItem:(NSTabViewItem *)aTabViewItem {
+  NSDocument *document = [[[NSApp mainWindow] windowController] document];
+  NSString *target = [aTabViewItem label];
+  
+  if( document ) {
+    [self setTitle:[NSString stringWithFormat:@"%@ - Inspect %@", [document displayName], target]];
+  } else {
+    [self setTitle:[NSString stringWithFormat:@"Inspect %@", target]];
+  }
 }
 
 

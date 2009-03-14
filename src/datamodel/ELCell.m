@@ -21,6 +21,7 @@
 #import "ELNoteGroup.h"
 #import "ELHarmonicTable.h"
 #import "ELSurfaceView.h"
+#import "ElysiumController.h"
 
 #import "ELToken.h"
 #import "ELGenerateToken.h"
@@ -363,9 +364,9 @@
 - (IBAction)toggleGenerateToken:(id)_sender_ {
   if( [self generateToken] ) {
     [self setGenerateToken:nil];
-    // [self makeCurrentSelection];
   } else {
     [self setGenerateToken:[[ELGenerateToken alloc] init]];
+    [[[NSApp delegate] inspectorController] inspect:@"generate"];
   }
   [self makeCurrentSelection];
 }
@@ -375,6 +376,7 @@
     [self setNoteToken:nil];
   } else {
     [self setNoteToken:[[ELNoteToken alloc] init]];
+    [[[NSApp delegate] inspectorController] inspect:@"note"];
   }
   [self makeCurrentSelection];
 }
@@ -384,6 +386,7 @@
     [self setReboundToken:nil];
   } else {
     [self setReboundToken:[[ELReboundToken alloc] init]];
+    [[[NSApp delegate] inspectorController] inspect:@"rebound"];
   }
   [self makeCurrentSelection];
 }
@@ -393,6 +396,7 @@
     [self setAbsorbToken:nil];
   } else {
     [self setAbsorbToken:[[ELAbsorbToken alloc] init]];
+    [[[NSApp delegate] inspectorController] inspect:@"absorb"];
   }
   [self makeCurrentSelection];
 }
@@ -402,6 +406,7 @@
     [self setSplitToken:nil];
   } else {
     [self setSplitToken:[[ELSplitToken alloc] init]];
+    [[[NSApp delegate] inspectorController] inspect:@"split"];
   }
   [self makeCurrentSelection];
 }
@@ -411,6 +416,7 @@
     [self setSpinToken:nil];
   } else {
     [self setSpinToken:[[ELSpinToken alloc] init]];
+    [[[NSApp delegate] inspectorController] inspect:@"spin"];
   }
   [self makeCurrentSelection];
 }
@@ -420,6 +426,7 @@
     [self setSkipToken:nil];
   } else {
     [self setSkipToken:[[ELSkipToken alloc] init]];
+    [[[NSApp delegate] inspectorController] inspect:@"skip"];
   }
   [self makeCurrentSelection];
 }

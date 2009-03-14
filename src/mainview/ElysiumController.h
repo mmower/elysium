@@ -29,6 +29,8 @@
   ELScriptPackageController       *scriptPackageController;
 }
 
+@property (readonly) ELInspectorController *inspectorController;
+
 - (BOOL)initScriptingEngine;
 
 - (ELPlayer *)activePlayer;
@@ -45,5 +47,8 @@
 - (IBAction)showInspectorPanel:(id)sender;
 - (IBAction)showLayerManager:(id)sender;
 - (IBAction)showScriptPackageInspector:(id)sender;
+
+- (IBAction)inspectPlayer:(id)sender;
+- (IBAction)inspectLayer:(id)sender;
 
 @end
