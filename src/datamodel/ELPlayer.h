@@ -39,6 +39,8 @@
   BOOL                showKey;
   BOOL                performanceMode;
   
+  BOOL                mDirty;
+  
   NSString            *scriptingTag;
   NSMutableDictionary *scripts;
   NSMutableArray      *triggers;        // ELMIDITrigger objects
@@ -67,6 +69,7 @@
 @property             BOOL                showOctaves;
 @property             BOOL                showKey;
 @property             BOOL                performanceMode;
+@property (getter=dirty,setter=setDirty:) BOOL mDirty;
 
 @property             ELLayer             *selectedLayer;
 

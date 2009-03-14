@@ -32,6 +32,13 @@
 #import "ELSpinToken.h"
 #import "ELSkipToken.h"
 
+@interface ELCell (PrivateMethods)
+
+- (void)setGenerateTokenWithUndo:(ELGenerateToken *)generateToken;
+- (void)setNoteTokenWithUndo:(ELNoteToken *)noteToken;
+
+@end
+
 @implementation ELCell
 
 - (id)initWithLayer:(ELLayer *)_layer_ note:(ELNote *)_note_ column:(int)_col_ row:(int)_row_ {
@@ -41,6 +48,7 @@
     tokens       = [[NSMutableDictionary alloc] init];
     playheads    = [[NSMutableArray alloc] init];
     scriptingTag = [NSString stringWithFormat:@"cell%d:%d",_col_,_row_];
+    mDirty       = NO;
     
     [self connectNeighbour:nil direction:N];
     [self connectNeighbour:nil direction:NE];
@@ -53,99 +61,193 @@
   return self;
 }
 
-// Properties
+
+#pragma mark Properties
 
 @synthesize layer;
 @synthesize note;
 @synthesize scriptingTag;
-
 @synthesize tokens;
 
-@dynamic generateToken;
+@synthesize mDirty;
 
-- (ELGenerateToken *)generateToken {
-  return generateToken;
+- (void)setDirty:(BOOL)dirty {
+  mDirty = dirty;
+  if( mDirty ) {
+    [layer setDirty:YES];
+  }
 }
+
+
+@synthesize generateToken;
 
 - (void)setGenerateToken:(ELGenerateToken *)_generateToken_ {
   [self removeToken:generateToken];
   generateToken = _generateToken_;
   [self addToken:generateToken];
+  [self makeCurrentSelection];
 }
 
-@dynamic noteToken;
 
-- (ELNoteToken *)noteToken {
-  return noteToken;
+- (void)setGenerateTokenWithUndo:(ELGenerateToken *)_generateToken_ {
+  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setGenerateTokenWithUndo:generateToken];
+  if( ![undoManager isUndoing] ) {
+    if( _generateToken_ ) {
+      [undoManager setActionName:@"add generate"];
+    } else {
+      [undoManager setActionName:@"remove generate"];
+    }
+  }
+  [self setGenerateToken:_generateToken_];
 }
+
+
+@synthesize noteToken;
 
 - (void)setNoteToken:(ELNoteToken *)_noteToken_ {
   [self removeToken:noteToken];
   noteToken = _noteToken_;
   [self addToken:noteToken];
+  [self makeCurrentSelection];
 }
 
-@dynamic reboundToken;
 
-- (ELReboundToken *)reboundToken {
-  return reboundToken;
+- (void)setNoteTokenWithUndo:(ELNoteToken *)_noteToken_ {
+  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setNoteTokenWithUndo:noteToken];
+  if( ![undoManager isUndoing] ) {
+    if( _noteToken_ ) {
+      [undoManager setActionName:@"add note"];
+    } else {
+      [undoManager setActionName:@"remove note"];
+    }
+  }
+  [self setNoteToken:_noteToken_];
 }
+
+
+@synthesize reboundToken;
 
 - (void)setReboundToken:(ELReboundToken *)_reboundToken_ {
   [self removeToken:reboundToken];
   reboundToken = _reboundToken_;
   [self addToken:reboundToken];
+  [self makeCurrentSelection];
 }
 
-@dynamic absorbToken;
 
-- (ELAbsorbToken *)absorbToken {
-  return absorbToken;
+- (void)setReboundTokenWithUndo:(ELReboundToken *)_reboundToken_ {
+  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setReboundTokenWithUndo:reboundToken];
+  if( ![undoManager isUndoing] ) {
+    if( _reboundToken_ ) {
+      [undoManager setActionName:@"add rebound"];
+    } else {
+      [undoManager setActionName:@"remove rebound"];
+    }
+  }
+  [self setReboundToken:_reboundToken_];
 }
+
+
+@synthesize absorbToken;
 
 - (void)setAbsorbToken:(ELAbsorbToken *)_absorbToken_ {
   [self removeToken:absorbToken];
   absorbToken = _absorbToken_;
   [self addToken:absorbToken];
+  [self makeCurrentSelection];
 }
 
-@dynamic splitToken;
 
-- (ELSplitToken *)splitToken {
-  return splitToken;
+- (void)setAbsorbTokenWithUndo:(ELAbsorbToken *)_absorbToken_ {
+  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setAbsorbTokenWithUndo:absorbToken];
+  if( ![undoManager isUndoing] ) {
+    if( _absorbToken_ ) {
+      [undoManager setActionName:@"add absorb"];
+    } else {
+      [undoManager setActionName:@"remove absorb"];
+    }
+  }
+  [self setAbsorbToken:_absorbToken_];
 }
+
+
+@synthesize splitToken;
 
 - (void)setSplitToken:(ELSplitToken *)_splitToken_ {
   [self removeToken:splitToken];
   splitToken = _splitToken_;
   [self addToken:splitToken];
+  [self makeCurrentSelection];
 }
 
-@dynamic spinToken;
 
-- (ELSpinToken *)spinToken {
-  return spinToken;
+- (void)setSplitTokenWithUndo:(ELSplitToken *)_splitToken_ {
+  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setSplitTokenWithUndo:splitToken];
+  if( ![undoManager isUndoing] ) {
+    if( _splitToken_ ) {
+      [undoManager setActionName:@"add split"];
+    } else {
+      [undoManager setActionName:@"remove split"];
+    }
+  }
+  [self setSplitToken:_splitToken_];
 }
+
+
+@synthesize spinToken;
 
 - (void)setSpinToken:(ELSpinToken *)_spinToken_ {
   [self removeToken:spinToken];
   spinToken = _spinToken_;
   [self addToken:spinToken];
+  [self makeCurrentSelection];
 }
 
-@dynamic skipToken;
 
-- (ELSkipToken *)skipToken {
-  return skipToken;
+- (void)setSpinTokenWithUndo:(ELSpinToken *)_spinToken_ {
+  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setSpinTokenWithUndo:spinToken];
+  if( ![undoManager isUndoing] ) {
+    if( _spinToken_ ) {
+      [undoManager setActionName:@"add spin"];
+    } else {
+      [undoManager setActionName:@"remove spin"];
+    }
+  }
+  [self setSpinToken:_spinToken_];
 }
+
+
+@synthesize skipToken;
 
 - (void)setSkipToken:(ELSkipToken *)newSkipToken {
   [self removeToken:skipToken];
   skipToken = newSkipToken;
   [self addToken:skipToken];
+  [self makeCurrentSelection];
 }
 
-// Cells form a lattice
+
+- (void)setSkipTokenWithUndo:(ELSkipToken *)newSkipToken {
+  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setSkipTokenWithUndo:skipToken];
+  if( ![undoManager isUndoing] ) {
+    if( newSkipToken ) {
+      [undoManager setActionName:@"add skip"];
+    } else {
+      [undoManager setActionName:@"remove skip"];
+    }
+  }
+  [self setSkipToken:newSkipToken];
+}
+
+
+#pragma mark Lattice management
 
 - (void)connectToCell:(ELCell *)cell direction:(Direction)direction {
   neighbours[direction] = cell;
@@ -356,86 +458,89 @@
   return item;
 }
 
-- (IBAction)clearTokens:(id)_sender_ {
+- (IBAction)clearTokens:(id)sender {
   [self removeAllTokens];
   [self makeCurrentSelection];
 }
 
-- (IBAction)toggleGenerateToken:(id)_sender_ {
+
+- (IBAction)toggleGenerateToken:(id)sender {
   if( [self generateToken] ) {
-    [self setGenerateToken:nil];
+    [self setGenerateTokenWithUndo:nil];
   } else {
-    [self setGenerateToken:[[ELGenerateToken alloc] init]];
+    [self setGenerateTokenWithUndo:[[ELGenerateToken alloc] init]];
+    
     [[[NSApp delegate] inspectorController] inspect:@"generate"];
   }
-  [self makeCurrentSelection];
 }
 
-- (IBAction)toggleNoteToken:(id)_sender_ {
+
+- (IBAction)toggleNoteToken:(id)sender {
   if( [self noteToken] ) {
-    [self setNoteToken:nil];
+    [self setNoteTokenWithUndo:nil];
   } else {
-    [self setNoteToken:[[ELNoteToken alloc] init]];
+    [self setNoteTokenWithUndo:[[ELNoteToken alloc] init]];
     [[[NSApp delegate] inspectorController] inspect:@"note"];
   }
-  [self makeCurrentSelection];
 }
 
-- (IBAction)toggleReboundToken:(id)_sender_ {
+
+- (IBAction)toggleReboundToken:(id)sender {
   if( [self reboundToken] ) {
-    [self setReboundToken:nil];
+    [self setReboundTokenWithUndo:nil];
   } else {
-    [self setReboundToken:[[ELReboundToken alloc] init]];
+    [self setReboundTokenWithUndo:[[ELReboundToken alloc] init]];
     [[[NSApp delegate] inspectorController] inspect:@"rebound"];
   }
-  [self makeCurrentSelection];
 }
 
-- (IBAction)toggleAbsorbToken:(id)_sender_ {
+
+- (IBAction)toggleAbsorbToken:(id)sender {
   if( [self absorbToken] ) {
-    [self setAbsorbToken:nil];
+    [self setAbsorbTokenWithUndo:nil];
   } else {
-    [self setAbsorbToken:[[ELAbsorbToken alloc] init]];
+    [self setAbsorbTokenWithUndo:[[ELAbsorbToken alloc] init]];
     [[[NSApp delegate] inspectorController] inspect:@"absorb"];
   }
-  [self makeCurrentSelection];
 }
 
-- (IBAction)toggleSplitToken:(id)_sender_ {
+
+- (IBAction)toggleSplitToken:(id)sender {
   if( [self splitToken] ) {
-    [self setSplitToken:nil];
+    [self setSplitTokenWithUndo:nil];
   } else {
-    [self setSplitToken:[[ELSplitToken alloc] init]];
+    [self setSplitTokenWithUndo:[[ELSplitToken alloc] init]];
     [[[NSApp delegate] inspectorController] inspect:@"split"];
   }
-  [self makeCurrentSelection];
 }
 
-- (IBAction)toggleSpinToken:(id)_sender_ {
+
+- (IBAction)toggleSpinToken:(id)sender {
   if( [self spinToken] ) {
-    [self setSpinToken:nil];
+    [self setSpinTokenWithUndo:nil];
   } else {
-    [self setSpinToken:[[ELSpinToken alloc] init]];
+    [self setSpinTokenWithUndo:[[ELSpinToken alloc] init]];
     [[[NSApp delegate] inspectorController] inspect:@"spin"];
   }
-  [self makeCurrentSelection];
 }
 
-- (IBAction)toggleSkipToken:(id)_sender_ {
+
+- (IBAction)toggleSkipToken:(id)sender {
   if( [self skipToken] ) {
-    [self setSkipToken:nil];
+    [self setSkipTokenWithUndo:nil];
   } else {
-    [self setSkipToken:[[ELSkipToken alloc] init]];
+    [self setSkipTokenWithUndo:[[ELSkipToken alloc] init]];
     [[[NSApp delegate] inspectorController] inspect:@"skip"];
   }
-  [self makeCurrentSelection];
 }
+
 
 - (void)makeCurrentSelection {
   [(LMHoneycombView *)[[self layer] delegate] setSelected:self];
 }
 
-// Drawing
+
+#pragma mark Drawing code
 
 - (void)drawText:(NSString *)_text_ withAttributes:(NSMutableDictionary *)_attributes_ {
   NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] init];

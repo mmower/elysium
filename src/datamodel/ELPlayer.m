@@ -36,11 +36,16 @@ static SEL updateSelector;
 
 @implementation ELPlayer
 
+#pragma mark Class methods
+
 + (void)initialize {
   if( !updateSelector ) {
     updateSelector = @selector(update);
   }
 }
+
+
+#pragma mark Initializers
 
 - (id)init {
   if( ( self = [super init] ) ) {
@@ -94,6 +99,7 @@ static SEL updateSelector;
   return self;
 }
 
+
 - (id)initWithDocument:(ElysiumDocument *)theDocument createDefaultLayer:(BOOL)shouldCreateDefaultLayer {
   if( ( self = [self initWithDocument:theDocument] ) ) {
     if( shouldCreateDefaultLayer ) {
@@ -104,7 +110,8 @@ static SEL updateSelector;
   return self;
 }
 
-// Accessors
+
+#pragma mark Properties
 
 @synthesize startTime;
 @synthesize harmonicTable;
@@ -112,6 +119,13 @@ static SEL updateSelector;
 @synthesize showOctaves;
 @synthesize showKey;
 @synthesize performanceMode;
+
+@synthesize mDirty;
+
+- (void)setDirty:(BOOL)dirty {
+  
+}
+
 
 @dynamic tempoDial;
 

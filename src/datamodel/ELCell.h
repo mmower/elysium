@@ -36,6 +36,8 @@
   
   NSString            *scriptingTag;
   
+  BOOL                mDirty;
+  
   NSMutableDictionary *tokens;
   ELGenerateToken     *generateToken;
   ELNoteToken         *noteToken;
@@ -50,6 +52,8 @@
 @property (readonly) ELNote *note;
 
 @property (readonly)  NSMutableDictionary *tokens;
+
+@property (getter=dirty,setter=setDirty:) BOOL mDirty;
 
 @property             ELGenerateToken     *generateToken;
 @property             ELNoteToken         *noteToken;

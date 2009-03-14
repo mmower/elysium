@@ -25,6 +25,8 @@ NSPredicate *deadPlayheadFilter;
 
 @implementation ELLayer
 
+#pragma mark Class methods
+
 + (void)initialize {
   deadPlayheadFilter = [NSPredicate predicateWithFormat:@"isDead != TRUE"];
 }
@@ -33,6 +35,9 @@ NSPredicate *deadPlayheadFilter;
 + (NSPredicate *)deadPlayheadFilter {
   return deadPlayheadFilter;
 }
+
+
+#pragma mark Initializers
 
 
 - (id)init {
@@ -102,6 +107,8 @@ NSPredicate *deadPlayheadFilter;
   return self;
 }
 
+#pragma mark Properties
+
 @synthesize player;
 @synthesize delegate;
 @synthesize layerId;
@@ -109,16 +116,28 @@ NSPredicate *deadPlayheadFilter;
 @synthesize beatCount;
 @synthesize key;
 
+@synthesize mDirty;
+
+- (void)setDirty:(BOOL)dirty {
+  mDirty = dirty;
+  if( mDirty ) {
+    [player setDirty:YES];
+  }
+}
+
+
 @dynamic enabledDial;
 
 - (ELDial *)enabledDial {
   return enabledDial;
 }
 
+
 - (void)setEnabledDial:(ELDial *)newEnabledDial {
   enabledDial = newEnabledDial;
   [enabledDial setDelegate:self];
 }
+
 
 @dynamic channelDial;
 
@@ -126,10 +145,12 @@ NSPredicate *deadPlayheadFilter;
   return channelDial;
 }
 
+
 - (void)setChannelDial:(ELDial *)newChannelDial {
   channelDial = newChannelDial;
   [channelDial setDelegate:self];
 }
+
 
 @dynamic tempoDial;
 
@@ -137,10 +158,12 @@ NSPredicate *deadPlayheadFilter;
   return tempoDial;
 }
 
+
 - (void)setTempoDial:(ELDial *)newTempoDial {
   tempoDial = newTempoDial;
   [tempoDial setDelegate:self];
 }
+
 
 @dynamic barLengthDial;
 
@@ -148,10 +171,12 @@ NSPredicate *deadPlayheadFilter;
   return barLengthDial;
 }
 
+
 - (void)setBarLengthDial:(ELDial *)newBarLengthDial {
   barLengthDial = newBarLengthDial;
   [barLengthDial setDelegate:self];
 }
+
 
 @dynamic timeToLiveDial;
 
@@ -159,10 +184,12 @@ NSPredicate *deadPlayheadFilter;
   return timeToLiveDial;
 }
 
+
 - (void)setTimeToLiveDial:(ELDial *)newTimeToLiveDial {
   timeToLiveDial = newTimeToLiveDial;
   [timeToLiveDial setDelegate:self];
 }
+
 
 @dynamic pulseEveryDial;
 
@@ -170,10 +197,12 @@ NSPredicate *deadPlayheadFilter;
   return pulseEveryDial;
 }
 
+
 - (void)setPulseEveryDial:(ELDial *)newPulseEveryDial {
   pulseEveryDial = newPulseEveryDial;
   [pulseEveryDial setDelegate:self];
 }
+
 
 @dynamic velocityDial;
 
@@ -181,10 +210,12 @@ NSPredicate *deadPlayheadFilter;
   return velocityDial;
 }
 
+
 - (void)setVelocityDial:(ELDial *)newVelocityDial {
   velocityDial = newVelocityDial;
   [velocityDial setDelegate:self];
 }
+
 
 @dynamic emphasisDial;
 
@@ -192,10 +223,12 @@ NSPredicate *deadPlayheadFilter;
   return emphasisDial;
 }
 
+
 - (void)setEmphasisDial:(ELDial *)newEmphasisDial {
   emphasisDial = newEmphasisDial;
   [emphasisDial setDelegate:self];
 }
+
 
 @dynamic tempoSyncDial;
 
@@ -203,10 +236,12 @@ NSPredicate *deadPlayheadFilter;
   return tempoSyncDial;
 }
 
+
 - (void)setTempoSyncDial:(ELDial *)newTempoSyncDial {
   tempoSyncDial = newTempoSyncDial;
   [tempoSyncDial setDelegate:self];
 }
+
 
 @dynamic noteLengthDial;
 
@@ -214,10 +249,12 @@ NSPredicate *deadPlayheadFilter;
   return noteLengthDial;
 }
 
+
 - (void)setNoteLengthDial:(ELDial *)newNoteLengthDial {
   noteLengthDial = newNoteLengthDial;
   [noteLengthDial setDelegate:self];
 }
+
 
 @dynamic transposeDial;
 
@@ -225,36 +262,23 @@ NSPredicate *deadPlayheadFilter;
   return transposeDial;
 }
 
+
 - (void)setTransposeDial:(ELDial *)newTransposeDial {
   transposeDial = newTransposeDial;
   [transposeDial setDelegate:self];
 }
 
+
 - (void)dialDidUnsetOscillator:(ELDial *)dial {
   [player dialDidUnsetOscillator:dial];
 }
+
 
 - (void)dialDidSetOscillator:(ELDial *)dial {
   [player dialDidSetOscillator:dial];
 }
 
-@synthesize scripts;
-@synthesize scriptingTag = layerId;
 
-- (int)timerResolution {
-  int tempo = [tempoDial value];
-  if( tempo < 1 ) {
-    tempo = 1;
-  }
-  
-  return 60000000 / tempo;
-}
-
-- (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(void *)_context_ {
-  if( [_keyPath_ isEqualToString:@"key"] ) {
-    [self needsDisplay];
-  }
-}
 
 @dynamic visible;
 
@@ -267,6 +291,29 @@ NSPredicate *deadPlayheadFilter;
     [[delegate window] makeKeyAndOrderFront:self];
   } else {
     [[delegate window] orderOut:self];
+  }
+}
+
+
+@synthesize scripts;
+@synthesize scriptingTag = layerId;
+
+
+#pragma mark Utility methods
+
+- (int)timerResolution {
+  int tempo = [tempoDial value];
+  if( tempo < 1 ) {
+    tempo = 1;
+  }
+  
+  return 60000000 / tempo;
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(void *)_context_ {
+  if( [_keyPath_ isEqualToString:@"key"] ) {
+    [self needsDisplay];
   }
 }
 

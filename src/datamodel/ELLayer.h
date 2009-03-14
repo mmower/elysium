@@ -38,6 +38,8 @@
   NSThread            *runner;        // The thread that runs this layer
   BOOL                isRunning;      // Whether or not this layer is running
   
+  BOOL                mDirty;         // Layer or cell has been updated
+  
   NSMutableDictionary *scripts;
   NSString            *scriptingTag;
   
@@ -72,6 +74,8 @@
 @property           ELCell    *selectedCell;
 @property           int       beatCount;
 @property           ELKey     *key;
+
+@property (getter=dirty,setter=setDirty:) BOOL mDirty;
 
 @property (assign)  ELDial    *enabledDial;
 @property (assign)  ELDial    *channelDial;
