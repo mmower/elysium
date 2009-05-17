@@ -59,7 +59,7 @@ static NSArray *alternateSequence = nil;
     number        = [ELNote noteNumber:_name_];
     octave        = floor( number / 12 ) - 1;
     tone          = [noteSequence objectAtIndex:(number % 12)];
-    alternateTone = [noteToAltNoteNames objectForKey:[NSNumber numberWithInt:(number)]];
+    alternateTone = [alternateSequence objectAtIndex:(number % 12)];
   }
   return self;
 }
