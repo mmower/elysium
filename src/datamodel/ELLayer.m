@@ -652,15 +652,15 @@ NSPredicate *deadPlayheadFilter;
     
     [self setEnabledDial:[_representation_ loadDial:@"enabled" parent:nil player:_player_ error:_error_]];
     [self setChannelDial:[_representation_ loadDial:@"channel" parent:nil player:_player_ error:_error_]];
-    [self setTempoDial:[_representation_ loadDial:@"tempo" parent:nil player:_player_ error:_error_]];
-    [self setBarLengthDial:[_representation_ loadDial:@"barLength" parent:nil player:_player_ error:_error_]];
-    [self setTimeToLiveDial:[_representation_ loadDial:@"timeToLive" parent:nil player:_player_ error:_error_]];
-    [self setPulseEveryDial:[_representation_ loadDial:@"pulseEvery" parent:nil player:_player_ error:_error_]];
-    [self setVelocityDial:[_representation_ loadDial:@"velocity" parent:nil player:_player_ error:_error_]];
-    [self setEmphasisDial:[_representation_ loadDial:@"emphasis" parent:nil player:_player_ error:_error_]];
-    [self setTempoSyncDial:[_representation_ loadDial:@"tempoSync" parent:nil player:_player_ error:_error_]];
-    [self setNoteLengthDial:[_representation_ loadDial:@"noteLength" parent:nil player:_player_ error:_error_]];
-    [self setTransposeDial:[_representation_ loadDial:@"transpose" parent:nil player:_player_ error:_error_]];
+    [self setTempoDial:[_representation_ loadDial:@"tempo" parent:[_player_ tempoDial] player:_player_ error:_error_]];
+    [self setBarLengthDial:[_representation_ loadDial:@"barLength" parent:[_player_ barLengthDial] player:_player_ error:_error_]];
+    [self setTimeToLiveDial:[_representation_ loadDial:@"timeToLive" parent:[_player_ timeToLiveDial] player:_player_ error:_error_]];
+    [self setPulseEveryDial:[_representation_ loadDial:@"pulseEvery" parent:[_player_ pulseEveryDial] player:_player_ error:_error_]];
+    [self setVelocityDial:[_representation_ loadDial:@"velocity" parent:[_player_ velocityDial] player:_player_ error:_error_]];
+    [self setEmphasisDial:[_representation_ loadDial:@"emphasis" parent:[_player_ emphasisDial] player:_player_ error:_error_]];
+    [self setTempoSyncDial:[_representation_ loadDial:@"tempoSync" parent:[_player_ tempoSyncDial] player:_player_ error:_error_]];
+    [self setNoteLengthDial:[_representation_ loadDial:@"noteLength" parent:[_player_ noteLengthDial] player:_player_ error:_error_]];
+    [self setTransposeDial:[_representation_ loadDial:@"transpose" parent:[_player_ transposeDial] player:_player_ error:_error_]];
     
     nodes = [_representation_ nodesForXPath:@"cells/cell" error:_error_];
     if( nodes == nil ) {
