@@ -28,15 +28,9 @@
 
 @implementation ElysiumDocument
 
-@synthesize player;
-@synthesize composerName;
-@synthesize composerEmail;
-@synthesize title;
-@synthesize notes;
-
 - (id)init {
   if( ( self = [super init] ) ) {
-    player = [[ELPlayer alloc] initWithDocument:self createDefaultLayer:YES];
+    _player = [[ELPlayer alloc] initWithDocument:self createDefaultLayer:YES];
     [self setComposerName:[[NSUserDefaults standardUserDefaults] stringForKey:ELComposerNameKey]];
     [self setComposerEmail:[[NSUserDefaults standardUserDefaults] stringForKey:ELComposerEmailKey]];
   }
@@ -44,23 +38,29 @@
   return self;
 }
 
+#pragma mark Properties
+
+@synthesize player = _player;
+@synthesize composerName = _composerName;
+@synthesize composerEmail = _composerEmail;
+@synthesize title = _title;
+@synthesize notes = _notes;
+
+
+#pragma mark Implements NSDocument
+
 - (void)makeWindowControllers {
-  // [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"ElysiumDocument" owner:self]];
-  
-  for( ELLayer *layer in [player layers] ) {
+  for( ELLayer *layer in [[self player] layers] ) {
     [self addWindowController:[[ELLayerWindowController alloc] initWithLayer:layer]];
   }
   
   // Show the inspectors by default, and ensure something is selected from the right player/layer
   [[NSApp delegate] showLayerManager:self];
   [[NSApp delegate] showInspectorPanel:self];
-  
-  // Select a cell, any cell
-  // [[player layer:0] hexCellSelected:[[player layer:0] cellAtColumn:8 row:6]];
 }
 
-- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
-{
+
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
   
   NSXMLElement *rootElement = [NSXMLNode elementWithName:@"elysium"];
@@ -86,7 +86,7 @@
   
   [rootElement addChild:infoElement];
   
-  NSXMLElement *playerElement = [player xmlRepresentation];
+  NSXMLElement *playerElement = [[self player] xmlRepresentation];
   if( !playerElement ) {
     *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
     return nil;
@@ -99,6 +99,7 @@
   return [document XMLDataWithOptions:NSXMLNodePrettyPrint|NSXMLNodeCompactEmptyElement];
 }
 
+
 - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)typeName {
   NSError *error = nil;
   BOOL result = [self readFromData:data ofType:typeName error:&error];
@@ -110,8 +111,8 @@
   return result;
 }
 
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
-{
+
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
   assert( outError != nil );
   
   NSXMLDocument *document = [[NSXMLDocument alloc] initWithData:data options:0 error:outError];
@@ -154,198 +155,208 @@
   
   NSXMLElement *surfaceElement = [[rootElement nodesForXPath:@"surface" error:nil] firstXMLElement];
   if( surfaceElement ) {
-    player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil error:outError];
+    _player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil error:outError];
   }
   
-  if( !surfaceElement || !player ) {
+  if( !surfaceElement || !_player ) {
     *outError = [[NSError alloc] initWithDomain:ELErrorDomain
                                            code:EL_ERR_DOCUMENT_LOAD_FAILURE
                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cannot load document, reason unknown.", NSLocalizedDescriptionKey, nil]];
     return NO;
   }
   
-  [player setDocument:self];
+  [_player setDocument:self];
   
   return YES;
 }
+
+
+#pragma mark Object behaviour
 
 - (ElysiumController *)appController {
   return [[NSApplication sharedApplication] delegate];
 }
 
-// Actions
 
-- (BOOL)validateMenuItem:(NSMenuItem *)_item_ {
-  SEL action = [_item_ action];
+#pragma mark UI Actions
+
+- (BOOL)validateMenuItem:(NSMenuItem *)item {
+  SEL action = [item action];
   
   if( action == @selector(toggleKeyDisplay:) ) {
-    if( [player showKey] ) {
-      [_item_ setTitle:@"Hide Key"];
-      [_item_ setState:NSOnState];
+    if( [[self player] showKey] ) {
+      [item setTitle:@"Hide Key"];
+      [item setState:NSOnState];
     } else {
-      [_item_ setTitle:@"Show Key"];
-      [_item_ setState:NSOffState];
+      [item setTitle:@"Show Key"];
+      [item setState:NSOffState];
     }
   } else if( action == @selector(toggleOctavesDisplay:) ) {
-    if( [player showOctaves] ) {
-      [_item_ setTitle:@"Hide Octaves"];
-      [_item_ setState:NSOnState];
+    if( [[self player] showOctaves] ) {
+      [item setTitle:@"Hide Octaves"];
+      [item setState:NSOnState];
     } else {
-      [_item_ setTitle:@"Show Octaves"];
-      [_item_ setState:NSOffState];
+      [item setTitle:@"Show Octaves"];
+      [item setState:NSOffState];
     }
   } else if( action == @selector(toggleNoteDisplay:) ) {
-    if( [player showNotes] ) {
-      [_item_ setTitle:@"Hide Notes"];
-      [_item_ setState:NSOnState];
+    if( [[self player] showNotes] ) {
+      [item setTitle:@"Hide Notes"];
+      [item setState:NSOnState];
     } else {
-      [_item_ setTitle:@"Show Notes"];
-      [_item_ setState:NSOffState];
+      [item setTitle:@"Show Notes"];
+      [item setState:NSOffState];
     }
   } else if( action == @selector(startStop:) ) {
-    if( [player running] ) {
-      [_item_ setTitle:@"Stop Playing"];
-      [_item_ setState:NSOnState];
+    if( [[self player] running] ) {
+      [item setTitle:@"Stop Playing"];
+      [item setState:NSOnState];
     } else {
-      [_item_ setTitle:@"Start Playing"];
-      [_item_ setState:NSOffState];
+      [item setTitle:@"Start Playing"];
+      [item setState:NSOffState];
     }
   }
   
   return YES;
 }
 
-- (IBAction)startStop:(id)_sender_ {
-  if( [player running] ) {
-    [player stop:self];
+- (IBAction)startStop:(id)sender {
+  if( [[self player] running] ) {
+    [[self player] stop:self];
   } else {
-    [player start:self];
+    [[self player] start:self];
   }
 }
 
-- (IBAction)toggleNoteDisplay:(id)_sender_ {
-  [player toggleNoteDisplay];
+- (IBAction)toggleNoteDisplay:(id)sender {
+  [[self player] toggleNoteDisplay];
   [self updateView:self];
 }
 
-- (IBAction)toggleKeyDisplay:(id)_sender_ {
-  BOOL showKey = ![player showKey];
-  [player setShowKey:showKey];
+- (IBAction)toggleKeyDisplay:(id)sender {
+  BOOL showKey = ![[self player] showKey];
+  [[self player] setShowKey:showKey];
   if( showKey ) {
-    [player setShowOctaves:NO];
+    [[self player] setShowOctaves:NO];
   }
   [self updateView:self];
 }
 
-- (IBAction)toggleOctavesDisplay:(id)_sender_ {
-  BOOL showOctave = ![player showOctaves];
-  [player setShowOctaves:showOctave];
+- (IBAction)toggleOctavesDisplay:(id)sender {
+  BOOL showOctave = ![[self player] showOctaves];
+  [[self player] setShowOctaves:showOctave];
   if( showOctave ) {
-    [player setShowKey:NO];
+    [[self player] setShowKey:NO];
   }
   [self updateView:self];
 }
 
-- (IBAction)clearAll:(id)_sender_ {
+- (IBAction)clearAll:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
   [alert setAlertStyle:NSWarningAlertStyle];
   [alert addButtonWithTitle:@"Clear All"];
   [alert addButtonWithTitle:@"Do Not Clear"];
   [alert setInformativeText:@"Pressing 'Clear All' will clear all cells on all layers."];
   if( [alert runModal] == NSAlertFirstButtonReturn ) {
-    [player clearAll];
+    [[self player] clearAll];
     [self updateView:self];
   }
 }
 
-- (IBAction)clearSelectedLayer:(id)_sender_ {
+- (IBAction)clearSelectedLayer:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
   [alert setAlertStyle:NSWarningAlertStyle];
   [alert addButtonWithTitle:@"Clear Layer"];
   [alert addButtonWithTitle:@"Do Not Clear"];
   [alert setInformativeText:@"Pressing 'Clear Layer' will clear all cells on the selected layer."];
   if( [alert runModal] == NSAlertFirstButtonReturn ) {
-    [[player selectedLayer] clear];
+    [[[self player] selectedLayer] clear];
     [self updateView:self];
   }
 }
 
-- (IBAction)newLayer:(id)_sender_ {
-  ELLayerWindowController *windowController = [[ELLayerWindowController alloc] initWithLayer:[player createLayer]];
+- (IBAction)newLayer:(id)sender {
+  ELLayerWindowController *windowController = [[ELLayerWindowController alloc] initWithLayer:[[self player] createLayer]];
   [self addWindowController:windowController];
   [windowController showWindow:self];
 }
 
-- (IBAction)toggleGeneratorToken:(id)_sender_ {
-  [[[player selectedLayer] selectedCell] toggleGenerateToken:_sender_];
+- (IBAction)toggleGeneratorToken:(id)sender {
+  [[[[self player] selectedLayer] selectedCell] toggleGenerateToken:sender];
 }
 
-- (IBAction)toggleNoteToken:(id)_sender_ {
-  [[[player selectedLayer] selectedCell] toggleNoteToken:_sender_];
+- (IBAction)toggleNoteToken:(id)sender {
+  [[[[self player] selectedLayer] selectedCell] toggleNoteToken:sender];
 }
 
-- (IBAction)toggleReboundToken:(id)_sender_ {
-  [[[player selectedLayer] selectedCell] toggleReboundToken:_sender_];
+- (IBAction)toggleReboundToken:(id)sender {
+  [[[[self player] selectedLayer] selectedCell] toggleReboundToken:sender];
 }
 
-- (IBAction)toggleAbsorbToken:(id)_sender_ {
-  [[[player selectedLayer] selectedCell] toggleAbsorbToken:_sender_];
+- (IBAction)toggleAbsorbToken:(id)sender {
+  [[[[self player] selectedLayer] selectedCell] toggleAbsorbToken:sender];
 }
 
-- (IBAction)toggleSplitToken:(id)_sender_ {
-  [[[player selectedLayer] selectedCell] toggleSplitToken:_sender_];
+- (IBAction)toggleSplitToken:(id)sender {
+  [[[[self player] selectedLayer] selectedCell] toggleSplitToken:sender];
 }
 
-- (IBAction)toggleSpinToken:(id)_sender_ {
-  [[[player selectedLayer] selectedCell] toggleSpinToken:_sender_];
+- (IBAction)toggleSpinToken:(id)sender {
+  [[[[self player] selectedLayer] selectedCell] toggleSpinToken:sender];
 }
 
 - (IBAction)toggleSkipToken:(id)sender {
-  [[[player selectedLayer] selectedCell] toggleSkipToken:sender];
+  [[[[self player] selectedLayer] selectedCell] toggleSkipToken:sender];
 }
 
-- (IBAction)clearCell:(id)_sender_ {
-  [[[player selectedLayer] selectedCell] clearTokens:_sender_];
+- (IBAction)clearCell:(id)sender {
+  [[[[self player] selectedLayer] selectedCell] clearTokens:sender];
 }
 
 - (IBAction)showOscillatorDesigner:(id)sender {
-  if( !oscillatorDesignerController ) {
-    oscillatorDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[self player]];
+  if( !_oscillatorDesignerController ) {
+    _oscillatorDesignerController = [[ELOscillatorDesignerController alloc] initWithPlayer:[self player]];
   }
   
-  [oscillatorDesignerController showWindow:sender];
+  [_oscillatorDesignerController showWindow:sender];
 }
 
 
 #pragma mark NSDocument implementation
 
-- (void)document:(NSDocument *)_document_ shouldClose:(BOOL)_shouldClose_ contextInfo:(void*)_contextInfo_ {
-  if( _shouldClose_ ) {
+- (void)document:(NSDocument *)document shouldClose:(BOOL)shouldClose contextInfo:(void*)contextInfo {
+  if( shouldClose ) {
     [self close];
   }
 }
 
-- (IBAction)closeDocument:(id)_sender_ {
+- (IBAction)closeDocument:(id)sender {
   [self canCloseDocumentWithDelegate:self shouldCloseSelector:@selector(document:shouldClose:contextInfo:) contextInfo:nil];
 }
 
-// Sent by background threads when the view needs to be updated
-- (void)updateView:(id)_sender_ {
-  [player needsDisplay];
+
+#pragma mark Background thread support
+
+- (void)updateView:(id)sender {
+  [[self player] needsDisplay];
 }
 
-// MIDI Controller delegate methods
 
-- (void)noteOn:(int)_note velocity:(int)_velocity channel:(int)_channel {
-  NSLog( @"delegate received noteOn:%d:%d message", _channel, _note );
+#pragma mark MIDI Controller delegate methods
+
+- (void)noteOn:(int)note velocity:(int)velocity channel:(int)channel {
+  NSLog( @"delegate received noteOn:%d:%d message", channel, note );
 }
 
-- (void)noteOff:(int)_note velocity:(int)_velocity channel:(int)_channel {
-  NSLog( @"delegate received noteOff:%d:%d message", _channel, _note );
+
+- (void)noteOff:(int)note velocity:(int)velocity channel:(int)channel {
+  NSLog( @"delegate received noteOff:%d:%d message", channel, note );
 }
 
-- (void)programChange:(int)_preset channel:(int)_channel {
-  NSLog( @"delegate received programChange:%d on channel:%d", _preset, _channel );
+
+- (void)programChange:(int)preset channel:(int)channel {
+  NSLog( @"delegate received programChange:%d on channel:%d", preset, channel );
 }
+
 
 @end

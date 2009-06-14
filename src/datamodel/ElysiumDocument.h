@@ -19,15 +19,15 @@
 
 @interface ElysiumDocument : NSDocument
 {
-  ELPlayer                        *player;
+  ELPlayer                        *_player;
   
-  NSString                        *composerName;
-  NSString                        *composerEmail;
+  NSString                        *_composerName;
+  NSString                        *_composerEmail;
   
-  NSString                        *title;
-  NSString                        *notes;
+  NSString                        *_title;
+  NSString                        *_notes;
   
-  ELOscillatorDesignerController  *oscillatorDesignerController;
+  ELOscillatorDesignerController  *_oscillatorDesignerController;
 }
 
 @property (readonly)  ELPlayer  *player;

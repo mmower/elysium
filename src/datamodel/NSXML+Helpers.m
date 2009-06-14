@@ -35,8 +35,8 @@
                                              error:error];
 }
 
-- (NSString *)attributeAsString:(NSString *)_name_ {
-  NSXMLNode *attributeNode = [self attributeForName:_name_];
+- (NSString *)attributeAsString:(NSString *)name {
+  NSXMLNode *attributeNode = [self attributeForName:name];
   if( attributeNode ) {
     return [attributeNode stringValue];
   } else {
@@ -57,21 +57,21 @@
 
 @implementation NSError (NSXML_Helpers)
 
-+ (NSError *)errorForLoadFailure:(NSString *)_message_ code:(int)_code_ withError:(NSError **)_underlyingError_ {
++ (NSError *)errorForLoadFailure:(NSString *)message code:(int)code withError:(NSError **)underlyingError {
   NSDictionary* userInfo;
   
-  if( *_underlyingError_ ) {
+  if( *underlyingError ) {
     userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      _message_,NSLocalizedDescriptionKey,
-                                      *_underlyingError_,NSUnderlyingErrorKey,
+                                      message,NSLocalizedDescriptionKey,
+                                      *underlyingError,NSUnderlyingErrorKey,
                                       nil];
   } else {
     userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      _message_,NSLocalizedDescriptionKey,
+                                      message,NSLocalizedDescriptionKey,
                                       nil];
   }
   
-  return [[NSError alloc] initWithDomain:ELErrorDomain code:_code_ userInfo:userInfo];
+  return [[NSError alloc] initWithDomain:ELErrorDomain code:code userInfo:userInfo];
 }
 
 @end
