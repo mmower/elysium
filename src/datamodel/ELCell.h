@@ -29,31 +29,32 @@
 @class ELSkipToken;
 
 @interface ELCell : LMHexCell <ELXmlData,ELTaggable> {
-  ELLayer             *layer;
-  ELNote              *note;
-  ELCell              *neighbours[6];
-  NSMutableArray      *playheads;
+  ELLayer             *_layer;
+  ELNote              *_note;
+  ELCell              *_neighbours[6];
+  NSMutableArray      *_playheads;
   
-  NSString            *scriptingTag;
+  NSString            *_scriptingTag;
   
-  BOOL                mDirty;
+  BOOL                _dirty;
   
-  NSMutableDictionary *tokens;
-  ELGenerateToken     *generateToken;
-  ELNoteToken         *noteToken;
-  ELReboundToken      *reboundToken;
-  ELAbsorbToken       *absorbToken;
-  ELSplitToken        *splitToken;
-  ELSpinToken         *spinToken;
-  ELSkipToken         *skipToken;
+  NSMutableDictionary *_tokens;
+  ELGenerateToken     *_generateToken;
+  ELNoteToken         *_noteToken;
+  ELReboundToken      *_reboundToken;
+  ELAbsorbToken       *_absorbToken;
+  ELSplitToken        *_splitToken;
+  ELSpinToken         *_spinToken;
+  ELSkipToken         *_skipToken;
 }
 
 @property (readonly) ELLayer *layer;
 @property (readonly) ELNote *note;
+@property (readonly) NSMutableArray *playheads;
 
 @property (readonly)  NSMutableDictionary *tokens;
 
-@property (getter=dirty,setter=setDirty:) BOOL mDirty;
+@property             BOOL                dirty;
 
 @property             ELGenerateToken     *generateToken;
 @property             ELNoteToken         *noteToken;
