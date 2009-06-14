@@ -21,45 +21,44 @@
 @class ELGenerateToken;
 
 @interface ELLayer : NSObject <LMHoneycombMatrix,ELXmlData,ELTaggable> {
-  id                  delegate;       // This will be the view representing us in the UI
+  id                  _delegate;       // This will be the view representing us in the UI
   
-  ELPlayer            *player;        // The player we belong to
-  NSMutableArray      *cells;         // The cells that make up the lattice structure of the layer
-  NSMutableArray      *playheads;     // Array of playheads active on our surface
-  NSMutableArray      *playheadQueue; // Array of playheads to be queued onto the layer in the next beat
-  NSMutableArray      *generators;    // Array of playhead generator tokens
-  int                 beatCount;      // Current beat number
-  BOOL                visible;        // Whether or not we are visible (not config, so not persistent)
+  ELPlayer            *_player;        // The player we belong to
+  NSMutableArray      *_cells;         // The cells that make up the lattice structure of the layer
+  NSMutableArray      *_playheads;     // Array of playheads active on our surface
+  NSMutableArray      *_playheadQueue; // Array of playheads to be queued onto the layer in the next beat
+  NSMutableArray      *_generators;    // Array of playhead generator tokens
+  int                 _beatCount;      // Current beat number
                                     
-  UInt64              timeBase;       // Our MIDI timebase, time of next beat can be calculated
+  UInt64              _timeBase;       // Our MIDI timebase, time of next beat can be calculated
                                       // from this, the tempo, and the beatcount. This should be
                                       // reset if the tempo is ever reset.
                                     
-  NSThread            *runner;        // The thread that runs this layer
-  BOOL                isRunning;      // Whether or not this layer is running
+  NSThread            *_runner;        // The thread that runs this layer
+  BOOL                _isRunning;      // Whether or not this layer is running
   
-  BOOL                mDirty;         // Layer or cell has been updated
+  BOOL                _dirty;         // Layer or cell has been updated
   
-  NSMutableDictionary *scripts;
-  NSString            *scriptingTag;
+  NSMutableDictionary *_scripts;
+  // NSString            *_scriptingTag;
   
-  NSString            *layerId;
+  NSString            *_layerId;
   
-  ELKey               *key;         // If this layer is in a musical key
+  ELKey               *_key;         // If this layer is in a musical key
   
-  ELCell              *selectedCell;
+  ELCell              *_selectedCell;
   
-  ELDial              *enabledDial;
-  ELDial              *channelDial;
-  ELDial              *tempoDial;
-  ELDial              *barLengthDial;
-  ELDial              *timeToLiveDial;
-  ELDial              *pulseEveryDial;
-  ELDial              *velocityDial;
-  ELDial              *emphasisDial;
-  ELDial              *tempoSyncDial;
-  ELDial              *noteLengthDial;
-  ELDial              *transposeDial;
+  ELDial              *_enabledDial;
+  ELDial              *_channelDial;
+  ELDial              *_tempoDial;
+  ELDial              *_barLengthDial;
+  ELDial              *_timeToLiveDial;
+  ELDial              *_pulseEveryDial;
+  ELDial              *_velocityDial;
+  ELDial              *_emphasisDial;
+  ELDial              *_tempoSyncDial;
+  ELDial              *_noteLengthDial;
+  ELDial              *_transposeDial;
 }
 
 + (NSPredicate *)deadPlayheadFilter;
@@ -74,8 +73,7 @@
 @property           ELCell    *selectedCell;
 @property           int       beatCount;
 @property           ELKey     *key;
-
-@property (getter=dirty,setter=setDirty:) BOOL mDirty;
+@property           BOOL      dirty;
 
 @property (assign)  ELDial    *enabledDial;
 @property (assign)  ELDial    *channelDial;
