@@ -76,23 +76,23 @@ static NSMutableDictionary *keyLookup = nil;
   return [[self class] allKeys];
 }
 
-+ (ELKey *)keyNamed:(NSString *)_name_ {
-  return [keyLookup objectForKey:_name_];
++ (ELKey *)keyNamed:(NSString *)name {
+  return [keyLookup objectForKey:name];
 }
 
 + (ELKey *)noKey {
   return [allKeys objectAtIndex:0];
 }
 
-- (id)initWithName:(NSString *)_name_ scale:(NSArray *)_scale_ {
+- (id)initWithName:(NSString *)name scale:(NSArray *)scale {
   if( ( self = [super init] ) ) {
-    name  = _name_;
-    scale = _scale_;
+    _name  = name;
+    _scale = scale;
+    _flat  = NO;
     
-    flat = NO;
-    for( NSString *note in scale ) {
+    for( NSString *note in _scale ) {
       if( [[note substringFromIndex:[note length]-1] isEqualToString:@"b"] ) {
-        flat = YES;
+        _flat = YES;
         break;
       }
     }
@@ -101,24 +101,24 @@ static NSMutableDictionary *keyLookup = nil;
   return self;
 }
 
-@synthesize name;
-@synthesize scale;
-@synthesize flat;
+@synthesize name = _name;
+@synthesize scale = _scale;
+@synthesize flat = _flat;
 
 - (NSString *)description {
-  return name;
+  return [self name];
 }
 
-- (BOOL)containsNote:(ELNote *)_note_ isTonic:(BOOL *)_isTonic_ {
-  NSUInteger index = [scale indexOfObject:[_note_ tone:flat]];
+- (BOOL)containsNote:(ELNote *)note isTonic:(BOOL *)tonic {
+  NSUInteger index = [[self scale] indexOfObject:[note tone:_flat]];
   if( index == NSNotFound ) {
     return NO;
   }
   
   if( index == 0 ) {
-    *(_isTonic_) = YES;
+    *(tonic) = YES;
   } else {
-    *(_isTonic_) = NO;
+    *(tonic) = NO;
   }
   
   return YES;

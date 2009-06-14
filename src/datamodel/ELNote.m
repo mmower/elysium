@@ -20,6 +20,8 @@ static NSArray *alternateSequence = nil;
 
 @implementation ELNote
 
+#pragma mark Class behaviours
+
 + (void)initialize {
   if( noteSequence == nil ) {
     noteSequence = [NSArray arrayWithObjects:@"C",@"C#",@"D",@"D#",@"E",@"F",@"F#",@"G",@"G#",@"A",@"A#",@"B",nil];
@@ -52,63 +54,55 @@ static NSArray *alternateSequence = nil;
   return [noteToNoteNames objectForKey:[NSNumber numberWithInt:noteNum]];
 }
 
-- (id)initWithName:(NSString *)_name_ {
+
+#pragma mark Object initialization
+
+- (id)initWithName:(NSString *)name {
   if( ( self = [super init] ) )
   {
-    name          = _name_;
-    number        = [ELNote noteNumber:_name_];
-    octave        = floor( number / 12 ) - 1;
-    tone          = [noteSequence objectAtIndex:(number % 12)];
-    alternateTone = [alternateSequence objectAtIndex:(number % 12)];
+    _name          = name;
+    _number        = [ELNote noteNumber:_name];
+    _octave        = floor( _number / 12 ) - 1;
+    _tone          = [noteSequence objectAtIndex:(_number % 12)];
+    _alternateTone = [alternateSequence objectAtIndex:(_number % 12)];
   }
   return self;
 }
 
-- (int)number {
-  return number;
-}
 
-- (NSString *)name {
-  return name;
-}
+#pragma mark Properties
 
-- (NSString *)description {
-  return [NSString stringWithFormat:@"[%d,%@]", number, name];
-}
+@synthesize number = _number;
+@synthesize octave = _octave;
+@synthesize name = _name;
+@synthesize tone = _tone;
+@synthesize alternateTone = _alternateTone;
+@synthesize flattenedName = _alternateTone;
 
-- (int)octave {
-  return octave;
-}
-
-- (NSString *)tone {
-  return tone;
-}
-
-- (NSString *)alternateTone {
-  return alternateTone;
-}
-
-- (NSString *)tone:(BOOL)_flat_ {
-  if( _flat_ ) {
-    return alternateTone;
+- (NSString *)tone:(BOOL)flat {
+  if( flat ) {
+    return [self alternateTone];
   } else {
-    return tone;
+    return [self tone];
   }
 }
 
-- (NSString *)flattenedName {
-  return alternateTone;
+- (NSString *)description {
+  return [NSString stringWithFormat:@"[%d,%@]", [self number], [self name]];
 }
 
-- (void)prepareMIDIMessage:(ELMIDIMessage*)_message_
-                   channel:(int)_channel_
-                    onTime:(UInt64)_onTime_
-                   offTime:(UInt64)_offTime_
-                  velocity:(int)_velocity_
-                 transpose:(int)_transpose_
+
+#pragma mark MIDI integration
+
+- (void)prepareMIDIMessage:(ELMIDIMessage*)message
+                   channel:(int)channel
+                    onTime:(UInt64)onTime
+                   offTime:(UInt64)offTime
+                  velocity:(int)velocity
+                 transpose:(int)transpose
 {
-  [_message_ noteOn:(number+_transpose_) velocity:_velocity_ at:_onTime_ channel:_channel_];
-  [_message_ noteOff:(number+_transpose_) velocity:_velocity_ at:_offTime_ channel:_channel_];
+  [message noteOn:([self number]+transpose) velocity:velocity at:onTime channel:channel];
+  [message noteOff:([self number]+transpose) velocity:velocity at:offTime channel:channel];
 }
 
 @end

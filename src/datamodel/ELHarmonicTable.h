@@ -12,7 +12,7 @@
 #import "ELNote.h"
 
 @interface ELHarmonicTable : NSObject {
-  NSMutableArray	*entries;
+  NSMutableArray	*_entries;
 }
 
 - (ELNote *)noteAtCol:(int)col row:(int)row;

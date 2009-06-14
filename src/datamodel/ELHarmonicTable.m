@@ -37,12 +37,12 @@
                 nil
                 ];
     
-    entries = [NSMutableArray arrayWithCapacity:(HTABLE_SIZE)];
+    _entries = [NSMutableArray arrayWithCapacity:(HTABLE_SIZE)];
     
     for( int col = 0; col < HTABLE_COLS; col++ ) {
       for( int row = 0; row < HTABLE_ROWS; row++ ) {
         ELNote *note = [[ELNote alloc] initWithName:[notes objectAtIndex:COL_ROW_OFFSET(col,row)]];
-        [entries insertObject:note atIndex:COL_ROW_OFFSET(col,row)];
+        [_entries insertObject:note atIndex:COL_ROW_OFFSET(col,row)];
       }
     }
   }
@@ -51,7 +51,7 @@
 }
 
 - (ELNote *)noteAtCol:(int)col row:(int)row {
-  return [entries objectAtIndex:COL_ROW_OFFSET(col,row)];
+  return [_entries objectAtIndex:COL_ROW_OFFSET(col,row)];
   
 }
 

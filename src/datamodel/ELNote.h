@@ -13,25 +13,25 @@
 
 @interface ELNote : ELPlayable
 {
-  int       number;
-  int       octave;
-  NSString  *name;
-  NSString  *tone;
-  NSString  *alternateTone;
+  int       _number;
+  int       _octave;
+  NSString  *_name;
+  NSString  *_tone;
+  NSString  *_alternateTone;
 }
 
 + (int)noteNumber:(NSString *)noteName;
 + (NSString *)noteName:(int)noteNum;
 
+@property (readonly) int number;
+@property (readonly) int octave;
+@property (readonly) NSString *name;
+@property (readonly) NSString *tone;
+@property (readonly) NSString *alternateTone;
+@property (readonly) NSString *flattenedName;
+
 - (id)initWithName:(NSString *)name;
 
-- (int)number;
-- (int)octave;
-
-- (NSString *)name;
-- (NSString *)tone;
-- (NSString *)alternateTone;
 - (NSString *)tone:(BOOL)flat;
-- (NSString *)flattenedName;
 
 @end
