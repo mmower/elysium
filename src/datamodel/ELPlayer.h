@@ -24,52 +24,52 @@
 @class ELEnvelopeProbabilityGenerator;
 
 @interface ELPlayer : NSObject <ELXmlData,ELTaggable> {
-  ElysiumDocument     *document;        // Cocoa NSDocument subclass hosting this player
-  ELHarmonicTable     *harmonicTable;   // Represents the structure of notes to be played
-  NSMutableArray      *layers;          // Each layer is an "instrument"
-  ELLayer             *selectedLayer;
-  BOOL                running;          // The player is active
-  ELMIDIController    *midiController;  // Our interface to CoreMIDI
-  int                 timerResolution;  
-  UInt64              startTime;
+  ElysiumDocument     *_document;        // Cocoa NSDocument subclass hosting this player
+  ELHarmonicTable     *_harmonicTable;   // Represents the structure of notes to be played
+  NSMutableArray      *_layers;          // Each layer is an "instrument"
+  ELLayer             *_selectedLayer;
+  BOOL                _running;          // The player is active
+  ELMIDIController    *_midiController;  // Our interface to CoreMIDI
+  // int                 _timerResolution;
+  // UInt64              _startTime;
   
-  int                 nextLayerNumber;
-  BOOL                showNotes;
-  BOOL                showOctaves;
-  BOOL                showKey;
-  BOOL                performanceMode;
+  int                 _nextLayerNumber;
+  BOOL                _showNotes;
+  BOOL                _showOctaves;
+  BOOL                _showKey;
+  BOOL                _performanceMode;
+  BOOL                _dirty;
   
-  BOOL                mDirty;
+  NSString            *_scriptingTag;
+  NSMutableDictionary *_scripts;
+  NSMutableArray      *_triggers;        // ELMIDITrigger objects
+  NSThread            *_triggerThread;
   
-  NSString            *scriptingTag;
-  NSMutableDictionary *scripts;
-  NSMutableArray      *triggers;        // ELMIDITrigger objects
-  NSThread            *triggerThread;
+  NSThread            *_oscillatorThread;
+  NSMutableArray      *_activeOscillators;
   
-  NSThread            *oscillatorThread;
-  NSMutableArray      *activeOscillators;
+  ELScriptPackage     *_pkg;
   
-  ELScriptPackage     *pkg;
-  
-  ELDial              *tempoDial;
-  ELDial              *barLengthDial;
-  ELDial              *timeToLiveDial;
-  ELDial              *pulseEveryDial;
-  ELDial              *velocityDial;
-  ELDial              *emphasisDial;
-  ELDial              *tempoSyncDial;
-  ELDial              *noteLengthDial;
-  ELDial              *transposeDial;
+  ELDial              *_tempoDial;
+  ELDial              *_barLengthDial;
+  ELDial              *_timeToLiveDial;
+  ELDial              *_pulseEveryDial;
+  ELDial              *_velocityDial;
+  ELDial              *_emphasisDial;
+  ELDial              *_tempoSyncDial;
+  ELDial              *_noteLengthDial;
+  ELDial              *_transposeDial;
 }
 
-@property (readonly)  UInt64              startTime;
+// @property (readonly)  UInt64              startTime;
 @property (readonly)  ELHarmonicTable     *harmonicTable;
+@property (readonly)  NSMutableArray      *layers;
 @property             BOOL                running;
 @property             BOOL                showNotes;
 @property             BOOL                showOctaves;
 @property             BOOL                showKey;
 @property             BOOL                performanceMode;
-@property (getter=dirty,setter=setDirty:) BOOL mDirty;
+@property             BOOL                dirty;
 
 @property             ELLayer             *selectedLayer;
 
@@ -132,7 +132,6 @@
 - (void)addLayer:(ELLayer *)layer;
 - (int)layerCount;
 - (void)removeLayers;
-- (NSArray *)layers;
 - (ELLayer *)layer:(int)index;
 
 // MIDI Trigger support

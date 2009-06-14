@@ -49,9 +49,9 @@ static SEL updateSelector;
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    harmonicTable   = [[ELHarmonicTable alloc] init];
-    layers          = [[NSMutableArray alloc] init];
-    selectedLayer   = nil;
+    _harmonicTable   = [[ELHarmonicTable alloc] init];
+    _layers          = [[NSMutableArray alloc] init];
+    _selectedLayer   = nil;
     
     [self setTempoDial:[ELPlayer defaultTempoDial]];
     [self setBarLengthDial:[ELPlayer defaultBarLengthDial]];
@@ -63,23 +63,23 @@ static SEL updateSelector;
     [self setNoteLengthDial:[ELPlayer defaultNoteLengthDial]];
     [self setTransposeDial:[ELPlayer defaultTransposeDial]];
     
-    activeOscillators = [[NSMutableArray alloc] init];
+    _activeOscillators = [[NSMutableArray alloc] init];
     
-    scriptingTag    = @"player";
-    scripts         = [NSMutableDictionary dictionary];
-    triggers        = [[NSMutableArray alloc] init];
-    pkg             = [[ELScriptPackage alloc] initWithPlayer:self];
+    _scriptingTag    = @"player";
+    _scripts         = [NSMutableDictionary dictionary];
+    _triggers        = [[NSMutableArray alloc] init];
+    _pkg             = [[ELScriptPackage alloc] initWithPlayer:self];
     
-    nextLayerNumber = 1;
-    showNotes       = NO;
-    showOctaves     = NO;
-    showKey         = NO;
-    performanceMode = NO;
+    _nextLayerNumber = 1;
+    _showNotes       = NO;
+    _showOctaves     = NO;
+    _showKey         = NO;
+    _performanceMode = NO;
     
     // Note that we start this here, otherwise MIDI CC cannot be used to trigger the player itself
     if( USE_TRIGGER_THREAD ) {
-      triggerThread = [[NSThread alloc] initWithTarget:self selector:@selector(triggerMain) object:nil];
-      [triggerThread start];
+      _triggerThread = [[NSThread alloc] initWithTarget:self selector:@selector(triggerMain) object:nil];
+      [_triggerThread start];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(start:) name:ELNotifyPlayerShouldStart object:nil];
@@ -91,17 +91,17 @@ static SEL updateSelector;
 
 
 // There is an issue here!
-- (id)initWithDocument:(ElysiumDocument *)theDocument {
+- (id)initWithDocument:(ElysiumDocument *)document {
   if( ( self = [self init] ) ) {
-    [self setDocument:theDocument];
+    [self setDocument:document];
   }
   
   return self;
 }
 
 
-- (id)initWithDocument:(ElysiumDocument *)theDocument createDefaultLayer:(BOOL)shouldCreateDefaultLayer {
-  if( ( self = [self initWithDocument:theDocument] ) ) {
+- (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)shouldCreateDefaultLayer {
+  if( ( self = [self initWithDocument:document] ) ) {
     if( shouldCreateDefaultLayer ) {
       [self createLayer];
     }
@@ -113,126 +113,86 @@ static SEL updateSelector;
 
 #pragma mark Properties
 
-@synthesize startTime;
-@synthesize harmonicTable;
-@synthesize showNotes;
-@synthesize showOctaves;
-@synthesize showKey;
-@synthesize performanceMode;
+// @synthesize startTime = _startTime;
+@synthesize harmonicTable = _harmonicTable;
+@synthesize layers = _layers;
+@synthesize showNotes = _showNotes;
+@synthesize showOctaves = _showOctaves;
+@synthesize showKey = _showKey;
+@synthesize performanceMode = _performanceMode;
+@synthesize dirty = _dirty;
 
-@synthesize mDirty;
 
-- (void)setDirty:(BOOL)dirty {
-  
+@synthesize tempoDial = _tempoDial;
+
+- (void)setTempoDial:(ELDial *)tempoDial {
+  _tempoDial = tempoDial;
+  [_tempoDial setDelegate:self];
 }
 
+@synthesize barLengthDial = _barLengthDial;
 
-@dynamic tempoDial;
-
-- (ELDial *)tempoDial {
-  return tempoDial;
+- (void)setBarLengthDial:(ELDial *)barLengthDial {
+  _barLengthDial = barLengthDial;
+  [_barLengthDial setDelegate:self];
 }
 
-- (void)setTempoDial:(ELDial *)newTempoDial {
-  tempoDial = newTempoDial;
-  [tempoDial setDelegate:self];
+@synthesize timeToLiveDial = _timeToLiveDial;
+
+- (void)setTimeToLiveDial:(ELDial *)timeToLiveDial {
+  _timeToLiveDial = timeToLiveDial;
+  [_timeToLiveDial setDelegate:self];
 }
 
-@dynamic barLengthDial;
+@synthesize pulseEveryDial = _pulseEveryDial;
 
-- (ELDial *)barLengthDial {
-  return barLengthDial;
+- (void)setPulseEveryDial:(ELDial *)pulseEveryDial {
+  _pulseEveryDial = pulseEveryDial;
+  [_pulseEveryDial setDelegate:self];
 }
 
-- (void)setBarLengthDial:(ELDial *)newBarLengthDial {
-  barLengthDial = newBarLengthDial;
-  [barLengthDial setDelegate:self];
+@synthesize velocityDial = _velocityDial;
+
+- (void)setVelocityDial:(ELDial *)velocityDial {
+  _velocityDial = velocityDial;
+  [_velocityDial setDelegate:self];
 }
 
-@dynamic timeToLiveDial;
+@synthesize emphasisDial = _emphasisDial;
 
-- (ELDial *)timeToLiveDial {
-  return timeToLiveDial;
+- (void)setEmphasisDial:(ELDial *)emphasisDial {
+  _emphasisDial = emphasisDial;
+  [_emphasisDial setDelegate:self];
 }
 
-- (void)setTimeToLiveDial:(ELDial *)newTimeToLiveDial {
-  timeToLiveDial = newTimeToLiveDial;
-  [timeToLiveDial setDelegate:self];
+@synthesize tempoSyncDial = _tempoSyncDial;
+
+- (void)setTempoSyncDial:(ELDial *)tempoSyncDial {
+  _tempoSyncDial = tempoSyncDial;
+  [_tempoSyncDial setDelegate:self];
 }
 
-@dynamic pulseEveryDial;
+@synthesize noteLengthDial = _noteLengthDial;
 
-- (ELDial *)pulseEveryDial {
-  return pulseEveryDial;
+- (void)setNoteLengthDial:(ELDial *)noteLengthDial {
+  _noteLengthDial = noteLengthDial;
+  [_noteLengthDial setDelegate:self];
 }
 
-- (void)setPulseEveryDial:(ELDial *)newPulseEveryDial {
-  pulseEveryDial = newPulseEveryDial;
-  [pulseEveryDial setDelegate:self];
+@synthesize transposeDial = _transposeDial;
+
+- (void)setTransposeDial:(ELDial *)transposeDial {
+  _transposeDial = transposeDial;
+  [_transposeDial setDelegate:self];
 }
 
-@dynamic velocityDial;
-
-- (ELDial *)velocityDial {
-  return velocityDial;
-}
-
-- (void)setVelocityDial:(ELDial *)newVelocityDial {
-  velocityDial = newVelocityDial;
-  [velocityDial setDelegate:self];
-}
-
-@dynamic emphasisDial;
-
-- (ELDial *)emphasisDial {
-  return emphasisDial;
-}
-
-- (void)setEmphasisDial:(ELDial *)newEmphasisDial {
-  emphasisDial = newEmphasisDial;
-  [emphasisDial setDelegate:self];
-}
-
-@dynamic tempoSyncDial;
-
-- (ELDial *)tempoSyncDial {
-  return tempoSyncDial;
-}
-
-- (void)setTempoSyncDial:(ELDial *)newTempoSyncDial {
-  tempoSyncDial = newTempoSyncDial;
-  [tempoSyncDial setDelegate:self];
-}
-
-@dynamic noteLengthDial;
-
-- (ELDial *)noteLengthDial {
-  return noteLengthDial;
-}
-
-- (void)setNoteLengthDial:(ELDial *)newNoteLengthDial {
-  noteLengthDial = newNoteLengthDial;
-  [noteLengthDial setDelegate:self];
-}
-
-@dynamic transposeDial;
-
-- (ELDial *)transposeDial {
-  return transposeDial;
-}
-
-- (void)setTransposeDial:(ELDial *)newTransposeDial {
-  transposeDial = newTransposeDial;
-  [transposeDial setDelegate:self];
-}
-
-@synthesize document;
-@synthesize scripts;
-@synthesize scriptingTag;
-@synthesize triggers;
-@synthesize pkg;
-@synthesize selectedLayer;
-@synthesize activeOscillators;
+@synthesize document = _document;
+@synthesize scripts = _scripts;
+@synthesize scriptingTag = _scriptingTag;
+@synthesize triggers = _triggers;
+@synthesize pkg = _pkg;
+@synthesize selectedLayer = _selectedLayer;
+@synthesize activeOscillators = _activeOscillators;
 
 + (ELDial *)defaultTempoDial {
   return [[ELDial alloc] initWithName:@"tempo"
@@ -435,48 +395,53 @@ static SEL updateSelector;
 }
 
 - (void)dialDidUnsetOscillator:(ELDial *)dial {
-  [activeOscillators removeObject:[dial oscillator]];
+  [[self activeOscillators] removeObject:[dial oscillator]];
 }
 
 - (void)dialDidSetOscillator:(ELDial *)dial {
-  [activeOscillators addObject:[dial oscillator]];
+  [[self activeOscillators] addObject:[dial oscillator]];
 }
 
 // Player status & control
 
-@synthesize running;
+@synthesize running = _running;
+
 
 - (void)start:(id)sender {
   [self performSelectorOnMainThread:@selector(runWillStartScript) withObject:nil waitUntilDone:YES];
-  oscillatorThread = [[NSThread alloc] initWithTarget:self selector:@selector(runOscillators) object:nil];
-  [oscillatorThread start];
-  [layers makeObjectsPerformSelector:@selector(start)];
+  _oscillatorThread = [[NSThread alloc] initWithTarget:self selector:@selector(runOscillators) object:nil];
+  [_oscillatorThread start];
+  [[self layers] makeObjectsPerformSelector:@selector(start)];
   [self setRunning:YES];
   [self performSelectorOnMainThread:@selector(runDidStartScript) withObject:nil waitUntilDone:YES];
 }
 
+
 - (void)stop:(id)sender {
   [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
-  [oscillatorThread cancel];
-  [layers makeObjectsPerformSelector:@selector(stop)];
+  [_oscillatorThread cancel];
+  [[self layers] makeObjectsPerformSelector:@selector(stop)];
   [self setRunning:NO];
   [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
 }
 
+
 - (void)reset {
-  [layers makeObjectsPerformSelector:@selector(reset)];
+  [[self layers] makeObjectsPerformSelector:@selector(reset)];
 }
 
+
 - (void)clearAll {
-  [layers makeObjectsPerformSelector:@selector(clear)];
+  [[self layers] makeObjectsPerformSelector:@selector(clear)];
 }
+
 
 - (void)runOscillators {
   UInt64 startNanos, elapsedNanos, delayMicros;
   
-  while( ![oscillatorThread isCancelled] ) {
+  while( ![_oscillatorThread isCancelled] ) {
     startNanos = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() );
-    [activeOscillators makeObjectsPerformSelector:updateSelector];
+    [[self activeOscillators] makeObjectsPerformSelector:updateSelector];
     elapsedNanos = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) - startNanos;
     delayMicros = 100000 - ( elapsedNanos / 1000 );
     if( delayMicros < 50000 ) {
@@ -485,6 +450,7 @@ static SEL updateSelector;
     usleep( delayMicros );
   }
 }
+
 
 - (void)triggerMain {
   // Without any inputs attached a runloop will automatically exit
@@ -497,44 +463,52 @@ static SEL updateSelector;
   } while( ![[NSThread currentThread] isCancelled] );
 }
 
-// Scripting
+
+#pragma mark Scripting support
 
 - (void)runWillStartScript {
-  [[scripts objectForKey:@"willStart"] evalWithArg:self];
+  [[[self scripts] objectForKey:@"willStart"] evalWithArg:self];
 }
+
 
 - (void)runDidStartScript {
-  [[scripts objectForKey:@"didStart"] evalWithArg:self];
+  [[[self scripts] objectForKey:@"didStart"] evalWithArg:self];
 }
+
 
 - (void)runWillStopScript {
-  [[scripts objectForKey:@"willStop"] evalWithArg:self];
+  [[[self scripts] objectForKey:@"willStop"] evalWithArg:self];
 }
 
+
 - (void)runDidStopScript {
-  [[scripts objectForKey:@"didStop"] evalWithArg:self];
+  [[[self scripts] objectForKey:@"didStop"] evalWithArg:self];
 }
+
 
 - (ELScript *)callbackTemplate {
   return [@"function(player) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
 }
 
-// Drawing Support
+
+#pragma mark Drawing Support
 
 - (void)toggleNoteDisplay {
-  showNotes = !showNotes;
+  [self setShowNotes:![self showNotes]];
 }
+
 
 - (void)needsDisplay {
-  [layers makeObjectsPerformSelector:@selector(needsDisplay)];
+  [[self layers] makeObjectsPerformSelector:@selector(needsDisplay)];
 }
 
-// Layer Management
+
+#pragma mark Layer Management
 
 - (ELLayer *)createLayer {
   ELLayer *layer = [[ELLayer alloc] initWithPlayer:self channel:([self layerCount]+1)];
   
-  [layer setLayerId:[NSString stringWithFormat:@"Layer-%d", nextLayerNumber++]];
+  [layer setLayerId:[NSString stringWithFormat:@"Layer-%d", _nextLayerNumber++]];
   
   [[layer tempoDial] setMode:dialInherited];
   [[layer barLengthDial] setMode:dialInherited];
@@ -550,85 +524,93 @@ static SEL updateSelector;
   return layer;
 }
 
-- (void)addLayer:(ELLayer *)_layer_ {
+
+- (void)addLayer:(ELLayer *)layer {
   [self willChangeValueForKey:@"layers"];
-  [_layer_ setPlayer:self];
-  [layers addObject:_layer_];
+  [layer setPlayer:self];
+  [[self layers] addObject:layer];
   [self didChangeValueForKey:@"layers"];
 }
 
-- (void)removeLayer:(ELLayer *)_layer_ {
-  [layers removeObject:_layer_];
+
+- (void)removeLayer:(ELLayer *)layer {
+  [[self layers] removeObject:layer];
 }
+
 
 - (int)layerCount {
-  return [layers count];
+  return [[self layers] count];
 }
+
 
 - (ELLayer *)layer:(int)_index_ {
-  return [layers objectAtIndex:_index_];
+  return [[self layers] objectAtIndex:_index_];
 }
 
-- (NSArray *)layers {
-  return [layers copy];
-}
+
+// - (NSArray *)layers {
+//   return [layers copy];
+// }
 
 - (void)removeLayers {
-  for( ELLayer *layer in [layers copy] ) {
+  for( ELLayer *layer in [[self layers] copy] ) {
     [self removeLayer:layer];
   }
 }
 
-// MIDI Trigger support
 
-- (void)processMIDIControlMessage:(ELMIDIControlMessage *)_message_ {
-  NSLog( @"processMIDIControlMessage:%@", _message_ );
+#pragma mark MIDI Trigger support
+
+- (void)processMIDIControlMessage:(ELMIDIControlMessage *)message {
+  NSLog( @"processMIDIControlMessage:%@", message );
   
   if( USE_TRIGGER_THREAD ) {
-    [self performSelector:@selector(handleMIDIControlMessage:) onThread:triggerThread withObject:_message_ waitUntilDone:NO];
+    [self performSelector:@selector(handleMIDIControlMessage:) onThread:_triggerThread withObject:message waitUntilDone:NO];
   } else {
-    [self performSelectorOnMainThread:@selector(handleMIDIControlMessage:) withObject:_message_ waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(handleMIDIControlMessage:) withObject:message waitUntilDone:NO];
   }
   
 }
 
-- (void)handleMIDIControlMessage:(ELMIDIControlMessage *)_message_ {
-  NSLog( @"handleMIDIControlMessage:%@", _message_ );
-  [triggers makeObjectsPerformSelector:@selector(handleMIDIControlMessage:) withObject:_message_];
+
+- (void)handleMIDIControlMessage:(ELMIDIControlMessage *)message {
+  NSLog( @"handleMIDIControlMessage:%@", message );
+  [[self triggers] makeObjectsPerformSelector:@selector(handleMIDIControlMessage:) withObject:message];
 }
 
-// Oscillator support
 
-- (void)addOscillator:(ELOscillator *)_oscillator_ {
+#pragma mark Oscillator support
+
+- (void)addOscillator:(ELOscillator *)oscillator {
   [self doesNotRecognizeSelector:_cmd];
-  // [oscillators setObject:_oscillator_ forKey:[_oscillator_ name]];
 }
 
-// Implement the ELXmlData protocol
+
+#pragma mark Implements ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *surfaceElement = [NSXMLNode elementWithName:@"surface"];
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:[[NSNumber numberWithInt:[harmonicTable cols]] stringValue] forKey:@"columns"];
-  [attributes setObject:[[NSNumber numberWithInt:[harmonicTable rows]] stringValue] forKey:@"rows"];
+  [attributes setObject:[[NSNumber numberWithInt:[[self harmonicTable] cols]] stringValue] forKey:@"columns"];
+  [attributes setObject:[[NSNumber numberWithInt:[[self harmonicTable] rows]] stringValue] forKey:@"rows"];
   [surfaceElement setAttributesAsDictionary:attributes];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
-  [controlsElement addChild:[tempoDial xmlRepresentation]];
-  [controlsElement addChild:[barLengthDial xmlRepresentation]];
-  [controlsElement addChild:[timeToLiveDial xmlRepresentation]];
-  [controlsElement addChild:[pulseEveryDial xmlRepresentation]];
-  [controlsElement addChild:[velocityDial xmlRepresentation]];
-  [controlsElement addChild:[emphasisDial xmlRepresentation]];
-  [controlsElement addChild:[tempoSyncDial xmlRepresentation]];
-  [controlsElement addChild:[noteLengthDial xmlRepresentation]];
-  [controlsElement addChild:[transposeDial xmlRepresentation]];
+  [controlsElement addChild:[[self tempoDial] xmlRepresentation]];
+  [controlsElement addChild:[[self barLengthDial] xmlRepresentation]];
+  [controlsElement addChild:[[self timeToLiveDial] xmlRepresentation]];
+  [controlsElement addChild:[[self pulseEveryDial] xmlRepresentation]];
+  [controlsElement addChild:[[self velocityDial] xmlRepresentation]];
+  [controlsElement addChild:[[self emphasisDial] xmlRepresentation]];
+  [controlsElement addChild:[[self tempoSyncDial] xmlRepresentation]];
+  [controlsElement addChild:[[self noteLengthDial] xmlRepresentation]];
+  [controlsElement addChild:[[self transposeDial] xmlRepresentation]];
   
   [surfaceElement addChild:controlsElement];
   
   NSXMLElement *layersElement = [NSXMLNode elementWithName:@"layers"];
-  for( ELLayer *layer in layers ) {
+  for( ELLayer *layer in [self layers] ) {
     [layersElement addChild:[layer xmlRepresentation]];
   }
   [surfaceElement addChild:layersElement];
@@ -640,7 +622,7 @@ static SEL updateSelector;
   [surfaceElement addChild:triggersElement];
   
   NSXMLElement *scriptsElement = [NSXMLNode elementWithName:@"scripts"];
-  for( NSString *name in [scripts allKeys] ) {
+  for( NSString *name in [[self scripts] allKeys] ) {
     NSXMLElement *scriptElement = [NSXMLNode elementWithName:@"script"];
 
     [attributes removeAllObjects];
@@ -648,87 +630,87 @@ static SEL updateSelector;
     [scriptElement setAttributesAsDictionary:attributes];
     
     NSXMLNode *cdataNode = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
-    [cdataNode setStringValue:[scripts objectForKey:name]];
+    [cdataNode setStringValue:[[self scripts] objectForKey:name]];
     [scriptElement addChild:cdataNode];
     
     [scriptsElement addChild:scriptElement];
   }
   [surfaceElement addChild:scriptsElement];
   
-  [surfaceElement addChild:[pkg xmlRepresentation]];
+  [surfaceElement addChild:[[self pkg] xmlRepresentation]];
   
   return surfaceElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [self init] ) ) {
     NSArray *nodes;
     
     // Controls for the player
-    *_error_ = nil;
+    *error = nil;
     
-    [self setTempoDial:[_representation_ loadDial:@"tempo" parent:nil player:_player_ error:_error_]];
-    [self setBarLengthDial:[_representation_ loadDial:@"barLength" parent:nil player:_player_ error:_error_]];
-    [self setTimeToLiveDial:[_representation_ loadDial:@"timeToLive" parent:nil player:_player_ error:_error_]];
-    [self setPulseEveryDial:[_representation_ loadDial:@"pulseEvery" parent:nil player:_player_ error:_error_]];
-    [self setVelocityDial:[_representation_ loadDial:@"velocity" parent:nil player:_player_ error:_error_]];
-    [self setEmphasisDial:[_representation_ loadDial:@"emphasis" parent:nil player:_player_ error:_error_]];
-    [self setTempoSyncDial:[_representation_ loadDial:@"tempoSync" parent:nil player:_player_ error:_error_]];
-    [self setNoteLengthDial:[_representation_ loadDial:@"noteLength" parent:nil player:_player_ error:_error_]];
-    [self setTransposeDial:[_representation_ loadDial:@"transpose" parent:nil player:_player_ error:_error_]];
+    [self setTempoDial:[representation loadDial:@"tempo" parent:nil player:player error:error]];
+    [self setBarLengthDial:[representation loadDial:@"barLength" parent:nil player:player error:error]];
+    [self setTimeToLiveDial:[representation loadDial:@"timeToLive" parent:nil player:player error:error]];
+    [self setPulseEveryDial:[representation loadDial:@"pulseEvery" parent:nil player:player error:error]];
+    [self setVelocityDial:[representation loadDial:@"velocity" parent:nil player:player error:error]];
+    [self setEmphasisDial:[representation loadDial:@"emphasis" parent:nil player:player error:error]];
+    [self setTempoSyncDial:[representation loadDial:@"tempoSync" parent:nil player:player error:error]];
+    [self setNoteLengthDial:[representation loadDial:@"noteLength" parent:nil player:player error:error]];
+    [self setTransposeDial:[representation loadDial:@"transpose" parent:nil player:player error:error]];
     
     // Layers
-    nodes = [_representation_ nodesForXPath:@"layers/layer" error:_error_];
+    nodes = [representation nodesForXPath:@"layers/layer" error:error];
     if( nodes == nil ) {
       return nil;
     } else {
       for( NSXMLNode *node in nodes ) {
-        ELLayer *layer = [[ELLayer alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:self player:self error:_error_];
+        ELLayer *layer = [[ELLayer alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:self player:self error:error];
         if( layer == nil ) {
           return nil;
         } else {
           [self addLayer:layer];
-          nextLayerNumber++; // Ensure that future defined layers don't get a duplicate id.
+          _nextLayerNumber++; // Ensure that future defined layers don't get a duplicate id.
         }
       }
     }
     
     // Triggers
-    nodes = [_representation_ nodesForXPath:@"triggers/trigger" error:_error_];
+    nodes = [representation nodesForXPath:@"triggers/trigger" error:error];
     if( nodes == nil ) {
       return nil;
     } else {
       for( NSXMLNode *node in nodes ) {
-        ELMIDITrigger *trigger = [[ELMIDITrigger alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:self error:_error_];
+        ELMIDITrigger *trigger = [[ELMIDITrigger alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:self error:error];
         if( trigger == nil ) {
           return nil;
         } else {
-          [triggers addObject:trigger];
+          [[self triggers] addObject:trigger];
         }
       }
     }
     
     // Scripts
-    nodes = [_representation_ nodesForXPath:@"scripts/script" error:_error_];
+    nodes = [representation nodesForXPath:@"scripts/script" error:error];
     if( nodes == nil ) {
       return nil;
     } else {
       for( NSXMLNode *node in nodes ) {
         NSXMLElement *element = (NSXMLElement *)node;
-        [scripts setObject:[[element stringValue] asJavascriptFunction]
-                    forKey:[element attributeAsString:@"name"]];
+        [[self scripts] setObject:[[element stringValue] asJavascriptFunction]
+                           forKey:[element attributeAsString:@"name"]];
       }
     }
     
     // Convenient, even though there should only ever be one
-    nodes = [_representation_ nodesForXPath:@"package" error:_error_];
+    nodes = [representation nodesForXPath:@"package" error:error];
     if( nodes == nil ) {
       return nil;
     } else {
       NSXMLElement *element;;
       if( ( element = [nodes firstXMLElement] ) ) {
-        pkg = [[ELScriptPackage alloc] initWithXmlRepresentation:element parent:nil player:self error:_error_];
-        if( pkg == nil ) {
+        _pkg = [[ELScriptPackage alloc] initWithXmlRepresentation:element parent:nil player:self error:error];
+        if( _pkg == nil ) {
           return nil;
         }
       }
