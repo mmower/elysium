@@ -15,35 +15,43 @@
 
 @implementation ELNoteGroup
 
-- (id)initWithNote:(ELNote *)_note_ {
+#pragma mark Object initialization
+
+- (id)initWithNote:(ELNote *)note {
   if( ( self = [super init] ) ) {
-    notes = [NSMutableArray arrayWithCapacity:3];
-    if( _note_ ) {
-      [self addNote:_note_];
+    _notes = [NSMutableArray arrayWithCapacity:3];
+    if( note ) {
+      [self addNote:note];
     }
   }
   
   return self;
 }
 
-- (void)addNote:(ELNote *)_note_ {
-  [notes addObject:_note_];
+
+#pragma mark Object behaviour
+
+- (void)addNote:(ELNote *)note {
+  [_notes addObject:note];
 }
 
-- (void)prepareMIDIMessage:(ELMIDIMessage*)_message_
-                   channel:(int)_channel_
-                    onTime:(UInt64)_onTime_
-                   offTime:(UInt64)_offTime_
-                  velocity:(int)_velocity_
-                 transpose:(int)_transpose_
+
+#pragma mark MIDI integration
+
+- (void)prepareMIDIMessage:(ELMIDIMessage*)message
+                   channel:(int)channel
+                    onTime:(UInt64)onTime
+                   offTime:(UInt64)offTime
+                  velocity:(int)velocity
+                 transpose:(int)transpose
 {
-  for( ELNote *note in notes ) {
-    [note prepareMIDIMessage:_message_
-                     channel:_channel_
-                      onTime:_onTime_
-                     offTime:_offTime_
-                    velocity:_velocity_
-                   transpose:_transpose_];
+  for( ELNote *note in _notes ) {
+    [note prepareMIDIMessage:message
+                     channel:channel
+                      onTime:onTime
+                     offTime:offTime
+                    velocity:velocity
+                   transpose:transpose];
   }
 }
 

@@ -15,13 +15,13 @@
 @class ELLayer;
 
 @interface ELPlayhead : NSObject {
-  ELLayer   *layer;
-  ELCell    *parent;
-  ELCell    *position;
-  Direction direction;
-  int       skipCount;
-  int       TTL;
-  BOOL      isNew;
+  // ELLayer   *_layer;
+  ELCell    *_parent;
+  ELCell    *_position;
+  Direction _direction;
+  int       _skipCount;
+  int       _TTL;
+  BOOL      _isNew;
 }
 
 - (id)initWithPosition:(ELCell *)position direction:(Direction)direction TTL:(int)TTL;
@@ -30,9 +30,9 @@
 @property ELCell *parent;
 @property Direction direction;
 @property int skipCount;
+@property int TTL;
+@property BOOL isNew;
 @property (readonly) BOOL isDead;
-@property (readonly) int TTL;
-@property (readonly) BOOL isNew;
 
 - (void)advance;
 - (void)cleanup;

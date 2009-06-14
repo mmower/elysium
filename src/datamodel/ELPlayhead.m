@@ -14,73 +14,80 @@
 
 @implementation ELPlayhead
 
-- (id)initWithPosition:(ELCell *)aPosition direction:(Direction)aDirection TTL:(int)aTTL {
+#pragma mark Object initialization
+
+- (id)initWithPosition:(ELCell *)position direction:(Direction)direction TTL:(int)ttl {
   if( ( self = [super init] ) ) {
-    [self setPosition:aPosition];
-    [self setParent:aPosition];
-    
-    direction = aDirection;
-    TTL       = aTTL;
-    skipCount = 0;
-    isNew     = YES;
+    [self setPosition:position];
+    [self setParent:position];
+    [self setDirection:direction];
+    [self setTTL:ttl];
+    [self setIsNew:YES];
+    [self setSkipCount:0];
   }
   
   return self;
 }
 
-@synthesize TTL;
-@synthesize skipCount;
-@dynamic position;
-@synthesize parent;
-@synthesize isNew;
 
-- (ELCell *)position {
-  return position;
-}
+#pragma mark Properties
 
-- (void)setPosition:(ELCell *)newPosition {
-  [position playheadLeaving:self];
+@synthesize skipCount = _skipCount;
+@synthesize parent = _parent;
+@synthesize isNew = _isNew;
+@synthesize TTL = _TTL;
 
-  if( newPosition ) {
-    NSAssert( [newPosition isKindOfClass:[ELCell class]], @"Class error <argument>" );
-    position = newPosition;
-    [position playheadEntering:self];
+@synthesize position = _position;
+
+- (void)setPosition:(ELCell *)position {
+  [_position playheadLeaving:self];
+
+  if( position ) {
+    NSAssert( [position isKindOfClass:[ELCell class]], @"Class error <argument>" );
+    _position = position;
+    [_position playheadEntering:self];
   } else {
-    position = nil;
+    _position = nil;
   }
 }
 
-@synthesize direction;
-
-- (void)advance {
-  ELCell *newPosition = position;
-  
-  while( skipCount ) {
-    newPosition = [newPosition neighbour:direction];
-    skipCount--;
-  }
-  
-  newPosition = [newPosition neighbour:direction];
-  
-  [self setPosition:newPosition];
-  TTL--;
-  isNew = NO;
-}
+@synthesize direction = _direction;
 
 @dynamic isDead;
 
-- (void)kill {
-  TTL = 0;
+- (BOOL)isDead {
+  return [self position] == nil || [self TTL] < 1;
 }
 
-- (BOOL)isDead {
-  return position == nil || TTL < 1;
+
+#pragma mark Object behaviour
+
+- (void)advance {
+  ELCell *position = [self position];
+  
+  while( [self skipCount] ) {
+    position = [position neighbour:[self direction]];
+    [self setSkipCount:[self skipCount]-1];
+  }
+  
+  position = [position neighbour:[self direction]];
+  
+  [self setPosition:position];
+  [self setTTL:[self TTL]-1];
+  [self setIsNew:NO];
 }
+
+
+- (void)kill {
+  [self setTTL:0];
+}
+
 
 - (void)cleanup {
   if( [self isDead] ) {
     [self setPosition:nil];
   }
 }
+
 
 @end
