@@ -126,8 +126,6 @@ static ELMIDIController *singletonInstance = nil;
     Byte note     = message[1];
     Byte velocity = message[2];
     
-    NSLog( @"Handle MIDI note channel:%d number:%d velocity:%d", channel, note, velocity );
-    
     ELMIDINoteMessage *message = [[ELMIDINoteMessage alloc] initWithChannel:channel
                                                                        note:note
                                                                    velocity:velocity
