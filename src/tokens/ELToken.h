@@ -20,21 +20,22 @@
 @end
 
 @interface ELToken : NSObject <ELXmlData,NSMutableCopying> {
-  BOOL                loaded;
-  ELLayer             *layer;
-  ELCell              *cell;
-  NSMutableDictionary *scripts;
-  BOOL                skip;
-  BOOL                fired;
-  int                 gateCount;
+  BOOL                _loaded;
+  ELLayer             *_layer;
+  ELCell              *_cell;
+  NSMutableDictionary *_scripts;
+  BOOL                _skip;
+  BOOL                _fired;
+  int                 _gateCount;
   
-  ELDial              *enabledDial;
-  ELDial              *pDial;
-  ELDial              *gateDial;
+  ELDial              *_enabledDial;
+  ELDial              *_pDial;
+  ELDial              *_gateDial;
 }
 
 - (id)initEnabledDial:(ELDial *)enabledDial pDial:(ELDial *)pDial gateDial:(ELDial *)gateDial scripts:(NSMutableDictionary *)scripts;
 
+@property (readonly) BOOL loaded;
 @property ELCell *cell;
 @property ELLayer *layer;
 
