@@ -15,11 +15,14 @@
 
 #import "ELMIDIMessage.h"
 #import "ELMIDIController.h"
+#import "ELMIDINoteMessage.h"
 #import "ELMIDIControlMessage.h"
 
 static ELMIDIController *singletonInstance = nil;
 
 @implementation ELMIDIController
+
+#pragma mark Class initialization & behaviours
 
 + (void)initialize {
   if( nil == singletonInstance ) {
@@ -27,45 +30,57 @@ static ELMIDIController *singletonInstance = nil;
   }
 }
 
+
 + (ELMIDIController *)sharedInstance {
   return singletonInstance;
 }
 
+
+#pragma mark Object initialization
+
 - (id)init {
   if( ( self = [super init] ) ) {
-    source = [[PYMIDIVirtualSource alloc] initWithName:@"Elysium out"];
-    [source addSender:self];
+    _source = [[PYMIDIVirtualSource alloc] initWithName:@"Elysium out"];
+    [_source addSender:self];
   }
   
   return self;
 }
 
-@synthesize delegate;
+
+#pragma mark Properties
+
+@synthesize delegate = _delegate;
+
+
+#pragma mark Object behaviours
 
 - (ELMIDIMessage *)createMessage {
   return [[ELMIDIMessage alloc] initWithController:self];
 }
 
-- (void)sendPackets:(MIDIPacketList *)_packetList_ {
-  // NSLog( @"Send MIDI packets" );
-  [source processMIDIPacketList:_packetList_ sender:self];
+
+- (void)sendPackets:(MIDIPacketList *)packetList {
+  [_source processMIDIPacketList:packetList sender:self];
 }
 
-- (void)setInput:(PYMIDIEndpoint *)_endpoint_ {
-  [endpoint removeReceiver:self];
-  endpoint = _endpoint_;
-  [endpoint addReceiver:self];
+
+- (void)setInput:(PYMIDIEndpoint *)endpoint {
+  [_endpoint removeReceiver:self];
+  _endpoint = endpoint;
+  [_endpoint addReceiver:self];
 }
 
-- (void)processMIDIPacketList:(MIDIPacketList *)_packetList_ sender:(id)_sender_ {
+
+- (void)processMIDIPacketList:(MIDIPacketList *)packetList sender:(id)sender {
   int i, j;
   const MIDIPacket* packet;
   Byte  message[256];
   int messageSize = 0;
   
   // Step through each packet
-  packet = _packetList_->packet;
-  for( i = 0; i < _packetList_->numPackets; i++ ) {
+  packet = packetList->packet;
+  for( i = 0; i < packetList->numPackets; i++ ) {
       for( j = 0; j < packet->length; j++ ) {
           if( packet->data[j] >= 0xF8 ) {
             // skip over real-time data
@@ -78,30 +93,49 @@ static ELMIDIController *singletonInstance = nil;
               messageSize = 0;
           }
           
-          message[messageSize++] = packet->data[j];			// push the data into the message
+          message[messageSize++] = packet->data[j]; // push the data into the message
       }
       
-      packet = MIDIPacketNext (packet);
+      packet = MIDIPacketNext( packet );
   }
   
-  if (messageSize > 0)
-      [self handleMIDIMessage:message ofSize:messageSize];
+  if( messageSize > 0 ) {
+    [self handleMIDIMessage:message ofSize:messageSize];
+  }
 }
+
 
 /* Handle routing MIDI control messages to the foreground player.
  * The message is bundled into a struct for easy passing.
  */
-- (void)handleMIDIMessage:(Byte*)_message_ ofSize:(int)_size_ {
+- (void)handleMIDIMessage:(Byte*)message ofSize:(int)size {
   // Look for Control Change
-  if( ( _message_[0] & 0xF0) == 0xB0) {
-    ELMIDIControlMessage *message = [[ELMIDIControlMessage alloc] initWithChannel:_message_[0] & 0x0F
-                                                                       controller:_message_[1]
-                                                                            value:_message_[2]];
-                                                                            
-    ELPlayer *player = [[[NSDocumentController sharedDocumentController] currentDocument] player];
+  if( ( message[0] & 0xF0) == 0xB0) {
+    Byte channel    = message[0] & 0x0F;
+    Byte controller = message[1];
+    Byte value      = message[2];
     
-    [player processMIDIControlMessage:message];
+    ELMIDIControlMessage *message = [[ELMIDIControlMessage alloc] initWithChannel:channel
+                                                                       controller:controller
+                                                                            value:value];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyMIDIControl object:message];
+    
+  } else if( ( message[0] & 0xF0 ) == 0x90 ) {
+    Byte channel  = message[0] & 0x0F;
+    Byte note     = message[1];
+    Byte velocity = message[2];
+    
+    NSLog( @"Handle MIDI note channel:%d number:%d velocity:%d", channel, note, velocity );
+    
+    ELMIDINoteMessage *message = [[ELMIDINoteMessage alloc] initWithChannel:channel
+                                                                       note:note
+                                                                   velocity:velocity
+                                                                     noteOn:(velocity > 0)];
+                                                                     
+    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyMIDINote object:message];
   }
 }
+
 
 @end

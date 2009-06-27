@@ -10,9 +10,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ELMIDIControlMessage : NSObject {
-  Byte  channel;
-  Byte  controller;
-  Byte  value;
+  Byte  _channel;
+  Byte  _controller;
+  Byte  _value;
 }
 
 - (id)initWithChannel:(Byte)channel controller:(Byte)controller value:(Byte)value;

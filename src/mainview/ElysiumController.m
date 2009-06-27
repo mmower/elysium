@@ -31,6 +31,9 @@ NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
 NSString * const ELNotifyPlayerShouldStart = @"elysium.playerShouldStart";
 NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
+NSString * const ELNotifyMIDIControl = @"elysium.midi.control";
+NSString * const ELNotifyMIDINote = @"elysium.midi.note";
+
 
 @implementation ElysiumController
 

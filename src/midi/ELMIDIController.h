@@ -16,10 +16,10 @@
 @class PYMIDIVirtualSource;
 
 @interface ELMIDIController : NSObject {
-  PYMIDIVirtualSource       *source;
-  PYMIDIEndpoint            *endpoint;
+  PYMIDIVirtualSource       *_source;
+  PYMIDIEndpoint            *_endpoint;
   
-  id                        delegate;
+  id                        _delegate;
 }
 
 @property (assign) id delegate;
