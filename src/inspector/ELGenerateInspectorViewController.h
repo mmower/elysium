@@ -40,8 +40,12 @@
   IBOutlet  NSButton            *removeWillRunControl;
   IBOutlet  NSButton            *editDidRunControl;
   IBOutlet  NSButton            *removeDidRunControl;
+  
+  IBOutlet  ELSegmentedControl  *triggerModeControl;
 }
 
 - (id)initWithInspectorController:(ELInspectorController *)controller;
+
+- (void)bindTriggerModeControl;
 
 @end
