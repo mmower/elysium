@@ -25,6 +25,7 @@
 
 #import "ELMIDIMessage.h"
 #import "ELMIDIController.h"
+#import "ELMIDINoteMessage.h"
 
 #import "ELToken.h"
 #import "ELNoteToken.h"
@@ -84,6 +85,8 @@ static SEL updateSelector;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(start:) name:ELNotifyPlayerShouldStart object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop:) name:ELNotifyPlayerShouldStop object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processMIDIControlMessage:) name:ELNotifyMIDIControl object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processMIDINoteMessage:) name:ELNotifyMIDINote object:nil];
   }
   
   return self;
@@ -211,6 +214,16 @@ static SEL updateSelector;
                              assigned:4
                                   min:1
                                   max:24
+                                 step:1];
+}
+
++ (ELDial *)defaultTriggerModeDial {
+  return [[ELDial alloc] initWithName:@"triggerMode"
+                              toolTip:@"Controls the trigger for a generator to make new playheads."
+                                  tag:0
+                             assigned:0
+                                  min:0
+                                  max:2
                                  step:1];
 }
 
@@ -559,9 +572,10 @@ static SEL updateSelector;
 }
 
 
-#pragma mark MIDI Trigger support
+#pragma mark Incoming MIDI message support
 
-- (void)processMIDIControlMessage:(ELMIDIControlMessage *)message {
+- (void)processMIDIControlMessage:(NSNotification *)notification {
+  ELMIDIControlMessage *message = [notification object];
   NSLog( @"processMIDIControlMessage:%@", message );
   
   if( USE_TRIGGER_THREAD ) {
@@ -569,13 +583,30 @@ static SEL updateSelector;
   } else {
     [self performSelectorOnMainThread:@selector(handleMIDIControlMessage:) withObject:message waitUntilDone:NO];
   }
-  
 }
 
 
 - (void)handleMIDIControlMessage:(ELMIDIControlMessage *)message {
   NSLog( @"handleMIDIControlMessage:%@", message );
   [[self triggers] makeObjectsPerformSelector:@selector(handleMIDIControlMessage:) withObject:message];
+}
+
+
+- (void)processMIDINoteMessage:(NSNotification *)notification {
+  ELMIDIControlMessage *message = [notification object];
+  NSLog( @"processMIDINoteMessage:%@", message );
+  
+  if( USE_TRIGGER_THREAD ) {
+    [self performSelector:@selector(handleMIDINoteMessage:) onThread:_triggerThread withObject:message waitUntilDone:NO];
+  } else {
+    [self performSelectorOnMainThread:@selector(handleMIDINoteMessage:) withObject:message waitUntilDone:NO];
+  }
+}
+
+
+- (void)handleMIDINoteMessage:(ELMIDINoteMessage *)message {
+  NSLog( @"handleMIDINoteMessage:%@", message );
+  [[self layers] makeObjectsPerformSelector:@selector(handleMIDINoteMessage:) withObject:message];
 }
 
 

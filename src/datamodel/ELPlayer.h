@@ -19,6 +19,7 @@
 @class ELTimer;
 @class ELHarmonicTable;
 @class ELMIDIController;
+@class ELMIDINoteMessage;
 @class ElysiumDocument;
 @class ELScriptPackage;
 @class ELEnvelopeProbabilityGenerator;
@@ -97,6 +98,7 @@
 + (ELDial *)defaultBarLengthDial;
 + (ELDial *)defaultTimeToLiveDial;
 + (ELDial *)defaultPulseEveryDial;
++ (ELDial *)defaultTriggerModeDial;
 + (ELDial *)defaultVelocityDial;
 + (ELDial *)defaultEmphasisDial;
 + (ELDial *)defaultTempoSyncDial;
@@ -135,8 +137,10 @@
 - (ELLayer *)layer:(int)index;
 
 // MIDI Trigger support
-- (void)processMIDIControlMessage:(ELMIDIControlMessage *)message;
+- (void)processMIDIControlMessage:(NSNotification *)notification;
 - (void)handleMIDIControlMessage:(ELMIDIControlMessage *)message;
+- (void)processMIDINoteMessage:(NSNotification *)notification;
+- (void)handleMIDINoteMessage:(ELMIDINoteMessage *)message;
 
 // Script support
 - (void)runWillStartScript;
