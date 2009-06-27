@@ -34,6 +34,9 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 NSString * const ELNotifyMIDIControl = @"elysium.midi.control";
 NSString * const ELNotifyMIDINote = @"elysium.midi.note";
 
+NSString * const ELHasMidiDeviceKey = @"elysium.has.last.device";
+NSString * const ELUsedMidiDeviceKey = @"elysium.last.device";
+
 
 @implementation ElysiumController
 

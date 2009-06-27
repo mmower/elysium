@@ -44,6 +44,10 @@ static ELMIDIController *singletonInstance = nil;
     [_source addSender:self];
   }
   
+  if( [[NSUserDefaults standardUserDefaults] boolForKey:ELHasMidiDeviceKey] ) {
+    [self setInputWithUniqueID:[[NSUserDefaults standardUserDefaults] integerForKey:ELUsedMidiDeviceKey]];
+  }
+  
   return self;
 }
 
@@ -66,9 +70,23 @@ static ELMIDIController *singletonInstance = nil;
 
 
 - (void)setInput:(PYMIDIEndpoint *)endpoint {
+  NSLog( @"Set input channel: %@", [endpoint displayName] );
   [_endpoint removeReceiver:self];
   _endpoint = endpoint;
   [_endpoint addReceiver:self];
+  
+  [[NSUserDefaults standardUserDefaults] setInteger:[endpoint uniqueID] forKey:ELUsedMidiDeviceKey];
+  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ELHasMidiDeviceKey];
+}
+
+
+- (void)setInputWithUniqueID:(NSInteger)uniqueID {
+  for( PYMIDIEndpoint *endpoint in [[PYMIDIManager sharedInstance] realSources] ) {
+    if( [endpoint uniqueID] == uniqueID ) {
+      [self setInput:endpoint];
+      break;
+    }
+  }
 }
 
 

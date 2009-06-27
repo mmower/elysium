@@ -81,6 +81,9 @@ extern NSString * const ELDefaultActivePlayheadColor;
 extern NSString * const ELTonicNoteColor;
 extern NSString * const ELScaleNoteColor;
 
+extern NSString * const ELHasMidiDeviceKey;
+extern NSString * const ELUsedMidiDeviceKey;
+
 #import "ELXmlData.h"
 #import "ELTaggable.h"
 

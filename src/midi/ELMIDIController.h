@@ -30,6 +30,7 @@
 - (void)sendPackets:(MIDIPacketList *)packetList;
 
 - (void)setInput:(PYMIDIEndpoint *)endpoint;
+- (void)setInputWithUniqueID:(NSInteger)uniqueID;
 
 - (void)processMIDIPacketList:(MIDIPacketList*)packetList sender:(id)sender;
 - (void)handleMIDIMessage:(Byte*)message ofSize:(int)size;
