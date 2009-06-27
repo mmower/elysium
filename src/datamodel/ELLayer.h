@@ -19,6 +19,7 @@
 @class ELPlayer;
 @class ELPlayhead;
 @class ELGenerateToken;
+@class ELMIDINoteMessage;
 
 @interface ELLayer : NSObject <LMHoneycombMatrix,ELXmlData,ELTaggable> {
   id                  _delegate;       // This will be the view representing us in the UI
@@ -41,6 +42,8 @@
   
   NSMutableDictionary *_scripts;
   // NSString            *_scriptingTag;
+  
+  NSMutableArray      *_receivedNotes;
   
   NSString            *_layerId;
   
@@ -66,14 +69,15 @@
 - (id)initWithPlayer:(ELPlayer *)player;
 - (id)initWithPlayer:(ELPlayer *)player channel:(int)channel;
 
-@property           ELPlayer  *player;
-@property           id        delegate;
-@property           BOOL      visible;
-@property (assign)  NSString  *layerId;
-@property           ELCell    *selectedCell;
-@property           int       beatCount;
-@property           ELKey     *key;
-@property           BOOL      dirty;
+@property             ELPlayer        *player;
+@property             id              delegate;
+@property             BOOL            visible;
+@property (assign)    NSString        *layerId;
+@property             ELCell          *selectedCell;
+@property             int             beatCount;
+@property             ELKey           *key;
+@property             BOOL            dirty;
+@property (readonly)  NSMutableArray  *receivedNotes;
 
 @property (assign)  ELDial    *enabledDial;
 @property (assign)  ELDial    *channelDial;
@@ -104,6 +108,9 @@
 - (void)reset;
 
 - (void)clear;
+
+- (void)handleMIDINoteMessage:(ELMIDINoteMessage *)message;
+- (BOOL)receivedMIDINote:(ELNote *)note;
 
 - (BOOL)firstBeatInBar;
 

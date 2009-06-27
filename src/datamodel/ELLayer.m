@@ -20,6 +20,7 @@
 
 #import "ELToken.h"
 #import "ELGenerateToken.h"
+#import "ELMIDINoteMessage.h"
 
 NSPredicate *deadPlayheadFilter;
 
@@ -42,17 +43,16 @@ NSPredicate *deadPlayheadFilter;
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    _cells        = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-    _playheads    = [[NSMutableArray alloc] init];
+    _cells         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    _playheads     = [[NSMutableArray alloc] init];
     _playheadQueue = [[NSMutableArray alloc] init];
     _generators    = [[NSMutableArray alloc] init];
     _beatCount     = 0;
     _timeBase      = 0;
     _isRunning     = NO;
     _selectedCell  = nil;
-    
+    _receivedNotes = [[NSMutableArray alloc] init];
     _scripts       = [NSMutableDictionary dictionary];
-    
     _key           = [ELKey noKey];
     
     [self addObserver:self forKeyPath:@"key" options:0 context:nil];
@@ -107,6 +107,7 @@ NSPredicate *deadPlayheadFilter;
   return self;
 }
 
+
 #pragma mark Properties
 
 @synthesize player = _player;
@@ -115,6 +116,7 @@ NSPredicate *deadPlayheadFilter;
 @synthesize selectedCell = _selectedCell;
 @synthesize beatCount = _beatCount;
 @synthesize key = _key;
+@synthesize receivedNotes = _receivedNotes;
 
 @synthesize dirty = _dirty;
 
@@ -290,6 +292,8 @@ NSPredicate *deadPlayheadFilter;
     
     [self addQueuedPlayheads];
     
+    [[self receivedNotes] removeAllObjects];
+    
     [[self delegate] setNeedsDisplay:YES];
   }
   
@@ -416,6 +420,27 @@ NSPredicate *deadPlayheadFilter;
       [generator run:nil];
     }
   }
+}
+
+
+#pragma mark Incoming MIDI support
+
+
+- (void)handleMIDINoteMessage:(ELMIDINoteMessage *)message {
+  if( [message channel] == [[self channelDial] value] ) {
+    [[self receivedNotes] addObject:message];
+  }
+}
+
+
+- (BOOL)receivedMIDINote:(ELNote *)note {
+  for( ELMIDINoteMessage *noteMessage in [self receivedNotes] ) {
+    if( [noteMessage noteOn] && [noteMessage note] == [note number] ) {
+      return YES;
+    }
+  }
+  
+  return NO;
 }
 
 
