@@ -427,7 +427,7 @@ NSPredicate *deadPlayheadFilter;
 
 
 - (void)handleMIDINoteMessage:(ELMIDINoteMessage *)message {
-  if( [message channel] == [[self channelDial] value] ) {
+  if( ( [message channel] + 1 ) == [[self channelDial] value] ) {
     [[self receivedNotes] addObject:message];
   }
 }
