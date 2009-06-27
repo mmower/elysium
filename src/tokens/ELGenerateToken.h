@@ -14,16 +14,24 @@
 #import "ELToken.h"
 
 @interface ELGenerateToken : ELToken <DirectedToken> {
-  ELDial  *directionDial;
-  ELDial  *timeToLiveDial;
-  ELDial  *pulseEveryDial;
-  ELDial  *offsetDial;
+  ELDial  *_triggerModeDial;
+  ELDial  *_directionDial;
+  ELDial  *_timeToLiveDial;
+  ELDial  *_pulseEveryDial;
+  ELDial  *_offsetDial;
 }
 
-@property ELDial *directionDial;
-@property ELDial *timeToLiveDial;
-@property ELDial *pulseEveryDial;
-@property ELDial *offsetDial;
+- (id)initWithTriggerModeDial:(ELDial *)triggerModeDial
+                directionDial:(ELDial *)directionDial
+               timeToLiveDial:(ELDial *)timeToLiveDial
+               pulseEveryDial:(ELDial *)pulseEveryDial
+                   offsetDial:(ELDial *)offsetDial;
+
+@property ELDial  *triggerModeDial;
+@property ELDial  *directionDial;
+@property ELDial  *timeToLiveDial;
+@property ELDial  *pulseEveryDial;
+@property ELDial  *offsetDial;
 
 - (BOOL)shouldPulseOnBeat:(int)beat;
 

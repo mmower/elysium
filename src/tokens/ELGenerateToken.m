@@ -20,134 +20,161 @@
   return @"generate";
 }
 
-- (id)initWithDirectionDial:(ELDial *)newDirectionDial
-             timeToLiveDial:(ELDial *)newTimeToLiveDial
-             pulseEveryDial:(ELDial *)newPulseEveryDial
-                 offsetDial:(ELDial *)newOffsetDial
+
+#pragma mark Object initialization
+
+- (id)initWithTriggerModeDial:(ELDial *)triggerModeDial
+                directionDial:(ELDial *)directionDial
+               timeToLiveDial:(ELDial *)timeToLiveDial
+               pulseEveryDial:(ELDial *)pulseEveryDial
+                   offsetDial:(ELDial *)offsetDial
 {
   if( ( self = [super init] ) ) {
-    [self setDirectionDial:newDirectionDial];
-    [self setTimeToLiveDial:newTimeToLiveDial];
-    [self setPulseEveryDial:newPulseEveryDial];
-    [self setOffsetDial:newOffsetDial];
+    [self setTriggerModeDial:triggerModeDial];
+    [self setDirectionDial:directionDial];
+    [self setTimeToLiveDial:timeToLiveDial];
+    [self setPulseEveryDial:pulseEveryDial];
+    [self setOffsetDial:offsetDial];
   }
   
   return self;
 }
 
 - (id)init {
-  return [self initWithDirectionDial:[ELPlayer defaultDirectionDial]
-                      timeToLiveDial:[ELPlayer defaultTimeToLiveDial]
-                      pulseEveryDial:[ELPlayer defaultPulseEveryDial]
-                          offsetDial:[ELPlayer defaultOffsetDial]];
+  return [self initWithTriggerModeDial:[ELPlayer defaultTriggerModeDial]
+                         directionDial:[ELPlayer defaultDirectionDial]
+                        timeToLiveDial:[ELPlayer defaultTimeToLiveDial]
+                        pulseEveryDial:[ELPlayer defaultPulseEveryDial]
+                            offsetDial:[ELPlayer defaultOffsetDial]];
 }
 
-@dynamic directionDial;
 
-- (ELDial *)directionDial {
-  return directionDial;
+#pragma mark Properties
+
+@synthesize triggerModeDial = _triggerModeDial;
+
+- (void)setTriggerModeDial:(ELDial *)triggerModeDial {
+  _triggerModeDial = triggerModeDial;
+  [_triggerModeDial setDelegate:self];
 }
 
-- (void)setDirectionDial:(ELDial *)newDirectionDial {
-  directionDial = newDirectionDial;
-  [directionDial setDelegate:self];
+
+@synthesize directionDial = _directionDial;
+
+- (void)setDirectionDial:(ELDial *)directionDial {
+  _directionDial = directionDial;
+  [_directionDial setDelegate:self];
 }
 
-@dynamic timeToLiveDial;
 
-- (ELDial *)timeToLiveDial {
-  return timeToLiveDial;
+@synthesize timeToLiveDial = _timeToLiveDial;
+
+- (void)setTimeToLiveDial:(ELDial *)timeToLiveDial {
+  _timeToLiveDial = timeToLiveDial;
+  [_timeToLiveDial setDelegate:self];
 }
 
-- (void)setTimeToLiveDial:(ELDial *)newTimeToLiveDial {
-  timeToLiveDial = newTimeToLiveDial;
-  [timeToLiveDial setDelegate:self];
+
+@synthesize pulseEveryDial = _pulseEveryDial;
+
+- (void)setPulseEveryDial:(ELDial *)pulseEveryDial {
+  _pulseEveryDial = pulseEveryDial;
+  [_pulseEveryDial setDelegate:self];
 }
 
-@dynamic pulseEveryDial;
 
-- (ELDial *)pulseEveryDial {
-  return pulseEveryDial;
+@synthesize offsetDial = _offsetDial;
+
+- (void)setOffsetDial:(ELDial *)offsetDial {
+  _offsetDial = offsetDial;
+  [_offsetDial setDelegate:self];
 }
 
-- (void)setPulseEveryDial:(ELDial *)newPulseEveryDial {
-  pulseEveryDial = newPulseEveryDial;
-  [pulseEveryDial setDelegate:self];
-}
-
-@dynamic offsetDial;
-
-- (ELDial *)offsetDial {
-  return offsetDial;
-}
-
-- (void)setOffsetDial:(ELDial *)newOffsetDial {
-  offsetDial = newOffsetDial;
-  [offsetDial setDelegate:self];
-}
 
 #pragma mark Layer support
 
 - (void)addedToLayer:(ELLayer *)targetLayer atPosition:(ELCell *)targetCell {
   [super addedToLayer:targetLayer atPosition:targetCell];
   
-  if( !loaded ) {
-    [timeToLiveDial setParent:[targetLayer timeToLiveDial]];
-    [timeToLiveDial setMode:dialInherited];
+  if( ![self loaded] ) {
+    [[self timeToLiveDial] setParent:[targetLayer timeToLiveDial]];
+    [[self timeToLiveDial] setMode:dialInherited];
     
-    [pulseEveryDial setParent:[targetLayer pulseEveryDial]];
-    [pulseEveryDial setMode:dialInherited];
+    [[self pulseEveryDial] setParent:[targetLayer pulseEveryDial]];
+    [[self pulseEveryDial] setMode:dialInherited];
   }
   
   [targetLayer addGenerator:self];
 }
 
+
 - (void)removedFromLayer:(ELLayer *)targetLayer {
   [targetLayer removeGenerator:self];
   
-  [timeToLiveDial setParent:nil];
-  [pulseEveryDial setParent:nil];
+  [[self timeToLiveDial] setParent:nil];
+  [[self pulseEveryDial] setParent:nil];
   
   [super removedFromLayer:targetLayer];
 }
 
+
 // Token runner
 
-- (BOOL)shouldPulseOnBeat:(int)_beat_ {
-  if( [pulseEveryDial value] < 1 ) {
-    return NO;
-  } else {
-    return ( ( _beat_ - [offsetDial value] ) % [pulseEveryDial value] ) == 0;
+- (BOOL)shouldPulseOnBeat:(int)beat {
+  BOOL pulse = NO;
+  
+  if( [[self pulseEveryDial] value] > 0 ) {
+    switch( [[self triggerModeDial] value] ) {
+      case 0:
+        // Beat trigger mode
+        pulse = ( ( beat - [[self offsetDial] value] ) % [[self pulseEveryDial] value] ) == 0;
+        break;
+      
+      case 1:
+        // Impact trigger mode
+        pulse = [[self cell] playheadEntered];
+        break;
+      
+      case 2:
+        pulse = [[self layer] receivedMIDINote:[[self cell] note]];
+        break;
+    }
   }
+  
+  return pulse;
 }
+
 
 - (void)start {
   [super start];
   
-  [directionDial start];
-  [timeToLiveDial start];
-  [pulseEveryDial start];
-  [offsetDial start];
+  [[self directionDial] start];
+  [[self timeToLiveDial] start];
+  [[self pulseEveryDial] start];
+  [[self offsetDial] start];
 }
+
 
 - (void)stop {
   [super stop];
   
-  [directionDial stop];
-  [timeToLiveDial stop];
-  [pulseEveryDial stop];
-  [offsetDial stop];
+  [[self directionDial] stop];
+  [[self timeToLiveDial] stop];
+  [[self pulseEveryDial] stop];
+  [[self offsetDial] stop];
 }
 
-- (void)runToken:(ELPlayhead *)_playhead_ {
-    [layer addPlayhead:[[ELPlayhead alloc] initWithPosition:cell
-                                                  direction:[directionDial value]
-                                                        TTL:[timeToLiveDial value]]];
+
+- (void)runToken:(ELPlayhead *)playhead {
+  [[self layer] addPlayhead:[[ELPlayhead alloc] initWithPosition:[self cell]
+                                                       direction:[[self directionDial] value]
+                                                             TTL:[[self timeToLiveDial] value]]];
 }
 
-// Drawing
 
-- (void)drawWithAttributes:(NSDictionary *)_attributes_ {
+#pragma mark Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)attributes {
   NSPoint centre = [[self cell] centre];
   float radius = [[self cell] radius];
   
@@ -155,55 +182,64 @@
   symbolPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( centre.x - radius/3, centre.y - radius/3, 2*radius/3, 2*radius/3 )];
   [symbolPath setLineWidth:2.0];
 
-  [self setTokenDrawColor:_attributes_];
+  [self setTokenDrawColor:attributes];
   [symbolPath stroke];
   
-  [[self cell] drawTriangleInDirection:[directionDial value] withAttributes:_attributes_];
+  [[self cell] drawTriangleInDirection:[[self directionDial] value] withAttributes:attributes];
 }
 
-// Implement the ELXmlData protocol
+
+#pragma mark Implements ELXmlData
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
-  [controlsElement addChild:[directionDial xmlRepresentation]];
-  [controlsElement addChild:[timeToLiveDial xmlRepresentation]];
-  [controlsElement addChild:[pulseEveryDial xmlRepresentation]];
-  [controlsElement addChild:[offsetDial xmlRepresentation]];
+  [controlsElement addChild:[[self triggerModeDial] xmlRepresentation]];
+  [controlsElement addChild:[[self directionDial] xmlRepresentation]];
+  [controlsElement addChild:[[self timeToLiveDial] xmlRepresentation]];
+  [controlsElement addChild:[[self pulseEveryDial] xmlRepresentation]];
+  [controlsElement addChild:[[self offsetDial] xmlRepresentation]];
   return controlsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
-    [self setDirectionDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/dial[@name='direction']" error:_error_] firstXMLElement]
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
+    [self setTriggerModeDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='triggerMode']" error:error] firstXMLElement]
                                                               parent:nil
-                                                              player:_player_
-                                                               error:_error_]];
-    [self setTimeToLiveDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/dial[@name='timeToLive']" error:_error_] firstXMLElement]
+                                                              player:player
+                                                               error:error]];
+    [self setDirectionDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='direction']" error:error] firstXMLElement]
+                                                              parent:nil
+                                                              player:player
+                                                               error:error]];
+    [self setTimeToLiveDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='timeToLive']" error:error] firstXMLElement]
                                                                parent:nil
-                                                               player:_player_
-                                                                error:_error_]];
-    [self setPulseEveryDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/dial[@name='pulseEvery']" error:_error_] firstXMLElement]
+                                                               player:player
+                                                                error:error]];
+    [self setPulseEveryDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='pulseEvery']" error:error] firstXMLElement]
                                                                parent:nil
-                                                               player:_player_
-                                                                error:_error_]];
-    [self setOffsetDial:[[ELDial alloc] initWithXmlRepresentation:[[_representation_ nodesForXPath:@"controls/dial[@name='offset']" error:_error_] firstXMLElement]
+                                                               player:player
+                                                                error:error]];
+    [self setOffsetDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='offset']" error:error] firstXMLElement]
                                                            parent:nil
-                                                           player:_player_
-                                                            error:_error_]];
+                                                           player:player
+                                                            error:error]];
   }
   
   return self;
 }
 
-// NSMutableCopying protocol
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  id copy = [super mutableCopyWithZone:_zone_];
+#pragma mark Implements NSMutableCopying
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  id copy = [super mutableCopyWithZone:zone];
+  [copy setTriggerModeDial:[[self triggerModeDial] mutableCopy]];
   [copy setDirectionDial:[[self directionDial] mutableCopy]];
   [copy setTimeToLiveDial:[[self timeToLiveDial] mutableCopy]];
   [copy setPulseEveryDial:[[self pulseEveryDial] mutableCopy]];
   [copy setOffsetDial:[[self offsetDial] mutableCopy]];
   return copy;
 }
+
 
 @end
