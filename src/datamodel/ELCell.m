@@ -248,6 +248,9 @@
 }
 
 
+@synthesize playheadEntered = _playheadEntered;
+
+
 #pragma mark Lattice management
 
 - (void)connectToCell:(ELCell *)cell direction:(Direction)direction {
@@ -404,6 +407,8 @@
 
 - (void)playheadEntering:(ELPlayhead *)playhead {
   [[self playheads] addObject:playhead];
+  
+  [self setPlayheadEntered:YES];
 }
 
 - (void)playheadLeaving:(ELPlayhead *)playhead {

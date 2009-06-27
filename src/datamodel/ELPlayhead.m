@@ -65,6 +65,8 @@
 - (void)advance {
   ELCell *position = [self position];
   
+  [position setPlayheadEntered:NO];
+  
   while( [self skipCount] ) {
     position = [position neighbour:[self direction]];
     [self setSkipCount:[self skipCount]-1];

@@ -46,6 +46,8 @@
   ELSplitToken        *_splitToken;
   ELSpinToken         *_spinToken;
   ELSkipToken         *_skipToken;
+  
+  BOOL                _playheadEntered;
 }
 
 @property (readonly) ELLayer *layer;
@@ -63,6 +65,8 @@
 @property             ELSplitToken        *splitToken;
 @property             ELSpinToken         *spinToken;
 @property             ELSkipToken         *skipToken;
+
+@property             BOOL                playheadEntered;
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 
