@@ -359,4 +359,9 @@
 }
 
 
+- (void)setDisplayName:(NSString *)displayName {
+  return;
+}
+
+
 @end
