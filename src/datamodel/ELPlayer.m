@@ -576,7 +576,6 @@ static SEL updateSelector;
 
 - (void)processMIDIControlMessage:(NSNotification *)notification {
   ELMIDIControlMessage *message = [notification object];
-  NSLog( @"processMIDIControlMessage:%@", message );
   
   if( USE_TRIGGER_THREAD ) {
     [self performSelector:@selector(handleMIDIControlMessage:) onThread:_triggerThread withObject:message waitUntilDone:NO];
@@ -587,14 +586,12 @@ static SEL updateSelector;
 
 
 - (void)handleMIDIControlMessage:(ELMIDIControlMessage *)message {
-  NSLog( @"handleMIDIControlMessage:%@", message );
   [[self triggers] makeObjectsPerformSelector:@selector(handleMIDIControlMessage:) withObject:message];
 }
 
 
 - (void)processMIDINoteMessage:(NSNotification *)notification {
   ELMIDIControlMessage *message = [notification object];
-  NSLog( @"processMIDINoteMessage:%@", message );
   
   if( USE_TRIGGER_THREAD ) {
     [self performSelector:@selector(handleMIDINoteMessage:) onThread:_triggerThread withObject:message waitUntilDone:NO];
@@ -605,7 +602,6 @@ static SEL updateSelector;
 
 
 - (void)handleMIDINoteMessage:(ELMIDINoteMessage *)message {
-  NSLog( @"handleMIDINoteMessage:%@", message );
   [[self layers] makeObjectsPerformSelector:@selector(handleMIDINoteMessage:) withObject:message];
 }
 
