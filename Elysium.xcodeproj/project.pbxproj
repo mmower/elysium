@@ -16,6 +16,7 @@
 		C904104C0F2660A5009CD2B9 /* ELPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C904104B0F2660A5009CD2B9 /* ELPreferencesController.m */; };
 		C90410660F268AB9009CD2B9 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C90410640F268AB9009CD2B9 /* PreferencesWindow.xib */; };
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
+		C908CE6F0FF2EB450091239F /* ELMIDINoteMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C908CE6E0FF2EB450091239F /* ELMIDINoteMessage.m */; };
 		C90A940E0EB9FEDB004AA5BE /* ELMIDITrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = C90A940D0EB9FEDB004AA5BE /* ELMIDITrigger.m */; };
 		C90BDFC20EC072040003B0CD /* NSXML+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BDFC10EC072040003B0CD /* NSXML+Helpers.m */; };
 		C9104A5A0EAA1B0300B78267 /* ELNoteGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9104A590EAA1B0300B78267 /* ELNoteGroup.m */; };
@@ -177,6 +178,8 @@
 		C904104B0F2660A5009CD2B9 /* ELPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPreferencesController.m; sourceTree = "<group>"; };
 		C90410650F268AB9009CD2B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
+		C908CE6D0FF2EB450091239F /* ELMIDINoteMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDINoteMessage.h; sourceTree = "<group>"; };
+		C908CE6E0FF2EB450091239F /* ELMIDINoteMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDINoteMessage.m; sourceTree = "<group>"; };
 		C90A940C0EB9FEDB004AA5BE /* ELMIDITrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDITrigger.h; sourceTree = "<group>"; };
 		C90A940D0EB9FEDB004AA5BE /* ELMIDITrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDITrigger.m; sourceTree = "<group>"; };
 		C90BDFC00EC072040003B0CD /* NSXML+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXML+Helpers.h"; sourceTree = "<group>"; };
@@ -673,6 +676,8 @@
 				C9FE0E020EBA506400A59130 /* ELMIDIControlMessage.m */,
 				C9FE0E4B0EBA6B9400A59130 /* ELMIDITriggerArrayController.h */,
 				C9FE0E4C0EBA6B9400A59130 /* ELMIDITriggerArrayController.m */,
+				C908CE6D0FF2EB450091239F /* ELMIDINoteMessage.h */,
+				C908CE6E0FF2EB450091239F /* ELMIDINoteMessage.m */,
 			);
 			name = midi;
 			path = src/midi;
@@ -972,6 +977,7 @@
 				C9E0A3420F62FA8A00F13A08 /* ELRampOscillator.m in Sources */,
 				C9E0A3A70F64721F00F13A08 /* ELInspectorOverlay.m in Sources */,
 				C91D60EA0F67184E002A1A11 /* ELCompositionManager.m in Sources */,
+				C908CE6F0FF2EB450091239F /* ELMIDINoteMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
