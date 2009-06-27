@@ -38,24 +38,24 @@ NSDictionary *defaultChannelSends( void ) {
   return @"note";
 }
 
-- (id)initWithVelocityDial:(ELDial *)newVelocityDial
-              emphasisDial:(ELDial *)newEmphasisDial
-             tempoSyncDial:(ELDial *)newTempoSyncDial
-            noteLengthDial:(ELDial *)newNoteLengthDial
-                 triadDial:(ELDial *)newTriadDial
-                ghostsDial:(ELDial *)newGhostsDial
-              overrideDial:(ELDial *)newOverrideDial
-              channelSends:(NSDictionary *)newChannelSends
+- (id)initWithVelocityDial:(ELDial *)velocityDial
+              emphasisDial:(ELDial *)emphasisDial
+             tempoSyncDial:(ELDial *)tempoSyncDial
+            noteLengthDial:(ELDial *)noteLengthDial
+                 triadDial:(ELDial *)triadDial
+                ghostsDial:(ELDial *)ghostsDial
+              overrideDial:(ELDial *)overrideDial
+              channelSends:(NSDictionary *)channelSends
 {
   if( ( self = [super init] ) ) {
-    [self setVelocityDial:newVelocityDial];
-    [self setEmphasisDial:newEmphasisDial];
-    [self setTempoSyncDial:newTempoSyncDial];
-    [self setNoteLengthDial:newNoteLengthDial];
-    [self setTriadDial:newTriadDial];
-    [self setGhostsDial:newGhostsDial];
-    [self setOverrideDial:newOverrideDial];
-    [self setChannelSends:newChannelSends];
+    [self setVelocityDial:velocityDial];
+    [self setEmphasisDial:emphasisDial];
+    [self setTempoSyncDial:tempoSyncDial];
+    [self setNoteLengthDial:noteLengthDial];
+    [self setTriadDial:triadDial];
+    [self setGhostsDial:ghostsDial];
+    [self setOverrideDial:overrideDial];
+    [self setChannelSends:channelSends];
   }
   
   return self;
@@ -72,153 +72,136 @@ NSDictionary *defaultChannelSends( void ) {
                        channelSends:defaultChannelSends()];
 }
 
-#pragma mark Dials
 
-@dynamic velocityDial;
+#pragma mark Properties
 
-- (ELDial *)velocityDial {
-  return velocityDial;
+@synthesize velocityDial = _velocityDial;
+
+- (void)setVelocityDial:(ELDial *)velocityDial {
+  _velocityDial = velocityDial;
+  [_velocityDial setDelegate:self];
 }
 
-- (void)setVelocityDial:(ELDial *)newVelocityDial {
-  velocityDial = newVelocityDial;
-  [velocityDial setDelegate:self];
+
+@synthesize emphasisDial = _emphasisDial;
+
+- (void)setEmphasisDial:(ELDial *)emphasisDial {
+  _emphasisDial = emphasisDial;
+  [_emphasisDial setDelegate:self];
 }
 
-@dynamic emphasisDial;
 
-- (ELDial *)emphasisDial {
-  return emphasisDial;
+@synthesize tempoSyncDial = _tempoSyncDial;
+
+- (void)setTempoSyncDial:(ELDial *)tempoSyncDial {
+  _tempoSyncDial = tempoSyncDial;
+  [_tempoSyncDial setDelegate:self];
 }
 
-- (void)setEmphasisDial:(ELDial *)newEmphasisDial {
-  emphasisDial = newEmphasisDial;
-  [emphasisDial setDelegate:self];
+
+@synthesize noteLengthDial = _noteLengthDial;
+
+- (void)setNoteLengthDial:(ELDial *)noteLengthDial {
+  _noteLengthDial = noteLengthDial;
+  [_noteLengthDial setDelegate:self];
 }
 
-@dynamic tempoSyncDial;
 
-- (ELDial *)tempoSyncDial {
-  return tempoSyncDial;
+@synthesize triadDial = _triadDial;
+
+- (void)setTriadDial:(ELDial *)triadDial {
+  _triadDial = triadDial;
+  [_triadDial setDelegate:self];
 }
 
-- (void)setTempoSyncDial:(ELDial *)newTempoSyncDial {
-  tempoSyncDial = newTempoSyncDial;
-  [tempoSyncDial setDelegate:self];
+
+@synthesize ghostsDial = _ghostsDial;
+
+- (void)setGhostsDial:(ELDial *)ghostsDial {
+  _ghostsDial = ghostsDial;
+  [_ghostsDial setDelegate:self];
 }
 
-@dynamic noteLengthDial;
 
-- (ELDial *)noteLengthDial {
-  return noteLengthDial;
+@synthesize overrideDial = _overrideDial;
+
+- (void)setOverrideDial:(ELDial *)overrideDial {
+  _overrideDial = overrideDial;
+  [_overrideDial setDelegate:self];
 }
 
-- (void)setNoteLengthDial:(ELDial *)newNoteLengthDial {
-  noteLengthDial = newNoteLengthDial;
-  [noteLengthDial setDelegate:self];
-}
 
-@dynamic triadDial;
+@synthesize channelSends = _channelSends;
 
-- (ELDial *)triadDial {
-  return triadDial;
-}
-
-- (void)setTriadDial:(ELDial *)newTriadDial {
-  triadDial = newTriadDial;
-  [triadDial setDelegate:self];
-}
-
-@dynamic ghostsDial;
-
-- (ELDial *)ghostsDial {
-  return ghostsDial;
-}
-
-- (void)setGhostsDial:(ELDial *)newGhostsDial {
-  ghostsDial = newGhostsDial;
-  [ghostsDial setDelegate:self];
-}
-
-@dynamic overrideDial;
-
-- (ELDial *)overrideDial {
-  return overrideDial;
-}
-
-- (void)setOverrideDial:(ELDial *)newOverrideDial {
-  overrideDial = newOverrideDial;
-  [overrideDial setDelegate:self];
-}
-
-@synthesize channelSends;
 
 #pragma mark Layer support
 
 - (void)addedToLayer:(ELLayer *)targetLayer atPosition:(ELCell *)targetCell {
   [super addedToLayer:targetLayer atPosition:targetCell];
   
-  if( !loaded ) {
-    [velocityDial setParent:[targetLayer velocityDial]];
-    [velocityDial setMode:dialInherited];
+  if( ![self loaded] ) {
+    [[self velocityDial] setParent:[targetLayer velocityDial]];
+    [[self velocityDial] setMode:dialInherited];
     
-    [emphasisDial setParent:[targetLayer emphasisDial]];
-    [emphasisDial setMode:dialInherited];
+    [[self emphasisDial] setParent:[targetLayer emphasisDial]];
+    [[self emphasisDial] setMode:dialInherited];
     
-    [tempoSyncDial setParent:[targetLayer tempoSyncDial]];
-    [tempoSyncDial setMode:dialInherited];
+    [[self tempoSyncDial] setParent:[targetLayer tempoSyncDial]];
+    [[self tempoSyncDial] setMode:dialInherited];
     
-    [noteLengthDial setParent:[targetLayer noteLengthDial]];
-    [noteLengthDial setMode:dialInherited];
+    [[self noteLengthDial] setParent:[targetLayer noteLengthDial]];
+    [[self noteLengthDial] setMode:dialInherited];
   }
 }
+
 
 - (void)removedFromLayer:(ELLayer *)targetLayer {
   [super removedFromLayer:targetLayer];
   
-  [velocityDial setParent:nil];
-  [emphasisDial setParent:nil];
-  [tempoSyncDial setParent:nil];
-  [noteLengthDial setParent:nil];
+  [[self velocityDial] setParent:nil];
+  [[self emphasisDial] setParent:nil];
+  [[self tempoSyncDial] setParent:nil];
+  [[self noteLengthDial] setParent:nil];
 }
+
 
 - (void)start {
   [super start];
   
-  [velocityDial start];
-  [emphasisDial start];
-  [tempoSyncDial start];
-  [noteLengthDial start];
-  [triadDial start];
-  [ghostsDial start];
-  [overrideDial start];
+  [[self velocityDial] start];
+  [[self emphasisDial] start];
+  [[self tempoSyncDial] start];
+  [[self noteLengthDial] start];
+  [[self triadDial] start];
+  [[self ghostsDial] start];
+  [[self overrideDial] start];
 }
+
 
 - (void)stop {
   [super stop];
   
-  [velocityDial stop];
-  [emphasisDial stop];
-  [tempoSyncDial stop];
-  [noteLengthDial stop];
-  [triadDial stop];
-  [ghostsDial stop];
-  [overrideDial stop];
+  [[self velocityDial] stop];
+  [[self emphasisDial] stop];
+  [[self tempoSyncDial] stop];
+  [[self noteLengthDial] stop];
+  [[self triadDial] stop];
+  [[self ghostsDial] stop];
+  [[self overrideDial] stop];
 }
 
-// Token runner
 
-- (void)runToken:(ELPlayhead *)_playhead_ {
+- (void)runToken:(ELPlayhead *)playhead {
   int velocity;
   
-  if( [layer firstBeatInBar] ) {
-    velocity = [emphasisDial value];
+  if( [[self layer] firstBeatInBar] ) {
+    velocity = [[self emphasisDial] value];
   } else {
-    velocity = [velocityDial value];
+    velocity = [[self velocityDial] value];
   }
   
-  ELCell *position = [_playhead_ position];
-  int triad = [triadDial value];
+  ELCell *position = [playhead position];
+  int triad = [[self triadDial] value];
   ELPlayable *playable;
   
   if( triad == 0 ) {
@@ -227,26 +210,27 @@ NSDictionary *defaultChannelSends( void ) {
     playable = [position triad:triad];
   }
   
-  int beats = 1 + [ghostsDial value];
+  int beats = 1 + [[self ghostsDial] value];
   int offset = 0;
   for( int b = 0; b < beats; b++ ) {
-    if( [overrideDial value] ) {
+    if( [[self overrideDial] value] ) {
       int channel;
       for( channel = 1; channel <= 16; channel++ ) {
-        ELDial *send = [channelSends objectForKey:[[NSNumber numberWithInt:channel] stringValue]];
+        ELDial *send = [[self channelSends] objectForKey:[[NSNumber numberWithInt:channel] stringValue]];
         if( [send boolValue] ) {
-          [playable playOnChannel:[send tag] duration:[noteLengthDial value] velocity:velocity transpose:[[layer transposeDial] value] offset:offset];
+          [playable playOnChannel:[send tag] duration:[[self noteLengthDial] value] velocity:velocity transpose:[[[self layer] transposeDial] value] offset:offset];
         }
       }
     } else {
-      [playable playOnChannel:[[layer channelDial] value] duration:[noteLengthDial value] velocity:velocity transpose:[[layer transposeDial] value] offset:offset];
+      [playable playOnChannel:[[[self layer] channelDial] value] duration:[[self noteLengthDial] value] velocity:velocity transpose:[[[self layer] transposeDial] value] offset:offset];
     }
     
-    offset += [[cell layer] timerResolution];
+    offset += [[[self cell] layer] timerResolution];
   }
 }
 
-// Drawing
+
+#pragma mark Drawing
 
 - (void)drawWithAttributes:(NSDictionary *)_attributes_ {
   NSPoint centre = [[self cell] centre];
@@ -264,7 +248,8 @@ NSDictionary *defaultChannelSends( void ) {
   [symbolPath stroke];
 }
 
-// NSMutableCopying protocol
+
+#pragma mark Implements NSMutableCopying
 
 - (id)mutableCopyWithZone:(NSZone *)_zone_ {
   id copy = [super mutableCopyWithZone:_zone_];
@@ -277,51 +262,52 @@ NSDictionary *defaultChannelSends( void ) {
   [copy setOverrideDial:[[self overrideDial] mutableCopy]];
   
   NSMutableDictionary *copySends = [NSMutableDictionary dictionary];
-  for( NSString *key in [channelSends allKeys] ) {
-    [copySends setObject:[[channelSends objectForKey:key] mutableCopy] forKey:key];
+  for( NSString *key in [[self channelSends] allKeys] ) {
+    [copySends setObject:[[[self channelSends] objectForKey:key] mutableCopy] forKey:key];
   }
   [copy setChannelSends:copySends];
   
   return copy;
 }
 
-// Implement the ELXmlData protocol
+#pragma mark Implements ELXmlData
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
-  [controlsElement addChild:[velocityDial xmlRepresentation]];
-  [controlsElement addChild:[emphasisDial xmlRepresentation]];
-  [controlsElement addChild:[tempoSyncDial xmlRepresentation]];
-  [controlsElement addChild:[noteLengthDial xmlRepresentation]];
-  [controlsElement addChild:[triadDial xmlRepresentation]];
-  [controlsElement addChild:[ghostsDial xmlRepresentation]];
-  [controlsElement addChild:[overrideDial xmlRepresentation]];
-  for( ELDial *dial in [channelSends allValues] ) {
+  [controlsElement addChild:[[self velocityDial] xmlRepresentation]];
+  [controlsElement addChild:[[self emphasisDial] xmlRepresentation]];
+  [controlsElement addChild:[[self tempoSyncDial] xmlRepresentation]];
+  [controlsElement addChild:[[self noteLengthDial] xmlRepresentation]];
+  [controlsElement addChild:[[self triadDial] xmlRepresentation]];
+  [controlsElement addChild:[[self ghostsDial] xmlRepresentation]];
+  [controlsElement addChild:[[self overrideDial] xmlRepresentation]];
+  for( ELDial *dial in [[self channelSends] allValues] ) {
     [controlsElement addChild:[dial xmlRepresentation]];
   }
   
   return controlsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
     NSArray *nodes;
     
-    [self setVelocityDial:[_representation_ loadDial:@"velocity" parent:nil player:_player_ error:_error_]];
-    [self setEmphasisDial:[_representation_ loadDial:@"emphasis" parent:nil player:_player_ error:_error_]];
-    [self setTempoSyncDial:[_representation_ loadDial:@"tempoSync" parent:nil player:_player_ error:_error_]];
-    [self setNoteLengthDial:[_representation_ loadDial:@"noteLength" parent:nil player:_player_ error:_error_]];
-    [self setTriadDial:[_representation_ loadDial:@"triad" parent:nil player:_player_ error:_error_]];
-    [self setGhostsDial:[_representation_ loadDial:@"ghosts" parent:nil player:_player_ error:_error_]];
-    [self setOverrideDial:[_representation_ loadDial:@"override" parent:nil player:_player_ error:_error_]];
+    [self setVelocityDial:[representation loadDial:@"velocity" parent:nil player:player error:error]];
+    [self setEmphasisDial:[representation loadDial:@"emphasis" parent:nil player:player error:error]];
+    [self setTempoSyncDial:[representation loadDial:@"tempoSync" parent:nil player:player error:error]];
+    [self setNoteLengthDial:[representation loadDial:@"noteLength" parent:nil player:player error:error]];
+    [self setTriadDial:[representation loadDial:@"triad" parent:nil player:player error:error]];
+    [self setGhostsDial:[representation loadDial:@"ghosts" parent:nil player:player error:error]];
+    [self setOverrideDial:[representation loadDial:@"override" parent:nil player:player error:error]];
     
-    if( ( nodes = [_representation_ nodesForXPath:@"controls/dial[starts-with(@name,'send')]" error:_error_] ) ) {
+    if( ( nodes = [representation nodesForXPath:@"controls/dial[starts-with(@name,'send')]" error:error] ) ) {
       NSMutableDictionary *sends = [NSMutableDictionary dictionary];
       for( NSXMLNode *node in nodes ) {
-        ELDial *dial = [[ELDial alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:_player_ error:_error_];
+        ELDial *dial = [[ELDial alloc] initWithXmlRepresentation:((NSXMLElement *)node) parent:nil player:player error:error];
         [sends setObject:dial forKey:[[NSNumber numberWithInteger:[dial tag]] stringValue]];
       }
-      channelSends = sends;
+      [self setChannelSends:sends];
     } else {
       return nil;
     }
@@ -329,5 +315,6 @@ NSDictionary *defaultChannelSends( void ) {
   
   return self;
 }
+
 
 @end

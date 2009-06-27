@@ -12,15 +12,14 @@
 #import "ELToken.h"
 
 @interface ELNoteToken : ELToken {
-  ELDial *velocityDial;
-  ELDial *emphasisDial;
-  ELDial *tempoSyncDial;
-  ELDial *noteLengthDial;
-  ELDial *triadDial;
-  ELDial *ghostsDial;
-  
-  ELDial *overrideDial;
-  NSDictionary  *channelSends;
+  ELDial        *_velocityDial;
+  ELDial        *_emphasisDial;
+  ELDial        *_tempoSyncDial;
+  ELDial        *_noteLengthDial;
+  ELDial        *_triadDial;
+  ELDial        *_ghostsDial;
+  ELDial        *_overrideDial;
+  NSDictionary  *_channelSends;
 }
 
 - (id)initWithVelocityDial:(ELDial *)velocityDial
