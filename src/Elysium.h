@@ -65,6 +65,9 @@ extern NSString * const ELNotifyCellWasUpdated;
 extern NSString * const ELNotifyPlayerShouldStart;
 extern NSString * const ELNotifyPlayerShouldStop;
 
+extern NSString * const ELNotifyMIDIControl;
+extern NSString * const ELNotifyMIDINote;
+
 // Defaults keys
 
 extern NSString * const ELDefaultCellBackgroundColor;
