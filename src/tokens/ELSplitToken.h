@@ -14,7 +14,7 @@
 #import "ELToken.h"
 
 @interface ELSplitToken : ELToken {
-  ELDial *bounceBackDial;
+  ELDial *_bounceBackDial;
 }
 
 - (id)initWithBounceBackDial:(ELDial *)bounceBackDial;

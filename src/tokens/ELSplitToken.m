@@ -20,61 +20,70 @@
   return @"split";
 }
 
-- (id)initWithBounceBackDial:(ELDial *)newBounceBackDial {
+
+#pragma mark Object initialization
+
+- (id)initWithBounceBackDial:(ELDial *)bounceBackDial {
   if( ( self = [super init] ) ) {
-    [self setBounceBackDial:newBounceBackDial];
+    [self setBounceBackDial:bounceBackDial];
   }
   
   return self;
 }
 
+
 - (id)init {
   return [self initWithBounceBackDial:[ELPlayer defaultBounceBackDial]];
 }
 
-@dynamic bounceBackDial;
 
-- (ELDial *)bounceBackDial {
-  return bounceBackDial;
+#pragma mark Properties
+
+@synthesize bounceBackDial = _bounceBackDial;
+
+- (void)setBounceBackDial:(ELDial *)bounceBackDial {
+  _bounceBackDial = bounceBackDial;
+  [_bounceBackDial setDelegate:self];
 }
 
-- (void)setBounceBackDial:(ELDial *)newBounceBackDial {
-  bounceBackDial = newBounceBackDial;
-  [bounceBackDial setDelegate:self];
-}
+
+#pragma mark Object behaviours
 
 - (void)start {
   [super start];
   
-  [bounceBackDial start];
+  [[self bounceBackDial] start];
 }
+
 
 - (void)stop {
   [super stop];
   
-  [bounceBackDial stop];
+  [[self bounceBackDial] stop];
 }
 
-- (void)runToken:(ELPlayhead *)_playhead_ {
-  [_playhead_ setPosition:nil];
+
+- (void)runToken:(ELPlayhead *)playhead {
+  [playhead setPosition:nil];
   
-  BOOL bounceBack = ![bounceBackDial value];
-  int bounceBackDirection = INVERSE_DIRECTION( [_playhead_ direction] );
+  BOOL bounceBack = ![[self bounceBackDial] value];
+  int bounceBackDirection = INVERSE_DIRECTION( [playhead direction] );
   
   for( int direction = N; direction <= NW; direction++ ) {
     if( bounceBack && ( direction == bounceBackDirection ) ) {
       continue;
     }
     
-    [layer queuePlayhead:[[ELPlayhead alloc] initWithPosition:cell
-                                                    direction:direction
-                                                          TTL:[_playhead_ TTL]]];
+    [[self layer] queuePlayhead:[[ELPlayhead alloc] initWithPosition:[self cell]
+                                                           direction:direction
+                                                                 TTL:[playhead TTL]]];
   }
 }
 
-// Drawing
 
-- (void)drawWithAttributes:(NSDictionary *)_attributes_ {
+#pragma mark Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)attributes {
   NSPoint centre = [[self cell] centre];
   float radius = [[self cell] radius];
 
@@ -86,33 +95,37 @@
   [symbolPath moveToPoint:centre];
   [symbolPath lineToPoint:NSMakePoint( centre.x + radius/3, centre.y - radius/4 )];
   
-  [self setTokenDrawColor:_attributes_];
+  [self setTokenDrawColor:attributes];
   [symbolPath setLineWidth:2.0];
   [symbolPath stroke];
 }
 
-// NSMutableCopying protocol
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  id copy = [super mutableCopyWithZone:_zone_];
+#pragma mark Implements NSMutableCopying
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  id copy = [super mutableCopyWithZone:zone];
   [copy setBounceBackDial:[[self bounceBackDial] mutableCopy]];
   return copy;
 }
 
-// Implement the ELXmlData protocol
+
+#pragma mark Implements ELXmlData
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
-  [controlsElement addChild:[bounceBackDial xmlRepresentation]];
+  [controlsElement addChild:[[self bounceBackDial] xmlRepresentation]];
   return controlsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_player_ player:_player_ error:_error_] ) ) {
-    [self setBounceBackDial:[_representation_ loadDial:@"bounceBack" parent:nil player:_player_ error:_error_]];
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [super initWithXmlRepresentation:representation parent:player player:player error:error] ) ) {
+    [self setBounceBackDial:[representation loadDial:@"bounceBack" parent:nil player:player error:error]];
   }
   
   return self;
 }
+
 
 @end
