@@ -22,25 +22,25 @@ typedef enum tagELDialMode {
 @class ELOscillator;
 
 @interface ELDial : NSObject <ELXmlData,NSMutableCopying> {
-  id            delegate;
+  id            _delegate;
   
-  ELDialMode    mode;
+  ELDialMode    _mode;
   
-  NSString      *name;
-  NSString      *toolTip;
-  int           tag;
+  NSString      *_name;
+  NSString      *_toolTip;
+  int           _tag;
   
-  ELDial        *parent;
-  ELOscillator  *oscillator;
+  ELDial        *_parent;
+  ELOscillator  *_oscillator;
   
-  int           assigned;
-  int           last;
-  int           value;
+  int           _assigned;
+  int           _last;
+  int           _value;
   
   // For range based controls
-  int           min;
-  int           max;
-  int           step;
+  int           _min;
+  int           _max;
+  int           _step;
 }
 
 - (id)initWithMode:(ELDialMode)mode

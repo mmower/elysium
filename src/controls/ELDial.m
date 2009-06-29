@@ -34,60 +34,60 @@
 }
 
 
-- (id)initWithMode:(ELDialMode)aMode
-              name:(NSString *)aName
-           toolTip:(NSString *)aToolTip
-               tag:(int)aTag
-            parent:(ELDial *)aParent
-        oscillator:(ELOscillator *)aOscillator
-          assigned:(int)aAssigned
-              last:(int)aLast
-             value:(int)aValue
-               min:(int)aMin
-               max:(int)aMax
-              step:(int)aStep
+- (id)initWithMode:(ELDialMode)mode
+              name:(NSString *)name
+           toolTip:(NSString *)toolTip
+               tag:(int)tag
+            parent:(ELDial *)parent
+        oscillator:(ELOscillator *)oscillator
+          assigned:(int)assigned
+              last:(int)last
+             value:(int)value
+               min:(int)min
+               max:(int)max
+              step:(int)step
 {
   if( ( self = [super init] ) ) {
-    [self setName:aName];
-    [self setToolTip:aToolTip];
-    [self setTag:aTag];
-    [self setParent:aParent];
-    [self setOscillator:aOscillator];
-    [self setMin:aMin];
-    [self setMax:aMax];
-    [self setLast:aLast];
-    [self setAssigned:aAssigned];
-    [self setValue:aValue];
-    [self setStep:aStep];
+    [self setName:name];
+    [self setToolTip:toolTip];
+    [self setTag:tag];
+    [self setParent:parent];
+    [self setOscillator:oscillator];
+    [self setMin:min];
+    [self setMax:max];
+    [self setLast:last];
+    [self setAssigned:assigned];
+    [self setValue:value];
+    [self setStep:step];
     
     // Mode is set last to ensure that parent/oscillator
     // are setup before attempting to switch mode
-    [self setMode:aMode];
+    [self setMode:mode];
   }
   
   return self;
 }
 
 
-- (id)initWithMode:(ELDialMode)aMode
-              name:(NSString *)aName
-           toolTip:(NSString *)aToolTip
-               tag:(int)aTag
-            parent:(ELDial *)aParent
-        oscillator:(ELOscillator *)aOscillator
-          assigned:(int)aAssigned
-              last:(int)aLast
-             value:(int)aValue
+- (id)initWithMode:(ELDialMode)mode
+              name:(NSString *)name
+           toolTip:(NSString *)toolTip
+               tag:(int)tag
+            parent:(ELDial *)parent
+        oscillator:(ELOscillator *)oscillator
+          assigned:(int)assigned
+              last:(int)last
+             value:(int)value
 {
-  return [self initWithMode:aMode
-                       name:aName
-                    toolTip:aToolTip
-                        tag:aTag
-                     parent:aParent
-                 oscillator:aOscillator
-                   assigned:aAssigned
-                       last:aLast
-                      value:aValue
+  return [self initWithMode:mode
+                       name:name
+                    toolTip:toolTip
+                        tag:tag
+                     parent:parent
+                 oscillator:oscillator
+                   assigned:assigned
+                       last:last
+                      value:value
                         min:0
                         max:1
                        step:1];
@@ -109,59 +109,54 @@
                        step:[parentDial step]];
 }
 
-- (id)initWithName:(NSString *)aName
-           toolTip:(NSString *)aToolTip
-               tag:(int)aTag
-          assigned:(int)aAssigned
-               min:(int)aMin
-               max:(int)aMax
-              step:(int)aStep
+- (id)initWithName:(NSString *)name
+           toolTip:(NSString *)toolTip
+               tag:(int)tag
+          assigned:(int)assigned
+               min:(int)min
+               max:(int)max
+              step:(int)step
 {
   return [self initWithMode:dialFree
-                       name:aName
-                    toolTip:aToolTip
-                        tag:aTag
+                       name:name
+                    toolTip:toolTip
+                        tag:tag
                      parent:nil
                  oscillator:nil
-                   assigned:aAssigned
+                   assigned:assigned
                        last:INT_MIN
-                      value:aAssigned
-                        min:aMin
-                        max:aMax
-                       step:aStep];
+                      value:assigned
+                        min:min
+                        max:max
+                       step:step];
 }
 
-- (id)initWithName:(NSString *)aName
-           toolTip:(NSString *)aToolTip
-               tag:(int)aTag
-         boolValue:(BOOL)aValue
+- (id)initWithName:(NSString *)name
+           toolTip:(NSString *)toolTip
+               tag:(int)tag
+         boolValue:(BOOL)value
 {
   return [self initWithMode:dialFree
-                       name:aName
-                    toolTip:aToolTip
-                        tag:aTag
+                       name:name
+                    toolTip:toolTip
+                        tag:tag
                      parent:nil
                  oscillator:nil
-                   assigned:aValue
+                   assigned:value
                        last:INT_MIN
-                      value:aValue
+                      value:value
                         min:NO
                         max:YES
                        step:1];
 }
 
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
-@dynamic mode;
+@synthesize mode = _mode;
 
-- (ELDialMode)mode {
-  return mode;
-}
-
-
-- (void)setMode:(ELDialMode)aMode {
-  switch( aMode ) {
+- (void)setMode:(ELDialMode)mode {
+  switch( mode ) {
     case dialFree:
       [self unbind:@"assigned"];
       [self unbind:@"value"];
@@ -170,46 +165,41 @@
       break;
       
     case dialDynamic:
-      if( oscillator ) {
+      if( [self oscillator] ) {
         [self unbind:@"assigned"];
         [self unbind:@"value"];
         // Note that we expect all current oscillators to have generated a new value
         // at the start of each beat of their layer
-        [self bind:@"value" toObject:oscillator withKeyPath:@"value" options:nil];
+        [self bind:@"value" toObject:[self oscillator] withKeyPath:@"value" options:nil];
       }
       break;
     
     case dialInherited:
-      if( parent ) {
+      if( [self parent] ) {
         [self unbind:@"assigned"];
         [self unbind:@"value"];
-        [self bind:@"value" toObject:parent withKeyPath:@"value" options:nil];
+        [self bind:@"value" toObject:[self parent] withKeyPath:@"value" options:nil];
       }
       break;
   }
-  mode = aMode;
+  _mode = mode;
 }
 
 
-@synthesize name;
-@synthesize toolTip;
-@synthesize tag;
+@synthesize name = _name;
+@synthesize toolTip = _toolTip;
+@synthesize tag = _tag;
 
-@dynamic parent;
+@synthesize parent = _parent;
 
-- (ELDial *)parent {
-  return parent;
-}
-
-
-- (void)setParent:(ELDial *)aParent {
+- (void)setParent:(ELDial *)parent {
   if( [self mode] == dialInherited ) {
     [self unbind:@"value"];
   }
-  parent = aParent;
+  _parent = parent;
   if( [self mode] == dialInherited ) {
-    if( parent ) {
-      [self bind:@"value" toObject:parent withKeyPath:@"value" options:nil];
+    if( _parent ) {
+      [self bind:@"value" toObject:_parent withKeyPath:@"value" options:nil];
     } else {
       [self setMode:dialFree];
     }
@@ -217,23 +207,18 @@
 }
 
 
-@dynamic oscillator;
+@synthesize oscillator = _oscillator;
 
-- (ELOscillator *)oscillator {
-  return oscillator;
-}
-
-
-- (void)setOscillator:(ELOscillator *)aOscillator {
-  if( oscillator && [delegate respondsToSelector:@selector(dialDidUnsetOscillator:)] ) {
-    [delegate dialDidUnsetOscillator:self];
+- (void)setOscillator:(ELOscillator *)oscillator {
+  if( _oscillator && [[self delegate] respondsToSelector:@selector(dialDidUnsetOscillator:)] ) {
+    [[self delegate] dialDidUnsetOscillator:self];
   }
   
-  oscillator = aOscillator;
+  _oscillator = oscillator;
   
-  if( oscillator ) {
-    if( [delegate respondsToSelector:@selector(dialDidSetOscillator:)] ) {
-      [delegate dialDidSetOscillator:self];
+  if( _oscillator ) {
+    if( [[self delegate] respondsToSelector:@selector(dialDidSetOscillator:)] ) {
+      [[self delegate] dialDidSetOscillator:self];
     }
   } else if( [self mode] == dialDynamic ) {
     [self setMode:dialFree];
@@ -241,61 +226,54 @@
 }
 
 
-@synthesize assigned;
-@synthesize last;
+@synthesize assigned = _assigned;
+@synthesize last = _last;
 
-@dynamic value;
+@synthesize value = _value;
 
-- (int)value {
-  return value;
-}
-
-
-- (void)setValue:(int)aValue {
-  if( aValue < min ) {
-    NSLog( @"Attempt to set value %d below minimum %d for dial: %@", aValue, min, self );
-    aValue = min;
-  } else if( aValue > max ) {
-    NSLog( @"Attempt to set value %d above maximum %d for dial: %@", aValue, max, self );
-    aValue = max;
+- (void)setValue:(int)value {
+  if( value < [self min] ) {
+    NSLog( @"Attempt to set value %d below minimum %d for dial: %@", value, [self min], self );
+    value = [self min];
+  } else if( value > [self max] ) {
+    NSLog( @"Attempt to set value %d above maximum %d for dial: %@", value, [self max], self );
+    value = [self max];
   }
   
-  last = value;
-  value = aValue;
-  if( [delegate respondsToSelector:@selector(dialDidChangeValue:)] ) {
-    [delegate dialDidChangeValue:self];
+  [self setLast:value];
+  _value = value;
+  if( [[self delegate] respondsToSelector:@selector(dialDidChangeValue:)] ) {
+    [[self delegate] dialDidChangeValue:self];
   }
 }
 
 
-@synthesize min;
-
-@synthesize max;
-
-@synthesize step;
+@synthesize min = _min;
+@synthesize max = _max;
+@synthesize step = _step;
 
 - (BOOL)boolValue {
   return [self value] != 0;
 }
 
 
-- (void)setBoolValue:(BOOL)newValue {
-  [self setValue:(newValue ? 1 : 0)];
+- (void)setBoolValue:(BOOL)value {
+  [self setValue:(value ? 1 : 0)];
 }
 
 
 - (void)start {
-  [oscillator start];
+  [[self oscillator] start];
 }
 
 
 - (void)stop {
-  [oscillator stop];
+  [[self oscillator] stop];
 }
 
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"Dial<%@> min:%d max:%d value:%d step:%d", name, min, max, value, step];
+  return [NSString stringWithFormat:@"Dial<%@> min:%d max:%d value:%d step:%d", [self name], [self min], [self max], [self value], [self step]];
 }
 
 
@@ -305,49 +283,49 @@
   NSXMLElement *dialElement = [NSXMLNode elementWithName:@"dial"];
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:[[NSNumber numberWithInteger:mode] stringValue] forKey:@"mode"];
-  [attributes setObject:name forKey:@"name"];
-  [attributes setObject:[NSNumber numberWithInteger:tag] forKey:@"tag"];
+  [attributes setObject:[[NSNumber numberWithInteger:[self mode]] stringValue] forKey:@"mode"];
+  [attributes setObject:[self name] forKey:@"name"];
+  [attributes setObject:[NSNumber numberWithInteger:[self tag]] forKey:@"tag"];
   
-  [attributes setObject:[NSNumber numberWithInteger:assigned] forKey:@"assigned"];
-  [attributes setObject:[NSNumber numberWithInteger:last] forKey:@"last"];
-  [attributes setObject:[NSNumber numberWithInteger:value] forKey:@"value"];
-  [attributes setObject:[NSNumber numberWithInteger:min] forKey:@"min"];
-  [attributes setObject:[NSNumber numberWithInteger:max] forKey:@"max"];
-  [attributes setObject:[NSNumber numberWithInteger:step] forKey:@"step"];
+  [attributes setObject:[NSNumber numberWithInteger:[self assigned]] forKey:@"assigned"];
+  [attributes setObject:[NSNumber numberWithInteger:[self last]] forKey:@"last"];
+  [attributes setObject:[NSNumber numberWithInteger:[self value]] forKey:@"value"];
+  [attributes setObject:[NSNumber numberWithInteger:[self min]] forKey:@"min"];
+  [attributes setObject:[NSNumber numberWithInteger:[self max]] forKey:@"max"];
+  [attributes setObject:[NSNumber numberWithInteger:[self step]] forKey:@"step"];
   [dialElement setAttributesAsDictionary:attributes];
-  if( oscillator ) {
-    [dialElement addChild:[oscillator xmlRepresentation]];
+  if( [self oscillator] ) {
+    [dialElement addChild:[[self oscillator] xmlRepresentation]];
   }
   
   return dialElement;
 }
 
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)aRepresentation parent:(id)aParent player:(ELPlayer *)aPlayer error:(NSError **)aError {
-  if( aRepresentation && ( self = [self init] ) ) {
-    [self setName:[aRepresentation attributeAsString:@"name"]];
-    [self setTag:[aRepresentation attributeAsInteger:@"tag" defaultValue:INT_MIN]];
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( representation && ( self = [self init] ) ) {
+    [self setName:[representation attributeAsString:@"name"]];
+    [self setTag:[representation attributeAsInteger:@"tag" defaultValue:INT_MIN]];
     
-    [self setMin:[aRepresentation attributeAsInteger:@"min" defaultValue:INT_MIN]];
-    [self setMax:[aRepresentation attributeAsInteger:@"max" defaultValue:INT_MIN]];
-    [self setStep:[aRepresentation attributeAsInteger:@"step" defaultValue:INT_MIN]];
+    [self setMin:[representation attributeAsInteger:@"min" defaultValue:INT_MIN]];
+    [self setMax:[representation attributeAsInteger:@"max" defaultValue:INT_MIN]];
+    [self setStep:[representation attributeAsInteger:@"step" defaultValue:INT_MIN]];
     
-    [self setAssigned:[aRepresentation attributeAsInteger:@"assigned" defaultValue:INT_MIN]];
-    [self setLast:[aRepresentation attributeAsInteger:@"last" defaultValue:INT_MIN]];
-    [self setValue:[aRepresentation attributeAsInteger:@"value" defaultValue:INT_MIN]];
+    [self setAssigned:[representation attributeAsInteger:@"assigned" defaultValue:INT_MIN]];
+    [self setLast:[representation attributeAsInteger:@"last" defaultValue:INT_MIN]];
+    [self setValue:[representation attributeAsInteger:@"value" defaultValue:INT_MIN]];
     
-    [self setParent:aParent];
+    [self setParent:parent];
     
     // Decode oscillator
-    NSXMLElement *oscillatorElement = [[aRepresentation nodesForXPath:@"oscillator" error:aError] firstXMLElement];
+    NSXMLElement *oscillatorElement = [[representation nodesForXPath:@"oscillator" error:error] firstXMLElement];
     if( oscillatorElement ) {
-      [self setOscillator:[ELOscillator loadFromXml:oscillatorElement parent:self player:aPlayer error:aError]];
+      [self setOscillator:[ELOscillator loadFromXml:oscillatorElement parent:self player:player error:error]];
     }
     
     // Mode is set last to ensure that parent/oscillator
     // are setup before attempting to switch mode
-    [self setMode:[aRepresentation attributeAsInteger:@"mode" defaultValue:dialFree]];
+    [self setMode:[representation attributeAsInteger:@"mode" defaultValue:dialFree]];
     return self;
   } else {
     return nil;
@@ -357,34 +335,34 @@
 
 // NSMutableCopying protocol
 
-- (id)copyWithZone:(NSZone *)aZone {
-  return [self mutableCopyWithZone:aZone];
+- (id)copyWithZone:(NSZone *)zone {
+  return [self mutableCopyWithZone:zone];
 }
 
 
-- (id)mutableCopyWithZone:(NSZone *)aZone {
-  return [[[self class] allocWithZone:aZone] initWithMode:[self mode]
-                                                     name:[self name]
-                                                  toolTip:[self toolTip]
-                                                      tag:[self tag]
-                                                   parent:[self parent]
-                                               oscillator:[self oscillator]
-                                                 assigned:[self assigned]
-                                                     last:[self last]
-                                                    value:[self value]
-                                                      min:[self min]
-                                                      max:[self max]
-                                                     step:[self step]];
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  return [[[self class] allocWithZone:zone] initWithMode:[self mode]
+                                                    name:[self name]
+                                                 toolTip:[self toolTip]
+                                                     tag:[self tag]
+                                                  parent:[self parent]
+                                              oscillator:[self oscillator]
+                                                assigned:[self assigned]
+                                                    last:[self last]
+                                                   value:[self value]
+                                                     min:[self min]
+                                                     max:[self max]
+                                                    step:[self step]];
 }
 
 
 - (BOOL)isInherited {
-  return mode == dialInherited;
+  return [self mode] == dialInherited;
 }
 
 
-- (void)setIsInherited:(BOOL)aInherit {
-  if( aInherit ) {
+- (void)setIsInherited:(BOOL)inherit {
+  if( inherit ) {
     [self setMode:dialInherited];
   } else {
     [self setMode:dialFree];
@@ -393,12 +371,12 @@
 
 
 - (BOOL)isDynamic {
-  return mode == dialDynamic;
+  return [self mode] == dialDynamic;
 }
 
 
-- (void)setIsDynamic:(BOOL)aDynamic {
-  if( aDynamic ) {
+- (void)setIsDynamic:(BOOL)dynamic {
+  if( dynamic ) {
     [self setMode:dialDynamic];
   } else {
     [self setMode:dialFree];
