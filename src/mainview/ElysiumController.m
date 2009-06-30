@@ -147,6 +147,14 @@ NSString * const ELUsedMidiDeviceKey = @"elysium.last.device";
   return [[NSUserDefaults standardUserDefaults] integerForKey:ELBehaviourAtOpenKey] == EL_OPEN_EMPTY;
 }
 
+
+- (void)applicationWillTerminate:(NSNotification *)notification {
+  for( ElysiumDocument *document in [[NSDocumentController sharedDocumentController] documents] ) {
+    [[document player] stop:self];
+  }
+}
+
+
 - (void)applicationDidFinishLaunching:(NSNotification *)_notification_ {
   if( [[NSUserDefaults standardUserDefaults] integerForKey:ELBehaviourAtOpenKey] == EL_OPEN_LAST ) {
     NSArray *recentDocuments = [[NSDocumentController sharedDocumentController] recentDocumentURLs];
