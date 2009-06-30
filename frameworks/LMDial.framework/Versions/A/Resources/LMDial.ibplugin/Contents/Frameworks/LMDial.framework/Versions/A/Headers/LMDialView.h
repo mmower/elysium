@@ -14,37 +14,39 @@ typedef enum tagLMDialStyle {
   logicPan
 } LMDialStyle;
 
-@class LMDialEditWindow;
+@class LMDialMap;
 
 @interface LMDialView : NSView {
-    BOOL              enabled;
-    LMDialStyle       style;
-    int               minimum;
-    int               maximum;
-    int               stepping;
-    int               value;
+    BOOL              _enabled;
+    LMDialStyle       _style;
+    int               _minimum;
+    int               _maximum;
+    int               _stepping;
+    int               _value;
     
-    BOOL              showValue;
+    BOOL              _showValue;
 
-    NSColor           *onBorderColor;
-    NSColor           *localOnBorderColor;
-    NSColor           *onFillColor;
-    NSColor           *localOnFillColor;
-    NSColor           *offBorderColor;
-    NSColor           *localOffBorderColor;
-    NSColor           *offFillColor;
-    NSColor           *localOffFillColor;
-    NSColor           *valueColor;
+    NSColor           *_onBorderColor;
+    NSColor           *_localOnBorderColor;
+    NSColor           *_onFillColor;
+    NSColor           *_localOnFillColor;
+    NSColor           *_offBorderColor;
+    NSColor           *_localOffBorderColor;
+    NSColor           *_offFillColor;
+    NSColor           *_localOffFillColor;
+    NSColor           *_valueColor;
     
-    int               divisor;
-    NSString          *formatter;
-    NSString          *valueText;
+    int               _divisor;
+    NSString          *_formatter;
+    NSString          *_valueText;
     
-    CGFloat           fontSize;
+    CGFloat           _fontSize;
     
-    NSTextField       *valueEditor;
+    NSTextField       *_valueEditor;
     
-    float             alpha;
+    float             _alpha;
+    
+    LMDialMap         *_dialMap;
 }
 
 @property BOOL enabled;
@@ -65,5 +67,6 @@ typedef enum tagLMDialStyle {
 @property (assign) NSColor *offFillColor;
 @property (assign) NSColor *valueColor;
 
+@property (assign) LMDialMap *dialMap;
 
 @end
