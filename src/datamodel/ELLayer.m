@@ -434,7 +434,7 @@ NSPredicate *deadPlayheadFilter;
 
 
 - (BOOL)receivedMIDINote:(ELNote *)note {
-  for( ELMIDINoteMessage *noteMessage in [self receivedNotes] ) {
+  for( ELMIDINoteMessage *noteMessage in [[self receivedNotes] copy] ) {
     if( [noteMessage noteOn] && [noteMessage note] == [note number] ) {
       return YES;
     }
