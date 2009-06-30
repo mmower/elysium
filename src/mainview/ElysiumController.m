@@ -48,6 +48,9 @@ NSString * const ELUsedMidiDeviceKey = @"elysium.last.device";
   [defaultValues setObject:[NSNumber numberWithInt:2] forKey:ELBehaviourAtOpenKey];
   [defaultValues setObject:[NSNumber numberWithFloat:0.5] forKey:ELLayerThreadPriorityKey];
   
+  [defaultValues setObject:@"" forKey:ELComposerNameKey];
+  [defaultValues setObject:@"" forKey:ELComposerEmailKey];
+  
   [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultTempoKey];
   [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultTTLKey];
   [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultPulseCountKey];
@@ -149,6 +152,8 @@ NSString * const ELUsedMidiDeviceKey = @"elysium.last.device";
     NSArray *recentDocuments = [[NSDocumentController sharedDocumentController] recentDocumentURLs];
     if( [recentDocuments count] > 0 ) {
       [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:[recentDocuments objectAtIndex:0] display:YES];
+    } else {
+      [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
     }
   }
 }
