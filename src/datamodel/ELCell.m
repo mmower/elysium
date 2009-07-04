@@ -360,6 +360,11 @@
 }
 
 
+- (BOOL)hasTokenWithIdentifier:(NSString *)identifier {
+  return [[self tokens] objectForKey:identifier] != nil;
+}
+
+
 - (void)addToken:(ELToken *)token {
   if( token ) {
     [[self tokens] setObject:token forKey:[token tokenType]];

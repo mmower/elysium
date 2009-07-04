@@ -90,6 +90,8 @@
 - (void)removeToken:(ELToken *)token;
 - (void)removeAllTokens;
 
+- (BOOL)hasTokenWithIdentifier:(NSString *)identifier;
+
 // Actions for Token management
 - (IBAction)clearTokens:(id)sender;
 - (IBAction)toggleGenerateToken:(id)sender;
