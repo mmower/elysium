@@ -13,13 +13,12 @@
 @class ELSurfaceView;
 
 @interface ELLayerWindowController : NSWindowController {
-  IBOutlet  ELSurfaceView     *layerView;
-  IBOutlet  NSSlider          *transposeSlider;
-  
-  ELLayer                     *mLayer;
+  IBOutlet  ELSurfaceView     *_layerView;
+  ELLayer                     *_layer;
 }
 
-@property (assign,getter=layer,setter=setLayer:) ELLayer *mLayer;
+@property ELLayer *layer;
+@property ELSurfaceView *layerView;
 
 - (id)initWithLayer:(ELLayer *)layer;
 
