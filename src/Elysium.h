@@ -16,6 +16,8 @@
 
 #import "ELPreferencesController.h"
 
+#import "ELNotifications.h"
+
 // Type to represent compass directions (for a cell)
 typedef enum tagDirection {
   N = 0,
@@ -55,18 +57,6 @@ extern NSString * const ELErrorDomain;
 #define EL_ERR_CELL_INVALID_ATTR          0x0300
 #define EL_ERR_OSCILLATOR_INVALID_ATTR    0x0500
 #define EL_ERR_KNOB_MISSING_VALUE         0x0700
-
-// Notification names
-// extern NSString* notifyObjectSelectionDidChange;
-extern NSString * const ELNotifyObjectSelectionDidChange;
-
-extern NSString * const ELNotifyCellWasUpdated;
-
-extern NSString * const ELNotifyPlayerShouldStart;
-extern NSString * const ELNotifyPlayerShouldStop;
-
-extern NSString * const ELNotifyMIDIControl;
-extern NSString * const ELNotifyMIDINote;
 
 // Defaults keys
 
