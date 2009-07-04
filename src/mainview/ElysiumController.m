@@ -25,14 +25,6 @@
 
 NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
 
-NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidChange";
-NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
-
-NSString * const ELNotifyPlayerShouldStart = @"elysium.playerShouldStart";
-NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
-
-NSString * const ELNotifyMIDIControl = @"elysium.midi.control";
-NSString * const ELNotifyMIDINote = @"elysium.midi.note";
 
 NSString * const ELHasMidiDeviceKey = @"elysium.has.last.device";
 NSString * const ELUsedMidiDeviceKey = @"elysium.last.device";
