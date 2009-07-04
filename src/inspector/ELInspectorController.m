@@ -87,8 +87,10 @@
                                            selector:@selector(selectionChanged:)
                                                name:ELNotifyObjectSelectionDidChange
                                              object:nil];
-  
-  
+ [[NSNotificationCenter defaultCenter] addObserver:self
+                                          selector:@selector(documentsClosed:)
+                                              name:ELNotifyAllDocumentsClosed
+                                            object:nil];
 }
 
 
@@ -125,6 +127,11 @@
     [[self tabView] selectTabViewItemAtIndex:index];
     [[self modeView] setSelectedSegment:index];
   }
+}
+
+
+- (void)documentsClosed:(NSNotification *)notification {
+  [[self window] orderOut:self];
 }
 
 
