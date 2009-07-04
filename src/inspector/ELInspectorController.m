@@ -34,6 +34,9 @@
 @interface ELInspectorController (PrivateMethods)
 
 - (NSView *)wrapWithOverlayView:(NSView *)view target:(NSString *)target;
+- (void)documentsClosed:(NSNotification *)notification;
+- (void)updateInspectorTab;
+- (void)updateTitle;
 
 @end
 
@@ -87,10 +90,15 @@
                                            selector:@selector(selectionChanged:)
                                                name:ELNotifyObjectSelectionDidChange
                                              object:nil];
- [[NSNotificationCenter defaultCenter] addObserver:self
-                                          selector:@selector(documentsClosed:)
-                                              name:ELNotifyAllDocumentsClosed
-                                            object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(documentsClosed:)
+                                               name:ELNotifyAllDocumentsClosed
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(windowBecameMain:)
+                                               name:NSWindowDidBecomeMainNotification
+                                             object:nil];
+
 }
 
 
@@ -135,6 +143,14 @@
 }
 
 
+- (void)windowBecameMain:(NSNotification *)notification {
+  ELPlayer *player = (ELPlayer *)[[[[notification object] windowController] layer] player];
+  if( player != [self player] ) {
+    [self playerSelected:player];
+  }
+}
+
+
 - (void)selectionChanged:(NSNotification *)notification {
   if( [[notification object] isKindOfClass:[ELPlayer class]] ) {
     [self playerSelected:[notification object]];
@@ -155,6 +171,8 @@
   
   [[self modeView] setSelectedSegment:0];
   [[self tabView] selectTabViewItemAtIndex:0];
+  
+  [self updateTitle];
 }
 
 
@@ -165,6 +183,8 @@
   
   [[self modeView] setSelectedSegment:1];
   [[self tabView] selectTabViewItemAtIndex:1];
+  
+  [self updateTitle];
 }
 
 
@@ -172,6 +192,35 @@
   [self setPlayer:[[cell layer] player]];
   [self setLayer:[cell layer]];
   [self setCell:cell];
+  
+  [self updateInspectorTab];
+  
+  // Update the tab view to correspond to either the current
+  // token, or the first defined token for the cell
+  
+  [self updateTitle];
+}
+
+
+- (void)updateInspectorTab {
+  // If the inspector is on a cell related page already see if the cell has that token
+  NSTabViewItem *tab = [[self tabView] selectedTabViewItem];
+  
+  // If we're already on a tab the cell has then we're good
+  if( [[self cell] hasTokenWithIdentifier:[tab identifier]] ) {
+    return;
+  }
+  
+  // Look for the first tab for a token the cell actually has
+  for( tab in [[self tabView] tabViewItems] ) {
+    if( [[self cell] hasTokenWithIdentifier:[tab identifier]] ) {
+      [self inspect:[tab identifier]];
+      return;
+    }
+  }
+  
+  // Go for a safe choice
+  [self inspect:@"player"];
 }
 
 
@@ -280,15 +329,12 @@
 #pragma mark NSTabView delegate implementation
 
 - (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem {
-  NSDocument *document = [[[NSApp mainWindow] windowController] document];
-  NSString *target = [tabViewItem label];
-  
-  if( document ) {
-    [self setTitle:[NSString stringWithFormat:@"%@ - Inspect %@", [document displayName], target]];
-  } else {
-    [self setTitle:[NSString stringWithFormat:@"Inspect %@", target]];
-  }
+  [self updateTitle];
 }
 
+
+- (void)updateTitle {
+  [self setTitle:[NSString stringWithFormat:@"%@ - %@", [[[self player] document] displayName], [[[self tabView] selectedTabViewItem] label]]];
+}
 
 @end
