@@ -23,13 +23,13 @@ static NSArray *alternateSequence = nil;
 #pragma mark Class behaviours
 
 + (int)calculateOctaveFromNoteNumber:(int)number {
-    int middle_c_adjustment;
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:ELMiddleCOctaveKey] == EL_C3) {
-        middle_c_adjustment = 2;
-    } else {
-        middle_c_adjustment = 1;
-    }
-    return floor( number / 12 ) - middle_c_adjustment;
+  int middle_c_adjustment;
+  if ([[NSUserDefaults standardUserDefaults] integerForKey:ELMiddleCOctaveKey] == EL_C3) {
+      middle_c_adjustment = 2;
+  } else {
+      middle_c_adjustment = 1;
+  }
+  return floor( number / 12 ) - middle_c_adjustment;
 }
 
 + (void)initialize {
