@@ -81,6 +81,7 @@
 		C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580E70F181F5D00DB8E93 /* ELScript.m */; };
 		C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */; };
 		C978717F0F1FF76B00C4160A /* output in Resources */ = {isa = PBXBuildFile; fileRef = C97871380F1FF76B00C4160A /* output */; };
+		C98D70AD0FFF605400BB289C /* ELNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = C98D70AC0FFF605400BB289C /* ELNotifications.m */; };
 		C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8370E8907B6009C699E /* sectionheader.gif */; };
 		C99FA9E20EB8F69E002305EF /* ELMIDIConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */; };
 		C99FA9E40EB8F6A9002305EF /* MIDIConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */; };
@@ -267,6 +268,8 @@
 		C97580E70F181F5D00DB8E93 /* ELScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScript.m; sourceTree = "<group>"; };
 		C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
 		C97871380F1FF76B00C4160A /* output */ = {isa = PBXFileReference; lastKnownFileType = folder; name = output; path = help/output; sourceTree = "<group>"; };
+		C98D70AB0FFF605400BB289C /* ELNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELNotifications.h; path = src/ELNotifications.h; sourceTree = "<group>"; };
+		C98D70AC0FFF605400BB289C /* ELNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELNotifications.m; path = src/ELNotifications.m; sourceTree = "<group>"; };
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
 		C99FA9E00EB8F69E002305EF /* ELMIDIConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIConfigController.h; sourceTree = "<group>"; };
 		C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIConfigController.m; sourceTree = "<group>"; };
@@ -516,6 +519,8 @@
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C98D70AB0FFF605400BB289C /* ELNotifications.h */,
+				C98D70AC0FFF605400BB289C /* ELNotifications.m */,
 				C91D60E70F67183F002A1A11 /* composition_manager */,
 				C9BC51B30F346FF300317049 /* controls */,
 				C90410430F266057009CD2B9 /* preferences */,
@@ -978,6 +983,7 @@
 				C9E0A3A70F64721F00F13A08 /* ELInspectorOverlay.m in Sources */,
 				C91D60EA0F67184E002A1A11 /* ELCompositionManager.m in Sources */,
 				C908CE6F0FF2EB450091239F /* ELMIDINoteMessage.m in Sources */,
+				C98D70AD0FFF605400BB289C /* ELNotifications.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
