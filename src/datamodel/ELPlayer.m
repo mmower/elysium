@@ -431,11 +431,13 @@ static SEL updateSelector;
 
 
 - (void)stop:(id)sender {
-  [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
-  [_oscillatorThread cancel];
-  [[self layers] makeObjectsPerformSelector:@selector(stop)];
-  [self setRunning:NO];
-  [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
+  if( [self running] ) {
+    [self performSelectorOnMainThread:@selector(runWillStopScript) withObject:nil waitUntilDone:YES];
+    [_oscillatorThread cancel];
+    [[self layers] makeObjectsPerformSelector:@selector(stop)];
+    [self setRunning:NO];
+    [self performSelectorOnMainThread:@selector(runDidStopScript) withObject:nil waitUntilDone:YES];
+  }
 }
 
 
