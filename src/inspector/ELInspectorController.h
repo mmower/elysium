@@ -16,9 +16,9 @@
 @class ELInspectorViewController;
 
 @interface ELInspectorController : NSWindowController {
-  IBOutlet  NSPanel             *panel;
-  IBOutlet  NSSegmentedControl  *modeView;
-  IBOutlet  NSTabView           *tabView;
+  IBOutlet  NSPanel             *_panel;
+  IBOutlet  NSSegmentedControl  *_modeView;
+  IBOutlet  NSTabView           *_tabView;
   
   IBOutlet  NSView              *playerView;
   IBOutlet  NSView              *layerView;
@@ -29,9 +29,9 @@
   IBOutlet  NSView              *splitView;
   IBOutlet  NSView              *spinView;
   
-            ELPlayer            *player;
-            ELLayer             *layer;
-            ELCell              *cell;
+            ELPlayer            *_player;
+            ELLayer             *_layer;
+            ELCell              *_cell;
             
             NSString            *title;
   
@@ -48,6 +48,7 @@
             NSMapTable          *oscillatorEditors;
 }
 
+@property           NSPanel             *panel;
 @property           NSSegmentedControl  *modeView;
 @property           NSTabView           *tabView;
 

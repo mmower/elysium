@@ -58,13 +58,13 @@
   return self;
 }
 
+@synthesize panel = _panel;
+@synthesize modeView = _modeView;
+@synthesize tabView = _tabView;
 
-@synthesize modeView;
-@synthesize tabView;
-
-@synthesize player;
-@synthesize layer;
-@synthesize cell;
+@synthesize player = _player;
+@synthesize layer = _layer;
+@synthesize cell = _cell;
 
 @synthesize title;
 
@@ -73,15 +73,15 @@
 
 - (void)awakeFromNib {
   //[self wrapWithOverlayView:[skipViewController view] target:@"cell.tokens.skip"]
-  [[tabView tabViewItemAtIndex:0] setView:[playerViewController view]];
-  [[tabView tabViewItemAtIndex:1] setView:[layerViewController view]];
-  [[tabView tabViewItemAtIndex:2] setView:[self wrapWithOverlayView:[generateViewController view] target:@"cell.tokens.generate"]];
-  [[tabView tabViewItemAtIndex:3] setView:[self wrapWithOverlayView:[noteViewController view] target:@"cell.tokens.note"]];
-  [[tabView tabViewItemAtIndex:4] setView:[self wrapWithOverlayView:[reboundViewController view] target:@"cell.tokens.rebound"]];
-  [[tabView tabViewItemAtIndex:5] setView:[self wrapWithOverlayView:[absorbViewController view] target:@"cell.tokens.absorb"]];
-  [[tabView tabViewItemAtIndex:6] setView:[self wrapWithOverlayView:[splitViewController view] target:@"cell.tokens.split"]];
-  [[tabView tabViewItemAtIndex:7] setView:[self wrapWithOverlayView:[spinViewController view] target:@"cell.tokens.spin"]];
-  [[tabView tabViewItemAtIndex:8] setView:[self wrapWithOverlayView:[skipViewController view] target:@"cell.tokens.skip"]];
+  [[[self tabView] tabViewItemAtIndex:0] setView:[playerViewController view]];
+  [[[self tabView] tabViewItemAtIndex:1] setView:[layerViewController view]];
+  [[[self tabView] tabViewItemAtIndex:2] setView:[self wrapWithOverlayView:[generateViewController view] target:@"cell.tokens.generate"]];
+  [[[self tabView] tabViewItemAtIndex:3] setView:[self wrapWithOverlayView:[noteViewController view] target:@"cell.tokens.note"]];
+  [[[self tabView] tabViewItemAtIndex:4] setView:[self wrapWithOverlayView:[reboundViewController view] target:@"cell.tokens.rebound"]];
+  [[[self tabView] tabViewItemAtIndex:5] setView:[self wrapWithOverlayView:[absorbViewController view] target:@"cell.tokens.absorb"]];
+  [[[self tabView] tabViewItemAtIndex:6] setView:[self wrapWithOverlayView:[splitViewController view] target:@"cell.tokens.split"]];
+  [[[self tabView] tabViewItemAtIndex:7] setView:[self wrapWithOverlayView:[spinViewController view] target:@"cell.tokens.spin"]];
+  [[[self tabView] tabViewItemAtIndex:8] setView:[self wrapWithOverlayView:[skipViewController view] target:@"cell.tokens.skip"]];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(selectionChanged:)
@@ -95,24 +95,24 @@
 #pragma mark NSWindowController
 
 - (void)windowDidLoad {
-  [panel setFloatingPanel:YES];
-  // [panel setBecomesKeyOnlyIfNeeded:YES];
+  [[self panel] setFloatingPanel:YES];
+  [[self panel] setBecomesKeyOnlyIfNeeded:YES];
 }
 
 
 #pragma mark Inspector implementation
 
 
-- (NSView *)wrapWithOverlayView:(NSView *)aView target:(NSString *)aTarget {
-  NSView *parent = [[NSView alloc] initWithFrame:[tabView contentRect]];
-  ELInspectorOverlay *overlay = [[ELInspectorOverlay alloc] initWithFrame:[tabView contentRect]];
+- (NSView *)wrapWithOverlayView:(NSView *)view target:(NSString *)target {
+  NSView *parent = [[NSView alloc] initWithFrame:[[self tabView] contentRect]];
+  ELInspectorOverlay *overlay = [[ELInspectorOverlay alloc] initWithFrame:[[self tabView] contentRect]];
   
-  [parent addSubview:aView];
-  [parent addSubview:overlay positioned:NSWindowAbove relativeTo:aView];
+  [parent addSubview:view];
+  [parent addSubview:overlay positioned:NSWindowAbove relativeTo:view];
   
   [overlay bind:@"hidden"
        toObject:self
-    withKeyPath:aTarget
+    withKeyPath:target
     options:[NSDictionary dictionaryWithObject:@"NSIsNotNil" forKey:NSValueTransformerNameBindingOption]];
   
   return parent;
@@ -120,10 +120,10 @@
 
 
 - (void)inspect:(NSString *)identifier {
-  int index = [tabView indexOfTabViewItemWithIdentifier:identifier];
+  int index = [[self tabView] indexOfTabViewItemWithIdentifier:identifier];
   if( index != NSNotFound ) {
-    [tabView selectTabViewItemAtIndex:index];
-    [modeView setSelectedSegment:index];
+    [[self tabView] selectTabViewItemAtIndex:index];
+    [[self modeView] setSelectedSegment:index];
   }
 }
 
@@ -137,34 +137,34 @@
     [self cellSelected:[notification object]];
   }
   
-  [self tabView:tabView willSelectTabViewItem:[tabView tabViewItemAtIndex:0]];
+  [self tabView:[self tabView] willSelectTabViewItem:[[self tabView] tabViewItemAtIndex:0]];
 }
 
 
-- (void)playerSelected:(ELPlayer *)newPlayer {
-  [self setPlayer:newPlayer];
+- (void)playerSelected:(ELPlayer *)player {
+  [self setPlayer:player];
   [self setLayer:nil];
   [self setCell:nil];
   
-  [modeView setSelectedSegment:0];
-  [tabView selectTabViewItemAtIndex:0];
+  [[self modeView] setSelectedSegment:0];
+  [[self tabView] selectTabViewItemAtIndex:0];
 }
 
 
-- (void)layerSelected:(ELLayer *)newLayer {
-  [self setPlayer:[newLayer player]];
-  [self setLayer:newLayer];
+- (void)layerSelected:(ELLayer *)layer {
+  [self setPlayer:[layer player]];
+  [self setLayer:layer];
   [self setCell:nil];
   
-  [modeView setSelectedSegment:1];
-  [tabView selectTabViewItemAtIndex:1];
+  [[self modeView] setSelectedSegment:1];
+  [[self tabView] selectTabViewItemAtIndex:1];
 }
 
 
-- (void)cellSelected:(ELCell *)newCell {
-  [self setPlayer:[[newCell layer] player]];
-  [self setLayer:[newCell layer]];
-  [self setCell:newCell];
+- (void)cellSelected:(ELCell *)cell {
+  [self setPlayer:[[cell layer] player]];
+  [self setLayer:[cell layer]];
+  [self setCell:cell];
 }
 
 
@@ -172,7 +172,7 @@
   int tab = [sender selectedSegment];
   // 
   // [self setTitle:[[tabView tabViewItemAtIndex:tab] label]];
-  [tabView selectTabViewItemAtIndex:tab];
+  [[self tabView] selectTabViewItemAtIndex:tab];
 }
 
 
@@ -272,9 +272,9 @@
 
 #pragma mark NSTabView delegate implementation
 
-- (void)tabView:(NSTabView *)aTabView willSelectTabViewItem:(NSTabViewItem *)aTabViewItem {
+- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem {
   NSDocument *document = [[[NSApp mainWindow] windowController] document];
-  NSString *target = [aTabViewItem label];
+  NSString *target = [tabViewItem label];
   
   if( document ) {
     [self setTitle:[NSString stringWithFormat:@"%@ - Inspect %@", [document displayName], target]];
