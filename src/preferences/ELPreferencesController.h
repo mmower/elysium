@@ -14,9 +14,14 @@ typedef enum tagBehaviourAtOpen {
   EL_OPEN_LAST
 } ELBehaviourAtOpen;
 
+typedef enum tagMiddleCOctave {
+    EL_C3 = 0,
+    EL_C4 = 1
+} ELMiddleCOctave;
+
 extern NSString * const ELBehaviourAtOpenKey;
 extern NSString * const ELLayerThreadPriorityKey;
-
+extern NSString * const ELMiddleCOctaveKey;
 extern NSString * const ELComposerNameKey;
 extern NSString * const ELComposerEmailKey;
 

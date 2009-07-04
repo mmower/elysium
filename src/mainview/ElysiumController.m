@@ -39,6 +39,7 @@ NSString * const ELUsedMidiDeviceKey = @"elysium.last.device";
   
   [defaultValues setObject:[NSNumber numberWithInt:2] forKey:ELBehaviourAtOpenKey];
   [defaultValues setObject:[NSNumber numberWithFloat:0.5] forKey:ELLayerThreadPriorityKey];
+  [defaultValues setObject:[NSNumber numberWithInt:1] forKey:ELMiddleCOctaveKey];
   
   [defaultValues setObject:@"" forKey:ELComposerNameKey];
   [defaultValues setObject:@"" forKey:ELComposerEmailKey];

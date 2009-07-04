@@ -22,6 +22,16 @@ static NSArray *alternateSequence = nil;
 
 #pragma mark Class behaviours
 
++ (int)calculateOctaveFromNoteNumber:(int)number {
+    int middle_c_adjustment;
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:ELMiddleCOctaveKey] == EL_C3) {
+        middle_c_adjustment = 2;
+    } else {
+        middle_c_adjustment = 1;
+    }
+    return floor( number / 12 ) - middle_c_adjustment;
+}
+
 + (void)initialize {
   if( noteSequence == nil ) {
     noteSequence = [NSArray arrayWithObjects:@"C",@"C#",@"D",@"D#",@"E",@"F",@"F#",@"G",@"G#",@"A",@"A#",@"B",nil];
@@ -34,7 +44,7 @@ static NSArray *alternateSequence = nil;
     for( int noteNum = 0; noteNum < 127; noteNum++ ) {
       NSString *noteName = [noteSequence objectAtIndex:(noteNum % 12)];
       NSString *altNoteName = [alternateSequence objectAtIndex:(noteNum % 12)];
-      int octaveNr = floor( noteNum / 12 ) - 1;
+      int octaveNr = [self calculateOctaveFromNoteNumber:noteNum];
 
       [noteToNoteNames setObject:[noteName stringByAppendingFormat:@"%d", octaveNr]
                           forKey:[NSNumber numberWithInt:noteNum]];
@@ -62,13 +72,12 @@ static NSArray *alternateSequence = nil;
   {
     _name          = name;
     _number        = [ELNote noteNumber:_name];
-    _octave        = floor( _number / 12 ) - 1;
+    _octave        = [[self class] calculateOctaveFromNoteNumber:_number];
     _tone          = [noteSequence objectAtIndex:(_number % 12)];
     _alternateTone = [alternateSequence objectAtIndex:(_number % 12)];
   }
   return self;
 }
-
 
 #pragma mark Properties
 

@@ -10,6 +10,7 @@
 
 NSString * const ELBehaviourAtOpenKey = @"BehaviourAtOpen";
 NSString * const ELLayerThreadPriorityKey = @"LayerThreadPriority";
+NSString * const ELMiddleCOctaveKey = @"MiddleCOctave";
 
 NSString * const ELComposerNameKey = @"ComposerName";
 NSString * const ELComposerEmailKey = @"ComposerEmail";
