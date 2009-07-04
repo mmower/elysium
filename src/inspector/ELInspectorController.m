@@ -144,9 +144,12 @@
 
 
 - (void)windowBecameMain:(NSNotification *)notification {
-  ELPlayer *player = (ELPlayer *)[[[[notification object] windowController] layer] player];
-  if( player != [self player] ) {
-    [self playerSelected:player];
+  id windowController = [[notification object] windowController];
+  if( [windowController respondsToSelector:@selector(layer)] ) {
+    ELPlayer *player = [[windowController layer] player];
+    if( player != [self player] ) {
+      [self playerSelected:player];
+    }
   }
 }
 
