@@ -49,6 +49,14 @@
 
 #pragma mark Implements NSDocument
 
+- (void)close {
+  [super close];
+  
+  if( [[[NSDocumentController sharedDocumentController] documents] count] == 0 ) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyAllDocumentsClosed object:nil];
+  }
+}
+
 - (void)makeWindowControllers {
   for( ELLayer *layer in [[self player] layers] ) {
     [self addWindowController:[[ELLayerWindowController alloc] initWithLayer:layer]];
@@ -57,6 +65,10 @@
   // Show the inspectors by default, and ensure something is selected from the right player/layer
   [[NSApp delegate] showLayerManager:self];
   [[NSApp delegate] showInspectorPanel:self];
+  
+  // Prime the inspector
+  [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange
+                                                      object:[self player]];
 }
 
 
