@@ -9,75 +9,94 @@
 
 #import "ELSequenceOscillator.h"
 
+
 @implementation ELSequenceValue
 
-- (id)initWithStringValue:(NSString *)_stringValue_ {
+#pragma mark Object initialization
+
+- (id)initWithStringValue:(NSString *)stringValue {
   if( ( self = [super init] ) ) {
-    [self setStringValue:_stringValue_];
+    [self setStringValue:stringValue];
   }
   
   return self;
 }
 
-@dynamic intValue;
 
-- (int)intValue {
-  return intValue;
+#pragma mark Properties
+
+@synthesize intValue = _intValue;
+
+- (void)setIntValue:(int)intValue {
+  _intValue = intValue;
+  [self willChangeValueForKey:@"stringValue"];
+  _stringValue = [[NSNumber numberWithInteger:intValue] stringValue];
+  [self didChangeValueForKey:@"stringValue"];
 }
 
-- (void)setIntValue:(int)newIntValue {
-  intValue = newIntValue;
-  stringValue = [[NSNumber numberWithInteger:intValue] stringValue];
+
+@synthesize stringValue = _stringValue;
+
+- (void)setStringValue:(NSString *)stringValue {
+  _stringValue = stringValue;
+  [self willChangeValueForKey:@"intValue"];
+  _intValue = [stringValue intValue];
+  [self didChangeValueForKey:@"intValue"];
 }
 
-@dynamic stringValue;
-
-- (NSString *)stringValue {
-  return stringValue;
-}
-
-- (void)setStringValue:(NSString *)newStringValue {
-  stringValue = newStringValue;
-  intValue = [stringValue intValue];
-}
 
 @end
 
+
 @implementation ELSequenceOscillator
 
-- (id)initEnabled:(BOOL)_enabled_ values:(NSArray *)_values_ {
-  if( ( self = [super initEnabled:_enabled_] ) ) {
-    [self setValues:[_values_ mutableCopy]];
-    index  = 0;
+#pragma mark Object initialization
+
+- (id)initEnabled:(BOOL)enabled values:(NSArray *)values {
+  if( ( self = [super initEnabled:enabled] ) ) {
+    [self setValues:[values mutableCopy]];
+    _index  = 0;
   }
   
   return self;
 }
 
-@synthesize values;
+
+#pragma mark Properties
+
+@synthesize values = _values;
+
+
+#pragma mark Object behaviours
 
 - (NSString *)type {
   return @"Sequence";
 }
 
+
 - (int)generate {
-  if( [values count] < 1 ) {
+  if( [[self values] count] < 1 ) {
     @throw [NSException exceptionWithName:@"OscillatorException" reason:@"SequenceOscillator has no values" userInfo:[NSDictionary dictionaryWithObject:self forKey:@"oscillator"]];
   }
   
-  int generatedValue = [[values objectAtIndex:index] intValue];
-  index += 1;
-  if( index == [values count] ) {
-    index = 0;
+  int generatedValue = [[[self values] objectAtIndex:_index] intValue];
+  
+  _index += 1;
+  if( _index == [[self values] count] ) {
+    _index = 0;
   }
+  
   return generatedValue;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
+
+#pragma mark Implements ELXmlData
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
     NSXMLNode *attributeNode;
     
-    attributeNode = [_representation_ attributeForName:@"values"];
+    attributeNode = [representation attributeForName:@"values"];
     if( !attributeNode ) {
       NSLog( @"No or invalid 'values' attribute node for oscillator!" );
       return nil;
@@ -96,15 +115,19 @@
   return self;
 }
 
-- (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
-  [super storeAttributes:_attributes_];
+- (void)storeAttributes:(NSMutableDictionary *)attributes {
+  [super storeAttributes:attributes];
   
-  [_attributes_ setObject:[values componentsJoinedByString:@","] forKey:@"values"];
+  [attributes setObject:[[self values] componentsJoinedByString:@","] forKey:@"values"];
 }
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
-                                                   values:[self values]];
+
+#pragma mark Implements NSMutableCopying
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
+                                                 values:[[self values] mutableCopy]];
 }
+
 
 @end

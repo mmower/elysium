@@ -12,7 +12,7 @@
 #import "ELRangedOscillator.h"
 
 @interface ELSineOscillator : ELRangedOscillator {
-  int period;
+  int _period;
 }
 
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum period:(int)period;

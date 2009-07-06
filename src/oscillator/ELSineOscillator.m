@@ -11,9 +11,9 @@
 
 @implementation ELSineOscillator
 
-- (id)initEnabled:(BOOL)aEnabled minimum:(int)aMin maximum:(int)aMax period:(int)aPeriod {
-  if( ( self = [super initEnabled:aEnabled minimum:aMin maximum:aMax] ) ) {
-    [self setPeriod:aPeriod];
+- (id)initEnabled:(BOOL)enabled minimum:(int)min maximum:(int)max period:(int)period {
+  if( ( self = [super initEnabled:enabled minimum:min maximum:max] ) ) {
+    [self setPeriod:period];
   }
   
   return self;
@@ -23,12 +23,12 @@
   return @"Sine";
 }
 
-@synthesize period;
+@synthesize period = _period;
 
 - (int)generate {
     // Get time in milliseconds
     UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() - [self timeBase] ) / 1000000;
-    int t = time % period;
+    int t = time % [self period];
     
     // NSLog( @"time = %llu, period = %d, t = %d", time, period, t );
     
@@ -37,15 +37,15 @@
 
 - (int)generateWithT:(int)_t_ {
   // Convert to angular form and use as a proportion of the range
-  float angle = ((float)_t_ / period) * M_PI;
-  return minimum + ( range * sin( angle ) );
+  float angle = ((float)_t_ / [self period]) * M_PI;
+  return [self minimum] + ( [self range] * sin( angle ) );
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
     NSXMLNode *attributeNode;
     
-    attributeNode = [_representation_ attributeForName:@"period"];
+    attributeNode = [representation attributeForName:@"period"];
     if( !attributeNode ) {
       NSLog( @"No or invalid 'period' attribute node for oscillator!" );
       return nil;
@@ -57,17 +57,17 @@
   return self;
 }
 
-- (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
-  [super storeAttributes:_attributes_];
+- (void)storeAttributes:(NSMutableDictionary *)attributes {
+  [super storeAttributes:attributes];
   
-  [_attributes_ setObject:[NSNumber numberWithInteger:[self period]] forKey:@"period"];
+  [attributes setObject:[NSNumber numberWithInteger:[self period]] forKey:@"period"];
 }
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
-                                                  minimum:[self minimum]
-                                                  maximum:[self maximum]
-                                                   period:[self period]];
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
+                                                minimum:[self minimum]
+                                                maximum:[self maximum]
+                                                 period:[self period]];
 }
 
 

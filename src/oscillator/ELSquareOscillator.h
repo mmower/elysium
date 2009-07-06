@@ -12,10 +12,10 @@
 #import "ELRangedOscillator.h"
 
 @interface ELSquareOscillator : ELRangedOscillator {
-  int rest;
-  int sustain;
+  int _rest;
+  int _sustain;
   
-  int period;
+  int _period;
 }
 
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum rest:(int)rest sustain:(int)sustain;
