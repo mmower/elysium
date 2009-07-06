@@ -26,8 +26,6 @@
 NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
 
 
-NSString * const ELHasMidiDeviceKey = @"elysium.has.last.device";
-NSString * const ELUsedMidiDeviceKey = @"elysium.last.device";
 
 
 @implementation ElysiumController

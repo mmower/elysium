@@ -20,15 +20,6 @@
 
 NSString *CellPBoardType = @"CellPBoardType";
 
-NSString * const ELDefaultCellBackgroundColor = @"cell.background.color";
-NSString * const ELDefaultCellBorderColor = @"cell.border.color";
-NSString * const ELDefaultSelectedCellBackgroundColor = @"selected.cell.background.color";
-NSString * const ELDefaultSelectedCellBorderColor = @"selected.cell.border.color";
-NSString * const ELDefaultTokenColor = @"token.color";
-NSString * const ELDisabledTokenColor = @"token.disabled.color";
-NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
-NSString * const ELTonicNoteColor = @"tonic.note.color";
-NSString * const ELScaleNoteColor = @"scale.note.color";
 
 @implementation ELSurfaceView
 
