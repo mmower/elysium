@@ -47,9 +47,6 @@
 - (IBAction)newLayer:(id)sender;
 - (IBAction)clearSelectedLayer:(id)sender;
 - (IBAction)closeDocument:(id)sender;
-- (IBAction)toggleNoteDisplay:(id)sender;
-- (IBAction)toggleKeyDisplay:(id)sender;
-- (IBAction)toggleOctavesDisplay:(id)sender;
 
 - (IBAction)toggleGeneratorToken:(id)sender;
 - (IBAction)toggleNoteToken:(id)sender;

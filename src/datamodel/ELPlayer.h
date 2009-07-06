@@ -35,10 +35,6 @@
   // UInt64              _startTime;
   
   int                 _nextLayerNumber;
-  BOOL                _showNotes;
-  BOOL                _showOctaves;
-  BOOL                _showKey;
-  BOOL                _performanceMode;
   BOOL                _dirty;
   
   NSString            *_scriptingTag;
@@ -66,10 +62,6 @@
 @property (readonly)  ELHarmonicTable     *harmonicTable;
 @property (readonly)  NSMutableArray      *layers;
 @property             BOOL                running;
-@property             BOOL                showNotes;
-@property             BOOL                showOctaves;
-@property             BOOL                showKey;
-@property             BOOL                performanceMode;
 @property             BOOL                dirty;
 
 @property             ELLayer             *selectedLayer;
@@ -117,7 +109,7 @@
 + (ELDial *)defaultSteppingDial;
 + (ELDial *)defaultSkipCountDial;
 
-- (void)toggleNoteDisplay;
+// - (void)toggleNoteDisplay;
 
 - (void)start:(id)sender;
 - (void)stop:(id)sender;

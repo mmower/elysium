@@ -72,10 +72,6 @@ static SEL updateSelector;
     _pkg             = [[ELScriptPackage alloc] initWithPlayer:self];
     
     _nextLayerNumber = 1;
-    _showNotes       = NO;
-    _showOctaves     = NO;
-    _showKey         = NO;
-    _performanceMode = NO;
     
     // Note that we start this here, otherwise MIDI CC cannot be used to trigger the player itself
     if( USE_TRIGGER_THREAD ) {
@@ -119,10 +115,6 @@ static SEL updateSelector;
 // @synthesize startTime = _startTime;
 @synthesize harmonicTable = _harmonicTable;
 @synthesize layers = _layers;
-@synthesize showNotes = _showNotes;
-@synthesize showOctaves = _showOctaves;
-@synthesize showKey = _showKey;
-@synthesize performanceMode = _performanceMode;
 @synthesize dirty = _dirty;
 
 
@@ -508,9 +500,9 @@ static SEL updateSelector;
 
 #pragma mark Drawing Support
 
-- (void)toggleNoteDisplay {
-  [self setShowNotes:![self showNotes]];
-}
+// - (void)toggleNoteDisplay {
+//   [self setShowNotes:![self showNotes]];
+// }
 
 
 - (void)needsDisplay {

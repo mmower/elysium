@@ -33,3 +33,7 @@ NSString * const ELDisabledTokenColor = @"token.disabled.color";
 NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
 NSString * const ELTonicNoteColor = @"tonic.note.color";
 NSString * const ELScaleNoteColor = @"scale.note.color";
+
+NSString * const ELShowNotesPrefKey = @"ui.show.notes";
+NSString * const ELShowOctavesPrefKey = @"ui.show.octaves";
+NSString * const ELShowKeyPrefKey = @"ui.show.key";

@@ -57,11 +57,6 @@ extern NSString * const ELErrorDomain;
 #define EL_ERR_OSCILLATOR_INVALID_ATTR    0x0500
 #define EL_ERR_KNOB_MISSING_VALUE         0x0700
 
-// Defaults keys
-
-
-
-
 #import "ELXmlData.h"
 #import "ELTaggable.h"
 

@@ -26,11 +26,9 @@
 NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
 
 
-
-
 @implementation ElysiumController
 
-#pragma mark Initializers
+#pragma mark Class initialization
 
 + (void)initialize {
   NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
@@ -107,10 +105,16 @@ NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
 }
 
 
+#pragma mark Instance initialization
+
 - (id)init {
   srandomdev();
   
   if( ( self = [super init] ) ) {
+    _showNotes       = NO;
+    _showOctaves     = NO;
+    _showKey         = NO;
+    _performanceMode = NO;
   }
   
   return self;
@@ -121,6 +125,11 @@ NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
 
 @synthesize inspectorController;
 
+@synthesize showNotes       = _showNotes;
+@synthesize showOctaves     = _showOctaves;
+@synthesize showKey         = _showKey;
+@synthesize performanceMode = _performanceMode;
+
 
 #pragma mark NSNibAwakening protocol
 
@@ -129,6 +138,10 @@ NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
   if( ![self initScriptingEngine] ) {
     NSLog( @"Initialization of script engine failed." );
   }
+  
+  [self setShowNotes:[[NSUserDefaults standardUserDefaults] boolForKey:ELShowNotesPrefKey]];
+  [self setShowOctaves:[[NSUserDefaults standardUserDefaults] boolForKey:ELShowOctavesPrefKey]];
+  [self setShowKey:[[NSUserDefaults standardUserDefaults] boolForKey:ELShowKeyPrefKey]];
 }
 
 
@@ -143,6 +156,10 @@ NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
   for( ElysiumDocument *document in [[NSDocumentController sharedDocumentController] documents] ) {
     [[document player] stop:self];
   }
+  
+  [[NSUserDefaults standardUserDefaults] setBool:[self showNotes] forKey:ELShowNotesPrefKey];
+  [[NSUserDefaults standardUserDefaults] setBool:[self showKey] forKey:ELShowKeyPrefKey];
+  [[NSUserDefaults standardUserDefaults] setBool:[self showOctaves] forKey:ELShowOctavesPrefKey];
 }
 
 
@@ -157,7 +174,8 @@ NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
   }
 }
 
-// General initialization
+
+#pragma mark General Initialization
 
 - (BOOL)initScriptingEngine {
   [[BridgeSupportController sharedController] loadBridgeSupport:[[NSBundle mainBundle] pathForResource:@"Elysium" ofType:@"bridgesupport"]];
@@ -185,11 +203,79 @@ NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
   return YES;
 }
 
+
 - (ELPlayer *)activePlayer {
   return [[[NSDocumentController sharedDocumentController] currentDocument] player];
 }
 
-// Actions
+
+- (void)updateDocumentViews {
+  for( ElysiumDocument *document in [[NSDocumentController sharedDocumentController] documents] ) {
+    [document updateView:self];
+  }
+}
+
+
+#pragma mark Actions as FirstResponder
+
+- (BOOL)validateMenuItem:(NSMenuItem *)item {
+  SEL action = [item action];
+  
+  if( action == @selector(toggleKeyDisplay:) ) {
+    if( [self showKey] ) {
+      [item setTitle:@"Hide Key"];
+      [item setState:NSOnState];
+    } else {
+      [item setTitle:@"Show Key"];
+      [item setState:NSOffState];
+    }
+  } else if( action == @selector(toggleOctavesDisplay:) ) {
+    if( [self showOctaves] ) {
+      [item setTitle:@"Hide Octaves"];
+      [item setState:NSOnState];
+    } else {
+      [item setTitle:@"Show Octaves"];
+      [item setState:NSOffState];
+    }
+  } else if( action == @selector(toggleNoteDisplay:) ) {
+    if( [self showNotes] ) {
+      [item setTitle:@"Hide Notes"];
+      [item setState:NSOnState];
+    } else {
+      [item setTitle:@"Show Notes"];
+      [item setState:NSOffState];
+    }
+  }
+  
+  return YES;
+}
+
+
+- (IBAction)toggleNoteDisplay:(id)sender {
+  [self setShowNotes:![self showNotes]];
+  [self updateDocumentViews];
+}
+
+
+- (IBAction)toggleKeyDisplay:(id)sender {
+  BOOL showKey = ![self showKey];
+  [self setShowKey:showKey];
+  if( showKey ) {
+    [self setShowOctaves:NO];
+  }
+  [self updateDocumentViews];
+}
+
+
+- (IBAction)toggleOctavesDisplay:(id)sender {
+  BOOL showOctave = ![self showOctaves];
+  [self setShowOctaves:showOctave];
+  if( showOctave ) {
+    [self setShowKey:NO];
+  }
+  [self updateDocumentViews];
+}
+
 
 - (IBAction)showPreferences:(id)_sender_ {
   if( !preferencesController ) {

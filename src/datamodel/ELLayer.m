@@ -22,6 +22,8 @@
 #import "ELGenerateToken.h"
 #import "ELMIDINoteMessage.h"
 
+#import "ElysiumController.h"
+
 NSPredicate *deadPlayheadFilter;
 
 @implementation ELLayer
@@ -542,7 +544,7 @@ NSPredicate *deadPlayheadFilter;
   if( cell ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:cell];
     
-    if( ![[self player] performanceMode] ) {
+    if( ![[NSApp delegate] performanceMode] ) {
       // [durationKnob dynamicValue]
       [[cell note] playOnChannel:[[self channelDial] value] duration:2.0 velocity:[[self velocityDial] value] transpose:0];
     }

@@ -33,6 +33,10 @@ extern NSString * const ELDefaultActivePlayheadColor;
 extern NSString * const ELTonicNoteColor;
 extern NSString * const ELScaleNoteColor;
 
+extern NSString * const ELShowNotesPrefKey;
+extern NSString * const ELShowOctavesPrefKey;
+extern NSString * const ELShowKeyPrefKey;
+
 typedef enum tagBehaviourAtOpen {
   EL_DO_NOT_OPEN = 0,
   EL_OPEN_EMPTY,

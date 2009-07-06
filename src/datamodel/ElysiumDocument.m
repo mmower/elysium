@@ -195,31 +195,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
   SEL action = [item action];
   
-  if( action == @selector(toggleKeyDisplay:) ) {
-    if( [[self player] showKey] ) {
-      [item setTitle:@"Hide Key"];
-      [item setState:NSOnState];
-    } else {
-      [item setTitle:@"Show Key"];
-      [item setState:NSOffState];
-    }
-  } else if( action == @selector(toggleOctavesDisplay:) ) {
-    if( [[self player] showOctaves] ) {
-      [item setTitle:@"Hide Octaves"];
-      [item setState:NSOnState];
-    } else {
-      [item setTitle:@"Show Octaves"];
-      [item setState:NSOffState];
-    }
-  } else if( action == @selector(toggleNoteDisplay:) ) {
-    if( [[self player] showNotes] ) {
-      [item setTitle:@"Hide Notes"];
-      [item setState:NSOnState];
-    } else {
-      [item setTitle:@"Show Notes"];
-      [item setState:NSOffState];
-    }
-  } else if( action == @selector(startStop:) ) {
+  if( action == @selector(startStop:) ) {
     if( [[self player] running] ) {
       [item setTitle:@"Stop Playing"];
       [item setState:NSOnState];
@@ -232,6 +208,7 @@
   return YES;
 }
 
+
 - (IBAction)startStop:(id)sender {
   if( [[self player] running] ) {
     [[self player] stop:self];
@@ -240,28 +217,6 @@
   }
 }
 
-- (IBAction)toggleNoteDisplay:(id)sender {
-  [[self player] toggleNoteDisplay];
-  [self updateView:self];
-}
-
-- (IBAction)toggleKeyDisplay:(id)sender {
-  BOOL showKey = ![[self player] showKey];
-  [[self player] setShowKey:showKey];
-  if( showKey ) {
-    [[self player] setShowOctaves:NO];
-  }
-  [self updateView:self];
-}
-
-- (IBAction)toggleOctavesDisplay:(id)sender {
-  BOOL showOctave = ![[self player] showOctaves];
-  [[self player] setShowOctaves:showOctave];
-  if( showOctave ) {
-    [[self player] setShowKey:NO];
-  }
-  [self updateView:self];
-}
 
 - (IBAction)clearAll:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];

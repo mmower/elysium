@@ -696,7 +696,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     
     
   } else {
-    if( [[[self layer] player] showKey] ) {
+    if( [[NSApp delegate] showKey] ) {
       BOOL isTonic;
       if( [[[self layer] key] containsNote:[self note] isTonic:&isTonic] ) {
         if( isTonic ) {
@@ -705,14 +705,14 @@ NSString* elementDescription( NSBezierPathElement elt ) {
           [attributes setObject:[attributes objectForKey:ELScaleNoteColor] forKey:LMHoneycombViewDefaultColor];
         }
       }
-    } else if( [[[self layer] player] showOctaves] ) {
+    } else if( [[NSApp delegate] showOctaves] ) {
       [attributes setObject:[(ELSurfaceView *)view octaveColor:[[self note] octave]] forKey:LMHoneycombViewDefaultColor];
     }
   }
   
   [super drawOnHoneycombView:view withAttributes:attributes];
   
-  if( [[[self layer] player] showNotes] ) {
+  if( [[NSApp delegate] showNotes] ) {
     if( [[[self layer] key] flat] ) {
       [self drawText:[[self note] flattenedName] withAttributes:attributes];
     } else {
