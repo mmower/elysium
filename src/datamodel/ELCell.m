@@ -36,6 +36,15 @@
 
 - (void)setGenerateTokenWithUndo:(ELGenerateToken *)generateToken;
 - (void)setNoteTokenWithUndo:(ELNoteToken *)noteToken;
+- (void)setReboundTokenWithUndo:(ELReboundToken *)reboundToken;
+- (void)setAbsorbTokenWithUndo:(ELAbsorbToken *)absorbToken;
+- (void)setSplitTokenWithUndo:(ELSplitToken *)splitToken;
+- (void)setSpinTokenWithUndo:(ELSpinToken *)spinToken;
+- (void)setSkipTokenWithUndo:(ELSkipToken *)skipToken;
+
+- (void)addToken:(ELToken *)token;
+- (void)removeToken:(ELToken *)token;
+- (void)removeAllTokensWithUndo;
 
 @end
 
@@ -381,6 +390,21 @@
 }
 
 
+- (void)removeAllTokensWithUndo {
+  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  
+  [undoManager beginUndoGrouping];
+  [self setGenerateTokenWithUndo:nil];
+  [self setNoteTokenWithUndo:nil];
+  [self setReboundTokenWithUndo:nil];
+  [self setAbsorbTokenWithUndo:nil];
+  [self setSplitTokenWithUndo:nil];
+  [self setSpinTokenWithUndo:nil];
+  [self setSkipTokenWithUndo:nil];
+  [undoManager setActionName:@"clear"];
+  [undoManager endUndoGrouping];
+}
+
 - (void)removeAllTokens {
   [self setGenerateToken:nil];
   [self setNoteToken:nil];
@@ -461,7 +485,7 @@
   
   [menu addItem:[NSMenuItem separatorItem]];
   
-  item = [[NSMenuItem alloc] initWithTitle:@"Clear" action:@selector(clearCell:) keyEquivalent:@""];
+  item = [[NSMenuItem alloc] initWithTitle:@"Clear" action:@selector(clearTokens:) keyEquivalent:@""];
   [item setTarget:self];
   [menu addItem:item];
   
@@ -486,7 +510,7 @@
 #pragma mark UI Actions
 
 - (IBAction)clearTokens:(id)sender {
-  [self removeAllTokens];
+  [self removeAllTokensWithUndo];
   [self makeCurrentSelection];
 }
 

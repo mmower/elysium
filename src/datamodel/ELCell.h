@@ -86,9 +86,8 @@
 
 - (void)run:(ELPlayhead *)playhead;
 
-- (void)addToken:(ELToken *)token;
-- (void)removeToken:(ELToken *)token;
 - (void)removeAllTokens;
+
 
 - (BOOL)hasTokenWithIdentifier:(NSString *)identifier;
 
