@@ -321,6 +321,11 @@
     NSXMLElement *oscillatorElement = [[representation nodesForXPath:@"oscillator" error:error] firstXMLElement];
     if( oscillatorElement ) {
       [self setOscillator:[ELOscillator loadFromXml:oscillatorElement parent:self player:player error:error]];
+      
+      // Usually calling -setOscillator: will update the players list of active oscillators
+      // however in the load-from-XML case the dial does not have a delegate yet so the
+      // player is not updated. We fake it in this case:
+      [player dialDidSetOscillator:self];
     }
     
     // Mode is set last to ensure that parent/oscillator
