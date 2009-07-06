@@ -128,6 +128,7 @@
 		C9E0A3A70F64721F00F13A08 /* ELInspectorOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E0A3A60F64721F00F13A08 /* ELInspectorOverlay.m */; };
 		C9E1F7390F42E5500026A89E /* NSString+ELHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1F7380F42E5500026A89E /* NSString+ELHelpers.m */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
+		C9E6C14A100235AC002C16A7 /* ELPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C149100235AC002C16A7 /* ELPreferences.m */; };
 		C9E8D93A0E68B8AF005AD9B7 /* play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9360E68B8AF005AD9B7 /* play.pdf */; };
 		C9E8D93B0E68B8AF005AD9B7 /* ricochet.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */; };
 		C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */; };
@@ -353,6 +354,8 @@
 		C9E1F7370F42E5500026A89E /* NSString+ELHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ELHelpers.h"; sourceTree = "<group>"; };
 		C9E1F7380F42E5500026A89E /* NSString+ELHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ELHelpers.m"; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
+		C9E6C148100235AC002C16A7 /* ELPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELPreferences.h; path = src/ELPreferences.h; sourceTree = "<group>"; };
+		C9E6C149100235AC002C16A7 /* ELPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELPreferences.m; path = src/ELPreferences.m; sourceTree = "<group>"; };
 		C9E8D9360E68B8AF005AD9B7 /* play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = play.pdf; sourceTree = "<group>"; };
 		C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ricochet.pdf; sourceTree = "<group>"; };
 		C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = rotor.pdf; sourceTree = "<group>"; };
@@ -519,6 +522,8 @@
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C9E6C148100235AC002C16A7 /* ELPreferences.h */,
+				C9E6C149100235AC002C16A7 /* ELPreferences.m */,
 				C98D70AB0FFF605400BB289C /* ELNotifications.h */,
 				C98D70AC0FFF605400BB289C /* ELNotifications.m */,
 				C91D60E70F67183F002A1A11 /* composition_manager */,
@@ -984,6 +989,7 @@
 				C91D60EA0F67184E002A1A11 /* ELCompositionManager.m in Sources */,
 				C908CE6F0FF2EB450091239F /* ELMIDINoteMessage.m in Sources */,
 				C98D70AD0FFF605400BB289C /* ELNotifications.m in Sources */,
+				C9E6C14A100235AC002C16A7 /* ELPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
