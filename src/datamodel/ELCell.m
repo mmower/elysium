@@ -44,7 +44,6 @@
 
 - (void)addToken:(ELToken *)token;
 - (void)removeToken:(ELToken *)token;
-- (void)removeAllTokensWithUndo;
 
 @end
 
@@ -100,7 +99,7 @@
 
 
 - (void)setGenerateTokenWithUndo:(ELGenerateToken *)generateToken {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setGenerateTokenWithUndo:_generateToken];
   if( ![undoManager isUndoing] ) {
     if( generateToken ) {
@@ -124,7 +123,7 @@
 
 
 - (void)setNoteTokenWithUndo:(ELNoteToken *)noteToken {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setNoteTokenWithUndo:_noteToken];
   if( ![undoManager isUndoing] ) {
     if( noteToken ) {
@@ -148,7 +147,7 @@
 
 
 - (void)setReboundTokenWithUndo:(ELReboundToken *)reboundToken {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setReboundTokenWithUndo:_reboundToken];
   if( ![undoManager isUndoing] ) {
     if( reboundToken ) {
@@ -172,7 +171,7 @@
 
 
 - (void)setAbsorbTokenWithUndo:(ELAbsorbToken *)absorbToken {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setAbsorbTokenWithUndo:_absorbToken];
   if( ![undoManager isUndoing] ) {
     if( absorbToken ) {
@@ -196,7 +195,7 @@
 
 
 - (void)setSplitTokenWithUndo:(ELSplitToken *)splitToken {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setSplitTokenWithUndo:_splitToken];
   if( ![undoManager isUndoing] ) {
     if( splitToken ) {
@@ -220,7 +219,7 @@
 
 
 - (void)setSpinTokenWithUndo:(ELSpinToken *)spinToken {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setSpinTokenWithUndo:_spinToken];
   if( ![undoManager isUndoing] ) {
     if( spinToken ) {
@@ -244,7 +243,7 @@
 
 
 - (void)setSkipTokenWithUndo:(ELSkipToken *)skipToken {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setSkipTokenWithUndo:_skipToken];
   if( ![undoManager isUndoing] ) {
     if( skipToken ) {
@@ -391,7 +390,7 @@
 
 
 - (void)removeAllTokensWithUndo {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
+  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
   
   [undoManager beginUndoGrouping];
   [self setGenerateTokenWithUndo:nil];
@@ -417,13 +416,13 @@
 
 
 - (void)copyTokensFrom:(ELCell *)cell {
-  [self setGenerateToken:[[cell generateToken] mutableCopy]];
-  [self setNoteToken:[[cell noteToken] mutableCopy]];
-  [self setReboundToken:[[cell reboundToken] mutableCopy]];
-  [self setAbsorbToken:[[cell absorbToken] mutableCopy]];
-  [self setSplitToken:[[cell splitToken] mutableCopy]];
-  [self setSpinToken:[[cell spinToken] mutableCopy]];
-  [self setSkipToken:[[cell skipToken] mutableCopy]];
+  [self setGenerateTokenWithUndo:[[cell generateToken] mutableCopy]];
+  [self setNoteTokenWithUndo:[[cell noteToken] mutableCopy]];
+  [self setReboundTokenWithUndo:[[cell reboundToken] mutableCopy]];
+  [self setAbsorbTokenWithUndo:[[cell absorbToken] mutableCopy]];
+  [self setSplitTokenWithUndo:[[cell splitToken] mutableCopy]];
+  [self setSpinTokenWithUndo:[[cell spinToken] mutableCopy]];
+  [self setSkipTokenWithUndo:[[cell skipToken] mutableCopy]];
 }
 
 
