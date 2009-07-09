@@ -13,82 +13,94 @@
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
+#import "ELDialBank.h"
+
 @implementation ELReboundToken
 
 + (NSString *)tokenType {
   return @"rebound";
 }
 
-- (id)initWithDirectionDial:(ELDial *)newDirectionDial {
+
+#pragma mark Object initialization
+
+- (id)initWithDirectionDial:(ELDial *)directionDial {
   if( ( self = [super init] ) ) {
-    [self setDirectionDial:newDirectionDial];
+    [self setDirectionDial:directionDial];
   }
   
   return self;
 }
 
 - (id)init {
-  return [self initWithDirectionDial:[ELPlayer defaultDirectionDial]];
+  return [self initWithDirectionDial:[ELDialBank defaultDirectionDial]];
 }
 
-@dynamic directionDial;
 
-- (ELDial *)directionDial {
-  return directionDial;
+#pragma mark Properties
+
+@synthesize directionDial = _directionDial;
+
+- (void)setDirectionDial:(ELDial *)directionDial {
+  _directionDial = directionDial;
+  [_directionDial setDelegate:self];
 }
 
-- (void)setDirectionDial:(ELDial *)newDirectionDial {
-  directionDial = newDirectionDial;
-  [directionDial setDelegate:self];
-}
+
+#pragma mark Object behaviour
 
 - (void)start {
   [super start];
   
-  [directionDial start];
+  [[self directionDial] start];
 }
+
 
 - (void)stop {
   [super stop];
   
-  [directionDial stop];
+  [[self directionDial] stop];
 }
 
-// Token runner
 
-- (void)runToken:(ELPlayhead *)_playhead_ {
-  [_playhead_ setDirection:[directionDial value]];
+- (void)runToken:(ELPlayhead *)playhead {
+  [playhead setDirection:[[self directionDial] value]];
 }
 
-// Drawing
 
-- (void)drawWithAttributes:(NSDictionary *)_attributes_ {
-  [self setTokenDrawColor:_attributes_];
-  [[self cell] drawTriangleInDirection:[directionDial value] withAttributes:_attributes_];
+#pragma mark Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)attributes {
+  [self setTokenDrawColor:attributes];
+  [[self cell] drawTriangleInDirection:[[self directionDial] value] withAttributes:attributes];
 }
 
-// NSMutableCopying protocol
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  id copy = [super mutableCopyWithZone:_zone_];
-  [copy setDirectionDial:[[self directionDial] mutableCopy]];
+#pragma mark Implements NSMutableCopying
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  id copy = [super mutableCopyWithZone:zone];
+  [copy setDirectionDial:[[self directionDial] duplicateDial]];
   return copy;
 }
 
-// Implement the ELXmlData protocol
+
+#pragma mark Implements ELXmlData
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
-  [controlsElement addChild:[directionDial xmlRepresentation]];
+  [controlsElement addChild:[[self directionDial] xmlRepresentation]];
   return controlsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
-    [self setDirectionDial:[_representation_ loadDial:@"direction" parent:nil player:_player_ error:_error_]];
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
+    [self setDirectionDial:[representation loadDial:@"direction" parent:nil player:player error:error]];
   }
   
   return self;
 }
+
 
 @end

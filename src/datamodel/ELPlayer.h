@@ -19,43 +19,40 @@
 @class ELTimer;
 @class ELHarmonicTable;
 @class ELMIDIController;
+@class ELOscillatorController;
 @class ELMIDINoteMessage;
 @class ElysiumDocument;
 @class ELScriptPackage;
 @class ELEnvelopeProbabilityGenerator;
 
 @interface ELPlayer : NSObject <ELXmlData,ELTaggable> {
-  ElysiumDocument     *_document;        // Cocoa NSDocument subclass hosting this player
-  ELHarmonicTable     *_harmonicTable;   // Represents the structure of notes to be played
-  NSMutableArray      *_layers;          // Each layer is an "instrument"
-  ELLayer             *_selectedLayer;
-  BOOL                _running;          // The player is active
-  ELMIDIController    *_midiController;  // Our interface to CoreMIDI
-  // int                 _timerResolution;
-  // UInt64              _startTime;
+  ElysiumDocument       *_document;        // Cocoa NSDocument subclass hosting this player
+  ELHarmonicTable       *_harmonicTable;   // Represents the structure of notes to be played
+  NSMutableArray        *_layers;          // Each layer is an "instrument"
+  ELLayer               *_selectedLayer;
+  BOOL                  _running;          // The player is active
+  ELMIDIController      *_midiController;  // Our interface to CoreMIDI
+  ELOscillatorController *_oscillatorController;
   
-  int                 _nextLayerNumber;
-  BOOL                _dirty;
+  int                   _nextLayerNumber;
+  BOOL                  _dirty;
   
-  NSString            *_scriptingTag;
-  NSMutableDictionary *_scripts;
-  NSMutableArray      *_triggers;        // ELMIDITrigger objects
-  NSThread            *_triggerThread;
+  NSString              *_scriptingTag;
+  NSMutableDictionary   *_scripts;
+  NSMutableArray        *_triggers;        // ELMIDITrigger objects
+  NSThread              *_triggerThread;
   
-  NSThread            *_oscillatorThread;
-  NSMutableArray      *_activeOscillators;
+  ELScriptPackage       *_pkg;
   
-  ELScriptPackage     *_pkg;
-  
-  ELDial              *_tempoDial;
-  ELDial              *_barLengthDial;
-  ELDial              *_timeToLiveDial;
-  ELDial              *_pulseEveryDial;
-  ELDial              *_velocityDial;
-  ELDial              *_emphasisDial;
-  ELDial              *_tempoSyncDial;
-  ELDial              *_noteLengthDial;
-  ELDial              *_transposeDial;
+  ELDial                *_tempoDial;
+  ELDial                *_barLengthDial;
+  ELDial                *_timeToLiveDial;
+  ELDial                *_pulseEveryDial;
+  ELDial                *_velocityDial;
+  ELDial                *_emphasisDial;
+  ELDial                *_tempoSyncDial;
+  ELDial                *_noteLengthDial;
+  ELDial                *_transposeDial;
 }
 
 // @property (readonly)  UInt64              startTime;
@@ -71,7 +68,9 @@
 @property (readonly)  NSMutableArray      *triggers;
 @property (readonly)  ELScriptPackage     *pkg;
 
-@property (readonly)  NSMutableArray      *activeOscillators;
+@property (readonly)  ELOscillatorController  *oscillatorController;
+
+// @property (readonly)  NSMutableArray      *activeOscillators;
 
 @property             ELDial              *tempoDial;
 @property             ELDial              *barLengthDial;
@@ -85,29 +84,6 @@
 
 - (id)initWithDocument:(ElysiumDocument *)document;
 - (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)shouldCreateDefaultLayer;
-
-+ (ELDial *)defaultTempoDial;
-+ (ELDial *)defaultBarLengthDial;
-+ (ELDial *)defaultTimeToLiveDial;
-+ (ELDial *)defaultPulseEveryDial;
-+ (ELDial *)defaultTriggerModeDial;
-+ (ELDial *)defaultVelocityDial;
-+ (ELDial *)defaultEmphasisDial;
-+ (ELDial *)defaultTempoSyncDial;
-+ (ELDial *)defaultNoteLengthDial;
-+ (ELDial *)defaultTransposeDial;
-+ (ELDial *)defaultEnabledDial;
-+ (ELDial *)defaultPDial;
-+ (ELDial *)defaultGateDial;
-+ (ELDial *)defaultDirectionDial;
-+ (ELDial *)defaultOffsetDial;
-+ (ELDial *)defaultTriadDial;
-+ (ELDial *)defaultGhostsDial;
-+ (ELDial *)defaultOverrideDial;
-+ (ELDial *)defaultBounceBackDial;
-+ (ELDial *)defaultClockWiseDial;
-+ (ELDial *)defaultSteppingDial;
-+ (ELDial *)defaultSkipCountDial;
 
 // - (void)toggleNoteDisplay;
 

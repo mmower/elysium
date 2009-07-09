@@ -14,6 +14,8 @@
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
+#import "ELDialBank.h"
+
 @implementation ELGenerateToken
 
 + (NSString *)tokenType {
@@ -41,11 +43,11 @@
 }
 
 - (id)init {
-  return [self initWithTriggerModeDial:[ELPlayer defaultTriggerModeDial]
-                         directionDial:[ELPlayer defaultDirectionDial]
-                        timeToLiveDial:[ELPlayer defaultTimeToLiveDial]
-                        pulseEveryDial:[ELPlayer defaultPulseEveryDial]
-                            offsetDial:[ELPlayer defaultOffsetDial]];
+  return [self initWithTriggerModeDial:[ELDialBank defaultTriggerModeDial]
+                         directionDial:[ELDialBank defaultDirectionDial]
+                        timeToLiveDial:[ELDialBank defaultTimeToLiveDial]
+                        pulseEveryDial:[ELDialBank defaultPulseEveryDial]
+                            offsetDial:[ELDialBank defaultOffsetDial]];
 }
 
 
@@ -98,10 +100,14 @@
   
   if( ![self loaded] ) {
     [[self timeToLiveDial] setParent:[targetLayer timeToLiveDial]];
-    [[self timeToLiveDial] setMode:dialInherited];
+    if( ![[self timeToLiveDial] duplicate] ) {
+      [[self timeToLiveDial] setMode:dialInherited];
+    }
     
     [[self pulseEveryDial] setParent:[targetLayer pulseEveryDial]];
-    [[self pulseEveryDial] setMode:dialInherited];
+    if( ![[self pulseEveryDial] duplicate] ) {
+      [[self pulseEveryDial] setMode:dialInherited];
+    }
   }
   
   [targetLayer addGenerator:self];
@@ -112,7 +118,9 @@
   [targetLayer removeGenerator:self];
   
   [[self timeToLiveDial] setParent:nil];
+  [[self timeToLiveDial] setPlayer:nil];
   [[self pulseEveryDial] setParent:nil];
+  [[self pulseEveryDial] setPlayer:nil];
   
   [super removedFromLayer:targetLayer];
 }
@@ -201,6 +209,7 @@
   return controlsElement;
 }
 
+
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
     [self setTriggerModeDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='triggerMode']" error:error] firstXMLElement]
@@ -233,11 +242,13 @@
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
   id copy = [super mutableCopyWithZone:zone];
-  [copy setTriggerModeDial:[[self triggerModeDial] mutableCopy]];
-  [copy setDirectionDial:[[self directionDial] mutableCopy]];
-  [copy setTimeToLiveDial:[[self timeToLiveDial] mutableCopy]];
-  [copy setPulseEveryDial:[[self pulseEveryDial] mutableCopy]];
-  [copy setOffsetDial:[[self offsetDial] mutableCopy]];
+  
+  [copy setTriggerModeDial:[[self triggerModeDial] duplicateDial]];
+  [copy setDirectionDial:[[self directionDial] duplicateDial]];
+  [copy setTimeToLiveDial:[[self timeToLiveDial] duplicateDial]];
+  [copy setPulseEveryDial:[[self pulseEveryDial] duplicateDial]];
+  [copy setOffsetDial:[[self offsetDial] duplicateDial]];
+  
   return copy;
 }
 

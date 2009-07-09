@@ -20,7 +20,9 @@
 #import "ELNoteGroup.h"
 #import "ELPlayhead.h"
 
-NSDictionary *defaultChannelSends( void ) {
+#import "ELDialBank.h"
+
+NSDictionary *defaultChannelSends() {
   NSMutableDictionary *sends = [NSMutableDictionary dictionary];
   for( int i = 1; i <= 16; i++ ) {
     ELDial *dial = [[ELDial alloc] initWithName:[NSString stringWithFormat:@"send%d",i]
@@ -32,11 +34,17 @@ NSDictionary *defaultChannelSends( void ) {
   return sends;
 }
 
+
 @implementation ELNoteToken
+
+#pragma mark Class behaviour
 
 + (NSString *)tokenType {
   return @"note";
 }
+
+
+#pragma mark Object initialization
 
 - (id)initWithVelocityDial:(ELDial *)velocityDial
               emphasisDial:(ELDial *)emphasisDial
@@ -61,14 +69,15 @@ NSDictionary *defaultChannelSends( void ) {
   return self;
 }
 
+
 - (id)init {
-  return [self initWithVelocityDial:[ELPlayer defaultVelocityDial]
-                       emphasisDial:[ELPlayer defaultEmphasisDial]
-                      tempoSyncDial:[ELPlayer defaultTempoSyncDial]
-                     noteLengthDial:[ELPlayer defaultNoteLengthDial]
-                          triadDial:[ELPlayer defaultTriadDial]
-                         ghostsDial:[ELPlayer defaultGhostsDial]
-                       overrideDial:[ELPlayer defaultOverrideDial]
+  return [self initWithVelocityDial:[ELDialBank defaultVelocityDial]
+                       emphasisDial:[ELDialBank defaultEmphasisDial]
+                      tempoSyncDial:[ELDialBank defaultTempoSyncDial]
+                     noteLengthDial:[ELDialBank defaultNoteLengthDial]
+                          triadDial:[ELDialBank defaultTriadDial]
+                         ghostsDial:[ELDialBank defaultGhostsDial]
+                       overrideDial:[ELDialBank defaultOverrideDial]
                        channelSends:defaultChannelSends()];
 }
 
@@ -141,16 +150,24 @@ NSDictionary *defaultChannelSends( void ) {
   
   if( ![self loaded] ) {
     [[self velocityDial] setParent:[targetLayer velocityDial]];
-    [[self velocityDial] setMode:dialInherited];
+    if( ![[self velocityDial] duplicate] ) {
+      [[self velocityDial] setMode:dialInherited];
+    }
     
     [[self emphasisDial] setParent:[targetLayer emphasisDial]];
-    [[self emphasisDial] setMode:dialInherited];
+    if( ![[self emphasisDial] duplicate] ) {
+      [[self emphasisDial] setMode:dialInherited];
+    }
     
     [[self tempoSyncDial] setParent:[targetLayer tempoSyncDial]];
-    [[self tempoSyncDial] setMode:dialInherited];
+    if( ![[self tempoSyncDial] duplicate] ) {
+      [[self tempoSyncDial] setMode:dialInherited];
+    }
     
     [[self noteLengthDial] setParent:[targetLayer noteLengthDial]];
-    [[self noteLengthDial] setMode:dialInherited];
+    if( ![[self noteLengthDial] duplicate] ) {
+      [[self noteLengthDial] setMode:dialInherited];
+    }
   }
 }
 
@@ -251,19 +268,19 @@ NSDictionary *defaultChannelSends( void ) {
 
 #pragma mark Implements NSMutableCopying
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  id copy = [super mutableCopyWithZone:_zone_];
-  [copy setVelocityDial:[[self velocityDial] mutableCopy]];
-  [copy setEmphasisDial:[[self emphasisDial] mutableCopy]];
-  [copy setTempoSyncDial:[[self tempoSyncDial] mutableCopy]];
-  [copy setNoteLengthDial:[[self noteLengthDial] mutableCopy]];
-  [copy setTriadDial:[[self triadDial] mutableCopy]];
-  [copy setGhostsDial:[[self ghostsDial] mutableCopy]];
-  [copy setOverrideDial:[[self overrideDial] mutableCopy]];
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  id copy = [super mutableCopyWithZone:zone];
+  [copy setVelocityDial:[[self velocityDial] duplicateDial]];
+  [copy setEmphasisDial:[[self emphasisDial] duplicateDial]];
+  [copy setTempoSyncDial:[[self tempoSyncDial] duplicateDial]];
+  [copy setNoteLengthDial:[[self noteLengthDial] duplicateDial]];
+  [copy setTriadDial:[[self triadDial] duplicateDial]];
+  [copy setGhostsDial:[[self ghostsDial] duplicateDial]];
+  [copy setOverrideDial:[[self overrideDial] duplicateDial]];
   
   NSMutableDictionary *copySends = [NSMutableDictionary dictionary];
   for( NSString *key in [[self channelSends] allKeys] ) {
-    [copySends setObject:[[[self channelSends] objectForKey:key] mutableCopy] forKey:key];
+    [copySends setObject:[[[self channelSends] objectForKey:key] duplicateDial] forKey:key];
   }
   [copy setChannelSends:copySends];
   

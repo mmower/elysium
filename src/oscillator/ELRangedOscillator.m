@@ -19,6 +19,7 @@
     [self setHardMinimum:min];
     [self setMaximum:max];
     [self setHardMaximum:max];
+    [self setValue:min];
   }
   
   return self;
@@ -66,6 +67,7 @@
       return nil;
     } else {
       [self setMinimum:[[attributeNode stringValue] intValue]];
+      [self setValue:[self minimum]];
     }
     
     attributeNode = [representation attributeForName:@"maximum"];

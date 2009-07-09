@@ -9,8 +9,10 @@
 #import "limits.h"
 
 #import "ELDial.h"
+#import "ELPlayer.h"
 
 #import "ELOscillator.h"
+#import "ELOscillatorController.h"
 
 #import "ELDialModeValueTransformer.h"
 #import "ELDialHasOscillatorValueTransformer.h"
@@ -38,6 +40,7 @@
               name:(NSString *)name
            toolTip:(NSString *)toolTip
                tag:(int)tag
+            player:(ELPlayer *)player
             parent:(ELDial *)parent
         oscillator:(ELOscillator *)oscillator
           assigned:(int)assigned
@@ -48,6 +51,7 @@
               step:(int)step
 {
   if( ( self = [super init] ) ) {
+    [self setPlayer:player];
     [self setName:name];
     [self setToolTip:toolTip];
     [self setTag:tag];
@@ -73,6 +77,7 @@
               name:(NSString *)name
            toolTip:(NSString *)toolTip
                tag:(int)tag
+            player:(ELPlayer *)player
             parent:(ELDial *)parent
         oscillator:(ELOscillator *)oscillator
           assigned:(int)assigned
@@ -83,6 +88,7 @@
                        name:name
                     toolTip:toolTip
                         tag:tag
+                     player:player
                      parent:parent
                  oscillator:oscillator
                    assigned:assigned
@@ -99,6 +105,7 @@
                        name:[parentDial name]
                     toolTip:[parentDial toolTip]
                         tag:[parentDial tag]
+                     player:[parentDial player]
                      parent:parentDial
                  oscillator:nil
                    assigned:[parentDial assigned]
@@ -112,6 +119,7 @@
 - (id)initWithName:(NSString *)name
            toolTip:(NSString *)toolTip
                tag:(int)tag
+            player:(ELPlayer *)player
           assigned:(int)assigned
                min:(int)min
                max:(int)max
@@ -121,6 +129,7 @@
                        name:name
                     toolTip:toolTip
                         tag:tag
+                     player:player
                      parent:nil
                  oscillator:nil
                    assigned:assigned
@@ -140,6 +149,7 @@
                        name:name
                     toolTip:toolTip
                         tag:tag
+                     player:nil
                      parent:nil
                  oscillator:nil
                    assigned:value
@@ -152,6 +162,11 @@
 
 
 @synthesize delegate = _delegate;
+
+- (void)setDelegate:(id)delegate {
+  _delegate = delegate;
+}
+
 
 @synthesize mode = _mode;
 
@@ -190,6 +205,13 @@
 @synthesize toolTip = _toolTip;
 @synthesize tag = _tag;
 
+@synthesize player = _player;
+
+- (void)setPlayer:(ELPlayer *)player {
+  [[[self player] oscillatorController] removeOscillator:[self oscillator]];
+  _player = player;
+}
+
 @synthesize parent = _parent;
 
 - (void)setParent:(ELDial *)parent {
@@ -210,17 +232,15 @@
 @synthesize oscillator = _oscillator;
 
 - (void)setOscillator:(ELOscillator *)oscillator {
-  if( _oscillator && [[self delegate] respondsToSelector:@selector(dialDidUnsetOscillator:)] ) {
-    [[self delegate] dialDidUnsetOscillator:self];
+  if( _oscillator ) {
+    [[[self player] oscillatorController] removeOscillator:_oscillator];
   }
   
   _oscillator = oscillator;
   
   if( _oscillator ) {
-    if( [[self delegate] respondsToSelector:@selector(dialDidSetOscillator:)] ) {
-      [[self delegate] dialDidSetOscillator:self];
-    }
-  } else if( [self mode] == dialDynamic ) {
+    [[[self player] oscillatorController] addOscillator:_oscillator];
+  } else {
     [self setMode:dialFree];
   }
 }
@@ -251,6 +271,8 @@
 @synthesize min = _min;
 @synthesize max = _max;
 @synthesize step = _step;
+@synthesize duplicate = _duplicate;
+
 
 - (BOOL)boolValue {
   return [self value] != 0;
@@ -273,7 +295,7 @@
 
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"Dial<%@> min:%d max:%d value:%d step:%d", [self name], [self min], [self max], [self value], [self step]];
+  return [NSString stringWithFormat:@"Dial[ptr=%p,name=%@,min=%d,max=%d,value=%d,step=%d]", self, [self name], [self min], [self max], [self value], [self step]];
 }
 
 
@@ -304,6 +326,7 @@
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( representation && ( self = [self init] ) ) {
+    [self setPlayer:player];
     [self setName:[representation attributeAsString:@"name"]];
     [self setTag:[representation attributeAsInteger:@"tag" defaultValue:INT_MIN]];
     
@@ -325,7 +348,7 @@
       // Usually calling -setOscillator: will update the players list of active oscillators
       // however in the load-from-XML case the dial does not have a delegate yet so the
       // player is not updated. We fake it in this case:
-      [player dialDidSetOscillator:self];
+      // [player dialDidSetOscillator:self];
     }
     
     // Mode is set last to ensure that parent/oscillator
@@ -338,7 +361,14 @@
 }
 
 
-// NSMutableCopying protocol
+#pragma mark Implements NSMutableCopying
+
+- (ELDial *)duplicateDial {
+  ELDial *duplicate = [self mutableCopy];
+  [duplicate setDuplicate:YES];
+  return duplicate;
+}
+
 
 - (id)copyWithZone:(NSZone *)zone {
   return [self mutableCopyWithZone:zone];
@@ -346,18 +376,20 @@
 
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
-  return [[[self class] allocWithZone:zone] initWithMode:[self mode]
-                                                    name:[self name]
-                                                 toolTip:[self toolTip]
-                                                     tag:[self tag]
-                                                  parent:[self parent]
-                                              oscillator:[self oscillator]
-                                                assigned:[self assigned]
-                                                    last:[self last]
-                                                   value:[self value]
-                                                     min:[self min]
-                                                     max:[self max]
-                                                    step:[self step]];
+  ELDial * copy = [[[self class] allocWithZone:zone] initWithMode:[self mode]
+                                                             name:[self name]
+                                                          toolTip:[self toolTip]
+                                                              tag:[self tag]
+                                                           player:[self player]
+                                                           parent:[self parent]
+                                                       oscillator:[[self oscillator] mutableCopy]
+                                                         assigned:[self assigned]
+                                                             last:[self last]
+                                                            value:[self value]
+                                                              min:[self min]
+                                                              max:[self max]
+                                                             step:[self step]];
+  return copy;
 }
 
 

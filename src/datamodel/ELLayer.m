@@ -68,6 +68,7 @@ NSPredicate *deadPlayheadFilter;
                                              name:@"channel"
                                           toolTip:@"The MIDI channel this layer will, by default, send notes on."
                                               tag:0
+                                           player:[self player]
                                            parent:nil
                                        oscillator:nil
                                          assigned:1
@@ -215,16 +216,6 @@ NSPredicate *deadPlayheadFilter;
 - (void)setTransposeDial:(ELDial *)transposeDial {
   _transposeDial = transposeDial;
   [_transposeDial setDelegate:self];
-}
-
-
-- (void)dialDidUnsetOscillator:(ELDial *)dial {
-  [[self player] dialDidUnsetOscillator:dial];
-}
-
-
-- (void)dialDidSetOscillator:(ELDial *)dial {
-  [[self player] dialDidSetOscillator:dial];
 }
 
 

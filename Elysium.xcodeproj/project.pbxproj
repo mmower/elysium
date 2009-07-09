@@ -129,6 +129,8 @@
 		C9E1F7390F42E5500026A89E /* NSString+ELHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1F7380F42E5500026A89E /* NSString+ELHelpers.m */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
 		C9E6C14A100235AC002C16A7 /* ELPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C149100235AC002C16A7 /* ELPreferences.m */; };
+		C9E6C23E1003561C002C16A7 /* ELDialBank.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C23D1003561C002C16A7 /* ELDialBank.m */; };
+		C9E6C25C1003585E002C16A7 /* ELOscillatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C25B1003585E002C16A7 /* ELOscillatorController.m */; };
 		C9E8D93A0E68B8AF005AD9B7 /* play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9360E68B8AF005AD9B7 /* play.pdf */; };
 		C9E8D93B0E68B8AF005AD9B7 /* ricochet.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */; };
 		C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */; };
@@ -356,6 +358,10 @@
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		C9E6C148100235AC002C16A7 /* ELPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELPreferences.h; path = src/ELPreferences.h; sourceTree = "<group>"; };
 		C9E6C149100235AC002C16A7 /* ELPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELPreferences.m; path = src/ELPreferences.m; sourceTree = "<group>"; };
+		C9E6C23C1003561C002C16A7 /* ELDialBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELDialBank.h; sourceTree = "<group>"; };
+		C9E6C23D1003561C002C16A7 /* ELDialBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELDialBank.m; sourceTree = "<group>"; };
+		C9E6C25A1003585E002C16A7 /* ELOscillatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillatorController.h; sourceTree = "<group>"; };
+		C9E6C25B1003585E002C16A7 /* ELOscillatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillatorController.m; sourceTree = "<group>"; };
 		C9E8D9360E68B8AF005AD9B7 /* play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = play.pdf; sourceTree = "<group>"; };
 		C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ricochet.pdf; sourceTree = "<group>"; };
 		C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = rotor.pdf; sourceTree = "<group>"; };
@@ -574,6 +580,8 @@
 				C90BDFC10EC072040003B0CD /* NSXML+Helpers.m */,
 				C9E1F7370F42E5500026A89E /* NSString+ELHelpers.h */,
 				C9E1F7380F42E5500026A89E /* NSString+ELHelpers.m */,
+				C9E6C23C1003561C002C16A7 /* ELDialBank.h */,
+				C9E6C23D1003561C002C16A7 /* ELDialBank.m */,
 			);
 			name = datamodel;
 			path = src/datamodel;
@@ -600,6 +608,8 @@
 				C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */,
 				C9E0A3400F62FA8A00F13A08 /* ELRampOscillator.h */,
 				C9E0A3410F62FA8A00F13A08 /* ELRampOscillator.m */,
+				C9E6C25A1003585E002C16A7 /* ELOscillatorController.h */,
+				C9E6C25B1003585E002C16A7 /* ELOscillatorController.m */,
 			);
 			name = oscillator;
 			path = src/oscillator;
@@ -659,8 +669,8 @@
 			isa = PBXGroup;
 			children = (
 				C9A9F1BF0E8A42DF009A06A3 /* ELLayerWindowController.h */,
-				C9A9F1C00E8A42DF009A06A3 /* ELLayerWindowController.m */,
 				C9A9F1C10E8A42DF009A06A3 /* ELSurfaceView.h */,
+				C9A9F1C00E8A42DF009A06A3 /* ELLayerWindowController.m */,
 				C9A9F1C20E8A42DF009A06A3 /* ELSurfaceView.m */,
 				C9A9F1C30E8A42DF009A06A3 /* ElysiumController.h */,
 				C9A9F1C40E8A42DF009A06A3 /* ElysiumController.m */,
@@ -990,6 +1000,8 @@
 				C908CE6F0FF2EB450091239F /* ELMIDINoteMessage.m in Sources */,
 				C98D70AD0FFF605400BB289C /* ELNotifications.m in Sources */,
 				C9E6C14A100235AC002C16A7 /* ELPreferences.m in Sources */,
+				C9E6C23E1003561C002C16A7 /* ELDialBank.m in Sources */,
+				C9E6C25C1003585E002C16A7 /* ELOscillatorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

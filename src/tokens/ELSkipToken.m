@@ -12,6 +12,8 @@
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
+#import "ELDialBank.h"
+
 @implementation ELSkipToken
 
 + (NSString *)tokenType {
@@ -19,9 +21,9 @@
 }
 
 
-- (id)initWithSkipCountDial:(ELDial *)newSkipCountDial {
+- (id)initWithSkipCountDial:(ELDial *)skipCountDial {
   if( ( self = [super init] ) ) {
-    [self setSkipCountDial:newSkipCountDial];
+    [self setSkipCountDial:skipCountDial];
   }
   
   return self;
@@ -29,20 +31,15 @@
 
 
 - (id)init {
-  return [self initWithSkipCountDial:[ELPlayer defaultSkipCountDial]];
+  return [self initWithSkipCountDial:[ELDialBank defaultSkipCountDial]];
 }
 
 
-@dynamic skipCountDial;
+@synthesize skipCountDial = _skipCountDial;
 
-- (ELDial *)skipCountDial {
-  return skipCountDial;
-}
-
-
-- (void)setSkipCountDial:(ELDial *)newSkipCountDial {
-  skipCountDial = newSkipCountDial;
-  [skipCountDial setDelegate:self];
+- (void)setSkipCountDial:(ELDial *)skipCountDial {
+  _skipCountDial = skipCountDial;
+  [_skipCountDial setDelegate:self];
 }
 
 
@@ -71,15 +68,15 @@
 
 
 - (void)runToken:(ELPlayhead *)playhead {
-  [playhead setSkipCount:[skipCountDial value]];
+  [playhead setSkipCount:[[self skipCountDial] value]];
 }
 
 
 #pragma mark NSMutableCopying protocol implementation
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  id copy = [super mutableCopyWithZone:_zone_];
-  [copy setSkipCountDial:[[self skipCountDial] mutableCopy]];
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  id copy = [super mutableCopyWithZone:zone];
+  [copy setSkipCountDial:[[self skipCountDial] duplicateDial]];
   return copy;
 }
 
@@ -88,13 +85,14 @@
 
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [super controlsXmlRepresentation];
-  [controlsElement addChild:[skipCountDial xmlRepresentation]];
+  [controlsElement addChild:[[self skipCountDial] xmlRepresentation]];
   return controlsElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
-    [self setSkipCountDial:[_representation_ loadDial:@"skip" parent:nil player:_player_ error:_error_]];
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
+    [self setSkipCountDial:[representation loadDial:@"skip" parent:nil player:player error:error]];
   }
   
   return self;

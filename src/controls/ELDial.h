@@ -19,6 +19,7 @@ typedef enum tagELDialMode {
   dialInherited
 } ELDialMode;
 
+@class ELPlayer;
 @class ELOscillator;
 
 @interface ELDial : NSObject <ELXmlData,NSMutableCopying> {
@@ -30,6 +31,7 @@ typedef enum tagELDialMode {
   NSString      *_toolTip;
   int           _tag;
   
+  ELPlayer      *_player;
   ELDial        *_parent;
   ELOscillator  *_oscillator;
   
@@ -41,12 +43,16 @@ typedef enum tagELDialMode {
   int           _min;
   int           _max;
   int           _step;
+  
+  BOOL          _duplicate;
 }
+
 
 - (id)initWithMode:(ELDialMode)mode
               name:(NSString *)name
            toolTip:(NSString *)toolTip
                tag:(int)tag
+            player:(ELPlayer *)player
             parent:(ELDial *)parent
         oscillator:(ELOscillator *)oscillator
           assigned:(int)assigned
@@ -57,6 +63,7 @@ typedef enum tagELDialMode {
               name:(NSString *)name
            toolTip:(NSString *)toolTip
                tag:(int)tag
+            player:(ELPlayer *)player
             parent:(ELDial *)parent
         oscillator:(ELOscillator *)oscillator
           assigned:(int)assigned
@@ -69,6 +76,7 @@ typedef enum tagELDialMode {
 - (id)initWithName:(NSString *)aName
            toolTip:(NSString *)aToolTip
                tag:(int)aTag
+            player:(ELPlayer *)player
           assigned:(int)aAssigned
                min:(int)aMin
                max:(int)aMax
@@ -86,6 +94,7 @@ typedef enum tagELDialMode {
 @property (assign)  NSString      *name;
 @property (assign)  NSString      *toolTip;
 @property           int           tag;
+@property           ELPlayer      *player;
 @property           ELDial        *parent;
 @property           ELOscillator  *oscillator;
 @property           int           assigned;
@@ -94,6 +103,7 @@ typedef enum tagELDialMode {
 @property           int           min;
 @property           int           max;
 @property           int           step;
+@property           BOOL          duplicate;
 
 - (BOOL)boolValue;
 - (void)setBoolValue:(BOOL)boolValue;
@@ -105,10 +115,10 @@ typedef enum tagELDialMode {
 - (void)start;
 - (void)stop;
 
+- (ELDial *)duplicateDial;
+
 @end
 
 @interface NSObject (ELDialDelegation)
 - (void)dialDidChangeValue:(ELDial *)dial;
-- (void)dialDidUnsetOscillator:(ELDial *)dial;
-- (void)dialDidSetOscillator:(ELDial *)dial;
 @end

@@ -14,6 +14,8 @@
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
+#import "ELDialBank.h"
+
 @implementation ELSplitToken
 
 + (NSString *)tokenType {
@@ -33,7 +35,7 @@
 
 
 - (id)init {
-  return [self initWithBounceBackDial:[ELPlayer defaultBounceBackDial]];
+  return [self initWithBounceBackDial:[ELDialBank defaultBounceBackDial]];
 }
 
 
@@ -105,7 +107,7 @@
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
   id copy = [super mutableCopyWithZone:zone];
-  [copy setBounceBackDial:[[self bounceBackDial] mutableCopy]];
+  [copy setBounceBackDial:[[self bounceBackDial] duplicateDial]];
   return copy;
 }
 

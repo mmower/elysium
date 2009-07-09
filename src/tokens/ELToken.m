@@ -23,6 +23,8 @@
 #import "ELSplitToken.h"
 #import "ELSpinToken.h"
 
+#import "ELDialBank.h"
+
 NSMutableDictionary *tokenMapping = nil;
 
 int randval() {
@@ -30,6 +32,8 @@ int randval() {
 }
 
 @implementation ELToken
+
+#pragma mark Class behaviours
 
 + (NSString *)tokenType {
   @throw @"Token subtype has not defined tokenType!";
@@ -43,10 +47,12 @@ int randval() {
 }
 
 
+#pragma mark Object initialization
+
 - (id)init {
-  return [self initEnabledDial:[ELPlayer defaultEnabledDial]
-                         pDial:[ELPlayer defaultPDial]
-                      gateDial:[ELPlayer defaultGateDial]
+  return [self initEnabledDial:[ELDialBank defaultEnabledDial]
+                         pDial:[ELDialBank defaultPDial]
+                      gateDial:[ELDialBank defaultGateDial]
                        scripts:[NSMutableDictionary dictionary]];
 }
 
@@ -63,16 +69,7 @@ int randval() {
   return self;
 }
 
-// NSMutableCopying protocol
-
-- (id)mutableCopyWithZone:(NSZone *)zone {
-  return [[[self class] allocWithZone:zone] initEnabledDial:[[self enabledDial] mutableCopy]
-                                                      pDial:[[self pDial] mutableCopy]
-                                                   gateDial:[[self gateDial] mutableCopy]
-                                                    scripts:[[self scripts] mutableCopy]];
-}
-
-// Properties
+#pragma mark Properties
 
 @synthesize loaded = _loaded;
 @synthesize cell = _cell;
@@ -103,33 +100,52 @@ int randval() {
   [_gateDial setDelegate:self];
 }
 
-- (void)dialDidChangeValue:(ELDial *)dial {
-  [[self cell] needsDisplay];
-}
-
-- (void)dialDidUnsetOscillator:(ELDial *)dial {
-  [[[[self cell] layer] player] dialDidUnsetOscillator:dial];
-}
-
-- (void)dialDidSetOscillator:(ELDial *)dial {
-  [[[[self cell] layer] player] dialDidSetOscillator:dial];
-}
 
 @synthesize scripts = _scripts;
+
 
 - (NSString *)tokenType {
   return [[self class] tokenType];
 }
+
+
+#pragma mark Acts as a delegate for ELDial
+
+- (void)dialDidChangeValue:(ELDial *)dial {
+  [[self cell] needsDisplay];
+}
+
+
+// - (void)dialDidUnsetOscillator:(ELDial *)dial {
+//   [[[[self cell] layer] player] dialDidUnsetOscillator:dial];
+// }
+// 
+// 
+// - (void)dialDidSetOscillator:(ELDial *)dial {
+//   NSLog( @"Token -dialDidSetOscillator: %@", dial );
+//   ELCell *cell = [self cell];
+//   NSLog( @"cell = %@", cell );
+//   ELLayer *layer = [cell layer];
+//   NSLog( @"layer = %@", layer );
+//   ELPlayer *player = [layer player];
+//   NSLog( @"player = %@", player );
+//   [[[[self cell] layer] player] dialDidSetOscillator:dial];
+// }
+
+
+#pragma mark Interactions with ELLayer
 
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELCell *)cell {
   [self setLayer:layer];
   [self setCell:cell];
 }
 
+
 - (void)removedFromLayer:(ELLayer *)layer {
   [self setLayer:nil];
   [self setCell:nil];
 }
+
 
 - (void)start {
   [[self pDial] start];
@@ -137,13 +153,16 @@ int randval() {
   _gateCount = [[self gateDial] value];
 }
 
+
 - (void)stop {
   [[self gateDial] stop];
   [[self pDial] stop];
 }
 
-// Token-run protocol. The layer will call run and, as long as the Token is enabled,
-// the Token will invoke it's scripts and the subclass overriden runToken between them.
+
+/*
+ * When a playhead enter a cell it calls -run:.
+ */
 - (void)run:(ELPlayhead *)playhead {
   if( [[self enabledDial] value] ) {
     [self performSelectorOnMainThread:@selector(runWillRunScript:) withObject:playhead waitUntilDone:YES];
@@ -166,26 +185,21 @@ int randval() {
   }
 }
 
-// Should be overridden by Token subclasses
+
+/*
+ * Token subclasses should override -runToken: to implement subclass specific behaviour.
+ */
 - (void)runToken:(ELPlayhead *)playhead {
   [self doesNotRecognizeSelector:_cmd];
 }
 
-// Scripting
 
-- (void)runWillRunScript:(ELPlayhead *)playhead {
-  [[[self scripts] objectForKey:@"willRun"] evalWithArg:[[self layer] player] arg:self arg:playhead];
-}
-
-- (void)runDidRunScript:(ELPlayhead *)playhead {
-  [[[self scripts] objectForKey:@"didRun"] evalWithArg:[[self layer] player] arg:self arg:playhead];
-}
-
-// Drawing
+#pragma mark Drawing Support
 
 - (void)drawWithAttributes:(NSDictionary *)attributes {
   NSLog( @"Drawing has not been defined for Token class %@", [self className] );
 }
+
 
 - (void)setTokenDrawColor:(NSDictionary *)attributes {
   if( [[self enabledDial] boolValue] ) {
@@ -195,7 +209,50 @@ int randval() {
   }
 }
 
-// Implement the ELXmlData protocol
+
+#pragma mark Scripting Support
+
+- (void)runWillRunScript:(ELPlayhead *)playhead {
+  [[[self scripts] objectForKey:@"willRun"] evalWithArg:[[self layer] player] arg:self arg:playhead];
+}
+
+
+- (void)runDidRunScript:(ELPlayhead *)playhead {
+  [[[self scripts] objectForKey:@"didRun"] evalWithArg:[[self layer] player] arg:self arg:playhead];
+}
+
+
+- (ELScript *)callbackTemplate {
+  return [@"function(player,token,playhead) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
+}
+
+
+- (ELScript *)script:(NSString *)scriptName {
+  ELScript *script = [[self scripts] objectForKey:scriptName];
+  if( script == nil ) {
+    script = [[NSString stringWithFormat:@"function(player,token,playhead) {\n\t// write your callback code here\n}\n"] asJavascriptFunction];
+    [[self scripts] setObject:script forKey:scriptName];
+  }
+  return script;
+}
+
+
+- (void)removeScript:(NSString *)scriptName {
+  [[self scripts] removeObjectForKey:scriptName];
+}
+
+
+#pragma mark Implements NSMutableCopying
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  return [[[self class] allocWithZone:zone] initEnabledDial:[[self enabledDial] duplicateDial]
+                                                      pDial:[[self pDial] duplicateDial]
+                                                   gateDial:[[self gateDial] duplicateDial]
+                                                    scripts:[[self scripts] mutableCopy]];
+}
+
+
+#pragma mark Implements ELXmlData
 
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *tokenElement = [NSXMLNode elementWithName:[self tokenType]];
@@ -204,6 +261,7 @@ int randval() {
   return tokenElement;
 }
 
+
 - (NSXMLElement *)controlsXmlRepresentation {
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
   [controlsElement addChild:[[self enabledDial] xmlRepresentation]];
@@ -211,6 +269,7 @@ int randval() {
   [controlsElement addChild:[[self gateDial] xmlRepresentation]];
   return controlsElement;
 }
+
 
 - (NSXMLElement *)scriptsXmlRepresentation {
   NSXMLElement *scriptsElement = [NSXMLNode elementWithName:@"scripts"];
@@ -233,6 +292,7 @@ int randval() {
   return scriptsElement;
 }
 
+
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [self init] ) ) {
     _loaded = YES;
@@ -252,21 +312,5 @@ int randval() {
   return self;
 }
 
-- (ELScript *)callbackTemplate {
-  return [@"function(player,token,playhead) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
-}
-
-- (ELScript *)script:(NSString *)scriptName {
-  ELScript *script = [[self scripts] objectForKey:scriptName];
-  if( script == nil ) {
-    script = [[NSString stringWithFormat:@"function(player,token,playhead) {\n\t// write your callback code here\n}\n"] asJavascriptFunction];
-    [[self scripts] setObject:script forKey:scriptName];
-  }
-  return script;
-}
-
-- (void)removeScript:(NSString *)scriptName {
-  [[self scripts] removeObjectForKey:scriptName];
-}
 
 @end
