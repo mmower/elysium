@@ -42,6 +42,7 @@
 
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
+  [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:[self layer]];
 }
 
 

@@ -223,7 +223,7 @@
   }
   
   // Go for a safe choice
-  [self inspect:@"player"];
+  [self inspect:@"layer"];
 }
 
 
