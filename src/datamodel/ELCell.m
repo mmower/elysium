@@ -99,7 +99,7 @@
 
 
 - (void)setGenerateTokenWithUndo:(ELGenerateToken *)generateToken {
-  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setGenerateTokenWithUndo:_generateToken];
   if( ![undoManager isUndoing] ) {
     if( generateToken ) {
@@ -123,7 +123,7 @@
 
 
 - (void)setNoteTokenWithUndo:(ELNoteToken *)noteToken {
-  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setNoteTokenWithUndo:_noteToken];
   if( ![undoManager isUndoing] ) {
     if( noteToken ) {
@@ -147,7 +147,7 @@
 
 
 - (void)setReboundTokenWithUndo:(ELReboundToken *)reboundToken {
-  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setReboundTokenWithUndo:_reboundToken];
   if( ![undoManager isUndoing] ) {
     if( reboundToken ) {
@@ -171,7 +171,7 @@
 
 
 - (void)setAbsorbTokenWithUndo:(ELAbsorbToken *)absorbToken {
-  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setAbsorbTokenWithUndo:_absorbToken];
   if( ![undoManager isUndoing] ) {
     if( absorbToken ) {
@@ -195,7 +195,7 @@
 
 
 - (void)setSplitTokenWithUndo:(ELSplitToken *)splitToken {
-  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setSplitTokenWithUndo:_splitToken];
   if( ![undoManager isUndoing] ) {
     if( splitToken ) {
@@ -219,7 +219,7 @@
 
 
 - (void)setSpinTokenWithUndo:(ELSpinToken *)spinToken {
-  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setSpinTokenWithUndo:_spinToken];
   if( ![undoManager isUndoing] ) {
     if( spinToken ) {
@@ -243,7 +243,7 @@
 
 
 - (void)setSkipTokenWithUndo:(ELSkipToken *)skipToken {
-  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
   [[undoManager prepareWithInvocationTarget:self] setSkipTokenWithUndo:_skipToken];
   if( ![undoManager isUndoing] ) {
     if( skipToken ) {
@@ -390,7 +390,7 @@
 
 
 - (void)removeAllTokensWithUndo {
-  NSUndoManager *undoManager = [[[[self layer] player] document] undoManager];
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
   
   [undoManager beginUndoGrouping];
   [self setGenerateTokenWithUndo:nil];

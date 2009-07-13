@@ -114,7 +114,7 @@ static ELSurfaceView *dragStartView = nil;
 // Token management
 
 - (void)dragFromCell:(ELCell *)sourceCell to:(ELCell *)targetCell with:(NSDragOperation)modifiers {
-  NSUndoManager *undoManager = [[[[targetCell layer] player] document] undoManager];
+  NSUndoManager *undoManager = [[[targetCell layer] player] undoManager];
   [undoManager beginUndoGrouping];
   [targetCell removeAllTokensWithUndo];
   [targetCell copyTokensFrom:sourceCell];
