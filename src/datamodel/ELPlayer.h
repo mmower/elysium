@@ -53,6 +53,8 @@
   ELDial                *_tempoSyncDial;
   ELDial                *_noteLengthDial;
   ELDial                *_transposeDial;
+  
+  BOOL                  _loaded;
 }
 
 // @property (readonly)  UInt64              startTime;
@@ -86,6 +88,8 @@
 - (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)shouldCreateDefaultLayer;
 
 // - (void)toggleNoteDisplay;
+
+- (NSUndoManager *)undoManager;
 
 - (void)start:(id)sender;
 - (void)stop:(id)sender;

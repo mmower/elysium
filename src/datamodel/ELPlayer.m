@@ -53,9 +53,10 @@
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    _harmonicTable   = [[ELHarmonicTable alloc] init];
-    _layers          = [[NSMutableArray alloc] init];
-    _selectedLayer   = nil;
+    _loaded               = NO;
+    _harmonicTable        = [[ELHarmonicTable alloc] init];
+    _layers               = [[NSMutableArray alloc] init];
+    _selectedLayer        = nil;
     
     [self setTempoDial:[ELDialBank defaultTempoDial]];
     [self setBarLengthDial:[ELDialBank defaultBarLengthDial]];
@@ -69,12 +70,12 @@
     
     _oscillatorController = [[ELOscillatorController alloc] init];
     
-    _scriptingTag    = @"player";
-    _scripts         = [NSMutableDictionary dictionary];
-    _triggers        = [[NSMutableArray alloc] init];
-    _pkg             = [[ELScriptPackage alloc] initWithPlayer:self];
+    _scriptingTag         = @"player";
+    _scripts              = [NSMutableDictionary dictionary];
+    _triggers             = [[NSMutableArray alloc] init];
+    _pkg                  = [[ELScriptPackage alloc] initWithPlayer:self];
     
-    _nextLayerNumber = 1;
+    _nextLayerNumber      = 1;
     
     // Note that we start this here, otherwise MIDI CC cannot be used to trigger the player itself
     if( USE_TRIGGER_THREAD ) {
@@ -86,6 +87,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop:) name:ELNotifyPlayerShouldStop object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processMIDIControlMessage:) name:ELNotifyMIDIControl object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processMIDINoteMessage:) name:ELNotifyMIDINote object:nil];
+    
+    _loaded = YES;
   }
   
   return self;
@@ -201,6 +204,15 @@
 @synthesize pkg = _pkg;
 @synthesize selectedLayer = _selectedLayer;
 @synthesize running = _running;
+
+
+- (NSUndoManager *)undoManager {
+  if( _loaded ) {
+    return [[self document] undoManager];
+  } else {
+    return nil;
+  }
+}
 
 
 #pragma mark Player start/stop
@@ -438,6 +450,8 @@
   if( ( self = [self init] ) ) {
     NSArray *nodes;
     
+    _loaded = NO;
+    
     // Controls for the player
     *error = nil;
     
@@ -507,6 +521,8 @@
         }
       }
     }
+    
+    _loaded = YES;
   }
   
   return self;
