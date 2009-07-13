@@ -249,6 +249,14 @@
 @synthesize assigned = _assigned;
 @synthesize last = _last;
 
+- (void)setLast:(int)last {
+  NSUndoManager *undoManager = [[self player] undoManager];
+  if( ![undoManager isUndoing] ) {
+    [[undoManager prepareWithInvocationTarget:self] setLast:_last];
+  }
+  _last = last;
+}
+
 @synthesize value = _value;
 
 - (void)setValue:(int)value {
@@ -260,8 +268,14 @@
     value = [self max];
   }
   
+  [[[self player] undoManager] beginUndoGrouping];
+  
   [self setLast:value];
+  [(ELDial *)[[[self player] undoManager] prepareWithInvocationTarget:self] setValue:_value];
   _value = value;
+  
+  [[[self player] undoManager] endUndoGrouping];
+  
   if( [[self delegate] respondsToSelector:@selector(dialDidChangeValue:)] ) {
     [[self delegate] dialDidChangeValue:self];
   }
