@@ -115,6 +115,8 @@ typedef enum tagELDialMode {
 - (void)start;
 - (void)stop;
 
+- (BOOL)pTest;
+
 - (ELDial *)duplicateDial;
 
 @end

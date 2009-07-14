@@ -27,10 +27,6 @@
 
 NSMutableDictionary *tokenMapping = nil;
 
-int randval() {
-  return ( random() % 100 ) + 1;
-}
-
 @implementation ELToken
 
 #pragma mark Class behaviours
@@ -171,7 +167,8 @@ int randval() {
     } else {
       [self setFired:NO];
       if( ![self skip] ) {
-        if( randval() <= [[self pDial] value] ) {
+        
+        if( [[self pDial] pTest] ) {
           [self runToken:playhead];
           [self setFired:YES];
         }

@@ -17,6 +17,10 @@
 #import "ELDialModeValueTransformer.h"
 #import "ELDialHasOscillatorValueTransformer.h"
 
+int randval() {
+  return ( random() % 100 ) + 1;
+}
+
 @implementation ELDial
 
 + (void)initialize {
@@ -336,6 +340,11 @@
 
 - (NSString *)description {
   return [NSString stringWithFormat:@"Dial[ptr=%p,name=%@,min=%d,max=%d,value=%d,step=%d]", self, [self name], [self min], [self max], [self value], [self step]];
+}
+
+
+- (BOOL)pTest {
+  return randval() <= [self value];
 }
 
 
