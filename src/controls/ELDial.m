@@ -197,6 +197,15 @@
       }
       break;
   }
+  
+  NSUndoManager *undoManager = [[self player] undoManager];
+  if( ![undoManager isUndoing] ) {
+    if( [[undoManager undoActionName] isEqualToString:@""] ) {
+      [undoManager setActionName:[NSString stringWithFormat:@"set %@ mode",[self name]]];
+    }
+    [[undoManager prepareWithInvocationTarget:self] setMode:_mode];
+  }
+  
   _mode = mode;
 }
 
@@ -218,7 +227,9 @@
   if( [self mode] == dialInherited ) {
     [self unbind:@"value"];
   }
+  
   _parent = parent;
+  
   if( [self mode] == dialInherited ) {
     if( _parent ) {
       [self bind:@"value" toObject:_parent withKeyPath:@"value" options:nil];
@@ -236,6 +247,14 @@
     [[[self player] oscillatorController] removeOscillator:_oscillator];
   }
   
+  NSUndoManager *undoManager = [[self player] undoManager];
+  [undoManager beginUndoGrouping];
+  [[undoManager prepareWithInvocationTarget:self] setOscillator:_oscillator];
+  
+  if( ![undoManager isUndoing] ) {
+    [undoManager setActionName:[NSString stringWithFormat:@"set %@ LFO",[self name]]];
+  }
+  
   _oscillator = oscillator;
   
   if( _oscillator ) {
@@ -243,6 +262,8 @@
   } else {
     [self setMode:dialFree];
   }
+  
+  [undoManager endUndoGrouping];
 }
 
 
@@ -251,7 +272,7 @@
 
 - (void)setLast:(int)last {
   NSUndoManager *undoManager = [[self player] undoManager];
-  if( ![undoManager isUndoing] ) {
+  if( ![undoManager isUndoing] && [self mode] != dialDynamic ) {
     [[undoManager prepareWithInvocationTarget:self] setLast:_last];
   }
   _last = last;
@@ -268,13 +289,18 @@
     value = [self max];
   }
   
-  [[[self player] undoManager] beginUndoGrouping];
+  NSUndoManager *undoManager = nil;
+  if( [self mode] != dialDynamic ) {
+    undoManager = [[self player] undoManager];
+  }
+  [undoManager beginUndoGrouping];
+  [undoManager setActionName:[NSString stringWithFormat:@"set %@ value",[self name]]];
   
   [self setLast:value];
-  [(ELDial *)[[[self player] undoManager] prepareWithInvocationTarget:self] setValue:_value];
+  [(ELDial *)[undoManager prepareWithInvocationTarget:self] setValue:_value];
   _value = value;
   
-  [[[self player] undoManager] endUndoGrouping];
+  [undoManager endUndoGrouping];
   
   if( [[self delegate] respondsToSelector:@selector(dialDidChangeValue:)] ) {
     [[self delegate] dialDidChangeValue:self];
@@ -433,5 +459,6 @@
     [self setMode:dialFree];
   }
 }
+
 
 @end
