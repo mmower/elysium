@@ -229,7 +229,13 @@ NSPredicate *deadPlayheadFilter;
   if( visible ) {
     [[[self delegate] window] makeKeyAndOrderFront:self];
   } else {
-    [[[self delegate] window] orderOut:self];
+    /* As a safety measure we only allow this when
+     * there is more than one layer. Otherwise the mainwindow
+     * disappears, breaking everything.
+     */
+    if( [[[self player] layers] count] > 1 ) {
+      [[[self delegate] window] orderOut:self];
+    }
   }
 }
 
