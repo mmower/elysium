@@ -31,6 +31,7 @@
 + (ELDial *)defaultTriadDial;
 + (ELDial *)defaultGhostsDial;
 + (ELDial *)defaultOverrideDial;
++ (ELDial *)defaultChannelOverrideDial:(int)channel;
 + (ELDial *)defaultBounceBackDial;
 + (ELDial *)defaultClockWiseDial;
 + (ELDial *)defaultSteppingDial;

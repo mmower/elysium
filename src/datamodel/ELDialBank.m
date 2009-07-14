@@ -206,6 +206,19 @@
                             boolValue:NO];
 }
 
+
++ (ELDial *)defaultChannelOverrideDial:(int)channel {
+  return [[ELDial alloc] initWithName:[NSString stringWithFormat:@"chan%dOverride",channel]
+                              toolTip:@"Controls the probability that this object will be triggered."
+                                  tag:channel
+                               player:nil
+                             assigned:0
+                                  min:0
+                                  max:100
+                                 step:1];
+}
+
+
 + (ELDial *)defaultBounceBackDial {
   return [[ELDial alloc] initWithName:@"bounceBack"
                               toolTip:@"Controls whether this split token will also send a playhead back along the original direction."
