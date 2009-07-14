@@ -45,6 +45,7 @@
 - (IBAction)startStop:(id)sender;
 - (IBAction)clearAll:(id)sender;
 - (IBAction)newLayer:(id)sender;
+- (IBAction)removeLayer:(id)sender;
 - (IBAction)clearSelectedLayer:(id)sender;
 - (IBAction)closeDocument:(id)sender;
 
@@ -58,5 +59,8 @@
 - (IBAction)clearCell:(id)sender;
 
 - (IBAction)showOscillatorDesigner:(id)sender;
+
+- (void)documentNewLayer:(ELLayer *)layer;
+- (void)documentRemoveLayer:(ELLayer *)layer;
 
 @end

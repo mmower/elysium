@@ -113,13 +113,14 @@ NSPredicate *deadPlayheadFilter;
 
 #pragma mark Properties
 
-@synthesize player = _player;
-@synthesize delegate = _delegate;
-@synthesize layerId = _layerId;
-@synthesize selectedCell = _selectedCell;
-@synthesize beatCount = _beatCount;
-@synthesize key = _key;
-@synthesize receivedNotes = _receivedNotes;
+@synthesize player           = _player;
+@synthesize delegate         = _delegate;
+@synthesize layerId          = _layerId;
+@synthesize selectedCell     = _selectedCell;
+@synthesize beatCount        = _beatCount;
+@synthesize key              = _key;
+@synthesize receivedNotes    = _receivedNotes;
+@synthesize windowController = _windowController;
 
 @synthesize dirty = _dirty;
 

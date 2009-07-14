@@ -103,7 +103,9 @@
 
 // Layer management
 - (ELLayer *)createLayer;
+- (ELLayer *)makeLayer;
 - (void)addLayer:(ELLayer *)layer;
+- (void)removeLayer:(ELLayer *)layer;
 - (int)layerCount;
 - (void)removeLayers;
 - (ELLayer *)layer:(int)index;

@@ -289,6 +289,13 @@
 #pragma mark Layer Management
 
 - (ELLayer *)createLayer {
+  ELLayer *layer = [self makeLayer];
+  [self addLayer:layer];
+  return layer;
+}
+
+
+- (ELLayer *)makeLayer {
   ELLayer *layer = [[ELLayer alloc] initWithPlayer:self channel:([self layerCount]+1)];
   
   [layer setLayerId:[NSString stringWithFormat:@"Layer-%d", _nextLayerNumber++]];
@@ -303,7 +310,6 @@
   [[layer timeToLiveDial] setMode:dialInherited];
   [[layer transposeDial] setMode:dialInherited];
   
-  [self addLayer:layer];
   return layer;
 }
 
@@ -317,7 +323,9 @@
 
 
 - (void)removeLayer:(ELLayer *)layer {
+  [self willChangeValueForKey:@"layers"];
   [[self layers] removeObject:layer];
+  [self didChangeValueForKey:@"layers"];
 }
 
 

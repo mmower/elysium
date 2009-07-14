@@ -19,6 +19,7 @@
   if( ( self = [self initWithWindowNibName:@"LayerWindow"] ) ) {
     [self setShouldCloseDocument:YES];
     [self setLayer:layer];
+    [layer setWindowController:self];
   }
   
   return self;

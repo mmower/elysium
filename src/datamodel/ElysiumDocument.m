@@ -30,7 +30,7 @@
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    _player = [[ELPlayer alloc] initWithDocument:self createDefaultLayer:YES];
+    // _player = [[ELPlayer alloc] initWithDocument:self createDefaultLayer:YES];
     [self setComposerName:[[NSUserDefaults standardUserDefaults] stringForKey:ELComposerNameKey]];
     [self setComposerEmail:[[NSUserDefaults standardUserDefaults] stringForKey:ELComposerEmailKey]];
   }
@@ -58,6 +58,10 @@
 }
 
 - (void)makeWindowControllers {
+  if( _player == nil ) {
+    _player = [[ELPlayer alloc] initWithDocument:self createDefaultLayer:YES];
+  }
+  
   for( ELLayer *layer in [[self player] layers] ) {
     [self addWindowController:[[ELLayerWindowController alloc] initWithLayer:layer]];
   }
@@ -203,6 +207,9 @@
       [item setTitle:@"Start Playing"];
       [item setState:NSOffState];
     }
+  } else if( action == @selector(removeLayer:) ) {
+    NSWindowController *windowController = [[NSApp mainWindow] windowController];
+    return [windowController isKindOfClass:[ELLayerWindowController class]] && [[self player] layerCount] > 1;
   }
   
   return YES;
@@ -243,10 +250,42 @@
 }
 
 - (IBAction)newLayer:(id)sender {
-  ELLayerWindowController *windowController = [[ELLayerWindowController alloc] initWithLayer:[[self player] createLayer]];
+  [self documentNewLayer:[[self player] makeLayer]];
+}
+
+
+- (void)documentNewLayer:(ELLayer *)layer {
+  [[self player] addLayer:layer];
+  ELLayerWindowController *windowController = [[ELLayerWindowController alloc] initWithLayer:layer];
   [self addWindowController:windowController];
   [windowController showWindow:self];
+  
+  [[[self undoManager] prepareWithInvocationTarget:self] documentRemoveLayer:layer];
+  if( ![[self undoManager] isUndoing] ) {
+    [[self undoManager] setActionName:@"add layer"];
+  }
 }
+
+
+- (IBAction)removeLayer:(id)sender {
+  NSWindowController *windowController = [[NSApp mainWindow] windowController];
+  if( [windowController isKindOfClass:[ELLayerWindowController class]] ) {
+    [self documentRemoveLayer:[(ELLayerWindowController *)windowController layer]];
+  }
+}
+
+
+- (void)documentRemoveLayer:(ELLayer *)layer {
+  [layer setVisible:false];
+  [self removeWindowController:[layer windowController]];
+  [[self player] removeLayer:layer];
+  
+  [[[self undoManager] prepareWithInvocationTarget:self] documentNewLayer:layer];
+  if( ![[self undoManager] isUndoing] ) {
+    [[self undoManager] setActionName:@"remove layer"];
+  }
+}
+
 
 - (IBAction)toggleGeneratorToken:(id)sender {
   [[[[self player] selectedLayer] selectedCell] toggleGenerateToken:sender];

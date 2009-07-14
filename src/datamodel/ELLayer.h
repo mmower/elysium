@@ -20,6 +20,7 @@
 @class ELPlayhead;
 @class ELGenerateToken;
 @class ELMIDINoteMessage;
+@class ELLayerWindowController;
 
 @interface ELLayer : NSObject <LMHoneycombMatrix,ELXmlData,ELTaggable> {
   id                  _delegate;       // This will be the view representing us in the UI
@@ -44,6 +45,8 @@
   // NSString            *_scriptingTag;
   
   NSMutableArray      *_receivedNotes;
+  
+  ELLayerWindowController *_windowController;
   
   NSString            *_layerId;
   
@@ -78,6 +81,8 @@
 @property             ELKey           *key;
 @property             BOOL            dirty;
 @property (readonly)  NSMutableArray  *receivedNotes;
+
+@property             ELLayerWindowController *windowController;
 
 @property (assign)  ELDial    *enabledDial;
 @property (assign)  ELDial    *channelDial;
