@@ -27,6 +27,7 @@
 #import "ELCell.h"
 #import "ELLayer.h"
 #import "ELPlayer.h"
+#import "ELLayerWindowController.h"
 
 #import "ELInspectorOverlay.h"
 #import "ELOscillatorDesignerController.h"
@@ -159,6 +160,11 @@
     [self playerSelected:[notification object]];
   } else if( [[notification object] isKindOfClass:[ELLayer class]] ) {
     [self layerSelected:[notification object]];
+  } else if( [[notification object] isKindOfClass:[ELLayerWindowController class]] ) {
+    ELLayerWindowController *lwc = [notification object];
+    if( [self layer] != [lwc layer] ) {
+      [self layerSelected:[lwc layer]];
+    }
   } else if( [[notification object] isKindOfClass:[ELCell class]] ) {
     [self cellSelected:[notification object]];
   }
