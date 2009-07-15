@@ -25,83 +25,88 @@
 
 NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
 
+static BOOL initialized = NO;
 
 @implementation ElysiumController
 
 #pragma mark Class initialization
 
 + (void)initialize {
-  NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
-  
-  [defaultValues setObject:[NSNumber numberWithInt:2] forKey:ELBehaviourAtOpenKey];
-  [defaultValues setObject:[NSNumber numberWithFloat:0.5] forKey:ELLayerThreadPriorityKey];
-  [defaultValues setObject:[NSNumber numberWithInt:1] forKey:ELMiddleCOctaveKey];
-  
-  [defaultValues setObject:@"" forKey:ELComposerNameKey];
-  [defaultValues setObject:@"" forKey:ELComposerEmailKey];
-  
-  [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultTempoKey];
-  [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultTTLKey];
-  [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultPulseCountKey];
-  [defaultValues setObject:[NSNumber numberWithInt:90] forKey:ELDefaultVelocityKey];
-  [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultEmphasisKey];
-  [defaultValues setObject:[NSNumber numberWithInt:500] forKey:ELDefaultDurationKey];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(173.0/255)
-                                                                                        green:(195.0/255)
-                                                                                         blue:(214.0/255)
-                                                                                        alpha:0.8]]
-                    forKey:ELDefaultCellBackgroundColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(105.0/255)
-                                                                                             green:(146.0/255)
-                                                                                              blue:(180.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultCellBorderColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(179.0/255)
-                                                                                             green:(158.0/255)
-                                                                                              blue:(241.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultSelectedCellBackgroundColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(108.0/255)
-                                                                                             green:(69.0/255)
-                                                                                              blue:(229.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultSelectedCellBorderColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(16.0/255)
-                                                                                             green:(17.0/255)
-                                                                                              blue:(156.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultTokenColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(121.0/255)
-                                                                                             green:(121.0/255)
-                                                                                              blue:(152.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDisabledTokenColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(156.0/255)
-                                                                                             green:(16.0/255)
-                                                                                              blue:(45.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultActivePlayheadColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(158.0/255)
-                                                                                             green:(48.0/255)
-                                                                                              blue:(75.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELTonicNoteColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(39.0/255)
-                                                                                             green:(118.0/255)
-                                                                                              blue:(131.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELScaleNoteColor];
-  
-  [[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+  if( !initialized ) {
+    NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+
+    [defaultValues setObject:[NSNumber numberWithInt:2] forKey:ELBehaviourAtOpenKey];
+    [defaultValues setObject:[NSNumber numberWithFloat:0.5] forKey:ELLayerThreadPriorityKey];
+    [defaultValues setObject:[NSNumber numberWithInt:1] forKey:ELMiddleCOctaveKey];
+
+    [defaultValues setObject:@"" forKey:ELComposerNameKey];
+    [defaultValues setObject:@"" forKey:ELComposerEmailKey];
+
+    [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultTempoKey];
+    [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultTTLKey];
+    [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultPulseCountKey];
+    [defaultValues setObject:[NSNumber numberWithInt:90] forKey:ELDefaultVelocityKey];
+    [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultEmphasisKey];
+    [defaultValues setObject:[NSNumber numberWithInt:500] forKey:ELDefaultDurationKey];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(173.0/255)
+                                                                                          green:(195.0/255)
+                                                                                           blue:(214.0/255)
+                                                                                          alpha:0.8]]
+                      forKey:ELDefaultCellBackgroundColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(105.0/255)
+                                                                                               green:(146.0/255)
+                                                                                                blue:(180.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultCellBorderColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(179.0/255)
+                                                                                               green:(158.0/255)
+                                                                                                blue:(241.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultSelectedCellBackgroundColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(108.0/255)
+                                                                                               green:(69.0/255)
+                                                                                                blue:(229.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultSelectedCellBorderColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(16.0/255)
+                                                                                               green:(17.0/255)
+                                                                                                blue:(156.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultTokenColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(121.0/255)
+                                                                                               green:(121.0/255)
+                                                                                                blue:(152.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDisabledTokenColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(156.0/255)
+                                                                                               green:(16.0/255)
+                                                                                                blue:(45.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultActivePlayheadColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(158.0/255)
+                                                                                               green:(48.0/255)
+                                                                                                blue:(75.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELTonicNoteColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(39.0/255)
+                                                                                               green:(118.0/255)
+                                                                                                blue:(131.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELScaleNoteColor];
+
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+    
+    initialized = YES;
+  }
 }
 
 
