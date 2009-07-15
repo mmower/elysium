@@ -20,9 +20,14 @@ typedef enum tagLMDialStyle {
     BOOL              _enabled;
     LMDialStyle       _style;
     int               _minimum;
+    int               _modMinimum;
     int               _maximum;
+    int               _modMaximum;
     int               _stepping;
+    
+    int               _lowerValueBound;
     int               _value;
+    int               _upperValueBound;
     
     BOOL              _showValue;
 
@@ -47,16 +52,25 @@ typedef enum tagLMDialStyle {
     float             _alpha;
     
     LMDialMap         *_dialMap;
+    
+    id                _delegate;
 }
 
 @property BOOL enabled;
 @property LMDialStyle style;
 @property int minimum;
+// @property int modMinimum;
 @property int maximum;
+// @property int modMaximum;
 @property int stepping;
 @property int value;
 @property int divisor;
 @property (copy) NSString *formatter;
+
+@property (readonly) int lowerValueBound;
+@property (readonly) int upperValueBound;
+
+@property (assign) id delegate;
 
 @property BOOL showValue;
 @property CGFloat fontSize;
