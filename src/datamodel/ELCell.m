@@ -49,13 +49,13 @@
 
 @implementation ELCell
 
-- (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)acol row:(int)arow {
-  if( ( self = [super initWithColumn:acol row:arow] ) ) {
+- (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row {
+  if( ( self = [super initWithColumn:col row:row] ) ) {
     _layer        = layer;
     _note         = note;
     _tokens       = [[NSMutableDictionary alloc] init];
     _playheads    = [[NSMutableArray alloc] init];
-    _scriptingTag = [NSString stringWithFormat:@"cell%d:%d",col,row];
+    _scriptingTag = [NSString stringWithFormat:@"cell%d:%d",[self col],[self row]];
     _dirty        = NO;
     
     [self connectNeighbour:nil direction:N];
@@ -427,7 +427,7 @@
 
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"Cell %d,%d - %@", col, row, [self note]];
+  return [NSString stringWithFormat:@"Cell %d,%d - %@", [self col], [self row], [self note]];
 }
 
 
@@ -602,8 +602,8 @@
   NSSize strSize = [text sizeWithAttributes:textAttributes];
   
   NSPoint strOrigin;
-  strOrigin.x = [path bounds].origin.x + ( [path bounds].size.width - strSize.width ) / 2;
-  strOrigin.y = [path bounds].origin.y + ( [path bounds].size.height - strSize.height ) / 2;
+  strOrigin.x = [[self path] bounds].origin.x + ( [[self path] bounds].size.width - strSize.width ) / 2;
+  strOrigin.y = [[self path] bounds].origin.y + ( [[self path] bounds].size.height - strSize.height ) / 2;
   
   [text drawAtPoint:strOrigin withAttributes:textAttributes];
 }
@@ -666,9 +666,9 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   
   if( direction != 0 ) {
     NSAffineTransform *transform = [NSAffineTransform transform];
-    [transform translateXBy:centre.x yBy:centre.y];
+    [transform translateXBy:[self centre].x yBy:[self centre].y];
     [transform rotateByDegrees:(360.0 - ( direction * 60 ))];
-    [transform translateXBy:-centre.x yBy:-centre.y];
+    [transform translateXBy:-[self centre].x yBy:-[self centre].y];
     [trianglePath transformUsingAffineTransform:transform];
   }
   
@@ -687,7 +687,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
     }
     CGFloat fader = 0.5 + ( 0.5 * ((float)minTTL/5) );
     
-    if( selected ) {
+    if( [self selected] ) {
       [attributes setObject:[[attributes objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewSelectedColor];
     } else {
       [attributes setObject:[[attributes objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
@@ -729,8 +729,8 @@ NSString* elementDescription( NSBezierPathElement elt ) {
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *cellElement = [NSXMLNode elementWithName:@"cell"];
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-  [attributes setObject:[NSNumber numberWithInt:col] forKey:@"col"];
-  [attributes setObject:[NSNumber numberWithInt:row] forKey:@"row"];
+  [attributes setObject:[NSNumber numberWithInt:[self col]] forKey:@"col"];
+  [attributes setObject:[NSNumber numberWithInt:[self row]] forKey:@"row"];
   [cellElement setAttributesAsDictionary:attributes];
   
   for( ELToken *token in [[self tokens] allValues] ) {
