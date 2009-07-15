@@ -20,6 +20,7 @@
   int _range;
 }
 
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum;
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum;
 
 @property int minimum;

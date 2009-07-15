@@ -15,6 +15,7 @@
   BOOL  _rising;
 }
 
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum period:(int)period rising:(BOOL)rising;
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum period:(int)period rising:(BOOL)rising;
 
 @property int   period;

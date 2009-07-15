@@ -17,15 +17,21 @@
 
 @implementation ELRampOscillator
 
+
 #pragma mark Object initialization
 
-- (id)initEnabled:(BOOL)enabled minimum:(int)min maximum:(int)max period:(int)period rising:(BOOL)rising {
-  if( ( self = [super initEnabled:enabled minimum:min maximum:max] ) ) {
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum period:(int)period rising:(BOOL)rising {
+  if( ( self = [super initEnabled:enabled minimum:minimum hardMinimum:hardMinimum maximum:maximum hardMaximum:hardMaximum] ) ) {
     [self setPeriod:period];
     [self setRising:rising];
   }
   
   return self;
+}
+
+
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum period:(int)period rising:(BOOL)rising {
+  return [self initEnabled:enabled minimum:minimum hardMinimum:minimum maximum:maximum hardMaximum:maximum period:period rising:rising];
 }
 
 
@@ -102,10 +108,12 @@
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
   return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
-                                                  minimum:[self minimum]
-                                                  maximum:[self maximum]
-                                                   period:[self period]
-                                                   rising:[self rising]];
+                                                minimum:[self minimum]
+                                            hardMinimum:[self hardMinimum]
+                                                maximum:[self maximum]
+                                            hardMaximum:[self hardMaximum]
+                                                 period:[self period]
+                                                 rising:[self rising]];
 }
 
 

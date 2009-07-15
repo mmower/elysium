@@ -13,16 +13,22 @@
 
 #pragma mark Object initialization
 
-- (id)initEnabled:(BOOL)enabled minimum:(int)min maximum:(int)max {
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum {
   if( ( self = [super initEnabled:enabled] ) ) {
-    [self setMinimum:min];
-    [self setHardMinimum:min];
-    [self setMaximum:max];
-    [self setHardMaximum:max];
-    [self setValue:min];
+    [self setMinimum:minimum];
+    [self setHardMinimum:hardMinimum];
+    [self setMaximum:maximum];
+    [self setHardMaximum:hardMaximum];
+    [self setValue:minimum];
   }
   
   return self;
+  
+}
+
+
+- (id)initEnabled:(BOOL)enabled minimum:(int)min maximum:(int)max {
+  return [self initEnabled:enabled minimum:min hardMinimum:min maximum:max hardMaximum:max];
 }
 
 

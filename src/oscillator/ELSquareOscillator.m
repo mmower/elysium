@@ -15,13 +15,18 @@
 
 #pragma mark Object initialization
 
-- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum rest:(int)rest sustain:(int)sustain {
-  if( ( self = [super initEnabled:enabled minimum:minimum maximum:maximum] ) ) {
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum rest:(int)rest sustain:(int)sustain {
+  if( ( self = [super initEnabled:enabled minimum:minimum hardMinimum:hardMinimum maximum:maximum hardMaximum:hardMaximum] ) ) {
     [self setRest:rest];
     [self setSustain:sustain];
   }
   
   return self;
+}
+
+
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum rest:(int)rest sustain:(int)sustain {
+  return [self initEnabled:enabled minimum:minimum hardMinimum:minimum maximum:maximum hardMaximum:maximum rest:rest sustain:sustain];
 }
 
 
@@ -110,7 +115,9 @@
 - (id)mutableCopyWithZone:(NSZone *)zone {
   return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
                                                 minimum:[self minimum]
+                                            hardMinimum:[self hardMinimum]
                                                 maximum:[self maximum]
+                                            hardMaximum:[self hardMaximum]
                                                    rest:[self rest]
                                                 sustain:[self sustain]];
 }

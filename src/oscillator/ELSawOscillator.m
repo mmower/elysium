@@ -13,15 +13,20 @@
 
 @implementation ELSawOscillator
 
-- (id)initEnabled:(BOOL)enabled minimum:(int)min maximum:(int)max rest:(int)rest attack:(int)attack sustain:(int)aSustain decay:(int)aDecay {
-  if( ( self = [super initEnabled:enabled minimum:min maximum:max] ) ) {
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum rest:(int)rest attack:(int)attack sustain:(int)sustain decay:(int)decay {
+  if( ( self = [super initEnabled:enabled minimum:minimum hardMinimum:hardMinimum maximum:maximum hardMaximum:hardMaximum] ) ) {
     [self setAttack:attack];
-    [self setDecay:aDecay];
+    [self setDecay:decay];
     [self setRest:rest];
-    [self setSustain:aSustain];
+    [self setSustain:sustain];
   }
   
   return self;
+}
+
+
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum rest:(int)rest attack:(int)attack sustain:(int)sustain decay:(int)decay {
+  return [self initEnabled:enabled minimum:minimum hardMinimum:minimum maximum:maximum hardMaximum:maximum rest:rest attack:attack sustain:sustain decay:decay];
 }
 
 - (NSString *)type {
@@ -156,7 +161,9 @@
 - (id)mutableCopyWithZone:(NSZone *)zone {
   return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
                                                 minimum:[self minimum]
+                                            hardMinimum:[self hardMinimum]
                                                 maximum:[self maximum]
+                                            hardMaximum:[self hardMaximum]
                                                    rest:[self rest]
                                                  attack:[self attack]
                                                 sustain:[self sustain]

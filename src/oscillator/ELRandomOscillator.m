@@ -30,7 +30,9 @@
 - (id)mutableCopyWithZone:(NSZone *)zone {
   return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
                                                 minimum:[self minimum]
-                                                maximum:[self maximum]];
+                                            hardMinimum:[self hardMinimum]
+                                                maximum:[self maximum]
+                                            hardMaximum:[self hardMaximum]];
 }
 
 

@@ -11,16 +11,29 @@
 
 @implementation ELSineOscillator
 
-- (id)initEnabled:(BOOL)enabled minimum:(int)min maximum:(int)max period:(int)period {
-  if( ( self = [super initEnabled:enabled minimum:min maximum:max] ) ) {
+#pragma mark Object initialization
+
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum period:(int)period {
+  if( ( self = [super initEnabled:enabled minimum:minimum hardMinimum:hardMinimum maximum:maximum hardMaximum:hardMaximum] ) ) {
     [self setPeriod:period];
   }
   
   return self;
 }
 
+
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum period:(int)period {
+  return [self initEnabled:enabled minimum:minimum hardMinimum:minimum maximum:maximum hardMaximum:maximum period:period];
+}
+
+
 - (NSString *)type {
   return @"Sine";
+}
+
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"<ELSineOscillator: %p> min:%d hard_min:%d max:%d hard_max:%d period:%d", self, [self minimum], [self hardMinimum], [self maximum], [self hardMaximum], [self period]];
 }
 
 @synthesize period = _period;
@@ -66,7 +79,9 @@
 - (id)mutableCopyWithZone:(NSZone *)zone {
   return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
                                                 minimum:[self minimum]
+                                            hardMinimum:[self hardMinimum]
                                                 maximum:[self maximum]
+                                            hardMaximum:[self hardMaximum]
                                                  period:[self period]];
 }
 
