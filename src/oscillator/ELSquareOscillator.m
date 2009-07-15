@@ -37,7 +37,7 @@
 @synthesize sustain = _sustain;
 
 - (void)setSustain:(int)sustain {
-  sustain = sustain;
+  _sustain = sustain;
   [self updatePeriod];
 }
 
