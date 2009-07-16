@@ -21,58 +21,75 @@
 
 #import "ELPlayer.h"
 
+#import <LMDial/LMDialView.h>
+
 @implementation ELOscillatorDesignerController
 
-- (id)initWithDial:(ELDial *)theDial controller:(ELInspectorController *)theController {
+- (id)initWithDial:(ELDial *)dial controller:(ELInspectorController *)controller {
   if( ( self = [self initWithWindowNibName:@"OscillatorDesigner"] ) ) {
-    [self setDial:theDial];
-    [self setController:theController];
-    [self setupOscillators];
+    _dial = dial;
+    [self setController:controller];
   }
   
   return self;
 }
 
 - (void)awakeFromNib {
+  [squareLFOMinDial setBoundsChecking:NO];
+  [squareLFOMaxDial setBoundsChecking:NO];
+  [sawLFOMinDial setBoundsChecking:NO];
+  [sawLFOMaxDial setBoundsChecking:NO];
+  [sineLFOMinDial setBoundsChecking:NO];
+  [sineLFOMaxDial setBoundsChecking:NO];
+  [rampLFOMinDial setBoundsChecking:NO];
+  [rampLFOMaxDial setBoundsChecking:NO];
+  
+  [self setupOscillators];
   if( selectedTag ) {
     [tabView selectTabViewItemWithIdentifier:selectedTag];
   }
+  
+  [squareLFOMinDial setBoundsChecking:YES];
+  [squareLFOMaxDial setBoundsChecking:YES];
+  [sawLFOMinDial setBoundsChecking:YES];
+  [sawLFOMaxDial setBoundsChecking:YES];
+  [sineLFOMinDial setBoundsChecking:YES];
+  [sineLFOMaxDial setBoundsChecking:YES];
+  [rampLFOMinDial setBoundsChecking:YES];
+  [rampLFOMaxDial setBoundsChecking:YES];
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
-  [[self controller] finishedEditingOscillatorForDial:[self dial]];
+  [[self controller] finishedEditingOscillatorForDial:_dial];
 }
 
-@synthesize controller;
+@synthesize controller         = _controller;
+@synthesize squareOscillator   = _squareOscillator;
+@synthesize sawOscillator      = _sawOscillator;
+@synthesize sineOscillator     = _sineOscillator;
+@synthesize rampOscillator     = _rampOscillator;
+@synthesize sequenceOscillator = _sequenceOscillator;
+@synthesize randomOscillator   = _randomOscillator;
 
-@synthesize dial;
-
-@synthesize squareOscillator;
-@synthesize sawOscillator;
-@synthesize sineOscillator;
-@synthesize rampOscillator;
-@synthesize sequenceOscillator;
-@synthesize randomOscillator;
-
-- (IBAction)saveOscillator:(id)_sender_ {
+- (IBAction)saveOscillator:(id)sender {
   NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
   if( [tabId isEqualToString:@"Square"] ) {
-    [dial setOscillator:squareOscillator];
+    [_dial setOscillator:[self squareOscillator]];
   } else if( [tabId isEqualToString:@"Saw"] ) {
-    [dial setOscillator:sawOscillator];
+    [_dial setOscillator:[self sawOscillator]];
   } else if( [tabId isEqualToString:@"Sine"] ) {
-    [dial setOscillator:sineOscillator];
+    [_dial setOscillator:[self sineOscillator]];
   } else if( [tabId isEqualToString:@"Ramp"] ) {
-    [dial setOscillator:rampOscillator];
+    [_dial setOscillator:[self rampOscillator]];
   } else if( [tabId isEqualToString:@"Sequence"] ) {
-    [dial setOscillator:sequenceOscillator];
+    [_dial setOscillator:[self sequenceOscillator]];
   } else if( [tabId isEqualToString:@"Random"] ) {
-    [dial setOscillator:randomOscillator];
+    [_dial setOscillator:[self randomOscillator]];
   }
   
-  if( [dial oscillator] ) {
-    [[dial oscillator] start];
-    [dial setMode:dialDynamic];
+  if( [_dial oscillator] ) {
+    [[_dial oscillator] start];
+    [_dial setMode:dialDynamic];
   }
   
   [self close];
@@ -83,58 +100,58 @@
 }
 
 - (IBAction)removeOscillator:(id)sender {
-  [[dial oscillator] stop];
-  [dial setOscillator:nil];
+  [[_dial oscillator] stop];
+  [_dial setOscillator:nil];
   [self close];
 }
 
 - (void)setupOscillators {
-  if( [dial oscillator] ) {
-    selectedTag = [[dial oscillator] type];
+  if( [_dial oscillator] ) {
+    selectedTag = [[_dial oscillator] type];
   } else {
     selectedTag = nil;
   }
   
   if( [selectedTag isEqualToString:@"Square"] ) {
-    [self setSquareOscillator:[[dial oscillator] mutableCopy]];
+    [self setSquareOscillator:[[_dial oscillator] mutableCopy]];
   } else {
-    [self setSquareOscillator:[[ELSquareOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max] rest:30000 sustain:30000]];
+    [self setSquareOscillator:[[ELSquareOscillator alloc] initEnabled:YES minimum:[_dial min] maximum:[_dial max] rest:30000 sustain:30000]];
   }
   
   if( [selectedTag isEqualToString:@"Saw"] ) {
-    [self setSawOscillator:[[dial oscillator] mutableCopy]];
+    [self setSawOscillator:[[_dial oscillator] mutableCopy]];
   } else {
-    [self setSawOscillator:[[ELSawOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max] rest:30000 attack:30000 sustain:30000 decay:30000]];
+    [self setSawOscillator:[[ELSawOscillator alloc] initEnabled:YES minimum:[_dial min] maximum:[_dial max] rest:30000 attack:30000 sustain:30000 decay:30000]];
   }
   
   if( [selectedTag isEqualToString:@"Sine"] ) {
-    [self setSineOscillator:[[dial oscillator] mutableCopy]];
+    [self setSineOscillator:[[_dial oscillator] mutableCopy]];
   } else {
-    [self setSineOscillator:[[ELSineOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max] period:30000]];
+    [self setSineOscillator:[[ELSineOscillator alloc] initEnabled:YES minimum:[_dial min] maximum:[_dial max] period:30000]];
   }
   
   if( [selectedTag isEqualToString:@"Ramp"] ) {
-    [self setRampOscillator:[[dial oscillator] mutableCopy]];
+    [self setRampOscillator:[[_dial oscillator] mutableCopy]];
   } else {
-    [self setRampOscillator:[[ELRampOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max] period:30000 rising:YES]];
+    [self setRampOscillator:[[ELRampOscillator alloc] initEnabled:YES minimum:[_dial min] maximum:[_dial max] period:30000 rising:YES]];
   }
   
   if( [selectedTag isEqualToString:@"Sequence"] ) {
-    [self setSequenceOscillator:[[dial oscillator] mutableCopy]];
+    [self setSequenceOscillator:[[_dial oscillator] mutableCopy]];
   } else {
     [self setSequenceOscillator:[[ELSequenceOscillator alloc] initEnabled:YES values:[NSArray array]]];
   }
   
   if( [selectedTag isEqualToString:@"Random"] ) {
-    [self setRandomOscillator:[[dial oscillator] mutableCopy]];
+    [self setRandomOscillator:[[_dial oscillator] mutableCopy]];
   } else {
-    [self setRandomOscillator:[[ELRandomOscillator alloc] initEnabled:YES minimum:[dial min] maximum:[dial max]]];
+    [self setRandomOscillator:[[ELRandomOscillator alloc] initEnabled:YES minimum:[_dial min] maximum:[_dial max]]];
   }
 }
 
 - (void)edit {
-  [self setupOscillators];
   [self showWindow:self];
 }
+
 
 @end

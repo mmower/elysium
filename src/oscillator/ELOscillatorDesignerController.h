@@ -21,28 +21,37 @@
 @class ELInspectorController;
 
 @interface ELOscillatorDesignerController : NSWindowController {
-  ELInspectorController *controller;
+  ELInspectorController *_controller;
   IBOutlet NSTabView    *tabView;
 
-  ELDial                *dial;
-  ELSquareOscillator    *squareOscillator;
-  ELSawOscillator       *sawOscillator;
-  ELSineOscillator      *sineOscillator;
-  ELRampOscillator      *rampOscillator;
-  ELSequenceOscillator  *sequenceOscillator;
-  ELRandomOscillator    *randomOscillator;
+  ELDial                *_dial;
+  ELSquareOscillator    *_squareOscillator;
+  ELSawOscillator       *_sawOscillator;
+  ELSineOscillator      *_sineOscillator;
+  ELRampOscillator      *_rampOscillator;
+  ELSequenceOscillator  *_sequenceOscillator;
+  ELRandomOscillator    *_randomOscillator;
   
   IBOutlet  LMDialView  *squareLFOMinDial;
   IBOutlet  LMDialView  *squareLFOMaxDial;
+  IBOutlet  LMDialView  *squareLFORestDial;
+  IBOutlet  LMDialView  *squareLFOSustainDial;
   
   IBOutlet  LMDialView  *sawLFOMinDial;
   IBOutlet  LMDialView  *sawLFOMaxDial;
+  IBOutlet  LMDialView  *sawLFOAttackDial;
+  IBOutlet  LMDialView  *sawLFOSustainDial;
+  IBOutlet  LMDialView  *sawLFODecayDial;
+  IBOutlet  LMDialView  *sawLFORestDial;
   
   IBOutlet  LMDialView  *sineLFOMinDial;
   IBOutlet  LMDialView  *sineLFOMaxDial;
+  IBOutlet  LMDialView  *sineLFOPeriodDial;
   
   IBOutlet  LMDialView  *rampLFOMinDial;
   IBOutlet  LMDialView  *rampLFOMaxDial;
+  IBOutlet  LMDialView  *rampLFOPeriodDial;
+  IBOutlet  NSButton    *rampLFORisingButton;
   
   IBOutlet  LMDialView  *randomLFOMinDial;
   IBOutlet  LMDialView  *randomLFOMaxDial;
@@ -53,7 +62,6 @@
 - (id)initWithDial:(ELDial *)dial controller:(ELInspectorController *)controller;
 
 @property             ELInspectorController *controller;
-@property             ELDial *dial;
 
 @property (assign)    ELSquareOscillator    *squareOscillator;
 @property (assign)    ELSawOscillator       *sawOscillator;
