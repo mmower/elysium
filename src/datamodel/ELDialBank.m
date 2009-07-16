@@ -111,7 +111,7 @@
                                player:nil
                              assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultDurationKey]
                                   min:100
-                                  max:5000
+                                  max:10000
                                  step:100];
 }
 
