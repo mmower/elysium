@@ -20,18 +20,6 @@ static UInt64 compTime = 50000000; /* We add a 50ms lead to all note info */
 
 - (void)playOnChannel:(int)channel duration:(int)duration velocity:(int)velocity transpose:(int)transpose {
   [self playOnChannel:channel duration:duration velocity:velocity transpose:transpose offset:0];
-  // UInt64 hostTime = AudioGetCurrentHostTime();
-  // UInt64 onTime = hostTime + AudioConvertNanosToHostTime(50000000);
-  // UInt64 offTime = onTime + AudioConvertNanosToHostTime(duration * 1000000);
-  // 
-  // NSLog( @"duration  = %d", duration );
-  // NSLog( @"onTime    = %llu", onTime );
-  // NSLog( @"offTIme   = %llu", offTime );
-  // NSLog( @"difference = %llu", (offTime - onTime) );
-  // 
-  // ELMIDIMessage *message = [[ELMIDIController sharedInstance] createMessage];
-  // [self prepareMIDIMessage:message channel:channel onTime:onTime offTime:offTime velocity:velocity transpose:transpose];
-  // [message send];
 }
 
 - (void)playOnChannel:(int)channel duration:(int)duration velocity:(int)velocity transpose:(int)transpose offset:(int)offset {
@@ -40,15 +28,6 @@ static UInt64 compTime = 50000000; /* We add a 50ms lead to all note info */
   UInt64 onTime = hostTime + compTime + rebaseTime;
   UInt64 noteTime = ((UInt64)duration) * 1000000;
   UInt64 offTime = onTime + noteTime;
-  
-  // NSLog( @"duration   = %d", duration );
-  // NSLog( @"rebase     = %-24llu", rebaseTime );
-  // NSLog( @"hostTime   = %-24llu", hostTime );
-  // NSLog( @"compTime   = %-24llu", compTime );
-  // NSLog( @"onTime     = %-24llu (offset=%24llu)", onTime, (onTime - hostTime) );
-  // NSLog( @"noteTime   = %-24llu", noteTime );
-  // NSLog( @"offTime    = %-24llu (offset=%24llu)", offTime, (offTime - hostTime) );
-  // NSLog( @"difference = %-24llu", (offTime - onTime) );
   
   ELMIDIMessage *message = [[ELMIDIController sharedInstance] createMessage];
   [self prepareMIDIMessage:message

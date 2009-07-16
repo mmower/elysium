@@ -102,44 +102,10 @@
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
-    // NSXMLNode *attributeNode;
-    
     [self setRest:[representation attributeAsInteger:@"rest" defaultValue:INT_MIN]];
-    // 
-    // attributeNode = [representation attributeForName:@"rest"];
-    // if( !attributeNode ) {
-    //   NSLog( @"No or invalid 'rest' attribute node for oscillator!" );
-    //   return nil;
-    // } else {
-    //   [self setRest:[[attributeNode stringValue] intValue]];
-    // }
-    
     [self setAttack:[representation attributeAsInteger:@"attack" defaultValue:INT_MIN]];
-    // attributeNode = [representation attributeForName:@"attack"];
-    // if( !attributeNode ) {
-    //   NSLog( @"No or invalid 'attack' attribute node for oscillator" );
-    //   return nil;
-    // } else {
-    //   [self setAttack:[[attributeNode stringValue] intValue]];
-    // }
-    
     [self setSustain:[representation attributeAsInteger:@"sustain" defaultValue:INT_MIN]];
-    // attributeNode = [representation attributeForName:@"sustain"];
-    // if( !attributeNode ) {
-    //   NSLog( @"No or invalid 'sustain' attribute node for oscillator" );
-    //   return nil;
-    // } else {
-    //   [self setAttack:[[attributeNode stringValue] intValue]];
-    // }
-    
     [self setDecay:[representation attributeAsInteger:@"decay" defaultValue:INT_MIN]];
-    // attributeNode = [representation attributeForName:@"decay"];
-    // if( !attributeNode ) {
-    //   NSLog( @"No or invalid 'decay' attribute node for oscillator" );
-    //   return nil;
-    // } else {
-    //   [self setDecay:[[attributeNode stringValue] intValue]];
-    // }
   }
   
   return self;

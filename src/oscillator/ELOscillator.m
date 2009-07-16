@@ -62,7 +62,6 @@
 
 - (void)update {
   [self setValue:[self generate]];
-  // NSLog( @"Updating oscillator %@ %d", self, [self value] );
 }
 
 

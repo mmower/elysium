@@ -112,23 +112,6 @@ NSMutableDictionary *tokenMapping = nil;
 }
 
 
-// - (void)dialDidUnsetOscillator:(ELDial *)dial {
-//   [[[[self cell] layer] player] dialDidUnsetOscillator:dial];
-// }
-// 
-// 
-// - (void)dialDidSetOscillator:(ELDial *)dial {
-//   NSLog( @"Token -dialDidSetOscillator: %@", dial );
-//   ELCell *cell = [self cell];
-//   NSLog( @"cell = %@", cell );
-//   ELLayer *layer = [cell layer];
-//   NSLog( @"layer = %@", layer );
-//   ELPlayer *player = [layer player];
-//   NSLog( @"player = %@", player );
-//   [[[[self cell] layer] player] dialDidSetOscillator:dial];
-// }
-
-
 #pragma mark Interactions with ELLayer
 
 - (void)addedToLayer:(ELLayer *)layer atPosition:(ELCell *)cell {
