@@ -14,6 +14,8 @@
 #import "ELToken.h"
 
 @interface ELGenerateToken : ELToken <DirectedToken> {
+  int     _nextTriggerBeat;
+  
   ELDial  *_triggerModeDial;
   ELDial  *_directionDial;
   ELDial  *_timeToLiveDial;

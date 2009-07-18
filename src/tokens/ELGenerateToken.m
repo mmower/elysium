@@ -16,6 +16,10 @@
 
 #import "ELDialBank.h"
 
+#define EL_BEAT_TRIGGER_MODE    0
+#define EL_IMPACT_TRIGGER_MODE  1
+#define EL_MIDI_TRIGGER_MODE    2
+
 @implementation ELGenerateToken
 
 + (NSString *)tokenType {
@@ -126,27 +130,21 @@
 }
 
 
-// Token runner
-
 - (BOOL)shouldPulseOnBeat:(int)beat {
   BOOL pulse = NO;
   
-  if( [[self pulseEveryDial] value] > 0 ) {
-    switch( [[self triggerModeDial] value] ) {
-      case 0:
-        // Beat trigger mode
-        pulse = ( ( beat - [[self offsetDial] value] ) % [[self pulseEveryDial] value] ) == 0;
-        break;
-      
-      case 1:
-        // Impact trigger mode
-        pulse = [[self cell] playheadEntered];
-        break;
-      
-      case 2:
-        pulse = [[self layer] receivedMIDINote:[[self cell] note]];
-        break;
-    }
+  switch( [[self triggerModeDial] value] ) {
+    case EL_BEAT_TRIGGER_MODE:
+      pulse = ( beat - [[self offsetDial] value] ) == _nextTriggerBeat;
+      break;
+    
+    case EL_IMPACT_TRIGGER_MODE:
+      pulse = [[self cell] playheadEntered];
+      break;
+    
+    case EL_MIDI_TRIGGER_MODE:
+      pulse = [[self layer] receivedMIDINote:[[self cell] note]];
+      break;
   }
   
   return pulse;
@@ -160,6 +158,8 @@
   [[self timeToLiveDial] start];
   [[self pulseEveryDial] start];
   [[self offsetDial] start];
+  
+  _nextTriggerBeat = 0;
 }
 
 
@@ -177,6 +177,7 @@
   [[self layer] addPlayhead:[[ELPlayhead alloc] initWithPosition:[self cell]
                                                        direction:[[self directionDial] value]
                                                              TTL:[[self timeToLiveDial] value]]];
+   _nextTriggerBeat += [[self pulseEveryDial] value];
 }
 
 
