@@ -31,7 +31,7 @@
   NSMutableArray        *_layers;          // Each layer is an "instrument"
   ELLayer               *_selectedLayer;
   BOOL                  _running;          // The player is active
-  ELMIDIController      *_midiController;  // Our interface to CoreMIDI
+  // ELMIDIController      *_midiController;  // Our interface to CoreMIDI
   ELOscillatorController *_oscillatorController;
   
   int                   _nextLayerNumber;

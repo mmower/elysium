@@ -36,18 +36,7 @@
 
 #import "ELDialBank.h"
 
-// static SEL updateSelector;
-
 @implementation ELPlayer
-
-// #pragma mark Class initializer
-// 
-// + (void)initialize {
-//   if( !updateSelector ) {
-//     updateSelector = @selector(update);
-//   }
-// }
-
 
 #pragma mark Initializers
 
@@ -118,7 +107,6 @@
 
 #pragma mark Properties
 
-// @synthesize startTime = _startTime;
 @synthesize harmonicTable = _harmonicTable;
 @synthesize layers = _layers;
 @synthesize dirty = _dirty;
@@ -276,11 +264,6 @@
 
 #pragma mark Drawing Support
 
-// - (void)toggleNoteDisplay {
-//   [self setShowNotes:![self showNotes]];
-// }
-
-
 - (void)needsDisplay {
   [[self layers] makeObjectsPerformSelector:@selector(needsDisplay)];
 }
@@ -338,10 +321,6 @@
   return [[self layers] objectAtIndex:index];
 }
 
-
-// - (NSArray *)layers {
-//   return [layers copy];
-// }
 
 - (void)removeLayers {
   for( ELLayer *layer in [[self layers] copy] ) {
@@ -456,12 +435,12 @@
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [self init] ) ) {
+    /* At this point the document doesn't have a player, it's us! */
+    player = self;
+    
     NSArray *nodes;
     
     _loaded = NO;
-    
-    // Controls for the player
-    *error = nil;
     
     [self setTempoDial:[representation loadDial:@"tempo" parent:nil player:player error:error]];
     [self setBarLengthDial:[representation loadDial:@"barLength" parent:nil player:player error:error]];
