@@ -104,7 +104,9 @@
   
   NSXMLElement *playerElement = [[self player] xmlRepresentation];
   if( !playerElement ) {
-    *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
+    if( outError ) {
+      *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
+    }
     return nil;
   }
   [rootElement addChild:playerElement];
@@ -169,7 +171,9 @@
     [self setComposerEmail:[composerElement attributeAsString:@"email"]];
   }
   
-  NSXMLElement *surfaceElement = [[rootElement nodesForXPath:@"surface" error:nil] firstXMLElement];
+  NSError *error = nil;
+  
+  NSXMLElement *surfaceElement = [[rootElement nodesForXPath:@"surface" error:&error] firstXMLElement];
   if( surfaceElement ) {
     _player = [[ELPlayer alloc] initWithXmlRepresentation:surfaceElement parent:self player:nil error:outError];
   }
