@@ -213,26 +213,11 @@
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
-    [self setTriggerModeDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='triggerMode']" error:error] firstXMLElement]
-                                                              parent:nil
-                                                              player:player
-                                                               error:error]];
-    [self setDirectionDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='direction']" error:error] firstXMLElement]
-                                                              parent:nil
-                                                              player:player
-                                                               error:error]];
-    [self setTimeToLiveDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='timeToLive']" error:error] firstXMLElement]
-                                                               parent:[parent timeToLiveDial]
-                                                               player:player
-                                                                error:error]];
-    [self setPulseEveryDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='pulseEvery']" error:error] firstXMLElement]
-                                                               parent:[parent pulseEveryDial]
-                                                               player:player
-                                                                error:error]];
-    [self setOffsetDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='offset']" error:error] firstXMLElement]
-                                                           parent:nil
-                                                           player:player
-                                                            error:error]];
+    [self setTriggerModeDial:[representation loadDial:@"triggerMode" parent:nil player:player error:error]];
+    [self setDirectionDial:[representation loadDial:@"direction" parent:nil player:player error:error]];
+    [self setTimeToLiveDial:[representation loadDial:@"timeToLive" parent:[parent timeToLiveDial] player:player error:error]];
+    [self setPulseEveryDial:[representation loadDial:@"pulseEvery" parent:[parent pulseEveryDial] player:player error:error]];
+    [self setOffsetDial:[representation loadDial:@"offset" parent:nil player:player error:error]];
   }
   
   return self;
