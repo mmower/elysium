@@ -14,11 +14,11 @@
 @class ELPlayer;
 
 @interface ELTimerCallback : NSObject <ELXmlData> {
-  BOOL            active;
-  NSTimeInterval  interval;
-  NSTimer         *timer;
-  ELScript        *callback;
-  ELPlayer        *player;
+  BOOL            _active;
+  NSTimeInterval  _interval;
+  NSTimer         *_timer;
+  ELScript        *_callback;
+  ELPlayer        *_player;
 }
 
 - (id)initWithPlayer:(ELPlayer *)player;
@@ -27,7 +27,5 @@
 @property NSTimeInterval interval;
 @property (readonly) ELScript *callback;
 @property (assign) ELPlayer *player;
-
-- (void)runCallback:(NSTimer *)_timer_;
 
 @end
