@@ -16,443 +16,450 @@
 
 @implementation ELScriptPackage
 
-- (id)initWithPlayer:(ELPlayer *)_player_ {
+- (id)initWithPlayer:(ELPlayer *)player {
   if( ( self = [super init] ) ) {
-    player = _player_;
+    _player = player;
     
     for( int i = 0; i < 8; i++ ) {
-      flag[i] = NO;
-      var[i] = 0.0;
-      varMin[i] = 0.0;
-      varMax[i] = 127.0;
+      _flag[i]   = NO;
+      _var[i]    = 0.0;
+      _varMin[i] = 0.0;
+      _varMax[i] = 127.0;
     }
     
     for( int i = 0; i < 4; i++ ) {
-      timer[i] = [[ELTimerCallback alloc] initWithPlayer:player];
+      _timer[i] = [[ELTimerCallback alloc] initWithPlayer:_player];
     }
   }
   
   return self;
 }
 
-@synthesize player;
+@synthesize player = _player;
 
 @dynamic f1;
 
 - (BOOL)f1 {
-  return flag[0];
+  return _flag[0];
 }
 
-- (void)setF1:(BOOL)_set_ {
-  flag[0] = _set_;
+- (void)setF1:(BOOL)set {
+  _flag[0] = set;
 }
 
 @dynamic f2;
 
 - (BOOL)f2 {
-  return flag[1];
+  return _flag[1];
 }
 
-- (void)setF2:(BOOL)_set_ {
-  flag[1] = _set_;
+- (void)setF2:(BOOL)set {
+  _flag[1] = set;
 }
 
 @dynamic f3;
 
 - (BOOL)f3 {
-  return flag[2];
+  return _flag[2];
 }
 
-- (void)setF3:(BOOL)_set_ {
-  flag[2] = _set_;
+- (void)setF3:(BOOL)set {
+  _flag[2] = set;
 }
 
 @dynamic f4;
 
 - (BOOL)f4 {
-  return flag[3];
+  return _flag[3];
 }
 
-- (void)setF4:(BOOL)_set_ {
-  flag[3] = _set_;
+- (void)setF4:(BOOL)set {
+  _flag[3] = set;
 }
 
 @dynamic f5;
 
 - (BOOL)f5 {
-  return flag[4];
+  return _flag[4];
 }
 
-- (void)setF5:(BOOL)_set_ {
-  flag[4] = _set_;
+- (void)setF5:(BOOL)set {
+  _flag[4] = set;
 }
 
 @dynamic f6;
 
 - (BOOL)f6 {
-  return flag[5];
+  return _flag[5];
 }
 
-- (void)setF6:(BOOL)_set_ {
-  flag[5] = _set_;
+- (void)setF6:(BOOL)set {
+  _flag[5] = set;
 }
 
 @dynamic f7;
 
 - (BOOL)f7 {
-  return flag[6];
+  return _flag[6];
 }
 
-- (void)setF7:(BOOL)_set_ {
-  flag[6] = _set_;
+- (void)setF7:(BOOL)set {
+  _flag[6] = set;
 }
 
 @dynamic f8;
 
 - (BOOL)f8 {
-  return flag[7];
+  return _flag[7];
 }
 
-- (void)setF8:(BOOL)_set_ {
-  flag[7] = _set_;
+- (void)setF8:(BOOL)set {
+  _flag[7] = set;
 }
 
 @dynamic v1;
 
 - (float)v1 {
-  return var[0];
+  return _var[0];
 }
 
-- (void)setV1:(float)_var_ {
-  var[0] = _var_;
+- (void)setV1:(float)var {
+  _var[0] = var;
 }
 
 @dynamic v1min;
 
 - (float)v1min {
-  return varMin[0];
+  return _varMin[0];
 }
 
-- (void)setV1min:(float)_min_ {
-  varMin[0] = _min_;
-  if( var[0] < _min_ ) {
-    [self setV1:_min_];
+- (void)setV1min:(float)min {
+  _varMin[0] = min;
+  if( _var[0] < min ) {
+    [self setV1:min];
   }
 }
 
 @dynamic v1max;
 
 - (float)v1max {
-  return varMax[0];
+  return _varMax[0];
 }
 
-- (void)setV1max:(float)_max_ {
-  varMax[0] = _max_;
-  if( var[0] > _max_ ) {
-    [self setV1:_max_];
+- (void)setV1max:(float)max {
+  _varMax[0] = max;
+  if( _var[0] > max ) {
+    [self setV1:max];
   }
 }
 
 @dynamic v2;
 
 - (float)v2 {
-  return var[1];
+  return _var[1];
 }
 
-- (void)setV2:(float)_var_ {
-  var[1] = _var_;
+- (void)setV2:(float)var {
+  _var[1] = var;
 }
 
 @dynamic v2min;
 
 - (float)v2min {
-  return varMin[1];
+  return _varMin[1];
 }
 
-- (void)setV2min:(float)_min_ {
-  varMin[1] = _min_;
-  if( var[1] < _min_ ) {
-    [self setV2:_min_];
+- (void)setV2min:(float)min {
+  _varMin[1] = min;
+  if( _var[1] < min ) {
+    [self setV2:min];
   }
 }
 
 @dynamic v2max;
 
 - (float)v2max {
-  return varMax[1];
+  return _varMax[1];
 }
 
-- (void)setV2max:(float)_max_ {
-  varMax[1] = _max_;
-  if( var[1] > _max_ ) {
-    [self setV2:_max_];
+- (void)setV2max:(float)max {
+  _varMax[1] = max;
+  if( _var[1] > max ) {
+    [self setV2:max];
   }
 }
 
 @dynamic v3;
 
 - (float)v3 {
-  return var[2];
+  return _var[2];
 }
 
-- (void)setV3:(float)_var_ {
-  var[2] = _var_;
+- (void)setV3:(float)var {
+  _var[2] = var;
 }
 
 @dynamic v3min;
 
 - (float)v3min {
-  return varMin[2];
+  return _varMin[2];
 }
 
-- (void)setV3min:(float)_min_ {
-  varMin[2] = _min_;
-  if( var[2] < _min_ ) {
-    [self setV3:_min_];
+- (void)setV3min:(float)min {
+  _varMin[2] = min;
+  if( _var[2] < min ) {
+    [self setV3:min];
   }
 }
 
 @dynamic v3max;
 
 - (float)v3max {
-  return varMax[2];
+  return _varMax[2];
 }
 
-- (void)setV3max:(float)_max_ {
-  varMax[2] = _max_;
-  if( var[2] > _max_ ) {
-    [self setV3:_max_];
+- (void)setV3max:(float)max {
+  _varMax[2] = max;
+  if( _var[2] > max ) {
+    [self setV3:max];
   }
 }
 
 @dynamic v4;
 
 - (float)v4 {
-  return var[3];
+  return _var[3];
 }
 
-- (void)setV4:(float)_var_ {
-  var[3] = _var_;
+- (void)setV4:(float)var {
+  _var[3] = var;
 }
 
 @dynamic v4min;
 
 - (float)v4min {
-  return varMin[3];
+  return _varMin[3];
 }
 
-- (void)setV4min:(float)_min_ {
-  varMin[3] = _min_;
-  if( var[3] < _min_ ) {
-    [self setV4:_min_];
+- (void)setV4min:(float)min {
+  _varMin[3] = min;
+  if( _var[3] < min ) {
+    [self setV4:min];
   }
 }
 
 @dynamic v4max;
 
 - (float)v4max {
-  return varMax[3];
+  return _varMax[3];
 }
 
-- (void)setV4max:(float)_max_ {
-  varMax[3] = _max_;
-  if( var[3] > _max_ ) {
-    [self setV4:_max_];
+- (void)setV4max:(float)max {
+  _varMax[3] = max;
+  if( _var[3] > max ) {
+    [self setV4:max];
   }
 }
 
 @dynamic v5;
 
 - (float)v5 {
-  return var[4];
+  return _var[4];
 }
 
-- (void)setV5:(float)_var_ {
-  var[4] = _var_;
+- (void)setV5:(float)var {
+  _var[4] = var;
 }
 
 @dynamic v5min;
 
 - (float)v5min {
-  return varMin[4];
+  return _varMin[4];
 }
 
-- (void)setV5min:(float)_min_ {
-  varMin[4] = _min_;
-  if( var[4] < _min_ ) {
-    [self setV5:_min_];
+- (void)setV5min:(float)min {
+  _varMin[4] = min;
+  if( _var[4] < min ) {
+    [self setV5:min];
   }
 }
 
 @dynamic v5max;
 
 - (float)v5max {
-  return varMax[4];
+  return _varMax[4];
 }
 
-- (void)setV5max:(float)_max_ {
-  varMax[4] = _max_;
-  if( var[4] > _max_ ) {
-    [self setV5:_max_];
+- (void)setV5max:(float)max {
+  _varMax[4] = max;
+  if( _var[4] > max ) {
+    [self setV5:max];
   }
 }
 
 @dynamic v6;
 
 - (float)v6 {
-  return var[5];
+  return _var[5];
 }
 
-- (void)setV6:(float)_var_ {
-  var[5] = _var_;
+- (void)setV6:(float)var {
+  _var[5] = var;
 }
 
 @dynamic v6min;
 
 - (float)v6min {
-  return varMin[5];
+  return _varMin[5];
 }
 
-- (void)setV6min:(float)_min_ {
-  varMin[5] = _min_;
-  if( var[5] < _min_ ) {
-    [self setV6:_min_];
+- (void)setV6min:(float)min {
+  _varMin[5] = min;
+  if( _var[5] < min ) {
+    [self setV6:min];
   }
 }
 
 @dynamic v6max;
 
 - (float)v6max {
-  return varMax[5];
+  return _varMax[5];
 }
 
-- (void)setV6max:(float)_max_ {
-  varMax[5] = _max_;
-  if( var[5] > _max_ ) {
-    [self setV6:_max_];
+- (void)setV6max:(float)max {
+  _varMax[5] = max;
+  if( _var[5] > max ) {
+    [self setV6:max];
   }
 }
 
 @dynamic v7;
 
 - (float)v7 {
-  return var[6];
+  return _var[6];
 }
 
-- (void)setV7:(float)_var_ {
-  var[6] = _var_;
+- (void)setV7:(float)var {
+  _var[6] = var;
 }
 
 @dynamic v7min;
 
 - (float)v7min {
-  return varMin[6];
+  return _varMin[6];
 }
 
-- (void)setV7min:(float)_min_ {
-  varMin[6] = _min_;
-  if( var[6] < _min_ ) {
-    [self setV7:_min_];
+- (void)setV7min:(float)min {
+  _varMin[6] = min;
+  if( _var[6] < min ) {
+    [self setV7:min];
   }
 }
 
 @dynamic v7max;
 
 - (float)v7max {
-  return varMax[6];
+  return _varMax[6];
 }
 
-- (void)setV7max:(float)_max_ {
-  varMax[6] = _max_;
-  if( var[6] > _max_ ) {
-    [self setV7:_max_];
+- (void)setV7max:(float)max {
+  _varMax[6] = max;
+  if( _var[6] > max ) {
+    [self setV7:max];
   }
 }
 
 @dynamic v8;
 
 - (float)v8 {
-  return var[7];
+  return _var[7];
 }
 
-- (void)setV8:(float)_var_ {
-  var[7] = _var_;
+- (void)setV8:(float)var {
+  _var[7] = var;
 }
 
 @dynamic v8min;
 
 - (float)v8min {
-  return varMin[7];
+  return _varMin[7];
 }
 
-- (void)setV8min:(float)_min_ {
-  varMin[7] = _min_;
-  if( var[7] < _min_ ) {
-    [self setV8:_min_];
+- (void)setV8min:(float)min {
+  _varMin[7] = min;
+  if( _var[7] < min ) {
+    [self setV8:min];
   }
 }
 
 @dynamic v8max;
 
 - (float)v8max {
-  return varMax[7];
+  return _varMax[7];
 }
 
-- (void)setV8max:(float)_max_ {
-  varMax[7] = _max_;
-  if( var[7] > _max_ ) {
-    [self setV8:_max_];
+- (void)setV8max:(float)max {
+  _varMax[7] = max;
+  if( _var[7] > max ) {
+    [self setV8:max];
   }
 }
 
 @dynamic timer1;
 
 - (ELTimerCallback *)timer1 {
-  return timer[0];
+  return _timer[0];
 }
 
 @dynamic timer2;
 
 - (ELTimerCallback *)timer2 {
-  return timer[1];
+  return _timer[1];
 }
 
 @dynamic timer3;
 
 - (ELTimerCallback *)timer3 {
-  return timer[2];
+  return _timer[2];
 }
 
 @dynamic timer4;
 
 - (ELTimerCallback *)timer4 {
-  return timer[3];
+  return _timer[3];
 }
 
-// ELXmlData protocol implementation
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
+#pragma mark Implements ELXmlData
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [self init] ) ) {
-    for( NSXMLNode *node in [_representation_ nodesForXPath:@"flags/flag" error:nil] ) {
+    BOOL hasValue;
+    
+    for( NSXMLNode *node in [representation nodesForXPath:@"flags/flag" error:error] ) {
       NSXMLElement *element = (NSXMLElement *)node;
       
-      int index = [[[element attributeForName:@"index"] stringValue] intValue];
-      BOOL set = [[[element attributeForName:@"set"] stringValue] boolValue];
+      int index = [element attributeAsInteger:@"index" hasValue:&hasValue];
+      if( !hasValue ) {
+        NSLog( @"Error loading script flag!" );
+        return nil;
+      }
       
-      flag[index] = set;
+      _flag[index] = [element attributeAsBool:@"set"];
     }
     
-    for( NSXMLNode *node in [_representation_ nodesForXPath:@"vars/var" error:nil] ) {
+    for( NSXMLNode *node in [representation nodesForXPath:@"vars/var" error:error] ) {
       NSXMLElement *element = (NSXMLElement *)node;
       
-      int index = [[[element attributeForName:@"index"] stringValue] intValue];
-      float value = [[[element attributeForName:@"value"] stringValue] floatValue];
-      float min = [[[element attributeForName:@"min"] stringValue] floatValue];
-      float max = [[[element attributeForName:@"max"] stringValue] floatValue];
+      int index = [element attributeAsInteger:@"index" hasValue:&hasValue];
+      if( !hasValue ) {
+        NSLog( @"Error loading script var!" );
+        return nil;
+      }
       
-      var[index] = value;
-      varMin[index] = min;
-      varMax[index] = max;
+      _var[index] = [element attributeAsDouble:@"value" defaultValue:0.0];
+      _varMin[index] = [element attributeAsDouble:@"min" defaultValue:0.0];
+      _varMax[index] = [element attributeAsDouble:@"max" defaultValue:0.0];
     }
   }
   
@@ -468,7 +475,7 @@
   for( int i = 0; i < 8; i++ ) {
     NSXMLElement *flagElement = [NSXMLNode elementWithName:@"flag"];
     [attributes removeAllObjects];
-    [attributes setObject:[NSNumber numberWithBool:flag[i]] forKey:@"set"];
+    [attributes setObject:[NSNumber numberWithBool:_flag[i]] forKey:@"set"];
     [attributes setObject:[NSNumber numberWithInt:i] forKey:@"index"];
     [flagElement setAttributesAsDictionary:attributes];
     [flagsElement addChild:flagElement];
@@ -479,9 +486,9 @@
   for( int i = 0; i < 8; i++ ) {
     NSXMLElement *varElement = [NSXMLNode elementWithName:@"var"];
     [attributes removeAllObjects];
-    [attributes setObject:[NSNumber numberWithFloat:var[i]] forKey:@"value"];
-    [attributes setObject:[NSNumber numberWithFloat:varMin[i]] forKey:@"min"];
-    [attributes setObject:[NSNumber numberWithFloat:varMax[i]] forKey:@"max"];
+    [attributes setObject:[NSNumber numberWithFloat:_var[i]] forKey:@"value"];
+    [attributes setObject:[NSNumber numberWithFloat:_varMin[i]] forKey:@"min"];
+    [attributes setObject:[NSNumber numberWithFloat:_varMax[i]] forKey:@"max"];
     [attributes setObject:[NSNumber numberWithInt:i] forKey:@"index"];
     [varElement setAttributesAsDictionary:attributes];
     [varsElement addChild:varElement];
@@ -490,7 +497,7 @@
   
   NSXMLElement *timersElement = [NSXMLNode elementWithName:@"timers"];
   for( int i = 0; i < 4; i++ ) {
-    [timersElement addChild:[timer[i] xmlRepresentation]];
+    [timersElement addChild:[_timer[i] xmlRepresentation]];
   }
   [pkgElement addChild:timersElement];
   
