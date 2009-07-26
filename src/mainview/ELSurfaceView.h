@@ -15,7 +15,7 @@
 
 @interface ELSurfaceView : LMHoneycombView {
   NSMutableArray  *octaveColors;
-  NSColor         *tokenColor;
+  // NSColor         *tokenColor;
   NSEvent         *savedEvent;
 }
 
