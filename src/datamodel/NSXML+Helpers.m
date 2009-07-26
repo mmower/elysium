@@ -24,6 +24,17 @@
   return (NSXMLElement *)[self objectAtIndex:0];
 }
 
+
+- (BOOL)isEmpty {
+  return [self count] == 0;
+}
+
+
+- (BOOL)isNotEmpty {
+  return [self count] > 0;
+}
+
+
 @end
 
 @implementation NSXMLElement (NSXML_Helpers)
@@ -34,6 +45,12 @@
                                             player:player
                                              error:error];
 }
+
+
+- (BOOL)attributeAsBool:(NSString *)name {
+  return [[self attributeAsString:name] boolValue];
+}
+
 
 - (NSString *)attributeAsString:(NSString *)name {
   NSXMLNode *attributeNode = [self attributeForName:name];
@@ -53,6 +70,41 @@
   }
 }
 
+
+- (int)attributeAsInteger:(NSString *)name hasValue:(BOOL *)hasValue {
+  NSString *attribute = [self attributeAsString:name];
+  if( attribute ) {
+    *hasValue = YES;
+    return [attribute intValue];
+  } else {
+    *hasValue = NO;
+    return INT_MAX;
+  }
+}
+
+
+- (double)attributeAsDouble:(NSString *)name defaultValue:(double)defval {
+  NSString *attribute = [self attributeAsString:name];
+  if( attribute ) {
+    return [attribute doubleValue];
+  } else {
+    return defval;
+  }
+}
+
+
+- (double)attributeAsDouble:(NSString *)name hasValue:(BOOL *)hasValue {
+  NSString *attribute = [self attributeAsString:name];
+  if( attribute ) {
+    *hasValue = YES;
+    return [attribute doubleValue];
+  } else {
+    *hasValue = NO;
+    return 0.0;
+  }
+}
+
+
 @end
 
 @implementation NSError (NSXML_Helpers)
@@ -60,7 +112,7 @@
 + (NSError *)errorForLoadFailure:(NSString *)message code:(int)code withError:(NSError **)underlyingError {
   NSDictionary* userInfo;
   
-  if( *underlyingError ) {
+  if( underlyingError && *underlyingError ) {
     userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                                       message,NSLocalizedDescriptionKey,
                                       *underlyingError,NSUnderlyingErrorKey,
