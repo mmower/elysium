@@ -17,10 +17,7 @@
   int _sustain;
   int _decay;
   
-  int _attackBase;
   float _attackDelta;
-  
-  int _decayBase;
   float _decayDelta;
   
   int _period;
