@@ -81,6 +81,7 @@
 		C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580E70F181F5D00DB8E93 /* ELScript.m */; };
 		C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */; };
 		C978717F0F1FF76B00C4160A /* output in Resources */ = {isa = PBXBuildFile; fileRef = C97871380F1FF76B00C4160A /* output */; };
+		C9880C74100FED3700325AF2 /* ElysiumComposition.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9880C73100FED3700325AF2 /* ElysiumComposition.icns */; };
 		C98D70AD0FFF605400BB289C /* ELNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = C98D70AC0FFF605400BB289C /* ELNotifications.m */; };
 		C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8370E8907B6009C699E /* sectionheader.gif */; };
 		C99FA9E20EB8F69E002305EF /* ELMIDIConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */; };
@@ -271,6 +272,7 @@
 		C97580E70F181F5D00DB8E93 /* ELScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScript.m; sourceTree = "<group>"; };
 		C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
 		C97871380F1FF76B00C4160A /* output */ = {isa = PBXFileReference; lastKnownFileType = folder; name = output; path = help/output; sourceTree = "<group>"; };
+		C9880C73100FED3700325AF2 /* ElysiumComposition.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ElysiumComposition.icns; sourceTree = "<group>"; };
 		C98D70AB0FFF605400BB289C /* ELNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELNotifications.h; path = src/ELNotifications.h; sourceTree = "<group>"; };
 		C98D70AC0FFF605400BB289C /* ELNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELNotifications.m; path = src/ELNotifications.m; sourceTree = "<group>"; };
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 		C9B88E400E64A5E400FA411E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C9880C73100FED3700325AF2 /* ElysiumComposition.icns */,
 				C94BAFA90F4237BD00F1A0F8 /* dial_inherited.tif */,
 				C94BAF9F0F42352100F1A0F8 /* dial_dynamic.tif */,
 				C94BAF9D0F4233A200F1A0F8 /* dial_free.tif */,
@@ -899,6 +902,7 @@
 				C94BAFAA0F4237BD00F1A0F8 /* dial_inherited.tif in Resources */,
 				C9F233840F536D5500F036AD /* ELSkipInspectorPane.xib in Resources */,
 				C91D60EF0F67191B002A1A11 /* CompositionManager.xib in Resources */,
+				C9880C74100FED3700325AF2 /* ElysiumComposition.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
