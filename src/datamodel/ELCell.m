@@ -748,37 +748,37 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   
   element = [[representation nodesForXPath:@"generate" error:error] firstXMLElement];
   if( element ) {
-    [self setGenerateToken:[[ELGenerateToken alloc] initWithXmlRepresentation:element parent:self player:player error:error]];
+    [self setGenerateToken:[[ELGenerateToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
   element = [[representation nodesForXPath:@"note" error:error] firstXMLElement];
   if( element ) {
-    [self setNoteToken:[[ELNoteToken alloc] initWithXmlRepresentation:element parent:self player:player error:error]];
+    [self setNoteToken:[[ELNoteToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
   element = [[representation nodesForXPath:@"rebound" error:error] firstXMLElement];
   if( element ) {
-    [self setReboundToken:[[ELReboundToken alloc] initWithXmlRepresentation:element parent:self player:player error:error]];
+    [self setReboundToken:[[ELReboundToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
   element = [[representation nodesForXPath:@"absorb" error:error] firstXMLElement];
   if( element ) {
-    [self setAbsorbToken:[[ELAbsorbToken alloc] initWithXmlRepresentation:element parent:self player:player error:error]];
+    [self setAbsorbToken:[[ELAbsorbToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
   element = [[representation nodesForXPath:@"split" error:error] firstXMLElement];
   if( element ) {
-    [self setSplitToken:[[ELSplitToken alloc] initWithXmlRepresentation:element parent:self player:player error:error]];
+    [self setSplitToken:[[ELSplitToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
   element = [[representation nodesForXPath:@"spin" error:error] firstXMLElement];
   if( element ) {
-    [self setSpinToken:[[ELSpinToken alloc] initWithXmlRepresentation:element parent:self player:player error:error]];
+    [self setSpinToken:[[ELSpinToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
   element = [[representation nodesForXPath:@"skip" error:error] firstXMLElement];
   if( element ) {
-    [self setSkipToken:[[ELSkipToken alloc] initWithXmlRepresentation:element parent:self player:player error:error]];
+    [self setSkipToken:[[ELSkipToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
   return self;
