@@ -20,6 +20,9 @@
 
 @implementation ELMIDITrigger
 
+
+#pragma mark Object initialization
+
 - (id)init {
   if( ( self = [super init] ) ) {
     [self setChannelMask:0x0F];
@@ -31,85 +34,95 @@
   return self;
 }
 
-- (id)initWithPlayer:(ELPlayer *)_player_ channelMask:(Byte)_channelMask_ controller:(Byte)_controller_ callback:(ELScript *)_callback_ {
+- (id)initWithPlayer:(ELPlayer *)player channelMask:(Byte)channelMask controller:(Byte)controller callback:(ELScript *)callback {
   if( ( self = [self init] ) ) {
-    [self setPlayer:_player_];
-    [self setChannelMask:_channelMask_];
-    [self setController:_controller_];
-    [self setCallback:_callback_];
+    [self setPlayer:player];
+    [self setChannelMask:channelMask];
+    [self setController:controller];
+    [self setCallback:callback];
   }
   
   return self;
 }
 
-@synthesize player;
-@synthesize channelMask;
-@synthesize controller;
-@synthesize callback;
 
-- (BOOL)handleMIDIControlMessage:(ELMIDIControlMessage *)_controlMessage_ {
-  NSLog( @"Trigger %@ checking CC message: %@", self, _controlMessage_ );
-  if( [_controlMessage_ matchesChannelMask:[self channelMask] andController:[self controller]] ) {
+#pragma mark Properties
+
+@synthesize player = _player;
+@synthesize channelMask = _channelMask;
+@synthesize controller = _controller;
+@synthesize callback = _callback;
+
+
+#pragma mark Object behaviours
+
+- (BOOL)handleMIDIControlMessage:(ELMIDIControlMessage *)controlMessage {
+  NSLog( @"Trigger %@ checking CC message: %@", self, controlMessage );
+  if( [controlMessage matchesChannelMask:[self channelMask] andController:[self controller]] ) {
     @try {
-      NSLog( @"Invoke Ruby callback" );
-      [[self callback] evalWithArg:[self player] arg:_controlMessage_];
+      NSLog( @"Invoke MIDI trigger callback" );
+      [[self callback] evalWithArg:[self player] arg:controlMessage];
       return YES;
     }
     @catch( NSException *exception ) {
-      NSLog( @"We got an exception trying to go Ruby: %@", exception );
+      NSLog( @"Exception executing MIDI trigger callback: %@", exception );
     }
   }
   
   return NO;
 }
 
-// ELXmlData protocol conformance
+
+#pragma mark Implements ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *triggerElement = [NSXMLNode elementWithName:@"trigger"];
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:[NSNumber numberWithUnsignedShort:channelMask] forKey:@"channelMask"];
-  [attributes setObject:[NSNumber numberWithUnsignedShort:controller] forKey:@"controller"];
+  [attributes setObject:[NSNumber numberWithUnsignedShort:[self channelMask]] forKey:@"channelMask"];
+  [attributes setObject:[NSNumber numberWithUnsignedShort:[self controller]] forKey:@"controller"];
   [triggerElement setAttributesAsDictionary:attributes];
   
   NSXMLElement *callbackElement = [NSXMLNode elementWithName:@"callback"];
   NSXMLNode *cdataNode = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
-  [cdataNode setStringValue:[callback source]];
+  [cdataNode setStringValue:[[self callback] source]];
   [callbackElement addChild:cdataNode];
   [triggerElement addChild:callbackElement];
   
   return triggerElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [self init] ) ) {
-    NSXMLNode *attributeNode;
+    BOOL hasValue;
     
-    [self setPlayer:_player_];
+    [self setPlayer:player];
     
-    if( ( attributeNode = [_representation_ attributeForName:@"channelMask"] ) ) {
-      [self setChannelMask:[[attributeNode stringValue] intValue]];
-    } else {
+    int channelMask = [representation attributeAsInteger:@"channelMask" hasValue:&hasValue];
+    if( !hasValue ) {
       NSLog( @"Trigger found without channelMask" );
       return nil;
     }
     
-    if( ( attributeNode = [_representation_ attributeForName:@"controller"] ) ) {
-      [self setController:[[attributeNode stringValue] intValue]];
-    } else {
+    int controller = [representation attributeAsInteger:@"controller" hasValue:&hasValue];
+    if( !hasValue ) {
       NSLog( @"Trigger found without controller" );
       return nil;
     }
-
-    NSArray *nodes = [_representation_ nodesForXPath:@"callback" error:nil];
-    if( [nodes count] > 0 ) {
-      NSXMLElement *element = (NSXMLElement *)[nodes objectAtIndex:0];
-      [self setCallback:[[element stringValue] asJavascriptFunction]];
-    } else {
-      NSLog( @"Trigger found without callback" );
+    
+    NSString *callbackSource;
+    NSArray *nodes = [representation nodesForXPath:@"callback" error:error];
+    if( [nodes isEmpty] ) {
+      NSLog( @"Trigger found without callback: %@", (error && *error) ? *error : @"no further info" );
       return nil;
+    } else {
+      callbackSource = [[nodes firstXMLElement] stringValue];
     }
+    
+    [self setChannelMask:channelMask];
+    [self setController:controller];
+    [self setCallback:[callbackSource asJavascriptFunction]];
   }
   
   return self;

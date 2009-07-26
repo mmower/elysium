@@ -15,10 +15,10 @@
 @class ELMIDIControlMessage;
 
 @interface ELMIDITrigger : NSObject <ELXmlData> {
-  ELPlayer  *player;
-  int       channelMask;
-  int       controller;
-  ELScript  *callback;
+  ELPlayer  *_player;
+  int       _channelMask;
+  int       _controller;
+  ELScript  *_callback;
 }
 
 - (id)initWithPlayer:(ELPlayer *)player channelMask:(Byte)channelMask controller:(Byte)controller callback:(ELScript *)callback;
