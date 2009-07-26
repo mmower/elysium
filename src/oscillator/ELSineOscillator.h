@@ -20,6 +20,6 @@
 
 @property int period;
 
-- (int)generateWithT:(int)t;
+- (int)generateWithT:(UInt64)t;
 
 @end

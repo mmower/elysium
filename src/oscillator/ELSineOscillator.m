@@ -27,6 +27,8 @@
 }
 
 
+#pragma mark Properties
+
 - (NSString *)type {
   return @"Sine";
 }
@@ -36,20 +38,27 @@
   return [NSString stringWithFormat:@"<ELSineOscillator: %p> min:%d hard_min:%d max:%d hard_max:%d period:%d", self, [self minimum], [self hardMinimum], [self maximum], [self hardMaximum], [self period]];
 }
 
+
 @synthesize period = _period;
+
+
+#pragma mark LFO value generation
 
 - (int)generate {
     // Get time in milliseconds
     UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() - [self timeBase] ) / 1000000;
-    int t = time % [self period];
-    return [self generateWithT:t];
+    return [self generateWithT:( time % [self period] )];
 }
 
-- (int)generateWithT:(int)_t_ {
+
+- (int)generateWithT:(UInt64)t {
   // Convert to angular form and use as a proportion of the range
-  float angle = ((float)_t_ / [self period]) * M_PI;
+  float angle = ((float)t / [self period]) * M_PI;
   return [self minimum] + ( [self range] * sin( angle ) );
 }
+
+
+#pragma mark Implements ELXmlData
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
@@ -67,11 +76,15 @@
   return self;
 }
 
+
 - (void)storeAttributes:(NSMutableDictionary *)attributes {
   [super storeAttributes:attributes];
   
   [attributes setObject:[NSNumber numberWithInteger:[self period]] forKey:@"period"];
 }
+
+
+#pragma mark Implements NSMutableCopying
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
   return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
