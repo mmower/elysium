@@ -222,11 +222,11 @@
                                                               player:player
                                                                error:error]];
     [self setTimeToLiveDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='timeToLive']" error:error] firstXMLElement]
-                                                               parent:nil
+                                                               parent:[parent timeToLiveDial]
                                                                player:player
                                                                 error:error]];
     [self setPulseEveryDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='pulseEvery']" error:error] firstXMLElement]
-                                                               parent:nil
+                                                               parent:[parent pulseEveryDial]
                                                                player:player
                                                                 error:error]];
     [self setOffsetDial:[[ELDial alloc] initWithXmlRepresentation:[[representation nodesForXPath:@"controls/dial[@name='offset']" error:error] firstXMLElement]
