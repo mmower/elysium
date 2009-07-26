@@ -168,13 +168,15 @@ static BOOL initialized = NO;
 }
 
 
-- (void)applicationDidFinishLaunching:(NSNotification *)_notification_ {
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+  NSError *error = nil;
+  
   if( [[NSUserDefaults standardUserDefaults] integerForKey:ELBehaviourAtOpenKey] == EL_OPEN_LAST ) {
     NSArray *recentDocuments = [[NSDocumentController sharedDocumentController] recentDocumentURLs];
     if( [recentDocuments count] > 0 ) {
       [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:[recentDocuments objectAtIndex:0] display:YES];
     } else {
-      [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
+      [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:&error];
     }
   }
 }
@@ -195,9 +197,11 @@ static BOOL initialized = NO;
     NSLog( @"Created Elysium app support path" );
   }
   
+  NSError *error = nil;
+  
   NSString *userLibPath = [elysiumAppSupportPath stringByAppendingPathComponent:@"userlib.js"];
   if( ![[NSFileManager defaultManager] fileExistsAtPath:userLibPath] ) {
-    [@"// Elysium user library" writeToFile:userLibPath atomically:NO encoding:NSASCIIStringEncoding error:nil];
+    [@"// Elysium user library" writeToFile:userLibPath atomically:NO encoding:NSASCIIStringEncoding error:&error];
     NSLog( @"Written new user library" );
   } else {
     NSLog( @"Using existing user library: %@", userLibPath );
