@@ -281,7 +281,7 @@ NSMutableDictionary *tokenMapping = nil;
     [self setPDial:[representation loadDial:@"p" parent:nil player:player error:error]];
     [self setGateDial:[representation loadDial:@"gate" parent:nil player:player error:error]];
     
-    for( NSXMLNode *node in [representation nodesForXPath:@"scripts/script" error:nil] ) {
+    for( NSXMLNode *node in [representation nodesForXPath:@"scripts/script" error:error] ) {
       NSXMLElement *element = (NSXMLElement *)node;
       [[self scripts] setObject:[[element stringValue] asJavascriptFunction]
                   forKey:[[element attributeForName:@"name"] stringValue]];

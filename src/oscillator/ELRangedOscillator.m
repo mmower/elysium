@@ -63,28 +63,27 @@
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
-    NSXMLNode *attributeNode;
+    BOOL hasValue;
     
-    attributeNode = [representation attributeForName:@"minimum"];
-    if( attributeNode == nil ) {
-      if( *error ) {
+    int min_value = [representation attributeAsInteger:@"minimum" hasValue:&hasValue];
+    if( !hasValue ) {
+      if( error ) {
         *error = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_OSCILLATOR_INVALID_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Ranged oscillator has no or invalid minimum",NSLocalizedDescriptionKey,nil]];
       }
       return nil;
-    } else {
-      [self setMinimum:[[attributeNode stringValue] intValue]];
-      [self setValue:[self minimum]];
     }
     
-    attributeNode = [representation attributeForName:@"maximum"];
-    if( attributeNode == nil ) {
-      if( *error ) {
+    int max_value = [representation attributeAsInteger:@"maximum" hasValue:&hasValue];
+    if( !hasValue ) {
+      if( error ) {
         *error = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_OSCILLATOR_INVALID_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Ranged oscillator has no or invalid maximum",NSLocalizedDescriptionKey,nil]];
       }
       return nil;
-    } else {
-      [self setMaximum:[[attributeNode stringValue] intValue]];
     }
+    
+    [self setMinimum:min_value];
+    [self setValue:[self minimum]];
+    [self setMaximum:max_value];
   }
   
   return self;
