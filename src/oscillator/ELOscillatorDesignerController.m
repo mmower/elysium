@@ -25,6 +25,8 @@
 
 @implementation ELOscillatorDesignerController
 
+#pragma mark Object initialization
+
 - (id)initWithDial:(ELDial *)dial controller:(ELInspectorController *)controller {
   if( ( self = [self initWithWindowNibName:@"OscillatorDesigner"] ) ) {
     _dial = dial;
@@ -33,6 +35,9 @@
   
   return self;
 }
+
+
+#pragma mark Implements NSNibAwakening
 
 - (void)awakeFromNib {
   [squareLFOMinDial setBoundsChecking:NO];
@@ -59,9 +64,8 @@
   [rampLFOMaxDial setBoundsChecking:YES];
 }
 
-- (void)windowWillClose:(NSNotification *)notification {
-  [[self controller] finishedEditingOscillatorForDial:_dial];
-}
+
+#pragma mark Properties
 
 @synthesize controller         = _controller;
 @synthesize squareOscillator   = _squareOscillator;
@@ -70,6 +74,16 @@
 @synthesize rampOscillator     = _rampOscillator;
 @synthesize sequenceOscillator = _sequenceOscillator;
 @synthesize randomOscillator   = _randomOscillator;
+
+
+#pragma mark NSWindow notifications
+
+- (void)windowWillClose:(NSNotification *)notification {
+  [[self controller] finishedEditingOscillatorForDial:_dial];
+}
+
+
+#pragma mark Actions
 
 - (IBAction)saveOscillator:(id)sender {
   NSString *tabId = (NSString *)[[tabView selectedTabViewItem] identifier];
@@ -95,15 +109,20 @@
   [self close];
 }
 
+
 - (IBAction)cancelOscillator:(id)sender {
   [self close];
 }
+
 
 - (IBAction)removeOscillator:(id)sender {
   [[_dial oscillator] stop];
   [_dial setOscillator:nil];
   [self close];
 }
+
+
+#pragma mark Oscillator interactions
 
 - (void)setupOscillators {
   if( [_dial oscillator] ) {
@@ -148,6 +167,7 @@
     [self setRandomOscillator:[[ELRandomOscillator alloc] initEnabled:YES minimum:[_dial min] maximum:[_dial max]]];
   }
 }
+
 
 - (void)edit {
   [self showWindow:self];
