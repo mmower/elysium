@@ -444,10 +444,10 @@
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
-    [self setVelocityDial:[representation loadDial:@"velocity" parent:nil player:player error:error]];
-    [self setEmphasisDial:[representation loadDial:@"emphasis" parent:nil player:player error:error]];
+    [self setVelocityDial:[representation loadDial:@"velocity" parent:[parent velocityDial] player:player error:error]];
+    [self setEmphasisDial:[representation loadDial:@"emphasis" parent:[parent emphasisDial] player:player error:error]];
     [self setTempoSyncDial:[representation loadDial:@"tempoSync" parent:nil player:player error:error]];
-    [self setNoteLengthDial:[representation loadDial:@"noteLength" parent:nil player:player error:error]];
+    [self setNoteLengthDial:[representation loadDial:@"noteLength" parent:[parent noteLengthDial] player:player error:error]];
     [self setTriadDial:[representation loadDial:@"triad" parent:nil player:player error:error]];
     [self setGhostsDial:[representation loadDial:@"ghosts" parent:nil player:player error:error]];
     [self setOverrideDial:[representation loadDial:@"override" parent:nil player:player error:error]];
