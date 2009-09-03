@@ -181,7 +181,11 @@
   [[self layer] addPlayhead:[[ELPlayhead alloc] initWithPosition:[self cell]
                                                        direction:[[self directionDial] value]
                                                              TTL:[[self timeToLiveDial] value]]];
-   _nextTriggerBeat += [[self pulseEveryDial] value];
+}
+
+
+- (void)afterRun {
+  _nextTriggerBeat += [[self pulseEveryDial] value];
 }
 
 

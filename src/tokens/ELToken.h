@@ -64,6 +64,7 @@
 
 - (void)run:(ELPlayhead *)playhead;
 - (void)runToken:(ELPlayhead *)playhead;
+- (void)afterRun;
 
 - (void)drawWithAttributes:(NSDictionary *)attributes;
 - (void)setTokenDrawColor:(NSDictionary *)attributes;

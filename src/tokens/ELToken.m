@@ -158,11 +158,23 @@ NSMutableDictionary *tokenMapping = nil;
       }
       [self setSkip:NO];
       
+      [self afterRun];
+      
       _gateCount = [[self gateDial] value];
     }
     
     [self performSelectorOnMainThread:@selector(runDidRunScript:) withObject:playhead waitUntilDone:YES];
   }
+}
+
+
+/*
+ * This method was added to allow the generate token to update
+ * nextBeatCount even when it does run (e.g. because the pTest fails)
+ * if it does not it falls behind the beat and never runs again.
+ */
+- (void)afterRun {
+  // Do nothing
 }
 
 
