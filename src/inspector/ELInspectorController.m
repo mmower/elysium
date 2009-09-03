@@ -343,7 +343,11 @@
 
 
 - (void)updateTitle {
-  [self setTitle:[NSString stringWithFormat:@"%@ - %@", [[[self player] document] displayName], [[[self tabView] selectedTabViewItem] label]]];
+  if( [self cell] ) {
+    [self setTitle:[NSString stringWithFormat:@"%@ - %@ (%@)", [[[self player] document] displayName], [[[self tabView] selectedTabViewItem] label], [[self cell] noteName]]];
+  } else {
+    [self setTitle:[NSString stringWithFormat:@"%@ - %@", [[[self player] document] displayName], [[[self tabView] selectedTabViewItem] label]]];
+  }
 }
 
 @end
