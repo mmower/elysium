@@ -81,6 +81,7 @@
 @property             ELKey           *key;
 @property             BOOL            dirty;
 @property (readonly)  NSMutableArray  *receivedNotes;
+@property (readonly)  BOOL            isRunning;
 
 @property             ELLayerWindowController *windowController;
 

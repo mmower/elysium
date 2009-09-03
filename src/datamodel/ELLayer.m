@@ -121,6 +121,7 @@ NSPredicate *deadPlayheadFilter;
 @synthesize key              = _key;
 @synthesize receivedNotes    = _receivedNotes;
 @synthesize windowController = _windowController;
+@synthesize isRunning        = _isRunning;
 
 @synthesize dirty = _dirty;
 
