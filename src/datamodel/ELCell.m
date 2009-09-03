@@ -677,6 +677,15 @@ NSString* elementDescription( NSBezierPathElement elt ) {
 }
 
 
+- (NSString *)noteName {
+  if( [[[self layer] key] flat] ) {
+    return [[self note] flattenedName];
+  } else {
+    return [[self note] name];
+  }
+}
+
+
 - (void)drawOnHoneycombView:(LMHoneycombView *)view withAttributes:(NSMutableDictionary *)attributes {
   if( [[self playheads] count] > 0 ) {
     int minTTL = 5;
@@ -712,12 +721,7 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [super drawOnHoneycombView:view withAttributes:attributes];
   
   if( [[NSApp delegate] showNotes] ) {
-    if( [[[self layer] key] flat] ) {
-      [self drawText:[[self note] flattenedName] withAttributes:attributes];
-    } else {
-      [self drawText:[[self note] name] withAttributes:attributes];
-    }
-    
+    [self drawText:[self noteName] withAttributes:attributes];
   }
   
   [[[self tokens] allValues] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:attributes];

@@ -75,6 +75,7 @@
 - (ELCell *)neighbour:(Direction)direction;
 - (void)connectNeighbour:(ELCell *)cell direction:(Direction)direction;
 - (ELNoteGroup *)triad:(int)triad;
+- (NSString *)noteName;
 
 // Token management
 
