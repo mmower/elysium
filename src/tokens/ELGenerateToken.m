@@ -114,6 +114,10 @@
     }
   }
   
+  if( [targetLayer isRunning] ) {
+    _nextTriggerBeat = [targetLayer beatCount] + ([[self pulseEveryDial] value] - ([targetLayer beatCount] % [[self pulseEveryDial] value]));
+  }
+  
   [targetLayer addGenerator:self];
 }
 
