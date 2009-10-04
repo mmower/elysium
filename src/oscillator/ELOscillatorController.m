@@ -65,6 +65,7 @@
   
   while( ![_oscillatorThread isCancelled] ) {
     startNanos = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() );
+    // NSLog( @"activeOscillators: %d", [_activeOscillators count] );
     [_activeOscillators makeObjectsPerformSelector:updateSelector];
     elapsedNanos = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() ) - startNanos;
     delayMicros = 250000 - ( elapsedNanos / 1000 );
