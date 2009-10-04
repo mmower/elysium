@@ -28,7 +28,7 @@
     _active = NO;
     _interval = 30.0;
     _timer = nil;
-    _callback = [@"function(player,timer) {\n\t// Write your callback here\n}\n" asJavascriptFunction];
+    _callback = [@"function(player,timer) {\n\t// Write your callback here\n}\n" asJavascriptFunction:[player scriptEngine]];
     
     [self addObserver:self forKeyPath:@"active" options:0 context:nil];
   }

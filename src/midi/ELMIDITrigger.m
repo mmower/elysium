@@ -14,6 +14,7 @@
 
 #import "Elysium.h"
 
+#import "ELPlayer.h"
 #import "ELMIDITrigger.h"
 
 #import "ELMIDIControlMessage.h"
@@ -27,7 +28,6 @@
   if( ( self = [super init] ) ) {
     [self setChannelMask:0x0F];
     [self setController:0x00];
-    [self setCallback:[@"function(player,message) {\n\t// write your callback code here\n}\n" asJavascriptFunction]];
     [self setPlayer:nil];
   }
   
@@ -40,6 +40,7 @@
     [self setChannelMask:channelMask];
     [self setController:controller];
     [self setCallback:callback];
+    [self setCallback:[@"function(player,message) {\n\t// write your callback code here\n}\n" asJavascriptFunction:[player scriptEngine]]];
   }
   
   return self;
@@ -122,7 +123,7 @@
     
     [self setChannelMask:channelMask];
     [self setController:controller];
-    [self setCallback:[callbackSource asJavascriptFunction]];
+    [self setCallback:[callbackSource asJavascriptFunction:[player scriptEngine]]];
   }
   
   return self;

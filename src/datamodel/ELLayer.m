@@ -355,7 +355,7 @@ NSPredicate *deadPlayheadFilter;
 
 
 - (ELScript *)callbackTemplate {
-  return [@"function(player,layer) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
+  return [@"function(player,layer) {\n\t// write your callback code here\n}\n" asJavascriptFunction:[[self player] scriptEngine]];
 }
 
 
@@ -707,7 +707,7 @@ NSPredicate *deadPlayheadFilter;
     } else {
       for( NSXMLNode *node in nodes ) {
         NSXMLElement *element = (NSXMLElement *)node;
-        [[self scripts] setObject:[[element stringValue] asJavascriptFunction]
+        [[self scripts] setObject:[[element stringValue] asJavascriptFunction:[[self player] scriptEngine]]
                            forKey:[[element attributeForName:@"name"] stringValue]];
       }
     }

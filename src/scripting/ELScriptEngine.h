@@ -18,6 +18,9 @@
 }
 
 
+@property JSCocoa *js;
+
+
 - (id)initForPlayer:(ELPlayer *)player;
 
 @end

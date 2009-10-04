@@ -261,7 +261,7 @@
 
 
 - (ELScript *)callbackTemplate {
-  return [@"function(player) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
+  return [@"function(player) {\n\t// write your callback code here\n}\n" asJavascriptFunction:[self scriptEngine]];
 }
 
 
@@ -493,7 +493,7 @@
     } else {
       for( NSXMLNode *node in nodes ) {
         NSXMLElement *element = (NSXMLElement *)node;
-        [[self scripts] setObject:[[element stringValue] asJavascriptFunction]
+        [[self scripts] setObject:[[element stringValue] asJavascriptFunction:[self scriptEngine]]
                            forKey:[element attributeAsString:@"name"]];
       }
     }

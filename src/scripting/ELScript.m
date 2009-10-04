@@ -8,12 +8,14 @@
 
 #import "ELScript.h"
 
+#import "ELScriptEngine.h"
 #import "ScriptInspectorController.h"
 
 @implementation ELScript
 
-- (id)initWithSource:(NSString *)_source_ {
+- (id)initWithSource:(NSString *)_source_ scriptEngine:(ELScriptEngine *)scriptEngine {
   if( ( self = [super init] ) ) {
+    _scriptEngine = scriptEngine;
     [self setSource:_source_];
   }
   

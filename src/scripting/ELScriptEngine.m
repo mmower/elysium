@@ -46,6 +46,11 @@
 }
 
 
+#pragma mark Properties
+
+@synthesize js = _js;
+
+
 #pragma mark Object initializer
 
 - (id)initForPlayer:(ELPlayer *)player {

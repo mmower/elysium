@@ -216,14 +216,14 @@ NSMutableDictionary *tokenMapping = nil;
 
 
 - (ELScript *)callbackTemplate {
-  return [@"function(player,token,playhead) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
+  return [@"function(player,token,playhead) {\n\t// write your callback code here\n}\n" asJavascriptFunction:[[[self layer] player] scriptEngine]];
 }
 
 
 - (ELScript *)script:(NSString *)scriptName {
   ELScript *script = [[self scripts] objectForKey:scriptName];
   if( script == nil ) {
-    script = [[NSString stringWithFormat:@"function(player,token,playhead) {\n\t// write your callback code here\n}\n"] asJavascriptFunction];
+    script = [[NSString stringWithFormat:@"function(player,token,playhead) {\n\t// write your callback code here\n}\n"] asJavascriptFunction:[[[self layer] player] scriptEngine]];
     [[self scripts] setObject:script forKey:scriptName];
   }
   return script;
@@ -296,8 +296,8 @@ NSMutableDictionary *tokenMapping = nil;
     
     for( NSXMLNode *node in [representation nodesForXPath:@"scripts/script" error:error] ) {
       NSXMLElement *element = (NSXMLElement *)node;
-      [[self scripts] setObject:[[element stringValue] asJavascriptFunction]
-                  forKey:[[element attributeForName:@"name"] stringValue]];
+      [[self scripts] setObject:[[element stringValue] asJavascriptFunction:[player scriptEngine]]
+                         forKey:[[element attributeForName:@"name"] stringValue]];
     }
     
   }
