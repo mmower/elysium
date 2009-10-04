@@ -119,7 +119,7 @@
 
 #pragma mark NSKeyValueObserving protocol
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(id)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
   if( object == [self layer] && ( [keyPath isEqualToString:@"channelDial.value"] || [keyPath isEqualToString:@"layerId"] ) ) {
     [self updateWindowTitle];
   }
