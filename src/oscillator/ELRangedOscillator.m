@@ -20,6 +20,8 @@
     [self setMaximum:maximum];
     [self setHardMaximum:hardMaximum];
     [self setValue:minimum];
+    
+    // NSLog( @"%@ (ranged) value = %d, minimum = %d", self, [self value], minimum );
   }
   
   return self;
@@ -32,6 +34,12 @@
 }
 
 
+- (NSString *)description {
+  return [NSString stringWithFormat:@"<ELRangedOscillator: %p> value:%d min:%d hard_min:%d max:%d hard_max:%d", self, [self value], [self minimum], [self hardMinimum], [self maximum], [self hardMaximum]];
+}
+
+
+
 #pragma mark Properties
 
 @synthesize minimum = _minimum;
@@ -39,6 +47,10 @@
 - (void)setMinimum:(int)newMinimum {
   _minimum = newMinimum;
   _range = [self maximum] - _minimum;
+  
+  if( [self value] < _minimum ) {
+    [self setValue:_minimum];
+  }
 }
 
 
@@ -50,6 +62,10 @@
 - (void)setMaximum:(int)newMaximum {
   _maximum = newMaximum;
   _range = _maximum - [self minimum];
+  
+  if( [self value] > _maximum ) {
+    [self setValue:_maximum];
+  }
 }
 
 
