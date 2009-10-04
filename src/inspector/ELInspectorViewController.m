@@ -104,7 +104,7 @@
 - (void)bindMode:(NSString *)dialName {
   id control = [self valueForKey:[NSString stringWithFormat:@"%@ModeControl",dialName]];
   
-  NSLog( @"bind Mode '%@' -> %@", dialName, control );
+  // NSLog( @"bind Mode '%@' -> %@", dialName, control );
   
   [control bind:@"selectedIndex"
        toObject:[self objectController]
