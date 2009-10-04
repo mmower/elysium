@@ -243,7 +243,16 @@ NSPredicate *deadPlayheadFilter;
 
 
 @synthesize scripts = _scripts;
-@synthesize scriptingTag = _layerId;
+@dynamic scriptingTag;
+
+- (NSString *)scriptingTag {
+  return [self layerId];
+}
+
+
+- (void)setScriptingTag:(NSString *)scriptingTag {
+  [self setLayerId:scriptingTag];
+}
 
 
 #pragma mark Utility methods
@@ -631,9 +640,11 @@ NSPredicate *deadPlayheadFilter;
     
     NSString *idAttribute = [representation attributeAsString:@"id"];
     if( idAttribute == nil ) {
-      *error = [[NSError alloc] initWithDomain:ELErrorDomain
-                                             code:EL_ERR_LAYER_MISSING_ID
-                                         userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Layer found without an ID attribute", NSLocalizedDescriptionKey, nil]];
+      if( error ) {
+        *error = [[NSError alloc] initWithDomain:ELErrorDomain
+                                            code:EL_ERR_LAYER_MISSING_ID
+                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Layer found without an ID attribute", NSLocalizedDescriptionKey, nil]];
+      }
       return nil;
     } else {
       [self setLayerId:idAttribute];
@@ -666,14 +677,18 @@ NSPredicate *deadPlayheadFilter;
         
         attributeNode = [element attributeForName:@"col"];
         if( attributeNode == nil ) {
-          *error = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid column reference",NSLocalizedDescriptionKey,nil]];
+          if( error ) {
+            *error = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid column reference",NSLocalizedDescriptionKey,nil]];
+          }
           return nil;
         }
         int col = [[attributeNode stringValue] intValue];
         
         attributeNode = [element attributeForName:@"row"];
         if( attributeNode == nil ) {
-          *error = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid row reference",NSLocalizedDescriptionKey,nil]];
+          if( error ) {
+            *error = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid row reference",NSLocalizedDescriptionKey,nil]];
+          }
           return nil;
         }
         int row = [[attributeNode stringValue] intValue];
