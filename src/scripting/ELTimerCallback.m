@@ -41,7 +41,7 @@
 @synthesize callback = _callback;
 @synthesize player = _player;
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(id)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
   if( [keyPath isEqualToString:@"active"] ) {
     if( [self active] ) {
       _timer = [NSTimer timerWithTimeInterval:[self interval] target:self selector:@selector(runCallback:) userInfo:nil repeats:YES];
