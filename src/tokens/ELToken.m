@@ -16,6 +16,7 @@
 #import "ELPlayer.h"
 #import "ELPlayhead.h"
 
+#import "ELMutexGroup.h"
 #import "ELNoteToken.h"
 #import "ELGenerateToken.h"
 #import "ELReboundToken.h"

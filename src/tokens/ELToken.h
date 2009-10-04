@@ -14,6 +14,7 @@
 @class ELCell;
 @class ELLayer;
 @class ELPlayhead;
+@class ELMutexGroup;
 
 @protocol DirectedToken
 @property ELDial *directionDial;
@@ -27,6 +28,8 @@
   BOOL                _skip;
   BOOL                _fired;
   int                 _gateCount;
+  
+  ELMutexGroup        *_mutexGroup;
   
   ELDial              *_enabledDial;
   ELDial              *_pDial;
