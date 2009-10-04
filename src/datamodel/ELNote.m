@@ -86,7 +86,12 @@ static NSArray *alternateSequence = nil;
 @synthesize name = _name;
 @synthesize tone = _tone;
 @synthesize alternateTone = _alternateTone;
-@synthesize flattenedName = _alternateTone;
+
+@dynamic flattenedName;
+
+- (NSString *)flattenedName {
+  return [self alternateTone];
+}
 
 - (NSString *)tone:(BOOL)flat {
   if( flat ) {
