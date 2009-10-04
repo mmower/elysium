@@ -189,6 +189,8 @@ int randval() {
         [self unbind:@"value"];
         // Note that we expect all current oscillators to have generated a new value
         // at the start of each beat of their layer
+        // NSLog( @"Lets bind dial %@ to oscillator %@", self, [self oscillator] );
+        // NSLog( @"osc value = %d", [[self oscillator] value] );
         [self bind:@"value" toObject:[self oscillator] withKeyPath:@"value" options:nil];
       }
       break;
