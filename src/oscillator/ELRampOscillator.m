@@ -48,6 +48,17 @@
 }
 
 
+- (void)start {
+  [super start];
+  
+  if( [self rising] ) {
+    [self setValue:[self minimum]];
+  } else {
+    [self setValue:[self maximum]];
+  }
+}
+
+
 - (int)generate {
     // Get time in milliseconds
     UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() - [self timeBase] ) / 1000000;
