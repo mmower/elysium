@@ -53,12 +53,14 @@ typedef enum tagLMDialStyle {
     
     LMDialMap         *_dialMap;
     
-    id                _delegate;
     BOOL              _debug;
+    BOOL              _boundsChecking;
 }
 
 @property BOOL enabled;
 @property BOOL debug;
+@property BOOL boundsChecking;
+
 @property LMDialStyle style;
 @property int minimum;
 // @property int modMinimum;
@@ -71,8 +73,6 @@ typedef enum tagLMDialStyle {
 
 @property (readonly) int lowerValueBound;
 @property (readonly) int upperValueBound;
-
-@property (assign) id delegate;
 
 @property BOOL showValue;
 @property CGFloat fontSize;

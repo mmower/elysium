@@ -14,15 +14,11 @@ typedef enum tagLMDialStyle {
   logicPan
 } LMDialStyle;
 
-@class LMDialMap;
-
 @interface LMDialView : NSView {
     BOOL              _enabled;
     LMDialStyle       _style;
     int               _minimum;
-    int               _modMinimum;
     int               _maximum;
-    int               _modMaximum;
     int               _stepping;
     
     int               _lowerValueBound;
@@ -51,8 +47,6 @@ typedef enum tagLMDialStyle {
     
     float             _alpha;
     
-    LMDialMap         *_dialMap;
-    
     BOOL              _debug;
     BOOL              _boundsChecking;
 }
@@ -63,9 +57,7 @@ typedef enum tagLMDialStyle {
 
 @property LMDialStyle style;
 @property int minimum;
-// @property int modMinimum;
 @property int maximum;
-// @property int modMaximum;
 @property int stepping;
 @property int value;
 @property int divisor;
@@ -82,7 +74,5 @@ typedef enum tagLMDialStyle {
 @property (assign) NSColor *offBorderColor;
 @property (assign) NSColor *offFillColor;
 @property (assign) NSColor *valueColor;
-
-@property (assign) LMDialMap *dialMap;
 
 @end
