@@ -114,7 +114,7 @@
     NSString *callbackSource;
     NSArray *nodes = [representation nodesForXPath:@"callback" error:error];
     if( [nodes isEmpty] ) {
-      NSLog( @"Trigger found without callback: %@", (error && *error) ? *error : @"no further info" );
+      NSLog( @"Trigger found without callback: %@", (error && *error) ? [*error description] : @"no further info" );
       return nil;
     } else {
       callbackSource = [[nodes firstXMLElement] stringValue];
