@@ -140,10 +140,7 @@ static BOOL initialized = NO;
 
 - (void)awakeFromNib {
   [ELMIDIController sharedInstance];
-  if( ![self initScriptingEngine] ) {
-    NSLog( @"Initialization of script engine failed." );
-  }
-  
+
   [self setShowNotes:[[NSUserDefaults standardUserDefaults] boolForKey:ELShowNotesPrefKey]];
   [self setShowOctaves:[[NSUserDefaults standardUserDefaults] boolForKey:ELShowOctavesPrefKey]];
   [self setShowKey:[[NSUserDefaults standardUserDefaults] boolForKey:ELShowKeyPrefKey]];
@@ -183,35 +180,6 @@ static BOOL initialized = NO;
 
 
 #pragma mark General Initialization
-
-- (BOOL)initScriptingEngine {
-  [[BridgeSupportController sharedController] loadBridgeSupport:[[NSBundle mainBundle] pathForResource:@"Elysium" ofType:@"bridgesupport"]];
-  
-  NSArray *searchPathes = NSSearchPathForDirectoriesInDomains( NSApplicationSupportDirectory, NSUserDomainMask, YES );
-  NSString *appSupportPath = [searchPathes objectAtIndex:0];
-  NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-  NSString *elysiumAppSupportPath = [appSupportPath stringByAppendingPathComponent:appName];
-  
-  if( ![[NSFileManager defaultManager] fileExistsAtPath:elysiumAppSupportPath] ) {
-    [[NSFileManager defaultManager] createDirectoryAtPath:elysiumAppSupportPath attributes:nil];
-    NSLog( @"Created Elysium app support path" );
-  }
-  
-  NSError *error = nil;
-  
-  NSString *userLibPath = [elysiumAppSupportPath stringByAppendingPathComponent:@"userlib.js"];
-  if( ![[NSFileManager defaultManager] fileExistsAtPath:userLibPath] ) {
-    [@"// Elysium user library" writeToFile:userLibPath atomically:NO encoding:NSASCIIStringEncoding error:&error];
-    NSLog( @"Written new user library" );
-  } else {
-    NSLog( @"Using existing user library: %@", userLibPath );
-  }
-  
-  [[JSCocoa sharedController] evalJSFile:userLibPath];
-  
-  return YES;
-}
-
 
 - (ELPlayer *)activePlayer {
   return [[[NSDocumentController sharedDocumentController] currentDocument] player];

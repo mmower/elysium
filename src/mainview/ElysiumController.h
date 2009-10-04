@@ -41,8 +41,6 @@
 @property             BOOL                showKey;
 @property             BOOL                performanceMode;
 
-- (BOOL)initScriptingEngine;
-
 - (ELPlayer *)activePlayer;
 - (void)updateDocumentViews;
 
