@@ -35,7 +35,7 @@
 
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"<ELSineOscillator: %p> min:%d hard_min:%d max:%d hard_max:%d period:%d", self, [self minimum], [self hardMinimum], [self maximum], [self hardMaximum], [self period]];
+  return [NSString stringWithFormat:@"<ELSineOscillator: %p> value:%d min:%d hard_min:%d max:%d hard_max:%d period:%d", self, [self value], [self minimum], [self hardMinimum], [self maximum], [self hardMaximum], [self period]];
 }
 
 
