@@ -28,11 +28,14 @@
 
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
-  return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
-                                                minimum:[self minimum]
-                                            hardMinimum:[self hardMinimum]
-                                                maximum:[self maximum]
-                                            hardMaximum:[self hardMaximum]];
+  
+  ELRandomOscillator *clone = [[[self class] allocWithZone:zone] initEnabled:[self enabled]
+                                                                     minimum:[self minimum]
+                                                                 hardMinimum:[self hardMinimum]
+                                                                     maximum:[self maximum]
+                                                                 hardMaximum:[self hardMaximum]];
+  [clone setValue:[self value]];
+  return clone;
 }
 
 
