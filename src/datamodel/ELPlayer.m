@@ -21,6 +21,7 @@
 #import "ElysiumDocument.h"
 #import "ELHarmonicTable.h"
 #import "ElysiumController.h"
+#import "ELScriptEngine.h"
 #import "ELScriptPackage.h"
 
 #import "ELMIDIMessage.h"
@@ -62,6 +63,7 @@
     _scriptingTag         = @"player";
     _scripts              = [NSMutableDictionary dictionary];
     _triggers             = [[NSMutableArray alloc] init];
+    _scriptEngine         = [[ELScriptEngine alloc] initForPlayer:self];
     _pkg                  = [[ELScriptPackage alloc] initWithPlayer:self];
     
     _nextLayerNumber      = 1;
@@ -189,6 +191,7 @@
 @synthesize scripts = _scripts;
 @synthesize scriptingTag = _scriptingTag;
 @synthesize triggers = _triggers;
+@synthesize scriptEngine = _scriptEngine;
 @synthesize pkg = _pkg;
 @synthesize selectedLayer = _selectedLayer;
 @synthesize running = _running;

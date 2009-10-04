@@ -22,39 +22,42 @@
 @class ELOscillatorController;
 @class ELMIDINoteMessage;
 @class ElysiumDocument;
+@class ELScriptEngine;
 @class ELScriptPackage;
 @class ELEnvelopeProbabilityGenerator;
 
 @interface ELPlayer : NSObject <ELXmlData,ELTaggable> {
-  ElysiumDocument       *_document;        // Cocoa NSDocument subclass hosting this player
-  ELHarmonicTable       *_harmonicTable;   // Represents the structure of notes to be played
-  NSMutableArray        *_layers;          // Each layer is an "instrument"
-  ELLayer               *_selectedLayer;
-  BOOL                  _running;          // The player is active
+  ElysiumDocument         *_document;        // Cocoa NSDocument subclass hosting this player
+  ELHarmonicTable         *_harmonicTable;   // Represents the structure of notes to be played
+  NSMutableArray          *_layers;          // Each layer is an "instrument"
+  ELLayer                 *_selectedLayer;
+  BOOL                    _running;          // The player is active
   // ELMIDIController      *_midiController;  // Our interface to CoreMIDI
-  ELOscillatorController *_oscillatorController;
+  ELOscillatorController  *_oscillatorController;
   
-  int                   _nextLayerNumber;
-  BOOL                  _dirty;
+  int                     _nextLayerNumber;
+  BOOL                    _dirty;
   
-  NSString              *_scriptingTag;
-  NSMutableDictionary   *_scripts;
-  NSMutableArray        *_triggers;        // ELMIDITrigger objects
-  NSThread              *_triggerThread;
+  NSString                *_scriptingTag;
+  NSMutableDictionary     *_scripts;
+  NSMutableArray          *_triggers;        // ELMIDITrigger objects
+  NSThread                *_triggerThread;
   
-  ELScriptPackage       *_pkg;
+  ELScriptEngine          *_scriptEngine;
   
-  ELDial                *_tempoDial;
-  ELDial                *_barLengthDial;
-  ELDial                *_timeToLiveDial;
-  ELDial                *_pulseEveryDial;
-  ELDial                *_velocityDial;
-  ELDial                *_emphasisDial;
-  ELDial                *_tempoSyncDial;
-  ELDial                *_noteLengthDial;
-  ELDial                *_transposeDial;
+  ELScriptPackage         *_pkg;
   
-  BOOL                  _loaded;
+  ELDial                  *_tempoDial;
+  ELDial                  *_barLengthDial;
+  ELDial                  *_timeToLiveDial;
+  ELDial                  *_pulseEveryDial;
+  ELDial                  *_velocityDial;
+  ELDial                  *_emphasisDial;
+  ELDial                  *_tempoSyncDial;
+  ELDial                  *_noteLengthDial;
+  ELDial                  *_transposeDial;
+  
+  BOOL                    _loaded;
 }
 
 // @property (readonly)  UInt64              startTime;
@@ -68,6 +71,8 @@
 @property             ElysiumDocument     *document;
 @property (readonly)  NSMutableDictionary *scripts;
 @property (readonly)  NSMutableArray      *triggers;
+
+@property (readonly,nonatomic,retain) ELScriptEngine  *scriptEngine;
 @property (readonly)  ELScriptPackage     *pkg;
 
 @property (readonly)  ELOscillatorController  *oscillatorController;
