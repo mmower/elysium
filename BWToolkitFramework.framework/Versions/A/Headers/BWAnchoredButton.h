@@ -1,5 +1,5 @@
 //
-//  BWUnanchoredButton.h
+//  BWAnchoredButton.h
 //  BWToolkit
 //
 //  Created by Brandon Walkin (www.brandonwalkin.com)
@@ -7,11 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BWUnanchoredButtonCell.h"
 
-@interface BWUnanchoredButton : NSButton 
+@interface BWAnchoredButton : NSButton 
 {
+	BOOL isAtLeftEdgeOfBar;
+	BOOL isAtRightEdgeOfBar;
 	NSPoint topAndLeftInset;
 }
+
+@property BOOL isAtLeftEdgeOfBar;
+@property BOOL isAtRightEdgeOfBar;
 
 @end

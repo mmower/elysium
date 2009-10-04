@@ -1,5 +1,5 @@
 //
-//  BWTransparentButton.h
+//  BWUnanchoredButton.h
 //  BWToolkit
 //
 //  Created by Brandon Walkin (www.brandonwalkin.com)
@@ -7,11 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BWTransparentButtonCell.h"
 
-@interface BWTransparentButton : NSButton 
+@interface BWUnanchoredButton : NSButton 
 {
-
+	NSPoint topAndLeftInset;
 }
 
 @end

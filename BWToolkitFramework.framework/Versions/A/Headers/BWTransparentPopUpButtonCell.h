@@ -1,5 +1,5 @@
 //
-//  BWTransparentButtonCell.h
+//  BWTransparentPopUpButtonCell.h
 //  BWToolkit
 //
 //  Created by Brandon Walkin (www.brandonwalkin.com)
@@ -7,11 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BWTransparentButton.h"
 
-@interface BWTransparentButtonCell : NSButtonCell 
+@interface BWTransparentPopUpButtonCell : NSPopUpButtonCell 
 {
-	NSColor *interiorColor;
+
 }
 
 @end

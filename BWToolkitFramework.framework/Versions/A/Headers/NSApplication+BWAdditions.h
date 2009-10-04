@@ -1,5 +1,5 @@
 //
-//  BWTransparentCheckbox.h
+//  NSApplication+BWAdditions.h
 //  BWToolkit
 //
 //  Created by Brandon Walkin (www.brandonwalkin.com)
@@ -7,11 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BWTransparentCheckboxCell.h"
 
-@interface BWTransparentCheckbox : NSButton 
-{
+@interface NSApplication (BWAdditions) 
 
-}
++ (BOOL)isOnLeopard;
 
 @end
