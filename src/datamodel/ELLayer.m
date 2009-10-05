@@ -255,6 +255,19 @@ NSPredicate *deadPlayheadFilter;
 }
 
 
+@dynamic alphaValue;
+
+
+- (CGFloat)alphaValue {
+  return [[[self windowController] window] alphaValue];
+}
+
+
+- (void)setAlphaValue:(CGFloat)alphaValue {
+  [[[self windowController] window] setAlphaValue:alphaValue];
+}
+
+
 #pragma mark Utility methods
 
 - (int)timerResolution {
