@@ -16,10 +16,10 @@
 @class PYMIDIVirtualSource;
 
 @interface ELMIDIController : NSObject {
-  PYMIDIVirtualSource       *source;
-  PYMIDIEndpoint            *endpoint;
+  PYMIDIVirtualSource       *_source;
+  PYMIDIEndpoint            *_endpoint;
   
-  id                        delegate;
+  id                        _delegate;
 }
 
 @property (assign) id delegate;
@@ -30,6 +30,7 @@
 - (void)sendPackets:(MIDIPacketList *)packetList;
 
 - (void)setInput:(PYMIDIEndpoint *)endpoint;
+- (void)setInputWithUniqueID:(NSInteger)uniqueID;
 
 - (void)processMIDIPacketList:(MIDIPacketList*)packetList sender:(id)sender;
 - (void)handleMIDIMessage:(Byte*)message ofSize:(int)size;

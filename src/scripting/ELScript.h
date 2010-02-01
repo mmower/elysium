@@ -9,13 +9,15 @@
 #import <Cocoa/Cocoa.h>
 
 @class ScriptInspectorController;
+@class ELScriptEngine;
 
 @interface ELScript : NSObject <NSMutableCopying> {
   NSString                  *source;
+  ELScriptEngine            *_scriptEngine;
   ScriptInspectorController *inspector;
 }
 
-- (id)initWithSource:(NSString *)source;
+- (id)initWithSource:(NSString *)source scriptEngine:(ELScriptEngine *)scriptEngine;
 
 - (NSString *)source;
 - (void)setSource:(NSString *)source;

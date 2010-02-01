@@ -22,36 +22,16 @@
 - (void)awakeFromNib {
   [self bindControl:@"enabled"];
   
-  [self bindControl:@"p"];
-  [self bindMode:@"p"];
-  [self bindOsc:@"p"];
+  [self bindDial:@"p"];
+  [self bindDial:@"gate"];
+  [self bindDial:@"velocity"];
+  [self bindDial:@"emphasis"];
   
-  [self bindControl:@"gate"];
-  [self bindMode:@"gate"];
-  [self bindOsc:@"gate"];
+  // [self bindControl:@"tempoSync"];
   
-  [self bindControl:@"velocity"];
-  [self bindMode:@"velocity"];
-  [self bindOsc:@"velocity"];
-  
-  [self bindControl:@"emphasis"];
-  [self bindMode:@"emphasis"];
-  [self bindOsc:@"emphasis"];
-  
-  [self bindControl:@"tempoSync"];
-  
-  [self bindControl:@"noteLength"];
-  [self bindMode:@"noteLength"];
-  [self bindOsc:@"noteLength"];
-  
-  [self bindControl:@"ghosts"];
-  [self bindMode:@"ghosts"];
-  [self bindOsc:@"ghosts"];
-  
-  [self bindControl:@"override"];
-  
+  [self bindDial:@"noteLength"];
+  [self bindDial:@"ghosts"];
   [self bindTriadControl];
-  
   [self bindOverrideControls];
   
   [self bindScript:@"willRun"];
@@ -63,13 +43,20 @@
 }
 
 - (void)bindOverrideControls {
-  [channelOverrideSelectControl bind:@"enabled" toObject:[self objectController] withKeyPath:@"selection.overrideDial.value" options:nil];
-  for( int i = 0; i < 16; i++ ) {
-    [channelOverrideSelectControl bind:[NSString stringWithFormat:@"segment%dselected",i]
-                              toObject:[self objectController]
-                           withKeyPath:[NSString stringWithFormat:@"selection.channelSends.%d.value",i]
-                               options:nil];
-  }
+  [channelOverrideSelectorView bind:@"hidden"
+                           toObject:[self objectController]
+                        withKeyPath:@"selection.overrideDial.value"
+                            options:[NSDictionary dictionaryWithObject:NSNegateBooleanTransformerName forKey:NSValueTransformerNameBindingOption]];
+  
+  [self bindControl:@"override"];
+  [self bindDial:@"chan1Override"];
+  [self bindDial:@"chan2Override"];
+  [self bindDial:@"chan3Override"];
+  [self bindDial:@"chan4Override"];
+  [self bindDial:@"chan5Override"];
+  [self bindDial:@"chan6Override"];
+  [self bindDial:@"chan7Override"];
+  [self bindDial:@"chan8Override"];
 }
 
 @end

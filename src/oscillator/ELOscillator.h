@@ -12,10 +12,10 @@
 #import "Elysium.h"
 
 @interface ELOscillator : NSObject <ELXmlData> {
-  BOOL      enabled;
-  UInt64    timeBase;
+  BOOL      _enabled;
+  UInt64    _timeBase;
   
-  int       value;
+  int       _value;
 }
 
 + (ELOscillator *)loadFromXml:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error;

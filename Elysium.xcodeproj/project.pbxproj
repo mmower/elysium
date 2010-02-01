@@ -15,7 +15,9 @@
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		C904104C0F2660A5009CD2B9 /* ELPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C904104B0F2660A5009CD2B9 /* ELPreferencesController.m */; };
 		C90410660F268AB9009CD2B9 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C90410640F268AB9009CD2B9 /* PreferencesWindow.xib */; };
+		C905BDD21079359E00B90CCF /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C9C97A8510793579008AC228 /* BWToolkitFramework.framework */; };
 		C905E00E0E733C2A00C39302 /* hexdrag.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C905E00D0E733C2A00C39302 /* hexdrag.pdf */; };
+		C908CE6F0FF2EB450091239F /* ELMIDINoteMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C908CE6E0FF2EB450091239F /* ELMIDINoteMessage.m */; };
 		C90A940E0EB9FEDB004AA5BE /* ELMIDITrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = C90A940D0EB9FEDB004AA5BE /* ELMIDITrigger.m */; };
 		C90BDFC20EC072040003B0CD /* NSXML+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BDFC10EC072040003B0CD /* NSXML+Helpers.m */; };
 		C9104A5A0EAA1B0300B78267 /* ELNoteGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9104A590EAA1B0300B78267 /* ELNoteGroup.m */; };
@@ -36,8 +38,6 @@
 		C94120DA0F37B9E800ADDF3E /* ELInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94120D90F37B9E800ADDF3E /* ELInspectorController.m */; };
 		C94120DD0F37B9FC00ADDF3E /* ELInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C94120DC0F37B9FC00ADDF3E /* ELInspector.xib */; };
 		C94957CB0EBE365D00AC42AD /* ELTimerCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */; };
-		C94BAE680F263F0300CCC933 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */; };
-		C94BAE6B0F263F0A00CCC933 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */; };
 		C94BAE800F4056BC00F1A0F8 /* red_dot.tif in Resources */ = {isa = PBXBuildFile; fileRef = C94BAE7F0F4056BC00F1A0F8 /* red_dot.tif */; };
 		C94BAE8E0F40773C00F1A0F8 /* ELPlayerInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94BAE8D0F40773C00F1A0F8 /* ELPlayerInspectorViewController.m */; };
 		C94BAE910F40798F00F1A0F8 /* ELLayerInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94BAE900F40798F00F1A0F8 /* ELLayerInspectorViewController.m */; };
@@ -76,10 +76,14 @@
 		C970F17C0F23977C00ABAC2E /* PYMIDI.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F11D0F23955900ABAC2E /* PYMIDI.framework */; };
 		C970F1CD0F23B42800ABAC2E /* LMDial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1CC0F23B42800ABAC2E /* LMDial.framework */; };
 		C970F1D00F23B43100ABAC2E /* LMDial.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1CC0F23B42800ABAC2E /* LMDial.framework */; };
+		C973EA7010741469001D0BA1 /* ELMutexGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C973EA6F10741469001D0BA1 /* ELMutexGroup.m */; };
+		C973EA9C10742603001D0BA1 /* default.js in Resources */ = {isa = PBXBuildFile; fileRef = C973EA6B10740E09001D0BA1 /* default.js */; };
 		C97580CC0F18174D00DB8E93 /* JavascriptCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */; };
 		C97580E80F181F5D00DB8E93 /* ELScript.m in Sources */ = {isa = PBXBuildFile; fileRef = C97580E70F181F5D00DB8E93 /* ELScript.m */; };
 		C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */; };
 		C978717F0F1FF76B00C4160A /* output in Resources */ = {isa = PBXBuildFile; fileRef = C97871380F1FF76B00C4160A /* output */; };
+		C9880C74100FED3700325AF2 /* ElysiumComposition.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9880C73100FED3700325AF2 /* ElysiumComposition.icns */; };
+		C98D70AD0FFF605400BB289C /* ELNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = C98D70AC0FFF605400BB289C /* ELNotifications.m */; };
 		C98DB8380E8907B6009C699E /* sectionheader.gif in Resources */ = {isa = PBXBuildFile; fileRef = C98DB8370E8907B6009C699E /* sectionheader.gif */; };
 		C99FA9E20EB8F69E002305EF /* ELMIDIConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */; };
 		C99FA9E40EB8F6A9002305EF /* MIDIConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = C99FA9E30EB8F6A9002305EF /* MIDIConfig.xib */; };
@@ -109,6 +113,7 @@
 		C9A9F1FE0E8A42DF009A06A3 /* ELSplitToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DD0E8A42DF009A06A3 /* ELSplitToken.m */; };
 		C9A9F1FF0E8A42DF009A06A3 /* ELToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F1DF0E8A42DF009A06A3 /* ELToken.m */; };
 		C9A9F20F0E8A43F7009A06A3 /* ELOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */; };
+		C9AE787D107550D3002B16D5 /* ELScriptEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AE787C107550D3002B16D5 /* ELScriptEngine.m */; };
 		C9B1F3900E9C0C1D0017092F /* ScriptInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */; };
 		C9B1F3940E9C0FE30017092F /* ScriptInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */; };
 		C9B1FBB50F3CF82500C248F6 /* ELDialModeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B1FBB40F3CF82500C248F6 /* ELDialModeValueTransformer.m */; };
@@ -117,6 +122,7 @@
 		C9B642050EAD153B006AA089 /* ELSawOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B642040EAD153B006AA089 /* ELSawOscillator.m */; };
 		C9B88E420E64A60C00FA411E /* start.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9B88E410E64A60C00FA411E /* start.pdf */; };
 		C9BC51B60F346FF300317049 /* ELDial.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BC51B50F346FF300317049 /* ELDial.m */; };
+		C9C97A8610793579008AC228 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C97A8510793579008AC228 /* BWToolkitFramework.framework */; };
 		C9D6B15A0EBCE83300CA98DC /* control_play_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D6B1590EBCE83300CA98DC /* control_play_blue.png */; };
 		C9D6B15C0EBCE83D00CA98DC /* control_stop_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D6B15B0EBCE83D00CA98DC /* control_stop_blue.png */; };
 		C9DA14900EA730780087EDD3 /* Elysium.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DA148F0EA730780087EDD3 /* Elysium.icns */; };
@@ -126,6 +132,9 @@
 		C9E0A3A70F64721F00F13A08 /* ELInspectorOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E0A3A60F64721F00F13A08 /* ELInspectorOverlay.m */; };
 		C9E1F7390F42E5500026A89E /* NSString+ELHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1F7380F42E5500026A89E /* NSString+ELHelpers.m */; };
 		C9E43D5D0E33C1A900C4D343 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */; };
+		C9E6C14A100235AC002C16A7 /* ELPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C149100235AC002C16A7 /* ELPreferences.m */; };
+		C9E6C23E1003561C002C16A7 /* ELDialBank.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C23D1003561C002C16A7 /* ELDialBank.m */; };
+		C9E6C25C1003585E002C16A7 /* ELOscillatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C25B1003585E002C16A7 /* ELOscillatorController.m */; };
 		C9E8D93A0E68B8AF005AD9B7 /* play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9360E68B8AF005AD9B7 /* play.pdf */; };
 		C9E8D93B0E68B8AF005AD9B7 /* ricochet.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */; };
 		C9E8D93C0E68B8AF005AD9B7 /* rotor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */; };
@@ -148,7 +157,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C94BAE6B0F263F0A00CCC933 /* BWToolkitFramework.framework in Copy Frameworks */,
+				C905BDD21079359E00B90CCF /* BWToolkitFramework.framework in Copy Frameworks */,
 				C970F1D00F23B43100ABAC2E /* LMDial.framework in Copy Frameworks */,
 				C970F1090F23949400ABAC2E /* HoneycombView.framework in Copy Frameworks */,
 				C970F17C0F23977C00ABAC2E /* PYMIDI.framework in Copy Frameworks */,
@@ -177,6 +186,8 @@
 		C904104B0F2660A5009CD2B9 /* ELPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPreferencesController.m; sourceTree = "<group>"; };
 		C90410650F268AB9009CD2B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		C905E00D0E733C2A00C39302 /* hexdrag.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = hexdrag.pdf; sourceTree = "<group>"; };
+		C908CE6D0FF2EB450091239F /* ELMIDINoteMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDINoteMessage.h; sourceTree = "<group>"; };
+		C908CE6E0FF2EB450091239F /* ELMIDINoteMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDINoteMessage.m; sourceTree = "<group>"; };
 		C90A940C0EB9FEDB004AA5BE /* ELMIDITrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDITrigger.h; sourceTree = "<group>"; };
 		C90A940D0EB9FEDB004AA5BE /* ELMIDITrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDITrigger.m; sourceTree = "<group>"; };
 		C90BDFC00EC072040003B0CD /* NSXML+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXML+Helpers.h"; sourceTree = "<group>"; };
@@ -207,7 +218,6 @@
 		C94120DC0F37B9FC00ADDF3E /* ELInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ELInspector.xib; sourceTree = "<group>"; };
 		C94957C90EBE365D00AC42AD /* ELTimerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTimerCallback.h; sourceTree = "<group>"; };
 		C94957CA0EBE365D00AC42AD /* ELTimerCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELTimerCallback.m; sourceTree = "<group>"; };
-		C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		C94BAE7F0F4056BC00F1A0F8 /* red_dot.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = red_dot.tif; sourceTree = "<group>"; };
 		C94BAE8C0F40773C00F1A0F8 /* ELPlayerInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayerInspectorViewController.h; sourceTree = "<group>"; };
 		C94BAE8D0F40773C00F1A0F8 /* ELPlayerInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayerInspectorViewController.m; sourceTree = "<group>"; };
@@ -257,6 +267,9 @@
 		C970F11D0F23955900ABAC2E /* PYMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PYMIDI.framework; path = frameworks/PYMIDI.framework; sourceTree = "<group>"; };
 		C970F1760F23976500ABAC2E /* JSCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSCocoa.framework; path = frameworks/JSCocoa.framework; sourceTree = "<group>"; };
 		C970F1CC0F23B42800ABAC2E /* LMDial.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LMDial.framework; path = frameworks/LMDial.framework; sourceTree = "<group>"; };
+		C973EA6B10740E09001D0BA1 /* default.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = default.js; sourceTree = "<group>"; };
+		C973EA6E10741469001D0BA1 /* ELMutexGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMutexGroup.h; sourceTree = "<group>"; };
+		C973EA6F10741469001D0BA1 /* ELMutexGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMutexGroup.m; sourceTree = "<group>"; };
 		C97580C60F180EA200DB8E93 /* ELTaggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELTaggable.h; sourceTree = "<group>"; };
 		C97580CA0F18174D00DB8E93 /* JavascriptCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptCallback.h; sourceTree = "<group>"; };
 		C97580CB0F18174D00DB8E93 /* JavascriptCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptCallback.m; sourceTree = "<group>"; };
@@ -264,6 +277,9 @@
 		C97580E70F181F5D00DB8E93 /* ELScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScript.m; sourceTree = "<group>"; };
 		C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
 		C97871380F1FF76B00C4160A /* output */ = {isa = PBXFileReference; lastKnownFileType = folder; name = output; path = help/output; sourceTree = "<group>"; };
+		C9880C73100FED3700325AF2 /* ElysiumComposition.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ElysiumComposition.icns; sourceTree = "<group>"; };
+		C98D70AB0FFF605400BB289C /* ELNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELNotifications.h; path = src/ELNotifications.h; sourceTree = "<group>"; };
+		C98D70AC0FFF605400BB289C /* ELNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELNotifications.m; path = src/ELNotifications.m; sourceTree = "<group>"; };
 		C98DB8370E8907B6009C699E /* sectionheader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sectionheader.gif; sourceTree = "<group>"; };
 		C99FA9E00EB8F69E002305EF /* ELMIDIConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELMIDIConfigController.h; sourceTree = "<group>"; };
 		C99FA9E10EB8F69E002305EF /* ELMIDIConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELMIDIConfigController.m; sourceTree = "<group>"; };
@@ -320,6 +336,8 @@
 		C9A9F1DF0E8A42DF009A06A3 /* ELToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELToken.m; sourceTree = "<group>"; };
 		C9A9F20D0E8A43F7009A06A3 /* ELOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillator.h; sourceTree = "<group>"; };
 		C9A9F20E0E8A43F7009A06A3 /* ELOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillator.m; sourceTree = "<group>"; };
+		C9AE787B107550D3002B16D5 /* ELScriptEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELScriptEngine.h; sourceTree = "<group>"; };
+		C9AE787C107550D3002B16D5 /* ELScriptEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELScriptEngine.m; sourceTree = "<group>"; };
 		C9B1F38F0E9C0C1D0017092F /* ScriptInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScriptInspector.xib; path = src/scripting/ScriptInspector.xib; sourceTree = "<group>"; };
 		C9B1F3920E9C0FE30017092F /* ScriptInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptInspectorController.h; sourceTree = "<group>"; };
 		C9B1F3930E9C0FE30017092F /* ScriptInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptInspectorController.m; sourceTree = "<group>"; };
@@ -334,6 +352,7 @@
 		C9B88E410E64A60C00FA411E /* start.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = start.pdf; sourceTree = "<group>"; };
 		C9BC51B40F346FF300317049 /* ELDial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELDial.h; sourceTree = "<group>"; };
 		C9BC51B50F346FF300317049 /* ELDial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELDial.m; sourceTree = "<group>"; };
+		C9C97A8510793579008AC228 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		C9D6B1590EBCE83300CA98DC /* control_play_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = control_play_blue.png; sourceTree = "<group>"; };
 		C9D6B15B0EBCE83D00CA98DC /* control_stop_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = control_stop_blue.png; sourceTree = "<group>"; };
 		C9DA148F0EA730780087EDD3 /* Elysium.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Elysium.icns; sourceTree = "<group>"; };
@@ -347,6 +366,12 @@
 		C9E1F7370F42E5500026A89E /* NSString+ELHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ELHelpers.h"; sourceTree = "<group>"; };
 		C9E1F7380F42E5500026A89E /* NSString+ELHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ELHelpers.m"; sourceTree = "<group>"; };
 		C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
+		C9E6C148100235AC002C16A7 /* ELPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELPreferences.h; path = src/ELPreferences.h; sourceTree = "<group>"; };
+		C9E6C149100235AC002C16A7 /* ELPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELPreferences.m; path = src/ELPreferences.m; sourceTree = "<group>"; };
+		C9E6C23C1003561C002C16A7 /* ELDialBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELDialBank.h; sourceTree = "<group>"; };
+		C9E6C23D1003561C002C16A7 /* ELDialBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELDialBank.m; sourceTree = "<group>"; };
+		C9E6C25A1003585E002C16A7 /* ELOscillatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELOscillatorController.h; sourceTree = "<group>"; };
+		C9E6C25B1003585E002C16A7 /* ELOscillatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELOscillatorController.m; sourceTree = "<group>"; };
 		C9E8D9360E68B8AF005AD9B7 /* play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = play.pdf; sourceTree = "<group>"; };
 		C9E8D9370E68B8AF005AD9B7 /* ricochet.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ricochet.pdf; sourceTree = "<group>"; };
 		C9E8D9380E68B8AF005AD9B7 /* rotor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = rotor.pdf; sourceTree = "<group>"; };
@@ -382,7 +407,7 @@
 				C970F11E0F23955900ABAC2E /* PYMIDI.framework in Frameworks */,
 				C970F1770F23976500ABAC2E /* JSCocoa.framework in Frameworks */,
 				C970F1CD0F23B42800ABAC2E /* LMDial.framework in Frameworks */,
-				C94BAE680F263F0300CCC933 /* BWToolkitFramework.framework in Frameworks */,
+				C9C97A8610793579008AC228 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +417,6 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C94BAE670F263F0300CCC933 /* BWToolkitFramework.framework */,
 				C970F1CC0F23B42800ABAC2E /* LMDial.framework */,
 				C970F1760F23976500ABAC2E /* JSCocoa.framework */,
 				C970F11D0F23955900ABAC2E /* PYMIDI.framework */,
@@ -402,6 +426,7 @@
 				C92EDDB50E353EDD00017DFE /* CoreAudio.framework */,
 				C9E43D5C0E33C1A900C4D343 /* CoreMIDI.framework */,
 				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
+				C9C97A8510793579008AC228 /* BWToolkitFramework.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -448,6 +473,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C973EA6A10740DF4001D0BA1 /* scripts */,
 				C91D60ED0F67191B002A1A11 /* CompositionManager.xib */,
 				C90410640F268AB9009CD2B9 /* PreferencesWindow.xib */,
 				C97871380F1FF76B00C4160A /* output */,
@@ -510,9 +536,21 @@
 			path = src/line_number_view;
 			sourceTree = "<group>";
 		};
+		C973EA6A10740DF4001D0BA1 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				C973EA6B10740E09001D0BA1 /* default.js */,
+			);
+			name = scripts;
+			sourceTree = "<group>";
+		};
 		C9A9F1900E8A42D0009A06A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C9E6C148100235AC002C16A7 /* ELPreferences.h */,
+				C9E6C149100235AC002C16A7 /* ELPreferences.m */,
+				C98D70AB0FFF605400BB289C /* ELNotifications.h */,
+				C98D70AC0FFF605400BB289C /* ELNotifications.m */,
 				C91D60E70F67183F002A1A11 /* composition_manager */,
 				C9BC51B30F346FF300317049 /* controls */,
 				C90410430F266057009CD2B9 /* preferences */,
@@ -561,6 +599,8 @@
 				C90BDFC10EC072040003B0CD /* NSXML+Helpers.m */,
 				C9E1F7370F42E5500026A89E /* NSString+ELHelpers.h */,
 				C9E1F7380F42E5500026A89E /* NSString+ELHelpers.m */,
+				C9E6C23C1003561C002C16A7 /* ELDialBank.h */,
+				C9E6C23D1003561C002C16A7 /* ELDialBank.m */,
 			);
 			name = datamodel;
 			path = src/datamodel;
@@ -587,6 +627,8 @@
 				C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */,
 				C9E0A3400F62FA8A00F13A08 /* ELRampOscillator.h */,
 				C9E0A3410F62FA8A00F13A08 /* ELRampOscillator.m */,
+				C9E6C25A1003585E002C16A7 /* ELOscillatorController.h */,
+				C9E6C25B1003585E002C16A7 /* ELOscillatorController.m */,
 			);
 			name = oscillator;
 			path = src/oscillator;
@@ -646,8 +688,8 @@
 			isa = PBXGroup;
 			children = (
 				C9A9F1BF0E8A42DF009A06A3 /* ELLayerWindowController.h */,
-				C9A9F1C00E8A42DF009A06A3 /* ELLayerWindowController.m */,
 				C9A9F1C10E8A42DF009A06A3 /* ELSurfaceView.h */,
+				C9A9F1C00E8A42DF009A06A3 /* ELLayerWindowController.m */,
 				C9A9F1C20E8A42DF009A06A3 /* ELSurfaceView.m */,
 				C9A9F1C30E8A42DF009A06A3 /* ElysiumController.h */,
 				C9A9F1C40E8A42DF009A06A3 /* ElysiumController.m */,
@@ -673,6 +715,8 @@
 				C9FE0E020EBA506400A59130 /* ELMIDIControlMessage.m */,
 				C9FE0E4B0EBA6B9400A59130 /* ELMIDITriggerArrayController.h */,
 				C9FE0E4C0EBA6B9400A59130 /* ELMIDITriggerArrayController.m */,
+				C908CE6D0FF2EB450091239F /* ELMIDINoteMessage.h */,
+				C908CE6E0FF2EB450091239F /* ELMIDINoteMessage.m */,
 			);
 			name = midi;
 			path = src/midi;
@@ -697,6 +741,8 @@
 				C9A9F1DF0E8A42DF009A06A3 /* ELToken.m */,
 				C9F2336E0F53682E00F036AD /* ELSkipToken.h */,
 				C9F2336F0F53682E00F036AD /* ELSkipToken.m */,
+				C973EA6E10741469001D0BA1 /* ELMutexGroup.h */,
+				C973EA6F10741469001D0BA1 /* ELMutexGroup.m */,
 			);
 			name = tokens;
 			path = src/tokens;
@@ -720,6 +766,8 @@
 				C97580E70F181F5D00DB8E93 /* ELScript.m */,
 				C957DDE40F1905A900798819 /* String+AsJavascriptFunction.h */,
 				C957DDE50F1905A900798819 /* String+AsJavascriptFunction.m */,
+				C9AE787B107550D3002B16D5 /* ELScriptEngine.h */,
+				C9AE787C107550D3002B16D5 /* ELScriptEngine.m */,
 			);
 			name = scripting;
 			path = src/scripting;
@@ -728,6 +776,7 @@
 		C9B88E400E64A5E400FA411E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C9880C73100FED3700325AF2 /* ElysiumComposition.icns */,
 				C94BAFA90F4237BD00F1A0F8 /* dial_inherited.tif */,
 				C94BAF9F0F42352100F1A0F8 /* dial_dynamic.tif */,
 				C94BAF9D0F4233A200F1A0F8 /* dial_free.tif */,
@@ -810,6 +859,9 @@
 /* Begin PBXProject section */
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
 			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Elysium" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
@@ -827,6 +879,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C973EA9C10742603001D0BA1 /* default.js in Resources */,
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				1DDD582C0DA1D0D100B32029 /* ElysiumDocument.xib in Resources */,
@@ -874,6 +927,7 @@
 				C94BAFAA0F4237BD00F1A0F8 /* dial_inherited.tif in Resources */,
 				C9F233840F536D5500F036AD /* ELSkipInspectorPane.xib in Resources */,
 				C91D60EF0F67191B002A1A11 /* CompositionManager.xib in Resources */,
+				C9880C74100FED3700325AF2 /* ElysiumComposition.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,6 +1026,13 @@
 				C9E0A3420F62FA8A00F13A08 /* ELRampOscillator.m in Sources */,
 				C9E0A3A70F64721F00F13A08 /* ELInspectorOverlay.m in Sources */,
 				C91D60EA0F67184E002A1A11 /* ELCompositionManager.m in Sources */,
+				C908CE6F0FF2EB450091239F /* ELMIDINoteMessage.m in Sources */,
+				C98D70AD0FFF605400BB289C /* ELNotifications.m in Sources */,
+				C9E6C14A100235AC002C16A7 /* ELPreferences.m in Sources */,
+				C9E6C23E1003561C002C16A7 /* ELDialBank.m in Sources */,
+				C9E6C25C1003585E002C16A7 /* ELOscillatorController.m in Sources */,
+				C973EA7010741469001D0BA1 /* ELMutexGroup.m in Sources */,
+				C9AE787D107550D3002B16D5 /* ELScriptEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,12 +1171,14 @@
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
 		};
@@ -1126,12 +1189,14 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
 		};

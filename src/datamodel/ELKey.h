@@ -12,9 +12,9 @@
 @class ELNote;
 
 @interface ELKey : NSObject {
-  NSString *name;
-  NSArray *scale;
-  BOOL    flat;
+  NSString  *_name;
+  NSArray   *_scale;
+  BOOL      _flat;
 }
 
 @property (readonly) NSString *name;

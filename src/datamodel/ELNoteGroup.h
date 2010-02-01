@@ -14,7 +14,7 @@
 @class ELNote;
 
 @interface ELNoteGroup : ELPlayable {
-  NSMutableArray *notes;
+  NSMutableArray *_notes;
 }
 
 - (id)initWithNote:(ELNote *)note;

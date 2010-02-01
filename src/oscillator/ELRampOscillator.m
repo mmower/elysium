@@ -17,21 +17,47 @@
 
 @implementation ELRampOscillator
 
-- (id)initEnabled:(BOOL)aEnabled minimum:(int)aMin maximum:(int)aMax period:(int)aPeriod rising:(BOOL)aRising {
-  if( ( self = [super initEnabled:aEnabled minimum:aMin maximum:aMax] ) ) {
-    [self setPeriod:aPeriod];
-    [self setRising:aRising];
+
+#pragma mark Object initialization
+
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum period:(int)period rising:(BOOL)rising {
+  if( ( self = [super initEnabled:enabled minimum:minimum hardMinimum:hardMinimum maximum:maximum hardMaximum:hardMaximum] ) ) {
+    [self setPeriod:period];
+    [self setRising:rising];
   }
   
   return self;
 }
 
+
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum period:(int)period rising:(BOOL)rising {
+  return [self initEnabled:enabled minimum:minimum hardMinimum:minimum maximum:maximum hardMaximum:maximum period:period rising:rising];
+}
+
+
+#pragma mark Properties
+
+@synthesize period = _period;
+@synthesize rising = _rising;
+
+
+#pragma mark Object behaviours
+
 - (NSString *)type {
   return @"Ramp";
 }
 
-@synthesize period;
-@synthesize rising;
+
+- (void)start {
+  [super start];
+  
+  if( [self rising] ) {
+    [self setValue:[self minimum]];
+  } else {
+    [self setValue:[self maximum]];
+  }
+}
+
 
 - (int)generate {
     // Get time in milliseconds
@@ -39,16 +65,18 @@
     return [self generateWithT:time];
 }
 
+
 - (int)generateWithT:(int)time {
-  if( time < period ) {
+  if( time < [self period] ) {
     return [self generateRampedWithT:time];
   } else {
     return [self stableValue];
   }
 }
 
+
 - (int)generateRampedWithT:(int)time {
-  int delta = [self range] * ( (float)time / period );
+  int delta = [self range] * ( (float)time / [self period] );
   
   if( [self rising] ) {
     return [self minimum] + delta;
@@ -57,6 +85,7 @@
   }
 }
 
+
 - (int)stableValue {
   if( [self rising] ) {
     return [self maximum];
@@ -64,6 +93,7 @@
     return [self minimum];
   }
 }
+
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
   if( ( self = [super initWithXmlRepresentation:representation parent:_parent_ player:_player_ error:_error_] ) ) {
@@ -78,6 +108,7 @@
   return self;
 }
 
+
 - (void)storeAttributes:(NSMutableDictionary *)serializedAttributes {
   [super storeAttributes:serializedAttributes];
   
@@ -85,12 +116,15 @@
   [serializedAttributes setObject:[NSNumber numberWithBool:[self rising]] forKey:@"rising"];
 }
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
-                                                  minimum:[self minimum]
-                                                  maximum:[self maximum]
-                                                   period:[self period]
-                                                   rising:[self rising]];
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
+                                                minimum:[self minimum]
+                                            hardMinimum:[self hardMinimum]
+                                                maximum:[self maximum]
+                                            hardMaximum:[self hardMaximum]
+                                                 period:[self period]
+                                                 rising:[self rising]];
 }
 
 

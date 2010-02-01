@@ -14,15 +14,15 @@
 #import "ELTimerCallback.h"
 
 @interface ELScriptPackage : NSObject <ELXmlData> {
-  ELPlayer        *player;
+  ELPlayer        *_player;
   
-  BOOL            flag[8];
+  BOOL            _flag[8];
   
-  float           var[8];
-  float           varMin[8];
-  float           varMax[8];
+  float           _var[8];
+  float           _varMin[8];
+  float           _varMax[8];
   
-  ELTimerCallback *timer[4];
+  ELTimerCallback *_timer[4];
 }
 
 @property (assign) ELPlayer *player;

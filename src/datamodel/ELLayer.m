@@ -20,6 +20,9 @@
 
 #import "ELToken.h"
 #import "ELGenerateToken.h"
+#import "ELMIDINoteMessage.h"
+
+#import "ElysiumController.h"
 
 NSPredicate *deadPlayheadFilter;
 
@@ -42,56 +45,56 @@ NSPredicate *deadPlayheadFilter;
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    cells         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
-    playheads     = [[NSMutableArray alloc] init];
-    playheadQueue = [[NSMutableArray alloc] init];
-    generators    = [[NSMutableArray alloc] init];
-    beatCount     = 0;
-    timeBase      = 0;
-    isRunning     = 0;
-    selectedCell  = nil;
-    
-    scripts       = [NSMutableDictionary dictionary];
-    
-    key           = [ELKey noKey];
+    _cells         = [[NSMutableArray alloc] initWithCapacity:HTABLE_SIZE];
+    _playheads     = [[NSMutableArray alloc] init];
+    _playheadQueue = [[NSMutableArray alloc] init];
+    _generators    = [[NSMutableArray alloc] init];
+    _beatCount     = 0;
+    _timeBase      = 0;
+    _isRunning     = NO;
+    _selectedCell  = nil;
+    _receivedNotes = [[NSMutableArray alloc] init];
+    _scripts       = [NSMutableDictionary dictionary];
+    _key           = [ELKey noKey];
     
     [self addObserver:self forKeyPath:@"key" options:0 context:nil];
     
-    enabledDial   = [[ELDial alloc] initWithName:@"enabled"
-                                         toolTip:@"Controls whether this layer should play or not."
-                                             tag:0
-                                       boolValue:YES];
+    _enabledDial   = [[ELDial alloc] initWithName:@"enabled"
+                                          toolTip:@"Controls whether this layer should play or not."
+                                              tag:0
+                                        boolValue:YES];
     
-    channelDial   = [[ELDial alloc] initWithMode:dialFree
-                                            name:@"channel"
-                                         toolTip:@"The MIDI channel this layer will, by default, send notes on."
-                                             tag:0
-                                          parent:nil
-                                      oscillator:nil
-                                        assigned:1
-                                            last:1
-                                           value:1
-                                             min:1
-                                             max:16
-                                            step:1];
+    _channelDial   = [[ELDial alloc] initWithMode:dialFree
+                                             name:@"channel"
+                                          toolTip:@"The MIDI channel this layer will, by default, send notes on."
+                                              tag:0
+                                           player:[self player]
+                                           parent:nil
+                                       oscillator:nil
+                                         assigned:1
+                                             last:1
+                                            value:1
+                                              min:1
+                                              max:16
+                                             step:1];
   }
   
   return self;
 }
 
-- (id)initWithPlayer:(ELPlayer *)thePlayer {
+- (id)initWithPlayer:(ELPlayer *)player {
   if( ( self = [self init] ) ) {
-    [self setPlayer:thePlayer];
+    [self setPlayer:player];
     
-    [self setTempoDial:[[ELDial alloc] initWithParent:[player tempoDial]]];
-    [self setBarLengthDial:[[ELDial alloc] initWithParent:[player barLengthDial]]];
-    [self setTimeToLiveDial:[[ELDial alloc] initWithParent:[player timeToLiveDial]]];
-    [self setPulseEveryDial:[[ELDial alloc] initWithParent:[player pulseEveryDial]]];
-    [self setVelocityDial:[[ELDial alloc] initWithParent:[player velocityDial]]];
-    [self setEmphasisDial:[[ELDial alloc] initWithParent:[player emphasisDial]]];
-    [self setTempoSyncDial:[[ELDial alloc] initWithParent:[player tempoSyncDial]]];
-    [self setNoteLengthDial:[[ELDial alloc] initWithParent:[player noteLengthDial]]];
-    [self setTransposeDial:[[ELDial alloc] initWithParent:[player transposeDial]]];
+    [self setTempoDial:[[ELDial alloc] initWithParent:[[self player] tempoDial]]];
+    [self setBarLengthDial:[[ELDial alloc] initWithParent:[[self player] barLengthDial]]];
+    [self setTimeToLiveDial:[[ELDial alloc] initWithParent:[[self player] timeToLiveDial]]];
+    [self setPulseEveryDial:[[ELDial alloc] initWithParent:[[self player] pulseEveryDial]]];
+    [self setVelocityDial:[[ELDial alloc] initWithParent:[[self player] velocityDial]]];
+    [self setEmphasisDial:[[ELDial alloc] initWithParent:[[self player] emphasisDial]]];
+    [self setTempoSyncDial:[[ELDial alloc] initWithParent:[[self player] tempoSyncDial]]];
+    [self setNoteLengthDial:[[ELDial alloc] initWithParent:[[self player] noteLengthDial]]];
+    [self setTransposeDial:[[ELDial alloc] initWithParent:[[self player] transposeDial]]];
     
     [self configureCells];
   }
@@ -99,210 +102,176 @@ NSPredicate *deadPlayheadFilter;
   return self;
 }
 
-- (id)initWithPlayer:(ELPlayer *)_player_ channel:(int)_channel_ {
-  if( ( self = [self initWithPlayer:_player_] ) ) {
-    [channelDial setValue:_channel_];
+- (id)initWithPlayer:(ELPlayer *)player channel:(int)channel {
+  if( ( self = [self initWithPlayer:player] ) ) {
+    [[self channelDial] setValue:channel];
   }
   
   return self;
 }
 
+
 #pragma mark Properties
 
-@synthesize player;
-@synthesize delegate;
-@synthesize layerId;
-@synthesize selectedCell;
-@synthesize beatCount;
-@synthesize key;
+@synthesize player           = _player;
+@synthesize delegate         = _delegate;
+@synthesize layerId          = _layerId;
+@synthesize selectedCell     = _selectedCell;
+@synthesize beatCount        = _beatCount;
+@synthesize key              = _key;
+@synthesize receivedNotes    = _receivedNotes;
+@synthesize windowController = _windowController;
+@synthesize isRunning        = _isRunning;
 
-@synthesize mDirty;
+@synthesize dirty = _dirty;
 
 - (void)setDirty:(BOOL)dirty {
-  mDirty = dirty;
-  if( mDirty ) {
-    [player setDirty:YES];
+  _dirty = dirty;
+  if( _dirty ) {
+    [[self player] setDirty:YES];
   }
 }
 
 
-@dynamic enabledDial;
+@synthesize enabledDial = _enabledDial;
 
-- (ELDial *)enabledDial {
-  return enabledDial;
+- (void)setEnabledDial:(ELDial *)enabledDial {
+  _enabledDial = enabledDial;
+  [_enabledDial setDelegate:self];
 }
 
 
-- (void)setEnabledDial:(ELDial *)newEnabledDial {
-  enabledDial = newEnabledDial;
-  [enabledDial setDelegate:self];
+@synthesize channelDial = _channelDial;
+
+- (void)setChannelDial:(ELDial *)channelDial {
+  _channelDial = channelDial;
+  [_channelDial setDelegate:self];
 }
 
 
-@dynamic channelDial;
+@synthesize tempoDial = _tempoDial;
 
-- (ELDial *)channelDial {
-  return channelDial;
+- (void)setTempoDial:(ELDial *)tempoDial {
+  _tempoDial = tempoDial;
+  [_tempoDial setDelegate:self];
 }
 
 
-- (void)setChannelDial:(ELDial *)newChannelDial {
-  channelDial = newChannelDial;
-  [channelDial setDelegate:self];
+@synthesize barLengthDial = _barLengthDial;
+
+- (void)setBarLengthDial:(ELDial *)barLengthDial {
+  _barLengthDial = barLengthDial;
+  [_barLengthDial setDelegate:self];
 }
 
 
-@dynamic tempoDial;
+@synthesize timeToLiveDial = _timeToLiveDial;
 
-- (ELDial *)tempoDial {
-  return tempoDial;
+- (void)setTimeToLiveDial:(ELDial *)timeToLiveDial {
+  _timeToLiveDial = timeToLiveDial;
+  [_timeToLiveDial setDelegate:self];
 }
 
 
-- (void)setTempoDial:(ELDial *)newTempoDial {
-  tempoDial = newTempoDial;
-  [tempoDial setDelegate:self];
+@synthesize pulseEveryDial = _pulseEveryDial;
+
+- (void)setPulseEveryDial:(ELDial *)pulseEveryDial {
+  _pulseEveryDial = pulseEveryDial;
+  [_pulseEveryDial setDelegate:self];
 }
 
 
-@dynamic barLengthDial;
+@synthesize velocityDial = _velocityDial;
 
-- (ELDial *)barLengthDial {
-  return barLengthDial;
+- (void)setVelocityDial:(ELDial *)velocityDial {
+  _velocityDial = velocityDial;
+  [_velocityDial setDelegate:self];
 }
 
 
-- (void)setBarLengthDial:(ELDial *)newBarLengthDial {
-  barLengthDial = newBarLengthDial;
-  [barLengthDial setDelegate:self];
+@synthesize emphasisDial = _emphasisDial;
+
+- (void)setEmphasisDial:(ELDial *)emphasisDial {
+  _emphasisDial = emphasisDial;
+  [_emphasisDial setDelegate:self];
 }
 
 
-@dynamic timeToLiveDial;
+@synthesize tempoSyncDial = _tempoSyncDial;
 
-- (ELDial *)timeToLiveDial {
-  return timeToLiveDial;
+- (void)setTempoSyncDial:(ELDial *)tempoSyncDial {
+  _tempoSyncDial = tempoSyncDial;
+  [_tempoSyncDial setDelegate:self];
 }
 
 
-- (void)setTimeToLiveDial:(ELDial *)newTimeToLiveDial {
-  timeToLiveDial = newTimeToLiveDial;
-  [timeToLiveDial setDelegate:self];
+@synthesize noteLengthDial = _noteLengthDial;
+
+- (void)setNoteLengthDial:(ELDial *)noteLengthDial {
+  _noteLengthDial = noteLengthDial;
+  [_noteLengthDial setDelegate:self];
 }
 
 
-@dynamic pulseEveryDial;
+@synthesize transposeDial = _transposeDial;
 
-- (ELDial *)pulseEveryDial {
-  return pulseEveryDial;
+- (void)setTransposeDial:(ELDial *)transposeDial {
+  _transposeDial = transposeDial;
+  [_transposeDial setDelegate:self];
 }
-
-
-- (void)setPulseEveryDial:(ELDial *)newPulseEveryDial {
-  pulseEveryDial = newPulseEveryDial;
-  [pulseEveryDial setDelegate:self];
-}
-
-
-@dynamic velocityDial;
-
-- (ELDial *)velocityDial {
-  return velocityDial;
-}
-
-
-- (void)setVelocityDial:(ELDial *)newVelocityDial {
-  velocityDial = newVelocityDial;
-  [velocityDial setDelegate:self];
-}
-
-
-@dynamic emphasisDial;
-
-- (ELDial *)emphasisDial {
-  return emphasisDial;
-}
-
-
-- (void)setEmphasisDial:(ELDial *)newEmphasisDial {
-  emphasisDial = newEmphasisDial;
-  [emphasisDial setDelegate:self];
-}
-
-
-@dynamic tempoSyncDial;
-
-- (ELDial *)tempoSyncDial {
-  return tempoSyncDial;
-}
-
-
-- (void)setTempoSyncDial:(ELDial *)newTempoSyncDial {
-  tempoSyncDial = newTempoSyncDial;
-  [tempoSyncDial setDelegate:self];
-}
-
-
-@dynamic noteLengthDial;
-
-- (ELDial *)noteLengthDial {
-  return noteLengthDial;
-}
-
-
-- (void)setNoteLengthDial:(ELDial *)newNoteLengthDial {
-  noteLengthDial = newNoteLengthDial;
-  [noteLengthDial setDelegate:self];
-}
-
-
-@dynamic transposeDial;
-
-- (ELDial *)transposeDial {
-  return transposeDial;
-}
-
-
-- (void)setTransposeDial:(ELDial *)newTransposeDial {
-  transposeDial = newTransposeDial;
-  [transposeDial setDelegate:self];
-}
-
-
-- (void)dialDidUnsetOscillator:(ELDial *)dial {
-  [player dialDidUnsetOscillator:dial];
-}
-
-
-- (void)dialDidSetOscillator:(ELDial *)dial {
-  [player dialDidSetOscillator:dial];
-}
-
 
 
 @dynamic visible;
 
 - (BOOL)visible {
-  return [[delegate window] isVisible];
+  return [[[self delegate] window] isVisible];
 }
 
-- (void)setVisible:(BOOL)_visible_ {
-  if( _visible_ ) {
-    [[delegate window] makeKeyAndOrderFront:self];
+- (void)setVisible:(BOOL)visible {
+  if( visible ) {
+    [[[self delegate] window] makeKeyAndOrderFront:self];
   } else {
-    [[delegate window] orderOut:self];
+    /* As a safety measure we only allow this when
+     * there is more than one layer. Otherwise the mainwindow
+     * disappears, breaking everything.
+     */
+    if( [[[self player] layers] count] > 1 ) {
+      [[[self delegate] window] orderOut:self];
+    }
   }
 }
 
 
-@synthesize scripts;
-@synthesize scriptingTag = layerId;
+@synthesize scripts = _scripts;
+@dynamic scriptingTag;
+
+- (NSString *)scriptingTag {
+  return [self layerId];
+}
+
+
+- (void)setScriptingTag:(NSString *)scriptingTag {
+  [self setLayerId:scriptingTag];
+}
+
+
+@dynamic alphaValue;
+
+
+- (CGFloat)alphaValue {
+  return [[[self windowController] window] alphaValue];
+}
+
+
+- (void)setAlphaValue:(CGFloat)alphaValue {
+  [[[self windowController] window] setAlphaValue:alphaValue];
+}
 
 
 #pragma mark Utility methods
 
 - (int)timerResolution {
-  int tempo = [tempoDial value];
+  int tempo = [[self tempoDial] value];
   if( tempo < 1 ) {
     tempo = 1;
   }
@@ -311,55 +280,59 @@ NSPredicate *deadPlayheadFilter;
 }
 
 
-- (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(void *)_context_ {
-  if( [_keyPath_ isEqualToString:@"key"] ) {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if( [keyPath isEqualToString:@"key"] ) {
     [self needsDisplay];
   }
 }
 
-// Manipulate layer
 
 - (BOOL)firstBeatInBar {
-  return ( beatCount % [barLengthDial value] ) == 0;
-  // return (beatCount % [barLengthKnob dynamicValue]) == 0;
+  return ( [self beatCount] % [[self barLengthDial] value] ) == 0;
 }
 
+
+#pragma mark Layer manipulation
+
 - (void)run {
-  if( [enabledDial boolValue] ) {
+  if( [[self enabledDial] boolValue] ) {
     // Advance existing playheads, offer dead playheads a chance to clean up
-    for( ELPlayhead *playhead in playheads ) {
+    for( ELPlayhead *playhead in _playheads ) {
       [playhead advance];
       [playhead cleanup];
     }
     
     // Remove dead playheads
-    [playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
+    [_playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
     
     // Generate any new playheads for this beat
     [self pulse];
     
     // Run all current playheads
-    for( ELPlayhead *playhead in playheads ) {
+    for( ELPlayhead *playhead in _playheads ) {
       [[playhead position] run:playhead];
     }
     
     [self addQueuedPlayheads];
     
-    [delegate setNeedsDisplay:YES];
+    [[self receivedNotes] removeAllObjects];
+    
+    [[self delegate] setNeedsDisplay:YES];
   }
   
   // Beat is over
-  beatCount++;
+  [self setBeatCount:[self beatCount]+1];
 }
+
 
 - (void)runLayer {
   double priority = [[NSUserDefaults standardUserDefaults] floatForKey:ELLayerThreadPriorityKey];
   BOOL prioritySet = [NSThread setThreadPriority:priority];
   NSLog( @"Set priority to %f: %@", priority, prioritySet ? @"YES" : @"NO" );
   
-  timeBase  = AudioGetCurrentHostTime();
-  isRunning = YES;
-  while( ![runner isCancelled] ) {
+  _timeBase  = AudioGetCurrentHostTime();
+  _isRunning = YES;
+  while( ![_runner isCancelled] ) {
     UInt64 start = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() );
     
     [self performSelectorOnMainThread:@selector(runWillRunScript) withObject:nil waitUntilDone:YES];
@@ -379,90 +352,126 @@ NSPredicate *deadPlayheadFilter;
     usleep( delay );
   }
   
-  isRunning = NO;
+  _isRunning = NO;
   [self reset];
 }
 
+
 - (void)runWillRunScript {
-  [[scripts objectForKey:@"willRun"] evalWithArg:player arg:self];
+  [[[self scripts] objectForKey:@"willRun"] evalWithArg:[self player] arg:self];
 }
+
 
 - (void)runDidRunScript {
-  [[scripts objectForKey:@"didRun"] evalWithArg:player arg:self];
+  [[[self scripts] objectForKey:@"didRun"] evalWithArg:[self player] arg:self];
 }
 
+
 - (ELScript *)callbackTemplate {
-  return [@"function(player,layer) {\n\t// write your callback code here\n}\n" asJavascriptFunction];
+  return [@"function(player,layer) {\n\t// write your callback code here\n}\n" asJavascriptFunction:[[self player] scriptEngine]];
 }
+
 
 - (void)start {
   // Tell all the cells we're starting
-  [cells makeObjectsPerformSelector:@selector(start)];
+  [_cells makeObjectsPerformSelector:@selector(start)];
   
-  runner = [[NSThread alloc] initWithTarget:self selector:@selector(runLayer) object:nil];
-  [runner start];
+  _runner = [[NSThread alloc] initWithTarget:self selector:@selector(runLayer) object:nil];
+  [_runner start];
 }
+
 
 - (void)stop {
-  [cells makeObjectsPerformSelector:@selector(stop)];
-  [runner cancel];
+  [_cells makeObjectsPerformSelector:@selector(stop)];
+  [_runner cancel];
 }
 
+
 - (void)reset {
-  beatCount = 0;
+  [self setBeatCount:0];
   [self removeAllPlayheads];
   [self needsDisplay];
 }
 
+
 - (void)clear {
-  [cells makeObjectsPerformSelector:@selector(removeAllTokens)];
+  [_cells makeObjectsPerformSelector:@selector(removeAllTokens)];
 }
 
-- (void)queuePlayhead:(ELPlayhead *)_playhead_ {
-  [playheadQueue addObject:_playhead_];
+
+- (void)queuePlayhead:(ELPlayhead *)playhead {
+  [_playheadQueue addObject:playhead];
 }
+
 
 - (void)addQueuedPlayheads {
-  if( [playheadQueue count] > 0 ) {
-    for( ELPlayhead *playhead in playheadQueue ) {
+  if( [_playheadQueue count] > 0 ) {
+    for( ELPlayhead *playhead in _playheadQueue ) {
       [self addPlayhead:playhead];
     }
-    [playheadQueue removeAllObjects];
+    [_playheadQueue removeAllObjects];
   }
 }
 
-- (void)addPlayhead:(ELPlayhead *)_playhead_ {
-  [playheads addObject:_playhead_];
+
+- (void)addPlayhead:(ELPlayhead *)playhead {
+  [_playheads addObject:playhead];
 }
+
 
 - (void)removeAllPlayheads {
-  for( ELPlayhead *playhead in playheads ) {
+  for( ELPlayhead *playhead in _playheads ) {
     [playhead setPosition:nil];
   }
-  [playheads removeAllObjects];
+  [_playheads removeAllObjects];
 }
 
-- (void)addGenerator:(ELGenerateToken *)_generator_ {
-  [generators addObject:_generator_];
+
+- (void)addGenerator:(ELGenerateToken *)generator {
+  [_generators addObject:generator];
 }
 
-- (void)removeGenerator:(ELGenerateToken *)_generator_ {
-  [generators removeObject:_generator_];
+
+- (void)removeGenerator:(ELGenerateToken *)generator {
+  [_generators removeObject:generator];
 }
+
 
 - (void)pulse {
-  for( ELGenerateToken *generator in generators ) {
-    if( [generator shouldPulseOnBeat:beatCount] ) {
+  for( ELGenerateToken *generator in _generators ) {
+    if( [generator shouldPulseOnBeat:[self beatCount]] ) {
       [generator run:nil];
     }
   }
 }
 
+
+#pragma mark Incoming MIDI support
+
+
+- (void)handleMIDINoteMessage:(ELMIDINoteMessage *)message {
+  if( ( [message channel] + 1 ) == [[self channelDial] value] ) {
+    [[self receivedNotes] addObject:message];
+  }
+}
+
+
+- (BOOL)receivedMIDINote:(ELNote *)note {
+  for( ELMIDINoteMessage *noteMessage in [[self receivedNotes] copy] ) {
+    if( [noteMessage noteOn] && [noteMessage note] == [note number] ) {
+      return YES;
+    }
+  }
+  
+  return NO;
+}
+
+
 - (void)configureCells {
-  ELHarmonicTable *harmonicTable = [player harmonicTable];
+  ELHarmonicTable *harmonicTable = [[self player] harmonicTable];
   NSAssert( harmonicTable != nil, @"Harmonic table should never be nil" );
   
-  NSAssert( cells != nil, @"cells have not been initialized!" );
+  NSAssert( _cells != nil, @"cells have not been initialized!" );
   
   // First create an array of cells that will form the lattice
   for( int col = 0; col < HTABLE_COLS; col++ ) {
@@ -476,7 +485,7 @@ NSPredicate *deadPlayheadFilter;
                                                row:row];
       NSAssert( cell != nil, @"Generated cells should never be nil" );
       
-      [cells addObject:cell];
+      [_cells addObject:cell];
     }
   }
 
@@ -536,68 +545,74 @@ NSPredicate *deadPlayheadFilter;
   }
 }
 
+
 // LMHoneycombMatrix protocol implementation
 
 - (int)hexColumns {
   return HTABLE_COLS;
 }
 
+
 - (int)hexRows {
   return HTABLE_ROWS;
 }
 
+
 - (void)hexCellSelected:(LMHexCell *)newlySelectedCell {
   ELCell *cell = (ELCell *)newlySelectedCell;
   [self setSelectedCell:cell];
-  [player setSelectedLayer:self];
+  [[self player] setSelectedLayer:self];
   if( cell ) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:cell];
     
-    if( ![player performanceMode] ) {
+    if( ![[NSApp delegate] performanceMode] ) {
       // [durationKnob dynamicValue]
-      [[cell note] playOnChannel:[channelDial value] duration:2.0 velocity:[velocityDial value] transpose:0];
+      [[cell note] playOnChannel:[[self channelDial] value] duration:2.0 velocity:[[self velocityDial] value] transpose:0];
     }
   } else {
     [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
   }
 }
 
+
 - (ELCell *)cellAtColumn:(int)col row:(int)row {
   return (ELCell *)[self hexCellAtColumn:col row:row];
 }
 
+
 - (LMHexCell *)hexCellAtColumn:(int)col row:(int)row {
   NSAssert4( COL_ROW_OFFSET( col, row ) < HTABLE_SIZE, @"Offset %d (%d,%d) is of bounds (%d)!", COL_ROW_OFFSET(col,row), col, row, HTABLE_SIZE );
   
-  LMHexCell *cell = [cells objectAtIndex:COL_ROW_OFFSET(col,row)];
+  LMHexCell *cell = [_cells objectAtIndex:COL_ROW_OFFSET(col,row)];
   NSAssert2( cell != nil, @"Requested nil cell at %d,%d", col, row );
   return cell;
 }
 
-// Implement the ELXmlData protocol
+
+#pragma mark Implements ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *layerElement = [NSXMLNode elementWithName:@"layer"];
   
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:layerId forKey:@"id"];
-  if( key ) {
-    [attributes setObject:[key name] forKey:@"key"];
+  [attributes setObject:[self layerId] forKey:@"id"];
+  if( [self key] ) {
+    [attributes setObject:[[self key] name] forKey:@"key"];
   }
   [layerElement setAttributesAsDictionary:attributes];
   
   NSXMLElement *controlsElement = [NSXMLNode elementWithName:@"controls"];
-  [controlsElement addChild:[enabledDial xmlRepresentation]];
-  [controlsElement addChild:[channelDial xmlRepresentation]];
-  [controlsElement addChild:[tempoDial xmlRepresentation]];
-  [controlsElement addChild:[barLengthDial xmlRepresentation]];
-  [controlsElement addChild:[timeToLiveDial xmlRepresentation]];
-  [controlsElement addChild:[pulseEveryDial xmlRepresentation]];
-  [controlsElement addChild:[velocityDial xmlRepresentation]];
-  [controlsElement addChild:[emphasisDial xmlRepresentation]];
-  [controlsElement addChild:[tempoSyncDial xmlRepresentation]];
-  [controlsElement addChild:[noteLengthDial xmlRepresentation]];
-  [controlsElement addChild:[transposeDial xmlRepresentation]];
+  [controlsElement addChild:[[self enabledDial] xmlRepresentation]];
+  [controlsElement addChild:[[self channelDial] xmlRepresentation]];
+  [controlsElement addChild:[[self tempoDial] xmlRepresentation]];
+  [controlsElement addChild:[[self barLengthDial] xmlRepresentation]];
+  [controlsElement addChild:[[self timeToLiveDial] xmlRepresentation]];
+  [controlsElement addChild:[[self pulseEveryDial] xmlRepresentation]];
+  [controlsElement addChild:[[self velocityDial] xmlRepresentation]];
+  [controlsElement addChild:[[self emphasisDial] xmlRepresentation]];
+  [controlsElement addChild:[[self tempoSyncDial] xmlRepresentation]];
+  [controlsElement addChild:[[self noteLengthDial] xmlRepresentation]];
+  [controlsElement addChild:[[self transposeDial] xmlRepresentation]];
   [layerElement addChild:controlsElement];
   
   NSXMLElement *cellsElement = [NSXMLNode elementWithName:@"cells"];
@@ -615,14 +630,14 @@ NSPredicate *deadPlayheadFilter;
   [layerElement addChild:cellsElement];
   
   NSXMLElement *scriptsElement = [NSXMLNode elementWithName:@"scripts"];
-  for( NSString *name in [scripts allKeys] ) {
+  for( NSString *name in [[self scripts] allKeys] ) {
     NSXMLElement *scriptElement = [NSXMLNode elementWithName:@"script"];
     
     [attributes removeAllObjects];
     [attributes setObject:name forKey:@"name"];
     [scriptElement setAttributesAsDictionary:attributes];
     NSXMLNode *cdataNode = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
-    [cdataNode setStringValue:[scripts objectForKey:name]];
+    [cdataNode setStringValue:[[self scripts] objectForKey:name]];
     [scriptElement addChild:cdataNode];
     [scriptsElement addChild:scriptElement];
   }
@@ -631,38 +646,41 @@ NSPredicate *deadPlayheadFilter;
   return layerElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [self initWithPlayer:_parent_] ) ) {
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [self initWithPlayer:parent] ) ) {
     NSArray *nodes;
     
-    NSString *idAttribute = [_representation_ attributeAsString:@"id"];
+    NSString *idAttribute = [representation attributeAsString:@"id"];
     if( idAttribute == nil ) {
-      *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain
-                                             code:EL_ERR_LAYER_MISSING_ID
-                                         userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Layer found without an ID attribute", NSLocalizedDescriptionKey, nil]];
+      if( error ) {
+        *error = [[NSError alloc] initWithDomain:ELErrorDomain
+                                            code:EL_ERR_LAYER_MISSING_ID
+                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Layer found without an ID attribute", NSLocalizedDescriptionKey, nil]];
+      }
       return nil;
     } else {
       [self setLayerId:idAttribute];
     }
     
-    NSString *keyAttribute = [_representation_ attributeAsString:@"key"];
+    NSString *keyAttribute = [representation attributeAsString:@"key"];
     if( keyAttribute ) {
       [self setKey:[ELKey keyNamed:keyAttribute]];
     }
     
-    [self setEnabledDial:[_representation_ loadDial:@"enabled" parent:nil player:_player_ error:_error_]];
-    [self setChannelDial:[_representation_ loadDial:@"channel" parent:nil player:_player_ error:_error_]];
-    [self setTempoDial:[_representation_ loadDial:@"tempo" parent:nil player:_player_ error:_error_]];
-    [self setBarLengthDial:[_representation_ loadDial:@"barLength" parent:nil player:_player_ error:_error_]];
-    [self setTimeToLiveDial:[_representation_ loadDial:@"timeToLive" parent:nil player:_player_ error:_error_]];
-    [self setPulseEveryDial:[_representation_ loadDial:@"pulseEvery" parent:nil player:_player_ error:_error_]];
-    [self setVelocityDial:[_representation_ loadDial:@"velocity" parent:nil player:_player_ error:_error_]];
-    [self setEmphasisDial:[_representation_ loadDial:@"emphasis" parent:nil player:_player_ error:_error_]];
-    [self setTempoSyncDial:[_representation_ loadDial:@"tempoSync" parent:nil player:_player_ error:_error_]];
-    [self setNoteLengthDial:[_representation_ loadDial:@"noteLength" parent:nil player:_player_ error:_error_]];
-    [self setTransposeDial:[_representation_ loadDial:@"transpose" parent:nil player:_player_ error:_error_]];
+    [self setEnabledDial:[representation loadDial:@"enabled" parent:nil player:player error:error]];
+    [self setChannelDial:[representation loadDial:@"channel" parent:nil player:player error:error]];
+    [self setTempoDial:[representation loadDial:@"tempo" parent:[player tempoDial] player:player error:error]];
+    [self setBarLengthDial:[representation loadDial:@"barLength" parent:[player barLengthDial] player:player error:error]];
+    [self setTimeToLiveDial:[representation loadDial:@"timeToLive" parent:[player timeToLiveDial] player:player error:error]];
+    [self setPulseEveryDial:[representation loadDial:@"pulseEvery" parent:[player pulseEveryDial] player:player error:error]];
+    [self setVelocityDial:[representation loadDial:@"velocity" parent:[player velocityDial] player:player error:error]];
+    [self setEmphasisDial:[representation loadDial:@"emphasis" parent:[player emphasisDial] player:player error:error]];
+    [self setTempoSyncDial:[representation loadDial:@"tempoSync" parent:[player tempoSyncDial] player:player error:error]];
+    [self setNoteLengthDial:[representation loadDial:@"noteLength" parent:[player noteLengthDial] player:player error:error]];
+    [self setTransposeDial:[representation loadDial:@"transpose" parent:[player transposeDial] player:player error:error]];
     
-    nodes = [_representation_ nodesForXPath:@"cells/cell" error:_error_];
+    nodes = [representation nodesForXPath:@"cells/cell" error:error];
     if( nodes == nil ) {
       return nil;
     } else {
@@ -672,19 +690,23 @@ NSPredicate *deadPlayheadFilter;
         
         attributeNode = [element attributeForName:@"col"];
         if( attributeNode == nil ) {
-          *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid column reference",NSLocalizedDescriptionKey,nil]];
+          if( error ) {
+            *error = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid column reference",NSLocalizedDescriptionKey,nil]];
+          }
           return nil;
         }
         int col = [[attributeNode stringValue] intValue];
         
         attributeNode = [element attributeForName:@"row"];
         if( attributeNode == nil ) {
-          *_error_ = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid row reference",NSLocalizedDescriptionKey,nil]];
+          if( error ) {
+            *error = [[NSError alloc] initWithDomain:ELErrorDomain code:EL_ERR_LAYER_CELL_REF_INVALID userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Cell has no or invalid row reference",NSLocalizedDescriptionKey,nil]];
+          }
           return nil;
         }
         int row = [[attributeNode stringValue] intValue];
         
-        ELCell *cell = [[self cellAtColumn:col row:row] initWithXmlRepresentation:element parent:self player:_player_ error:_error_];
+        ELCell *cell = [[self cellAtColumn:col row:row] initWithXmlRepresentation:element parent:self player:player error:error];
         if( cell == nil ) {
           return nil;
         }
@@ -692,14 +714,14 @@ NSPredicate *deadPlayheadFilter;
     }
     
     // Scripts
-    nodes = [_representation_ nodesForXPath:@"scripts/script" error:_error_];
+    nodes = [representation nodesForXPath:@"scripts/script" error:error];
     if( nodes == nil ) {
       return nil;
     } else {
       for( NSXMLNode *node in nodes ) {
         NSXMLElement *element = (NSXMLElement *)node;
-        [scripts setObject:[[element stringValue] asJavascriptFunction]
-                    forKey:[[element attributeForName:@"name"] stringValue]];
+        [[self scripts] setObject:[[element stringValue] asJavascriptFunction:[[self player] scriptEngine]]
+                           forKey:[[element attributeForName:@"name"] stringValue]];
       }
     }
   }
@@ -707,11 +729,12 @@ NSPredicate *deadPlayheadFilter;
   return self;
 }
 
-// Drawing notification from the cell
+
+#pragma mark Cell drawing notifications
 
 - (void)needsDisplay {
-  if( [delegate respondsToSelector:@selector(setNeedsDisplay:)] ) {
-    [delegate setNeedsDisplay:YES];
+  if( [[self delegate] respondsToSelector:@selector(setNeedsDisplay:)] ) {
+    [[self delegate] setNeedsDisplay:YES];
   }
 }
 

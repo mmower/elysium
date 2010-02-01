@@ -19,34 +19,40 @@ typedef enum tagELDialMode {
   dialInherited
 } ELDialMode;
 
+@class ELPlayer;
 @class ELOscillator;
 
 @interface ELDial : NSObject <ELXmlData,NSMutableCopying> {
-  id            delegate;
+  id            _delegate;
   
-  ELDialMode    mode;
+  ELDialMode    _mode;
   
-  NSString      *name;
-  NSString      *toolTip;
-  int           tag;
+  NSString      *_name;
+  NSString      *_toolTip;
+  int           _tag;
   
-  ELDial        *parent;
-  ELOscillator  *oscillator;
+  ELPlayer      *_player;
+  ELDial        *_parent;
+  ELOscillator  *_oscillator;
   
-  int           assigned;
-  int           last;
-  int           value;
+  int           _assigned;
+  int           _last;
+  int           _value;
   
   // For range based controls
-  int           min;
-  int           max;
-  int           step;
+  int           _min;
+  int           _max;
+  int           _step;
+  
+  BOOL          _duplicate;
 }
+
 
 - (id)initWithMode:(ELDialMode)mode
               name:(NSString *)name
            toolTip:(NSString *)toolTip
                tag:(int)tag
+            player:(ELPlayer *)player
             parent:(ELDial *)parent
         oscillator:(ELOscillator *)oscillator
           assigned:(int)assigned
@@ -57,6 +63,7 @@ typedef enum tagELDialMode {
               name:(NSString *)name
            toolTip:(NSString *)toolTip
                tag:(int)tag
+            player:(ELPlayer *)player
             parent:(ELDial *)parent
         oscillator:(ELOscillator *)oscillator
           assigned:(int)assigned
@@ -69,6 +76,7 @@ typedef enum tagELDialMode {
 - (id)initWithName:(NSString *)aName
            toolTip:(NSString *)aToolTip
                tag:(int)aTag
+            player:(ELPlayer *)player
           assigned:(int)aAssigned
                min:(int)aMin
                max:(int)aMax
@@ -86,6 +94,7 @@ typedef enum tagELDialMode {
 @property (assign)  NSString      *name;
 @property (assign)  NSString      *toolTip;
 @property           int           tag;
+@property           ELPlayer      *player;
 @property           ELDial        *parent;
 @property           ELOscillator  *oscillator;
 @property           int           assigned;
@@ -94,6 +103,7 @@ typedef enum tagELDialMode {
 @property           int           min;
 @property           int           max;
 @property           int           step;
+@property           BOOL          duplicate;
 
 - (BOOL)boolValue;
 - (void)setBoolValue:(BOOL)boolValue;
@@ -105,10 +115,12 @@ typedef enum tagELDialMode {
 - (void)start;
 - (void)stop;
 
+- (BOOL)pTest;
+
+- (ELDial *)duplicateDial;
+
 @end
 
 @interface NSObject (ELDialDelegation)
 - (void)dialDidChangeValue:(ELDial *)dial;
-- (void)dialDidUnsetOscillator:(ELDial *)dial;
-- (void)dialDidSetOscillator:(ELDial *)dial;
 @end

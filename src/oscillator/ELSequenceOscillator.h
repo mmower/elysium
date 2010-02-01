@@ -12,8 +12,8 @@
 #import "ELOscillator.h"
 
 @interface ELSequenceValue : NSObject {
-  int       intValue;
-  NSString  *stringValue;
+  int       _intValue;
+  NSString  *_stringValue;
 }
 
 - (id)initWithStringValue:(NSString *)stringValue;
@@ -24,8 +24,8 @@
 @end
 
 @interface ELSequenceOscillator : ELOscillator {
-  NSMutableArray  *values;
-  int             index;
+  NSMutableArray  *_values;
+  int             _index;
 }
 
 - (id)initEnabled:(BOOL)enabled values:(NSArray *)values;

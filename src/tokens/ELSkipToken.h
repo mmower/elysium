@@ -11,7 +11,7 @@
 #import "ELToken.h"
 
 @interface ELSkipToken : ELToken {
-  ELDial *skipCountDial;
+  ELDial *_skipCountDial;
 }
 
 @property ELDial *skipCountDial;

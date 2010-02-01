@@ -10,8 +10,8 @@
 
 @implementation NSString (String_AsJavascriptFunction)
 
-- (JavascriptCallback *)asJavascriptFunction {
-  return [[JavascriptCallback alloc] initWithSource:self];
+- (JavascriptCallback *)asJavascriptFunction:(ELScriptEngine *)scriptEngine {
+  return [[JavascriptCallback alloc] initWithSource:self scriptEngine:scriptEngine];
 }
 
 @end

@@ -36,19 +36,27 @@
 
 - (void)setGenerateTokenWithUndo:(ELGenerateToken *)generateToken;
 - (void)setNoteTokenWithUndo:(ELNoteToken *)noteToken;
+- (void)setReboundTokenWithUndo:(ELReboundToken *)reboundToken;
+- (void)setAbsorbTokenWithUndo:(ELAbsorbToken *)absorbToken;
+- (void)setSplitTokenWithUndo:(ELSplitToken *)splitToken;
+- (void)setSpinTokenWithUndo:(ELSpinToken *)spinToken;
+- (void)setSkipTokenWithUndo:(ELSkipToken *)skipToken;
+
+- (void)addToken:(ELToken *)token;
+- (void)removeToken:(ELToken *)token;
 
 @end
 
 @implementation ELCell
 
-- (id)initWithLayer:(ELLayer *)_layer_ note:(ELNote *)_note_ column:(int)_col_ row:(int)_row_ {
-  if( ( self = [super initWithColumn:_col_ row:_row_] ) ) {
-    layer        = _layer_;
-    note         = _note_;
-    tokens       = [[NSMutableDictionary alloc] init];
-    playheads    = [[NSMutableArray alloc] init];
-    scriptingTag = [NSString stringWithFormat:@"cell%d:%d",_col_,_row_];
-    mDirty       = NO;
+- (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row {
+  if( ( self = [super initWithColumn:col row:row] ) ) {
+    _layer        = layer;
+    _note         = note;
+    _tokens       = [[NSMutableDictionary alloc] init];
+    _playheads    = [[NSMutableArray alloc] init];
+    _scriptingTag = [NSString stringWithFormat:@"cell%d:%d",[self col],[self row]];
+    _dirty        = NO;
     
     [self connectNeighbour:nil direction:N];
     [self connectNeighbour:nil direction:NE];
@@ -64,193 +72,197 @@
 
 #pragma mark Properties
 
-@synthesize layer;
-@synthesize note;
-@synthesize scriptingTag;
-@synthesize tokens;
+@synthesize layer = _layer;
+@synthesize note = _note;
+@synthesize playheads = _playheads;
+@synthesize scriptingTag = _scriptingTag;
+@synthesize tokens = _tokens;
 
-@synthesize mDirty;
+@synthesize dirty = _dirty;
 
 - (void)setDirty:(BOOL)dirty {
-  mDirty = dirty;
-  if( mDirty ) {
-    [layer setDirty:YES];
+  _dirty = dirty;
+  if( _dirty ) {
+    [[self layer] setDirty:YES];
   }
 }
 
 
-@synthesize generateToken;
+@synthesize generateToken = _generateToken;
 
-- (void)setGenerateToken:(ELGenerateToken *)_generateToken_ {
-  [self removeToken:generateToken];
-  generateToken = _generateToken_;
-  [self addToken:generateToken];
+- (void)setGenerateToken:(ELGenerateToken *)generateToken {
+  [self removeToken:_generateToken];
+  _generateToken = generateToken;
+  [self addToken:_generateToken];
   [self makeCurrentSelection];
 }
 
 
-- (void)setGenerateTokenWithUndo:(ELGenerateToken *)_generateToken_ {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
-  [[undoManager prepareWithInvocationTarget:self] setGenerateTokenWithUndo:generateToken];
+- (void)setGenerateTokenWithUndo:(ELGenerateToken *)generateToken {
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setGenerateTokenWithUndo:_generateToken];
   if( ![undoManager isUndoing] ) {
-    if( _generateToken_ ) {
+    if( generateToken ) {
       [undoManager setActionName:@"add generate"];
     } else {
       [undoManager setActionName:@"remove generate"];
     }
   }
-  [self setGenerateToken:_generateToken_];
+  [self setGenerateToken:generateToken];
 }
 
 
-@synthesize noteToken;
+@synthesize noteToken = _noteToken;
 
-- (void)setNoteToken:(ELNoteToken *)_noteToken_ {
-  [self removeToken:noteToken];
-  noteToken = _noteToken_;
-  [self addToken:noteToken];
+- (void)setNoteToken:(ELNoteToken *)noteToken {
+  [self removeToken:_noteToken];
+  _noteToken = noteToken;
+  [self addToken:_noteToken];
   [self makeCurrentSelection];
 }
 
 
-- (void)setNoteTokenWithUndo:(ELNoteToken *)_noteToken_ {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
-  [[undoManager prepareWithInvocationTarget:self] setNoteTokenWithUndo:noteToken];
+- (void)setNoteTokenWithUndo:(ELNoteToken *)noteToken {
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setNoteTokenWithUndo:_noteToken];
   if( ![undoManager isUndoing] ) {
-    if( _noteToken_ ) {
+    if( noteToken ) {
       [undoManager setActionName:@"add note"];
     } else {
       [undoManager setActionName:@"remove note"];
     }
   }
-  [self setNoteToken:_noteToken_];
+  [self setNoteToken:noteToken];
 }
 
 
-@synthesize reboundToken;
+@synthesize reboundToken = _reboundToken;
 
-- (void)setReboundToken:(ELReboundToken *)_reboundToken_ {
-  [self removeToken:reboundToken];
-  reboundToken = _reboundToken_;
-  [self addToken:reboundToken];
+- (void)setReboundToken:(ELReboundToken *)reboundToken {
+  [self removeToken:_reboundToken];
+  _reboundToken = reboundToken;
+  [self addToken:_reboundToken];
   [self makeCurrentSelection];
 }
 
 
-- (void)setReboundTokenWithUndo:(ELReboundToken *)_reboundToken_ {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
-  [[undoManager prepareWithInvocationTarget:self] setReboundTokenWithUndo:reboundToken];
+- (void)setReboundTokenWithUndo:(ELReboundToken *)reboundToken {
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setReboundTokenWithUndo:_reboundToken];
   if( ![undoManager isUndoing] ) {
-    if( _reboundToken_ ) {
+    if( reboundToken ) {
       [undoManager setActionName:@"add rebound"];
     } else {
       [undoManager setActionName:@"remove rebound"];
     }
   }
-  [self setReboundToken:_reboundToken_];
+  [self setReboundToken:reboundToken];
 }
 
 
-@synthesize absorbToken;
+@synthesize absorbToken = _absorbToken;
 
-- (void)setAbsorbToken:(ELAbsorbToken *)_absorbToken_ {
-  [self removeToken:absorbToken];
-  absorbToken = _absorbToken_;
-  [self addToken:absorbToken];
+- (void)setAbsorbToken:(ELAbsorbToken *)absorbToken {
+  [self removeToken:_absorbToken];
+  _absorbToken = absorbToken;
+  [self addToken:_absorbToken];
   [self makeCurrentSelection];
 }
 
 
-- (void)setAbsorbTokenWithUndo:(ELAbsorbToken *)_absorbToken_ {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
-  [[undoManager prepareWithInvocationTarget:self] setAbsorbTokenWithUndo:absorbToken];
+- (void)setAbsorbTokenWithUndo:(ELAbsorbToken *)absorbToken {
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setAbsorbTokenWithUndo:_absorbToken];
   if( ![undoManager isUndoing] ) {
-    if( _absorbToken_ ) {
+    if( absorbToken ) {
       [undoManager setActionName:@"add absorb"];
     } else {
       [undoManager setActionName:@"remove absorb"];
     }
   }
-  [self setAbsorbToken:_absorbToken_];
+  [self setAbsorbToken:absorbToken];
 }
 
 
-@synthesize splitToken;
+@synthesize splitToken = _splitToken;
 
-- (void)setSplitToken:(ELSplitToken *)_splitToken_ {
-  [self removeToken:splitToken];
-  splitToken = _splitToken_;
-  [self addToken:splitToken];
+- (void)setSplitToken:(ELSplitToken *)splitToken {
+  [self removeToken:_splitToken];
+  _splitToken = splitToken;
+  [self addToken:_splitToken];
   [self makeCurrentSelection];
 }
 
 
-- (void)setSplitTokenWithUndo:(ELSplitToken *)_splitToken_ {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
-  [[undoManager prepareWithInvocationTarget:self] setSplitTokenWithUndo:splitToken];
+- (void)setSplitTokenWithUndo:(ELSplitToken *)splitToken {
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setSplitTokenWithUndo:_splitToken];
   if( ![undoManager isUndoing] ) {
-    if( _splitToken_ ) {
+    if( splitToken ) {
       [undoManager setActionName:@"add split"];
     } else {
       [undoManager setActionName:@"remove split"];
     }
   }
-  [self setSplitToken:_splitToken_];
+  [self setSplitToken:splitToken];
 }
 
 
-@synthesize spinToken;
+@synthesize spinToken = _spinToken;
 
-- (void)setSpinToken:(ELSpinToken *)_spinToken_ {
-  [self removeToken:spinToken];
-  spinToken = _spinToken_;
-  [self addToken:spinToken];
+- (void)setSpinToken:(ELSpinToken *)spinToken {
+  [self removeToken:_spinToken];
+  _spinToken = spinToken;
+  [self addToken:_spinToken];
   [self makeCurrentSelection];
 }
 
 
-- (void)setSpinTokenWithUndo:(ELSpinToken *)_spinToken_ {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
-  [[undoManager prepareWithInvocationTarget:self] setSpinTokenWithUndo:spinToken];
+- (void)setSpinTokenWithUndo:(ELSpinToken *)spinToken {
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setSpinTokenWithUndo:_spinToken];
   if( ![undoManager isUndoing] ) {
-    if( _spinToken_ ) {
+    if( spinToken ) {
       [undoManager setActionName:@"add spin"];
     } else {
       [undoManager setActionName:@"remove spin"];
     }
   }
-  [self setSpinToken:_spinToken_];
+  [self setSpinToken:spinToken];
 }
 
 
-@synthesize skipToken;
+@synthesize skipToken = _skipToken;
 
-- (void)setSkipToken:(ELSkipToken *)newSkipToken {
-  [self removeToken:skipToken];
-  skipToken = newSkipToken;
-  [self addToken:skipToken];
+- (void)setSkipToken:(ELSkipToken *)skipToken {
+  [self removeToken:_skipToken];
+  _skipToken = skipToken;
+  [self addToken:_skipToken];
   [self makeCurrentSelection];
 }
 
 
-- (void)setSkipTokenWithUndo:(ELSkipToken *)newSkipToken {
-  NSUndoManager *undoManager = [[[[NSApp mainWindow] windowController] document] undoManager];
-  [[undoManager prepareWithInvocationTarget:self] setSkipTokenWithUndo:skipToken];
+- (void)setSkipTokenWithUndo:(ELSkipToken *)skipToken {
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
+  [[undoManager prepareWithInvocationTarget:self] setSkipTokenWithUndo:_skipToken];
   if( ![undoManager isUndoing] ) {
-    if( newSkipToken ) {
+    if( skipToken ) {
       [undoManager setActionName:@"add skip"];
     } else {
       [undoManager setActionName:@"remove skip"];
     }
   }
-  [self setSkipToken:newSkipToken];
+  [self setSkipToken:skipToken];
 }
+
+
+@synthesize playheadEntered = _playheadEntered;
 
 
 #pragma mark Lattice management
 
 - (void)connectToCell:(ELCell *)cell direction:(Direction)direction {
-  neighbours[direction] = cell;
+  _neighbours[direction] = cell;
 }
 
 - (void)connectNeighbour:(ELCell *)cell direction:(Direction)direction {
@@ -259,7 +271,7 @@
 
 - (ELCell *)neighbour:(Direction)direction {
   ASSERT_VALID_DIRECTION( direction );
-  return neighbours[direction];
+  return _neighbours[direction];
 }
 
 - (ELNoteGroup *)triad:(int)_triad_ {
@@ -323,45 +335,73 @@
   return triad;
 }
 
-// Token support
+
+#pragma mark Token support
 
 - (void)needsDisplay {
-  [layer needsDisplay];
+  [[self layer] needsDisplay];
 }
+
 
 - (BOOL)shouldBeSaved {
-  return [tokens count] > 0;
+  return [[self tokens] count] > 0;
 }
+
 
 - (void)start {
-  [[tokens allValues] makeObjectsPerformSelector:@selector(start)];
+  [[[self tokens] allValues] makeObjectsPerformSelector:@selector(start)];
 }
+
 
 - (void)stop {
-  [[tokens allValues] makeObjectsPerformSelector:@selector(stop)];
+  [[[self tokens] allValues] makeObjectsPerformSelector:@selector(stop)];
 }
+
 
 - (void)run:(ELPlayhead *)playhead {
-  [noteToken run:playhead];
-  [splitToken run:playhead];
-  [reboundToken run:playhead];
-  [absorbToken run:playhead];
-  [spinToken run:playhead];
-  [skipToken run:playhead];
+  [[self noteToken] run:playhead];
+  [[self splitToken] run:playhead];
+  [[self reboundToken] run:playhead];
+  [[self absorbToken] run:playhead];
+  [[self spinToken] run:playhead];
+  [[self skipToken] run:playhead];
 }
 
-- (void)addToken:(ELToken *)newToken {
-  if( newToken ) {
-    [tokens setObject:newToken forKey:[newToken tokenType]];
-    [newToken addedToLayer:layer atPosition:self];
+
+- (BOOL)hasTokenWithIdentifier:(NSString *)identifier {
+  return [[self tokens] objectForKey:identifier] != nil;
+}
+
+
+- (void)addToken:(ELToken *)token {
+  if( token ) {
+    [[self tokens] setObject:token forKey:[token tokenType]];
+    [token addedToLayer:[self layer] atPosition:self];
   }
 }
+
 
 - (void)removeToken:(ELToken *)token {
   if( token ) {
-    [token removedFromLayer:layer];
-    [tokens removeObjectForKey:[token tokenType]];
+    [token removedFromLayer:[self layer]];
+    [[self tokens] removeObjectForKey:[token tokenType]];
   }
+}
+
+
+- (void)removeAllTokensWithUndo {
+  NSUndoManager *undoManager = [[[self layer] player] undoManager];
+  
+  [undoManager beginUndoGrouping];
+  [self setGenerateTokenWithUndo:nil];
+  [self setNoteTokenWithUndo:nil];
+  [self setReboundTokenWithUndo:nil];
+  [self setAbsorbTokenWithUndo:nil];
+  [self setSplitTokenWithUndo:nil];
+  [self setSpinTokenWithUndo:nil];
+  [self setSkipTokenWithUndo:nil];
+  [undoManager setActionName:@"clear"];
+  [undoManager endUndoGrouping];
 }
 
 - (void)removeAllTokens {
@@ -374,31 +414,37 @@
   [self setSkipToken:nil];
 }
 
+
 - (void)copyTokensFrom:(ELCell *)cell {
-  [self setGenerateToken:[[cell generateToken] mutableCopy]];
-  [self setNoteToken:[[cell noteToken] mutableCopy]];
-  [self setReboundToken:[[cell reboundToken] mutableCopy]];
-  [self setAbsorbToken:[[cell absorbToken] mutableCopy]];
-  [self setSplitToken:[[cell splitToken] mutableCopy]];
-  [self setSpinToken:[[cell spinToken] mutableCopy]];
-  [self setSkipToken:[[cell skipToken] mutableCopy]];
+  [self setGenerateTokenWithUndo:[[cell generateToken] mutableCopy]];
+  [self setNoteTokenWithUndo:[[cell noteToken] mutableCopy]];
+  [self setReboundTokenWithUndo:[[cell reboundToken] mutableCopy]];
+  [self setAbsorbTokenWithUndo:[[cell absorbToken] mutableCopy]];
+  [self setSplitTokenWithUndo:[[cell splitToken] mutableCopy]];
+  [self setSpinTokenWithUndo:[[cell spinToken] mutableCopy]];
+  [self setSkipTokenWithUndo:[[cell skipToken] mutableCopy]];
 }
+
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"Cell %d,%d - %@", col, row, note];
+  return [NSString stringWithFormat:@"Cell %d,%d - %@", [self col], [self row], [self note]];
 }
 
-// Playheads
 
-- (void)playheadEntering:(ELPlayhead *)_playhead {
-  [playheads addObject:_playhead];
+#pragma mark Playhead support
+
+- (void)playheadEntering:(ELPlayhead *)playhead {
+  [[self playheads] addObject:playhead];
+  
+  [self setPlayheadEntered:YES];
 }
 
-- (void)playheadLeaving:(ELPlayhead *)_playhead {
-  [playheads removeObject:_playhead];
+- (void)playheadLeaving:(ELPlayhead *)playhead {
+  [[self playheads] removeObject:playhead];
 }
 
-// Token support
+
+#pragma mark Menu support
 
 - (NSMenu *)contextMenu {
   NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Context Menu"];
@@ -438,28 +484,32 @@
   
   [menu addItem:[NSMenuItem separatorItem]];
   
-  item = [[NSMenuItem alloc] initWithTitle:@"Clear" action:@selector(clearCell:) keyEquivalent:@""];
+  item = [[NSMenuItem alloc] initWithTitle:@"Clear" action:@selector(clearTokens:) keyEquivalent:@""];
   [item setTarget:self];
   [menu addItem:item];
   
   return menu;
 }
 
-- (NSMenuItem *)tokenMenuItem:(NSString *)_name_ present:(BOOL)_present_ selector:(SEL)_selector_ {
+
+- (NSMenuItem *)tokenMenuItem:(NSString *)name present:(BOOL)present selector:(SEL)selector {
   NSMenuItem *item;
   
-  if( _present_ ) {
-    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Remove %@",_name_] action:_selector_ keyEquivalent:@""];
+  if( present ) {
+    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Remove %@",name] action:selector keyEquivalent:@""];
   } else {
-    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Add %@",_name_] action:_selector_ keyEquivalent:@""];
+    item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Add %@",name] action:selector keyEquivalent:@""];
   }
   [item setTarget:self];
   
   return item;
 }
 
+
+#pragma mark UI Actions
+
 - (IBAction)clearTokens:(id)sender {
-  [self removeAllTokens];
+  [self removeAllTokensWithUndo];
   [self makeCurrentSelection];
 }
 
@@ -542,21 +592,22 @@
 
 #pragma mark Drawing code
 
-- (void)drawText:(NSString *)_text_ withAttributes:(NSMutableDictionary *)_attributes_ {
+- (void)drawText:(NSString *)text withAttributes:(NSMutableDictionary *)attributes {
   NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] init];
   [textAttributes setObject:[NSFont fontWithName:@"Helvetica" size:9]
                  forKey:NSFontAttributeName];
-  [textAttributes setObject:[_attributes_ objectForKey:ELDefaultTokenColor]
+  [textAttributes setObject:[attributes objectForKey:ELDefaultTokenColor]
                  forKey:NSForegroundColorAttributeName];
   
-  NSSize strSize = [_text_ sizeWithAttributes:textAttributes];
+  NSSize strSize = [text sizeWithAttributes:textAttributes];
   
   NSPoint strOrigin;
-  strOrigin.x = [path bounds].origin.x + ( [path bounds].size.width - strSize.width ) / 2;
-  strOrigin.y = [path bounds].origin.y + ( [path bounds].size.height - strSize.height ) / 2;
+  strOrigin.x = [[self path] bounds].origin.x + ( [[self path] bounds].size.width - strSize.width ) / 2;
+  strOrigin.y = [[self path] bounds].origin.y + ( [[self path] bounds].size.height - strSize.height ) / 2;
   
-  [_text_ drawAtPoint:strOrigin withAttributes:textAttributes];
+  [text drawAtPoint:strOrigin withAttributes:textAttributes];
 }
+
 
 int mapPathSection( Direction d ) {
   switch( d % 6 ) {
@@ -578,6 +629,7 @@ int mapPathSection( Direction d ) {
   }
 }
 
+
 NSString* elementDescription( NSBezierPathElement elt ) {
   switch( elt ) {
     case NSMoveToBezierPathElement:
@@ -594,12 +646,13 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   }
 }
 
+
 // Draw a triangle to represent the direction a playhead might leave a cell
 //
 // The strategy is to draw a triangle heading north, then rotate it
 // appropriately.
 //
-- (void)drawTriangleInDirection:(Direction)_direction_ withAttributes:(NSDictionary *)_attributes_ {
+- (void)drawTriangleInDirection:(Direction)direction withAttributes:(NSDictionary *)attributes {
   NSPoint base1 = NSMakePoint( [self centre].x - [self radius] / 4, [self centre].y + [self radius] / 2 );
   NSPoint base2 = NSMakePoint( [self centre].x + [self radius] / 4, [self centre].y + [self radius] / 2 );
   NSPoint apex = NSMakePoint( [self centre].x, [self centre].y + 3 * [self radius] / 4 );
@@ -611,11 +664,11 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [trianglePath lineToPoint:base1];
   [trianglePath closePath];
   
-  if( _direction_ != 0 ) {
+  if( direction != 0 ) {
     NSAffineTransform *transform = [NSAffineTransform transform];
-    [transform translateXBy:centre.x yBy:centre.y];
-    [transform rotateByDegrees:(360.0 - ( _direction_ * 60 ))];
-    [transform translateXBy:-centre.x yBy:-centre.y];
+    [transform translateXBy:[self centre].x yBy:[self centre].y];
+    [transform rotateByDegrees:(360.0 - ( direction * 60 ))];
+    [transform translateXBy:-[self centre].x yBy:-[self centre].y];
     [trianglePath transformUsingAffineTransform:transform];
   }
   
@@ -623,59 +676,65 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   [trianglePath stroke];
 }
 
-- (void)drawOnHoneycombView:(LMHoneycombView *)_view_ withAttributes:(NSMutableDictionary *)_attributes_ {
-  if( [playheads count] > 0 ) {
+
+- (NSString *)noteName {
+  if( [[[self layer] key] flat] ) {
+    return [[self note] flattenedName];
+  } else {
+    return [[self note] name];
+  }
+}
+
+
+- (void)drawOnHoneycombView:(LMHoneycombView *)view withAttributes:(NSMutableDictionary *)attributes {
+  if( [[self playheads] count] > 0 ) {
     int minTTL = 5;
-    for( ELPlayhead *playhead in playheads ) {
+    for( ELPlayhead *playhead in [self playheads] ) {
       if( [playhead TTL] < minTTL ) {
         minTTL = [playhead TTL];
       }
     }
     CGFloat fader = 0.5 + ( 0.5 * ((float)minTTL/5) );
     
-    if( selected ) {
-      [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewSelectedColor];
+    if( [self selected] ) {
+      [attributes setObject:[[attributes objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewSelectedColor];
     } else {
-      [_attributes_ setObject:[[_attributes_ objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
+      [attributes setObject:[[attributes objectForKey:ELDefaultActivePlayheadColor] colorWithAlphaComponent:fader] forKey:LMHoneycombViewDefaultColor];
     }
     
     
   } else {
-    if( [[layer player] showKey] ) {
+    if( [[NSApp delegate] showKey] ) {
       BOOL isTonic;
-      if( [[layer key] containsNote:note isTonic:&isTonic] ) {
+      if( [[[self layer] key] containsNote:[self note] isTonic:&isTonic] ) {
         if( isTonic ) {
-          [_attributes_ setObject:[_attributes_ objectForKey:ELTonicNoteColor] forKey:LMHoneycombViewDefaultColor];
+          [attributes setObject:[attributes objectForKey:ELTonicNoteColor] forKey:LMHoneycombViewDefaultColor];
         } else {
-          [_attributes_ setObject:[_attributes_ objectForKey:ELScaleNoteColor] forKey:LMHoneycombViewDefaultColor];
+          [attributes setObject:[attributes objectForKey:ELScaleNoteColor] forKey:LMHoneycombViewDefaultColor];
         }
       }
-    } else if( [[layer player] showOctaves] ) {
-      [_attributes_ setObject:[(ELSurfaceView *)_view_ octaveColor:[note octave]] forKey:LMHoneycombViewDefaultColor];
+    } else if( [[NSApp delegate] showOctaves] ) {
+      [attributes setObject:[(ELSurfaceView *)view octaveColor:[[self note] octave]] forKey:LMHoneycombViewDefaultColor];
     }
   }
   
-  [super drawOnHoneycombView:_view_ withAttributes:_attributes_];
+  [super drawOnHoneycombView:view withAttributes:attributes];
   
-  if( [[layer player] showNotes] ) {
-    if( [[layer key] flat] ) {
-      [self drawText:[note flattenedName] withAttributes:_attributes_];
-    } else {
-      [self drawText:[note name] withAttributes:_attributes_];
-    }
-    
+  if( [[NSApp delegate] showNotes] ) {
+    [self drawText:[self noteName] withAttributes:attributes];
   }
   
-  [[[self tokens] allValues] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:_attributes_];
+  [[[self tokens] allValues] makeObjectsPerformSelector:@selector(drawWithAttributes:) withObject:attributes];
 }
 
-// Implement the ELXmlData protocol
+
+#pragma mark Implements the ELXmlData protocol
 
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *cellElement = [NSXMLNode elementWithName:@"cell"];
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-  [attributes setObject:[NSNumber numberWithInt:col] forKey:@"col"];
-  [attributes setObject:[NSNumber numberWithInt:row] forKey:@"row"];
+  [attributes setObject:[NSNumber numberWithInt:[self col]] forKey:@"col"];
+  [attributes setObject:[NSNumber numberWithInt:[self row]] forKey:@"row"];
   [cellElement setAttributesAsDictionary:attributes];
   
   for( ELToken *token in [[self tokens] allValues] ) {
@@ -685,44 +744,45 @@ NSString* elementDescription( NSBezierPathElement elt ) {
   return cellElement;
 }
 
+
 // This method is slightly different in that we know the object already
 // exists within the layer, we're sort of over-initing it
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
   NSXMLElement *element;
   
-  element = [[_representation_ nodesForXPath:@"generate" error:_error_] firstXMLElement];
+  element = [[representation nodesForXPath:@"generate" error:error] firstXMLElement];
   if( element ) {
-    [self setGenerateToken:[[ELGenerateToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setGenerateToken:[[ELGenerateToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
-  element = [[_representation_ nodesForXPath:@"note" error:_error_] firstXMLElement];
+  element = [[representation nodesForXPath:@"note" error:error] firstXMLElement];
   if( element ) {
-    [self setNoteToken:[[ELNoteToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setNoteToken:[[ELNoteToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
-  element = [[_representation_ nodesForXPath:@"rebound" error:_error_] firstXMLElement];
+  element = [[representation nodesForXPath:@"rebound" error:error] firstXMLElement];
   if( element ) {
-    [self setReboundToken:[[ELReboundToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setReboundToken:[[ELReboundToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
-  element = [[_representation_ nodesForXPath:@"absorb" error:_error_] firstXMLElement];
+  element = [[representation nodesForXPath:@"absorb" error:error] firstXMLElement];
   if( element ) {
-    [self setAbsorbToken:[[ELAbsorbToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setAbsorbToken:[[ELAbsorbToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
-  element = [[_representation_ nodesForXPath:@"split" error:_error_] firstXMLElement];
+  element = [[representation nodesForXPath:@"split" error:error] firstXMLElement];
   if( element ) {
-    [self setSplitToken:[[ELSplitToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setSplitToken:[[ELSplitToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
-  element = [[_representation_ nodesForXPath:@"spin" error:_error_] firstXMLElement];
+  element = [[representation nodesForXPath:@"spin" error:error] firstXMLElement];
   if( element ) {
-    [self setSpinToken:[[ELSpinToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setSpinToken:[[ELSpinToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
-  element = [[_representation_ nodesForXPath:@"skip" error:_error_] firstXMLElement];
+  element = [[representation nodesForXPath:@"skip" error:error] firstXMLElement];
   if( element ) {
-    [self setSkipToken:[[ELSkipToken alloc] initWithXmlRepresentation:element parent:self player:_player_ error:_error_]];
+    [self setSkipToken:[[ELSkipToken alloc] initWithXmlRepresentation:element parent:parent player:player error:error]];
   }
   
   return self;

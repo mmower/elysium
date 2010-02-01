@@ -19,13 +19,14 @@
   if( ( self = [self initWithWindowNibName:@"LayerWindow"] ) ) {
     [self setShouldCloseDocument:YES];
     [self setLayer:layer];
+    [layer setWindowController:self];
   }
   
   return self;
 }
 
-@synthesize mLayer;
-
+@synthesize layer = _layer;
+@synthesize layerView = _layerView;
 
 #pragma mark NSWindowController overrides
 
@@ -33,18 +34,16 @@
   // This is required because the HoneycombView doesn't resize very nicely right now
   [[self window] setAspectRatio:NSMakeSize(1.12,1.0)];
   
-  [layerView setDelegate:self];
-  [layerView setDataSource:[self layer]];
-  [[self layer] setDelegate:layerView];
+  [[self layerView] setDelegate:self];
+  [[self layerView] setDataSource:[self layer]];
+  [[self layer] setDelegate:[self layerView]];
   [[self layer] addObserver:self forKeyPath:@"channelDial.value" options:0 context:nil];
   [[self layer] addObserver:self forKeyPath:@"layerId" options:0 context:nil];
 }
 
 
-// When a layer window becomes main, show it's gadgets and hide the
-// gadgets of all non-main windows
 - (void)windowDidBecomeMain:(NSNotification *)notification {
-  
+  [[NSNotificationCenter defaultCenter] postNotificationName:ELNotifyObjectSelectionDidChange object:self];
 }
 
 
@@ -56,14 +55,14 @@
 
 -(void)selectCellAtColumn:(int)column row:(int)row
 {
-	ELCell * nextSelection = (ELCell*)[[layerView dataSource] hexCellAtColumn:column row:row];
+	ELCell * nextSelection = (ELCell*)[[[self layerView] dataSource] hexCellAtColumn:column row:row];
 	[nextSelection makeCurrentSelection];
 }
 
 // Deliberately not using Direction and [cell neighbour]
 - (void)moveRight:(id)sender
 {
-	ELCell *currentSelection = [layerView selectedCell];
+	ELCell *currentSelection = [[self layerView] selectedCell];
 	
 	if([currentSelection column] < HTABLE_MAX_COL ) {
 		[self selectCellAtColumn:[currentSelection column] + 1
@@ -78,7 +77,7 @@
 }
 - (void)moveLeft:(id)sender
 {
-	ELCell *currentSelection = [layerView selectedCell];
+	ELCell *currentSelection = [[self layerView] selectedCell];
 	
 	if([currentSelection column] > 0) {
 		[self selectCellAtColumn:[currentSelection column] - 1
@@ -94,7 +93,7 @@
 }
 - (void)moveUp:(id)sender
 {
-	ELCell *currentSelection = [layerView selectedCell];
+	ELCell *currentSelection = [[self layerView] selectedCell];
 	
 	if([currentSelection row] == HTABLE_MAX_ROW && [currentSelection column] == HTABLE_MAX_COL) {
 		[self selectCellAtColumn:0 row:0];
@@ -107,7 +106,7 @@
 }
 - (void)moveDown:(id)sender
 {
-	ELCell *currentSelection = [layerView selectedCell];
+	ELCell *currentSelection = [[self layerView] selectedCell];
 	
 	if([currentSelection row] == 0 && [currentSelection column] == 0) {
 		[self selectCellAtColumn:HTABLE_MAX_COL
@@ -120,7 +119,7 @@
 
 #pragma mark NSKeyValueObserving protocol
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(id)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
   if( object == [self layer] && ( [keyPath isEqualToString:@"channelDial.value"] || [keyPath isEqualToString:@"layerId"] ) ) {
     [self updateWindowTitle];
   }
@@ -135,7 +134,7 @@
 
 
 - (void)updateView {
-  [layerView setNeedsDisplay:YES];
+  [[self layerView] setNeedsDisplay:YES];
 }
 
 @end

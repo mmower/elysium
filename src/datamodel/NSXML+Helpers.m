@@ -24,6 +24,17 @@
   return (NSXMLElement *)[self objectAtIndex:0];
 }
 
+
+- (BOOL)isEmpty {
+  return [self count] == 0;
+}
+
+
+- (BOOL)isNotEmpty {
+  return [self count] > 0;
+}
+
+
 @end
 
 @implementation NSXMLElement (NSXML_Helpers)
@@ -35,8 +46,14 @@
                                              error:error];
 }
 
-- (NSString *)attributeAsString:(NSString *)_name_ {
-  NSXMLNode *attributeNode = [self attributeForName:_name_];
+
+- (BOOL)attributeAsBool:(NSString *)name {
+  return [[self attributeAsString:name] boolValue];
+}
+
+
+- (NSString *)attributeAsString:(NSString *)name {
+  NSXMLNode *attributeNode = [self attributeForName:name];
   if( attributeNode ) {
     return [attributeNode stringValue];
   } else {
@@ -53,25 +70,60 @@
   }
 }
 
+
+- (int)attributeAsInteger:(NSString *)name hasValue:(BOOL *)hasValue {
+  NSString *attribute = [self attributeAsString:name];
+  if( attribute ) {
+    *hasValue = YES;
+    return [attribute intValue];
+  } else {
+    *hasValue = NO;
+    return INT_MAX;
+  }
+}
+
+
+- (double)attributeAsDouble:(NSString *)name defaultValue:(double)defval {
+  NSString *attribute = [self attributeAsString:name];
+  if( attribute ) {
+    return [attribute doubleValue];
+  } else {
+    return defval;
+  }
+}
+
+
+- (double)attributeAsDouble:(NSString *)name hasValue:(BOOL *)hasValue {
+  NSString *attribute = [self attributeAsString:name];
+  if( attribute ) {
+    *hasValue = YES;
+    return [attribute doubleValue];
+  } else {
+    *hasValue = NO;
+    return 0.0;
+  }
+}
+
+
 @end
 
 @implementation NSError (NSXML_Helpers)
 
-+ (NSError *)errorForLoadFailure:(NSString *)_message_ code:(int)_code_ withError:(NSError **)_underlyingError_ {
++ (NSError *)errorForLoadFailure:(NSString *)message code:(int)code withError:(NSError **)underlyingError {
   NSDictionary* userInfo;
   
-  if( *_underlyingError_ ) {
+  if( underlyingError && *underlyingError ) {
     userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      _message_,NSLocalizedDescriptionKey,
-                                      *_underlyingError_,NSUnderlyingErrorKey,
+                                      message,NSLocalizedDescriptionKey,
+                                      *underlyingError,NSUnderlyingErrorKey,
                                       nil];
   } else {
     userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      _message_,NSLocalizedDescriptionKey,
+                                      message,NSLocalizedDescriptionKey,
                                       nil];
   }
   
-  return [[NSError alloc] initWithDomain:ELErrorDomain code:_code_ userInfo:userInfo];
+  return [[NSError alloc] initWithDomain:ELErrorDomain code:code userInfo:userInfo];
 }
 
 @end

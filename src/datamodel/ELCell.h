@@ -29,31 +29,34 @@
 @class ELSkipToken;
 
 @interface ELCell : LMHexCell <ELXmlData,ELTaggable> {
-  ELLayer             *layer;
-  ELNote              *note;
-  ELCell              *neighbours[6];
-  NSMutableArray      *playheads;
+  ELLayer             *_layer;
+  ELNote              *_note;
+  ELCell              *_neighbours[6];
+  NSMutableArray      *_playheads;
   
-  NSString            *scriptingTag;
+  NSString            *_scriptingTag;
   
-  BOOL                mDirty;
+  BOOL                _dirty;
   
-  NSMutableDictionary *tokens;
-  ELGenerateToken     *generateToken;
-  ELNoteToken         *noteToken;
-  ELReboundToken      *reboundToken;
-  ELAbsorbToken       *absorbToken;
-  ELSplitToken        *splitToken;
-  ELSpinToken         *spinToken;
-  ELSkipToken         *skipToken;
+  NSMutableDictionary *_tokens;
+  ELGenerateToken     *_generateToken;
+  ELNoteToken         *_noteToken;
+  ELReboundToken      *_reboundToken;
+  ELAbsorbToken       *_absorbToken;
+  ELSplitToken        *_splitToken;
+  ELSpinToken         *_spinToken;
+  ELSkipToken         *_skipToken;
+  
+  BOOL                _playheadEntered;
 }
 
 @property (readonly) ELLayer *layer;
 @property (readonly) ELNote *note;
+@property (readonly) NSMutableArray *playheads;
 
 @property (readonly)  NSMutableDictionary *tokens;
 
-@property (getter=dirty,setter=setDirty:) BOOL mDirty;
+@property             BOOL                dirty;
 
 @property             ELGenerateToken     *generateToken;
 @property             ELNoteToken         *noteToken;
@@ -63,6 +66,8 @@
 @property             ELSpinToken         *spinToken;
 @property             ELSkipToken         *skipToken;
 
+@property             BOOL                playheadEntered;
+
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 
 // Connections to other cells
@@ -70,6 +75,7 @@
 - (ELCell *)neighbour:(Direction)direction;
 - (void)connectNeighbour:(ELCell *)cell direction:(Direction)direction;
 - (ELNoteGroup *)triad:(int)triad;
+- (NSString *)noteName;
 
 // Token management
 
@@ -81,9 +87,11 @@
 
 - (void)run:(ELPlayhead *)playhead;
 
-- (void)addToken:(ELToken *)token;
-- (void)removeToken:(ELToken *)token;
 - (void)removeAllTokens;
+- (void)removeAllTokensWithUndo;
+
+
+- (BOOL)hasTokenWithIdentifier:(NSString *)identifier;
 
 // Actions for Token management
 - (IBAction)clearTokens:(id)sender;

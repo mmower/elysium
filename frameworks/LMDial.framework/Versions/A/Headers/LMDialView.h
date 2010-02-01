@@ -14,40 +14,47 @@ typedef enum tagLMDialStyle {
   logicPan
 } LMDialStyle;
 
-@class LMDialEditWindow;
-
 @interface LMDialView : NSView {
-    BOOL              enabled;
-    LMDialStyle       style;
-    int               minimum;
-    int               maximum;
-    int               stepping;
-    int               value;
+    BOOL              _enabled;
+    LMDialStyle       _style;
+    int               _minimum;
+    int               _maximum;
+    int               _stepping;
     
-    BOOL              showValue;
+    int               _lowerValueBound;
+    int               _value;
+    int               _upperValueBound;
+    
+    BOOL              _showValue;
 
-    NSColor           *onBorderColor;
-    NSColor           *localOnBorderColor;
-    NSColor           *onFillColor;
-    NSColor           *localOnFillColor;
-    NSColor           *offBorderColor;
-    NSColor           *localOffBorderColor;
-    NSColor           *offFillColor;
-    NSColor           *localOffFillColor;
-    NSColor           *valueColor;
+    NSColor           *_onBorderColor;
+    NSColor           *_localOnBorderColor;
+    NSColor           *_onFillColor;
+    NSColor           *_localOnFillColor;
+    NSColor           *_offBorderColor;
+    NSColor           *_localOffBorderColor;
+    NSColor           *_offFillColor;
+    NSColor           *_localOffFillColor;
+    NSColor           *_valueColor;
     
-    int               divisor;
-    NSString          *formatter;
-    NSString          *valueText;
+    int               _divisor;
+    NSString          *_formatter;
+    NSString          *_valueText;
     
-    CGFloat           fontSize;
+    CGFloat           _fontSize;
     
-    NSTextField       *valueEditor;
+    NSTextField       *_valueEditor;
     
-    float             alpha;
+    float             _alpha;
+    
+    BOOL              _debug;
+    BOOL              _boundsChecking;
 }
 
 @property BOOL enabled;
+@property BOOL debug;
+@property BOOL boundsChecking;
+
 @property LMDialStyle style;
 @property int minimum;
 @property int maximum;
@@ -55,6 +62,9 @@ typedef enum tagLMDialStyle {
 @property int value;
 @property int divisor;
 @property (copy) NSString *formatter;
+
+@property (readonly) int lowerValueBound;
+@property (readonly) int upperValueBound;
 
 @property BOOL showValue;
 @property CGFloat fontSize;
@@ -64,6 +74,5 @@ typedef enum tagLMDialStyle {
 @property (assign) NSColor *offBorderColor;
 @property (assign) NSColor *offFillColor;
 @property (assign) NSColor *valueColor;
-
 
 @end

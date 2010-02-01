@@ -11,35 +11,31 @@
 @class LMHoneycombView;
 
 @interface LMHexCell : NSObject {
-  NSPoint             centre;
-  CGFloat             radius;
-  NSBezierPath        *path;
-  int                 col;
-  int                 row;
-  id                  data;
-  BOOL                selected;
+  NSPoint             _centre;
+  CGFloat             _radius;
+  NSBezierPath        *_path;
+  int                 _col;
+  int                 _row;
+  id                  _data;
+  BOOL                _selected;
+  BOOL                _needsRedraw;
 }
 
 - (id)initWithColumn:(int)col row:(int)row;
 - (id)initWithColumn:(int)col row:(int)row data:(id)data;
 
-- (NSBezierPath *)path;
+@property (readonly) NSPoint centre;
+@property (readonly) CGFloat radius;
+@property (readonly) NSBezierPath *path;
+@property (readonly) int col;
+@property (readonly) int column;
+@property (readonly) int row;
+@property id data;
+@property BOOL selected;
+@property BOOL needsRedraw;
+
 - (void)setHexCentre:(NSPoint)centre radius:(CGFloat)radius;
-
-- (NSPoint)centre;
-- (CGFloat)radius;
-
-- (id)data;
-- (void)setData:(id)data;
-
-- (int)column;
-- (int)row;
-
-- (BOOL)selected;
-- (void)setSelected:(BOOL)selected;
-
 - (void)drawOnHoneycombView:(LMHoneycombView *)view withAttributes:(NSMutableDictionary *)attributes;
-
 - (NSMenu *)contextMenu;
 
 @end

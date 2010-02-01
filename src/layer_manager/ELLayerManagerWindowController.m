@@ -7,7 +7,16 @@
 //  See MIT-LICENSE for more information.
 //
 
+#import "Elysium.h"
+
 #import "ELLayerManagerWindowController.h"
+
+@interface ELLayerManagerWindowController (PrivateMethods)
+
+- (void)documentsClosed:(NSNotification *)notification;
+
+@end
+
 
 @implementation ELLayerManagerWindowController
 
@@ -20,6 +29,17 @@
 }
 
 
+#pragma mark NSNibAwakening protocol
+
+- (void)awakeFromNib {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(documentsClosed:)
+                                               name:ELNotifyAllDocumentsClosed
+                                             object:nil];
+}
+
+
+
 // - (void)windowDidLoad {
 //   [[self window] setTitle:[NSString stringWithFormat:@"%@ - Layer Manager", [[self document] displayName]]];
 // }
@@ -30,6 +50,11 @@
   if( row == -1 ) {
     return;
   }
+}
+
+
+- (void)documentsClosed:(NSNotification *)notification {
+  [[self window] orderOut:self];
 }
 
 

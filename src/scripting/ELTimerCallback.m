@@ -13,15 +13,22 @@
 
 #import "ELPlayer.h"
 
+@interface ELTimerCallback (PrivateMethods)
+
+- (void)runCallback:(NSTimer *)timer;
+
+@end
+
+
 @implementation ELTimerCallback
 
-- (id)initWithPlayer:(ELPlayer *)_player_ {
+- (id)initWithPlayer:(ELPlayer *)player {
   if( ( self = [super init] ) ) {
-    player = _player_;
-    active = NO;
-    interval = 30.0;
-    timer = nil;
-    callback = [@"function(player,timer) {\n\t// Write your callback here\n}\n" asJavascriptFunction];
+    _player = player;
+    _active = NO;
+    _interval = 30.0;
+    _timer = nil;
+    _callback = [@"function(player,timer) {\n\t// Write your callback here\n}\n" asJavascriptFunction:[player scriptEngine]];
     
     [self addObserver:self forKeyPath:@"active" options:0 context:nil];
   }
@@ -29,35 +36,33 @@
   return self;
 }
 
-@synthesize active;
-@synthesize interval;
-@synthesize callback;
-@synthesize player;
+@synthesize active = _active;
+@synthesize interval = _interval;
+@synthesize callback = _callback;
+@synthesize player = _player;
 
-- (void)observeValueForKeyPath:(NSString *)_keyPath_ ofObject:(id)_object_ change:(NSDictionary *)_change_ context:(id)_context_ {
-  if( [_keyPath_ isEqualToString:@"active"] ) {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if( [keyPath isEqualToString:@"active"] ) {
     if( [self active] ) {
-      timer = [NSTimer timerWithTimeInterval:[self interval] target:self selector:@selector(runCallback:) userInfo:nil repeats:YES];
-      [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+      _timer = [NSTimer timerWithTimeInterval:[self interval] target:self selector:@selector(runCallback:) userInfo:nil repeats:YES];
+      [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
     } else {
-      [timer invalidate];
+      [_timer invalidate];
     }
   }
 }
 
-- (void)runCallback:(NSTimer *)_timer_ {
+- (void)runCallback:(NSTimer *)timer {
   NSLog( @"Timer has fired." );
-  [callback evalWithArg:[self player] arg:self];
+  [[self callback] evalWithArg:[self player] arg:self];
 }
 
 // ELXmlData
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [self initWithPlayer:_player_] ) ) {
-    
-    [self setInterval:[[[_representation_ attributeForName:@"interval"] stringValue] doubleValue]];
-    
-    NSXMLElement *scriptElement = (NSXMLElement *)[[_representation_ nodesForXPath:@"script" error:nil] objectAtIndex:0];
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [self initWithPlayer:player] ) ) {
+    [self setInterval:[representation attributeAsDouble:@"interval" defaultValue:30.0]];
+    NSXMLElement *scriptElement = (NSXMLElement *)[[representation nodesForXPath:@"script" error:error] objectAtIndex:0];
     [[self callback] setSource:[scriptElement stringValue]];
   }
   
@@ -67,12 +72,12 @@
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *timerElement = [NSXMLNode elementWithName:@"timer"];
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:[NSNumber numberWithDouble:interval] forKey:@"interval"];
+  [attributes setObject:[NSNumber numberWithDouble:[self interval]] forKey:@"interval"];
   [timerElement setAttributesAsDictionary:attributes];
   
   NSXMLElement *scriptElement = [NSXMLNode elementWithName:@"script"];
   NSXMLNode *cdataNode = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
-  [cdataNode setStringValue:[callback source]];
+  [cdataNode setStringValue:[[self callback] source]];
   [scriptElement addChild:cdataNode];
   [timerElement addChild:scriptElement];
   

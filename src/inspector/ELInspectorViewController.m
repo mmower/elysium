@@ -33,9 +33,16 @@
 @synthesize objectController;
 
 - (void)bindDial:(NSString *)dialName {
-  [self bindControl:dialName];
+  [self bindDial:dialName hasOscillator:YES];
+}
+
+
+- (void)bindDial:(NSString *)dialName hasOscillator:(BOOL)hasOscillator {
   [self bindMode:dialName];
-  [self bindOsc:dialName];
+  [self bindControl:dialName];
+  if( hasOscillator ) {
+    [self bindOsc:dialName];
+  }
 }
 
 
@@ -96,6 +103,8 @@
 
 - (void)bindMode:(NSString *)dialName {
   id control = [self valueForKey:[NSString stringWithFormat:@"%@ModeControl",dialName]];
+  
+  // NSLog( @"bind Mode '%@' -> %@", dialName, control );
   
   [control bind:@"selectedIndex"
        toObject:[self objectController]

@@ -12,6 +12,6 @@
 
 @interface NSString (String_AsJavascriptFunction)
 
-- (JavascriptCallback *)asJavascriptFunction;
+- (JavascriptCallback *)asJavascriptFunction:(ELScriptEngine *)scriptEngine;
 
 @end

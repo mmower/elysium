@@ -12,14 +12,15 @@
 #import "ELOscillator.h"
 
 @interface ELRangedOscillator : ELOscillator {
-  int minimum;
-  int hardMinimum;
-  int maximum;
-  int hardMaximum;
+  int _minimum;
+  int _hardMinimum;
+  int _maximum;
+  int _hardMaximum;
   
-  int range;
+  int _range;
 }
 
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum;
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum;
 
 @property int minimum;

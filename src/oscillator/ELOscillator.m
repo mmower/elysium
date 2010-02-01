@@ -16,49 +16,64 @@
 
 @implementation ELOscillator
 
-+ (ELOscillator *)loadFromXml:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  NSXMLNode *attributeNode = [_representation_ attributeForName:@"type"];
+#pragma mark Class initializer
+
++ (ELOscillator *)loadFromXml:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  NSXMLNode *attributeNode = [representation attributeForName:@"type"];
   if( attributeNode ) {
     Class oscillatorClass = NSClassFromString( [NSString stringWithFormat:@"EL%@Oscillator", [attributeNode stringValue]] );
-    return [[oscillatorClass alloc] initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_];
+    return [[oscillatorClass alloc] initWithXmlRepresentation:representation parent:parent player:player error:error];
   } else {
     return nil;
   }
 }
 
-- (id)initEnabled:(BOOL)_enabled_ {
+
+#pragma mark Object initializer
+
+- (id)initEnabled:(BOOL)enabled {
   if( ( self = [super init] ) ) {
-    [self setEnabled:_enabled_];
+    [self setEnabled:enabled];
     [self resetTimeBase];
   }
   
   return self;
 }
 
-@synthesize enabled;
-@synthesize timeBase;
-@synthesize value;
+
+#pragma mark Properties
+
+@synthesize enabled = _enabled;
+@synthesize timeBase = _timeBase;
+@synthesize value = _value;
+
+
+#pragma mark Object behaviours
 
 - (void)start {
   [self resetTimeBase];
 }
 
+
 - (void)stop {
   
 }
 
+
 - (void)update {
   [self setValue:[self generate]];
-  // NSLog( @"Updating oscillator %@ %d", self, [self value] );
 }
+
 
 - (void)resetTimeBase {
   [self setTimeBase:AudioGetCurrentHostTime()];
 }
 
+
 - (NSString *)type {
   return @"oscillator";
 }
+
 
 - (int)generate {
   @throw [NSException exceptionWithName:@"OscillatorException"
@@ -66,7 +81,8 @@
                                userInfo:[NSDictionary dictionaryWithObject:self forKey:@"oscillator"]];
 }
 
-// Implement the ELXmlData protocol
+
+#pragma mark Implements ELXmlData
 
 - (NSXMLElement *)xmlRepresentation {
   NSXMLElement *oscillatorElement = [NSXMLNode elementWithName:@"oscillator"];
@@ -79,8 +95,9 @@
   return oscillatorElement;
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  NSXMLNode *attributeNode = [_representation_ attributeForName:@"enabled"];
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  NSXMLNode *attributeNode = [representation attributeForName:@"enabled"];
   if( attributeNode ) {
     return [self initEnabled:[[attributeNode stringValue] boolValue]];
   } else {
@@ -88,8 +105,9 @@
   }
 }
 
-- (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
-  [_attributes_ setObject:[NSNumber numberWithBool:[self enabled]] forKey:@"enabled"];
+
+- (void)storeAttributes:(NSMutableDictionary *)attributes {
+  [attributes setObject:[NSNumber numberWithBool:[self enabled]] forKey:@"enabled"];
 }
 
 @end

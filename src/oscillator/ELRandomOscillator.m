@@ -15,19 +15,28 @@
   return @"Random";
 }
 
+
 - (int)generate {
-  long lrange = ( range + 1 ) * 100;
-  return minimum + ( ( random() % lrange ) / 100 );
+  long lrange = ( [self range] + 1 ) * 100;
+  return [self minimum] + ( ( random() % lrange ) / 100 );
 }
 
-- (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
-  [super storeAttributes:_attributes_];
+
+- (void)storeAttributes:(NSMutableDictionary *)attributes {
+  [super storeAttributes:attributes];
 }
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
-                                                  minimum:[self minimum]
-                                                  maximum:[self maximum]];
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  
+  ELRandomOscillator *clone = [[[self class] allocWithZone:zone] initEnabled:[self enabled]
+                                                                     minimum:[self minimum]
+                                                                 hardMinimum:[self hardMinimum]
+                                                                     maximum:[self maximum]
+                                                                 hardMaximum:[self hardMaximum]];
+  [clone setValue:[self value]];
+  return clone;
 }
+
 
 @end

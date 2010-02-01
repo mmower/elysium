@@ -25,92 +25,101 @@
 
 NSString * const ELErrorDomain = @"com.lucidmac.Elysium.ErrorDomain";
 
-NSString * const ELNotifyObjectSelectionDidChange = @"elysium.objectSelectionDidChange";
-NSString * const ELNotifyCellWasUpdated = @"elysium.cellWasUpdated";
-
-NSString * const ELNotifyPlayerShouldStart = @"elysium.playerShouldStart";
-NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
-
+static BOOL initialized = NO;
 
 @implementation ElysiumController
 
-#pragma mark Initializers
+#pragma mark Class initialization
 
 + (void)initialize {
-  NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
-  
-  [defaultValues setObject:[NSNumber numberWithInt:2] forKey:ELBehaviourAtOpenKey];
-  [defaultValues setObject:[NSNumber numberWithFloat:0.5] forKey:ELLayerThreadPriorityKey];
-  
-  [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultTempoKey];
-  [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultTTLKey];
-  [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultPulseCountKey];
-  [defaultValues setObject:[NSNumber numberWithInt:90] forKey:ELDefaultVelocityKey];
-  [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultEmphasisKey];
-  [defaultValues setObject:[NSNumber numberWithInt:500] forKey:ELDefaultDurationKey];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(173.0/255)
-                                                                                        green:(195.0/255)
-                                                                                         blue:(214.0/255)
-                                                                                        alpha:0.8]]
-                    forKey:ELDefaultCellBackgroundColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(105.0/255)
-                                                                                             green:(146.0/255)
-                                                                                              blue:(180.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultCellBorderColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(179.0/255)
-                                                                                             green:(158.0/255)
-                                                                                              blue:(241.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultSelectedCellBackgroundColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(108.0/255)
-                                                                                             green:(69.0/255)
-                                                                                              blue:(229.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultSelectedCellBorderColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(16.0/255)
-                                                                                             green:(17.0/255)
-                                                                                              blue:(156.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultTokenColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(121.0/255)
-                                                                                             green:(121.0/255)
-                                                                                              blue:(152.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDisabledTokenColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(156.0/255)
-                                                                                             green:(16.0/255)
-                                                                                              blue:(45.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELDefaultActivePlayheadColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(158.0/255)
-                                                                                             green:(48.0/255)
-                                                                                              blue:(75.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELTonicNoteColor];
-  
-  [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(39.0/255)
-                                                                                             green:(118.0/255)
-                                                                                              blue:(131.0/255)
-                                                                                             alpha:0.8]]
-                    forKey:ELScaleNoteColor];
-  
-  [[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+  if( !initialized ) {
+    NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+
+    [defaultValues setObject:[NSNumber numberWithInt:2] forKey:ELBehaviourAtOpenKey];
+    [defaultValues setObject:[NSNumber numberWithFloat:0.5] forKey:ELLayerThreadPriorityKey];
+    [defaultValues setObject:[NSNumber numberWithInt:1] forKey:ELMiddleCOctaveKey];
+
+    [defaultValues setObject:@"" forKey:ELComposerNameKey];
+    [defaultValues setObject:@"" forKey:ELComposerEmailKey];
+
+    [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultTempoKey];
+    [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultTTLKey];
+    [defaultValues setObject:[NSNumber numberWithInt:16] forKey:ELDefaultPulseCountKey];
+    [defaultValues setObject:[NSNumber numberWithInt:90] forKey:ELDefaultVelocityKey];
+    [defaultValues setObject:[NSNumber numberWithInt:120] forKey:ELDefaultEmphasisKey];
+    [defaultValues setObject:[NSNumber numberWithInt:500] forKey:ELDefaultDurationKey];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(173.0/255)
+                                                                                          green:(195.0/255)
+                                                                                           blue:(214.0/255)
+                                                                                          alpha:0.8]]
+                      forKey:ELDefaultCellBackgroundColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(105.0/255)
+                                                                                               green:(146.0/255)
+                                                                                                blue:(180.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultCellBorderColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(179.0/255)
+                                                                                               green:(158.0/255)
+                                                                                                blue:(241.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultSelectedCellBackgroundColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(108.0/255)
+                                                                                               green:(69.0/255)
+                                                                                                blue:(229.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultSelectedCellBorderColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(16.0/255)
+                                                                                               green:(17.0/255)
+                                                                                                blue:(156.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultTokenColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(121.0/255)
+                                                                                               green:(121.0/255)
+                                                                                                blue:(152.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDisabledTokenColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(156.0/255)
+                                                                                               green:(16.0/255)
+                                                                                                blue:(45.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELDefaultActivePlayheadColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(158.0/255)
+                                                                                               green:(48.0/255)
+                                                                                                blue:(75.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELTonicNoteColor];
+
+    [defaultValues setObject:[NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithDeviceRed:(39.0/255)
+                                                                                               green:(118.0/255)
+                                                                                                blue:(131.0/255)
+                                                                                               alpha:0.8]]
+                      forKey:ELScaleNoteColor];
+
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+    
+    initialized = YES;
+  }
 }
 
+
+#pragma mark Instance initialization
 
 - (id)init {
   srandomdev();
   
   if( ( self = [super init] ) ) {
+    _showNotes       = NO;
+    _showOctaves     = NO;
+    _showKey         = NO;
+    _performanceMode = NO;
   }
   
   return self;
@@ -121,14 +130,20 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
 
 @synthesize inspectorController;
 
+@synthesize showNotes       = _showNotes;
+@synthesize showOctaves     = _showOctaves;
+@synthesize showKey         = _showKey;
+@synthesize performanceMode = _performanceMode;
+
 
 #pragma mark NSNibAwakening protocol
 
 - (void)awakeFromNib {
   [ELMIDIController sharedInstance];
-  if( ![self initScriptingEngine] ) {
-    NSLog( @"Initialization of script engine failed." );
-  }
+
+  [self setShowNotes:[[NSUserDefaults standardUserDefaults] boolForKey:ELShowNotesPrefKey]];
+  [self setShowOctaves:[[NSUserDefaults standardUserDefaults] boolForKey:ELShowOctavesPrefKey]];
+  [self setShowKey:[[NSUserDefaults standardUserDefaults] boolForKey:ELShowKeyPrefKey]];
 }
 
 
@@ -138,48 +153,106 @@ NSString * const ELNotifyPlayerShouldStop = @"elysium.playerShouldStop";
   return [[NSUserDefaults standardUserDefaults] integerForKey:ELBehaviourAtOpenKey] == EL_OPEN_EMPTY;
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)_notification_ {
+
+- (void)applicationWillTerminate:(NSNotification *)notification {
+  for( ElysiumDocument *document in [[NSDocumentController sharedDocumentController] documents] ) {
+    [[document player] stop:self];
+  }
+  
+  [[NSUserDefaults standardUserDefaults] setBool:[self showNotes] forKey:ELShowNotesPrefKey];
+  [[NSUserDefaults standardUserDefaults] setBool:[self showKey] forKey:ELShowKeyPrefKey];
+  [[NSUserDefaults standardUserDefaults] setBool:[self showOctaves] forKey:ELShowOctavesPrefKey];
+}
+
+
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+  NSError *error = nil;
+  
   if( [[NSUserDefaults standardUserDefaults] integerForKey:ELBehaviourAtOpenKey] == EL_OPEN_LAST ) {
     NSArray *recentDocuments = [[NSDocumentController sharedDocumentController] recentDocumentURLs];
     if( [recentDocuments count] > 0 ) {
       [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:[recentDocuments objectAtIndex:0] display:YES];
+    } else {
+      [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:&error];
     }
   }
 }
 
-// General initialization
 
-- (BOOL)initScriptingEngine {
-  [[BridgeSupportController sharedController] loadBridgeSupport:[[NSBundle mainBundle] pathForResource:@"Elysium" ofType:@"bridgesupport"]];
-  
-  NSArray *searchPathes = NSSearchPathForDirectoriesInDomains( NSApplicationSupportDirectory, NSUserDomainMask, YES );
-  NSString *appSupportPath = [searchPathes objectAtIndex:0];
-  NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-  NSString *elysiumAppSupportPath = [appSupportPath stringByAppendingPathComponent:appName];
-  
-  if( ![[NSFileManager defaultManager] fileExistsAtPath:elysiumAppSupportPath] ) {
-    [[NSFileManager defaultManager] createDirectoryAtPath:elysiumAppSupportPath attributes:nil];
-    NSLog( @"Created Elysium app support path" );
-  }
-  
-  NSString *userLibPath = [elysiumAppSupportPath stringByAppendingPathComponent:@"userlib.js"];
-  if( ![[NSFileManager defaultManager] fileExistsAtPath:userLibPath] ) {
-    [@"// Elysium user library" writeToFile:userLibPath atomically:NO encoding:NSASCIIStringEncoding error:nil];
-    NSLog( @"Written new user library" );
-  } else {
-    NSLog( @"Using existing user library: %@", userLibPath );
-  }
-  
-  [[JSCocoa sharedController] evalJSFile:userLibPath];
-  
-  return YES;
-}
+#pragma mark General Initialization
 
 - (ELPlayer *)activePlayer {
   return [[[NSDocumentController sharedDocumentController] currentDocument] player];
 }
 
-// Actions
+
+- (void)updateDocumentViews {
+  for( ElysiumDocument *document in [[NSDocumentController sharedDocumentController] documents] ) {
+    [document updateView:self];
+  }
+}
+
+
+#pragma mark Actions as FirstResponder
+
+- (BOOL)validateMenuItem:(NSMenuItem *)item {
+  SEL action = [item action];
+  
+  if( action == @selector(toggleKeyDisplay:) ) {
+    if( [self showKey] ) {
+      [item setTitle:@"Hide Key"];
+      [item setState:NSOnState];
+    } else {
+      [item setTitle:@"Show Key"];
+      [item setState:NSOffState];
+    }
+  } else if( action == @selector(toggleOctavesDisplay:) ) {
+    if( [self showOctaves] ) {
+      [item setTitle:@"Hide Octaves"];
+      [item setState:NSOnState];
+    } else {
+      [item setTitle:@"Show Octaves"];
+      [item setState:NSOffState];
+    }
+  } else if( action == @selector(toggleNoteDisplay:) ) {
+    if( [self showNotes] ) {
+      [item setTitle:@"Hide Notes"];
+      [item setState:NSOnState];
+    } else {
+      [item setTitle:@"Show Notes"];
+      [item setState:NSOffState];
+    }
+  }
+  
+  return YES;
+}
+
+
+- (IBAction)toggleNoteDisplay:(id)sender {
+  [self setShowNotes:![self showNotes]];
+  [self updateDocumentViews];
+}
+
+
+- (IBAction)toggleKeyDisplay:(id)sender {
+  BOOL showKey = ![self showKey];
+  [self setShowKey:showKey];
+  if( showKey ) {
+    [self setShowOctaves:NO];
+  }
+  [self updateDocumentViews];
+}
+
+
+- (IBAction)toggleOctavesDisplay:(id)sender {
+  BOOL showOctave = ![self showOctaves];
+  [self setShowOctaves:showOctave];
+  if( showOctave ) {
+    [self setShowKey:NO];
+  }
+  [self updateDocumentViews];
+}
+
 
 - (IBAction)showPreferences:(id)_sender_ {
   if( !preferencesController ) {

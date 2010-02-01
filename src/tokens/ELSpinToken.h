@@ -14,8 +14,8 @@
 #import "ELToken.h"
 
 @interface ELSpinToken : ELToken {
-  ELDial *clockwiseDial;
-  ELDial *steppingDial;
+  ELDial *_clockwiseDial;
+  ELDial *_steppingDial;
 }
 
 - (id)initWithClockwiseDial:(ELDial *)clockwiseDial steppingDial:(ELDial *)steppingDial;

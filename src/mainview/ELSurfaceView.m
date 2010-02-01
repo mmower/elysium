@@ -10,6 +10,7 @@
 #import "ELSurfaceView.h"
 
 #import "ELCell.h"
+#import "ELLayer.h"
 
 #import "ELNoteToken.h"
 #import "ELAbsorbToken.h"
@@ -20,15 +21,7 @@
 
 NSString *CellPBoardType = @"CellPBoardType";
 
-NSString * const ELDefaultCellBackgroundColor = @"cell.background.color";
-NSString * const ELDefaultCellBorderColor = @"cell.border.color";
-NSString * const ELDefaultSelectedCellBackgroundColor = @"selected.cell.background.color";
-NSString * const ELDefaultSelectedCellBorderColor = @"selected.cell.border.color";
-NSString * const ELDefaultTokenColor = @"token.color";
-NSString * const ELDisabledTokenColor = @"token.disabled.color";
-NSString * const ELDefaultActivePlayheadColor = @"active.playhead.color";
-NSString * const ELTonicNoteColor = @"tonic.note.color";
-NSString * const ELScaleNoteColor = @"scale.note.color";
+static ELSurfaceView *dragStartView = nil;
 
 @implementation ELSurfaceView
 
@@ -121,11 +114,15 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
 // Token management
 
 - (void)dragFromCell:(ELCell *)sourceCell to:(ELCell *)targetCell with:(NSDragOperation)modifiers {
-  [targetCell removeAllTokens];
+  NSUndoManager *undoManager = [[[targetCell layer] player] undoManager];
+  [undoManager beginUndoGrouping];
+  [targetCell removeAllTokensWithUndo];
   [targetCell copyTokensFrom:sourceCell];
   if( !modifiers & NSDragOperationCopy ) {
-    [sourceCell removeAllTokens];
+    [sourceCell removeAllTokensWithUndo];
   }
+  [undoManager setActionName:(modifiers & NSDragOperationCopy ? @"copy" : @"move")];
+  [undoManager endUndoGrouping];
   [self setNeedsDisplay:YES];
 }
 
@@ -165,6 +162,8 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
   
   [pasteboard setString:@"SonOfCell" forType:CellPBoardType]; // Dummy, we'll just work of [self selected] anyway
   
+  dragStartView = self;
+  
   [self dragImage:image
                at:p
            offset:NSMakeSize(0,0)
@@ -176,25 +175,25 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
 
 // Drag & Drop Token adding support
 
-- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)_sender_ {
-  ELCell *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
-  if( cell ) {
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
+  ELCell *cell = [self cellUnderMouseLocation:[sender draggingLocation]];
+  if( cell && [[[dragStartView selectedCell] layer] player] == [[cell layer] player] ) {
     return NSDragOperationCopy;
   } else {
     return NSDragOperationNone;
   }
 }
 
-- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)_sender_ {
-  ELCell *cell = [self cellUnderMouseLocation:[_sender_ draggingLocation]];
-  if( cell ) {
+- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
+  ELCell *cell = [self cellUnderMouseLocation:[sender draggingLocation]];
+  if( cell && [[[dragStartView selectedCell] layer] player] == [[cell layer] player] ) {
     return NSDragOperationCopy;
   } else {
     return NSDragOperationNone;
   }
 }
 
-- (void)draggingExited:(id <NSDraggingInfo>)_sender_ {
+- (void)draggingExited:(id <NSDraggingInfo>)sender {
 }
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
@@ -203,8 +202,9 @@ NSString * const ELScaleNoteColor = @"scale.note.color";
   
   ELCell *droppedCell = [self cellUnderMouseLocation:[sender draggingLocation]];
   if( [types containsObject:CellPBoardType] ) {
-    if( [self selectedCell] != droppedCell ) {
-      [self dragFromCell:[self selectedCell] to:droppedCell with:[sender draggingSourceOperationMask]];
+    ELCell *sourceCell = [dragStartView selectedCell];
+    if( sourceCell != droppedCell ) {
+      [self dragFromCell:sourceCell to:droppedCell with:[sender draggingSourceOperationMask]];
     }
   }
   

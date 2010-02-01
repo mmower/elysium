@@ -8,12 +8,13 @@
 
 #import "JavascriptCallback.h"
 
+#import "ELScriptEngine.h"
 #import "ScriptInspectorController.h"
 
 @implementation JavascriptCallback
 
 - (void)compileSource {
-  JSValueRefAndContextRef fdef = [[JSCocoa sharedController] evalJSString:[NSString stringWithFormat:@"var f = %@; f;",[self source]]];
+  JSValueRefAndContextRef fdef = [[_scriptEngine js] evalJSString:[NSString stringWithFormat:@"var f = %@; f;",[self source]]];
   ctx = fdef.ctx;
   function = JSValueToObject( ctx, fdef.value, NULL );
   JSValueProtect( ctx, function );
@@ -24,28 +25,31 @@
   return [self evalWithArgs:[NSArray array]];
 }
 
-- (id)evalWithArg:(id)_arg_ {
-  return [self evalWithArgs:[NSArray arrayWithObject:_arg_]];
+
+- (id)evalWithArg:(id)arg {
+  return [self evalWithArgs:[NSArray arrayWithObject:arg]];
 }
 
-- (id)evalWithArg:(id)_arg1_ arg:(id)_arg2_ {
-  return [self evalWithArgs:[NSArray arrayWithObjects:_arg1_,_arg2_,nil]];
+
+- (id)evalWithArg:(id)arg1 arg:(id)arg2 {
+  return [self evalWithArgs:[NSArray arrayWithObjects:arg1,arg2,nil]];
 }
 
-- (id)evalWithArg:(id)_arg1_ arg:(id)_arg2_ arg:(id)_arg3_ {
-  return [self evalWithArgs:[NSArray arrayWithObjects:_arg1_,_arg2_,_arg3_,nil]];
+
+- (id)evalWithArg:(id)arg1 arg:(id)arg2 arg:(id)arg3 {
+  return [self evalWithArgs:[NSArray arrayWithObjects:arg1,arg2,arg3,nil]];
 }
 
-- (id)evalWithArgs:(NSArray *)_args_ {
+
+- (id)evalWithArgs:(NSArray *)args {
   JSValueRef rval;
-  rval = [[JSCocoa sharedController] callJSFunction:function withArguments:_args_];
+  rval = [[_scriptEngine js] callJSFunction:function withArguments:args];
   
   id obj;
   [JSCocoaFFIArgument unboxJSValueRef:rval toObject:&obj inContext:ctx];
   
   return obj;
 }
-
 
 
 @end

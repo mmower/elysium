@@ -14,27 +14,27 @@
 
 @implementation ELMIDIControlMessage
 
-- (id)initWithChannel:(Byte)_channel_ controller:(Byte)_controller_ value:(Byte)_value_ {
+- (id)initWithChannel:(Byte)channel controller:(Byte)controller value:(Byte)value {
   if( ( self = [super init] ) ) {
-    [self setChannel:_channel_];
-    [self setController:_controller_];
-    [self setValue:_value_];
+    [self setChannel:channel];
+    [self setController:controller];
+    [self setValue:value];
   }
   
   return self;
 }
 
-@synthesize channel;
-@synthesize controller;
-@synthesize value;
+@synthesize channel = _channel;
+@synthesize controller = _controller;
+@synthesize value = _value;
 
 /*
   Determine whether this message matches the given criteria.
   
   Note: MIDI channel #1 is returned as 0
 */
-- (BOOL)matchesChannelMask:(Byte)_channelMask_ andController:(Byte)_controller_ {
-  return ( ( [self channel]+1 ) & _channelMask_ ) && ( [self controller] == _controller_ );
+- (BOOL)matchesChannelMask:(Byte)channelMask andController:(Byte)controller {
+  return ( ( [self channel]+1 ) & channelMask ) && ( [self controller] == controller );
 }
 
 - (NSString *)description {

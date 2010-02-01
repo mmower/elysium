@@ -19,15 +19,15 @@
 
 @interface ElysiumDocument : NSDocument
 {
-  ELPlayer                        *player;
+  ELPlayer                        *_player;
   
-  NSString                        *composerName;
-  NSString                        *composerEmail;
+  NSString                        *_composerName;
+  NSString                        *_composerEmail;
   
-  NSString                        *title;
-  NSString                        *notes;
+  NSString                        *_title;
+  NSString                        *_notes;
   
-  ELOscillatorDesignerController  *oscillatorDesignerController;
+  ELOscillatorDesignerController  *_oscillatorDesignerController;
 }
 
 @property (readonly)  ELPlayer  *player;
@@ -45,11 +45,9 @@
 - (IBAction)startStop:(id)sender;
 - (IBAction)clearAll:(id)sender;
 - (IBAction)newLayer:(id)sender;
+- (IBAction)removeLayer:(id)sender;
 - (IBAction)clearSelectedLayer:(id)sender;
 - (IBAction)closeDocument:(id)sender;
-- (IBAction)toggleNoteDisplay:(id)sender;
-- (IBAction)toggleKeyDisplay:(id)sender;
-- (IBAction)toggleOctavesDisplay:(id)sender;
 
 - (IBAction)toggleGeneratorToken:(id)sender;
 - (IBAction)toggleNoteToken:(id)sender;
@@ -61,5 +59,8 @@
 - (IBAction)clearCell:(id)sender;
 
 - (IBAction)showOscillatorDesigner:(id)sender;
+
+- (void)documentNewLayer:(ELLayer *)layer;
+- (void)documentRemoveLayer:(ELLayer *)layer;
 
 @end

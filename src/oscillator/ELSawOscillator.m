@@ -13,153 +13,127 @@
 
 @implementation ELSawOscillator
 
-- (id)initEnabled:(BOOL)aEnabled minimum:(int)aMin maximum:(int)aMax rest:(int)aRest attack:(int)aAttack sustain:(int)aSustain decay:(int)aDecay {
-  if( ( self = [super initEnabled:aEnabled minimum:aMin maximum:aMax] ) ) {
-    [self setAttack:aAttack];
-    [self setDecay:aDecay];
-    [self setRest:aRest];
-    [self setSustain:aSustain];
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum rest:(int)rest attack:(int)attack sustain:(int)sustain decay:(int)decay {
+  if( ( self = [super initEnabled:enabled minimum:minimum hardMinimum:hardMinimum maximum:maximum hardMaximum:hardMaximum] ) ) {
+    [self setAttack:attack];
+    [self setDecay:decay];
+    [self setRest:rest];
+    [self setSustain:sustain];
   }
   
   return self;
+}
+
+
+- (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum rest:(int)rest attack:(int)attack sustain:(int)sustain decay:(int)decay {
+  return [self initEnabled:enabled minimum:minimum hardMinimum:minimum maximum:maximum hardMaximum:maximum rest:rest attack:attack sustain:sustain decay:decay];
 }
 
 - (NSString *)type {
   return @"Saw";
 }
 
-@dynamic rest;
-
-- (int)rest {
-  return rest;
-}
+@synthesize rest = _rest;
 
 - (void)setRest:(int)newRest {
-  rest = newRest;
+  _rest = newRest;
   [self updateBasesAndDeltas];
 }
 
-@dynamic attack;
-
-- (int)attack {
-  return attack;
-}
+@synthesize attack = _attack;
 
 - (void)setAttack:(int)newAttack {
-  attack = newAttack;
+  _attack = newAttack;
   [self updateBasesAndDeltas];
 }
 
-@dynamic sustain;
-
-- (int)sustain {
-  return sustain;
-}
+@synthesize sustain = _sustain;
 
 - (void)setSustain:(int)newSustain {
-  sustain = newSustain;
+  _sustain = newSustain;
   [self updateBasesAndDeltas];
 }
 
-@dynamic decay;
-
-- (int)decay {
-  return decay;
-}
+@synthesize decay = _decay;
 
 - (void)setDecay:(int)newDecay {
-  decay = newDecay;
+  _decay = newDecay;
   [self updateBasesAndDeltas];
 }
 
+
+#pragma mark Object behaviours
+
 - (void)updateBasesAndDeltas {
-  period = rest + attack + sustain + decay;
+  _period = [self rest] + [self attack] + [self sustain] + [self decay];
   
-  if( attack > 0 ) {
-    attackDelta = ( maximum - minimum ) / (float)attack;
+  if( [self attack] > 0 ) {
+    _attackDelta = ( [self maximum] - [self minimum] ) / (float)[self attack];
   }
-  if( decay > 0 ) {
-    decayDelta = ( maximum - minimum ) / (float)decay;
+  
+  if( [self decay] > 0 ) {
+    _decayDelta = ( [self maximum] - [self minimum] ) / (float)[self decay];
   }
 }
+
 
 - (int)generate {
     // Get time in milliseconds
     UInt64 time = AudioConvertHostTimeToNanos( AudioGetCurrentHostTime() - [self timeBase] ) / 1000000;
-    int t = time % period;
+    int t = time % _period;
     return [self generateWithT:t];
 }
 
 
 - (int)generateWithT:(int)t {
-  if( t <= attack ) {
-    return ( attackDelta * t ) + minimum;
-  } else if( t <= ( attack + sustain ) ) {
-    return maximum;
-  } else if( t <= ( attack + sustain + decay ) ) {
-    return maximum - ( decayDelta * ( t - ( attack + sustain ) ) );
+  if( t <= [self attack] ) {
+    return ( _attackDelta * t ) + [self minimum];
+  } else if( t <= ( [self attack] + [self sustain] ) ) {
+    return [self maximum];
+  } else if( t <= ( [self attack] + [self sustain] + [self decay] ) ) {
+    return [self maximum] - ( _decayDelta * ( t - ( [self attack] + [self sustain] ) ) );
   } else {
-    return minimum;
+    return [self minimum];
   }
 }
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  if( ( self = [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_] ) ) {
-    NSXMLNode *attributeNode;
-    
-    attributeNode = [_representation_ attributeForName:@"rest"];
-    if( !attributeNode ) {
-      NSLog( @"No or invalid 'rest' attribute node for oscillator!" );
-      return nil;
-    } else {
-      [self setRest:[[attributeNode stringValue] intValue]];
-    }
 
-    attributeNode = [_representation_ attributeForName:@"attack"];
-    if( !attributeNode ) {
-      NSLog( @"No or invalid 'attack' attribute node for oscillator" );
-      return nil;
-    } else {
-      [self setAttack:[[attributeNode stringValue] intValue]];
-    }
-    
-    attributeNode = [_representation_ attributeForName:@"sustain"];
-    if( !attributeNode ) {
-      NSLog( @"No or invalid 'sustain' attribute node for oscillator" );
-      return nil;
-    } else {
-      [self setAttack:[[attributeNode stringValue] intValue]];
-    }
-    
-    attributeNode = [_representation_ attributeForName:@"decay"];
-    if( !attributeNode ) {
-      NSLog( @"No or invalid 'decay' attribute node for oscillator" );
-      return nil;
-    } else {
-      [self setDecay:[[attributeNode stringValue] intValue]];
-    }
+#pragma mark Implements ELXmlData
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  if( ( self = [super initWithXmlRepresentation:representation parent:parent player:player error:error] ) ) {
+    [self setRest:[representation attributeAsInteger:@"rest" defaultValue:INT_MIN]];
+    [self setAttack:[representation attributeAsInteger:@"attack" defaultValue:INT_MIN]];
+    [self setSustain:[representation attributeAsInteger:@"sustain" defaultValue:INT_MIN]];
+    [self setDecay:[representation attributeAsInteger:@"decay" defaultValue:INT_MIN]];
   }
   
   return self;
 }
 
-- (void)storeAttributes:(NSMutableDictionary *)_attributes_ {
-  [super storeAttributes:_attributes_];
+
+- (void)storeAttributes:(NSMutableDictionary *)attributes {
+  [super storeAttributes:attributes];
   
-  [_attributes_ setObject:[NSNumber numberWithInteger:[self rest]] forKey:@"rest"];
-  [_attributes_ setObject:[NSNumber numberWithInteger:[self attack]] forKey:@"attack"];
-  [_attributes_ setObject:[NSNumber numberWithInteger:[self sustain]] forKey:@"sustain"];
-  [_attributes_ setObject:[NSNumber numberWithInteger:[self decay]] forKey:@"decay"];
+  [attributes setObject:[NSNumber numberWithInteger:[self rest]] forKey:@"rest"];
+  [attributes setObject:[NSNumber numberWithInteger:[self attack]] forKey:@"attack"];
+  [attributes setObject:[NSNumber numberWithInteger:[self sustain]] forKey:@"sustain"];
+  [attributes setObject:[NSNumber numberWithInteger:[self decay]] forKey:@"decay"];
 }
 
-- (id)mutableCopyWithZone:(NSZone *)_zone_ {
-  return [[[self class] allocWithZone:_zone_] initEnabled:[self enabled]
-                                                  minimum:[self minimum]
-                                                  maximum:[self maximum]
-                                                     rest:[self rest]
-                                                   attack:[self attack]
-                                                  sustain:[self sustain]
-                                                    decay:[self decay]];
+
+#pragma mark Implements NSMutableCopying
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+  return [[[self class] allocWithZone:zone] initEnabled:[self enabled]
+                                                minimum:[self minimum]
+                                            hardMinimum:[self hardMinimum]
+                                                maximum:[self maximum]
+                                            hardMaximum:[self hardMaximum]
+                                                   rest:[self rest]
+                                                 attack:[self attack]
+                                                sustain:[self sustain]
+                                                  decay:[self decay]];
 }
 
 @end

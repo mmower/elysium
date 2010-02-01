@@ -20,6 +20,18 @@ static NSArray *alternateSequence = nil;
 
 @implementation ELNote
 
+#pragma mark Class behaviours
+
++ (int)calculateOctaveFromNoteNumber:(int)number {
+  int middle_c_adjustment;
+  if ([[NSUserDefaults standardUserDefaults] integerForKey:ELMiddleCOctaveKey] == EL_C3) {
+      middle_c_adjustment = 2;
+  } else {
+      middle_c_adjustment = 1;
+  }
+  return floor( number / 12 ) - middle_c_adjustment;
+}
+
 + (void)initialize {
   if( noteSequence == nil ) {
     noteSequence = [NSArray arrayWithObjects:@"C",@"C#",@"D",@"D#",@"E",@"F",@"F#",@"G",@"G#",@"A",@"A#",@"B",nil];
@@ -32,7 +44,7 @@ static NSArray *alternateSequence = nil;
     for( int noteNum = 0; noteNum < 127; noteNum++ ) {
       NSString *noteName = [noteSequence objectAtIndex:(noteNum % 12)];
       NSString *altNoteName = [alternateSequence objectAtIndex:(noteNum % 12)];
-      int octaveNr = floor( noteNum / 12 ) - 1;
+      int octaveNr = [self calculateOctaveFromNoteNumber:noteNum];
 
       [noteToNoteNames setObject:[noteName stringByAppendingFormat:@"%d", octaveNr]
                           forKey:[NSNumber numberWithInt:noteNum]];
@@ -52,63 +64,59 @@ static NSArray *alternateSequence = nil;
   return [noteToNoteNames objectForKey:[NSNumber numberWithInt:noteNum]];
 }
 
-- (id)initWithName:(NSString *)_name_ {
+
+#pragma mark Object initialization
+
+- (id)initWithName:(NSString *)name {
   if( ( self = [super init] ) )
   {
-    name          = _name_;
-    number        = [ELNote noteNumber:_name_];
-    octave        = floor( number / 12 ) - 1;
-    tone          = [noteSequence objectAtIndex:(number % 12)];
-    alternateTone = [noteToAltNoteNames objectForKey:[NSNumber numberWithInt:(number)]];
+    _name          = name;
+    _number        = [ELNote noteNumber:_name];
+    _octave        = [[self class] calculateOctaveFromNoteNumber:_number];
+    _tone          = [noteSequence objectAtIndex:(_number % 12)];
+    _alternateTone = [alternateSequence objectAtIndex:(_number % 12)];
   }
   return self;
 }
 
-- (int)number {
-  return number;
+#pragma mark Properties
+
+@synthesize number = _number;
+@synthesize octave = _octave;
+@synthesize name = _name;
+@synthesize tone = _tone;
+@synthesize alternateTone = _alternateTone;
+
+@dynamic flattenedName;
+
+- (NSString *)flattenedName {
+  return [self alternateTone];
 }
 
-- (NSString *)name {
-  return name;
-}
-
-- (NSString *)description {
-  return [NSString stringWithFormat:@"[%d,%@]", number, name];
-}
-
-- (int)octave {
-  return octave;
-}
-
-- (NSString *)tone {
-  return tone;
-}
-
-- (NSString *)alternateTone {
-  return alternateTone;
-}
-
-- (NSString *)tone:(BOOL)_flat_ {
-  if( _flat_ ) {
-    return alternateTone;
+- (NSString *)tone:(BOOL)flat {
+  if( flat ) {
+    return [self alternateTone];
   } else {
-    return tone;
+    return [self tone];
   }
 }
 
-- (NSString *)flattenedName {
-  return alternateTone;
+- (NSString *)description {
+  return [NSString stringWithFormat:@"[%d,%@]", [self number], [self name]];
 }
 
-- (void)prepareMIDIMessage:(ELMIDIMessage*)_message_
-                   channel:(int)_channel_
-                    onTime:(UInt64)_onTime_
-                   offTime:(UInt64)_offTime_
-                  velocity:(int)_velocity_
-                 transpose:(int)_transpose_
+
+#pragma mark MIDI integration
+
+- (void)prepareMIDIMessage:(ELMIDIMessage*)message
+                   channel:(int)channel
+                    onTime:(UInt64)onTime
+                   offTime:(UInt64)offTime
+                  velocity:(int)velocity
+                 transpose:(int)transpose
 {
-  [_message_ noteOn:(number+_transpose_) velocity:_velocity_ at:_onTime_ channel:_channel_];
-  [_message_ noteOff:(number+_transpose_) velocity:_velocity_ at:_offTime_ channel:_channel_];
+  [message noteOn:([self number]+transpose) velocity:velocity at:onTime channel:channel];
+  [message noteOff:([self number]+transpose) velocity:velocity at:offTime channel:channel];
 }
 
 @end

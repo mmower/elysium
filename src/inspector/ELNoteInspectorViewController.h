@@ -47,7 +47,39 @@
   IBOutlet  NSSegmentedControl  *triadControl;
   
   IBOutlet  NSButton            *overrideControl;
-  IBOutlet  ELSegmentedControl  *channelOverrideSelectControl;
+  IBOutlet  NSScrollView        *channelOverrideSelectorView;
+  
+  IBOutlet  ELSegmentedControl  *chan1OverrideModeControl;
+  IBOutlet  LMDialView          *chan1OverrideControl;
+  IBOutlet  NSButton            *chan1OverrideOscControl;
+  
+  IBOutlet  ELSegmentedControl  *chan2OverrideModeControl;
+  IBOutlet  LMDialView          *chan2OverrideControl;
+  IBOutlet  NSButton            *chan2OverrideOscControl;
+  
+  IBOutlet  ELSegmentedControl  *chan3OverrideModeControl;
+  IBOutlet  LMDialView          *chan3OverrideControl;
+  IBOutlet  NSButton            *chan3OverrideOscControl;
+  
+  IBOutlet  ELSegmentedControl  *chan4OverrideModeControl;
+  IBOutlet  LMDialView          *chan4OverrideControl;
+  IBOutlet  NSButton            *chan4OverrideOscControl;
+  
+  IBOutlet  ELSegmentedControl  *chan5OverrideModeControl;
+  IBOutlet  LMDialView          *chan5OverrideControl;
+  IBOutlet  NSButton            *chan5OverrideOscControl;
+  
+  IBOutlet  ELSegmentedControl  *chan6OverrideModeControl;
+  IBOutlet  LMDialView          *chan6OverrideControl;
+  IBOutlet  NSButton            *chan6OverrideOscControl;
+  
+  IBOutlet  ELSegmentedControl  *chan7OverrideModeControl;
+  IBOutlet  LMDialView          *chan7OverrideControl;
+  IBOutlet  NSButton            *chan7OverrideOscControl;
+  
+  IBOutlet  ELSegmentedControl  *chan8OverrideModeControl;
+  IBOutlet  LMDialView          *chan8OverrideControl;
+  IBOutlet  NSButton            *chan8OverrideOscControl;
   
   IBOutlet  NSButton            *editWillRunControl;
   IBOutlet  NSButton            *removeWillRunControl;

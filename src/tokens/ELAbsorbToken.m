@@ -18,29 +18,33 @@
   return @"absorb";
 }
 
-- (void)runToken:(ELPlayhead *)_playhead_ {
-  if( ![_playhead_ isNew] ) {
-    [_playhead_ kill];
+
+- (void)runToken:(ELPlayhead *)playhead {
+  if( ![playhead isNew] ) {
+    [playhead kill];
   }
 }
 
-// Drawing
 
-- (void)drawWithAttributes:(NSDictionary *)_attributes_ {
+#pragma mark Drawing
+
+- (void)drawWithAttributes:(NSDictionary *)attributes {
   NSPoint centre = [[self cell] centre];
   float radius = [[self cell] radius];
   
   NSBezierPath *symbolPath;
-  [self setTokenDrawColor:_attributes_];
+  [self setTokenDrawColor:attributes];
   symbolPath = [NSBezierPath bezierPathWithRect:NSMakeRect( centre.x - radius/3, centre.y - radius/3, 2*radius/3, 2*radius/3 )];
   [symbolPath setLineWidth:2.0];
   [symbolPath stroke];
 }
 
-// Implement the ELXmlData protocol
 
-- (id)initWithXmlRepresentation:(NSXMLElement *)_representation_ parent:(id)_parent_ player:(ELPlayer *)_player_ error:(NSError **)_error_ {
-  return [super initWithXmlRepresentation:_representation_ parent:_parent_ player:_player_ error:_error_];
+#pragma mark Implements ELXmlData
+
+- (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
+  return [super initWithXmlRepresentation:representation parent:parent player:player error:error];
 }
+
 
 @end

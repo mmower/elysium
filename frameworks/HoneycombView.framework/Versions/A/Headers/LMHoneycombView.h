@@ -19,30 +19,30 @@ extern NSString* const LMHoneycombViewSelectedBorderColor;
 extern NSString* const LMHoneycombViewBorderWidth;
 
 @interface LMHoneycombView : NSView {
-  LMHexCell             *selected;
+  LMHexCell             *_selected;
   
-  id<LMHoneycombMatrix> dataSource;
-  id                    delegate;
+  id<LMHoneycombMatrix> _dataSource;
+  id                    _delegate;
   
-  int                   cols;
-  int                   rows;
+  int                   _cols;
+  int                   _rows;
   
-  BOOL                  firstDrawing;
+  BOOL                  _recalculateCellPaths;
   
-  NSMutableDictionary   *drawingAttributes;
+  NSBitmapImageRep      *_viewCache;
+  
+  NSMutableDictionary   *_drawingAttributes;
 }
 
 @property (readonly) NSMutableDictionary *drawingAttributes;
+@property (readonly) int cols;
+@property (readonly) int rows;
+@property id delegate;
+@property BOOL recalculateCellPaths;
+@property LMHexCell *selected;
+@property id<LMHoneycombMatrix> dataSource;
 
-- (id)delegate;
-- (void)setDelegate:(id)delegate;
-
-- (id<LMHoneycombMatrix>)dataSource;
-- (void)setDataSource:(id<LMHoneycombMatrix>)dataSource;
 - (void)dataSourceChanged;
-
-- (LMHexCell *)selected;
-- (void)setSelected:(LMHexCell *)selected;
 
 - (CGFloat)hexRadius;
 - (CGFloat)hexOffset:(CGFloat)radius;

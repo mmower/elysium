@@ -27,16 +27,29 @@
   ELInspectorController           *inspectorController;
   ELLayerManagerWindowController  *layerManager;
   ELScriptPackageController       *scriptPackageController;
+  
+  BOOL                            _showNotes;
+  BOOL                            _showOctaves;
+  BOOL                            _showKey;
+  BOOL                            _performanceMode;
 }
 
 @property (readonly) ELInspectorController *inspectorController;
 
-- (BOOL)initScriptingEngine;
+@property             BOOL                showNotes;
+@property             BOOL                showOctaves;
+@property             BOOL                showKey;
+@property             BOOL                performanceMode;
 
 - (ELPlayer *)activePlayer;
+- (void)updateDocumentViews;
 
 - (IBAction)showMIDIConfigInspector:(id)sender;
 - (IBAction)showPreferences:(id)sender;
+
+- (IBAction)toggleNoteDisplay:(id)sender;
+- (IBAction)toggleKeyDisplay:(id)sender;
+- (IBAction)toggleOctavesDisplay:(id)sender;
 
 - (IBAction)showHelp:(id)sender;
 - (IBAction)visitSupportPage:(id)sender;

@@ -12,15 +12,22 @@
 #import "ELToken.h"
 
 @interface ELNoteToken : ELToken {
-  ELDial *velocityDial;
-  ELDial *emphasisDial;
-  ELDial *tempoSyncDial;
-  ELDial *noteLengthDial;
-  ELDial *triadDial;
-  ELDial *ghostsDial;
+  ELDial        *_velocityDial;
+  ELDial        *_emphasisDial;
+  ELDial        *_tempoSyncDial;
+  ELDial        *_noteLengthDial;
+  ELDial        *_triadDial;
+  ELDial        *_ghostsDial;
+  ELDial        *_overrideDial;
   
-  ELDial *overrideDial;
-  NSDictionary  *channelSends;
+  ELDial        *_chan1OverrideDial;
+  ELDial        *_chan2OverrideDial;
+  ELDial        *_chan3OverrideDial;
+  ELDial        *_chan4OverrideDial;
+  ELDial        *_chan5OverrideDial;
+  ELDial        *_chan6OverrideDial;
+  ELDial        *_chan7OverrideDial;
+  ELDial        *_chan8OverrideDial;
 }
 
 - (id)initWithVelocityDial:(ELDial *)velocityDial
@@ -30,7 +37,14 @@
                  triadDial:(ELDial *)triadDial
                 ghostsDial:(ELDial *)ghostsDial
               overrideDial:(ELDial *)overrideDial
-              channelSends:(NSDictionary *)channelSends;
+         chan1OverrideDial:(ELDial *)chan1OverrideDial
+         chan2OverrideDial:(ELDial *)chan2OverrideDial
+         chan3OverrideDial:(ELDial *)chan3OverrideDial
+         chan4OverrideDial:(ELDial *)chan4OverrideDial
+         chan5OverrideDial:(ELDial *)chan5OverrideDial
+         chan6OverrideDial:(ELDial *)chan6OverrideDial
+         chan7OverrideDial:(ELDial *)chan7OverrideDial
+         chan8OverrideDial:(ELDial *)chan8OverrideDial;
 
 @property ELDial *velocityDial;
 @property ELDial *emphasisDial;
@@ -39,6 +53,13 @@
 @property ELDial *triadDial;
 @property ELDial *ghostsDial;
 @property ELDial *overrideDial;
-@property (assign) NSDictionary *channelSends;
+@property ELDial *chan1OverrideDial;
+@property ELDial *chan2OverrideDial;
+@property ELDial *chan3OverrideDial;
+@property ELDial *chan4OverrideDial;
+@property ELDial *chan5OverrideDial;
+@property ELDial *chan6OverrideDial;
+@property ELDial *chan7OverrideDial;
+@property ELDial *chan8OverrideDial;
 
 @end

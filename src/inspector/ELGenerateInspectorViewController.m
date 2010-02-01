@@ -44,6 +44,13 @@
   
   [self bindScript:@"willRun"];
   [self bindScript:@"didRun"];
+  
+  [self bindTriggerModeControl];
 }
+
+- (void)bindTriggerModeControl {
+  [triggerModeControl bind:@"selectedIndex" toObject:[self objectController] withKeyPath:@"selection.triggerModeDial.value" options:nil];
+}
+
 
 @end

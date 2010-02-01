@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9G55</string>
+		<string key="IBDocument.SystemVersion">9J61</string>
 		<string key="IBDocument.InterfaceBuilderVersion">677</string>
-		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.AppKitVersion">949.46</string>
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="324"/>
+			<integer value="60"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -39,7 +39,7 @@
 			<object class="NSWindowTemplate" id="766614415">
 				<int key="NSWindowStyleMask">23</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{712, 531}, {531, 295}}</string>
+				<string key="NSWindowRect">{{712, 531}, {348, 295}}</string>
 				<int key="NSWTFlags">-1543503872</int>
 				<string key="NSWindowTitle">Oscillator Designer</string>
 				<string key="NSWindowClass">NSPanel</string>
@@ -53,7 +53,7 @@
 						<object class="NSTabView" id="257470903">
 							<reference key="NSNextResponder" ref="933486250"/>
 							<int key="NSvFlags">12</int>
-							<string key="NSFrame">{{13, 33}, {505, 256}}</string>
+							<string key="NSFrame">{{13, 33}, {322, 256}}</string>
 							<reference key="NSSuperview" ref="933486250"/>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -67,7 +67,7 @@
 											<object class="NSTextField" id="525814417">
 												<reference key="NSNextResponder" ref="1007437888"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 172}, {58, 14}}</string>
+												<string key="NSFrame">{{6, 172}, {58, 14}}</string>
 												<reference key="NSSuperview" ref="1007437888"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="976180078">
@@ -103,7 +103,7 @@
 											<object class="NSTextField" id="691140485">
 												<reference key="NSNextResponder" ref="1007437888"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{251, 172}, {61, 14}}</string>
+												<string key="NSFrame">{{165, 172}, {61, 14}}</string>
 												<reference key="NSSuperview" ref="1007437888"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="1915054">
@@ -119,7 +119,7 @@
 											<object class="NSTextField" id="537332393">
 												<reference key="NSNextResponder" ref="1007437888"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 108}, {44, 14}}</string>
+												<string key="NSFrame">{{6, 108}, {44, 14}}</string>
 												<reference key="NSSuperview" ref="1007437888"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="761481127">
@@ -135,7 +135,7 @@
 											<object class="NSTextField" id="864317330">
 												<reference key="NSNextResponder" ref="1007437888"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{251, 108}, {59, 14}}</string>
+												<string key="NSFrame">{{165, 108}, {59, 14}}</string>
 												<reference key="NSSuperview" ref="1007437888"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="788878646">
@@ -151,7 +151,7 @@
 											<object class="LMDialView" id="430807308">
 												<reference key="NSNextResponder" ref="1007437888"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="1007437888"/>
 												<boolean value="YES" key="lmdial.enabled" id="5"/>
 												<integer value="1" key="lmdial.style" id="9"/>
@@ -181,7 +181,7 @@
 											<object class="LMDialView" id="340368821">
 												<reference key="NSNextResponder" ref="1007437888"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{359, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{243, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="1007437888"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -202,7 +202,7 @@
 											<object class="LMDialView" id="278646045">
 												<reference key="NSNextResponder" ref="1007437888"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 87}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 87}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="1007437888"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -223,7 +223,7 @@
 											<object class="LMDialView" id="315581768">
 												<reference key="NSNextResponder" ref="1007437888"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{359, 87}, {56, 56}}</string>
+												<string key="NSFrame">{{243, 87}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="1007437888"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -242,7 +242,7 @@
 												<integer value="1000" key="lmdial.divisor"/>
 											</object>
 										</object>
-										<string key="NSFrame">{{10, 19}, {485, 224}}</string>
+										<string key="NSFrame">{{10, 19}, {302, 224}}</string>
 									</object>
 									<string key="NSLabel">Square</string>
 									<reference key="NSColor" ref="392076252"/>
@@ -258,7 +258,7 @@
 											<object class="NSTextField" id="918208467">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 172}, {55, 14}}</string>
+												<string key="NSFrame">{{6, 172}, {55, 14}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="789988787">
@@ -274,7 +274,7 @@
 											<object class="NSTextField" id="453027702">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{251, 172}, {57, 14}}</string>
+												<string key="NSFrame">{{165, 172}, {57, 14}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="115756134">
@@ -290,7 +290,7 @@
 											<object class="NSTextField" id="641658558">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{251, 44}, {44, 14}}</string>
+												<string key="NSFrame">{{165, 44}, {44, 14}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="953368449">
@@ -306,7 +306,7 @@
 											<object class="NSTextField" id="989009672">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 108}, {55, 14}}</string>
+												<string key="NSFrame">{{6, 108}, {55, 14}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="583371762">
@@ -322,7 +322,7 @@
 											<object class="NSTextField" id="649630376">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{251, 108}, {59, 14}}</string>
+												<string key="NSFrame">{{165, 108}, {59, 14}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="337204165">
@@ -338,7 +338,7 @@
 											<object class="NSTextField" id="37201806">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 44}, {53, 14}}</string>
+												<string key="NSFrame">{{6, 44}, {53, 14}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="1058420059">
@@ -354,7 +354,7 @@
 											<object class="LMDialView" id="862592860">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -375,7 +375,7 @@
 											<object class="LMDialView" id="954738405">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{359, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{243, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -396,7 +396,7 @@
 											<object class="LMDialView" id="614981674">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{359, 23}, {56, 56}}</string>
+												<string key="NSFrame">{{243, 23}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -417,7 +417,7 @@
 											<object class="LMDialView" id="430384671">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{359, 87}, {56, 56}}</string>
+												<string key="NSFrame">{{243, 87}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -438,7 +438,7 @@
 											<object class="LMDialView" id="827053030">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 87}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 87}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -459,7 +459,7 @@
 											<object class="LMDialView" id="584849032">
 												<reference key="NSNextResponder" ref="530985991"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 23}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 23}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="530985991"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -478,7 +478,7 @@
 												<integer value="1000" key="lmdial.divisor"/>
 											</object>
 										</object>
-										<string key="NSFrame">{{10, 19}, {485, 224}}</string>
+										<string key="NSFrame">{{10, 19}, {302, 224}}</string>
 									</object>
 									<string key="NSLabel">Saw</string>
 									<reference key="NSColor" ref="392076252"/>
@@ -494,7 +494,7 @@
 											<object class="NSTextField" id="19373837">
 												<reference key="NSNextResponder" ref="58082254"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 172}, {55, 14}}</string>
+												<string key="NSFrame">{{6, 172}, {55, 14}}</string>
 												<reference key="NSSuperview" ref="58082254"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="223856583">
@@ -510,7 +510,7 @@
 											<object class="NSTextField" id="334728061">
 												<reference key="NSNextResponder" ref="58082254"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{251, 172}, {57, 14}}</string>
+												<string key="NSFrame">{{165, 172}, {57, 14}}</string>
 												<reference key="NSSuperview" ref="58082254"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="303959108">
@@ -526,7 +526,7 @@
 											<object class="NSTextField" id="28394070">
 												<reference key="NSNextResponder" ref="58082254"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 108}, {54, 14}}</string>
+												<string key="NSFrame">{{6, 108}, {54, 14}}</string>
 												<reference key="NSSuperview" ref="58082254"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="874720940">
@@ -542,7 +542,7 @@
 											<object class="LMDialView" id="396644475">
 												<reference key="NSNextResponder" ref="58082254"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="58082254"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -563,7 +563,7 @@
 											<object class="LMDialView" id="256717827">
 												<reference key="NSNextResponder" ref="58082254"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{359, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{243, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="58082254"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -584,7 +584,7 @@
 											<object class="LMDialView" id="737457737">
 												<reference key="NSNextResponder" ref="58082254"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 87}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 87}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="58082254"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -603,7 +603,7 @@
 												<integer value="1000" key="lmdial.divisor"/>
 											</object>
 										</object>
-										<string key="NSFrame">{{10, 19}, {485, 224}}</string>
+										<string key="NSFrame">{{10, 19}, {302, 224}}</string>
 									</object>
 									<string key="NSLabel">Sine</string>
 									<reference key="NSColor" ref="392076252"/>
@@ -612,14 +612,14 @@
 								<object class="NSTabViewItem" id="324333735">
 									<string key="NSIdentifier">Ramp</string>
 									<object class="NSView" key="NSView" id="897641409">
-										<reference key="NSNextResponder" ref="257470903"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
 											<object class="NSTextField" id="926900295">
 												<reference key="NSNextResponder" ref="897641409"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 172}, {55, 14}}</string>
+												<string key="NSFrame">{{6, 172}, {55, 14}}</string>
 												<reference key="NSSuperview" ref="897641409"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="743662208">
@@ -635,7 +635,7 @@
 											<object class="NSTextField" id="138750475">
 												<reference key="NSNextResponder" ref="897641409"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 59}, {37, 14}}</string>
+												<string key="NSFrame">{{6, 50}, {37, 14}}</string>
 												<reference key="NSSuperview" ref="897641409"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="428378590">
@@ -651,7 +651,7 @@
 											<object class="NSTextField" id="1005435728">
 												<reference key="NSNextResponder" ref="897641409"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{251, 172}, {57, 14}}</string>
+												<string key="NSFrame">{{165, 172}, {57, 14}}</string>
 												<reference key="NSSuperview" ref="897641409"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="462851852">
@@ -667,7 +667,7 @@
 											<object class="NSTextField" id="472907490">
 												<reference key="NSNextResponder" ref="897641409"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 108}, {54, 14}}</string>
+												<string key="NSFrame">{{6, 108}, {54, 14}}</string>
 												<reference key="NSSuperview" ref="897641409"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="949848359">
@@ -683,7 +683,7 @@
 											<object class="LMDialView" id="935656541">
 												<reference key="NSNextResponder" ref="897641409"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="897641409"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -704,7 +704,7 @@
 											<object class="LMDialView" id="280458349">
 												<reference key="NSNextResponder" ref="897641409"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{359, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{243, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="897641409"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -725,7 +725,7 @@
 											<object class="LMDialView" id="873209403">
 												<reference key="NSNextResponder" ref="897641409"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 87}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 87}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="897641409"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -746,7 +746,7 @@
 											<object class="NSButton" id="352146797">
 												<reference key="NSNextResponder" ref="897641409"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{130, 57}, {22, 18}}</string>
+												<string key="NSFrame">{{88, 48}, {22, 18}}</string>
 												<reference key="NSSuperview" ref="897641409"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="293988330">
@@ -771,8 +771,7 @@
 												</object>
 											</object>
 										</object>
-										<string key="NSFrame">{{10, 19}, {485, 224}}</string>
-										<reference key="NSSuperview" ref="257470903"/>
+										<string key="NSFrame">{{10, 19}, {302, 224}}</string>
 									</object>
 									<string key="NSLabel">Ramp</string>
 									<reference key="NSColor" ref="392076252"/>
@@ -960,7 +959,7 @@
 														<double key="NSPercent">9.927008e-01</double>
 													</object>
 												</object>
-												<string key="NSFrame">{{114, 17}, {139, 190}}</string>
+												<string key="NSFrame">{{72, 23}, {139, 190}}</string>
 												<reference key="NSSuperview" ref="229032074"/>
 												<reference key="NSNextKeyView" ref="97780420"/>
 												<int key="NSsFlags">18</int>
@@ -972,7 +971,7 @@
 											<object class="NSButton" id="614545019">
 												<reference key="NSNextResponder" ref="229032074"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{260, 191}, {32, 16}}</string>
+												<string key="NSFrame">{{242, 161}, {32, 16}}</string>
 												<reference key="NSSuperview" ref="229032074"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="1070323767">
@@ -996,7 +995,7 @@
 											<object class="NSButton" id="552647455">
 												<reference key="NSNextResponder" ref="229032074"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{260, 169}, {32, 16}}</string>
+												<string key="NSFrame">{{242, 139}, {32, 16}}</string>
 												<reference key="NSSuperview" ref="229032074"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="862853908">
@@ -1016,7 +1015,7 @@
 											<object class="NSTextField" id="848710625">
 												<reference key="NSNextResponder" ref="229032074"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 193}, {40, 14}}</string>
+												<string key="NSFrame">{{6, 177}, {40, 14}}</string>
 												<reference key="NSSuperview" ref="229032074"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="379519977">
@@ -1030,7 +1029,7 @@
 												</object>
 											</object>
 										</object>
-										<string key="NSFrame">{{10, 19}, {485, 224}}</string>
+										<string key="NSFrame">{{10, 19}, {302, 224}}</string>
 									</object>
 									<string key="NSLabel">Sequence</string>
 									<reference key="NSColor" ref="392076252"/>
@@ -1039,14 +1038,14 @@
 								<object class="NSTabViewItem" id="905866313">
 									<string key="NSIdentifier">Random</string>
 									<object class="NSView" key="NSView" id="265967736">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="257470903"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
 											<object class="NSTextField" id="251344510">
 												<reference key="NSNextResponder" ref="265967736"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 172}, {55, 14}}</string>
+												<string key="NSFrame">{{6, 172}, {55, 14}}</string>
 												<reference key="NSSuperview" ref="265967736"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="180727682">
@@ -1062,7 +1061,7 @@
 											<object class="NSTextField" id="480123697">
 												<reference key="NSNextResponder" ref="265967736"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{251, 172}, {57, 14}}</string>
+												<string key="NSFrame">{{165, 172}, {57, 14}}</string>
 												<reference key="NSSuperview" ref="265967736"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="241907630">
@@ -1078,7 +1077,7 @@
 											<object class="LMDialView" id="160358363">
 												<reference key="NSNextResponder" ref="265967736"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{114, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{72, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="265967736"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -1099,7 +1098,7 @@
 											<object class="LMDialView" id="574578818">
 												<reference key="NSNextResponder" ref="265967736"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{359, 151}, {56, 56}}</string>
+												<string key="NSFrame">{{243, 151}, {56, 56}}</string>
 												<reference key="NSSuperview" ref="265967736"/>
 												<reference key="lmdial.enabled" ref="5"/>
 												<reference key="lmdial.style" ref="9"/>
@@ -1118,21 +1117,22 @@
 												<reference key="lmdial.divisor" ref="9"/>
 											</object>
 										</object>
-										<string key="NSFrame">{{10, 19}, {485, 224}}</string>
+										<string key="NSFrame">{{10, 19}, {302, 224}}</string>
+										<reference key="NSSuperview" ref="257470903"/>
 									</object>
 									<string key="NSLabel">Random</string>
 									<reference key="NSColor" ref="392076252"/>
 									<reference key="NSTabView" ref="257470903"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="324333735"/>
+							<reference key="NSSelectedTabViewItem" ref="905866313"/>
 							<reference key="NSFont" ref="22"/>
 							<int key="NSTvFlags">268435456</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="897641409"/>
+								<reference ref="265967736"/>
 							</object>
 						</object>
 						<object class="NSButton" id="1044477204">
@@ -1178,7 +1178,7 @@
 						<object class="NSButton" id="1032438129">
 							<reference key="NSNextResponder" ref="933486250"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{443, 18}, {68, 17}}</string>
+							<string key="NSFrame">{{260, 18}, {68, 17}}</string>
 							<reference key="NSSuperview" ref="933486250"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="905949290">
@@ -1196,7 +1196,7 @@
 							</object>
 						</object>
 					</object>
-					<string key="NSFrameSize">{531, 295}</string>
+					<string key="NSFrameSize">{348, 295}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
@@ -1335,69 +1335,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">squareLFOMinDial</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="430807308"/>
-					</object>
-					<int key="connectionID">244</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">squareLFOMaxDial</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="340368821"/>
 					</object>
 					<int key="connectionID">245</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">maximum: squareLFOMaxDial.value</string>
-						<reference key="source" ref="430807308"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="205302654">
-							<reference key="NSSource" ref="430807308"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">maximum: squareLFOMaxDial.value</string>
-							<string key="NSBinding">maximum</string>
-							<string key="NSKeyPath">squareLFOMaxDial.value</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">249</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: squareOscillator.hardMinimum</string>
-						<reference key="source" ref="430807308"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="1024692003">
-							<reference key="NSSource" ref="430807308"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: squareOscillator.hardMinimum</string>
-							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">squareOscillator.hardMinimum</string>
-							<reference key="NSPreviousConnector" ref="205302654"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">250</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: squareOscillator.minimum</string>
-						<reference key="source" ref="430807308"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="430807308"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: squareOscillator.minimum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">squareOscillator.minimum</string>
-							<reference key="NSPreviousConnector" ref="1024692003"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">251</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1414,40 +1356,6 @@
 						</object>
 					</object>
 					<int key="connectionID">253</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: squareLFOMinDial.value</string>
-						<reference key="source" ref="340368821"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="416998683">
-							<reference key="NSSource" ref="340368821"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: squareLFOMinDial.value</string>
-							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">squareLFOMinDial.value</string>
-							<reference key="NSPreviousConnector" ref="877942903"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">255</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: squareOscillator.maximum</string>
-						<reference key="source" ref="340368821"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="340368821"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: squareOscillator.maximum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">squareOscillator.maximum</string>
-							<reference key="NSPreviousConnector" ref="416998683"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">256</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1555,27 +1463,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">sawLFOMinDial</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="862592860"/>
-					</object>
-					<int key="connectionID">288</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">sineLFOMaxDial</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="256717827"/>
 					</object>
 					<int key="connectionID">289</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">sineLFOMinDial</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="396644475"/>
-					</object>
-					<int key="connectionID">290</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1595,56 +1487,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">maximum: sawLFOMaxDial.value</string>
-						<reference key="source" ref="862592860"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="1070901484">
-							<reference key="NSSource" ref="862592860"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">maximum: sawLFOMaxDial.value</string>
-							<string key="NSBinding">maximum</string>
-							<string key="NSKeyPath">sawLFOMaxDial.value</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">297</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: sawOscillator.hardMinimum</string>
-						<reference key="source" ref="862592860"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="785054420">
-							<reference key="NSSource" ref="862592860"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: sawOscillator.hardMinimum</string>
-							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">sawOscillator.hardMinimum</string>
-							<reference key="NSPreviousConnector" ref="1070901484"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">298</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sawOscillator.minimum</string>
-						<reference key="source" ref="862592860"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="862592860"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sawOscillator.minimum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sawOscillator.minimum</string>
-							<reference key="NSPreviousConnector" ref="785054420"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">299</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">maximum: sawOscillator.hardMaximum</string>
 						<reference key="source" ref="954738405"/>
 						<reference key="destination" ref="1001"/>
@@ -1658,90 +1500,6 @@
 						</object>
 					</object>
 					<int key="connectionID">300</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: sawLFOMinDial.value</string>
-						<reference key="source" ref="954738405"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="496246430">
-							<reference key="NSSource" ref="954738405"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: sawLFOMinDial.value</string>
-							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">sawLFOMinDial.value</string>
-							<reference key="NSPreviousConnector" ref="1049040153"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">302</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sawOscillator.maximum</string>
-						<reference key="source" ref="954738405"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="954738405"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sawOscillator.maximum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sawOscillator.maximum</string>
-							<reference key="NSPreviousConnector" ref="496246430"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">303</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">maximum: sineLFOMaxDial.value</string>
-						<reference key="source" ref="396644475"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="97227334">
-							<reference key="NSSource" ref="396644475"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">maximum: sineLFOMaxDial.value</string>
-							<string key="NSBinding">maximum</string>
-							<string key="NSKeyPath">sineLFOMaxDial.value</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">306</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: sineOscillator.hardMinimum</string>
-						<reference key="source" ref="396644475"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="117488351">
-							<reference key="NSSource" ref="396644475"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: sineOscillator.hardMinimum</string>
-							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">sineOscillator.hardMinimum</string>
-							<reference key="NSPreviousConnector" ref="97227334"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">307</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sineOscillator.minimum</string>
-						<reference key="source" ref="396644475"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="396644475"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sineOscillator.minimum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sineOscillator.minimum</string>
-							<reference key="NSPreviousConnector" ref="117488351"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">308</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1761,40 +1519,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: sineLFOMinDial.value</string>
-						<reference key="source" ref="256717827"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="804450951">
-							<reference key="NSSource" ref="256717827"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: sineLFOMinDial.value</string>
-							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">sineLFOMinDial.value</string>
-							<reference key="NSPreviousConnector" ref="751155457"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">311</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: sineOscillator.maximum</string>
-						<reference key="source" ref="256717827"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="256717827"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: sineOscillator.maximum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">sineOscillator.maximum</string>
-							<reference key="NSPreviousConnector" ref="804450951"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">312</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">maximum: randomOscillator.hardMaximum</string>
 						<reference key="source" ref="574578818"/>
 						<reference key="destination" ref="1001"/>
@@ -1811,90 +1535,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">maximum: randomLFOMaxDial.value</string>
-						<reference key="source" ref="160358363"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="796229793">
-							<reference key="NSSource" ref="160358363"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">maximum: randomLFOMaxDial.value</string>
-							<string key="NSBinding">maximum</string>
-							<string key="NSKeyPath">randomLFOMaxDial.value</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">317</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: randomOscillator.hardMinimum</string>
-						<reference key="source" ref="160358363"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="1023727013">
-							<reference key="NSSource" ref="160358363"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: randomOscillator.hardMinimum</string>
-							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">randomOscillator.hardMinimum</string>
-							<reference key="NSPreviousConnector" ref="796229793"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">318</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: randomOscillator.minimum</string>
-						<reference key="source" ref="160358363"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="160358363"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: randomOscillator.minimum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">randomOscillator.minimum</string>
-							<reference key="NSPreviousConnector" ref="1023727013"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">319</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: randomLFOMinDial.value</string>
-						<reference key="source" ref="574578818"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="316814280">
-							<reference key="NSSource" ref="574578818"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: randomLFOMinDial.value</string>
-							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">randomLFOMinDial.value</string>
-							<reference key="NSPreviousConnector" ref="148445299"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">320</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: randomOscillator.maximum</string>
-						<reference key="source" ref="574578818"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="574578818"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: randomOscillator.maximum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">randomOscillator.maximum</string>
-							<reference key="NSPreviousConnector" ref="316814280"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">321</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: squareOscillator.sustain</string>
 						<reference key="source" ref="315581768"/>
 						<reference key="destination" ref="1001"/>
@@ -1908,14 +1548,6 @@
 						</object>
 					</object>
 					<int key="connectionID">322</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">rampLFOMinDial</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="935656541"/>
-					</object>
-					<int key="connectionID">334</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1959,56 +1591,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">maximum: rampLFOMaxDial.value</string>
-						<reference key="source" ref="935656541"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="976371227">
-							<reference key="NSSource" ref="935656541"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">maximum: rampLFOMaxDial.value</string>
-							<string key="NSBinding">maximum</string>
-							<string key="NSKeyPath">rampLFOMaxDial.value</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">346</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: rampOscillator.hardMinimum</string>
-						<reference key="source" ref="935656541"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="643965985">
-							<reference key="NSSource" ref="935656541"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: rampOscillator.hardMinimum</string>
-							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">rampOscillator.hardMinimum</string>
-							<reference key="NSPreviousConnector" ref="976371227"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">347</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: rampOscillator.minimum</string>
-						<reference key="source" ref="935656541"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="935656541"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: rampOscillator.minimum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">rampOscillator.minimum</string>
-							<reference key="NSPreviousConnector" ref="643965985"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">348</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">maximum: rampOscillator.hardMaximum</string>
 						<reference key="source" ref="280458349"/>
 						<reference key="destination" ref="1001"/>
@@ -2025,20 +1607,272 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">minimum: rampLFOMinDial.value</string>
+						<string key="label">maximum: sineLFOMaxDial.lowerValueBound</string>
+						<reference key="source" ref="396644475"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="76242578">
+							<reference key="NSSource" ref="396644475"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">maximum: sineLFOMaxDial.lowerValueBound</string>
+							<string key="NSBinding">maximum</string>
+							<string key="NSKeyPath">sineLFOMaxDial.lowerValueBound</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">353</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: sineOscillator.hardMinimum</string>
+						<reference key="source" ref="396644475"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="117488351">
+							<reference key="NSSource" ref="396644475"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">minimum: sineOscillator.hardMinimum</string>
+							<string key="NSBinding">minimum</string>
+							<string key="NSKeyPath">sineOscillator.hardMinimum</string>
+							<reference key="NSPreviousConnector" ref="76242578"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">354</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sineOscillator.minimum</string>
+						<reference key="source" ref="396644475"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="396644475"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sineOscillator.minimum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sineOscillator.minimum</string>
+							<reference key="NSPreviousConnector" ref="117488351"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">355</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: sineLFOMinDial.upperValueBound</string>
+						<reference key="source" ref="256717827"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="570227854">
+							<reference key="NSSource" ref="256717827"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">minimum: sineLFOMinDial.upperValueBound</string>
+							<string key="NSBinding">minimum</string>
+							<string key="NSKeyPath">sineLFOMinDial.upperValueBound</string>
+							<reference key="NSPreviousConnector" ref="751155457"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">356</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sineOscillator.maximum</string>
+						<reference key="source" ref="256717827"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="256717827"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sineOscillator.maximum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sineOscillator.maximum</string>
+							<reference key="NSPreviousConnector" ref="570227854"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">357</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: squareLFOMinDial.upperValueBound</string>
+						<reference key="source" ref="340368821"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="426499499">
+							<reference key="NSSource" ref="340368821"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">minimum: squareLFOMinDial.upperValueBound</string>
+							<string key="NSBinding">minimum</string>
+							<string key="NSKeyPath">squareLFOMinDial.upperValueBound</string>
+							<reference key="NSPreviousConnector" ref="877942903"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">361</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: squareOscillator.maximum</string>
+						<reference key="source" ref="340368821"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="340368821"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: squareOscillator.maximum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">squareOscillator.maximum</string>
+							<reference key="NSPreviousConnector" ref="426499499"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">362</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">maximum: sawLFOMaxDial.lowerValueBound</string>
+						<reference key="source" ref="862592860"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="501235179">
+							<reference key="NSSource" ref="862592860"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">maximum: sawLFOMaxDial.lowerValueBound</string>
+							<string key="NSBinding">maximum</string>
+							<string key="NSKeyPath">sawLFOMaxDial.lowerValueBound</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">363</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: sawOscillator.hardMinimum</string>
+						<reference key="source" ref="862592860"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="785054420">
+							<reference key="NSSource" ref="862592860"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">minimum: sawOscillator.hardMinimum</string>
+							<string key="NSBinding">minimum</string>
+							<string key="NSKeyPath">sawOscillator.hardMinimum</string>
+							<reference key="NSPreviousConnector" ref="501235179"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">364</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sawOscillator.minimum</string>
+						<reference key="source" ref="862592860"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="862592860"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sawOscillator.minimum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sawOscillator.minimum</string>
+							<reference key="NSPreviousConnector" ref="785054420"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">365</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: sawLFOMinDial.upperValueBound</string>
+						<reference key="source" ref="954738405"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="261783198">
+							<reference key="NSSource" ref="954738405"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">minimum: sawLFOMinDial.upperValueBound</string>
+							<string key="NSBinding">minimum</string>
+							<string key="NSKeyPath">sawLFOMinDial.upperValueBound</string>
+							<reference key="NSPreviousConnector" ref="1049040153"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">366</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: sawOscillator.maximum</string>
+						<reference key="source" ref="954738405"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="954738405"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: sawOscillator.maximum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">sawOscillator.maximum</string>
+							<reference key="NSPreviousConnector" ref="261783198"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">367</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">maximum: rampLFOMaxDial.lowerValueBound</string>
+						<reference key="source" ref="935656541"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="4787532">
+							<reference key="NSSource" ref="935656541"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">maximum: rampLFOMaxDial.lowerValueBound</string>
+							<string key="NSBinding">maximum</string>
+							<string key="NSKeyPath">rampLFOMaxDial.lowerValueBound</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">368</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: rampOscillator.hardMinimum</string>
+						<reference key="source" ref="935656541"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="643965985">
+							<reference key="NSSource" ref="935656541"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">minimum: rampOscillator.hardMinimum</string>
+							<string key="NSBinding">minimum</string>
+							<string key="NSKeyPath">rampOscillator.hardMinimum</string>
+							<reference key="NSPreviousConnector" ref="4787532"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">369</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: rampOscillator.minimum</string>
+						<reference key="source" ref="935656541"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="935656541"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: rampOscillator.minimum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">rampOscillator.minimum</string>
+							<reference key="NSPreviousConnector" ref="643965985"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">370</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: rampLFOMinDial.upperValueBound</string>
 						<reference key="source" ref="280458349"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="947601044">
+						<object class="NSNibBindingConnector" key="connector" id="714757788">
 							<reference key="NSSource" ref="280458349"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">minimum: rampLFOMinDial.value</string>
+							<string key="NSLabel">minimum: rampLFOMinDial.upperValueBound</string>
 							<string key="NSBinding">minimum</string>
-							<string key="NSKeyPath">rampLFOMinDial.value</string>
+							<string key="NSKeyPath">rampLFOMinDial.upperValueBound</string>
 							<reference key="NSPreviousConnector" ref="906034446"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">351</int>
+					<int key="connectionID">371</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2051,11 +1885,249 @@
 							<string key="NSLabel">value: rampOscillator.maximum</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">rampOscillator.maximum</string>
-							<reference key="NSPreviousConnector" ref="947601044"/>
+							<reference key="NSPreviousConnector" ref="714757788"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">352</int>
+					<int key="connectionID">372</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">maximum: randomLFOMaxDial.lowerValueBound</string>
+						<reference key="source" ref="160358363"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="119334045">
+							<reference key="NSSource" ref="160358363"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">maximum: randomLFOMaxDial.lowerValueBound</string>
+							<string key="NSBinding">maximum</string>
+							<string key="NSKeyPath">randomLFOMaxDial.lowerValueBound</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">373</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: randomOscillator.hardMinimum</string>
+						<reference key="source" ref="160358363"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="1023727013">
+							<reference key="NSSource" ref="160358363"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">minimum: randomOscillator.hardMinimum</string>
+							<string key="NSBinding">minimum</string>
+							<string key="NSKeyPath">randomOscillator.hardMinimum</string>
+							<reference key="NSPreviousConnector" ref="119334045"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">374</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: randomOscillator.minimum</string>
+						<reference key="source" ref="160358363"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="160358363"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: randomOscillator.minimum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">randomOscillator.minimum</string>
+							<reference key="NSPreviousConnector" ref="1023727013"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">375</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: randomLFOMinDial.upperValueBound</string>
+						<reference key="source" ref="574578818"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="70566315">
+							<reference key="NSSource" ref="574578818"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">minimum: randomLFOMinDial.upperValueBound</string>
+							<string key="NSBinding">minimum</string>
+							<string key="NSKeyPath">randomLFOMinDial.upperValueBound</string>
+							<reference key="NSPreviousConnector" ref="148445299"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">376</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: randomOscillator.maximum</string>
+						<reference key="source" ref="574578818"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="574578818"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: randomOscillator.maximum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">randomOscillator.maximum</string>
+							<reference key="NSPreviousConnector" ref="70566315"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">377</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">sineLFOMinDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="396644475"/>
+					</object>
+					<int key="connectionID">378</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">maximum: squareLFOMaxDial.lowerValueBound</string>
+						<reference key="source" ref="430807308"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="172432604">
+							<reference key="NSSource" ref="430807308"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">maximum: squareLFOMaxDial.lowerValueBound</string>
+							<string key="NSBinding">maximum</string>
+							<string key="NSKeyPath">squareLFOMaxDial.lowerValueBound</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">379</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minimum: squareOscillator.hardMinimum</string>
+						<reference key="source" ref="430807308"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="1024692003">
+							<reference key="NSSource" ref="430807308"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">minimum: squareOscillator.hardMinimum</string>
+							<string key="NSBinding">minimum</string>
+							<string key="NSKeyPath">squareOscillator.hardMinimum</string>
+							<reference key="NSPreviousConnector" ref="172432604"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">380</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: squareOscillator.minimum</string>
+						<reference key="source" ref="430807308"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="430807308"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: squareOscillator.minimum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">squareOscillator.minimum</string>
+							<reference key="NSPreviousConnector" ref="1024692003"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">381</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">squareLFOMinDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="430807308"/>
+					</object>
+					<int key="connectionID">382</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">sawLFOMinDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="862592860"/>
+					</object>
+					<int key="connectionID">383</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">rampLFOMinDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="935656541"/>
+					</object>
+					<int key="connectionID">384</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">squareLFORestDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="278646045"/>
+					</object>
+					<int key="connectionID">385</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">squareLFOSustainDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="315581768"/>
+					</object>
+					<int key="connectionID">386</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">sawLFOAttackDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="827053030"/>
+					</object>
+					<int key="connectionID">387</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">sawLFOSustainDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="430384671"/>
+					</object>
+					<int key="connectionID">388</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">sawLFODecayDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="584849032"/>
+					</object>
+					<int key="connectionID">389</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">sawLFORestDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="614981674"/>
+					</object>
+					<int key="connectionID">390</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">sineLFOPeriodDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="737457737"/>
+					</object>
+					<int key="connectionID">391</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">rampLFOPeriodDial</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="873209403"/>
+					</object>
+					<int key="connectionID">392</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">rampLFORisingButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="352146797"/>
+					</object>
+					<int key="connectionID">393</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2103,8 +2175,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1044477204"/>
 							<reference ref="928942998"/>
-							<reference ref="1032438129"/>
 							<reference ref="257470903"/>
+							<reference ref="1032438129"/>
 						</object>
 						<reference key="parent" ref="766614415"/>
 					</object>
@@ -2145,14 +2217,14 @@
 						<reference key="object" ref="530985991"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="862592860"/>
 							<reference ref="918208467"/>
-							<reference ref="827053030"/>
 							<reference ref="989009672"/>
 							<reference ref="37201806"/>
+							<reference ref="862592860"/>
+							<reference ref="827053030"/>
+							<reference ref="584849032"/>
 							<reference ref="453027702"/>
 							<reference ref="649630376"/>
-							<reference ref="584849032"/>
 							<reference ref="641658558"/>
 							<reference ref="954738405"/>
 							<reference ref="430384671"/>
@@ -2166,11 +2238,11 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="19373837"/>
+							<reference ref="28394070"/>
 							<reference ref="396644475"/>
+							<reference ref="737457737"/>
 							<reference ref="334728061"/>
 							<reference ref="256717827"/>
-							<reference ref="737457737"/>
-							<reference ref="28394070"/>
 						</object>
 						<reference key="parent" ref="175015980"/>
 					</object>
@@ -2189,12 +2261,12 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="525814417"/>
-							<reference ref="430807308"/>
-							<reference ref="691140485"/>
-							<reference ref="340368821"/>
 							<reference ref="537332393"/>
+							<reference ref="430807308"/>
 							<reference ref="278646045"/>
+							<reference ref="691140485"/>
 							<reference ref="864317330"/>
+							<reference ref="340368821"/>
 							<reference ref="315581768"/>
 						</object>
 						<reference key="parent" ref="537150947"/>
@@ -2424,9 +2496,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="8677606"/>
+							<reference ref="848710625"/>
 							<reference ref="614545019"/>
 							<reference ref="552647455"/>
-							<reference ref="848710625"/>
 						</object>
 						<reference key="parent" ref="525794186"/>
 					</object>
@@ -2446,8 +2518,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="251344510"/>
 							<reference ref="160358363"/>
-							<reference ref="574578818"/>
 							<reference ref="480123697"/>
+							<reference ref="574578818"/>
 						</object>
 						<reference key="parent" ref="905866313"/>
 					</object>
@@ -2684,11 +2756,11 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="926900295"/>
-							<reference ref="1005435728"/>
 							<reference ref="472907490"/>
 							<reference ref="935656541"/>
-							<reference ref="280458349"/>
 							<reference ref="873209403"/>
+							<reference ref="1005435728"/>
+							<reference ref="280458349"/>
 							<reference ref="138750475"/>
 							<reference ref="352146797"/>
 						</object>
@@ -2855,11 +2927,13 @@
 					<string>59.IBWindowTemplateEditedContentRect</string>
 					<string>59.NSWindowTemplate.visibleAtLaunch</string>
 					<string>60.IBPluginDependency</string>
+					<string>60.IBUserGuides</string>
 					<string>61.IBPluginDependency</string>
 					<string>62.IBPluginDependency</string>
 					<string>63.IBPluginDependency</string>
 					<string>64.IBPluginDependency</string>
 					<string>65.IBPluginDependency</string>
+					<string>67.IBUserGuides</string>
 					<string>68.IBPluginDependency</string>
 					<string>69.IBPluginDependency</string>
 					<string>72.IBPluginDependency</string>
@@ -2944,16 +3018,57 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{518, 421}, {531, 295}}</string>
+					<string>{{815, 461}, {348, 295}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{518, 421}, {531, 295}}</string>
+					<string>{{815, 461}, {348, 295}}</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableArray">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="IBUserGuide">
+							<reference key="view" ref="933486250"/>
+							<float key="location">9.500000e+01</float>
+							<int key="affinity">0</int>
+						</object>
+						<object class="IBUserGuide">
+							<reference key="view" ref="933486250"/>
+							<float key="location">2.660000e+02</float>
+							<int key="affinity">0</int>
+						</object>
+						<object class="IBUserGuide">
+							<reference key="view" ref="933486250"/>
+							<float key="location">3.200000e+01</float>
+							<int key="affinity">0</int>
+						</object>
+						<object class="IBUserGuide">
+							<reference key="view" ref="933486250"/>
+							<float key="location">1.910000e+02</float>
+							<int key="affinity">0</int>
+						</object>
+						<object class="IBUserGuide">
+							<reference key="view" ref="933486250"/>
+							<float key="location">2.230000e+02</float>
+							<int key="affinity">1</int>
+						</object>
+						<object class="IBUserGuide">
+							<reference key="view" ref="933486250"/>
+							<float key="location">1.600000e+02</float>
+							<int key="affinity">1</int>
+						</object>
+						<object class="IBUserGuide">
+							<reference key="view" ref="933486250"/>
+							<float key="location">9.600000e+01</float>
+							<int key="affinity">1</int>
+						</object>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableArray">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2992,7 +3107,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">352</int>
+			<int key="maxID">393</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3021,18 +3136,36 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>rampLFOMaxDial</string>
 							<string>rampLFOMinDial</string>
+							<string>rampLFOPeriodDial</string>
+							<string>rampLFORisingButton</string>
 							<string>randomLFOMaxDial</string>
 							<string>randomLFOMinDial</string>
+							<string>sawLFOAttackDial</string>
+							<string>sawLFODecayDial</string>
 							<string>sawLFOMaxDial</string>
 							<string>sawLFOMinDial</string>
+							<string>sawLFORestDial</string>
+							<string>sawLFOSustainDial</string>
 							<string>sineLFOMaxDial</string>
 							<string>sineLFOMinDial</string>
+							<string>sineLFOPeriodDial</string>
 							<string>squareLFOMaxDial</string>
 							<string>squareLFOMinDial</string>
+							<string>squareLFORestDial</string>
+							<string>squareLFOSustainDial</string>
 							<string>tabView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>LMDialView</string>
+							<string>LMDialView</string>
+							<string>LMDialView</string>
+							<string>NSButton</string>
+							<string>LMDialView</string>
+							<string>LMDialView</string>
+							<string>LMDialView</string>
+							<string>LMDialView</string>
+							<string>LMDialView</string>
 							<string>LMDialView</string>
 							<string>LMDialView</string>
 							<string>LMDialView</string>
