@@ -65,7 +65,7 @@
                                player:nil
                              assigned:[[NSUserDefaults standardUserDefaults] integerForKey:ELDefaultPulseCountKey]
                                   min:1
-                                  max:64
+                                  max:128
                                  step:1];
 }
 
