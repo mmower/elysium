@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>elsm</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>ElysiumComposition.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Elysium</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>????</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>NSDocumentClass</key>
+			<string>ElysiumDocument</string>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>Elysium</string>
+	<key>CFBundleIconFile</key>
+	<string>Elysium</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.lucidmac.Elysium</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Elysium</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.1</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>SUEnableAutomaticChecks</key>
+	<string>YES</string>
+	<key>SUFeedURL</key>
+	<string>http://lucidmac.com/appcasts/elysium-beta.xml</string>
+	<key>SUScheduledCheckInterval</key>
+	<string>86400</string>
+</dict>
+</plist>

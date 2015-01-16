@@ -1,0 +1,823 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Elysium Scripting Guide</title>
+   <meta name="author" content="" />
+
+   <!--- Blueprint CSS Framework -->
+   <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+   <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
+
+   <!-- CodeRay syntax highlighting CSS -->
+   <link rel="stylesheet" href="css/coderay.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="css/site.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+
+<div class="container">
+
+   <div class="column span-20 prepend-2 append-2 first last" id="header">
+     <p class="title">Elysium Scripting Guide</p>
+     <hr>
+   </div>
+
+   <div class="column span-15 prepend-2 first">
+      <ul>
+<li>Version 1</li>
+<li>by Matt Mower <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#x73;&#101;&#108;&#x66;&#64;&#x6d;&#97;&#x74;&#x74;&#x6d;&#x6f;&#x77;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#x65;&#108;&#102;&#64;&#x6d;&#x61;&#116;&#116;&#x6d;&#x6f;&#119;&#101;&#114;&#46;&#99;&#111;&#109;</a></li>
+<li>15/01/09</li>
+</ul>
+
+
+<h2>Introduction</h2>
+
+<p>This is a guide to help you get started scripting the generative MIDI sequencer for Mac OS X, <a href="http://lucidmac.com/products/elysium/">Elysium</a>. This guide covers Elysium 0.9.</p>
+
+<p>The core Elsyium sequencer and interface are implemented using Apples Objective-C language and Cocoa frameworks however Elysium also embeds the JavascriptCore Javascript interpreter via <a href="http://inexdo.com/JSCocoa">JSCocoa</a>. This is the same Javascript interpreter that is used by Safari and WebKit. Elysium exposes a number of "callback" points where user-written Javascript code can be invoked to modify how the sequencer works.</p>
+
+<p>A callback is an anonymous Javascript function, with pre-determined arguments, that is invoked in a specific context that can examine &amp; modify the state of the sequencer. A concrete example would be a function that is called before a note may be played that decides if it should be played or not and, if not, causes the note to be skipped.</p>
+
+<p>Note that the terms token and tool are used throughout the text however tool is deprecated and remains only so long as existing code still uses that terminology. Eventually all references to tool will be changed to token.</p>
+
+<h2>The structure of Elysium</h2>
+
+<p>In order to understand the environment in which a callback will operate it is useful to understand the structure of the Elysium architecture. There are 5 interlinked components that are responsible for generating music that can be thought of as forming a hierarchical structure:</p>
+
+<ul>
+  <li>
+    player
+    <ul>
+      <li>
+        layer
+        <ul>
+          <li>
+            cell
+            <ul>
+              <li>token</li>
+              <li>playhead</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+<p>At each level there are properties that may be either specified directly at that level or inherited from the level above. For example the duration of a note played has a setting at the player level that can be inherited by each layer and, in turn, by each note token on a cell on each layer.</p>
+
+<p>However a layer may override the inherited value with its own default duration that will be inherited by its cells. Further a note on any particular cell can be given it's own specific value separate from other notes on cells of the same layer.</p>
+
+<p>Let's look at the components in a little more detail.</p>
+
+<h3>Player</h3>
+
+<p>The player is the top-level and acts as the controller for an Elysium performance. Each composition has a single player that is responsible for co-ordinating the layer or layers that make up the composition. The player has a set of controls that define the default behavior for different tokens that are used in the composition. It also houses the script package which is of special interest to scripters and we will cover it later.</p>
+
+<h3>Layer</h3>
+
+<p>A layer is a representation of the harmonic table ranging across many octaves. It is made up of hexagonal cells and acts as a surface upon which tokens can be placed and playheads can move. A composition may have many layers. Each layer represents the same harmonic table and the same notes but the value of having multiple layers is the ability to create different patterns on each layer and to route the output of different layers to different destinations.</p>
+
+<p>As a layer belongs to a player it inherits certain controls from it. The layer, in turn, defines default behaviour for tokens on it's cells.</p>
+
+<h3>Cell</h3>
+
+<p>Although the cells are integral to Elysium from a users perspective they do not play a particularly big role in scripting since their function is, to a great extent, subsumed into the layer. Nevertheless each cell is represented by an object and each cell acts as a holder for the tokens placed upon it.</p>
+
+<h3>Token</h3>
+
+<p>Tokens are where things happen. When a playhead enters a cell containing each token gets a chance to do it's thing. There is an ordering of the tokens to try and ensure sensible results.</p>
+
+<h3>Playhead</h3>
+
+<p>Playheads are the moving representation of the "current position" on the layer. Playheads are spawned onto a by generator tokens and, on each beat, move to the adjacent cell in their current direction until they either die or hit the edge of their layer. When a playhead is spawned it is given a direction and a time to live (TTL) measured in beats. Playheads do not collide and multiple playheads may exist on the same cell.</p>
+
+<p>The player, layers, and tokens are all directly scriptable elements. Cells and playheads can be manipulated by callbacks but do not, themselves, offer callbacks. For example it is not possible to attach a callback to a playhead to be run each time a playhead enters a new cell (although that might be a bad idea).</p>
+
+<h2>Callbacks</h2>
+
+<p>Scripting in Elysium is about writing callbacks. A callback is an anonymous Javascript function that accepts certain contextual parameters. All callbacks receive a reference to the root <code>player</code> object for the current composition. From there the rest of the hierarchy can, if necessary, be accessed and modified.</p>
+
+<h3>Editing callbacks</h3>
+
+<p>You write callbacks using the popup code editor. To create a callback look for the relevant button in the part of the interface you want to script. They will all look something like this:</p>
+
+<p><img src="callbackspanel.jpg" alt="Callbacks Panel" /></p>
+
+<p>The button with the gear symbol invokes the script inspector where you can edit the Javascript code for your callback.</p>
+
+<p><img src="scriptinspector.jpg" alt="Script Inspector" /></p>
+
+<p>The button with the '-' will delete an associated callback.</p>
+
+<p>Note that callbacks <strong>should not</strong> be edited during a performance but only while the player is stopped.</p>
+
+<p>Note also that the script inspector is both small and basic. Please treat this as an encouragement to keep your callbacks short.</p>
+
+<h3>The User Library</h3>
+
+<p>Each time Elysium starts it will load any Javascript code defined in:</p>
+
+<pre><code>~/Application Support/Elysium/userlib.js
+</code></pre>
+
+<p>The file will be created if it does not already exist.</p>
+
+<p>You can use the user library to define functions, global variables, and classes that you want to make available for use in callbacks.</p>
+
+<h3>Callback contexts</h3>
+
+<p>Elysium provides for 4 different types of callback, essentially contexts in which callbacks are invoked.</p>
+
+<h4>Will Run</h4>
+
+<p>Each of the scriptable elements: player, layer, and token can have a <code>will run</code> callback attached. Any attached callback is invoked before the the element takes its action. For example a note token's <code>will run</code> callback is fired before the note plays and could cause the note to be skipped:</p>
+
+<pre><code>function( player, token, playhead ) {
+  if( token.layer.beatCount %2 == 0 ) {
+    token.skip;
+  }
+}
+</code></pre>
+
+<h4>Did Run</h4>
+
+<p>After a scriptable element has had a chance to run any corresponding <code>did run</code> callback will be invoked. An example might be to determine if a note token fired or not. The <code>did run</code> callback could respond to the note not firing by raising the probability that it fires next time by 5%:</p>
+
+<pre><code>function( player, token, playhead ) {
+  if( !token.fired ) {
+    token.pKnob.value += 5;
+  }
+}
+</code></pre>
+
+<h4>Timers</h4>
+
+<p>Timers live in the script package and are callbacks that are invoked periodically, e.g. every 30s. You might use this to bring in a layer at a certain point in a composition:</p>
+
+<pre><code>function( player, timer ) {
+  // Every time the timer fires:
+  //   toggle the first &amp; second layers enabled state
+  player.layers[0].enabled = !player.layers[0].enabled;
+  player.layers[1].enabled = !player.layers[1].enabled;
+}
+</code></pre>
+
+<h4>MIDI Triggers</h4>
+
+<p>A MIDI trigger is a callback that is run in response to a MIDI CC event arriving in Elysium. Typically MIDI CC information is generated when using buttons, faders, or pots on external hardware such as keyboards or controllers. An example use might be to turn specific layers on or off in response to a hardware button:</p>
+
+<pre><code>function( player, message ) {
+  player.layer[0].enabled = message.value &gt; 63;
+}
+</code></pre>
+
+<p>Or, as a kind of "poor man's MIDI learn" to control the tempo of the player using a pot:</p>
+
+<pre><code>function( player, message ) {
+  // Tempo ranges from 120 BPM to 300 BPM
+  player.tempoKnob.value = 120 + ( 180 * ( message.value / 127 ) );
+}
+</code></pre>
+
+<h2>Performance</h2>
+
+<p>An Elysium performance is, loosely, the output of MIDI note-on and note-off messages, routed to various MIDI channels, that are the product of running the player for some length of time.</p>
+
+<p>When the player is instructed to run it initializes itself and its layers, then instructs each layer to run. Each layer runs, independently of the others, on its own native thread.</p>
+
+<p>The layer runloop looks like this:</p>
+
+<pre><code>while running
+  invoke layer will run callback
+  advance and cleanup playheads
+  remove dead playheads
+  generate new playheads
+  run all live playheads
+    run any note token
+    run any split token
+    run any rebound token
+    run any absorb token
+    run any spin token
+  update display
+  update beat count
+  invoke layer did run callback
+  sleep until next beat
+</code></pre>
+
+<p>We have already seen how running a token offers opportunities for <code>will run</code> and <code>did run</code> callbacks.</p>
+
+<p>Note that there is quite a lot of work going on when a layer runs. If there are 20 live playheads each cell must be checked to see which tools it has and then each tool must be run. If you are running at 145BPM that means each beat lasts approximate 0.4s. If a layer takes longer than 0.4s to run you will begin to get clock drift.</p>
+
+<p>This means that you should endeavor to keep the use of callbacks to a minimum and keep callbacks as short as possible. Judege for yourself but the use of long-running or intensive code in callbacks is highly discouraged.</p>
+
+<h2>Properties and Methods</h2>
+
+<p>This section will outline the many properties and methods that are available for use in callbacks.</p>
+
+<h3>Knobs</h3>
+
+<p>In many cases a property will not be a simple value but will be represented by a <code>knob</code> that has a type, value, minimum and maximum, stepping, enabled state, and possibly inheritance.</p>
+
+<p>Any property represented by a knob may also take on a dynamic value when a low frequency oscillator (LFO) is attached to it (for example an oscillator might vary tempo over time). Knobs encapsulate all of the information required to have both inherited, assigned, and dynamic values.</p>
+
+<p>Each knob has it's own set of properties:</p>
+
+<ul>
+<li>name</li>
+</ul>
+
+
+<p>  A string containing the name of the knob, e.g. 'duration'.</p>
+
+<ul>
+<li>linkedKnob</li>
+</ul>
+
+
+<p>  A pointer to a knob, in the parent element, from which this knob may inherit its value.</p>
+
+<ul>
+<li>linkValue</li>
+</ul>
+
+
+<p>  A boolean representing whether this knob determines its own value or inherits it from its linkedKnob.</p>
+
+<ul>
+<li>oscillator</li>
+</ul>
+
+
+<p>  A pointer to an oscillator that can dynamically supply the value of this knob.</p>
+
+<ul>
+<li>value</li>
+</ul>
+
+
+<p>  A Boolean, Integer, or Float depending upon the type of knob.</p>
+
+<ul>
+<li>dynamicValue</li>
+</ul>
+
+
+<p>  If an oscillator is installed the next value from the oscillator.</p>
+
+<h3>Player</h3>
+
+<p>Each Elysium document has one player responsible for grouping all the scriptable elements. The player is composed of one or more layers and a scripting package.</p>
+
+<ul>
+<li>tempoKnob [integer]</li>
+</ul>
+
+
+<p>  The tempoKnob value is represented in BPM.</p>
+
+<ul>
+<li>barLengthKnob [integer]</li>
+</ul>
+
+
+<p>  How many beats in a "bar". The Elysium concept of a 'bar' is pretty woolly. Essentially Elysium will play any note corresponding to the first beat of a bar usnig the emphasis velocity rather than the default velocity.</p>
+
+<ul>
+<li>timeToLiveKnob [integer]</li>
+</ul>
+
+
+<p>  For generators in this player, how many beats each emitted playhead should live.</p>
+
+<ul>
+<li>pulseCountKnob [integer]</li>
+</ul>
+
+
+<p>  For generators in this player, how many beats between playheads being emitted.</p>
+
+<ul>
+<li>velocityKnob [integer]</li>
+</ul>
+
+
+<p>  For notes in this player, the default MIDI velocity when a note is played.</p>
+
+<ul>
+<li>emphasisKnob [integer]</li>
+</ul>
+
+
+<p>  For notes in this player, the emphasis MIDI velocity when a note is played. (See barLengthKnob for more info).</p>
+
+<ul>
+<li>durationKnob [float]</li>
+</ul>
+
+
+<p>  For notes in this player, the number of seconds a note is played (i.e. the time between MIDI note-on and note-off messages)</p>
+
+<ul>
+<li>transposeKnob [integer]</li>
+</ul>
+
+
+<p>  For notes in this player, the number of notes by which played notes are transposed up or down.</p>
+
+<ul>
+<li>layers</li>
+</ul>
+
+
+<p>  An array containing the layer objects this player is running. I suggest treating this as read-only right now. There is more information about layers later in this guide.</p>
+
+<ul>
+<li>triggers</li>
+</ul>
+
+
+<p>  An array containing the MIDI triggers. I suggest treating this as read-only right now. There is more information about MIDI triggers later in this guide.</p>
+
+<ul>
+<li>pkg</li>
+</ul>
+
+
+<p>  A pointer to the script package for this player. There is more information about the scripting package later in this guide.</p>
+
+<h3>Layer</h3>
+
+<p>A layer is a surface composed of 204 hexagonal cells arranged in 17 columns of 12 rows each. The cells form a harmonic table where each cell represents one note (in octaves 1-7). The bottom left note is A#1 whilst the top right note is B7. For more information see: http://www.c-thru-music.com/cgi/?page=layout_notemap</p>
+
+<p>Each layer also represents, generally, one MIDI channel. Although this is completely configurable as new layers are created they will be assigned MIDI channels 2, 3, 4, etc. However multiple layers can be safely assigned the same MIDI channel and any note can be overriden to send to any of the MIDI channels.</p>
+
+<p>Each cell may contain any of a number of tokens that determine what happens when a playhead enters the cell. The exception is the generator token which emits new playheads at specific intervals, rather than when playheads arrive (by comparison see the split token).</p>
+
+<ul>
+<li>enabledKnob [boolean]</li>
+</ul>
+
+
+<p>  Determines whether the layer runs or not.</p>
+
+<ul>
+<li>channelKnob [integer]</li>
+</ul>
+
+
+<p>  Controls which MIDI channel notes on the layer send to. Value can range from 1 to 16.</p>
+
+<ul>
+<li>tempoKnob [integer,inherited]</li>
+</ul>
+
+
+<p>  See Player#tempoKnob.</p>
+
+<ul>
+<li>barLengthKnob [integer,inherited]</li>
+</ul>
+
+
+<p>  See Player#barLengthKnob.</p>
+
+<ul>
+<li>timeToLiveKnob [integer,inherited]</li>
+</ul>
+
+
+<p>  See Player#timeToLiveKnob.</p>
+
+<ul>
+<li>pulseCountKnob [integer,inherited]</li>
+</ul>
+
+
+<p>  See Player#pulseCountKnob.</p>
+
+<ul>
+<li>velocityKnob [integer,inherited]</li>
+</ul>
+
+
+<p>  See Player#velocityKnob.</p>
+
+<ul>
+<li>emphasisKnob [integer,inherited]</li>
+</ul>
+
+
+<p>  See Player#emphasisKnob.</p>
+
+<ul>
+<li>durationKnob [float,inherited]</li>
+</ul>
+
+
+<p>  See Player#durationKnob.</p>
+
+<ul>
+<li>tranposeKnob [integer,inherited]</li>
+</ul>
+
+
+<p>  See Player#transposeKnob.</p>
+
+<h3>Cell</h3>
+
+<h4>Properties</h4>
+
+<p>Each cell has a slot for each of the types of token that can be defined.</p>
+
+<ul>
+<li>col</li>
+</ul>
+
+
+<p>  Integer property giving the "column" the cell is in (0 based)</p>
+
+<ul>
+<li>row</li>
+</ul>
+
+
+<p>  Integer property giving the "row" the cell is in (0 based)</p>
+
+<ul>
+<li>layer</li>
+</ul>
+
+
+<p>  Reference to the layer object this cell resides on.</p>
+
+<ul>
+<li>note</li>
+</ul>
+
+
+<p>  Reference to the note object describing the note this cell represents in the harmonic table.</p>
+
+<ul>
+<li>generateTool</li>
+</ul>
+
+
+<p>  Reference to the generator token (if any) on this cell.</p>
+
+<ul>
+<li>noteTool</li>
+</ul>
+
+
+<p>  Reference to the note token (if any) on this cell.</p>
+
+<ul>
+<li>reboundTool</li>
+</ul>
+
+
+<p>  Reference to the rebound token (if any) on this cell.</p>
+
+<ul>
+<li>absorbTool</li>
+</ul>
+
+
+<p>  Reference to the absorb token (if any) on this cell.</p>
+
+<ul>
+<li>splitTool</li>
+</ul>
+
+
+<p>  Reference to the split token (if any) on this cell.</p>
+
+<ul>
+<li>spinTool</li>
+</ul>
+
+
+<p>  Reference to the spin token (if any) on this cell.</p>
+
+<h4>Methods</h4>
+
+<ul>
+<li>neighbour(direction)</li>
+</ul>
+
+
+<p>  Returns the neighbour cell in the specified direction. Direction is a value from 0..5</p>
+
+<ol>
+<li>N</li>
+<li>NE</li>
+<li>SE</li>
+<li>S</li>
+<li>SW</li>
+<li>NW</li>
+</ol>
+
+
+<p>  Cells on the edges of the layer will have nils where there is no neighbouring cell in a particular direction.</p>
+
+<ul>
+<li>removeAllTools()</li>
+</ul>
+
+
+<p>  Remove all tokens defined on the cell.</p>
+
+<ul>
+<li>addTool( tool )</li>
+</ul>
+
+
+<p>  Adds the specified tool to the cell. Note that, at this time, the creation of tools is not supported by the API.</p>
+
+<ul>
+<li>removeTool( tool )</li>
+</ul>
+
+
+<p>  Removes the specified tool from the cell.</p>
+
+<ul>
+<li>copyToolsFrom( cell )</li>
+</ul>
+
+
+<p>  Copies all tokens on the specified cell to this cell overwriting any duplicated tokens on this cell.</p>
+
+<h3>Token</h3>
+
+<p>A token is placed on a cell and (with one exception) creates an effect as a playhead enters cell. Each cell can have multiple tokens stacked on it to create different combinations of effect. It is legal, for example, to combine a generator, note, rebound, and, absorb token on the same cell. Within reason Elysium will try to do the right thing so, in the given example, the absorb and rebound tokens will only affect playheads entering the cell and not those emitted by the generator.</p>
+
+<p>Note that the terminology in the app is that <em>tokens</em> are called <em>tools</em>. This is legacy terminology that will, over time, be eliminated. Where possible please use 'token' and not 'tool'.</p>
+
+<h4>Properties</h4>
+
+<ul>
+<li>enabled</li>
+</ul>
+
+
+<p>  A boolean property (not a knob) that indicates whether the token is enabled. A disabled token does not run at all so you cannot use it's own callbacks to re-enable it.</p>
+
+<ul>
+<li>hex (will be renamed 'cell')</li>
+</ul>
+
+
+<p>  A reference to the cell this token sits on.</p>
+
+<h3>Generator Token</h3>
+
+<p>Generator tokens are polled, on each beat, to see if they should emit a new playhead.</p>
+
+<h4>Properties</h4>
+
+<ul>
+<li><p>enabled</p></li>
+<li><p>pKnob [integer,not inherited,default=100]</p></li>
+</ul>
+
+
+<p>  The probability that this generator will emit a new playhead when the beat count reaches its pulseCount.</p>
+
+<ul>
+<li>directionKnob [integer,not inherited,default=0]</li>
+</ul>
+
+
+<p>  The value of this knob indicates the compass direction in which new playheads will begin. These are:</p>
+
+<ol>
+<li>N</li>
+<li>NE</li>
+<li>SE</li>
+<li>S</li>
+<li>SW</li>
+<li><p>NW</p></li>
+<li><p>timeToLiveKnob [integer,inherited]</p></li>
+</ol>
+
+
+<p>  See Layer#timeToLiveKnob</p>
+
+<ul>
+<li>pulseCountKnob [integer,inherited]</li>
+</ul>
+
+
+<p>  See Layer#pulseCountKnob</p>
+
+<ul>
+<li>offsetKnob [integer,not inherited,default=0]</li>
+</ul>
+
+
+<p>  The offet represents the number of beats before or after the pulseCount beat that this generator will emit a new playhead. That is a generator will offsetKnob value set to 1 will emit a playhead one beat later than one with the default of 0.</p>
+
+<h3>Note Token</h3>
+
+<p>Note tokens are the heart of Elysium since it is these that generate the MIDI on and MIDI off messages that actually make your instruments play! Whenever a playhead passes over an enabled note token it will generate MIDI to play the note corresponding to it's cell in the harmonic table. To see which cells correspond to which notes turn on display of notes in the Layer menu.</p>
+
+<h4>Properties</h4>
+
+<ul>
+<li><p>enabled</p></li>
+<li><p>pKnob [integer,not inherited,default=100]</p></li>
+<li><p>velocityKnob [inherited]</p></li>
+</ul>
+
+
+<p>  See Layer#velocityKnob.</p>
+
+<ul>
+<li>emphasisKnob [inherited]</li>
+</ul>
+
+
+<p>  See Layer#emphasisKnob.</p>
+
+<ul>
+<li>durationKnob [inherited]</li>
+</ul>
+
+
+<p>  See Layer#durationKnob.</p>
+
+<ul>
+<li>triadKnob [integner,not inherited,default=0]</li>
+</ul>
+
+
+<p>  The value of this knob indicates, when a note is played, whether a triad is played. 0 means no triad is played, other values correspond to the triad groups: [insert groups here]</p>
+
+<ul>
+<li>overrideKnob [boolean,not inherited,default=false]</li>
+</ul>
+
+
+<p>  When the value of this knob is set to <code>true</code> the MIDI channel information from the layer is ignored and note information is sent for every channel that is enabled in the <code>channelSends</code> array.</p>
+
+<ul>
+<li>channelSends [not inherited]</li>
+</ul>
+
+
+<p>  An array of boolean knobs, one for each channel, that indicate whether MIDI information should be sent to that channel or not.</p>
+
+<h3>Rebound Token</h3>
+
+<p>Rebound tokens change the direction of playheads that pass over them.</p>
+
+<h4>Properties</h4>
+
+<ul>
+<li><p>enabled</p></li>
+<li><p>pKnob [integer,not inherited,default=100]</p></li>
+<li><p>directionKnob [integer,not inherited,default=0]</p></li>
+</ul>
+
+
+<p>  The value of this knob indicates the compass direction to which entering playheads will be redirected. These are:</p>
+
+<ol>
+<li>N</li>
+<li>NE</li>
+<li>SE</li>
+<li>S</li>
+<li>SW</li>
+<li>NW</li>
+</ol>
+
+
+<h3>Absorb Token</h3>
+
+<p>Absorb tokens destructively consume playheads that pass over them. This is, typically, the last token to be processed so an entering playhead will trigger notes and splits. Newly generated playheads will not be absorbed.</p>
+
+<h4>Properties</h4>
+
+<ul>
+<li><p>enabled</p></li>
+<li><p>pKnob [integer,not inherited,default=100]</p></li>
+</ul>
+
+
+<h3>Split Token</h3>
+
+<p>A split token consumes the entering playhead and emits new playheads in all directions except the direction of the entering playhead (although see the bounceBackKnob). These <em>cloned</em> playheads keep the remaiinng time to live of the original playhead.</p>
+
+<h4>Properties</h4>
+
+<ul>
+<li><p>enabled</p></li>
+<li><p>pKnob [integer,not inherited,default=100]</p></li>
+<li><p>bounceBackKnob [boolean,not inherited,default=false]</p></li>
+</ul>
+
+
+<p>  When <code>true</code> a clone playhead is sent back in the direction the entering playhead came from (i.e. a playhead will be emitted in all 6 compass directions).</p>
+
+<h3>Spin Token</h3>
+
+<p>Unlike the other tokens the spin token operates on generate and rebound tokens on the same cell. When the a playhead crosses the spin token the direction of any generator or rebound tokens on the same cell is altered.</p>
+
+<h4>Properties</h4>
+
+<ul>
+<li><p>enabled</p></li>
+<li><p>pKnob [integer,not inherited,default=100]</p></li>
+<li><p>clockwiseKnob [boolean,not inherited,default=true]</p></li>
+</ul>
+
+
+<p>  If the <code>value</code> is <code>true</code> then the direction will be stepped clockwise, otherwise anti-clockwise.</p>
+
+<ul>
+<li>steppingKnob [integer,not inherited,default=1]</li>
+</ul>
+
+
+<p>  The <code>value</code> determines the number of steps (compass points) by which the direction is changed.</p>
+
+<h3>Tripwire Token</h3>
+
+<p>Tripwire tokens are not implemented in Elysium 0.9</p>
+
+<h3>Trap Token</h3>
+
+<p>Trap tokens are not implemented in Elysium 0.9</p>
+
+<h3>Wormhole Token</h3>
+
+<p>Wormhole tokens are not implemented in Elysium 0.9</p>
+
+<h2>Oscillators</h2>
+
+<p>Oscillators can be attached to any integer or float knob and generate dynamic values within the range of acceptable values for the knob. There are a number of different types of oscillator.</p>
+
+<ol>
+<li>Square</li>
+<li>Saw</li>
+<li>Sine</li>
+<li>Sequence</li>
+<li>Random</li>
+</ol>
+
+
+<p>The API for the oscillators will be described in a future version of this document.</p>
+
+<h2>The Script Package</h2>
+
+<p>The script package is a means to expose variables, that can be used by script authors, to the UI of the application.</p>
+
+<p>The current script package contains 8 flags, 8 sliders, and 4 timers. The user can display the script package using the View menu's <code>Show Script Package</code> command.</p>
+
+<h3>Flags</h3>
+
+<p>The flags are boolean properties labelled <code>f1</code> ... <code>f8</code></p>
+
+<h3>Variables</h3>
+
+<p>The variables are float properties labelled <code>v1</code> ... <code>v8</code>. For each variable there are corresponding properties to specify the minimum and maximum values, e.g. <code>v1min</code> and <code>v1max</code>.</p>
+
+<h3>Timers</h3>
+
+<p>The timers are pointers to timer callback objects, labelled <code>timer1</code> ... <code>timer4</code> that have their own associated delay and scripts. Whenever a timer fires its associated ruby script is invoked with a reference to the player (through which it can access the script package, layers, and the rest of Elysium), and the timer that has expired. The timer API will be described in a later version of this guide.</p>
+
+<h2>MIDI Scripting</h2>
+
+<p>Elysium can process incoming MIDI CC messages and route them to callback scripts called MIDI triggers. To see the MIDI configuration use the View menu | Show MIDI Configuration. Whenever a MIDI trigger is called it is called with a reference to the player (through which it can access the script package, layers, and the rest of Elysium), the MIDI CC number and the CC value. The MIDI trigger API will be described in a later version of this guide.</p>
+
+   </div>
+
+   <div class="column span-5 append-2 last">
+      <h4>Links</h4>
+      
+      <p><a href="http://lucidmac.com/products/elysium/">Elysium home page</a></p>
+      
+      <p><a href="guide.html">Getting Started Guide</a></p>
+      <p><a href="scripting.html">Scripting Guide</a></p>
+      <p><a href="building.html">Building Guide</a></p>
+      
+      <div class="box">
+         <p class="last">For support check out <a href="http://getsatisfaction.com/lucidmac/products/lucidmac_elysium">Get Satisfaction</a> or the #midi channel <a href="http://freenode.net/">on FreeNode IRC</a>.</p>
+      </div>
+   </div>
+
+   <div class="column span-20 prepend-2 append-2 first last" id="footer">
+     <hr />
+     <p>Copyright 2009 Matt Mower</p>
+   </div>
+
+</div>
+</body>
+</html>
