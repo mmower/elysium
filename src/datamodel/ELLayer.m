@@ -428,6 +428,7 @@ NSPredicate *deadPlayheadFilter;
 
 - (void)configureCells {
     ELHarmonicTable *harmonicTable = [[self player] harmonicTable];
+    
     NSAssert(harmonicTable != nil, @"Harmonic table should never be nil");
     
     NSAssert(_cells != nil, @"cells have not been initialized!");
