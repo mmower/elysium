@@ -28,23 +28,22 @@
 #pragma mark Class initializer
 
 + (void)initialize {
-  static BOOL initialized = NO;
-  
-  if( !initialized ) {
-    initialized = YES;
-    [[BridgeSupportController sharedController] loadBridgeSupport:[[NSBundle mainBundle] pathForResource:@"Elysium" ofType:@"bridgesupport"]];
+    static BOOL initialized = NO;
     
-    if( ![[NSFileManager defaultManager] fileExistsAtPath:[self appSupportPath]] ) {
-      [[NSFileManager defaultManager] createDirectoryAtPath:[self appSupportPath] attributes:nil];
+    if (!initialized) {
+        initialized = YES;
+        [[BridgeSupportController sharedController] loadBridgeSupport:[[NSBundle mainBundle] pathForResource:@"Elysium" ofType:@"bridgesupport"]];
+        
+        if (![[NSFileManager defaultManager] fileExistsAtPath:[self appSupportPath]]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:[self appSupportPath] withIntermediateDirectories:NO attributes:nil error:nil];
+        }
+        
+        NSError *error = nil;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:[self userLibraryPath]]) {
+            [@"// Elysium user library" writeToFile :[self userLibraryPath] atomically : NO encoding : NSASCIIStringEncoding error : &error];
+        }
     }
-    
-    NSError *error = nil;
-    if( ![[NSFileManager defaultManager] fileExistsAtPath:[self userLibraryPath]] ) {
-      [@"// Elysium user library" writeToFile:[self userLibraryPath] atomically:NO encoding:NSASCIIStringEncoding error:&error];
-    }
-  }
 }
-
 
 #pragma mark Properties
 
@@ -54,46 +53,42 @@
 #pragma mark Object initializer
 
 - (id)initForPlayer:(ELPlayer *)player {
-  if( ( self = [super init] ) ) {
-    _js = [[JSCocoa alloc] init];
-    [_js setObject:player withName:@"__player"];
-    [self loadLibraries];
-  }
-  
-  return self;
+    if ((self = [super init])) {
+        _js = [[JSCocoa alloc] init];
+        [_js setObject:player withName:@"__player"];
+        [self loadLibraries];
+    }
+    
+    return self;
 }
-
 
 #pragma mark Object behaviours
 
 - (void)loadLibraries {
-  [_js evalJSFile:[[self class] defaultLibraryPath]];
-  [_js evalJSFile:[[self class] userLibraryPath]];
+    NSLog(@"fATAL - ELScripEngine - loadLibraries line coded out to load default library");
+    // [_js evalJSFile:[[self class] defaultLibraryPath]];
+    //[_js evalJSFile:[[self class] userLibraryPath]];
 }
-
 
 + (NSString *)appSupportPath {
-  static NSString *appSupportPath = nil;
-  
-  if( !appSupportPath ) {
-    NSArray *searchPathes = NSSearchPathForDirectoriesInDomains( NSApplicationSupportDirectory, NSUserDomainMask, YES );
-    NSString *appSupportRoot = [searchPathes objectAtIndex:0];
-    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-    appSupportPath = [appSupportRoot stringByAppendingPathComponent:appName];
-  }
-  
-  return appSupportPath;
+    static NSString *appSupportPath = nil;
+    
+    if (!appSupportPath) {
+        NSArray *searchPathes = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+        NSString *appSupportRoot = [searchPathes objectAtIndex:0];
+        NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
+        appSupportPath = [appSupportRoot stringByAppendingPathComponent:appName];
+    }
+    
+    return appSupportPath;
 }
-
 
 + (NSString *)defaultLibraryPath {
-  return [[NSBundle mainBundle] pathForResource:@"default" ofType:@"js"];
+    return [[NSBundle mainBundle] pathForResource:@"default" ofType:@"js"];
 }
-
 
 + (NSString *)userLibraryPath {
-  return [[self appSupportPath] stringByAppendingPathComponent:@"userlib.js"];
+    return [[self appSupportPath] stringByAppendingPathComponent:@"userlib.js"];
 }
-
 
 @end

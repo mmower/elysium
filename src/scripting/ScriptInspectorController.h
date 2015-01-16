@@ -12,14 +12,14 @@
 @class ELScript;
 
 @interface ScriptInspectorController : NSWindowController {
-  NSMutableAttributedString *editableSource;
-  ELScript                  *block;
-  IBOutlet NSTextView       *sourceEditor;
-  IBOutlet NSScrollView     *scrollView;
+    NSMutableAttributedString *editableSource;
+    ELScript *block;
+    IBOutlet NSTextView *sourceEditor;
+    IBOutlet NSScrollView *scrollView;
 }
 
-@property ELScript *block;
-@property (readonly) NSMutableAttributedString *editableSource;
+@property (nonatomic, strong) ELScript *block;
+@property (nonatomic, readonly) NSMutableAttributedString *editableSource;
 
 - (id)initWithBlock:(ELScript *)block;
 

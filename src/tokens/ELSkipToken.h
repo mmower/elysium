@@ -11,10 +11,10 @@
 #import "ELToken.h"
 
 @interface ELSkipToken : ELToken {
-  ELDial *_skipCountDial;
+    ELDial *_skipCountDial;
 }
 
-@property ELDial *skipCountDial;
+@property (nonatomic, strong) ELDial *skipCountDial;
 
 - (id)initWithSkipCountDial:(ELDial *)skipCountDial;
 

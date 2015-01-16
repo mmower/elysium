@@ -14,63 +14,63 @@
 #import "ELTimerCallback.h"
 
 @interface ELScriptPackage : NSObject <ELXmlData> {
-  ELPlayer        *_player;
-  
-  BOOL            _flag[8];
-  
-  float           _var[8];
-  float           _varMin[8];
-  float           _varMax[8];
-  
-  ELTimerCallback *_timer[4];
+    ELPlayer *_player;
+    
+    BOOL _flag[8];
+    
+    float _var[8];
+    float _varMin[8];
+    float _varMax[8];
+    
+    ELTimerCallback *_timer[4];
 }
 
-@property (assign) ELPlayer *player;
+@property (nonatomic, assign)  ELPlayer *player;
 
-@property BOOL f1;
-@property BOOL f2;
-@property BOOL f3;
-@property BOOL f4;
-@property BOOL f5;
-@property BOOL f6;
-@property BOOL f7;
-@property BOOL f8;
+@property (nonatomic) BOOL f1;
+@property (nonatomic) BOOL f2;
+@property (nonatomic) BOOL f3;
+@property (nonatomic) BOOL f4;
+@property (nonatomic) BOOL f5;
+@property (nonatomic) BOOL f6;
+@property (nonatomic) BOOL f7;
+@property (nonatomic) BOOL f8;
 
-@property float v1;
-@property float v1min;
-@property float v1max;
+@property (nonatomic) float v1;
+@property (nonatomic) float v1min;
+@property (nonatomic) float v1max;
 
-@property float v2;
-@property float v2min;
-@property float v2max;
+@property (nonatomic) float v2;
+@property (nonatomic) float v2min;
+@property (nonatomic) float v2max;
 
-@property float v3;
-@property float v3min;
-@property float v3max;
+@property (nonatomic) float v3;
+@property (nonatomic) float v3min;
+@property (nonatomic) float v3max;
 
-@property float v4;
-@property float v4min;
-@property float v4max;
+@property (nonatomic) float v4;
+@property (nonatomic) float v4min;
+@property (nonatomic) float v4max;
 
-@property float v5;
-@property float v5min;
-@property float v5max;
+@property (nonatomic) float v5;
+@property (nonatomic) float v5min;
+@property (nonatomic) float v5max;
 
-@property float v6;
-@property float v6min;
-@property float v6max;
+@property (nonatomic) float v6;
+@property (nonatomic) float v6min;
+@property (nonatomic) float v6max;
 
-@property float v7;
-@property float v7min;
-@property float v7max;
+@property (nonatomic) float v7;
+@property (nonatomic) float v7min;
+@property (nonatomic) float v7max;
 
-@property float v8;
-@property float v8min;
-@property float v8max;
+@property (nonatomic) float v8;
+@property (nonatomic) float v8min;
+@property (nonatomic) float v8max;
 
-@property (readonly) ELTimerCallback *timer1;
-@property (readonly) ELTimerCallback *timer2;
-@property (readonly) ELTimerCallback *timer3;
-@property (readonly) ELTimerCallback *timer4;
-
+@property (nonatomic, readonly) ELTimerCallback *timer1;
+@property (nonatomic, readonly) ELTimerCallback *timer2;
+@property (nonatomic, readonly) ELTimerCallback *timer3;
+@property (nonatomic, readonly) ELTimerCallback *timer4;
+- (id)initWithPlayer:(ELPlayer *)player;
 @end

@@ -20,9 +20,9 @@
 
 + (ELOscillator *)loadFromXml:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error;
 
-@property BOOL    enabled;
+@property  (nonatomic) BOOL    enabled;
 @property UInt64  timeBase;
-@property int     value;
+@property  (nonatomic) int     value;
 
 - (id)initEnabled:(BOOL)enabled;
 

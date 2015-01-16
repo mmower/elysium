@@ -12,24 +12,24 @@
 #import "ELRangedOscillator.h"
 
 @interface ELSawOscillator : ELRangedOscillator {
-  int _rest;
-  int _attack;
-  int _sustain;
-  int _decay;
-  
-  float _attackDelta;
-  float _decayDelta;
-  
-  int _period;
+    int _rest;
+    int _attack;
+    int _sustain;
+    int _decay;
+    
+    float _attackDelta;
+    float _decayDelta;
+    
+    int _period;
 }
 
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum rest:(int)rest attack:(int)attack sustain:(int)sustain decay:(int)decay;
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum rest:(int)rest attack:(int)attack sustain:(int)sustain decay:(int)decay;
 
-@property int rest;
-@property int attack;
-@property int sustain;
-@property int decay;
+@property (nonatomic) int rest;
+@property (nonatomic) int attack;
+@property (nonatomic) int sustain;
+@property (nonatomic) int decay;
 
 - (int)generateWithT:(int)t;
 - (void)updateBasesAndDeltas;

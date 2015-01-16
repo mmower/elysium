@@ -23,9 +23,9 @@
 
 - (id)initWithPlayer:(ELPlayer *)player;
 
-@property BOOL active;
+@property  (nonatomic) BOOL active;
 @property NSTimeInterval interval;
-@property (readonly) ELScript *callback;
-@property (assign) ELPlayer *player;
+@property (nonatomic,readonly) ELScript *callback;
+@property  (nonatomic,assign)  ELPlayer *player;
 
 @end

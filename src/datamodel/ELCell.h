@@ -28,45 +28,45 @@
 @class ELSpinToken;
 @class ELSkipToken;
 
-@interface ELCell : LMHexCell <ELXmlData,ELTaggable> {
-  ELLayer             *_layer;
-  ELNote              *_note;
-  ELCell              *_neighbours[6];
-  NSMutableArray      *_playheads;
-  
-  NSString            *_scriptingTag;
-  
-  BOOL                _dirty;
-  
-  NSMutableDictionary *_tokens;
-  ELGenerateToken     *_generateToken;
-  ELNoteToken         *_noteToken;
-  ELReboundToken      *_reboundToken;
-  ELAbsorbToken       *_absorbToken;
-  ELSplitToken        *_splitToken;
-  ELSpinToken         *_spinToken;
-  ELSkipToken         *_skipToken;
-  
-  BOOL                _playheadEntered;
+@interface ELCell : LMHexCell <ELXmlData, ELTaggable> {
+    ELLayer *_layer;
+    ELNote *_note;
+    ELCell *_neighbours[6];
+    NSMutableArray *_playheads;
+    
+    NSString *_scriptingTag;
+    
+    BOOL _dirty;
+    
+    NSMutableDictionary *_tokens;
+    ELGenerateToken *_generateToken;
+    ELNoteToken *_noteToken;
+    ELReboundToken *_reboundToken;
+    ELAbsorbToken *_absorbToken;
+    ELSplitToken *_splitToken;
+    ELSpinToken *_spinToken;
+    ELSkipToken *_skipToken;
+    
+    BOOL _playheadEntered;
 }
 
-@property (readonly) ELLayer *layer;
-@property (readonly) ELNote *note;
-@property (readonly) NSMutableArray *playheads;
+@property (nonatomic, readonly) ELLayer *layer;
+@property (nonatomic, readonly) ELNote *note;
+@property (nonatomic, readonly) NSMutableArray *playheads;
 
-@property (readonly)  NSMutableDictionary *tokens;
+@property (nonatomic, readonly)  NSMutableDictionary *tokens;
 
-@property             BOOL                dirty;
+@property (nonatomic) BOOL dirty;
 
-@property             ELGenerateToken     *generateToken;
-@property             ELNoteToken         *noteToken;
-@property             ELReboundToken      *reboundToken;
-@property             ELAbsorbToken       *absorbToken;
-@property             ELSplitToken        *splitToken;
-@property             ELSpinToken         *spinToken;
-@property             ELSkipToken         *skipToken;
+@property (nonatomic, strong) ELGenerateToken *generateToken;
+@property (nonatomic, strong)  ELNoteToken *noteToken;
+@property (nonatomic, strong)  ELReboundToken *reboundToken;
+@property (nonatomic, strong)  ELAbsorbToken *absorbToken;
+@property (nonatomic, strong)  ELSplitToken *splitToken;
+@property (nonatomic, strong)  ELSpinToken *spinToken;
+@property (nonatomic, strong)  ELSkipToken *skipToken;
 
-@property             BOOL                playheadEntered;
+@property  (nonatomic) BOOL playheadEntered;
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 
@@ -113,7 +113,7 @@
 // Custom drawing for cells
 
 - (void)drawTriangleInDirection:(Direction)direction withAttributes:(NSDictionary *)attributes;
-- (void)drawText:(NSString *)text  withAttributes:(NSMutableDictionary *)attributes;
+- (void)drawText:(NSString *)text withAttributes:(NSMutableDictionary *)attributes;
 
 // Menu support
 - (NSMenuItem *)tokenMenuItem:(NSString *)name present:(BOOL)present selector:(SEL)selector;

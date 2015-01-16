@@ -16,47 +16,47 @@
 @class ELInspectorViewController;
 
 @interface ELInspectorController : NSWindowController {
-  IBOutlet  NSPanel             *_panel;
-  IBOutlet  NSSegmentedControl  *_modeView;
-  IBOutlet  NSTabView           *_tabView;
-  
-  IBOutlet  NSView              *playerView;
-  IBOutlet  NSView              *layerView;
-  IBOutlet  NSView              *generatorView;
-  IBOutlet  NSView              *noteView;
-  IBOutlet  NSView              *reboundView;
-  IBOutlet  NSView              *absorbView;
-  IBOutlet  NSView              *splitView;
-  IBOutlet  NSView              *spinView;
-  
-            ELPlayer            *_player;
-            ELLayer             *_layer;
-            ELCell              *_cell;
-            
-            NSString            *title;
-  
-            ELInspectorViewController *playerViewController;
-            ELInspectorViewController *layerViewController;
-            ELInspectorViewController *generateViewController;
-            ELInspectorViewController *noteViewController;
-            ELInspectorViewController *reboundViewController;
-            ELInspectorViewController *absorbViewController;
-            ELInspectorViewController *splitViewController;
-            ELInspectorViewController *spinViewController;
-            ELInspectorViewController *skipViewController;
-            
-            NSMapTable          *oscillatorEditors;
+    IBOutlet NSPanel *_panel;
+    IBOutlet NSSegmentedControl *_modeView;
+    IBOutlet NSTabView *_tabView;
+    
+    IBOutlet NSView *playerView;
+    IBOutlet NSView *layerView;
+    IBOutlet NSView *generatorView;
+    IBOutlet NSView *noteView;
+    IBOutlet NSView *reboundView;
+    IBOutlet NSView *absorbView;
+    IBOutlet NSView *splitView;
+    IBOutlet NSView *spinView;
+    
+    ELPlayer *_player;
+    ELLayer *_layer;
+    ELCell *_cell;
+    
+    NSString *title;
+    
+    ELInspectorViewController *playerViewController;
+    ELInspectorViewController *layerViewController;
+    ELInspectorViewController *generateViewController;
+    ELInspectorViewController *noteViewController;
+    ELInspectorViewController *reboundViewController;
+    ELInspectorViewController *absorbViewController;
+    ELInspectorViewController *splitViewController;
+    ELInspectorViewController *spinViewController;
+    ELInspectorViewController *skipViewController;
+    
+    NSMapTable *oscillatorEditors;
 }
 
-@property           NSPanel             *panel;
-@property           NSSegmentedControl  *modeView;
-@property           NSTabView           *tabView;
+@property (nonatomic, strong)   NSPanel *panel;
+@property (nonatomic, strong)   NSSegmentedControl *modeView;
+@property (nonatomic, strong)   NSTabView *tabView;
 
-@property           ELPlayer            *player;
-@property           ELLayer             *layer;
-@property           ELCell              *cell;
+@property (nonatomic, strong)   ELPlayer *player;
+@property (nonatomic, strong)   ELLayer *layer;
+@property (nonatomic, strong)  ELCell *cell;
 
-@property (assign)  NSString            *title;
+@property  (nonatomic,assign)   NSString *title;
 
 - (IBAction)selectTab:(id)sender;
 

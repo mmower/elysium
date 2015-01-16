@@ -14,24 +14,25 @@
 @class ELSegmentedControl;
 
 @interface ELReboundInspectorViewController : ELInspectorViewController {
-  IBOutlet  NSButton            *enabledControl;
-  
-  IBOutlet  ELSegmentedControl  *pModeControl;
-  IBOutlet  LMDialView          *pControl;
-  IBOutlet  NSButton            *pOscControl;
-  
-  IBOutlet  ELSegmentedControl  *gateModeControl;
-  IBOutlet  LMDialView          *gateControl;
-  IBOutlet  NSButton            *gateOscControl;
-  
-  IBOutlet  ELSegmentedControl  *directionModeControl;
-  IBOutlet  NSSlider            *directionControl;
-  IBOutlet  NSButton            *directionOscControl;
-  
-  IBOutlet  NSButton            *editWillRunControl;
-  IBOutlet  NSButton            *removeWillRunControl;
-  IBOutlet  NSButton            *editDidRunControl;
-  IBOutlet  NSButton            *removeDidRunControl;
+    IBOutlet NSButton *enabledControl;
+    
+    IBOutlet ELSegmentedControl *pModeControl;
+    IBOutlet LMDialView *pControl;
+    IBOutlet NSButton *pOscControl;
+    
+    IBOutlet ELSegmentedControl *gateModeControl;
+    IBOutlet LMDialView *gateControl;
+    IBOutlet NSButton *gateOscControl;
+    
+    IBOutlet ELSegmentedControl *directionModeControl;
+    IBOutlet NSSlider *directionControl;
+    IBOutlet NSButton *directionOscControl;
+    
+    IBOutlet NSButton *editWillRunControl;
+    IBOutlet NSButton *removeWillRunControl;
+    IBOutlet NSButton *editDidRunControl;
+    IBOutlet NSButton *removeDidRunControl;
 }
 
+- (id)initWithInspectorController:(ELInspectorController *)controller;
 @end

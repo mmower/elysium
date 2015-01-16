@@ -9,70 +9,60 @@
 #import <Cocoa/Cocoa.h>
 
 typedef enum tagLMDialStyle {
-  abletonLive,
-  logicPro,
-  logicPan
+    abletonLive,
+    logicPro,
+    logicPan
 } LMDialStyle;
 
-@interface LMDialView : NSView {
-    BOOL              _enabled;
-    LMDialStyle       _style;
-    int               _minimum;
-    int               _maximum;
-    int               _stepping;
-    
-    int               _lowerValueBound;
-    int               _value;
-    int               _upperValueBound;
-    
-    BOOL              _showValue;
+@class LMDialEditWindow;
 
-    NSColor           *_onBorderColor;
-    NSColor           *_localOnBorderColor;
-    NSColor           *_onFillColor;
-    NSColor           *_localOnFillColor;
-    NSColor           *_offBorderColor;
-    NSColor           *_localOffBorderColor;
-    NSColor           *_offFillColor;
-    NSColor           *_localOffFillColor;
-    NSColor           *_valueColor;
+@interface LMDialView : NSView <NSTextFieldDelegate> {
+    BOOL _enabled;
+    LMDialStyle _style;
+    int _minimum;
+    int _maximum;
+    int _stepping;
+    int _value;
     
-    int               _divisor;
-    NSString          *_formatter;
-    NSString          *_valueText;
+    BOOL _showValue;
     
-    CGFloat           _fontSize;
+    NSColor *_onBorderColor;
+    NSColor *_localOnBorderColor;
+    NSColor *_onFillColor;
+    NSColor *_localOnFillColor;
+    NSColor *_offBorderColor;
+    NSColor *_localOffBorderColor;
+    NSColor *_offFillColor;
+    NSColor *_localOffFillColor;
+    NSColor *_valueColor;
     
-    NSTextField       *_valueEditor;
+    int _divisor;
+    NSString *_formatter;
+    NSString *_valueText;
     
-    float             _alpha;
+    CGFloat _fontSize;
     
-    BOOL              _debug;
-    BOOL              _boundsChecking;
+    NSTextField *_valueEditor;
+    
+    float _alpha;
 }
 
-@property BOOL enabled;
-@property BOOL debug;
-@property BOOL boundsChecking;
+@property (nonatomic) BOOL enabled;
+@property (nonatomic)  LMDialStyle style;
+@property (nonatomic) int minimum;
+@property (nonatomic) int maximum;
+@property (nonatomic)  int stepping;
+@property (nonatomic) int value;
+@property (nonatomic) int divisor;
+@property (nonatomic, copy) NSString *formatter;
 
-@property LMDialStyle style;
-@property int minimum;
-@property int maximum;
-@property int stepping;
-@property int value;
-@property int divisor;
-@property (copy) NSString *formatter;
+@property (nonatomic) BOOL showValue;
+@property (nonatomic) CGFloat fontSize;
 
-@property (readonly) int lowerValueBound;
-@property (readonly) int upperValueBound;
-
-@property BOOL showValue;
-@property CGFloat fontSize;
-
-@property (assign) NSColor *onBorderColor;
-@property (assign) NSColor *onFillColor;
-@property (assign) NSColor *offBorderColor;
-@property (assign) NSColor *offFillColor;
-@property (assign) NSColor *valueColor;
+@property (assign, nonatomic) NSColor *onBorderColor;
+@property (assign, nonatomic) NSColor *onFillColor;
+@property (assign, nonatomic) NSColor *offBorderColor;
+@property (assign, nonatomic) NSColor *offFillColor;
+@property (assign, nonatomic) NSColor *valueColor;
 
 @end

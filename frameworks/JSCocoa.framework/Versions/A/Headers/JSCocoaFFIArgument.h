@@ -8,12 +8,12 @@
 
 #if !TARGET_IPHONE_SIMULATOR && !TARGET_OS_IPHONE
 #import <Cocoa/Cocoa.h>
-#import <JavascriptCore/JavascriptCore.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 #define MACOSX
 #include <ffi/ffi.h>
 #endif
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-#import "iPhone/ffi.h"
+#import "ffi.h"
 #endif
 
 @interface JSCocoaFFIArgument : NSObject {
@@ -23,15 +23,18 @@
 
 	void*		ptr;
 
-	BOOL		isReturnValue;
 	ffi_type	structureType;
 	
 	id			customData;
+	BOOL		isReturnValue;
 	BOOL		ownsStorage;
+	BOOL		isOutArgument;
 }
 
-- (void)setTypeEncoding:(char)encoding;
-- (void)setTypeEncoding:(char)encoding withCustomStorage:(void*)storagePtr;
+- (NSString*)typeDescription;
+
+- (BOOL)setTypeEncoding:(char)encoding;
+- (BOOL)setTypeEncoding:(char)encoding withCustomStorage:(void*)storagePtr;
 - (void)setStructureTypeEncoding:(NSString*)encoding;
 - (void)setStructureTypeEncoding:(NSString*)encoding withCustomStorage:(void*)storagePtr;
 - (void)setPointerTypeEncoding:(NSString*)encoding;
@@ -45,20 +48,21 @@
 
 
 + (NSArray*)typeEncodingsFromStructureTypeEncoding:(NSString*)structureTypeEncoding;
-+ (NSArray*)typeEncodingsFromStructureTypeEncoding:(NSString*)structureTypeEncoding parsedCount:(int*)count;
++ (NSArray*)typeEncodingsFromStructureTypeEncoding:(NSString*)structureTypeEncoding parsedCount:(NSInteger*)count;
 
 
 + (NSString*)structureNameFromStructureTypeEncoding:(NSString*)structureTypeEncoding;
 + (NSString*)structureFullTypeEncodingFromStructureTypeEncoding:(NSString*)structureTypeEncoding;
 + (NSString*)structureFullTypeEncodingFromStructureName:(NSString*)structureName;
++ (NSString*)structureTypeEncodingDescription:(NSString*)structureTypeEncoding;
 
-+ (BOOL)fromJSValueRef:(JSValueRef)value inContext:(JSContextRef)ctx withTypeEncoding:(char)typeEncoding withStructureTypeEncoding:(NSString*)structureTypeEncoding fromStorage:(void*)ptr;
++ (BOOL)fromJSValueRef:(JSValueRef)value inContext:(JSContextRef)ctx typeEncoding:(char)typeEncoding fullTypeEncoding:(NSString*)fullTypeEncoding fromStorage:(void*)ptr;
 
-+ (BOOL)toJSValueRef:(JSValueRef*)value inContext:(JSContextRef)ctx withTypeEncoding:(char)typeEncoding withStructureTypeEncoding:(NSString*)structureTypeEncoding fromStorage:(void*)ptr;
++ (BOOL)toJSValueRef:(JSValueRef*)value inContext:(JSContextRef)ctx typeEncoding:(char)typeEncoding fullTypeEncoding:(NSString*)fullTypeEncoding fromStorage:(void*)ptr;
 
-+ (int)structureToJSValueRef:(JSValueRef*)value inContext:(JSContextRef)ctx fromCString:(char*)c fromStorage:(void**)storage;
-+ (int)structureToJSValueRef:(JSValueRef*)value inContext:(JSContextRef)ctx fromCString:(char*)c fromStorage:(void**)ptr initialValues:(JSValueRef*)initialValues initialValueCount:(int)initialValueCount convertedValueCount:(int*)convertedValueCount;
-+ (int)structureFromJSObjectRef:(JSObjectRef)value inContext:(JSContextRef)ctx inParentJSValueRef:(JSValueRef)parentValue fromCString:(char*)c fromStorage:(void**)ptr;
++ (NSInteger)structureToJSValueRef:(JSValueRef*)value inContext:(JSContextRef)ctx fromCString:(char*)c fromStorage:(void**)storage;
++ (NSInteger)structureToJSValueRef:(JSValueRef*)value inContext:(JSContextRef)ctx fromCString:(char*)c fromStorage:(void**)ptr initialValues:(JSValueRef*)initialValues initialValueCount:(NSInteger)initialValueCount convertedValueCount:(NSInteger*)convertedValueCount;
++ (NSInteger)structureFromJSObjectRef:(JSObjectRef)value inContext:(JSContextRef)ctx inParentJSValueRef:(JSValueRef)parentValue fromCString:(char*)c fromStorage:(void**)ptr;
 
 + (void)alignPtr:(void**)ptr accordingToEncoding:(char)encoding;
 + (void)advancePtr:(void**)ptr accordingToEncoding:(char)encoding;
@@ -67,13 +71,16 @@
 - (void*)allocateStorage;
 - (void*)allocatePointerStorage;
 - (void**)storage;
+- (void**)rawStoragePointer;
 - (char)typeEncoding;
 - (NSString*)structureTypeEncoding;
 - (id)pointerTypeEncoding;
 
 
 - (void)setIsReturnValue:(BOOL)v;
-//- (void)setCustomData:(id)data;
+- (BOOL)isReturnValue;
+- (void)setIsOutArgument:(BOOL)v;
+- (BOOL)isOutArgument;
 
 - (BOOL)fromJSValueRef:(JSValueRef)value inContext:(JSContextRef)ctx;
 - (BOOL)toJSValueRef:(JSValueRef*)value inContext:(JSContextRef)ctx;

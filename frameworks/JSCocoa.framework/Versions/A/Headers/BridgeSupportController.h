@@ -17,6 +17,8 @@
 	NSMutableArray*			xmlDocuments;
 
 	NSMutableDictionary*	hash;
+	NSMutableDictionary*	variadicSelectors;
+	NSMutableDictionary*	variadicFunctions;
 }
 
 + (id)sharedController;
@@ -25,12 +27,17 @@
 - (BOOL)isBridgeSupportLoaded:(NSString*)path;
 - (NSUInteger)bridgeSupportIndexForString:(NSString*)string;
 
+- (NSMutableDictionary*)variadicSelectors;
+- (NSMutableDictionary*)variadicFunctions;
+
 /*
 - (NSString*)query:(NSString*)name withType:(NSString*)type;
 - (NSString*)query:(NSString*)name withType:(NSString*)type inBridgeSupportFile:(NSString*)file;
 */
 - (NSString*)queryName:(NSString*)name;
 - (NSString*)queryName:(NSString*)name type:(NSString*)type;
+
+- (NSArray*)keys;
 
 
 @end

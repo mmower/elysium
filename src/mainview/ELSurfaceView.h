@@ -13,13 +13,13 @@
 
 @class ELCell;
 
-@interface ELSurfaceView : LMHoneycombView {
-  NSMutableArray  *octaveColors;
-  // NSColor         *tokenColor;
-  NSEvent         *savedEvent;
+@interface ELSurfaceView : LMHoneycombView <NSDraggingSource> {
+    NSMutableArray *octaveColors;
+    // NSColor         *tokenColor;
+    NSEvent *savedEvent;
 }
 
-@property (assign) NSColor *tokenColor;
+@property  (nonatomic,assign)  NSColor *tokenColor;
 
 - (void)setActivePlayheadColor:(NSColor *)color;
 - (NSColor *)activePlayheadColor;
@@ -34,6 +34,9 @@
 
 - (void)dragFromCell:(ELCell *)sourceCell to:(ELCell *)targetCell with:(NSDragOperation)modifiers;
 
-- (void)cellWasUpdated:(NSNotification*)notification;
-    
+- (void)cellWasUpdated:(NSNotification *)notification;
+
+- (NSWindow *)draggingDestinationWindow;
+- (NSDragOperation)draggingSourceOperationMask;
+- (NSPoint)draggingLocation;
 @end

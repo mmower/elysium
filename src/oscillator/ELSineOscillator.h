@@ -18,7 +18,7 @@
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum hardMinimum:(int)hardMinimum maximum:(int)maximum hardMaximum:(int)hardMaximum period:(int)period;
 - (id)initEnabled:(BOOL)enabled minimum:(int)minimum maximum:(int)maximum period:(int)period;
 
-@property int period;
+@property  (nonatomic) int period;
 
 - (int)generateWithT:(UInt64)t;
 

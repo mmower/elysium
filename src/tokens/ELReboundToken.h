@@ -14,9 +14,9 @@
 #import "ELToken.h"
 
 @interface ELReboundToken : ELToken <DirectedToken> {
-  ELDial *_directionDial;
+    ELDial *_directionDial;
 }
 
-@property ELDial *directionDial;
+@property (nonatomic, strong) ELDial *directionDial;
 
 @end

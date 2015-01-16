@@ -14,22 +14,22 @@
 @class ELSegmentedControl;
 
 @interface ELSplitInspectorViewController : ELInspectorViewController {
-  IBOutlet  NSButton            *enabledControl;
-  
-  IBOutlet  ELSegmentedControl  *pModeControl;
-  IBOutlet  LMDialView          *pControl;
-  IBOutlet  NSButton            *pOscControl;
-  
-  IBOutlet  ELSegmentedControl  *gateModeControl;
-  IBOutlet  LMDialView          *gateControl;
-  IBOutlet  NSButton            *gateOscControl;
-  
-  IBOutlet  NSButton            *bounceBackControl;
-  
-  IBOutlet  NSButton            *editWillRunControl;
-  IBOutlet  NSButton            *removeWillRunControl;
-  IBOutlet  NSButton            *editDidRunControl;
-  IBOutlet  NSButton            *removeDidRunControl;
+    IBOutlet NSButton *enabledControl;
+    
+    IBOutlet ELSegmentedControl *pModeControl;
+    IBOutlet LMDialView *pControl;
+    IBOutlet NSButton *pOscControl;
+    
+    IBOutlet ELSegmentedControl *gateModeControl;
+    IBOutlet LMDialView *gateControl;
+    IBOutlet NSButton *gateOscControl;
+    
+    IBOutlet NSButton *bounceBackControl;
+    
+    IBOutlet NSButton *editWillRunControl;
+    IBOutlet NSButton *removeWillRunControl;
+    IBOutlet NSButton *editDidRunControl;
+    IBOutlet NSButton *removeDidRunControl;
 }
-
+- (id)initWithInspectorController:(ELInspectorController *)controller;
 @end

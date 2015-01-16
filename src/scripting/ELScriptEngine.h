@@ -14,11 +14,11 @@
 
 
 @interface ELScriptEngine : NSObject {
-  JSCocoa     *_js;
+    JSCocoa *_js;
 }
 
 
-@property JSCocoa *js;
+@property (nonatomic, strong) JSCocoa *js;
 
 
 - (id)initForPlayer:(ELPlayer *)player;

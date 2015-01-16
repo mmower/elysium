@@ -15,28 +15,28 @@
 @class ELLayer;
 
 @interface ELPlayhead : NSObject {
-  // ELLayer   *_layer;
-  ELCell    *_parent;
-  ELCell    *_position;
-  Direction _direction;
-  int       _skipCount;
-  int       _TTL;
-  BOOL      _isNew;
+    // ELLayer   *_layer;
+    ELCell *_parent;
+    ELCell *_position;
+    Direction _direction;
+    int _skipCount;
+    int _TTL;
+    BOOL _isNew;
 }
 
 - (id)initWithPosition:(ELCell *)position direction:(Direction)direction TTL:(int)TTL;
 
-@property ELCell *position;
-@property ELCell *parent;
-@property Direction direction;
-@property int skipCount;
-@property int TTL;
-@property BOOL isNew;
-@property (readonly) BOOL isDead;
+@property (nonatomic, strong) ELCell *position;
+@property (nonatomic, strong) ELCell *parent;
+@property (nonatomic) Direction direction;
+@property  (nonatomic) int skipCount;
+@property  (nonatomic) int TTL;
+@property  (nonatomic) BOOL isNew;
+@property (nonatomic,readonly) BOOL isDead;
 
 - (void)advance;
 - (void)cleanup;
 - (void)kill;
 
-  
+
 @end

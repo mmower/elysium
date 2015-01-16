@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1DDD582C0DA1D0D100B32029 /* ElysiumDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* ElysiumDocument.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		83BE4BF11A68D676006DA60D /* Readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 83BE4BF01A68D676006DA60D /* Readme.md */; };
+		83BE4CC21A68E142006DA60D /* Pymidi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BE4CC11A68E142006DA60D /* Pymidi.framework */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -70,10 +72,8 @@
 		C970F0FB0F23948900ABAC2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F0F70F23948900ABAC2E /* Sparkle.framework */; };
 		C970F1090F23949400ABAC2E /* HoneycombView.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F0F50F23948900ABAC2E /* HoneycombView.framework */; };
 		C970F10B0F23949400ABAC2E /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F0F70F23948900ABAC2E /* Sparkle.framework */; };
-		C970F11E0F23955900ABAC2E /* PYMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F11D0F23955900ABAC2E /* PYMIDI.framework */; };
 		C970F1770F23976500ABAC2E /* JSCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1760F23976500ABAC2E /* JSCocoa.framework */; };
 		C970F17A0F23976A00ABAC2E /* JSCocoa.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1760F23976500ABAC2E /* JSCocoa.framework */; };
-		C970F17C0F23977C00ABAC2E /* PYMIDI.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F11D0F23955900ABAC2E /* PYMIDI.framework */; };
 		C970F1CD0F23B42800ABAC2E /* LMDial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1CC0F23B42800ABAC2E /* LMDial.framework */; };
 		C970F1D00F23B43100ABAC2E /* LMDial.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C970F1CC0F23B42800ABAC2E /* LMDial.framework */; };
 		C973EA7010741469001D0BA1 /* ELMutexGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C973EA6F10741469001D0BA1 /* ELMutexGroup.m */; };
@@ -160,7 +160,6 @@
 				C905BDD21079359E00B90CCF /* BWToolkitFramework.framework in Copy Frameworks */,
 				C970F1D00F23B43100ABAC2E /* LMDial.framework in Copy Frameworks */,
 				C970F1090F23949400ABAC2E /* HoneycombView.framework in Copy Frameworks */,
-				C970F17C0F23977C00ABAC2E /* PYMIDI.framework in Copy Frameworks */,
 				C970F17A0F23976A00ABAC2E /* JSCocoa.framework in Copy Frameworks */,
 				C970F10B0F23949400ABAC2E /* Sparkle.framework in Copy Frameworks */,
 			);
@@ -180,6 +179,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Elysium_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elysium_Prefix.pch; sourceTree = "<group>"; };
+		83BE4BF01A68D676006DA60D /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		83BE4CC11A68E142006DA60D /* Pymidi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pymidi.framework; path = frameworks/Pymidi.framework; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Elysium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elysium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C904104A0F2660A5009CD2B9 /* ELPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPreferencesController.h; sourceTree = "<group>"; };
@@ -264,7 +265,6 @@
 		C9599AEE0EAE7C1E00310D3D /* ELRangedOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELRangedOscillator.m; sourceTree = "<group>"; };
 		C970F0F50F23948900ABAC2E /* HoneycombView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HoneycombView.framework; path = frameworks/HoneycombView.framework; sourceTree = "<group>"; };
 		C970F0F70F23948900ABAC2E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
-		C970F11D0F23955900ABAC2E /* PYMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PYMIDI.framework; path = frameworks/PYMIDI.framework; sourceTree = "<group>"; };
 		C970F1760F23976500ABAC2E /* JSCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSCocoa.framework; path = frameworks/JSCocoa.framework; sourceTree = "<group>"; };
 		C970F1CC0F23B42800ABAC2E /* LMDial.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LMDial.framework; path = frameworks/LMDial.framework; sourceTree = "<group>"; };
 		C973EA6B10740E09001D0BA1 /* default.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = default.js; sourceTree = "<group>"; };
@@ -404,9 +404,9 @@
 				C97581070F1823FF00DB8E93 /* JavaScriptCore.framework in Frameworks */,
 				C970F0F90F23948900ABAC2E /* HoneycombView.framework in Frameworks */,
 				C970F0FB0F23948900ABAC2E /* Sparkle.framework in Frameworks */,
-				C970F11E0F23955900ABAC2E /* PYMIDI.framework in Frameworks */,
 				C970F1770F23976500ABAC2E /* JSCocoa.framework in Frameworks */,
 				C970F1CD0F23B42800ABAC2E /* LMDial.framework in Frameworks */,
+				83BE4CC21A68E142006DA60D /* Pymidi.framework in Frameworks */,
 				C9C97A8610793579008AC228 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,9 +417,9 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83BE4CC11A68E142006DA60D /* Pymidi.framework */,
 				C970F1CC0F23B42800ABAC2E /* LMDial.framework */,
 				C970F1760F23976500ABAC2E /* JSCocoa.framework */,
-				C970F11D0F23955900ABAC2E /* PYMIDI.framework */,
 				C970F0F50F23948900ABAC2E /* HoneycombView.framework */,
 				C970F0F70F23948900ABAC2E /* Sparkle.framework */,
 				C97581060F1823FF00DB8E93 /* JavaScriptCore.framework */,
@@ -452,6 +452,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* Elysium */ = {
 			isa = PBXGroup;
 			children = (
+				83BE4BF01A68D676006DA60D /* Readme.md */,
 				C9A9F1900E8A42D0009A06A3 /* Sources */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
@@ -861,6 +862,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Elysium" */;
 			compatibilityVersion = "Xcode 3.1";
@@ -999,6 +1001,7 @@
 				C9599AE80EAE5D9000310D3D /* ELRandomOscillator.m in Sources */,
 				C9599AEB0EAE5DA500310D3D /* ELSequenceOscillator.m in Sources */,
 				C9599AEF0EAE7C1E00310D3D /* ELRangedOscillator.m in Sources */,
+				83BE4BF11A68D676006DA60D /* Readme.md in Sources */,
 				C99FA9E20EB8F69E002305EF /* ELMIDIConfigController.m in Sources */,
 				C90A940E0EB9FEDB004AA5BE /* ELMIDITrigger.m in Sources */,
 				C9FE0E030EBA506400A59130 /* ELMIDIControlMessage.m in Sources */,
@@ -1125,11 +1128,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/frameworks\"",
+					"$(PROJECT_DIR)/frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1142,6 +1147,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Elysium;
+				SDKROOT = macosx;
 				SYMROOT = build;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -1151,11 +1157,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/frameworks\"",
+					"$(PROJECT_DIR)/frameworks",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -1166,6 +1174,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = Elysium;
+				SDKROOT = macosx;
 				SYMROOT = build;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -1176,7 +1185,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1195,7 +1203,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

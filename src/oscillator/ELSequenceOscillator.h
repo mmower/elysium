@@ -12,25 +12,25 @@
 #import "ELOscillator.h"
 
 @interface ELSequenceValue : NSObject {
-  int       _intValue;
-  NSString  *_stringValue;
+    int _intValue;
+    NSString *_stringValue;
 }
 
 - (id)initWithStringValue:(NSString *)stringValue;
 
-@property int intValue;
-@property (assign) NSString *stringValue;
+@property (nonatomic) int intValue;
+@property (nonatomic, assign) NSString *stringValue;
 
 @end
 
 @interface ELSequenceOscillator : ELOscillator {
-  NSMutableArray  *_values;
-  int             _index;
+    NSMutableArray *_values;
+    int _index;
 }
 
 - (id)initEnabled:(BOOL)enabled values:(NSArray *)values;
 
-@property (assign) NSMutableArray *values;
+@property (nonatomic, assign) NSMutableArray *values;
 
 // - (void)setEditable:(BOOL)editable;
 // - (NSMutableArray *)editableValues;

@@ -22,8 +22,8 @@
 
 - (id)initWithPlayer:(ELPlayer *)player;
 
-@property (assign) NSArray *destinations;
-@property (assign) ELPlayer *player;
+@property  (nonatomic,assign)  NSArray *destinations;
+@property  (nonatomic,assign)  ELPlayer *player;
 
 - (void)selectionChanged:(NSNotification*)notification;
 - (IBAction)rescanMidiBus:(id)sender;

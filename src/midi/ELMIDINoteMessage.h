@@ -20,7 +20,7 @@
 @property Byte channel;
 @property Byte note;
 @property Byte velocity;
-@property BOOL noteOn;
+@property  (nonatomic) BOOL noteOn;
 
 - (BOOL)matchesChannelMask:(Byte)channelMask;
 

@@ -14,26 +14,26 @@
 @class ELSegmentedControl;
 
 @interface ELSpinInspectorViewController : ELInspectorViewController {
-  IBOutlet  NSButton            *enabledControl;
-
-  IBOutlet  ELSegmentedControl  *pModeControl;
-  IBOutlet  LMDialView          *pControl;
-  IBOutlet  NSButton            *pOscControl;
-
-  IBOutlet  ELSegmentedControl  *gateModeControl;
-  IBOutlet  LMDialView          *gateControl;
-  IBOutlet  NSButton            *gateOscControl;
-  
-  IBOutlet  ELSegmentedControl  *steppingModeControl;
-  IBOutlet  LMDialView          *steppingControl;
-  IBOutlet  NSButton            *steppingOscControl;
-  
-  IBOutlet  NSButton            *clockwiseControl;
-  
-  IBOutlet  NSButton            *editWillRunControl;
-  IBOutlet  NSButton            *removeWillRunControl;
-  IBOutlet  NSButton            *editDidRunControl;
-  IBOutlet  NSButton            *removeDidRunControl;
+    IBOutlet NSButton *enabledControl;
+    
+    IBOutlet ELSegmentedControl *pModeControl;
+    IBOutlet LMDialView *pControl;
+    IBOutlet NSButton *pOscControl;
+    
+    IBOutlet ELSegmentedControl *gateModeControl;
+    IBOutlet LMDialView *gateControl;
+    IBOutlet NSButton *gateOscControl;
+    
+    IBOutlet ELSegmentedControl *steppingModeControl;
+    IBOutlet LMDialView *steppingControl;
+    IBOutlet NSButton *steppingOscControl;
+    
+    IBOutlet NSButton *clockwiseControl;
+    
+    IBOutlet NSButton *editWillRunControl;
+    IBOutlet NSButton *removeWillRunControl;
+    IBOutlet NSButton *editDidRunControl;
+    IBOutlet NSButton *removeDidRunControl;
 }
-
+- (id)initWithInspectorController:(ELInspectorController *)controller;
 @end

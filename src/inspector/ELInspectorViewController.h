@@ -15,8 +15,8 @@
   NSObjectController    *objectController;
 }
 
-@property (assign)    ELInspectorController *inspectorController;
-@property (assign)    NSObjectController    *objectController;
+@property  (nonatomic,assign)     ELInspectorController *inspectorController;
+@property  (nonatomic,assign)     NSObjectController    *objectController;
 
 - (id)initWithInspectorController:(ELInspectorController *)controller nibName:(NSString *)nibName target:(id)target path:(NSString *)path;
 

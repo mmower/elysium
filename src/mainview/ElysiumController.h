@@ -34,7 +34,7 @@
   BOOL                            _performanceMode;
 }
 
-@property (readonly) ELInspectorController *inspectorController;
+@property (nonatomic,readonly) ELInspectorController *inspectorController;
 
 @property             BOOL                showNotes;
 @property             BOOL                showOctaves;

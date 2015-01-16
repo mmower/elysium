@@ -8,8 +8,9 @@
 
 #if !TARGET_IPHONE_SIMULATOR && !TARGET_OS_IPHONE
 #import <Cocoa/Cocoa.h>
-#import <JavascriptCore/JavascriptCore.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 #endif
+
 #import <mach-o/dyld.h>
 #import <dlfcn.h>
 //#import <objc/objc-class.h>
@@ -18,12 +19,16 @@
 
 //
 // Boxing object
+//
 //	type
-//	@			ObjC object
-//	struct		C struct
-//	method		ObjC method name
-//	rawPointer	raw C pointer (_C_PTR)
-//	function	Javascript function
+//	@					ObjC object
+//	struct				C struct
+//	method				ObjC method name
+//	function			C function
+//	rawPointer			raw C pointer (_C_PTR)
+//	jsFunction			Javascript function
+//	jsValueRef			raw jsvalue
+//	externalJSValueRef	jsvalue coming from an external context (eg, a WebView)
 //
 
 @interface JSCocoaPrivateObject : NSObject {
@@ -34,7 +39,6 @@
 	NSString*	structureName;
 	
 	NSString*	declaredType;
-//	void*		ptr;
 	void*		rawPointer;
 
 	id			object;
@@ -43,9 +47,18 @@
 	
 	JSValueRef	jsValue;
 	JSContextRef	ctx;
+	unsigned int	externalJSValueIndex;
+	// (test) when storing JSValues from a WebView, used to retain the WebView's context.
+	// Disabled for now. Just make sure the WebView has a longer life than the vars it uses.
+	//
+	// Disabled because retaining the context crashes in 32 bits, but works in 64 bit.
+	// May be reenabled someday.
+//	JSContextGroupRef	contextGroup;
 	
 	BOOL		isAutoCall;
 	BOOL		retainObject;
+	// Disabled because of a crash on i386. Release globalContext last.
+//	BOOL		retainContext;
 }
 
 @property (copy) NSString*	type;
@@ -60,6 +73,7 @@
 
 - (void)setObject:(id)o;
 - (void)setObjectNoRetain:(id)o;
+- (BOOL)retainObject;
 - (id)object;
 
 - (void)setMethod:(Method)m;
@@ -67,8 +81,12 @@
 
 - (void)setJSValueRef:(JSValueRef)v ctx:(JSContextRef)ctx;
 - (JSValueRef)jsValueRef;
+- (void)setCtx:(JSContextRef)ctx;
+- (JSContextRef)ctx;
+- (void)setExternalJSValueRef:(JSValueRef)v ctx:(JSContextRef)ctx;
 
 - (void*)rawPointer;
-- (void)setRawPointer:(void*)rp;
+- (void)setRawPointer:(void*)rp encoding:(id)encoding;
+- (id)rawPointerEncoding;
 
 @end
