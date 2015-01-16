@@ -139,11 +139,11 @@ static ELSurfaceView *dragStartView = nil;
 
 - (void)mouseDown:(NSEvent *)_event_ {
     [super mouseDown:_event_];
-    savedEvent = _event_;
+    self.savedEvent = _event_;
 }
 
 - (void)mouseDragged:(NSEvent *)_event_ {
-    NSPoint down = [savedEvent locationInWindow];
+    NSPoint down = [self.savedEvent locationInWindow];
     NSPoint drag = [_event_ locationInWindow];
     
     float distance = hypot(down.x - drag.x, down.y - drag.y);
@@ -166,7 +166,7 @@ static ELSurfaceView *dragStartView = nil;
     dragStartView = self;
     
     
-    [self beginDraggingSessionWithItems:@[image] event:savedEvent source:self];
+    [self beginDraggingSessionWithItems:@[image] event:self.savedEvent source:self];
     //beginDraggingSessionWithItems:event:source
 }
 
@@ -226,11 +226,15 @@ static ELSurfaceView *dragStartView = nil;
 }
 
 - (NSPoint)draggingLocation {
-    NSPoint down = [savedEvent locationInWindow];
+    NSPoint down = [self.savedEvent locationInWindow];
     return down;
 }
 
 - (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
+    return nil;
+}
+
+- (NSDraggingSession *)beginDraggingSessionWithItems:(NSArray *)items event:(NSEvent *)event source:(id <NSDraggingSource> )source NS_AVAILABLE_MAC(10_7) {
     return nil;
 }
 

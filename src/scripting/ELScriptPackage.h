@@ -68,9 +68,9 @@
 @property (nonatomic) float v8min;
 @property (nonatomic) float v8max;
 
-@property (nonatomic, readonly) ELTimerCallback *timer1;
-@property (nonatomic, readonly) ELTimerCallback *timer2;
-@property (nonatomic, readonly) ELTimerCallback *timer3;
-@property (nonatomic, readonly) ELTimerCallback *timer4;
+@property (nonatomic, readonly,strong) ELTimerCallback *timer1;
+@property (nonatomic, readonly,strong) ELTimerCallback *timer2;
+@property (nonatomic, readonly,strong) ELTimerCallback *timer3;
+@property (nonatomic, readonly,strong) ELTimerCallback *timer4;
 - (id)initWithPlayer:(ELPlayer *)player;
 @end

@@ -16,10 +16,9 @@
 @interface ELSurfaceView : LMHoneycombView <NSDraggingSource> {
     NSMutableArray *octaveColors;
     // NSColor         *tokenColor;
-    NSEvent *savedEvent;
 }
-
-@property  (nonatomic,assign)  NSColor *tokenColor;
+@property (nonatomic, strong) NSEvent *savedEvent;
+@property (nonatomic, assign)  NSColor *tokenColor;
 
 - (void)setActivePlayheadColor:(NSColor *)color;
 - (NSColor *)activePlayheadColor;

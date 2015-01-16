@@ -78,10 +78,10 @@
 @property (nonatomic, strong) ELPlayer *player;
 @property (nonatomic, assign) id delegate;
 
-@property  (nonatomic,assign)     NSString *layerId;
+@property (nonatomic, assign)     NSString *layerId;
 @property (nonatomic, strong) ELCell *selectedCell;
 @property (nonatomic, strong) ELKey *key;
-@property (nonatomic, readonly)  NSMutableArray *receivedNotes;
+@property (nonatomic, readonly, strong) NSMutableArray *receivedNotes;
 @property (nonatomic, readonly)  BOOL isRunning;
 @property (nonatomic) int beatCount;
 @property (nonatomic) BOOL visible;
@@ -102,7 +102,7 @@
 @property (nonatomic, assign)  ELDial *noteLengthDial;
 @property (nonatomic, assign)  ELDial *transposeDial;
 
-@property (nonatomic, readonly) NSMutableDictionary *scripts;
+@property (nonatomic, readonly, strong) NSMutableDictionary *scripts;
 
 - (ELPlayer *)player;
 - (ELCell *)cellAtColumn:(int)col row:(int)row;

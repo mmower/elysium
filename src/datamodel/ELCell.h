@@ -50,11 +50,11 @@
     BOOL _playheadEntered;
 }
 
-@property (nonatomic, readonly) ELLayer *layer;
-@property (nonatomic, readonly) ELNote *note;
-@property (nonatomic, readonly) NSMutableArray *playheads;
+@property (nonatomic, readonly, strong) ELLayer *layer;
+@property (nonatomic, readonly, strong) ELNote *note;
+@property (nonatomic, readonly, strong) NSMutableArray *playheads;
 
-@property (nonatomic, readonly)  NSMutableDictionary *tokens;
+@property (nonatomic, readonly, strong)  NSMutableDictionary *tokens;
 
 @property (nonatomic) BOOL dirty;
 
@@ -66,7 +66,7 @@
 @property (nonatomic, strong)  ELSpinToken *spinToken;
 @property (nonatomic, strong)  ELSkipToken *skipToken;
 
-@property  (nonatomic) BOOL playheadEntered;
+@property (nonatomic) BOOL playheadEntered;
 
 - (id)initWithLayer:(ELLayer *)layer note:(ELNote *)note column:(int)col row:(int)row;
 

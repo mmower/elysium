@@ -19,7 +19,7 @@
 }
 
 @property (nonatomic, strong) ELScript *block;
-@property (nonatomic, readonly) NSMutableAttributedString *editableSource;
+@property (nonatomic, readonly,strong) NSMutableAttributedString *editableSource;
 
 - (id)initWithBlock:(ELScript *)block;
 
