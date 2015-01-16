@@ -18,7 +18,9 @@
     NSLog(@"source :%@", [self source]);
     JSValueRef fdef = [[_scriptEngine js] evalJSString:str];
     ctx = [[_scriptEngine js]  ctx];
-    //  ctx = fdef.ctx;
+    
+    // NSLog(@"ctx :%@", ctx);
+    
     function = JSValueToObject(ctx, fdef, NULL);
     JSValueProtect(ctx, function);
 }

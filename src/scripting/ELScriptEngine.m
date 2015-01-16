@@ -65,9 +65,9 @@
 #pragma mark Object behaviours
 
 - (void)loadLibraries {
-    NSLog(@"fATAL - ELScripEngine - loadLibraries line coded out to load default library");
+    // NSLog(@"fATAL - ELScripEngine - loadLibraries line coded out to load default library");
     // [_js evalJSFile:[[self class] defaultLibraryPath]];
-    //[_js evalJSFile:[[self class] userLibraryPath]];
+    [_js evalJSFile:[[self class] userLibraryPath]];
 }
 
 + (NSString *)appSupportPath {

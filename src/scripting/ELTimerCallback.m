@@ -23,17 +23,17 @@
 @implementation ELTimerCallback
 
 - (id)initWithPlayer:(ELPlayer *)player {
-  if( ( self = [super init] ) ) {
-    _player = player;
-    _active = NO;
-    _interval = 30.0;
-    _timer = nil;
-    _callback = [@"function(player,timer) {\n\t// Write your callback here\n}\n" asJavascriptFunction:[player scriptEngine]];
+    if ((self = [super init])) {
+        _player = player;
+        _active = NO;
+        _interval = 30.0;
+        _timer = nil;
+        _callback = [@"function(player,timer) {\n\t// Write your callback here\n}" asJavascriptFunction :[player scriptEngine]];
+        
+        [self addObserver:self forKeyPath:@"active" options:0 context:nil];
+    }
     
-    [self addObserver:self forKeyPath:@"active" options:0 context:nil];
-  }
-  
-  return self;
+    return self;
 }
 
 @synthesize active = _active;
@@ -42,46 +42,47 @@
 @synthesize player = _player;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-  if( [keyPath isEqualToString:@"active"] ) {
-    if( [self active] ) {
-      _timer = [NSTimer timerWithTimeInterval:[self interval] target:self selector:@selector(runCallback:) userInfo:nil repeats:YES];
-      [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
-    } else {
-      [_timer invalidate];
+    if ([keyPath isEqualToString:@"active"]) {
+        if ([self active]) {
+            _timer = [NSTimer timerWithTimeInterval:[self interval] target:self selector:@selector(runCallback:) userInfo:nil repeats:YES];
+            [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
+        }
+        else {
+            [_timer invalidate];
+        }
     }
-  }
 }
 
 - (void)runCallback:(NSTimer *)timer {
-  NSLog( @"Timer has fired." );
-  [[self callback] evalWithArg:[self player] arg:self];
+    NSLog(@"Timer has fired.");
+    [[self callback] evalWithArg:[self player] arg:self];
 }
 
 // ELXmlData
 
 - (id)initWithXmlRepresentation:(NSXMLElement *)representation parent:(id)parent player:(ELPlayer *)player error:(NSError **)error {
-  if( ( self = [self initWithPlayer:player] ) ) {
-    [self setInterval:[representation attributeAsDouble:@"interval" defaultValue:30.0]];
-    NSXMLElement *scriptElement = (NSXMLElement *)[[representation nodesForXPath:@"script" error:error] objectAtIndex:0];
-    [[self callback] setSource:[scriptElement stringValue]];
-  }
-  
-  return self;
+    if ((self = [self initWithPlayer:player])) {
+        [self setInterval:[representation attributeAsDouble:@"interval" defaultValue:30.0]];
+        NSXMLElement *scriptElement = (NSXMLElement *)[[representation nodesForXPath:@"script" error:error] objectAtIndex:0];
+        [[self callback] setSource:[scriptElement stringValue]];
+    }
+    
+    return self;
 }
 
 - (NSXMLElement *)xmlRepresentation {
-  NSXMLElement *timerElement = [NSXMLNode elementWithName:@"timer"];
-  NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-  [attributes setObject:[NSNumber numberWithDouble:[self interval]] forKey:@"interval"];
-  [timerElement setAttributesAsDictionary:attributes];
-  
-  NSXMLElement *scriptElement = [NSXMLNode elementWithName:@"script"];
-  NSXMLNode *cdataNode = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
-  [cdataNode setStringValue:[[self callback] source]];
-  [scriptElement addChild:cdataNode];
-  [timerElement addChild:scriptElement];
-  
-  return timerElement;
+    NSXMLElement *timerElement = [NSXMLNode elementWithName:@"timer"];
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    [attributes setObject:[NSNumber numberWithDouble:[self interval]] forKey:@"interval"];
+    [timerElement setAttributesAsDictionary:attributes];
+    
+    NSXMLElement *scriptElement = [NSXMLNode elementWithName:@"script"];
+    NSXMLNode *cdataNode = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
+    [cdataNode setStringValue:[[self callback] source]];
+    [scriptElement addChild:cdataNode];
+    [timerElement addChild:scriptElement];
+    
+    return timerElement;
 }
 
 @end

@@ -225,7 +225,8 @@
 #pragma mark Scripting support
 
 - (void)runWillStartScript {
-    [[[self scripts] objectForKey:@"willStart"] evalWithArg:self];
+    ELScript *script = [[self scripts] objectForKey:@"willStart"];
+    [script evalWithArg:self];
 }
 
 - (void)runDidStartScript {

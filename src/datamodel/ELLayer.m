@@ -241,11 +241,11 @@ NSPredicate *deadPlayheadFilter;
 
 
 - (CGFloat)alphaValue {
-    return 1;
+    return 100.0f;
 }
 
 - (void)setAlphaValue:(CGFloat)alphaValue {
-    // [[[self windowController] window] setAlphaValue:alphaValue];
+    //[[[self windowController] window] setAlphaValue:alphaValue];
 }
 
 #pragma mark Utility methods
