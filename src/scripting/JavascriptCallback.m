@@ -14,13 +14,13 @@
 @implementation JavascriptCallback
 
 - (void)compileSource {
-    //    NSString *str = [NSString stringWithFormat:@"var f = %@; f;", [self source]];
-    //    JSValue *fdef = [[_scriptEngine js] evalJSString:str];
-    //    ctx = [[_scriptEngine js]  (JSValueRefAndContextRef) toJS:str];
-    //    //  ctx = fdef.ctx;
-    //    function = JSValueToObject(ctx, fdef.value, NULL);
-    //    JSValueProtect(ctx, function);
-    NSLog(@"FATAL- coded out function");
+    NSString *str = [NSString stringWithFormat:@"var f = %@; f;", [self source]];
+    NSLog(@"source :%@", [self source]);
+    JSValueRef fdef = [[_scriptEngine js] evalJSString:str];
+    ctx = [[_scriptEngine js]  ctx];
+    //  ctx = fdef.ctx;
+    function = JSValueToObject(ctx, fdef, NULL);
+    JSValueProtect(ctx, function);
 }
 
 - (id)eval {
