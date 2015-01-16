@@ -102,7 +102,7 @@
 @property (nonatomic, assign)  ELDial *noteLengthDial;
 @property (nonatomic, assign)  ELDial *transposeDial;
 
-@property (nonatomic, readonly, strong) NSMutableDictionary *scripts;
+@property (nonatomic, strong) NSMutableDictionary *scripts;
 
 - (ELPlayer *)player;
 - (ELCell *)cellAtColumn:(int)col row:(int)row;

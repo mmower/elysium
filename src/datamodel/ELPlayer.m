@@ -61,7 +61,7 @@
         _oscillatorController = [[ELOscillatorController alloc] init];
         
         _scriptingTag         = @"player";
-        _scripts              = [NSMutableDictionary dictionary];
+        self.scripts              = [NSMutableDictionary dictionary];
         _triggers             = [[NSMutableArray alloc] init];
         _scriptEngine         = [[ELScriptEngine alloc] initForPlayer:self];
         _pkg                  = [[ELScriptPackage alloc] initWithPlayer:self];
@@ -176,7 +176,6 @@
 }
 
 @synthesize document = _document;
-@synthesize scripts = _scripts;
 @synthesize scriptingTag = _scriptingTag;
 @synthesize triggers = _triggers;
 @synthesize scriptEngine = _scriptEngine;
@@ -225,20 +224,20 @@
 #pragma mark Scripting support
 
 - (void)runWillStartScript {
-    ELScript *script = [[self scripts] objectForKey:@"willStart"];
+    ELScript *script = [self.scripts objectForKey:@"willStart"];
     [script evalWithArg:self];
 }
 
 - (void)runDidStartScript {
-    [[[self scripts] objectForKey:@"didStart"] evalWithArg:self];
+    [[self.scripts objectForKey:@"didStart"] evalWithArg:self];
 }
 
 - (void)runWillStopScript {
-    [[[self scripts] objectForKey:@"willStop"] evalWithArg:self];
+    [[self.scripts objectForKey:@"willStop"] evalWithArg:self];
 }
 
 - (void)runDidStopScript {
-    [[[self scripts] objectForKey:@"didStop"] evalWithArg:self];
+    [[self.scripts objectForKey:@"didStop"] evalWithArg:self];
 }
 
 - (ELScript *)callbackTemplate {

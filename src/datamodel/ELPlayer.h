@@ -39,7 +39,7 @@
     BOOL _dirty;
     
     NSString *_scriptingTag;
-    NSMutableDictionary *_scripts;
+    
     NSMutableArray *_triggers;               // ELMIDITrigger objects
     NSThread *_triggerThread;
     
@@ -61,21 +61,21 @@
 }
 
 // @property (nonatomic,readonly)  UInt64              startTime;
-@property (readonly, nonatomic)  ELHarmonicTable *harmonicTable;
-@property (readonly, nonatomic)  NSMutableArray *layers;
-@property  (nonatomic) BOOL running;
-@property  (nonatomic) BOOL dirty;
+@property (readonly, nonatomic, strong)  ELHarmonicTable *harmonicTable;
+@property (readonly, nonatomic, strong)  NSMutableArray *layers;
+@property (nonatomic) BOOL running;
+@property (nonatomic) BOOL dirty;
 
 @property (nonatomic, strong) ELLayer *selectedLayer;
 
 @property (nonatomic, strong) ElysiumDocument *document;
-@property (readonly, nonatomic)  NSMutableDictionary *scripts;
-@property (readonly, nonatomic)  NSMutableArray *triggers;
+@property (nonatomic, strong)  NSMutableDictionary *scripts;
+@property (readonly, nonatomic, strong)  NSMutableArray *triggers;
 
 @property (readonly, nonatomic, retain) ELScriptEngine *scriptEngine;
-@property (readonly, nonatomic)  ELScriptPackage *pkg;
+@property (readonly, nonatomic, strong)  ELScriptPackage *pkg;
 
-@property (readonly, nonatomic)  ELOscillatorController *oscillatorController;
+@property (readonly, nonatomic, strong)  ELOscillatorController *oscillatorController;
 
 // @property (nonatomic,readonly)  NSMutableArray      *activeOscillators;
 

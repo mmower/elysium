@@ -54,7 +54,7 @@ NSPredicate *deadPlayheadFilter;
         _isRunning     = NO;
         _selectedCell  = nil;
         _receivedNotes = [[NSMutableArray alloc] init];
-        _scripts       = [NSMutableDictionary dictionary];
+        self.scripts       = [NSMutableDictionary dictionary];
         _key           = [ELKey noKey];
         
         [self addObserver:self forKeyPath:@"key" options:0 context:nil];
@@ -226,7 +226,6 @@ NSPredicate *deadPlayheadFilter;
     }
 }
 
-@synthesize scripts = _scripts;
 @dynamic scriptingTag;
 
 - (NSString *)scriptingTag {
@@ -280,7 +279,9 @@ NSPredicate *deadPlayheadFilter;
         }
         
         // Remove dead playheads
-        [_playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
+        if (_playheads.count) {
+            [_playheads filterUsingPredicate:[ELLayer deadPlayheadFilter]];
+        }
         
         // Generate any new playheads for this beat
         [self pulse];
@@ -333,11 +334,11 @@ NSPredicate *deadPlayheadFilter;
 }
 
 - (void)runWillRunScript {
-    [[[self scripts] objectForKey:@"willRun"] evalWithArg:[self player] arg:self];
+    [[self.scripts objectForKey:@"willRun"] evalWithArg:[self player] arg:self];
 }
 
 - (void)runDidRunScript {
-    [[[self scripts] objectForKey:@"didRun"] evalWithArg:[self player] arg:self];
+    [[self.scripts objectForKey:@"didRun"] evalWithArg:[self player] arg:self];
 }
 
 - (ELScript *)callbackTemplate {
@@ -589,14 +590,14 @@ NSPredicate *deadPlayheadFilter;
     [layerElement addChild:cellsElement];
     
     NSXMLElement *scriptsElement = [NSXMLNode elementWithName:@"scripts"];
-    for (NSString *name in[[self scripts] allKeys]) {
+    for (NSString *name in[self.scripts allKeys]) {
         NSXMLElement *scriptElement = [NSXMLNode elementWithName:@"script"];
         
         [attributes removeAllObjects];
         [attributes setObject:name forKey:@"name"];
         [scriptElement setAttributesAsDictionary:attributes];
         NSXMLNode *cdataNode = [[NSXMLNode alloc] initWithKind:NSXMLTextKind options:NSXMLNodeIsCDATA];
-        [cdataNode setStringValue:[[self scripts] objectForKey:name]];
+        [cdataNode setStringValue:[self.scripts objectForKey:name]];
         [scriptElement addChild:cdataNode];
         [scriptsElement addChild:scriptElement];
     }
@@ -681,8 +682,8 @@ NSPredicate *deadPlayheadFilter;
         else {
             for (NSXMLNode *node in nodes) {
                 NSXMLElement *element = (NSXMLElement *)node;
-                [[self scripts] setObject:[[element stringValue] asJavascriptFunction:[[self player] scriptEngine]]
-                                   forKey:[[element attributeForName:@"name"] stringValue]];
+                [self.scripts setObject:[[element stringValue] asJavascriptFunction:[[self player] scriptEngine]]
+                                 forKey:[[element attributeForName:@"name"] stringValue]];
             }
         }
     }
