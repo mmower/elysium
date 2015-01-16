@@ -78,7 +78,7 @@
 @property (nonatomic, strong) ELPlayer *player;
 @property (nonatomic, assign) id delegate;
 
-@property (nonatomic, assign)     NSString *layerId;
+@property (nonatomic, strong)     NSString *layerId;
 @property (nonatomic, strong) ELCell *selectedCell;
 @property (nonatomic, strong) ELKey *key;
 @property (nonatomic, readonly, strong) NSMutableArray *receivedNotes;
@@ -90,17 +90,17 @@
 @property (nonatomic, strong) ELLayerWindowController *windowController;
 @property CGFloat alphaValue;
 
-@property (nonatomic, assign)  ELDial *enabledDial;
-@property (nonatomic, assign)  ELDial *channelDial;
-@property (nonatomic, assign)  ELDial *tempoDial;
-@property (nonatomic, assign)  ELDial *barLengthDial;
-@property (nonatomic, assign)  ELDial *timeToLiveDial;
-@property (nonatomic, assign)  ELDial *pulseEveryDial;
-@property (nonatomic, assign)  ELDial *velocityDial;
-@property (nonatomic, assign)  ELDial *emphasisDial;
-@property (nonatomic, assign)  ELDial *tempoSyncDial;
-@property (nonatomic, assign)  ELDial *noteLengthDial;
-@property (nonatomic, assign)  ELDial *transposeDial;
+@property (nonatomic, strong)  ELDial *enabledDial;
+@property (nonatomic, strong)  ELDial *channelDial;
+@property (nonatomic, strong)  ELDial *tempoDial;
+@property (nonatomic, strong)  ELDial *barLengthDial;
+@property (nonatomic, strong)  ELDial *timeToLiveDial;
+@property (nonatomic, strong)  ELDial *pulseEveryDial;
+@property (nonatomic, strong)  ELDial *velocityDial;
+@property (nonatomic, strong)  ELDial *emphasisDial;
+@property (nonatomic, strong)  ELDial *tempoSyncDial;
+@property (nonatomic, strong)  ELDial *noteLengthDial;
+@property (nonatomic, strong)  ELDial *transposeDial;
 
 @property (nonatomic, strong) NSMutableDictionary *scripts;
 

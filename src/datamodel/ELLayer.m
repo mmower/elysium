@@ -240,7 +240,7 @@ NSPredicate *deadPlayheadFilter;
 
 
 - (CGFloat)alphaValue {
-    return 100.0f;
+    return 255;
 }
 
 - (void)setAlphaValue:(CGFloat)alphaValue {
