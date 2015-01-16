@@ -14,11 +14,11 @@
 #import "ELToken.h"
 
 @interface ELSplitToken : ELToken {
-  ELDial *_bounceBackDial;
+    ELDial *_bounceBackDial;
 }
 
 - (id)initWithBounceBackDial:(ELDial *)bounceBackDial;
 
-@property ELDial *bounceBackDial;
+@property (nonatomic, strong) ELDial *bounceBackDial;
 
 @end

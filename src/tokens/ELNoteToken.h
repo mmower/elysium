@@ -12,22 +12,22 @@
 #import "ELToken.h"
 
 @interface ELNoteToken : ELToken {
-  ELDial        *_velocityDial;
-  ELDial        *_emphasisDial;
-  ELDial        *_tempoSyncDial;
-  ELDial        *_noteLengthDial;
-  ELDial        *_triadDial;
-  ELDial        *_ghostsDial;
-  ELDial        *_overrideDial;
-  
-  ELDial        *_chan1OverrideDial;
-  ELDial        *_chan2OverrideDial;
-  ELDial        *_chan3OverrideDial;
-  ELDial        *_chan4OverrideDial;
-  ELDial        *_chan5OverrideDial;
-  ELDial        *_chan6OverrideDial;
-  ELDial        *_chan7OverrideDial;
-  ELDial        *_chan8OverrideDial;
+    ELDial *_velocityDial;
+    ELDial *_emphasisDial;
+    ELDial *_tempoSyncDial;
+    ELDial *_noteLengthDial;
+    ELDial *_triadDial;
+    ELDial *_ghostsDial;
+    ELDial *_overrideDial;
+    
+    ELDial *_chan1OverrideDial;
+    ELDial *_chan2OverrideDial;
+    ELDial *_chan3OverrideDial;
+    ELDial *_chan4OverrideDial;
+    ELDial *_chan5OverrideDial;
+    ELDial *_chan6OverrideDial;
+    ELDial *_chan7OverrideDial;
+    ELDial *_chan8OverrideDial;
 }
 
 - (id)initWithVelocityDial:(ELDial *)velocityDial
@@ -46,20 +46,20 @@
          chan7OverrideDial:(ELDial *)chan7OverrideDial
          chan8OverrideDial:(ELDial *)chan8OverrideDial;
 
-@property ELDial *velocityDial;
-@property ELDial *emphasisDial;
-@property ELDial *tempoSyncDial;
-@property ELDial *noteLengthDial;
-@property ELDial *triadDial;
-@property ELDial *ghostsDial;
-@property ELDial *overrideDial;
-@property ELDial *chan1OverrideDial;
-@property ELDial *chan2OverrideDial;
-@property ELDial *chan3OverrideDial;
-@property ELDial *chan4OverrideDial;
-@property ELDial *chan5OverrideDial;
-@property ELDial *chan6OverrideDial;
-@property ELDial *chan7OverrideDial;
-@property ELDial *chan8OverrideDial;
+@property (nonatomic, strong) ELDial *velocityDial;
+@property (nonatomic, strong) ELDial *emphasisDial;
+@property (nonatomic, strong) ELDial *tempoSyncDial;
+@property (nonatomic, strong) ELDial *noteLengthDial;
+@property (nonatomic, strong) ELDial *triadDial;
+@property (nonatomic, strong) ELDial *ghostsDial;
+@property (nonatomic, strong) ELDial *overrideDial;
+@property (nonatomic, strong) ELDial *chan1OverrideDial;
+@property (nonatomic, strong) ELDial *chan2OverrideDial;
+@property (nonatomic, strong) ELDial *chan3OverrideDial;
+@property (nonatomic, strong) ELDial *chan4OverrideDial;
+@property (nonatomic, strong) ELDial *chan5OverrideDial;
+@property (nonatomic, strong) ELDial *chan6OverrideDial;
+@property (nonatomic, strong) ELDial *chan7OverrideDial;
+@property (nonatomic, strong) ELDial *chan8OverrideDial;
 
 @end

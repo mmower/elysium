@@ -30,11 +30,11 @@
   ELOscillatorDesignerController  *_oscillatorDesignerController;
 }
 
-@property (readonly)  ELPlayer  *player;
-@property (assign)    NSString  *composerName;
-@property (assign)    NSString  *composerEmail;
-@property (assign)    NSString  *title;
-@property (assign)    NSString  *notes;
+@property (nonatomic,readonly)  ELPlayer  *player;
+@property  (nonatomic,assign)     NSString  *composerName;
+@property  (nonatomic,assign)     NSString  *composerEmail;
+@property  (nonatomic,assign)     NSString  *title;
+@property  (nonatomic,assign)     NSString  *notes;
 
 - (ElysiumController *)appController;
 

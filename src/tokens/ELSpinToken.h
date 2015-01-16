@@ -14,13 +14,13 @@
 #import "ELToken.h"
 
 @interface ELSpinToken : ELToken {
-  ELDial *_clockwiseDial;
-  ELDial *_steppingDial;
+    ELDial *_clockwiseDial;
+    ELDial *_steppingDial;
 }
 
 - (id)initWithClockwiseDial:(ELDial *)clockwiseDial steppingDial:(ELDial *)steppingDial;
 
-@property ELDial *clockwiseDial;
-@property ELDial *steppingDial;
+@property (nonatomic, strong) ELDial *clockwiseDial;
+@property (nonatomic, strong) ELDial *steppingDial;
 
 @end

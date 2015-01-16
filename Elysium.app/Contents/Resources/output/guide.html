@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Elysium Getting Started Guide</title>
+   <meta name="author" content="" />
+
+   <!--- Blueprint CSS Framework -->
+   <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+   <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
+
+   <!-- CodeRay syntax highlighting CSS -->
+   <link rel="stylesheet" href="css/coderay.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="css/site.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+
+<div class="container">
+
+   <div class="column span-20 prepend-2 append-2 first last" id="header">
+     <p class="title">Elysium Getting Started Guide</p>
+     <hr>
+   </div>
+
+   <div class="column span-15 prepend-2 first">
+      <ul>
+<li>by Matt Mower <a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x73;&#x65;&#x6c;&#102;&#x40;&#x6d;&#x61;&#116;&#x74;&#109;&#111;&#x77;&#101;&#x72;&#x2e;&#99;&#111;&#x6d;">&#115;&#101;&#108;&#102;&#64;&#x6d;&#x61;&#116;&#116;&#109;&#x6f;&#119;&#101;&#114;&#46;&#99;&#x6f;&#x6d;</a></li>
+<li>Draft 1 - 03/12/08</li>
+</ul>
+
+
+<h2>Introduction</h2>
+
+<p>Elysium is a generative MIDI sequencer. Okay so what does that mean?</p>
+
+<p>Let's take that in reverse:</p>
+
+<ol>
+<li><p>Elysium is a sequencer, that means it's designed to produce sequences of notes that can be layered to form music.</p></li>
+<li><p>Elysium uses MIDI which means that it doesn't make sounds itself but can drive MIDI based synthesizers, samplers, and other instruments. It also means that Elysium's output can be recorded, and manipulated, in a DAW such as Logic or Ableton Live.</p></li>
+<li><p>Elysium is generative which relates to the way the music is created by building up a "system" composed of layers, cells, tokens, and playheads that combined, when "played", to produce a sequence of notes.</p></li>
+</ol>
+
+
+<p>Still not with me? That's okay. Once you've played with it a bit it will all become clear.</p>
+
+<h2>Some things Elysium is not</h2>
+
+<p>The first thing people usually wonder is "Why doesn't it make any noise?" There's a good reason for that, Elysium generates <a href="http://en.wikipedia.org/wiki/MIDI">MIDI</a> which is an industry standard protocol for talking to things like synthesizers, samplers, and drum machines. And there are a lot of great synths out there. All you have to do is install one.</p>
+
+<p>If you already have something like Logic, Ableton Live, Komplete, Kore, or, Reason then you already have some great tools for making noises. Elysium will route its MIDI into any of those and can play their instruments as if it were a regular keyboard.</p>
+
+<p>If you don't have anything that makes cool noises then I suggest you start with the free <a href="http://www.native-instruments.com/index.php?id=koreplayer">Kore Player from Native Instruments</a>. This comes with a 300MB library of great sounds but, 
+beware, try it and you won't want to stop there and, believe me, Native Instruments can supply the goods if you can afford them :)</p>
+
+<p>Elysium is also not a VST, RTAS, or AU plugin. It is a standalone Mac application. Whilst it doesn't plug into a DAW it will work with any of them. It's possible that, if I learned enough about how to create AU's, an Audio Unit version might appear in the future but it's very low priority.</p>
+
+<p>Finally, something else Elysium is not is <em>finished</em> which brings me neatly to...</p>
+
+<h2>Getting Help</h2>
+
+<p>Elysium was started in August 2008 and, like all newborns, is liable to be a bit unpredictable at times, have hysterical fits, and leave a mess behind it. Generally you're also going to meet lots of dark corners in Elysium that have not been well thought out and your feedback, of all kinds, for improving the application is most welcome.</p>
+
+<p>If you want to let us know about a problem or request a feature why not drop by our <a href="http://getsatisfaction.com/lucidmac/products/lucidmac_elysium">Get Satisfaction</a> page. There is an option for this under the help menu of Elysium itself.</p>
+
+<p>If you want to get more immediate help, or just chat about Elysium (or MIDI generally) come find me in #midi on <a href="http://freenode.net/">FreeNode IRC</a>. You will need an IRC client like <a href="http://limechat.net/mac/">Limechat for Mac OS X</a> or <a href="http://www.mirc.com/">mIRC for Windows</a>.</p>
+
+<h2>Okay let's get this show on the road</h2>
+
+<p>Start Elysium. Nothing much happened? Right, by default Elsyium doesn't create an emtpy file for you so press Cmd+N (or use New from the File menu). Now you should be looking at something like this:</p>
+
+<p><img src="layer1.jpg" alt="My first layer" /></p>
+
+<p>This is a layer. It's composed of a honeycomb of cells arranged in 17 columns of 12 rows each. Each cell corresponds to a musical note which will sounds if you click it using your left mouse button (and assuming you have something ready to make noises in response to notes on MIDI channel 1). Let's take a close look, from the <code>Layer menu</code> select <code>Show Notes</code> and you should see this instead:</p>
+
+<p><img src="layer2.jpg" alt="My first layer - now with notes!" /></p>
+
+<p>The notes aren't spread out randomly but follow a pattern called a 'Harmonic Table'. For example, if you've played a keyboard, this group should look familiar:</p>
+
+<p><img src="triad1.jpg" alt="I know this one" /></p>
+
+<p>But if all you could do was click little hexes you'd be worse off than just using your keyboard so let's get a taste of what Elysium can do!</p>
+
+<p>Right click (if you are using a laptop with a trackpad and ctrl+click doesn't work try using a two-finger click instead) one of the hexes, say a C4, and add a generator. Then add a note. Now do the same to add a note 2 or 3 hexes directly north of the hex you added the generator to. You should end up with something like this:</p>
+
+<p><img src="myfirsthexes.jpg" alt="Now we're cooking" /></p>
+
+<p>Now set it going using the start player option from the menu:</p>
+
+<p><img src="startplaying.jpg" alt="Away we go!" /></p>
+
+<p>Now the player is running and the generate will generate a series of playheads (the moving red hexes) that will travel up the screen. You should hear a note played when the playhead is generated and another note played as the playhead enters the cell with the second note token we put down. If you're not hearing those make sure you have Elysium routing its MIDI to a compatible sound-producing application.</p>
+
+<p><img src="awayfliestheplayhead.jpg" alt="Playheads ahoy!" /></p>
+
+<p>Note that it doesn't play a note for each hexes the playhead travels over, only the hexes with a note token specifically assigned to them by you. Stop the player again. If the layer has focus you can do that with the <code>Enter</code> key otherwise try the transport control in the player inspector. That's this one:</p>
+
+<p><img src="startandstoptheplayer.jpg" alt="First look at the player inspector" /></p>
+
+<p>Which brings us to those inspectors.</p>
+
+<h2>Taking Control</h2>
+
+<p>Elysiums inspectors are kind of scary looking and, in truth, they are not as well designed as they could be. But the good news is that once you have learned how to operate one control, pretty much all the other controls in all the inspectors work the same way. Also many of the controls are duplicated across the different inspectors so there really isn't as much to learn as you might, at first, think.</p>
+
+<p>Let's take a look at one of the controls, the tempo:</p>
+
+<p><img src="tempocontrol1.jpg" alt="Tempo 1" /></p>
+
+<p>Tempo is measured in Beats Per Minute (BPM). So with the tempo set at it's default of 120 there are 2 beats each second. In practical terms that means a playhead moves twice and can potentially play two notes per second.</p>
+
+<p>The value of the tempo knob is set in the controls in the left hand green box. You can either type a value in to replace 120 or use the stepper controls to move the value up and down. Start the player again and try typing in a value of 300 (and pressing enter to confirm, you don't need to press enter when you use the steppers though) and see what happens.</p>
+
+<p>The two controls in the right hand green box allow you to assign an oscillator to the knob value. Using an oscillator gives the knob a dynamic value. We'll get to that later.</p>
+
+<p>Now that you know how this works, you know how nearly all of the inspector controls work. Let's take a look at another example, duration:</p>
+
+<p><img src="hexinspector1.jpg" alt="The mighty hex inspector!" /></p>
+
+<p>Do you notice how the hex with the upper note token is highlighted? That's the selected hex and you can see that I am now looking at the <code>Hex Inspector</code> which shows you what is on that hex. In this case just a note token. If we had the hex with the generator selected you'd see more information. If you click on a hex with no tokens the hex inspector is, predictably enough, empty.</p>
+
+<p>Something you should notice is that the note information on the hex inspector looks similar to a group of controls on the player inspector. But the duration control on the hex inspector isn't quite the same as it's counterpart in the player inspector:</p>
+
+<p><img src="durationcontrol1.jpg" alt="We can override" /></p>
+
+<p>Two things are different. The first is that we have a new <em>inherit</em> control which is, by default, checked. The second is that the controls for setting the value of the duration are grayed out and you can't use them.</p>
+
+<p>Duration is, as you might have guessed, how long (in seconds) the note will be played for. And the player sets the value as half a second. When <em>inherit</em> is checked this particular note will inherit its duration from somewhere else. Uncheck it and you will see that the controls for setting the value become enabled. This means that the note is now free to use its own duration. Change the duration value to be 1.0. If the player is started you should be able to hear that the first note played is half a second long and the second note played is a full second long.</p>
+
+<p>When the duration was inheriting its value, where was it inheriting it from?</p>
+
+<ul>
+<li>If you answered "The player" then you're right.</li>
+<li>If you answered "The layer" then you're right too.</li>
+</ul>
+
+
+<p>Congratulations!</p>
+
+<p>You see Elysium is multi-layered and each layer gets its own cells and can have its own pattern. It just happens that, in our previous example, we only have one layer. But here is an example of two layers:</p>
+
+<p><img src="morelayers.jpg" alt="Layers upon Layers" /></p>
+
+<p>In this case you can see I have named the layers (by double clicking the layer name in the Layer Manager panel) to describe what instrument I want them to play.</p>
+
+<p>This naming process is entirely optional and there is no pre-determined structure for how things work. You can have one layer playing multiple instruments or multiple layers playing the same instrument, Elysium doesn't care.</p>
+
+<p>What's important here though is that you understand the relationship between the player, layers, and tokens placed on layer cells. If we bring up the layer inspector up you can see the whole picture of how duration is inherited::</p>
+
+<p><img src="inheritingduration.jpg" alt="Yes, there are layers" /></p>
+
+<p>The arrows show how one duration knob inherits from another. The player knob doesn't have an inheritance control because it is "the master control".</p>
+
+<p>So, by default, every note on layer 1 inherits its duration from the layer 1 duration knob which, in turn, inherits its value from the player duration knob. If you were to add a second layer you could override the duration so that all notes on layer 2 had a duration of 2s. Any particular note can "disinherit" and set its own duration.</p>
+
+<p>At this point, whether you realize it or not, you've learned 80% of what there is to learn about these complex inspectors. The rest is familiarizing yourself with the tokens you can place on the layers, and the different knobs that determine what effect those tokens have.</p>
+
+<p>Lets go through them now.</p>
+
+<h2>Tokens</h2>
+
+<p>We'll start with the generate token which you have already seen:</p>
+
+<h3>Start</h3>
+
+<p><img src="generate1.jpg" alt="Generate this" /></p>
+
+<p>A generate token creates playheads and sends them off with a direction. How often does it do it? That depends upon the <code>Pulse Every</code> setting. With a <code>Pulse Every</code> of 1 you'd get a new playhead on every beat, at 2 one every other beat, at 3 one every third beat, and so on. You'll notice that, a playhead doesn't keep going forever. There are two reasons why a playhead dies. The first is if it crosses the edge of the layer and the second is if it lives too long. A playheads "life" is measured in beats and can be controlled by the <code>Time to Live</code> knob. This becomes an important parameter when you start setting up cyclical patterns.</p>
+
+<h3>Note</h3>
+
+<p><img src="note1.jpg" alt="Take note" /></p>
+
+<p>The note token, you will be unsurprised to hear, plays a note. The note played is governed by which cell the token is placed on according to the harmonic table you saw earlier. The various knobs in the inspector allow you to control <em>how</em> the note is played.</p>
+
+<h3>Rebound</h3>
+
+<p><img src="rebound1.jpg" alt="Boing!!!" /></p>
+
+<p>A rebound token changes the direction of a moving playhead. In this example any playhead entering its hex would rebound to the south west. Confusingly the triangle is identical to direction triangle of the generate token (this will be fixed eventually) but the two are independent. If you stack a rebound on top of a generate the rebound <em>will not</em> affect newly generated playheads. They will still get their direction from the generator.</p>
+
+<h3>Absorb</h3>
+
+<p><img src="absorb1.jpg" alt="Most absorbent" /></p>
+
+<p>An absorb token "absorbs" any playhead entering its hex. Like the rebound this won't affect newly generated playheads if you stack an absorb on top of a generator.</p>
+
+<h3>Split</h3>
+
+<p><img src="split1.jpg" alt="Let's split" /></p>
+
+<p>A split token splits one playhead into many. Each time a playhead enters its cell it a new playhead is sent out in every other direction. These playheads have the same <code>Time To Live</code> as the original playhead.</p>
+
+<h3>Spin</h3>
+
+<p><img src="spin1.jpg" alt="Spin er round" /></p>
+
+<p>A spin token can be placed anywhere but it only has an effect when placed on top of either a generator or rebound token. The effect is simple, each time a generate generates, or a rebound rebounds its direction will change. Effectively the token "spins round". It's simpler to see than describe. Try it!</p>
+
+<p>Okay, now you know about all the tokens, about layers, inspectors, knobs, inheritance, and a whole bunch more stuff. There is a <strong>huge</strong> amount of stuff left for you to discover but you know enough to be dangerous now so give it a try and make something cool!</p>
+
+<p>Have fun.</p>
+
+<p>Matt</p>
+
+   </div>
+
+   <div class="column span-5 append-2 last">
+      <h4>Links</h4>
+      
+      <p><a href="http://lucidmac.com/products/elysium/">Elysium home page</a></p>
+      
+      <p><a href="guide.html">Getting Started Guide</a></p>
+      <p><a href="scripting.html">Scripting Guide</a></p>
+      <p><a href="building.html">Building Guide</a></p>
+      
+      <div class="box">
+         <p class="last">For support check out <a href="http://getsatisfaction.com/lucidmac/products/lucidmac_elysium">Get Satisfaction</a> or the #midi channel <a href="http://freenode.net/">on FreeNode IRC</a>.</p>
+      </div>
+   </div>
+
+   <div class="column span-20 prepend-2 append-2 first last" id="footer">
+     <hr />
+     <p>Copyright 2009 Matt Mower</p>
+   </div>
+
+</div>
+</body>
+</html>

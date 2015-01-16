@@ -17,9 +17,9 @@
   BOOL      _flat;
 }
 
-@property (readonly) NSString *name;
-@property (readonly) NSArray *scale;
-@property (readonly) BOOL flat;
+@property (nonatomic,readonly) NSString *name;
+@property (nonatomic,readonly) NSArray *scale;
+@property (nonatomic,readonly) BOOL flat;
 
 + (NSArray *)allKeys;
 + (ELKey *)keyNamed:(NSString *)name;

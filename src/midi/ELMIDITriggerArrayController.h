@@ -15,6 +15,6 @@
   ELPlayer *player;
 }
 
-@property (assign) ELPlayer *player;
+@property  (nonatomic,assign)  ELPlayer *player;
 
 @end

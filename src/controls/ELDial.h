@@ -10,41 +10,41 @@
 
 #import <Cocoa/Cocoa.h>
 
-extern NSString * const dialModeValueTransformer;
-extern NSString * const dialHasOscillatorValueTransformer;
+extern NSString *const dialModeValueTransformer;
+extern NSString *const dialHasOscillatorValueTransformer;
 
 typedef enum tagELDialMode {
-  dialFree,
-  dialDynamic,
-  dialInherited
+    dialFree,
+    dialDynamic,
+    dialInherited
 } ELDialMode;
 
 @class ELPlayer;
 @class ELOscillator;
 
-@interface ELDial : NSObject <ELXmlData,NSMutableCopying> {
-  id            _delegate;
-  
-  ELDialMode    _mode;
-  
-  NSString      *_name;
-  NSString      *_toolTip;
-  int           _tag;
-  
-  ELPlayer      *_player;
-  ELDial        *_parent;
-  ELOscillator  *_oscillator;
-  
-  int           _assigned;
-  int           _last;
-  int           _value;
-  
-  // For range based controls
-  int           _min;
-  int           _max;
-  int           _step;
-  
-  BOOL          _duplicate;
+@interface ELDial : NSObject <ELXmlData, NSMutableCopying> {
+    id _delegate;
+    
+    ELDialMode _mode;
+    
+    NSString *_name;
+    NSString *_toolTip;
+    int _tag;
+    
+    ELPlayer *_player;
+    ELDial *_parent;
+    ELOscillator *_oscillator;
+    
+    int _assigned;
+    int _last;
+    int _value;
+    
+    // For range based controls
+    int _min;
+    int _max;
+    int _step;
+    
+    BOOL _duplicate;
 }
 
 
@@ -89,21 +89,21 @@ typedef enum tagELDialMode {
 
 - (id)initWithParent:(ELDial *)parent;
 
-@property           id            delegate;
-@property           ELDialMode    mode;
-@property (assign)  NSString      *name;
-@property (assign)  NSString      *toolTip;
-@property           int           tag;
-@property           ELPlayer      *player;
-@property           ELDial        *parent;
-@property           ELOscillator  *oscillator;
-@property           int           assigned;
-@property           int           last;
-@property           int           value;
-@property           int           min;
-@property           int           max;
-@property           int           step;
-@property           BOOL          duplicate;
+@property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) ELDialMode mode;
+@property (nonatomic, assign)   NSString *name;
+@property (nonatomic, assign)   NSString *toolTip;
+@property (nonatomic) int tag;
+@property (nonatomic, strong) ELPlayer *player;
+@property (nonatomic, strong) ELDial *parent;
+@property (nonatomic, strong) ELOscillator *oscillator;
+@property (nonatomic) int assigned;
+@property (nonatomic) int last;
+@property (nonatomic) int value;
+@property (nonatomic) int min;
+@property (nonatomic) int max;
+@property (nonatomic) int step;
+@property (nonatomic) BOOL duplicate;
 
 - (BOOL)boolValue;
 - (void)setBoolValue:(BOOL)boolValue;

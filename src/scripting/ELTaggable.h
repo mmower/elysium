@@ -10,6 +10,6 @@
 
 @protocol ELTaggable
 
-@property (assign) NSString *scriptingTag;
+@property  (nonatomic,assign)  NSString *scriptingTag;
 
 @end

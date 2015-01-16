@@ -8,24 +8,27 @@
 
 #if !TARGET_IPHONE_SIMULATOR && !TARGET_OS_IPHONE
 #import <Cocoa/Cocoa.h>
-#import <JavascriptCore/JavascriptCore.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 #define MACOSX
 #import <ffi/ffi.h>
 #endif
 #import "JSCocoaFFIArgument.h"
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-#import "iPhone/ffi.h"
+#import "ffi.h"
 #endif
 
 
 @interface JSCocoaFFIClosure : NSObject {
 
 	JSValueRef		jsFunction;
+	// ##UNSURE This might cause a crash if we're registered in a non global context that will have been destroyed when we JSValueUnprotect the function
 	JSContextRef	ctx;
 
 	ffi_cif			cif;
+#if !TARGET_OS_IPHONE
 	ffi_closure*	closure;
+#endif
 	ffi_type**		argTypes;
 	
 	NSMutableArray*	encodings;

@@ -26,68 +26,68 @@
 @class ELScriptPackage;
 @class ELEnvelopeProbabilityGenerator;
 
-@interface ELPlayer : NSObject <ELXmlData,ELTaggable> {
-  ElysiumDocument         *_document;        // Cocoa NSDocument subclass hosting this player
-  ELHarmonicTable         *_harmonicTable;   // Represents the structure of notes to be played
-  NSMutableArray          *_layers;          // Each layer is an "instrument"
-  ELLayer                 *_selectedLayer;
-  BOOL                    _running;          // The player is active
-  // ELMIDIController      *_midiController;  // Our interface to CoreMIDI
-  ELOscillatorController  *_oscillatorController;
-  
-  int                     _nextLayerNumber;
-  BOOL                    _dirty;
-  
-  NSString                *_scriptingTag;
-  NSMutableDictionary     *_scripts;
-  NSMutableArray          *_triggers;        // ELMIDITrigger objects
-  NSThread                *_triggerThread;
-  
-  ELScriptEngine          *_scriptEngine;
-  
-  ELScriptPackage         *_pkg;
-  
-  ELDial                  *_tempoDial;
-  ELDial                  *_barLengthDial;
-  ELDial                  *_timeToLiveDial;
-  ELDial                  *_pulseEveryDial;
-  ELDial                  *_velocityDial;
-  ELDial                  *_emphasisDial;
-  ELDial                  *_tempoSyncDial;
-  ELDial                  *_noteLengthDial;
-  ELDial                  *_transposeDial;
-  
-  BOOL                    _loaded;
+@interface ELPlayer : NSObject <ELXmlData, ELTaggable> {
+    ElysiumDocument *_document;              // Cocoa NSDocument subclass hosting this player
+    ELHarmonicTable *_harmonicTable;         // Represents the structure of notes to be played
+    NSMutableArray *_layers;                 // Each layer is an "instrument"
+    ELLayer *_selectedLayer;
+    BOOL _running;                           // The player is active
+    // ELMIDIController      *_midiController;  // Our interface to CoreMIDI
+    ELOscillatorController *_oscillatorController;
+    
+    int _nextLayerNumber;
+    BOOL _dirty;
+    
+    NSString *_scriptingTag;
+    
+    NSMutableArray *_triggers;               // ELMIDITrigger objects
+    NSThread *_triggerThread;
+    
+    ELScriptEngine *_scriptEngine;
+    
+    ELScriptPackage *_pkg;
+    
+    ELDial *_tempoDial;
+    ELDial *_barLengthDial;
+    ELDial *_timeToLiveDial;
+    ELDial *_pulseEveryDial;
+    ELDial *_velocityDial;
+    ELDial *_emphasisDial;
+    ELDial *_tempoSyncDial;
+    ELDial *_noteLengthDial;
+    ELDial *_transposeDial;
+    
+    BOOL _loaded;
 }
 
-// @property (readonly)  UInt64              startTime;
-@property (readonly)  ELHarmonicTable     *harmonicTable;
-@property (readonly)  NSMutableArray      *layers;
-@property             BOOL                running;
-@property             BOOL                dirty;
+// @property (nonatomic,readonly)  UInt64              startTime;
+@property (readonly, nonatomic, strong)  ELHarmonicTable *harmonicTable;
+@property (readonly, nonatomic, strong)  NSMutableArray *layers;
+@property (nonatomic) BOOL running;
+@property (nonatomic) BOOL dirty;
 
-@property             ELLayer             *selectedLayer;
+@property (nonatomic, strong) ELLayer *selectedLayer;
 
-@property             ElysiumDocument     *document;
-@property (readonly)  NSMutableDictionary *scripts;
-@property (readonly)  NSMutableArray      *triggers;
+@property (nonatomic, strong) ElysiumDocument *document;
+@property (nonatomic, strong)  NSMutableDictionary *scripts;
+@property (readonly, nonatomic, strong)  NSMutableArray *triggers;
 
-@property (readonly,nonatomic,retain) ELScriptEngine  *scriptEngine;
-@property (readonly)  ELScriptPackage     *pkg;
+@property (readonly, nonatomic, retain) ELScriptEngine *scriptEngine;
+@property (readonly, nonatomic, strong)  ELScriptPackage *pkg;
 
-@property (readonly)  ELOscillatorController  *oscillatorController;
+@property (readonly, nonatomic, strong)  ELOscillatorController *oscillatorController;
 
-// @property (readonly)  NSMutableArray      *activeOscillators;
+// @property (nonatomic,readonly)  NSMutableArray      *activeOscillators;
 
-@property             ELDial              *tempoDial;
-@property             ELDial              *barLengthDial;
-@property             ELDial              *timeToLiveDial;
-@property             ELDial              *pulseEveryDial;
-@property             ELDial              *velocityDial;
-@property             ELDial              *emphasisDial;
-@property             ELDial              *tempoSyncDial;
-@property             ELDial              *noteLengthDial;
-@property             ELDial              *transposeDial;
+@property (nonatomic, strong) ELDial *tempoDial;
+@property (nonatomic, strong) ELDial *barLengthDial;
+@property (nonatomic, strong) ELDial *timeToLiveDial;
+@property (nonatomic, strong) ELDial *pulseEveryDial;
+@property (nonatomic, strong) ELDial *velocityDial;
+@property (nonatomic, strong) ELDial *emphasisDial;
+@property (nonatomic, strong) ELDial *tempoSyncDial;
+@property (nonatomic, strong) ELDial *noteLengthDial;
+@property (nonatomic, strong) ELDial *transposeDial;
 
 - (id)initWithDocument:(ElysiumDocument *)document;
 - (id)initWithDocument:(ElysiumDocument *)document createDefaultLayer:(BOOL)shouldCreateDefaultLayer;

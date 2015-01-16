@@ -12,35 +12,35 @@
 
 @class LMHexCell;
 
-extern NSString* const LMHoneycombViewDefaultColor;
-extern NSString* const LMHoneycombViewSelectedColor;
-extern NSString* const LMHoneycombViewBorderColor;
-extern NSString* const LMHoneycombViewSelectedBorderColor;
-extern NSString* const LMHoneycombViewBorderWidth;
+extern NSString *const LMHoneycombViewDefaultColor;
+extern NSString *const LMHoneycombViewSelectedColor;
+extern NSString *const LMHoneycombViewBorderColor;
+extern NSString *const LMHoneycombViewSelectedBorderColor;
+extern NSString *const LMHoneycombViewBorderWidth;
 
 @interface LMHoneycombView : NSView {
-  LMHexCell             *_selected;
-  
-  id<LMHoneycombMatrix> _dataSource;
-  id                    _delegate;
-  
-  int                   _cols;
-  int                   _rows;
-  
-  BOOL                  _recalculateCellPaths;
-  
-  NSBitmapImageRep      *_viewCache;
-  
-  NSMutableDictionary   *_drawingAttributes;
+    LMHexCell *mSelected;
+    
+    id <LMHoneycombMatrix> mDataSource;
+    id mDelegate;
+    
+    int mCols;
+    int mRows;
+    
+    BOOL mRecalculateCellPaths;
+    
+    NSBitmapImageRep *mViewCache;
+    
+    NSMutableDictionary *mDrawingAttributes;
 }
 
-@property (readonly) NSMutableDictionary *drawingAttributes;
-@property (readonly) int cols;
-@property (readonly) int rows;
-@property id delegate;
-@property BOOL recalculateCellPaths;
-@property LMHexCell *selected;
-@property id<LMHoneycombMatrix> dataSource;
+@property (readonly, nonatomic, getter = drawingAttributes) NSMutableDictionary *mDrawingAttributes;
+@property (readonly, nonatomic, getter = cols) int mCols;
+@property (readonly, nonatomic, getter = rows) int mRows;
+@property (nonatomic, assign, getter = delegate, setter = setDelegate :) id mDelegate;
+@property (getter = recalculateCellPaths, setter = setRecalculateCellPaths :) BOOL mRecalculateCellPaths;
+@property (nonatomic, strong, getter = selected, setter = setSelected :) LMHexCell *mSelected;
+@property (nonatomic, strong, getter = dataSource, setter = setDataSource :) id <LMHoneycombMatrix> mDataSource;
 
 - (void)dataSourceChanged;
 

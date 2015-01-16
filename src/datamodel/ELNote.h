@@ -23,12 +23,12 @@
 + (int)noteNumber:(NSString *)noteName;
 + (NSString *)noteName:(int)noteNum;
 
-@property (readonly) int number;
-@property (readonly) int octave;
-@property (readonly) NSString *name;
-@property (readonly) NSString *tone;
-@property (readonly) NSString *alternateTone;
-@property (readonly) NSString *flattenedName;
+@property (nonatomic,readonly) int number;
+@property (nonatomic,readonly) int octave;
+@property (nonatomic,readonly) NSString *name;
+@property (nonatomic,readonly) NSString *tone;
+@property (nonatomic,readonly) NSString *alternateTone;
+@property (nonatomic,readonly) NSString *flattenedName;
 
 - (id)initWithName:(NSString *)name;
 

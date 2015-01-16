@@ -10,19 +10,19 @@
 #import <Cocoa/Cocoa.h>
 
 #import <CoreMIDI/CoreMIDI.h>
-
+#import <Pymidi/Pymidi.h>
 @class ELMIDIMessage;
 @class PYMIDIEndpoint;
 @class PYMIDIVirtualSource;
 
 @interface ELMIDIController : NSObject {
-  PYMIDIVirtualSource       *_source;
-  PYMIDIEndpoint            *_endpoint;
-  
-  id                        _delegate;
+    PYMIDIVirtualSource *_source;
+    PYMIDIEndpoint *_endpoint;
+    
+    id _delegate;
 }
 
-@property (assign) id delegate;
+@property (nonatomic, assign)  id delegate;
 
 + (ELMIDIController *)sharedInstance;
 
@@ -32,7 +32,7 @@
 - (void)setInput:(PYMIDIEndpoint *)endpoint;
 - (void)setInputWithUniqueID:(NSInteger)uniqueID;
 
-- (void)processMIDIPacketList:(MIDIPacketList*)packetList sender:(id)sender;
-- (void)handleMIDIMessage:(Byte*)message ofSize:(int)size;
+- (void)processMIDIPacketList:(MIDIPacketList *)packetList sender:(id)sender;
+- (void)handleMIDIMessage:(Byte *)message ofSize:(int)size;
 
 @end

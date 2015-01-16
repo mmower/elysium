@@ -12,13 +12,13 @@
 @class ELLayer;
 @class ELSurfaceView;
 
-@interface ELLayerWindowController : NSWindowController {
-  IBOutlet  ELSurfaceView     *_layerView;
-  ELLayer                     *_layer;
+@interface ELLayerWindowController : NSWindowController <NSFileManagerDelegate, NSComboBoxDataSource, NSComboBoxDelegate> {
+    IBOutlet ELSurfaceView *_layerView;
+    ELLayer *_layer;
 }
 
-@property ELLayer *layer;
-@property ELSurfaceView *layerView;
+@property (nonatomic, strong) ELLayer *layer;
+@property (nonatomic, strong) ELSurfaceView *layerView;
 
 - (id)initWithLayer:(ELLayer *)layer;
 

@@ -17,39 +17,39 @@
 @class ELMutexGroup;
 
 @protocol DirectedToken
-@property ELDial *directionDial;
+@property (nonatomic, strong) ELDial *directionDial;
 @end
 
-@interface ELToken : NSObject <ELXmlData,NSMutableCopying> {
-  BOOL                _loaded;
-  ELLayer             *_layer;
-  ELCell              *_cell;
-  NSMutableDictionary *_scripts;
-  BOOL                _skip;
-  BOOL                _fired;
-  int                 _gateCount;
-  
-  ELMutexGroup        *_mutexGroup;
-  
-  ELDial              *_enabledDial;
-  ELDial              *_pDial;
-  ELDial              *_gateDial;
+@interface ELToken : NSObject <ELXmlData, NSMutableCopying> {
+    BOOL _loaded;
+    ELLayer *_layer;
+    ELCell *_cell;
+    NSMutableDictionary *_scripts;
+    BOOL _skip;
+    BOOL _fired;
+    int _gateCount;
+    
+    ELMutexGroup *_mutexGroup;
+    
+    ELDial *_enabledDial;
+    ELDial *_pDial;
+    ELDial *_gateDial;
 }
 
 - (id)initEnabledDial:(ELDial *)enabledDial pDial:(ELDial *)pDial gateDial:(ELDial *)gateDial scripts:(NSMutableDictionary *)scripts;
 
-@property (readonly) BOOL loaded;
-@property ELCell *cell;
-@property ELLayer *layer;
+@property (nonatomic,readonly) BOOL loaded;
+@property (nonatomic, strong) ELCell *cell;
+@property (nonatomic, strong) ELLayer *layer;
 
-@property BOOL skip;
-@property BOOL fired;
+@property  (nonatomic) BOOL skip;
+@property  (nonatomic) BOOL fired;
 
-@property ELDial *enabledDial;
-@property ELDial *pDial;
-@property ELDial *gateDial;
+@property (nonatomic, strong) ELDial *enabledDial;
+@property (nonatomic, strong) ELDial *pDial;
+@property (nonatomic, strong) ELDial *gateDial;
 
-@property (assign) NSMutableDictionary *scripts;
+@property  (nonatomic,assign)  NSMutableDictionary *scripts;
 
 + (NSString *)tokenType;
 

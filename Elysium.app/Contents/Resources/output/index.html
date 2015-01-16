@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Elysium</title>
+   <meta name="author" content="" />
+
+   <!--- Blueprint CSS Framework -->
+   <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+   <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
+
+   <!-- CodeRay syntax highlighting CSS -->
+   <link rel="stylesheet" href="css/coderay.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="css/site.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+
+<div class="container">
+
+   <div class="column span-20 prepend-2 append-2 first last" id="header">
+     <p class="title">Elysium</p>
+     <hr>
+   </div>
+
+   <div class="column span-15 prepend-2 first">
+      <h3>Version 0.9.3 - 15.Dec.2008</h3>
+
+<h3>by Matt Mower <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x6d;&#x61;&#x74;&#116;&#x40;&#x6c;&#x75;&#x63;&#105;&#x64;&#109;&#97;&#x63;&#x2e;&#x63;&#x6f;&#109;">&#109;&#97;&#x74;&#116;&#x40;&#x6c;&#x75;&#99;&#x69;&#x64;&#x6d;&#x61;&#99;&#46;&#x63;&#x6f;&#109;</a></h3>
+
+<h3><a href="http://lucidmac.com/products/elysium">http://lucidmac.com/products/elysium</a></h3>
+
+<p>Elysium is a generative music application for MacOSX written in Objective-C and using the Cocoa application framework. It is released as free software under the MIT license. See the MIT-LICENSE file included in the distribution for more information.</p>
+
+<h2>Background</h2>
+
+<p>The inspiration for Elysium came from watching a 5 minute long <a href="http://www.youtube.com/watch?v=AklKy2NDpqs">video of the Reactogon</a> a "chain reactive performance arpeggiator". The Reactogon is a custom built MIDI instrument based upon the harmonic table. I decided it would be a fun project to get back into Cocoa programming to build a software application to play with, and build upon, the same concepts and was greatly encouraged by Giles Bowketts, Ruby self-generating pattern sequencer, <a href="http://gilesbowkett.blogspot.com/2008/02/archaeopteryx-ruby-midi-generator.html">Archaeopteryx</a>.</p>
+
+<h2>Introduction</h2>
+
+<p>Elysium is a generative MIDI sequencer. Okay so what does that mean?</p>
+
+<p>Let's take that in reverse:</p>
+
+<ol>
+<li><p>Elysium is a sequencer, that means it's designed to produce sequences of notes that can be layered to form music.</p></li>
+<li><p>Elysium uses MIDI which means that it doesn't make sounds itself but can drive MIDI based synthesizers, samplers, and other instruments. It also means that Elysium's output can be recorded, and manipulated, in a DAW such as Logic or Ableton Live.</p></li>
+<li><p>Elysium is generative which relates to the way the music is created by building up a "system" composed of layers, cells, tokens, and playheads that combined, when "played", to produce a sequence of notes.</p></li>
+</ol>
+
+
+<p>Still not with me? That's okay. Once you've played with it a bit it will all become clear.</p>
+
+<p>The basic upshot is that you're going to need something to make the actual sounds. If you have a DAW like Logic or Ableton Live you're probably already equipped to do that. If not, here are a couple of free alternatives you could try:</p>
+
+<ul>
+<li><a href="http://notahat.com/simplesynth">SimpleSynth</a> by Pete Yandell. Free and a great way to check things are working. It uses the general midi library so you'll want something else when you want to sound insanely great.</li>
+<li><a href="http://www.native-instruments.com/index.php?id=koreplayer">Kore Player</a> from Native Instruments. Free and sounds absolutely great with a 300mb sound library. I've had occasional crashes under MacOSX 10.5.4 so it might not be suitable for live performances.</li>
+</ul>
+
+
+<h2>Getting Started</h2>
+
+<p>Please read the <a href="guide.html">Getting Started Guide</a> for an introduction to making music with Elysium.</p>
+
+<h2>Scripting</h2>
+
+<p>Please read the <a href="scripting.html">Scripting Guide</a> for information on writing scripts that use Elysiums embedded Javascript interpreter.</p>
+
+<h2>Building &amp; Contributing</h2>
+
+<p>Elysium is open source and available <a href="https://github.com/mmower/elysium/tree">via GitHub</a>. If you're feeling brave please take the <a href="building.html">Building Guide</a> and fill in all the missing sections.</p>
+
+<h2>License</h2>
+
+<p>Elysium is released under the MIT License. Please see the MIT-LICENSE file that comes with the distribution. It is unmodified save for the copyright notice.</p>
+
+<h2>Acknowledgements</h2>
+
+<ul>
+<li>Mark Burtons <a href="http://www.youtube.com/watch?v=AklKy2NDpqs">reacTogon</a></li>
+<li><p>Giles Bowkett's <a href="http://wiki.github.com/gilesbowkett/archaeopteryx/home">Archaeopteryx</a></p></li>
+<li><p>Pete Yandell for <a href="http://notahat.com/pymidi">PYMIDI</a> work</p></li>
+<li>Patrick Geiller for <a href="http://inexdo.com/JSCocoa">JSCocoa</a> </li>
+<li>Tomas Fransen for his PAStackableListView</li>
+<li>Andy Matschuchak for <a href="http://sparkle.andymatuschak.org/">Sparkle</a></li>
+<li>Paul Kim for <a href="http://www.noodlesoft.com/blog/2008/10/05/displaying-line-numbers-with-nstextview/">NoodleLineNumberView</a></li>
+</ul>
+
+
+<p>And to the many people who have offered support, guidance, written posts, and given away code that I have learned from over these months.</p>
+
+   </div>
+
+   <div class="column span-5 append-2 last">
+      <h4>Links</h4>
+      
+      <p><a href="http://lucidmac.com/products/elysium/">Elysium home page</a></p>
+      
+      <p><a href="guide.html">Getting Started Guide</a></p>
+      <p><a href="scripting.html">Scripting Guide</a></p>
+      <p><a href="building.html">Building Guide</a></p>
+      
+      <div class="box">
+         <p class="last">For support check out <a href="http://getsatisfaction.com/lucidmac/products/lucidmac_elysium">Get Satisfaction</a> or the #midi channel <a href="http://freenode.net/">on FreeNode IRC</a>.</p>
+      </div>
+   </div>
+
+   <div class="column span-20 prepend-2 append-2 first last" id="footer">
+     <hr />
+     <p>Copyright 2009 Matt Mower</p>
+   </div>
+
+</div>
+</body>
+</html>
